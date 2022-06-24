@@ -19,21 +19,21 @@
     <meta name="description" content="网关何为网关？为什么要网关？ 微服务背景下，一个系统被拆分为多个服务，但是像安全认证，流量控制，日志，监控等功能是每个服务都需要的，没有网关的话，我们就需要在每个服务中单独实现，这使得我们做了很多重复的事情并且没有一个全局的视图来统一管理这些功能。 综上：一般情况下，网关都会提供请求转发、安全认证（身份&#x2F;权限认证）、流量控制、负载均衡、容灾、日志、监控这些功能。 上面介绍了这么多功能，实">
 <meta property="og:type" content="article">
 <meta property="og:title" content="api-gateway">
-<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/system_design/distributed-system/api-gateway/index.html">
+<meta property="og:url" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/distributed-system/api-gateway/index.html">
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="网关何为网关？为什么要网关？ 微服务背景下，一个系统被拆分为多个服务，但是像安全认证，流量控制，日志，监控等功能是每个服务都需要的，没有网关的话，我们就需要在每个服务中单独实现，这使得我们做了很多重复的事情并且没有一个全局的视图来统一管理这些功能。 综上：一般情况下，网关都会提供请求转发、安全认证（身份&#x2F;权限认证）、流量控制、负载均衡、容灾、日志、监控这些功能。 上面介绍了这么多功能，实">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/%E5%BE%AE%E6%9C%8D%E5%8A%A1-%E7%BD%91%E5%85%B3.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/865991e34f69f8cb345b4aff918e946e.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/727732fad2e943bdd2c502b83ddb1b89.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1104eb413cba468cba4dce119165e84e.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//%E5%BE%AE%E6%9C%8D%E5%8A%A1-%E7%BD%91%E5%85%B3.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//865991e34f69f8cb345b4aff918e946e.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//727732fad2e943bdd2c502b83ddb1b89.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1104eb413cba468cba4dce119165e84e.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T10:53:05.555Z">
+<meta property="article:modified_time" content="2022-06-24T11:16:59.849Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="system_design">
 <meta property="article:tag" content="distributed-system">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/xiechaoxin.github/%E5%BE%AE%E6%9C%8D%E5%8A%A1-%E7%BD%91%E5%85%B3.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/.io//%E5%BE%AE%E6%9C%8D%E5%8A%A1-%E7%BD%91%E5%85%B3.png">
   
   
   
@@ -279,13 +279,13 @@
             
               <div class="markdown-body">
                 
-                <h1 id="网关"><a href="#网关" class="headerlink" title="网关"></a>网关</h1><h2 id="何为网关？为什么要网关？"><a href="#何为网关？为什么要网关？" class="headerlink" title="何为网关？为什么要网关？"></a>何为网关？为什么要网关？</h2><p><img src="/xiechaoxin.github/%E5%BE%AE%E6%9C%8D%E5%8A%A1-%E7%BD%91%E5%85%B3.png" srcset="/img/loading.gif" lazyload alt="微服务-网关"></p>
+                <h1 id="网关"><a href="#网关" class="headerlink" title="网关"></a>网关</h1><h2 id="何为网关？为什么要网关？"><a href="#何为网关？为什么要网关？" class="headerlink" title="何为网关？为什么要网关？"></a>何为网关？为什么要网关？</h2><p><img src="/.io//%E5%BE%AE%E6%9C%8D%E5%8A%A1-%E7%BD%91%E5%85%B3.png" srcset="/img/loading.gif" lazyload alt="微服务-网关"></p>
 <p>微服务背景下，一个系统被拆分为多个服务，但是像安全认证，流量控制，日志，监控等功能是每个服务都需要的，没有网关的话，我们就需要在每个服务中单独实现，这使得我们做了很多重复的事情并且没有一个全局的视图来统一管理这些功能。</p>
 <p>综上：<strong>一般情况下，网关都会提供请求转发、安全认证（身份&#x2F;权限认证）、流量控制、负载均衡、容灾、日志、监控这些功能。</strong></p>
 <p>上面介绍了这么多功能，实际上，网关主要做了一件事情：<strong>请求过滤</strong> 。</p>
 <h2 id="有哪些常见的网关系统？"><a href="#有哪些常见的网关系统？" class="headerlink" title="有哪些常见的网关系统？"></a>有哪些常见的网关系统？</h2><h3 id="Netflix-Zuul"><a href="#Netflix-Zuul" class="headerlink" title="Netflix Zuul"></a>Netflix Zuul</h3><p>Zuul 是 Netflix 开发的一款提供动态路由、监控、弹性、安全的网关服务。</p>
 <p>Zuul 主要通过过滤器（类似于 AOP）来过滤请求，从而实现网关必备的各种功能。</p>
-<p><img src="/xiechaoxin.github/865991e34f69f8cb345b4aff918e946e.png" srcset="/img/loading.gif" lazyload alt="Zuul架构"></p>
+<p><img src="/.io//865991e34f69f8cb345b4aff918e946e.png" srcset="/img/loading.gif" lazyload alt="Zuul架构"></p>
 <p>我们可以自定义过滤器来处理请求，并且，Zuul 生态本身就有很多现成的过滤器供我们使用。就比如限流可以直接用国外朋友写的 <a target="_blank" rel="noopener" href="https://github.com/marcosbarbero/spring-cloud-zuul-ratelimit">spring-cloud-zuul-ratelimit</a> (这里只是举例说明，一般是配合 hystrix 来做限流)：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-zuul<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.marcosbarbero.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-zuul-ratelimit<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.0.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
@@ -318,7 +318,7 @@
 <p><em>etcd</em>是使用 Go 语言开发的一个开源的、高可用的分布式 key-value 存储系统，使用 Raft 协议做分布式共识。</p>
 </blockquote>
 <p>与传统 API 网关相比，APISIX 具有动态路由和插件热加载，特别适合微服务系统下的 API 管理。并且，APISIX 与 SkyWalking（分布式链路追踪系统）、Zipkin（分布式链路追踪系统）、Prometheus（监控系统） 等 DevOps 生态工具对接都十分方便。</p>
-<p><img src="/xiechaoxin.github/727732fad2e943bdd2c502b83ddb1b89.png" srcset="/img/loading.gif" lazyload alt="apisix架构图"></p>
+<p><img src="/.io//727732fad2e943bdd2c502b83ddb1b89.png" srcset="/img/loading.gif" lazyload alt="apisix架构图"></p>
 <p>作为 NGINX 和 Kong 的替代项目，APISIX 目前已经是 Apache 顶级开源项目，并且是最快毕业的国产开源项目。国内目前已经有很多知名企业（比如金山、有赞、爱奇艺、腾讯、贝壳）使用 APISIX 处理核心的业务流量。</p>
 <p>根据官网介绍：“APISIX 已经生产可用，功能、性能、架构全面优于 Kong”。</p>
 <ul>
@@ -332,7 +332,7 @@
 <li><a target="_blank" rel="noopener" href="https://www.apiseven.com/zh/usercases">APISIX 用户案例</a></li>
 </ul>
 <h3 id="Shenyu"><a href="#Shenyu" class="headerlink" title="Shenyu"></a>Shenyu</h3><p>Shenyu 是一款基于 WebFlux 的可扩展、高性能、响应式网关，Apache 顶级开源项目。</p>
-<p><img src="/xiechaoxin.github/1104eb413cba468cba4dce119165e84e.png" srcset="/img/loading.gif" lazyload alt="Shenyu架构"></p>
+<p><img src="/.io//1104eb413cba468cba4dce119165e84e.png" srcset="/img/loading.gif" lazyload alt="Shenyu架构"></p>
 <p>Shenyu 通过插件扩展功能，插件是 ShenYu 的灵魂，并且插件也是可扩展和热插拔的。不同的插件实现不同的功能。Shenyu 自带了诸如限流、熔断、转发 、重写、重定向、和路由监控等插件。</p>
 <ul>
 <li>Github 地址： <a target="_blank" rel="noopener" href="https://github.com/apache/incubator-shenyu">https://github.com/apache/incubator-shenyu</a></li>
@@ -393,7 +393,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>api-gateway</div>
-      <div>https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/system_design/distributed-system/api-gateway/</div>
+      <div>https://xiechaoxin.github.io/2022/06/17/CS/system_design/distributed-system/api-gateway/</div>
     </div>
     <div class="license-meta">
       

@@ -19,32 +19,32 @@
     <meta name="description" content="Java定时任务大揭秘为什么需要定时任务？我们来看一下几个非常常见的业务场景：  某系统凌晨要进行数据备份。 某电商平台，用户下单半个小时未支付的情况下需要自动取消订单。 某媒体聚合平台，每 10 分钟动态抓取某某网站的数据为自己所用。 某博客平台，支持定时发送文章。 某基金平台，每晚定时计算用户当日收益情况并推送给用户最新的数据。 ……  这些场景往往都要求我们在某个特定的时间去做某个事情。 单">
 <meta property="og:type" content="article">
 <meta property="og:title" content="定时任务">
-<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/system_design/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/index.html">
+<meta property="og:url" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/index.html">
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="Java定时任务大揭秘为什么需要定时任务？我们来看一下几个非常常见的业务场景：  某系统凌晨要进行数据备份。 某电商平台，用户下单半个小时未支付的情况下需要自动取消订单。 某媒体聚合平台，每 10 分钟动态抓取某某网站的数据为自己所用。 某博客平台，支持定时发送文章。 某基金平台，每晚定时计算用户当日收益情况并推送给用户最新的数据。 ……  这些场景往往都要求我们在某个特定的时间去做某个事情。 单">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/20210607154324712.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/20210528145056880.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/20210607171334861.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/20210607193042151.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/20210607195206797.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/2021052814502425.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/20210528144508114.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/20210608080437356.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/up-a8f63f828666d43009d5d3497bcbd2cfb61.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/20210528144611728.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/20210608080550433.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/20210607202503193.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/up-b8ecc6acf651f112c4dfae98243d72adea3.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/20210607200728212.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/20210528145009701.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/up-795f5e9b0d875063717b1ee6a08f2ff1c01.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//20210607154324712.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//20210528145056880.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//20210607171334861.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//20210607193042151.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//20210607195206797.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//2021052814502425.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//20210528144508114.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//20210608080437356.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//up-a8f63f828666d43009d5d3497bcbd2cfb61.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//20210528144611728.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//20210608080550433.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//20210607202503193.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//up-b8ecc6acf651f112c4dfae98243d72adea3.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//20210607200728212.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//20210528145009701.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//up-795f5e9b0d875063717b1ee6a08f2ff1c01.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T10:53:05.627Z">
+<meta property="article:modified_time" content="2022-06-24T11:16:59.913Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="system_design">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/xiechaoxin.github/20210607154324712.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/.io//20210607154324712.png">
   
   
   
@@ -311,12 +311,12 @@
 
 <p>大概的意思就是： <code>ScheduledThreadPoolExecutor</code> 支持多线程执行定时任务并且功能更强大，是 <code>Timer</code> 的替代品。</p>
 <h3 id="ScheduledExecutorService"><a href="#ScheduledExecutorService" class="headerlink" title="ScheduledExecutorService"></a>ScheduledExecutorService</h3><p><code>ScheduledExecutorService</code> 是一个接口，有多个实现类，比较常用的是 <code>ScheduledThreadPoolExecutor</code> 。</p>
-<p><img src="/xiechaoxin.github/20210607154324712.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/.io//20210607154324712.png" srcset="/img/loading.gif" lazyload></p>
 <p><code>ScheduledThreadPoolExecutor</code> 本身就是一个线程池，支持任务并发执行。并且，其内部使用 <code>DelayQueue</code> 作为任务队列。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 示例代码：</span><br><span class="hljs-type">TimerTask</span> <span class="hljs-variable">repeatedTask</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TimerTask</span>() &#123;<br>    <span class="hljs-meta">@SneakyThrows</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;当前时间: &quot;</span> + <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>() + <span class="hljs-string">&quot;n&quot;</span> +<br>                <span class="hljs-string">&quot;线程名称: &quot;</span> + Thread.currentThread().getName());<br>    &#125;<br>&#125;;<br>System.out.println(<span class="hljs-string">&quot;当前时间: &quot;</span> + <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>() + <span class="hljs-string">&quot;n&quot;</span> +<br>        <span class="hljs-string">&quot;线程名称: &quot;</span> + Thread.currentThread().getName());<br><span class="hljs-type">ScheduledExecutorService</span> <span class="hljs-variable">executor</span> <span class="hljs-operator">=</span> Executors.newScheduledThreadPool(<span class="hljs-number">3</span>);<br><span class="hljs-type">long</span> <span class="hljs-variable">delay</span>  <span class="hljs-operator">=</span> <span class="hljs-number">1000L</span>;<br><span class="hljs-type">long</span> <span class="hljs-variable">period</span> <span class="hljs-operator">=</span> <span class="hljs-number">1000L</span>;<br>executor.scheduleAtFixedRate(repeatedTask, delay, period, TimeUnit.MILLISECONDS);<br>Thread.sleep(delay + period * <span class="hljs-number">5</span>);<br>executor.shutdown();<br><span class="hljs-comment">//输出：</span><br>当前时间: Fri May <span class="hljs-number">28</span> <span class="hljs-number">15</span>:<span class="hljs-number">40</span>:<span class="hljs-number">46</span> CST 2021n线程名称: main<br>当前时间: Fri May <span class="hljs-number">28</span> <span class="hljs-number">15</span>:<span class="hljs-number">40</span>:<span class="hljs-number">47</span> CST 2021n线程名称: pool-<span class="hljs-number">1</span>-thread-<span class="hljs-number">1</span><br>当前时间: Fri May <span class="hljs-number">28</span> <span class="hljs-number">15</span>:<span class="hljs-number">40</span>:<span class="hljs-number">48</span> CST 2021n线程名称: pool-<span class="hljs-number">1</span>-thread-<span class="hljs-number">1</span><br>当前时间: Fri May <span class="hljs-number">28</span> <span class="hljs-number">15</span>:<span class="hljs-number">40</span>:<span class="hljs-number">49</span> CST 2021n线程名称: pool-<span class="hljs-number">1</span>-thread-<span class="hljs-number">2</span><br>当前时间: Fri May <span class="hljs-number">28</span> <span class="hljs-number">15</span>:<span class="hljs-number">40</span>:<span class="hljs-number">50</span> CST 2021n线程名称: pool-<span class="hljs-number">1</span>-thread-<span class="hljs-number">2</span><br>当前时间: Fri May <span class="hljs-number">28</span> <span class="hljs-number">15</span>:<span class="hljs-number">40</span>:<span class="hljs-number">51</span> CST 2021n线程名称: pool-<span class="hljs-number">1</span>-thread-<span class="hljs-number">2</span><br>当前时间: Fri May <span class="hljs-number">28</span> <span class="hljs-number">15</span>:<span class="hljs-number">40</span>:<span class="hljs-number">52</span> CST 2021n线程名称: pool-<span class="hljs-number">1</span>-thread-<span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
 
 <p>不论是使用 <code>Timer</code> 还是 <code>ScheduledExecutorService</code> 都无法使用 Cron 表达式指定任务执行的具体时间。</p>
-<h3 id="Spring-Task"><a href="#Spring-Task" class="headerlink" title="Spring Task"></a>Spring Task</h3><p><img src="/xiechaoxin.github/20210528145056880.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="Spring-Task"><a href="#Spring-Task" class="headerlink" title="Spring Task"></a>Spring Task</h3><p><img src="/.io//20210528145056880.png" srcset="/img/loading.gif" lazyload></p>
 <p>我们直接通过 Spring 提供的 <code>@Scheduled</code> 注解即可定义定时任务，非常方便！</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * cron：使用Cron表达式。　每分钟的1，2秒运行</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Scheduled(cron = &quot;1-2 * * * * ? &quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">reportCurrentTimeWithCronExpression</span><span class="hljs-params">()</span> &#123;<br>  log.info(<span class="hljs-string">&quot;Cron Expression: The time is now &#123;&#125;&quot;</span>, dateFormat.format(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>()));<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
@@ -333,16 +333,16 @@
 <p>时间轮简单来说就是一个环形的队列（底层一般基于数组实现），队列中的每一个元素（时间格）都可以存放一个定时任务列表。</p>
 <p>时间轮中的每个时间格代表了时间轮的基本时间跨度或者说时间精度，加入时间一秒走一个时间格的话，那么这个时间轮的最高精度就是 1 秒（也就是说 3 s 和 3.9s 会在同一个时间格中）。</p>
 <p>下图是一个有 12 个时间格的时间轮，转完一圈需要 12 s。当我们需要新建一个 3s 后执行的定时任务，只需要将定时任务放在下标为 3 的时间格中即可。当我们需要新建一个 9s 后执行的定时任务，只需要将定时任务放在下标为 9 的时间格中即可。</p>
-<p><img src="/xiechaoxin.github/20210607171334861.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/.io//20210607171334861.png" srcset="/img/loading.gif" lazyload></p>
 <p>那当我们需要创建一个 13s 后执行的定时任务怎么办呢？这个时候可以引入一叫做 <strong>圈数&#x2F;轮数</strong> 的概念，也就是说这个任务还是放在下标为 3 的时间格中， 不过它的圈数为 2 。</p>
 <p>除了增加圈数这种方法之外，还有一种 <strong>多层次时间轮</strong> （类似手表），Kafka 采用的就是这种方案。</p>
 <p>针对下图的时间轮，我来举一个例子便于大家理解。</p>
-<p><img src="/xiechaoxin.github/20210607193042151.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/.io//20210607193042151.png" srcset="/img/loading.gif" lazyload></p>
 <p>上图的时间轮，第 1 层的时间精度为 1 ，第 2 层的时间精度为 20 ，第 3 层的时间精度为 400。假如我们需要添加一个 350s 后执行的任务 A 的话（当前时间是 0s），这个任务会被放在第 2 层（因为第二层的时间跨度为 20*20&#x3D;400&gt;350）的第 350&#x2F;20&#x3D;17 个时间格子。</p>
 <p>当第一层转了 17 圈之后，时间过去了 340s ，第 2 层的指针此时来到第 17 个时间格子。此时，第 2 层第 17 个格子的任务会被移动到第 1 层。</p>
 <p>任务 A 当前是 10s 之后执行，因此它会被移动到第 1 层的第 10 个时间格子。</p>
 <p>这里在层与层之间的移动也叫做时间轮的升降级。参考手表来理解就好！</p>
-<p><img src="/xiechaoxin.github/20210607195206797.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/.io//20210607195206797.png" srcset="/img/loading.gif" lazyload></p>
 <p><strong>时间轮比较适合任务数量比较多的定时任务场景，它的任务写入和执行的时间复杂度都是 0（1）。</strong></p>
 <h2 id="分布式定时任务技术选型"><a href="#分布式定时任务技术选型" class="headerlink" title="分布式定时任务技术选型"></a>分布式定时任务技术选型</h2><p>上面提到的一些定时任务的解决方案都是在单机下执行的，适用于比较简单的定时任务场景比如每天凌晨备份一次数据。</p>
 <p>如果我们需要一些高级特性比如支持任务在分布式场景下的分片和高可用的话，我们就需要用到分布式任务调度框架了。</p>
@@ -352,7 +352,7 @@
 <li><strong>调度器</strong> ：其次是调度中心，调度中心主要负责任务管理，会分配任务给执行器。</li>
 <li><strong>执行器</strong> ： 最后就是执行器，执行器接收调度器分派的任务并执行。</li>
 </ul>
-<h3 id="Quartz"><a href="#Quartz" class="headerlink" title="Quartz"></a>Quartz</h3><p><img src="/xiechaoxin.github/2021052814502425.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="Quartz"><a href="#Quartz" class="headerlink" title="Quartz"></a>Quartz</h3><p><img src="/.io//2021052814502425.png" srcset="/img/loading.gif" lazyload></p>
 <p>一个很火的开源任务调度框架，完全由<code>Java</code>写成。<code>Quartz</code> 可以说是 Java 定时任务领域的老大哥或者说参考标准，其他的任务调度框架基本都是基于 <code>Quartz</code> 开发的，比如当当网的<code>elastic-job</code>就是基于<code>quartz</code>二次开发之后的分布式调度解决方案。</p>
 <p>使用 <code>Quartz</code> 可以很方便地与 <code>Spring</code> 集成，并且支持动态添加任务和集群。但是，<code>Quartz</code> 使用起来也比较麻烦，API 繁琐。</p>
 <p>并且，<code>Quzrtz</code> 并没有内置 UI 管理控制台，不过你可以使用 <a target="_blank" rel="noopener" href="https://github.com/zhaopeiym/quartzui">quartzui</a> 这个开源项目来解决这个问题。</p>
@@ -362,12 +362,12 @@
 <li>优点： 可以与 <code>Spring</code> 集成，并且支持动态添加任务和集群。</li>
 <li>缺点 ：分布式支持不友好，没有内置 UI 管理控制台、使用麻烦（相比于其他同类型框架来说）</li>
 </ul>
-<h3 id="Elastic-Job"><a href="#Elastic-Job" class="headerlink" title="Elastic-Job"></a>Elastic-Job</h3><p><img src="/xiechaoxin.github/20210528144508114.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="Elastic-Job"><a href="#Elastic-Job" class="headerlink" title="Elastic-Job"></a>Elastic-Job</h3><p><img src="/.io//20210528144508114.png" srcset="/img/loading.gif" lazyload></p>
 <p><code>Elastic-Job</code> 是当当网开源的一个基于<code>Quartz</code>和<code>ZooKeeper</code>的分布式调度解决方案，由两个相互独立的子项目 <code>Elastic-Job-Lite</code> 和 <code>Elastic-Job-Cloud</code> 组成，一般我们只要使用 <code>Elastic-Job-Lite</code> 就好。</p>
 <p><code>ElasticJob</code> 支持任务在分布式场景下的分片和高可用、任务可视化管理等功能。</p>
-<p><img src="/xiechaoxin.github/20210608080437356.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/.io//20210608080437356.png" srcset="/img/loading.gif" lazyload></p>
 <p>ElasticJob-Lite 的架构设计如下图所示：</p>
-<p><img src="/xiechaoxin.github/up-a8f63f828666d43009d5d3497bcbd2cfb61.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/.io//up-a8f63f828666d43009d5d3497bcbd2cfb61.png" srcset="/img/loading.gif" lazyload></p>
 <p>从上图可以看出，<code>Elastic-Job</code> 没有调度中心这一概念，而是使用 <code>ZooKeeper</code> 作为注册中心，注册中心负责协调分配任务到不同的节点上。</p>
 <p>Elastic-Job 中的定时调度都是由执行器自行触发，这种设计也被称为去中心化设计（调度和处理都是执行器单独完成）。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Component</span><br><span class="hljs-meta">@ElasticJobConf(name = &quot;dayJob&quot;, cron = &quot;0/10 * * * * ?&quot;, shardingTotalCount = 2,</span><br><span class="hljs-meta">        shardingItemParameters = &quot;0=AAAA,1=BBBB&quot;, description = &quot;简单任务&quot;, failover = true)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TestJob</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">SimpleJob</span> &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">execute</span><span class="hljs-params">(ShardingContext shardingContext)</span> &#123;<br>        log.info(<span class="hljs-string">&quot;TestJob任务名：【&#123;&#125;】, 片数：【&#123;&#125;】, param=【&#123;&#125;】&quot;</span>, shardingContext.getJobName(), shardingContext.getShardingTotalCount(),<br>                shardingContext.getShardingParameter());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -382,13 +382,13 @@
 <li>优点 ：可以与 <code>Spring</code> 集成、支持分布式、支持集群、性能不错</li>
 <li>缺点 ：依赖了额外的中间件比如 Zookeeper（复杂度增加，可靠性降低、维护成本变高）</li>
 </ul>
-<h3 id="XXL-JOB"><a href="#XXL-JOB" class="headerlink" title="XXL-JOB"></a>XXL-JOB</h3><p><img src="/xiechaoxin.github/20210528144611728.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="XXL-JOB"><a href="#XXL-JOB" class="headerlink" title="XXL-JOB"></a>XXL-JOB</h3><p><img src="/.io//20210528144611728.png" srcset="/img/loading.gif" lazyload></p>
 <p><code>XXL-JOB</code> 于 2015 年开源，是一款优秀的轻量级分布式任务调度框架，支持任务可视化管理、弹性扩容缩容、任务失败重试和告警、任务分片等功能，</p>
-<p><img src="/xiechaoxin.github/20210608080550433.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/.io//20210608080550433.png" srcset="/img/loading.gif" lazyload></p>
 <p>根据 <code>XXL-JOB</code> 官网介绍，其解决了很多 <code>Quartz</code> 的不足。</p>
-<p><img src="/xiechaoxin.github/20210607202503193.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/.io//20210607202503193.png" srcset="/img/loading.gif" lazyload></p>
 <p><code>XXL-JOB</code> 的架构设计如下图所示：</p>
-<p><img src="/xiechaoxin.github/up-b8ecc6acf651f112c4dfae98243d72adea3.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/.io//up-b8ecc6acf651f112c4dfae98243d72adea3.png" srcset="/img/loading.gif" lazyload></p>
 <p>从上图可以看出，<code>XXL-JOB</code> 由 <strong>调度中心</strong> 和 <strong>执行器</strong> 两大部分组成。调度中心主要负责任务管理、执行器管理以及日志管理。执行器主要是接收调度信号并处理。另外，调度中心进行任务调度时，是通过自研 RPC 来实现的。</p>
 <p>不同于 <code>Elastic-Job</code> 的去中心化设计， <code>XXL-JOB</code> 的这种设计也被称为中心化设计（调度中心调度多个执行器执行任务）。</p>
 <p>和 <code>Quzrtz</code> 类似 <code>XXL-JOB</code> 也是基于数据库锁调度任务，存在性能瓶颈。不过，一般在任务量不是特别大的情况下，没有什么影响的，可以满足绝大部分公司的要求。</p>
@@ -398,7 +398,7 @@
 <p>还可以直接基于注解定义任务。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@XxlJob(&quot;myAnnotationJobHandler&quot;)</span><br><span class="hljs-keyword">public</span> ReturnT&lt;String&gt; <span class="hljs-title function_">myAnnotationJobHandler</span><span class="hljs-params">(String param)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>  <span class="hljs-comment">//......</span><br>  <span class="hljs-keyword">return</span> ReturnT.SUCCESS;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p><img src="/xiechaoxin.github/20210607200728212.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/.io//20210607200728212.png" srcset="/img/loading.gif" lazyload></p>
 <p><strong>相关地址：</strong></p>
 <ul>
 <li>Github 地址：<a target="_blank" rel="noopener" href="https://github.com/xuxueli/xxl-job/%E3%80%82">https://github.com/xuxueli/xxl-job/。</a></li>
@@ -409,12 +409,12 @@
 <li>优点：开箱即用（学习成本比较低）、与 Spring 集成、支持分布式、支持集群、内置了 UI 管理控制台。</li>
 <li>缺点：不支持动态添加任务（如果一定想要动态创建任务也是支持的，参见：<a target="_blank" rel="noopener" href="https://github.com/xuxueli/xxl-job/issues/277">xxl-job issue277</a>）。</li>
 </ul>
-<h3 id="PowerJob"><a href="#PowerJob" class="headerlink" title="PowerJob"></a>PowerJob</h3><p><img src="/xiechaoxin.github/20210528145009701.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="PowerJob"><a href="#PowerJob" class="headerlink" title="PowerJob"></a>PowerJob</h3><p><img src="/.io//20210528145009701.png" srcset="/img/loading.gif" lazyload></p>
 <p>非常值得关注的一个分布式任务调度框架，分布式任务调度领域的新星。目前，已经有很多公司接入比如 OPPO、京东、中通、思科。</p>
 <p>这个框架的诞生也挺有意思的，PowerJob 的作者当时在阿里巴巴实习过，阿里巴巴那会使用的是内部自研的 SchedulerX（阿里云付费产品）。实习期满之后，PowerJob 的作者离开了阿里巴巴。想着说自研一个 SchedulerX，防止哪天 SchedulerX 满足不了需求，于是 PowerJob 就诞生了。</p>
 <p>更多关于 PowerJob 的故事，小伙伴们可以去看看 PowerJob 作者的视频 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1SK411A7F3/">《我和我的任务调度中间件》</a>。简单点概括就是：“游戏没啥意思了，我要扛起了新一代分布式任务调度与计算框架的大旗！”。</p>
 <p>由于 SchedulerX 属于人民币产品，我这里就不过多介绍。PowerJob 官方也对比过其和 QuartZ、XXL-JOB 以及 SchedulerX。</p>
-<p><img src="/xiechaoxin.github/up-795f5e9b0d875063717b1ee6a08f2ff1c01.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/.io//up-795f5e9b0d875063717b1ee6a08f2ff1c01.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这篇文章中，我主要介绍了：</p>
 <ul>
 <li><strong>定时任务的相关概念</strong> ：为什么需要定时任务、定时任务中的核心角色、分布式定时任务。</li>
@@ -468,7 +468,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>定时任务</div>
-      <div>https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/system_design/定时任务/</div>
+      <div>https://xiechaoxin.github.io/2022/06/17/CS/system_design/定时任务/</div>
     </div>
     <div class="license-meta">
       

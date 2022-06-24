@@ -19,49 +19,49 @@
     <meta name="description" content="演讲比赛流程管理系统1、 演讲比赛程序需求 1.1 比赛规则 学校举行一场演讲比赛，共有12个人参加。比赛共两轮，第一轮为淘汰赛，第二轮为决赛。 比赛方式：分组比赛，每组6个人；选手每次要随机分组，进行比赛 每名选手都有对应的编号，如 10001 ~ 10012  第一轮分为两个小组，每组6个人。 整体按照选手编号进行抽签后顺序演讲。 当小组演讲完后，淘汰组内排名最后的三个选手，前三名晋级，进入下">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于STL的演讲比赛流程管理系统">
-<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/CPP/heima/p_6_speech_competition/%E8%B5%84%E6%96%99/%E8%AE%B2%E4%B9%89/%E5%9F%BA%E4%BA%8ESTL%E7%9A%84%E6%BC%94%E8%AE%B2%E6%AF%94%E8%B5%9B%E6%B5%81%E7%A8%8B%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:url" content="https://xiechaoxin.github.io/2022/06/17/CS/CPP/heima/p_6_speech_competition/%E8%B5%84%E6%96%99/%E8%AE%B2%E4%B9%89/%E5%9F%BA%E4%BA%8ESTL%E7%9A%84%E6%BC%94%E8%AE%B2%E6%AF%94%E8%B5%9B%E6%B5%81%E7%A8%8B%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html">
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="演讲比赛流程管理系统1、 演讲比赛程序需求 1.1 比赛规则 学校举行一场演讲比赛，共有12个人参加。比赛共两轮，第一轮为淘汰赛，第二轮为决赛。 比赛方式：分组比赛，每组6个人；选手每次要随机分组，进行比赛 每名选手都有对应的编号，如 10001 ~ 10012  第一轮分为两个小组，每组6个人。 整体按照选手编号进行抽签后顺序演讲。 当小组演讲完后，淘汰组内排名最后的三个选手，前三名晋级，进入下">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548154762048.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548155966702.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548121881969.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548122271773.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548122420253.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548122510869.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548122619712.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548123402593.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548123942072.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548124599641.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548124853576.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548124888578.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548141605742.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548141560164.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548143871202.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548143543475.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548143610682.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548144491984.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548144765146.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548146903960.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548146961550.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548148593215.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548148536395.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548149937860.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548149912863.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548150047975.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548151977242.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548152359604.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548152394715.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548152803116.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548153005042.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548153319587.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548154340974.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548153571603.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548154674242.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548154004738.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548154508831.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548154762048.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548155966702.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548121881969.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548122271773.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548122420253.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548122510869.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548122619712.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548123402593.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548123942072.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548124599641.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548124853576.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548124888578.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548141605742.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548141560164.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548143871202.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548143543475.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548143610682.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548144491984.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548144765146.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548146903960.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548146961550.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548148593215.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548148536395.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548149937860.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548149912863.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548150047975.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548151977242.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548152359604.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548152394715.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548152803116.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548153005042.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548153319587.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548154340974.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548153571603.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548154674242.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548154004738.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1548154508831.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T10:53:04.131Z">
+<meta property="article:modified_time" content="2022-06-24T11:16:58.589Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="CPP">
 <meta property="article:tag" content="heima">
@@ -69,7 +69,7 @@
 <meta property="article:tag" content="p_6_speech_competition">
 <meta property="article:tag" content="资料">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1548154762048.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/.io//1548154762048.png">
   
   
   
@@ -315,7 +315,7 @@
             
               <div class="markdown-body">
                 
-                <h1 id="演讲比赛流程管理系统"><a href="#演讲比赛流程管理系统" class="headerlink" title="演讲比赛流程管理系统"></a>演讲比赛流程管理系统</h1><h2 id="1、-演讲比赛程序需求"><a href="#1、-演讲比赛程序需求" class="headerlink" title="1、 演讲比赛程序需求"></a>1、 演讲比赛程序需求</h2><p><img src="/xiechaoxin.github/1548154762048.png" srcset="/img/loading.gif" lazyload alt="1548154762048"></p>
+                <h1 id="演讲比赛流程管理系统"><a href="#演讲比赛流程管理系统" class="headerlink" title="演讲比赛流程管理系统"></a>演讲比赛流程管理系统</h1><h2 id="1、-演讲比赛程序需求"><a href="#1、-演讲比赛程序需求" class="headerlink" title="1、 演讲比赛程序需求"></a>1、 演讲比赛程序需求</h2><p><img src="/.io//1548154762048.png" srcset="/img/loading.gif" lazyload alt="1548154762048"></p>
 <h3 id="1-1-比赛规则"><a href="#1-1-比赛规则" class="headerlink" title="1.1 比赛规则"></a>1.1 比赛规则</h3><ul>
 <li>学校举行一场演讲比赛，共有<strong>12个人</strong>参加。<strong>比赛共两轮</strong>，第一轮为淘汰赛，第二轮为决赛。</li>
 <li>比赛方式：<strong>分组比赛，每组6个人</strong>；选手每次要随机分组，进行比赛</li>
@@ -331,7 +331,7 @@
 <li>清空比赛记录：将文件中数据清空</li>
 <li>退出比赛程序：可以退出当前程序</li>
 </ul>
-<h3 id="1-3-程序效果图："><a href="#1-3-程序效果图：" class="headerlink" title="1.3 程序效果图："></a>1.3 程序效果图：</h3><p><img src="/xiechaoxin.github/1548155966702.png" srcset="/img/loading.gif" lazyload alt="1548155966702"></p>
+<h3 id="1-3-程序效果图："><a href="#1-3-程序效果图：" class="headerlink" title="1.3 程序效果图："></a>1.3 程序效果图：</h3><p><img src="/.io//1548155966702.png" srcset="/img/loading.gif" lazyload alt="1548155966702"></p>
 <h2 id="2、-项目创建"><a href="#2、-项目创建" class="headerlink" title="2、 项目创建"></a>2、 项目创建</h2><p>创建项目步骤如下：</p>
 <ul>
 <li>创建新项目</li>
@@ -341,23 +341,23 @@
 <li>打开vs2017后，点击创建新项目，创建新的C++项目</li>
 </ul>
 <p>如图：</p>
-<p><img src="/xiechaoxin.github/1548121881969.png" srcset="/img/loading.gif" lazyload alt="1548121881969"></p>
+<p><img src="/.io//1548121881969.png" srcset="/img/loading.gif" lazyload alt="1548121881969"></p>
 <ul>
 <li>填写项目名称以及选取项目路径，点击确定生成项目</li>
 </ul>
-<p><img src="/xiechaoxin.github/1548122271773.png" srcset="/img/loading.gif" lazyload alt="1548122271773"></p>
+<p><img src="/.io//1548122271773.png" srcset="/img/loading.gif" lazyload alt="1548122271773"></p>
 <h3 id="2-2-添加文件"><a href="#2-2-添加文件" class="headerlink" title="2.2 添加文件"></a>2.2 添加文件</h3><ul>
 <li>右键源文件，进行添加文件操作</li>
 </ul>
-<p><img src="/xiechaoxin.github/1548122420253.png" srcset="/img/loading.gif" lazyload alt="1548122420253"></p>
+<p><img src="/.io//1548122420253.png" srcset="/img/loading.gif" lazyload alt="1548122420253"></p>
 <ul>
 <li>填写文件名称，点击添加</li>
 </ul>
-<p><img src="/xiechaoxin.github/1548122510869.png" srcset="/img/loading.gif" lazyload alt="1548122510869"></p>
+<p><img src="/.io//1548122510869.png" srcset="/img/loading.gif" lazyload alt="1548122510869"></p>
 <ul>
 <li>生成文件成功，效果如下图</li>
 </ul>
-<p><img src="/xiechaoxin.github/1548122619712.png" srcset="/img/loading.gif" lazyload alt="1548122619712"></p>
+<p><img src="/.io//1548122619712.png" srcset="/img/loading.gif" lazyload alt="1548122619712"></p>
 <ul>
 <li>至此，项目已创建完毕</li>
 </ul>
@@ -370,7 +370,7 @@
 <h3 id="3-1创建文件"><a href="#3-1创建文件" class="headerlink" title="3.1创建文件"></a>3.1创建文件</h3><ul>
 <li>在头文件和源文件的文件夹下分别创建speechManager.h 和 speechManager.cpp文件</li>
 </ul>
-<p><img src="/xiechaoxin.github/1548123402593.png" srcset="/img/loading.gif" lazyload alt="1548123402593"></p>
+<p><img src="/.io//1548123402593.png" srcset="/img/loading.gif" lazyload alt="1548123402593"></p>
 <h3 id="3-2-头文件实现"><a href="#3-2-头文件实现" class="headerlink" title="3.2 头文件实现"></a>3.2 头文件实现</h3><p>在speechManager.h中设计管理类</p>
 <p>代码如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> once</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-comment">//演讲管理类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">SpeechManager</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br><br>	<span class="hljs-comment">//构造函数</span><br>	<span class="hljs-built_in">SpeechManager</span>();<br><br><br>	<span class="hljs-comment">//析构函数</span><br>	~<span class="hljs-built_in">SpeechManager</span>();<br>&#125;;<br></code></pre></td></tr></table></figure>
@@ -383,7 +383,7 @@
 </ul>
 <h2 id="4、-菜单功能"><a href="#4、-菜单功能" class="headerlink" title="4、 菜单功能"></a>4、 菜单功能</h2><p>功能描述：与用户的沟通界面</p>
 <h3 id="4-1-添加成员函数"><a href="#4-1-添加成员函数" class="headerlink" title="4.1 添加成员函数"></a>4.1 添加成员函数</h3><p>在管理类speechManager.h中添加成员函数  <code>void show_Menu();</code></p>
-<p><img src="/xiechaoxin.github/1548123942072.png" srcset="/img/loading.gif" lazyload alt="1548123942072"></p>
+<p><img src="/.io//1548123942072.png" srcset="/img/loading.gif" lazyload alt="1548123942072"></p>
 <h3 id="4-2-菜单功能实现"><a href="#4-2-菜单功能实现" class="headerlink" title="4.2 菜单功能实现"></a>4.2 菜单功能实现</h3><ul>
 <li>在管理类speechManager.cpp中实现 show_Menu()函数</li>
 </ul>
@@ -400,7 +400,7 @@
 <ul>
 <li>运行效果如图：</li>
 </ul>
-<p><img src="/xiechaoxin.github/1548124599641.png" srcset="/img/loading.gif" lazyload alt="1548124599641"></p>
+<p><img src="/.io//1548124599641.png" srcset="/img/loading.gif" lazyload alt="1548124599641"></p>
 <ul>
 <li>菜单界面搭建完毕</li>
 </ul>
@@ -419,9 +419,9 @@
 
 
 <h3 id="5-3测试功能"><a href="#5-3测试功能" class="headerlink" title="5.3测试功能"></a>5.3测试功能</h3><p>在main函数分支 0  选项中，调用退出程序的接口</p>
-<p><img src="/xiechaoxin.github/1548124853576.png" srcset="/img/loading.gif" lazyload alt="1548124853576"></p>
+<p><img src="/.io//1548124853576.png" srcset="/img/loading.gif" lazyload alt="1548124853576"></p>
 <p>运行测试效果如图：</p>
-<p><img src="/xiechaoxin.github/1548124888578.png" srcset="/img/loading.gif" lazyload alt="1548124888578"></p>
+<p><img src="/.io//1548124888578.png" srcset="/img/loading.gif" lazyload alt="1548124888578"></p>
 <h2 id="6、演讲比赛功能"><a href="#6、演讲比赛功能" class="headerlink" title="6、演讲比赛功能"></a>6、演讲比赛功能</h2><h3 id="6-1-功能分析"><a href="#6-1-功能分析" class="headerlink" title="6.1 功能分析"></a>6.1 功能分析</h3><p>比赛流程分析：</p>
 <p>抽签 → 开始演讲比赛 → 显示第一轮比赛结果 → </p>
 <p>抽签 → 开始演讲比赛 → 显示前三名结果 → 保存分数</p>
@@ -491,11 +491,11 @@
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">for</span> (map&lt;<span class="hljs-type">int</span>, Speaker&gt;::iterator it = sm.m_Speaker.<span class="hljs-built_in">begin</span>(); it != sm.m_Speaker.<span class="hljs-built_in">end</span>(); it++)<br>&#123;<br>	cout  &lt;&lt; <span class="hljs-string">&quot;选手编号：&quot;</span> &lt;&lt; it-&gt;first <br>          &lt;&lt; <span class="hljs-string">&quot; 姓名： &quot;</span> &lt;&lt; it-&gt;second.m_Name <br>          &lt;&lt; <span class="hljs-string">&quot; 成绩： &quot;</span> &lt;&lt; it-&gt;second.m_Score[<span class="hljs-number">0</span>] &lt;&lt; endl;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p><img src="/xiechaoxin.github/1548141605742.png" srcset="/img/loading.gif" lazyload alt="1548141605742"></p>
+<p><img src="/.io//1548141605742.png" srcset="/img/loading.gif" lazyload alt="1548141605742"></p>
 <ul>
 <li>测试效果如图：</li>
 </ul>
-<p><img src="/xiechaoxin.github/1548141560164.png" srcset="/img/loading.gif" lazyload alt="1548141560164"></p>
+<p><img src="/.io//1548141560164.png" srcset="/img/loading.gif" lazyload alt="1548141560164"></p>
 <ul>
 <li>测试完毕后，可以将测试代码删除或注释。</li>
 </ul>
@@ -536,15 +536,15 @@
 <ul>
 <li>在startSpeech比赛流程控制的函数中，调用抽签函数</li>
 </ul>
-<p><img src="/xiechaoxin.github/1548143871202.png" srcset="/img/loading.gif" lazyload alt="1548143871202"></p>
+<p><img src="/.io//1548143871202.png" srcset="/img/loading.gif" lazyload alt="1548143871202"></p>
 <ul>
 <li>在main函数中，分支1选项中，调用开始比赛的接口</li>
 </ul>
-<p><img src="/xiechaoxin.github/1548143543475.png" srcset="/img/loading.gif" lazyload alt="1548143543475"></p>
+<p><img src="/.io//1548143543475.png" srcset="/img/loading.gif" lazyload alt="1548143543475"></p>
 <ul>
 <li>测试</li>
 </ul>
-<p><img src="/xiechaoxin.github/1548143610682.png" srcset="/img/loading.gif" lazyload alt="1548143610682"></p>
+<p><img src="/.io//1548143610682.png" srcset="/img/loading.gif" lazyload alt="1548143610682"></p>
 <h4 id="6-3-6-开始比赛"><a href="#6-3-6-开始比赛" class="headerlink" title="6.3.6 开始比赛"></a>6.3.6 开始比赛</h4><ul>
 <li>在speechManager.h中提供比赛的的成员函数 <code>void speechContest();</code></li>
 </ul>
@@ -562,11 +562,11 @@
 <ul>
 <li>在startSpeech比赛流程控制的函数中，调用比赛函数</li>
 </ul>
-<p><img src="/xiechaoxin.github/1548144491984.png" srcset="/img/loading.gif" lazyload alt="1548144491984"></p>
+<p><img src="/.io//1548144491984.png" srcset="/img/loading.gif" lazyload alt="1548144491984"></p>
 <ul>
 <li>再次运行代码，测试比赛</li>
 </ul>
-<p><img src="/xiechaoxin.github/1548144765146.png" srcset="/img/loading.gif" lazyload alt="1548144765146"></p>
+<p><img src="/.io//1548144765146.png" srcset="/img/loading.gif" lazyload alt="1548144765146"></p>
 <h4 id="6-3-7-显示比赛分数"><a href="#6-3-7-显示比赛分数" class="headerlink" title="6.3.7 显示比赛分数"></a>6.3.7 显示比赛分数</h4><ul>
 <li>在speechManager.h中提供比赛的的成员函数 <code>void showScore();</code></li>
 </ul>
@@ -582,18 +582,18 @@
 <ul>
 <li>在startSpeech比赛流程控制的函数中，调用显示比赛分数函数</li>
 </ul>
-<p><img src="/xiechaoxin.github/1548146903960.png" srcset="/img/loading.gif" lazyload alt="1548146903960"></p>
+<p><img src="/.io//1548146903960.png" srcset="/img/loading.gif" lazyload alt="1548146903960"></p>
 <ul>
 <li>运行代码，测试效果</li>
 </ul>
-<p><img src="/xiechaoxin.github/1548146961550.png" srcset="/img/loading.gif" lazyload alt="1548146961550"></p>
+<p><img src="/.io//1548146961550.png" srcset="/img/loading.gif" lazyload alt="1548146961550"></p>
 <h4 id="6-3-8-第二轮比赛"><a href="#6-3-8-第二轮比赛" class="headerlink" title="6.3.8 第二轮比赛"></a>6.3.8 第二轮比赛</h4><p>第二轮比赛流程同第一轮，只是比赛的轮是+1，其余流程不变</p>
 <ul>
 <li>在startSpeech比赛流程控制的函数中，加入第二轮的流程</li>
 </ul>
-<p><img src="/xiechaoxin.github/1548148593215.png" srcset="/img/loading.gif" lazyload alt="1548148593215"></p>
+<p><img src="/.io//1548148593215.png" srcset="/img/loading.gif" lazyload alt="1548148593215"></p>
 <p>测试，将整个比赛流程都跑通</p>
-<p><img src="/xiechaoxin.github/1548148536395.png" srcset="/img/loading.gif" lazyload alt="1548148536395"></p>
+<p><img src="/.io//1548148536395.png" srcset="/img/loading.gif" lazyload alt="1548148536395"></p>
 <h3 id="6-4-保存分数"><a href="#6-4-保存分数" class="headerlink" title="6.4 保存分数"></a>6.4 保存分数</h3><p><strong>功能描述：</strong></p>
 <ul>
 <li>将每次演讲比赛的得分记录到文件中</li>
@@ -616,13 +616,13 @@
 <ul>
 <li>在startSpeech比赛流程控制的函数中，最后调用保存记录分数函数</li>
 </ul>
-<p><img src="/xiechaoxin.github/1548149937860.png" srcset="/img/loading.gif" lazyload alt="1548149937860"></p>
+<p><img src="/.io//1548149937860.png" srcset="/img/loading.gif" lazyload alt="1548149937860"></p>
 <ul>
 <li>测试，整个比赛完毕后记录保存情况</li>
 </ul>
-<p><img src="/xiechaoxin.github/1548149912863.png" srcset="/img/loading.gif" lazyload alt="1548149912863"></p>
+<p><img src="/.io//1548149912863.png" srcset="/img/loading.gif" lazyload alt="1548149912863"></p>
 <p>利用记事本打开文件 speech.csv，里面保存了前三名选手的编号以及得分</p>
-<p><img src="/xiechaoxin.github/1548150047975.png" srcset="/img/loading.gif" lazyload alt="1548150047975"></p>
+<p><img src="/.io//1548150047975.png" srcset="/img/loading.gif" lazyload alt="1548150047975"></p>
 <p>至此，整个演讲比赛功能制作完毕！</p>
 <h2 id="7、-查看记录"><a href="#7、-查看记录" class="headerlink" title="7、 查看记录"></a>7、 查看记录</h2><h3 id="7-1-读取记录分数"><a href="#7-1-读取记录分数" class="headerlink" title="7.1 读取记录分数"></a>7.1 读取记录分数</h3><ul>
 <li>在speechManager.h中添加保存记录的成员函数 <code>void loadRecord();</code></li>
@@ -644,7 +644,7 @@
 <ul>
 <li>在SpeechManager构造函数中调用获取往届记录函数</li>
 </ul>
-<p><img src="/xiechaoxin.github/1548151977242.png" srcset="/img/loading.gif" lazyload alt="1548151977242"></p>
+<p><img src="/.io//1548151977242.png" srcset="/img/loading.gif" lazyload alt="1548151977242"></p>
 <h3 id="7-2-查看记录功能"><a href="#7-2-查看记录功能" class="headerlink" title="7.2 查看记录功能"></a>7.2 查看记录功能</h3><ul>
 <li>在speechManager.h中添加保存记录的成员函数 <code>void showRecord();</code></li>
 </ul>
@@ -660,30 +660,30 @@
 
 
 <h3 id="7-3-测试功能"><a href="#7-3-测试功能" class="headerlink" title="7.3 测试功能"></a>7.3 测试功能</h3><p>在main函数分支 2  选项中，调用查看记录的接口</p>
-<p><img src="/xiechaoxin.github/1548152359604.png" srcset="/img/loading.gif" lazyload alt="1548152359604"></p>
+<p><img src="/.io//1548152359604.png" srcset="/img/loading.gif" lazyload alt="1548152359604"></p>
 <p>显示效果如图：（本次测试添加了4条记录）</p>
-<p><img src="/xiechaoxin.github/1548152394715.png" srcset="/img/loading.gif" lazyload alt="1548152394715"></p>
+<p><img src="/.io//1548152394715.png" srcset="/img/loading.gif" lazyload alt="1548152394715"></p>
 <h3 id="7-4-bug解决"><a href="#7-4-bug解决" class="headerlink" title="7.4 bug解决"></a>7.4 bug解决</h3><p>目前程序中有几处bug未解决：</p>
 <ol>
 <li>查看往届记录，若文件不存在或为空，并未提示</li>
 </ol>
 <p>解决方式：在showRecord函数中，开始判断文件状态并加以判断</p>
-<p><img src="/xiechaoxin.github/1548152803116.png" srcset="/img/loading.gif" lazyload alt="1548152803116"></p>
+<p><img src="/.io//1548152803116.png" srcset="/img/loading.gif" lazyload alt="1548152803116"></p>
 <ol start="2">
 <li>若记录为空或不存在，比完赛后依然提示记录为空</li>
 </ol>
 <p>解决方式：saveRecord中更新文件为空的标志</p>
-<p><img src="/xiechaoxin.github/1548153005042.png" srcset="/img/loading.gif" lazyload alt="1548153005042"></p>
+<p><img src="/.io//1548153005042.png" srcset="/img/loading.gif" lazyload alt="1548153005042"></p>
 <ol start="3">
 <li>比完赛后查不到本届比赛的记录，没有实时更新</li>
 </ol>
 <p>解决方式：比赛完毕后，所有数据重置</p>
-<p><img src="/xiechaoxin.github/1548153319587.png" srcset="/img/loading.gif" lazyload alt="1548153319587"></p>
+<p><img src="/.io//1548153319587.png" srcset="/img/loading.gif" lazyload alt="1548153319587"></p>
 <ol start="4">
 <li>在初始化时，没有初始化记录容器</li>
 </ol>
 <p>解决方式：initSpeech中添加 初始化记录容器</p>
-<p><img src="/xiechaoxin.github/1548154340974.png" srcset="/img/loading.gif" lazyload alt="1548154340974"></p>
+<p><img src="/.io//1548154340974.png" srcset="/img/loading.gif" lazyload alt="1548154340974"></p>
 <ol start="5">
 <li>每次记录都是一样的</li>
 </ol>
@@ -693,7 +693,7 @@
 
 
 <p>所有bug解决后 测试：</p>
-<p><img src="/xiechaoxin.github/1548153571603.png" srcset="/img/loading.gif" lazyload alt="1548153571603"></p>
+<p><img src="/.io//1548153571603.png" srcset="/img/loading.gif" lazyload alt="1548153571603"></p>
 <h2 id="8、-清空记录"><a href="#8、-清空记录" class="headerlink" title="8、 清空记录"></a>8、 清空记录</h2><h3 id="8-1-清空记录功能实现"><a href="#8-1-清空记录功能实现" class="headerlink" title="8.1 清空记录功能实现"></a>8.1 清空记录功能实现</h3><ul>
 <li>在speechManager.h中添加保存记录的成员函数 <code>void clearRecord();</code></li>
 </ul>
@@ -707,11 +707,11 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">SpeechManager::clearRecord</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	cout &lt;&lt; <span class="hljs-string">&quot;确认清空？&quot;</span> &lt;&lt; endl;<br>	cout &lt;&lt; <span class="hljs-string">&quot;1、确认&quot;</span> &lt;&lt; endl;<br>	cout &lt;&lt; <span class="hljs-string">&quot;2、返回&quot;</span> &lt;&lt; endl;<br><br>	<span class="hljs-type">int</span> select = <span class="hljs-number">0</span>;<br>	cin &gt;&gt; select;<br><br>	<span class="hljs-keyword">if</span> (select == <span class="hljs-number">1</span>)<br>	&#123;<br>		<span class="hljs-comment">//打开模式 ios::trunc 如果存在删除文件并重新创建</span><br>		<span class="hljs-function">ofstream <span class="hljs-title">ofs</span><span class="hljs-params">(<span class="hljs-string">&quot;speech.csv&quot;</span>, ios::trunc)</span></span>;<br>		ofs.<span class="hljs-built_in">close</span>();<br><br>		<span class="hljs-comment">//初始化属性</span><br>		<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">initSpeech</span>();<br><br>		<span class="hljs-comment">//创建选手</span><br>		<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">createSpeaker</span>();<br><br>		<span class="hljs-comment">//获取往届记录</span><br>		<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">loadRecord</span>();<br>		<br><br>		cout &lt;&lt; <span class="hljs-string">&quot;清空成功！&quot;</span> &lt;&lt; endl;<br>	&#125;<br><br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;cls&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="8-2-测试清空"><a href="#8-2-测试清空" class="headerlink" title="8.2 测试清空"></a>8.2 测试清空</h3><p>在main函数分支 3  选项中，调用清空比赛记录的接口</p>
-<p><img src="/xiechaoxin.github/1548154674242.png" srcset="/img/loading.gif" lazyload alt="1548154674242"></p>
+<p><img src="/.io//1548154674242.png" srcset="/img/loading.gif" lazyload alt="1548154674242"></p>
 <p>运行程序，测试清空记录：</p>
-<p><img src="/xiechaoxin.github/1548154004738.png" srcset="/img/loading.gif" lazyload alt="1548154004738"></p>
+<p><img src="/.io//1548154004738.png" srcset="/img/loading.gif" lazyload alt="1548154004738"></p>
 <p>speech.csv中记录也为空</p>
-<p><img src="/xiechaoxin.github/1548154508831.png" srcset="/img/loading.gif" lazyload alt="1548154508831"></p>
+<p><img src="/.io//1548154508831.png" srcset="/img/loading.gif" lazyload alt="1548154508831"></p>
 <ul>
 <li>至此本案例结束！ <code>^_^</code></li>
 </ul>
@@ -797,7 +797,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>基于STL的演讲比赛流程管理系统</div>
-      <div>https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/CPP/heima/p_6_speech_competition/资料/讲义/基于STL的演讲比赛流程管理系统/</div>
+      <div>https://xiechaoxin.github.io/2022/06/17/CS/CPP/heima/p_6_speech_competition/资料/讲义/基于STL的演讲比赛流程管理系统/</div>
     </div>
     <div class="license-meta">
       

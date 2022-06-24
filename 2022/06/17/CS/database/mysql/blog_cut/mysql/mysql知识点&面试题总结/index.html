@@ -19,25 +19,25 @@
     <meta name="description" content="title: MySQL知识点&amp;面试题总结category: 数据库tag:  MySQL 大厂面试   MySQL 基础关系型数据库介绍顾名思义，关系型数据库就是一种建立在关系模型的基础上的数据库。关系模型表明了数据库中所存储的数据之间的联系（一对一、一对多、多对多）。 关系型数据库中，我们的数据都被存放在了各种表中（比如用户表），表中的每一行就存放着一条数据（比如一个用户的信息）。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql知识点&amp;面试题总结">
-<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/database/mysql/blog_cut/mysql/mysql%E7%9F%A5%E8%AF%86%E7%82%B9&%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:url" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/blog_cut/mysql/mysql%E7%9F%A5%E8%AF%86%E7%82%B9&%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="title: MySQL知识点&amp;面试题总结category: 数据库tag:  MySQL 大厂面试   MySQL 基础关系型数据库介绍顾名思义，关系型数据库就是一种建立在关系模型的基础上的数据库。关系模型表明了数据库中所存储的数据之间的联系（一对一、一对多、多对多）。 关系型数据库中，我们的数据都被存放在了各种表中（比如用户表），表中的每一行就存放着一条数据（比如一个用户的信息）。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/5e3c1a71724a38245aa43b02_99bf70d46cc247be878de9d3a88f0c44.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/20210327143351823.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/mysql-engines.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/%E6%9F%A5%E7%9C%8B%E8%A1%A8%E7%9A%84%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MzM3Mjcy,size_16,color_FFFFFF,t_70-20220527142425077.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/640-20201207160554677.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/%E4%BA%8B%E5%8A%A1%E7%89%B9%E6%80%A7-20220527142424173.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//5e3c1a71724a38245aa43b02_99bf70d46cc247be878de9d3a88f0c44.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//20210327143351823.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//mysql-engines.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//%E6%9F%A5%E7%9C%8B%E8%A1%A8%E7%9A%84%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MzM3Mjcy,size_16,color_FFFFFF,t_70-20220527142425077.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//640-20201207160554677.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//%E4%BA%8B%E5%8A%A1%E7%89%B9%E6%80%A7-20220527142424173.png">
 <meta property="article:published_time" content="2022-06-17T17:59:12.000Z">
-<meta property="article:modified_time" content="2022-06-24T10:53:04.699Z">
+<meta property="article:modified_time" content="2022-06-24T11:16:59.097Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="blog_cut">
 <meta property="article:tag" content="database">
 <meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/xiechaoxin.github/5e3c1a71724a38245aa43b02_99bf70d46cc247be878de9d3a88f0c44.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/.io//5e3c1a71724a38245aa43b02_99bf70d46cc247be878de9d3a88f0c44.png">
   
   
   
@@ -292,17 +292,17 @@
 <hr>
 <h2 id="MySQL-基础"><a href="#MySQL-基础" class="headerlink" title="MySQL 基础"></a>MySQL 基础</h2><h3 id="关系型数据库介绍"><a href="#关系型数据库介绍" class="headerlink" title="关系型数据库介绍"></a>关系型数据库介绍</h3><p>顾名思义，关系型数据库就是一种建立在关系模型的基础上的数据库。关系模型表明了数据库中所存储的数据之间的联系（一对一、一对多、多对多）。</p>
 <p>关系型数据库中，我们的数据都被存放在了各种表中（比如用户表），表中的每一行就存放着一条数据（比如一个用户的信息）。</p>
-<p><img src="/xiechaoxin.github/5e3c1a71724a38245aa43b02_99bf70d46cc247be878de9d3a88f0c44.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/.io//5e3c1a71724a38245aa43b02_99bf70d46cc247be878de9d3a88f0c44.png" srcset="/img/loading.gif" lazyload></p>
 <p>大部分关系型数据库都使用 SQL 来操作数据库中的数据。并且，大部分关系型数据库都支持事务的四大特性(ACID)。</p>
 <p><strong>有哪些常见的关系型数据库呢？</strong></p>
 <p>MySQL、PostgreSQL、Oracle、SQL Server、SQLite（微信本地的聊天记录的存储就是用的 SQLite） ……。</p>
-<h3 id="MySQL-介绍"><a href="#MySQL-介绍" class="headerlink" title="MySQL 介绍"></a>MySQL 介绍</h3><p><img src="/xiechaoxin.github/20210327143351823.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="MySQL-介绍"><a href="#MySQL-介绍" class="headerlink" title="MySQL 介绍"></a>MySQL 介绍</h3><p><img src="/.io//20210327143351823.png" srcset="/img/loading.gif" lazyload></p>
 <p><strong>MySQL 是一种关系型数据库，主要用于持久化存储我们的系统中的一些数据比如用户信息。</strong></p>
 <p>由于 MySQL 是开源免费并且比较成熟的数据库，因此，MySQL 被大量使用在各种系统中。任何人都可以在 GPL(General Public License) 的许可下下载并根据个性化的需要对其进行修改。MySQL 的默认端口号是<strong>3306</strong>。</p>
 <h2 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h2><h3 id="存储引擎相关的命令"><a href="#存储引擎相关的命令" class="headerlink" title="存储引擎相关的命令"></a>存储引擎相关的命令</h3><p><strong>查看 MySQL 提供的所有存储引擎</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">show</span> engines;<br></code></pre></td></tr></table></figure>
 
-<p><img src="/xiechaoxin.github/mysql-engines.png" srcset="/img/loading.gif" lazyload alt="查看MySQL提供的所有存储引擎"></p>
+<p><img src="/.io//mysql-engines.png" srcset="/img/loading.gif" lazyload alt="查看MySQL提供的所有存储引擎"></p>
 <p>从上图我们可以查看出 MySQL 当前默认的存储引擎是 InnoDB，并且在 5.7 版本所有的存储引擎中只有 InnoDB 是事务性存储引擎，也就是说只有 InnoDB 支持事务。</p>
 <p><strong>查看 MySQL 当前默认的存储引擎</strong></p>
 <p>我们也可以通过下面的命令查看默认的存储引擎。</p>
@@ -311,8 +311,8 @@
 <p><strong>查看表的存储引擎</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">show</span> <span class="hljs-keyword">table</span> status <span class="hljs-keyword">like</span> &quot;table_name&quot; ;<br></code></pre></td></tr></table></figure>
 
-<p><img src="/xiechaoxin.github/%E6%9F%A5%E7%9C%8B%E8%A1%A8%E7%9A%84%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E.png" srcset="/img/loading.gif" lazyload alt="查看表的存储引擎"></p>
-<h3 id="MyISAM-和-InnoDB-的区别"><a href="#MyISAM-和-InnoDB-的区别" class="headerlink" title="MyISAM 和 InnoDB 的区别"></a>MyISAM 和 InnoDB 的区别</h3><p><img src="/xiechaoxin.github/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MzM3Mjcy,size_16,color_FFFFFF,t_70-20220527142425077.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/.io//%E6%9F%A5%E7%9C%8B%E8%A1%A8%E7%9A%84%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E.png" srcset="/img/loading.gif" lazyload alt="查看表的存储引擎"></p>
+<h3 id="MyISAM-和-InnoDB-的区别"><a href="#MyISAM-和-InnoDB-的区别" class="headerlink" title="MyISAM 和 InnoDB 的区别"></a>MyISAM 和 InnoDB 的区别</h3><p><img src="/.io//watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MzM3Mjcy,size_16,color_FFFFFF,t_70-20220527142425077.png" srcset="/img/loading.gif" lazyload></p>
 <p>MySQL 5.5 之前，MyISAM 引擎是 MySQL 的默认存储引擎，可谓是风光一时。</p>
 <p>虽然，MyISAM 的性能还行，各种特性也还不错（比如全文索引、压缩、空间函数等）。但是，MyISAM 不支持事务和行级锁，而且最大的缺陷就是崩溃后无法安全恢复。</p>
 <p>5.5 版本之后，MySQL 引入了 InnoDB（事务性数据库引擎），MySQL 5.5 版本后默认的存储引擎为 InnoDB。小伙子，一定要记好这个 InnoDB ，你每次使用 MySQL 数据库都是用的这个存储引擎吧？</p>
@@ -390,9 +390,9 @@
 <p>简单来说：数据库事务可以保证多个对数据库的操作（也就是 SQL 语句）构成一个逻辑上的整体。构成这个逻辑上的整体的这些数据库操作遵循：<strong>要么全部执行成功,要么全部不执行</strong> 。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"># 开启一个事务<br><span class="hljs-keyword">START</span> TRANSACTION;<br># 多条 <span class="hljs-keyword">SQL</span> 语句<br>SQL1,SQL2...<br>## 提交事务<br><span class="hljs-keyword">COMMIT</span>;<br></code></pre></td></tr></table></figure>
 
-<p><img src="/xiechaoxin.github/640-20201207160554677.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/.io//640-20201207160554677.png" srcset="/img/loading.gif" lazyload></p>
 <p>另外，关系型数据库（例如：<code>MySQL</code>、<code>SQL Server</code>、<code>Oracle</code> 等）事务都有 <strong>ACID</strong> 特性：</p>
-<p><img src="/xiechaoxin.github/%E4%BA%8B%E5%8A%A1%E7%89%B9%E6%80%A7-20220527142424173.png" srcset="/img/loading.gif" lazyload alt="事务的特性"></p>
+<p><img src="/.io//%E4%BA%8B%E5%8A%A1%E7%89%B9%E6%80%A7-20220527142424173.png" srcset="/img/loading.gif" lazyload alt="事务的特性"></p>
 <h3 id="何为-ACID-特性呢？"><a href="#何为-ACID-特性呢？" class="headerlink" title="何为 ACID 特性呢？"></a>何为 ACID 特性呢？</h3><ol>
 <li><strong>原子性</strong>（<code>Atomicity</code>） ： 事务是最小的执行单位，不允许分割。事务的原子性确保动作要么全部完成，要么完全不起作用；</li>
 <li><strong>一致性</strong>（<code>Consistency</code>）： 执行事务前后，数据保持一致，例如转账业务中，无论事务是否成功，转账者和收款人的总额应该是不变的；</li>
@@ -541,7 +541,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>mysql知识点&amp;面试题总结</div>
-      <div>https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/database/mysql/blog_cut/mysql/mysql知识点&amp;面试题总结/</div>
+      <div>https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/blog_cut/mysql/mysql知识点&amp;面试题总结/</div>
     </div>
     <div class="license-meta">
       

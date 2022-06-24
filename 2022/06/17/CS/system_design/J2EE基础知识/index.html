@@ -19,18 +19,18 @@
     <meta name="description" content="点击关注公众号及时获取笔主最新更新文章，并可免费领取本文档配套的《Java面试突击》以及Java工程师必备学习资源。    Servlet总结 阐述Servlet和CGI的区别? CGI的不足之处: Servlet的优点：   Servlet接口中有哪些方法及Servlet生命周期探秘 get和post请求的区别 什么情况下调用doGet()和doPost() 转发（Forward）和重定向（Re">
 <meta property="og:type" content="article">
 <meta property="og:title" content="J2EE基础知识">
-<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/system_design/J2EE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/index.html">
+<meta property="og:url" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/J2EE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/index.html">
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="点击关注公众号及时获取笔主最新更新文章，并可免费领取本文档配套的《Java面试突击》以及Java工程师必备学习资源。    Servlet总结 阐述Servlet和CGI的区别? CGI的不足之处: Servlet的优点：   Servlet接口中有哪些方法及Servlet生命周期探秘 get和post请求的区别 什么情况下调用doGet()和doPost() 转发（Forward）和重定向（Re">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1-20220527145625414.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/167598cd2e17b8ec.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//1-20220527145625414.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//167598cd2e17b8ec.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T10:53:05.547Z">
+<meta property="article:modified_time" content="2022-06-24T11:16:59.845Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="system_design">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1-20220527145625414.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/.io//1-20220527145625414.png">
   
   
   
@@ -360,7 +360,7 @@
 <h2 id="Servlet与线程安全"><a href="#Servlet与线程安全" class="headerlink" title="Servlet与线程安全"></a>Servlet与线程安全</h2><p><strong>Servlet不是线程安全的，多线程并发的读写会导致数据不同步的问题。</strong> 解决的办法是尽量不要定义name属性，而是要把name变量分别定义在doGet()和doPost()方法内。虽然使用synchronized(name){}语句块可以解决问题，但是会造成线程的等待，不是很科学的办法。<br>注意：多线程的并发的读写Servlet类属性会导致数据不同步。但是如果只是并发地读取属性而不写入，则不存在数据不同步的问题。因此Servlet里的只读属性最好定义为final类型的。</p>
 <p>参考：《javaweb整合开发王者归来》P92</p>
 <h2 id="JSP和Servlet是什么关系"><a href="#JSP和Servlet是什么关系" class="headerlink" title="JSP和Servlet是什么关系"></a>JSP和Servlet是什么关系</h2><p>其实这个问题在上面已经阐述过了，Servlet是一个特殊的Java程序，它运行于服务器的JVM中，能够依靠服务器的支持向浏览器提供显示内容。JSP本质上是Servlet的一种简易形式，JSP会被服务器处理成一个类似于Servlet的Java程序，可以简化页面内容的生成。Servlet和JSP最主要的不同点在于，Servlet的应用逻辑是在Java文件中，并且完全从表示层中的HTML分离开来。而JSP的情况是Java和HTML可以组合成一个扩展名为.jsp的文件。有人说，Servlet就是在Java中写HTML，而JSP就是在HTML中写Java代码，当然这个说法是很片面且不够准确的。JSP侧重于视图，Servlet更侧重于控制逻辑，在MVC架构模式中，JSP适合充当视图（view）而Servlet适合充当控制器（controller）。</p>
-<h2 id="JSP工作原理"><a href="#JSP工作原理" class="headerlink" title="JSP工作原理"></a>JSP工作原理</h2><p>JSP是一种Servlet，但是与HttpServlet的工作方式不太一样。HttpServlet是先由源代码编译为class文件后部署到服务器下，为先编译后部署。而JSP则是先部署后编译。JSP会在客户端第一次请求JSP文件时被编译为HttpJspPage类（接口Servlet的一个子类）。该类会被服务器临时存放在服务器工作目录里面。下面通过实例给大家介绍。<br>工程JspLoginDemo下有一个名为login.jsp的Jsp文件，把工程第一次部署到服务器上后访问这个Jsp文件，我们发现这个目录下多了下图这两个东东。<br>.class文件便是JSP对应的Servlet。编译完毕后再运行class文件来响应客户端请求。以后客户端访问login.jsp的时候，Tomcat将不再重新编译JSP文件，而是直接调用class文件来响应客户端请求。<br><img src="/xiechaoxin.github/1-20220527145625414.png" srcset="/img/loading.gif" lazyload alt="JSP工作原理"><br>由于JSP只会在客户端第一次请求的时候被编译 ，因此第一次请求JSP时会感觉比较慢，之后就会感觉快很多。如果把服务器保存的class文件删除，服务器也会重新编译JSP。</p>
+<h2 id="JSP工作原理"><a href="#JSP工作原理" class="headerlink" title="JSP工作原理"></a>JSP工作原理</h2><p>JSP是一种Servlet，但是与HttpServlet的工作方式不太一样。HttpServlet是先由源代码编译为class文件后部署到服务器下，为先编译后部署。而JSP则是先部署后编译。JSP会在客户端第一次请求JSP文件时被编译为HttpJspPage类（接口Servlet的一个子类）。该类会被服务器临时存放在服务器工作目录里面。下面通过实例给大家介绍。<br>工程JspLoginDemo下有一个名为login.jsp的Jsp文件，把工程第一次部署到服务器上后访问这个Jsp文件，我们发现这个目录下多了下图这两个东东。<br>.class文件便是JSP对应的Servlet。编译完毕后再运行class文件来响应客户端请求。以后客户端访问login.jsp的时候，Tomcat将不再重新编译JSP文件，而是直接调用class文件来响应客户端请求。<br><img src="/.io//1-20220527145625414.png" srcset="/img/loading.gif" lazyload alt="JSP工作原理"><br>由于JSP只会在客户端第一次请求的时候被编译 ，因此第一次请求JSP时会感觉比较慢，之后就会感觉快很多。如果把服务器保存的class文件删除，服务器也会重新编译JSP。</p>
 <p>开发Web程序时经常需要修改JSP。Tomcat能够自动检测到JSP程序的改动。如果检测到JSP源代码发生了改动。Tomcat会在下次客户端请求JSP时重新编译JSP，而不需要重启Tomcat。这种自动检测功能是默认开启的，检测改动会消耗少量的时间，在部署Web应用的时候可以在web.xml中将它关掉。</p>
 <p>参考：《javaweb整合开发王者归来》P97</p>
 <h2 id="JSP有哪些内置对象、作用分别是什么"><a href="#JSP有哪些内置对象、作用分别是什么" class="headerlink" title="JSP有哪些内置对象、作用分别是什么"></a>JSP有哪些内置对象、作用分别是什么</h2><p><a target="_blank" rel="noopener" href="http://blog.csdn.net/qq_34337272/article/details/64310849">JSP内置对象 - CSDN博客 </a> </p>
@@ -455,7 +455,7 @@
 <h2 id="公众号"><a href="#公众号" class="headerlink" title="公众号"></a>公众号</h2><p>如果大家想要实时关注我更新的文章以及分享的干货的话，可以关注我的公众号。</p>
 <p><strong>《Java面试突击》:</strong> 由本文档衍生的专为面试而生的《Java面试突击》V2.0 PDF 版本<a href="#%E5%85%AC%E4%BC%97%E5%8F%B7">公众号</a>后台回复 <strong>“Java面试突击”</strong> 即可免费领取！</p>
 <p><strong>Java工程师必备学习资源:</strong> 一些Java工程师常用学习资源公众号后台回复关键字 <strong>“1”</strong> 即可免费无套路获取。 </p>
-<p><img src="/xiechaoxin.github/167598cd2e17b8ec.png" srcset="/img/loading.gif" lazyload alt="我的公众号"></p>
+<p><img src="/.io//167598cd2e17b8ec.png" srcset="/img/loading.gif" lazyload alt="我的公众号"></p>
 
                 
               </div>
@@ -502,7 +502,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>J2EE基础知识</div>
-      <div>https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/system_design/J2EE基础知识/</div>
+      <div>https://xiechaoxin.github.io/2022/06/17/CS/system_design/J2EE基础知识/</div>
     </div>
     <div class="license-meta">
       

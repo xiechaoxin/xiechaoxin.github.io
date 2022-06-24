@@ -19,94 +19,94 @@
     <meta name="description" content="mysq详细笔记[toc] 第1章 数据库概述1.1. 为什么要使用数据库  持久化(persistence)：把数据保存到可掉电式存储设备中以供之后使用。大多数情况下，特别是企业级应用，数据持久化意味着将内存中的数据保存到硬盘上加以”固化”，而持久化的实现过程大多通过各种关系数据库来完成。 持久化的主要作用是将内存中的数据存储在关系型数据库中，当然也可以存储在磁盘文件、XML数据文件中。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql详细笔记1-2章">
-<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B01-2%E7%AB%A0/index.html">
+<meta property="og:url" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B01-2%E7%AB%A0/index.html">
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="mysq详细笔记[toc] 第1章 数据库概述1.1. 为什么要使用数据库  持久化(persistence)：把数据保存到可掉电式存储设备中以供之后使用。大多数情况下，特别是企业级应用，数据持久化意味着将内存中的数据保存到硬盘上加以”固化”，而持久化的实现过程大多通过各种关系数据库来完成。 持久化的主要作用是将内存中的数据存储在关系型数据库中，当然也可以存储在磁盘文件、XML数据文件中。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101000154.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101013291.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101028690.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101138286.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101238161.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101254732.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101335008.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101419756.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101444607.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101503857.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101518368.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/a5da6cd2b1f343648167a6f81c563f1c.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101614139.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_16,color_FFFFFF,t_70,g_se,x_16.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101732308.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/14a65ba7466a447381cbcdb3806c4238.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101826349.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_19,color_FFFFFF,t_70,g_se,x_16.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102009249.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102018356.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102027421.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102035491.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102046380.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102117184.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102134539.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102207913.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103308625.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103334162.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103355174.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103428871.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103450974.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103553395.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103605967.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103617509.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103629209.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103640860.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103650443.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103702249.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103715577.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103821388.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103855978.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103912170.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103923113.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103935182.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103951565.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513104018147.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513104047419.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/55d557d23ab8436f97902a1ef18d9ee0.gif">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/8b96b9860cf74d3e89630a69c8057897.gif">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/d97fe089e9814903bd2f09aaa0b08b37.gif">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513104433218.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513104456484.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513104510576.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513104533657.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16.jpeg">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513110123531.jpeg">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115324336.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115347487.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115354313.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115357676.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115408661.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115414897.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115445728.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115453619.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115503738.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115510166.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115518727.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115544032.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115544032.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115544032.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513130405679.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513130418329.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513130443001.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513130514400.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513130522095.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513130526900.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101000154.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101013291.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101028690.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101138286.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101238161.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101254732.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101335008.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101419756.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101444607.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101503857.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101518368.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//a5da6cd2b1f343648167a6f81c563f1c.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101614139.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_16,color_FFFFFF,t_70,g_se,x_16.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101732308.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//14a65ba7466a447381cbcdb3806c4238.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101826349.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_19,color_FFFFFF,t_70,g_se,x_16.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102009249.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102018356.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102027421.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102035491.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102046380.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102117184.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102134539.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102207913.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103308625.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103334162.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103355174.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103428871.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103450974.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103553395.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103605967.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103617509.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103629209.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103640860.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103650443.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103702249.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103715577.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103821388.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103855978.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103912170.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103923113.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103935182.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103951565.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513104018147.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513104047419.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//55d557d23ab8436f97902a1ef18d9ee0.gif">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//8b96b9860cf74d3e89630a69c8057897.gif">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//d97fe089e9814903bd2f09aaa0b08b37.gif">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513104433218.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513104456484.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513104510576.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513104533657.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16.jpeg">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513110123531.jpeg">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115324336.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115347487.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115354313.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115357676.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115408661.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115414897.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115445728.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115453619.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115503738.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115510166.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115518727.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115544032.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115544032.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115544032.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513130405679.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513130418329.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513130443001.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513130514400.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513130522095.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513130526900.png">
 <meta property="article:published_time" content="2022-06-17T17:59:12.000Z">
-<meta property="article:modified_time" content="2022-06-24T10:53:04.795Z">
+<meta property="article:modified_time" content="2022-06-24T11:16:59.181Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="database">
 <meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16.png">
   
   
   
@@ -359,7 +359,7 @@
 <li>持久化的主要作用是<strong>将内存中的数据存储在关系型数据库中</strong>，当然也可以存储在磁盘文件、XML数据文件中。</li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16.png" srcset="/img/loading.gif" lazyload alt="shujuku"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16.png" srcset="/img/loading.gif" lazyload alt="shujuku"></p>
 <h2 id="1-2-数据库与数据库管理系统"><a href="#1-2-数据库与数据库管理系统" class="headerlink" title="1.2. 数据库与数据库管理系统"></a>1.2. 数据库与数据库管理系统</h2><h3 id="1-2-1-数据库的相关概念"><a href="#1-2-1-数据库的相关概念" class="headerlink" title="1.2.1 数据库的相关概念"></a>1.2.1 数据库的相关概念</h3><p><strong>DB：数据库（Database）</strong></p>
 <p>即存储数据的“仓库”，其本质是一个文件系统。它保存了一系列有组织的数据。</p>
 <p><strong>DBMS：数据库管理系统（Database Management System）</strong></p>
@@ -371,13 +371,13 @@
 <li>数据库管理系统(DBMS)可以管理多个数据库，一般开发人员会针对每一个应用创建一个数据库。为保存应用中实体的数据，一般会在数据库创建多个表，以保存程序中实体用户的数据。</li>
 </ul>
 </blockquote>
-<p>数据库管理系统、数据库和表的关系如图所示：<br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101000154.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101013291.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>数据库管理系统、数据库和表的关系如图所示：<br><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101000154.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101013291.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <h3 id="1-2-3-常见的数据库管理系统排名-DBMS"><a href="#1-2-3-常见的数据库管理系统排名-DBMS" class="headerlink" title="1.2.3 常见的数据库管理系统排名(DBMS)"></a>1.2.3 常见的数据库管理系统排名(DBMS)</h3><blockquote>
 <ul>
 <li>目前互联网上常见的数据库管理软件有Oracle、MySQL、MS SQL Server、DB2、PostgreSQL、Access、Sybase、Informix这几种。以下是2021年<strong>DB-Engines Ranking</strong> 对各数据库受欢迎程度进行调查后的统计结果：（查看数据库最新排名:<a target="_blank" rel="noopener" href="https://db-engines.com/en/ranking%EF%BC%89">https://db-engines.com/en/ranking）</a></li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101028690.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>对应的走势图：（<a target="_blank" rel="noopener" href="https://db-engines.com/en/ranking/_trend">https://db-engines.com/en/ranking\_trend</a>)</p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101028690.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>对应的走势图：（<a target="_blank" rel="noopener" href="https://db-engines.com/en/ranking/_trend">https://db-engines.com/en/ranking\_trend</a>)</p>
 <h3 id="1-2-4-常见的数据库介绍"><a href="#1-2-4-常见的数据库介绍" class="headerlink" title="1.2.4 常见的数据库介绍"></a>1.2.4 常见的数据库介绍</h3><blockquote>
 <p><strong>Oracle</strong></p>
 <ul>
@@ -436,7 +436,7 @@
 <h3 id="1-3-2-MySQL发展史重大事件"><a href="#1-3-2-MySQL发展史重大事件" class="headerlink" title="1.3.2 MySQL发展史重大事件"></a>1.3.2 MySQL发展史重大事件</h3><blockquote>
 <p>MySQL的历史就是整个互联网的发展史。互联网业务从社交领域、电商领域到金融领域的发展，推动着应用对数据库的需求提升，对传统的数据库服务能力提出了挑战。高并发、高性能、高可用、轻资源、易维护、易扩展的需求，促进了MySQL的长足发展。</p>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101138286.png" srcset="/img/loading.gif" lazyload alt="mysql历史"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101138286.png" srcset="/img/loading.gif" lazyload alt="mysql历史"></p>
 <h3 id="1-3-3-关于MySQL-8-0"><a href="#1-3-3-关于MySQL-8-0" class="headerlink" title="1.3.3 关于MySQL 8.0"></a>1.3.3 关于MySQL 8.0</h3><blockquote>
 <p><code>MySQL从5.7版本直接跳跃发布了8.0版本</code>，可见这是一个令人兴奋的里程碑版本。MySQL 8版本在功能上做了显著的改进与增强，开发者对MySQL的源代码进行了重构，最突出的一点是多MySQL Optimizer优化器进行了改进。不仅在速度上得到了改善，还为用户带来了更好的性能和更棒的体验。</p>
 </blockquote>
@@ -466,12 +466,12 @@
 <li>这种类型的数据库是<code>最古老</code>的数据库类型，关系型数据库模型是把复杂的数据结构归结为简单的<code>二元关系</code>（即二维表格形式）。</li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101238161.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101238161.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <blockquote>
 <ul>
 <li>关系型数据库以<code>行(row)</code>和<code>列(column)</code>的形式存储数据，以便于用户理解。这一系列的行和列被称为<code>表(table)</code>，一组表组成了一个库(database)。</li>
 <li>表与表之间的数据记录有关系(relationship)。现实世界中的各种实体以及实体之间的各种联系均用<code>关系模型</code>来表示。关系型数据库，就是建立在<code>关系模型</code>基础上的数据库。</li>
-<li>SQL 就是关系型数据库的查询语言。<br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101254732.png" srcset="/img/loading.gif" lazyload></li>
+<li>SQL 就是关系型数据库的查询语言。<br><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101254732.png" srcset="/img/loading.gif" lazyload></li>
 </ul>
 </blockquote>
 <h4 id="1-4-1-2-优势"><a href="#1-4-1-2-优势" class="headerlink" title="1.4.1.2 优势"></a>1.4.1.2 优势</h4><blockquote>
@@ -506,7 +506,7 @@
 <li>键值型数据库典型的使用场景是作为<code>内存缓存</code>。<code>Redis</code> 是最流行的键值型数据库。</li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101335008.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101335008.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <blockquote>
 <p><strong>文档型数据库</strong></p>
 <ul>
@@ -523,7 +523,7 @@
 <blockquote>
 <p><strong>列式数据库</strong></p>
 <ul>
-<li>列式数据库是相对于行式存储的数据库，Oracle、MySQL、SQL Server 等数据库都是采用的行式存储（Row-based），而列式数据库是将数据按照列存储到数据库中，这样做的好处是可以大量降低系统的 I&#x2F;O，适合于分布式文件系统，不足在于功能相对有限。典型产品：HBase等。<br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101419756.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+<li>列式数据库是相对于行式存储的数据库，Oracle、MySQL、SQL Server 等数据库都是采用的行式存储（Row-based），而列式数据库是将数据按照列存储到数据库中，这样做的好处是可以大量降低系统的 I&#x2F;O，适合于分布式文件系统，不足在于功能相对有限。典型产品：HBase等。<br><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101419756.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
 </ul>
 </blockquote>
 <blockquote>
@@ -535,7 +535,7 @@
 <li>图形数据库顾名思义，就是一种存储图形关系的数据库。它利用了图这种数据结构存储了实体（对象）之间的关系。关系型数据用于存储明确关系的数据，但对于复杂关系的数据存储却有些力不从心。如社交网络中人物之间的关系，如果用关系型数据库则非常复杂，用图形数据库将非常简单。典型产品：Neo4J、InfoGrid等。</li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101444607.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101444607.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <h4 id="1-4-2-3-NoSQL的演变"><a href="#1-4-2-3-NoSQL的演变" class="headerlink" title="1.4.2.3 NoSQL的演变"></a>1.4.2.3 NoSQL的演变</h4><blockquote>
 <ul>
 <li>由于 SQL 一直称霸 DBMS，因此许多人在思考是否有一种数据库技术能远离 SQL，于是 NoSQL 诞生了，但是随着发展却发现越来越离不开 SQL。到目前为止 NoSQL 阵营中的 DBMS 都会有实现类似 SQL 的功能。下面是“NoSQL”这个名词在不同时期的诠释，从这些释义的变化中可以看出 <code>NoSQL 功能的演变</code>：<br>1970：NoSQL &#x3D; We have no SQL<br>1980：NoSQL &#x3D; Know SQL<br>2000：NoSQL &#x3D; No SQL!<br>2005：NoSQL &#x3D; Not only SQL<br>2013：NoSQL &#x3D; No, SQL!</li>
@@ -558,7 +558,7 @@
 <h3 id="1-5-1-表、记录、字段"><a href="#1-5-1-表、记录、字段" class="headerlink" title="1.5.1 表、记录、字段"></a>1.5.1 表、记录、字段</h3><blockquote>
 <ul>
 <li>E-R（entity-relationship，实体-联系）模型中有三个主要概念是：<code>实体集</code>、<code>属性</code>、<code>联系集</code>。</li>
-<li>一个实体集（class）对应于数据库中的一个表（table），一个实体（instance）则对应于数据库表中的一行（row），也称为一条记录（record）。一个属性（attribute）对应于数据库表中的一列（column），也称为一个字段（field）。<br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101503857.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+<li>一个实体集（class）对应于数据库中的一个表（table），一个实体（instance）则对应于数据库表中的一行（row），也称为一条记录（record）。一个属性（attribute）对应于数据库表中的一列（column），也称为一个字段（field）。<br><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101503857.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
 </ul>
 </blockquote>
 <pre><code class="hljs">ORM思想 (Object Relational Mapping)体现：
@@ -592,7 +592,7 @@
 <li>外键是主键：主表的主键和从表的主键，形成主外键关系。</li>
 </ol>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101518368.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101518368.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <h4 id="1-5-2-2-一对多关系（one-to-many）"><a href="#1-5-2-2-一对多关系（one-to-many）" class="headerlink" title="1.5.2.2 一对多关系（one-to-many）"></a>1.5.2.2 一对多关系（one-to-many）</h4><blockquote>
 <ul>
 <li>常见实例场景：<code>客户表和订单表</code>，<code>分类表和商品表</code>，<code>部门表和员工表</code>。</li>
@@ -606,13 +606,13 @@
 <li>一对多建表原则：在从表(多方)创建一个字段，字段作为外键指向主表(一方)的主键</li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/a5da6cd2b1f343648167a6f81c563f1c.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101614139.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_16,color_FFFFFF,t_70,g_se,x_16.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/.io//a5da6cd2b1f343648167a6f81c563f1c.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101614139.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_16,color_FFFFFF,t_70,g_se,x_16.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <h4 id="1-5-2-3-多对多（many-to-many）"><a href="#1-5-2-3-多对多（many-to-many）" class="headerlink" title="1.5.2.3 多对多（many-to-many）"></a>1.5.2.3 多对多（many-to-many）</h4><blockquote>
 <ul>
 <li>要表示多对多关系，必须创建第三个表，该表通常称为<code>联接表</code>，它将多对多关系划分为两个一对多关系。将这两个表的主键都插入到第三个表中。</li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101732308.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101732308.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <blockquote>
 <ul>
 <li><strong>举例1：学生-课程</strong><ul>
@@ -633,7 +633,7 @@
 <li><strong>举例2：产品-订单</strong><br>“订单”表和“产品”表有一种多对多的关系，这种关系是通过与“订单明细”表建立两个一对多关系来定义的。一个订单可以有多个产品，每个产品可以出现在多个订单中。<ul>
 <li><code>产品表</code>：“产品”表中的每条记录表示一个产品。</li>
 <li><code>订单表</code>：“订单”表中的每条记录表示一个订单。</li>
-<li><code>订单明细表</code>：每个产品可以与“订单”表中的多条记录对应，即出现在多个订单中。一个订单可以与“产品”表中的多条记录对应，即包含多个产品。<br><img src="/xiechaoxin.github/14a65ba7466a447381cbcdb3806c4238.png" srcset="/img/loading.gif" lazyload alt="产品订单多对多"></li>
+<li><code>订单明细表</code>：每个产品可以与“订单”表中的多条记录对应，即出现在多个订单中。一个订单可以与“产品”表中的多条记录对应，即包含多个产品。<br><img src="/.io//14a65ba7466a447381cbcdb3806c4238.png" srcset="/img/loading.gif" lazyload alt="产品订单多对多"></li>
 </ul>
 </li>
 </ul>
@@ -646,22 +646,22 @@
 </li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101826349.png" srcset="/img/loading.gif" lazyload alt="用户角色多对多"></p>
-<h4 id="1-5-2-4-自我引用-Self-reference"><a href="#1-5-2-4-自我引用-Self-reference" class="headerlink" title="1.5.2.4 自我引用(Self reference)"></a>1.5.2.4 自我引用(Self reference)</h4><p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_19,color_FFFFFF,t_70,g_se,x_16.png" srcset="/img/loading.gif" lazyload alt="自我应用"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513101826349.png" srcset="/img/loading.gif" lazyload alt="用户角色多对多"></p>
+<h4 id="1-5-2-4-自我引用-Self-reference"><a href="#1-5-2-4-自我引用-Self-reference" class="headerlink" title="1.5.2.4 自我引用(Self reference)"></a>1.5.2.4 自我引用(Self reference)</h4><p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_19,color_FFFFFF,t_70,g_se,x_16.png" srcset="/img/loading.gif" lazyload alt="自我应用"></p>
 <h1 id="第2章-MySQL环境搭建"><a href="#第2章-MySQL环境搭建" class="headerlink" title="第2章_MySQL环境搭建"></a>第2章_MySQL环境搭建</h1><h2 id="2-1-MySQL的卸载-win"><a href="#2-1-MySQL的卸载-win" class="headerlink" title="2.1. MySQL的卸载(win)"></a>2.1. MySQL的卸载(win)</h2><p><strong>步骤1：停止MySQL服务</strong></p>
 <blockquote>
 <ul>
 <li>在卸载之前，先停止MySQL8.0的服务。按键盘上的“Ctrl + Alt + Delete”组合键，打开“任务管理器”对话框，可以在“服务”列表找到“MySQL8.0”的服务，如果现在“正在运行”状态，可以右键单击服务，选择“停止”选项停止MySQL8.0的服务，如图所示。</li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102009249.png" srcset="/img/loading.gif" lazyload alt="启动台"><br><strong>步骤2：软件的卸载</strong></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102009249.png" srcset="/img/loading.gif" lazyload alt="启动台"><br><strong>步骤2：软件的卸载</strong></p>
 <blockquote>
 <p><strong>方式1：通过控制面板方式</strong></p>
 <ul>
 <li>卸载MySQL8.0的程序可以和其他桌面应用程序一样直接在“控制面板”选择“卸载程序”，并在程序列表中找到MySQL8.0服务器程序，直接双击卸载即可，如图所示。这种方式删除，数据目录下的数据不会跟着删除。</li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102018356.png" srcset="/img/loading.gif" lazyload alt="软件卸载"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102018356.png" srcset="/img/loading.gif" lazyload alt="软件卸载"></p>
 <blockquote>
 <p><strong>方式2：通过360或电脑管家等软件卸载</strong></p>
 </blockquote>
@@ -672,31 +672,31 @@
 <li>选择要卸载的MySQL服务器程序，单击“Remove”（移除），即可进行卸载。</li>
 </ol>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102027421.png" srcset="/img/loading.gif" lazyload alt="卸载mysql"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102027421.png" srcset="/img/loading.gif" lazyload alt="卸载mysql"></p>
 <blockquote>
 <ol start="3">
 <li>单击“Next”（下一步）按钮，确认卸载。</li>
 </ol>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102035491.png" srcset="/img/loading.gif" lazyload alt="next"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102035491.png" srcset="/img/loading.gif" lazyload alt="next"></p>
 <blockquote>
 <ol start="4">
 <li>弹出是否同时移除数据目录选择窗口。如果想要同时删除MySQL服务器中的数据，则勾选“Remove the data directory”，如图所示。</li>
 </ol>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102046380.png" srcset="/img/loading.gif" lazyload alt="卸载next"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102046380.png" srcset="/img/loading.gif" lazyload alt="卸载next"></p>
 <blockquote>
 <ol start="5">
 <li>执行卸载。单击“Execute”（执行）按钮进行卸载。</li>
 </ol>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102117184.png" srcset="/img/loading.gif" lazyload alt="execute"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102117184.png" srcset="/img/loading.gif" lazyload alt="execute"></p>
 <blockquote>
 <ol start="6">
 <li>完成卸载。单击“Finish”（完成）按钮即可。如果想要同时卸载MySQL8.0的安装向导程序，勾选“Yes，Uninstall MySQL Installer”即可，如图所示。</li>
 </ol>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102134539.png" srcset="/img/loading.gif" lazyload alt="完成卸载"><br><strong>步骤3：残余文件的清理</strong></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102134539.png" srcset="/img/loading.gif" lazyload alt="完成卸载"><br><strong>步骤3：残余文件的清理</strong></p>
 <blockquote>
 <ul>
 <li>如果再次安装不成功，可以卸载后对残余文件进行清理后再安装。</li>
@@ -735,7 +735,7 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MySQL服务删除
 <li>例如：删除 D:\develop_tools\mysql\MySQLServer8.0.26\bin; 这个部分</li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102207913.png" srcset="/img/loading.gif" lazyload alt="删除环境变量"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513102207913.png" srcset="/img/loading.gif" lazyload alt="删除环境变量"></p>
 <h2 id="2-2-MySQL的下载、安装、配置"><a href="#2-2-MySQL的下载、安装、配置" class="headerlink" title="2.2. MySQL的下载、安装、配置"></a>2.2. MySQL的下载、安装、配置</h2><h3 id="2-2-1-MySQL的4大版本"><a href="#2-2-1-MySQL的4大版本" class="headerlink" title="2.2.1 MySQL的4大版本"></a>2.2.1 MySQL的4大版本</h3><blockquote>
 <ul>
 <li><strong>MySQL Community Server 社区版本</strong>，开源免费，自由下载，但不提供官方技术支持，适用于大多数普通用户。</li>
@@ -759,14 +759,14 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MySQL服务删除
 <blockquote>
 <p>然后，点击<code>MySQL Community(GPL) Downloads</code></p>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103308625.png" srcset="/img/loading.gif" lazyload alt="打开官网"><br><strong>3. 点击 MySQL Community Server</strong><br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103334162.png" srcset="/img/loading.gif" lazyload alt="MySQL Community Server"><br><strong>4. 在General Availability(GA) Releases中选择适合的版本</strong></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103308625.png" srcset="/img/loading.gif" lazyload alt="打开官网"><br><strong>3. 点击 MySQL Community Server</strong><br><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103334162.png" srcset="/img/loading.gif" lazyload alt="MySQL Community Server"><br><strong>4. 在General Availability(GA) Releases中选择适合的版本</strong></p>
 <blockquote>
 <p>Windows平台下提供两种安装文件：MySQL二进制分发版（.msi安装文件）和免安装版（.zip压缩文件）。一般来讲，应当使用二进制分发版，因为该版本提供了图形化的安装向导过程，比其他的分发版使用起来要简单，不再需要其他工具启动就可以运行MySQL。</p>
 <ul>
 <li>这里在Windows 系统下推荐下载<code>MSI安装程序</code>；点击<code>Go to Download Page</code>进行下载即可</li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103355174.png" srcset="/img/loading.gif" lazyload alt="General Availability(GA) Releases"><br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103428871.png" srcset="/img/loading.gif" lazyload alt="mysql installer"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103355174.png" srcset="/img/loading.gif" lazyload alt="General Availability(GA) Releases"><br><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103428871.png" srcset="/img/loading.gif" lazyload alt="mysql installer"></p>
 <blockquote>
 <ul>
 <li>Windows下的MySQL8.0安装有两种安装程序<ul>
@@ -777,7 +777,7 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MySQL服务删除
 <li>如果安装MySQL5.7版本的话，选择<code>Archives</code>，接着选择MySQL5.7的相应版本即可。这里下载最近期的MySQL5.7.34版本。</li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103450974.png" srcset="/img/loading.gif" lazyload alt="archives"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103450974.png" srcset="/img/loading.gif" lazyload alt="archives"></p>
 <h3 id="2-2-3-MySQL8-0-版本的安装"><a href="#2-2-3-MySQL8-0-版本的安装" class="headerlink" title="2.2.3 MySQL8.0 版本的安装"></a>2.2.3 MySQL8.0 版本的安装</h3><blockquote>
 <p>MySQL下载完成后，找到下载文件，双击进行安装，具体操作步骤如下。</p>
 <ul>
@@ -785,56 +785,56 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MySQL服务删除
 <li>步骤2：打开“Choosing a Setup Type”（选择安装类型）窗口，在其中列出了5种安装类型，分别是Developer Default（默认安装类型）、Server only（仅作为服务器）、Client only（仅作为客户端）、Full（完全安装）、Custom（自定义安装）。这里选择“Custom（自定义安装）”类型按钮，单击“Next(下一步)”按钮。</li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103553395.png" srcset="/img/loading.gif" lazyload alt="MySQL8.0"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103553395.png" srcset="/img/loading.gif" lazyload alt="MySQL8.0"></p>
 <blockquote>
 <ul>
 <li>步骤3：打开“Select Products” （选择产品）窗口，可以定制需要安装的产品清单。例如，选择“MySQL Server 8.0.26-X64”后，单击“→”添加按钮，即可选择安装MySQL服务器，如图所示。采用通用的方法，可以添加其他你需要安装的产品。</li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103605967.png" srcset="/img/loading.gif" lazyload alt="Select Products"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103605967.png" srcset="/img/loading.gif" lazyload alt="Select Products"></p>
 <blockquote>
 <ul>
 <li>此时如果直接“Next”（下一步），则产品的安装路径是默认的。如果想要自定义安装目录，则可以选中对应的产品，然后在下面会出现“Advanced Options”（高级选项）的超链接。</li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103617509.png" srcset="/img/loading.gif" lazyload alt="next"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103617509.png" srcset="/img/loading.gif" lazyload alt="next"></p>
 <blockquote>
 <ul>
 <li>单击“Advanced Options”（高级选项）则会弹出安装目录的选择窗口，如图所示，此时你可以分别设置MySQL的服务程序安装目录和数据存储目录。如果不设置，默认分别在C盘的Program Files目录和ProgramData目录（这是一个隐藏目录）。如果自定义安装目录，请避免“中文”目录。另外，建议服务目录和数据目录分开存放。</li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103629209.png" srcset="/img/loading.gif" lazyload alt="Advanced Options"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103629209.png" srcset="/img/loading.gif" lazyload alt="Advanced Options"></p>
 <blockquote>
 <ul>
 <li>步骤4：在上一步选择好要安装的产品之后，单击“Next”（下一步）进入确认窗口，如图所示。单击“Execute”（执行）按钮开始安装。</li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103640860.png" srcset="/img/loading.gif" lazyload alt="Execute"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103640860.png" srcset="/img/loading.gif" lazyload alt="Execute"></p>
 <blockquote>
 <ul>
 <li>步骤5：安装完成后在“Status”（状态）列表下将显示“Complete”（安装完成），如图所示。</li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103650443.png" srcset="/img/loading.gif" lazyload alt="Status"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103650443.png" srcset="/img/loading.gif" lazyload alt="Status"></p>
 <h3 id="2-2-4-配置MySQL8-0"><a href="#2-2-4-配置MySQL8-0" class="headerlink" title="2.2.4 配置MySQL8.0"></a>2.2.4 配置MySQL8.0</h3><blockquote>
 <p>MySQL安装之后，需要对服务器进行配置。具体的配置步骤如下。</p>
 <ul>
 <li>步骤1：在上一个小节的最后一步，单击“Next”（下一步）按钮，就可以进入产品配置窗口。</li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103702249.png" srcset="/img/loading.gif" lazyload alt="Next"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103702249.png" srcset="/img/loading.gif" lazyload alt="Next"></p>
 <blockquote>
 <ul>
 <li>步骤2：单击“Next”（下一步）按钮，进入MySQL服务器类型配置窗口，如图所示。端口号一般选择默认端口号3306。</li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103715577.png" srcset="/img/loading.gif" lazyload alt="Next"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103715577.png" srcset="/img/loading.gif" lazyload alt="Next"></p>
 <blockquote>
 <ul>
 <li>其中，“Config Type”选项用于设置服务器的类型。单击该选项右侧的下三角按钮，即可查看3个选项，如图所示。</li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103821388.png" srcset="/img/loading.gif" lazyload alt="Config Type"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103821388.png" srcset="/img/loading.gif" lazyload alt="Config Type"></p>
 <blockquote>
 <ul>
 <li><code>Development Machine（开发机器）</code>：该选项代表典型个人用桌面工作站。此时机器上需要运行多个应用程序，那么MySQL服务器将占用最少的系统资源。</li>
@@ -847,13 +847,13 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MySQL服务删除
 <li>步骤3：单击“Next”（下一步）按钮，打开设置授权方式窗口。其中，上面的选项是MySQL8.0提供的新的授权方式，采用SHA256基础的密码加密方法；下面的选项是传统授权方法（保留5.x版本兼容性）。</li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103855978.png" srcset="/img/loading.gif" lazyload alt="Next"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103855978.png" srcset="/img/loading.gif" lazyload alt="Next"></p>
 <blockquote>
 <ul>
 <li>步骤4：单击“Next”（下一步）按钮，打开设置服务器root超级管理员的密码窗口，如图所示，需要输入两次同样的登录密码。也可以通过“Add User”添加其他用户，添加其他用户时，需要指定用户名、允许该用户名在哪台&#x2F;哪些主机上登录，还可以指定用户角色等。此处暂不添加用户，用户管理在MySQL高级特性篇中讲解。</li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103912170.png" srcset="/img/loading.gif" lazyload alt="Next"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103912170.png" srcset="/img/loading.gif" lazyload alt="Next"></p>
 <blockquote>
 <ul>
 <li>步骤5：单击“Next”（下一步）按钮，打开设置服务器名称窗口，如图所示。该服务名会出现在Windows服务列表中，也可以在命令行窗口中使用该服务名进行启动和停止服务。本书将服务名设置为“MySQL80”。如果希望开机自启动服务，也可以勾选“Start the MySQL Server at System Startup”选项（推荐）。</li>
@@ -864,31 +864,31 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MySQL服务删除
 <li>下面是选择以什么方式运行服务？可以选择“Standard System Account”(标准系统用户)或者“Custom User”(自定义用户)中的一个。这里推荐前者。</li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103923113.png" srcset="/img/loading.gif" lazyload alt="Next"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103923113.png" srcset="/img/loading.gif" lazyload alt="Next"></p>
 <blockquote>
 <ul>
 <li>步骤6：单击“Next”（下一步）按钮，打开确认设置服务器窗口，单击“Execute”（执行）按钮。</li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103935182.png" srcset="/img/loading.gif" lazyload alt="Execute"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103935182.png" srcset="/img/loading.gif" lazyload alt="Execute"></p>
 <blockquote>
 <ul>
 <li>步骤7：完成配置，如图所示。单击“Finish”（完成）按钮，即可完成服务器的配置。</li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103951565.png" srcset="/img/loading.gif" lazyload alt="Finish"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513103951565.png" srcset="/img/loading.gif" lazyload alt="Finish"></p>
 <blockquote>
 <ul>
 <li>步骤8：如果还有其他产品需要配置，可以选择其他产品，然后继续配置。如果没有，直接选择“Next”（下一步），直接完成整个安装和配置过程。</li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513104018147.png" srcset="/img/loading.gif" lazyload alt="Next"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513104018147.png" srcset="/img/loading.gif" lazyload alt="Next"></p>
 <blockquote>
 <ul>
 <li>步骤9：结束安装和配置。</li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513104047419.png" srcset="/img/loading.gif" lazyload alt="结束安装"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513104047419.png" srcset="/img/loading.gif" lazyload alt="结束安装"></p>
 <h3 id="2-2-5-配置MySQL8-0-环境变量"><a href="#2-2-5-配置MySQL8-0-环境变量" class="headerlink" title="2.2.5 配置MySQL8.0 环境变量"></a>2.2.5 配置MySQL8.0 环境变量</h3><blockquote>
 <p>如果不配置MySQL环境变量，就不能在命令行直接输入MySQL登录命令。下面说如何配置MySQL的环境变量：</p>
 <ul>
@@ -916,11 +916,11 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MySQL服务删除
 <blockquote>
 <p><strong>问题1：无法打开MySQL8.0软件安装包或者安装过程中失败，如何解决？</strong><br>在运行MySQL8.0软件安装包之前，用户需要确保系统中已经安装了.Net Framework相关软件，如果缺少此软件，将不能正常地安装MySQL8.0软件。</p>
 </blockquote>
-<p><img src="/xiechaoxin.github/55d557d23ab8436f97902a1ef18d9ee0.gif" srcset="/img/loading.gif" lazyload alt="安装失败"></p>
+<p><img src="/.io//55d557d23ab8436f97902a1ef18d9ee0.gif" srcset="/img/loading.gif" lazyload alt="安装失败"></p>
 <blockquote>
 <p>解决方案：到这个地址<a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/download/details.aspx?id=42642%E4%B8%8B%E8%BD%BDMicrosoft">https://www.microsoft.com/en-us/download/details.aspx?id=42642下载Microsoft</a> .NET Framework 4.5并安装后，再去安装MySQL。<br>另外，还要确保Windows Installer正常安装。windows上安装mysql8.0需要操作系统提前已安装好Microsoft Visual C++ 2015-2019。</p>
 </blockquote>
-<p><img src="/xiechaoxin.github/8b96b9860cf74d3e89630a69c8057897.gif" srcset="/img/loading.gif" lazyload alt="安装mysql"><br><img src="/xiechaoxin.github/d97fe089e9814903bd2f09aaa0b08b37.gif" srcset="/img/loading.gif" lazyload alt="安装失败"></p>
+<p><img src="/.io//8b96b9860cf74d3e89630a69c8057897.gif" srcset="/img/loading.gif" lazyload alt="安装mysql"><br><img src="/.io//d97fe089e9814903bd2f09aaa0b08b37.gif" srcset="/img/loading.gif" lazyload alt="安装失败"></p>
 <blockquote>
 <p>解决方案同样是，提前到微软官网<a target="_blank" rel="noopener" href="https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0%EF%BC%8C%E4%B8%8B%E8%BD%BD%E7%9B%B8%E5%BA%94%E7%9A%84%E7%8E%AF%E5%A2%83%E3%80%82">https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0，下载相应的环境。</a></p>
 </blockquote>
@@ -946,13 +946,13 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MySQL服务删除
 <li>步骤2：找到MySQL80（点击鼠标右键）→ 启动或停止（点击）</li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513104433218.png" srcset="/img/loading.gif" lazyload alt="MySQL的登录"><br><strong>方式2：使用命令行工具</strong></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513104433218.png" srcset="/img/loading.gif" lazyload alt="MySQL的登录"><br><strong>方式2：使用命令行工具</strong></p>
 <pre><code class="hljs"># 启动 MySQL 服务命令：
 net start MySQL服务名
 # 停止 MySQL 服务命令：
 net stop MySQL服务名
 </code></pre>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513104456484.png" srcset="/img/loading.gif" lazyload alt="使用命令行工具"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513104456484.png" srcset="/img/loading.gif" lazyload alt="使用命令行工具"></p>
 <blockquote>
 <p>说明：</p>
 <ol>
@@ -967,7 +967,7 @@ net stop MySQL服务名
 <blockquote>
 <p>开始菜单 → 所有程序 → MySQL → MySQL 8.0 Command Line Client</p>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513104510576.png" srcset="/img/loading.gif" lazyload alt="MySQL自带客户端"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513104510576.png" srcset="/img/loading.gif" lazyload alt="MySQL自带客户端"></p>
 <blockquote>
 <p>说明：仅限于root用户</p>
 </blockquote>
@@ -977,7 +977,7 @@ net stop MySQL服务名
 举例：
     mysql -h localhost -P 3306 -u root -pabc123  # 这里我设置的root用户的密码是abc123
 </code></pre>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513104533657.png" srcset="/img/loading.gif" lazyload alt="登录"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513104533657.png" srcset="/img/loading.gif" lazyload alt="登录"></p>
 <blockquote>
 <p>注意：<br>(1). -p与密码之间不能有空格，其他参数名与参数值之间可以有空格也可以没有空格。如：</p>
 </blockquote>
@@ -1125,7 +1125,7 @@ net stop MySQL服务名
 <pre><code class="hljs">    show variables like &#39;character_%&#39;;
     show variables like &#39;collation_%&#39;;
 </code></pre>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16.jpeg" srcset="/img/loading.gif" lazyload alt="error"><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513110123531.jpeg" srcset="/img/loading.gif" lazyload alt="error"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16.jpeg" srcset="/img/loading.gif" lazyload alt="error"><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513110123531.jpeg" srcset="/img/loading.gif" lazyload alt="error"></p>
 <blockquote>
 <p>如果是以上配置就说明对了。接着我们就可以新创建数据库、新创建数据表，接着添加包含中文的数据了。</p>
 </blockquote>
@@ -1143,11 +1143,11 @@ net stop MySQL服务名
 <blockquote>
 <p>使用：<br>首先，我们点击 Windows 左下角的“开始”按钮，如果你是 Win10 系统，可以直接看到所有程序。接着，找到“MySQL”，点开，找到“MySQL Workbench 8.0 CE”。点击打开 Workbench，如下图所示：</p>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115324336.png" srcset="/img/loading.gif" lazyload alt="workbench"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115324336.png" srcset="/img/loading.gif" lazyload alt="workbench"></p>
 <blockquote>
 <p>左下角有个本地连接，点击，录入 Root 的密码，登录本地 MySQL 数据库服务器，如下图所示：</p>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115347487.png" srcset="/img/loading.gif" lazyload alt="1"><br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115354313.png" srcset="/img/loading.gif" lazyload alt="2"><br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115357676.png" srcset="/img/loading.gif" lazyload alt="3"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115347487.png" srcset="/img/loading.gif" lazyload alt="1"><br><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115354313.png" srcset="/img/loading.gif" lazyload alt="2"><br><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115357676.png" srcset="/img/loading.gif" lazyload alt="3"></p>
 <blockquote>
 <p>这是一个图形化的界面，我来给你介绍下这个界面。</p>
 <ul>
@@ -1161,8 +1161,8 @@ net stop MySQL服务名
 <blockquote>
 <p>Navicat MySQL是一个强大的MySQL数据库服务器管理和开发工具。它可以与任何3.21或以上版本的MySQL一起工作，支持触发器、存储过程、函数、事件、视图、管理用户等，对于新手来说易学易用。其精心设计的图形用户界面（GUI）可以让用户用一种安全简便的方式来快速方便地创建、组织、访问和共享信息。Navicat支持中文，有免费版本提供。<br>下载地址：<a target="_blank" rel="noopener" href="http://www.navicat.com/">http://www.navicat.com/</a></p>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115408661.png" srcset="/img/loading.gif" lazyload alt="4"><br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115414897.png" srcset="/img/loading.gif" lazyload alt="5"><br><strong>工具3. SQLyog</strong><br>SQLyog 是业界著名的 Webyog 公司出品的一款简洁高效、功能强大的图形化 MySQL 数据库管理工具。这款工具是使用C++语言开发的。该工具可以方便地创建数据库、表、视图和索引等，还可以方便地进行插入、更新和删除等操作，同时可以方便地进行数据库、数据表的备份和还原。该工具不仅可以通过SQL文件进行大量文件的导入和导出，还可以导入和导出XML、HTML和CSV等多种格式的数据。<br>下载地址：<a target="_blank" rel="noopener" href="http://www.webyog.com/">http://www.webyog.com/</a>，读者也可以搜索中文版的下载地址。</p>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115445728.png" srcset="/img/loading.gif" lazyload alt="SQLyog"><br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115453619.png" srcset="/img/loading.gif" lazyload alt="SQLyog"><br><strong>工具4：dbeaver</strong></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115408661.png" srcset="/img/loading.gif" lazyload alt="4"><br><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115414897.png" srcset="/img/loading.gif" lazyload alt="5"><br><strong>工具3. SQLyog</strong><br>SQLyog 是业界著名的 Webyog 公司出品的一款简洁高效、功能强大的图形化 MySQL 数据库管理工具。这款工具是使用C++语言开发的。该工具可以方便地创建数据库、表、视图和索引等，还可以方便地进行插入、更新和删除等操作，同时可以方便地进行数据库、数据表的备份和还原。该工具不仅可以通过SQL文件进行大量文件的导入和导出，还可以导入和导出XML、HTML和CSV等多种格式的数据。<br>下载地址：<a target="_blank" rel="noopener" href="http://www.webyog.com/">http://www.webyog.com/</a>，读者也可以搜索中文版的下载地址。</p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115445728.png" srcset="/img/loading.gif" lazyload alt="SQLyog"><br><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115453619.png" srcset="/img/loading.gif" lazyload alt="SQLyog"><br><strong>工具4：dbeaver</strong></p>
 <blockquote>
 <ul>
 <li>DBeaver是一个通用的数据库管理工具和 SQL 客户端，支持所有流行的数据库：MySQL、PostgreSQL、SQLite、Oracle、DB2、SQL Server、 Sybase、MS Access、Teradata、 Firebird、Apache Hive、Phoenix、Presto等。DBeaver比大多数的SQL管理工具要轻量，而且支持中文界面。DBeaver社区版作为一个免费开源的产品，和其他类似的软件相比，在功能和易用性上都毫不逊色。</li>
@@ -1170,11 +1170,11 @@ net stop MySQL服务名
 <li>下载地址：<a target="_blank" rel="noopener" href="https://dbeaver.io/download/">https://dbeaver.io/download/</a></li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115503738.png" srcset="/img/loading.gif" lazyload alt="dbeaver"><br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115510166.png" srcset="/img/loading.gif" lazyload alt="dbeaver"><br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115518727.png" srcset="/img/loading.gif" lazyload alt="dbeaver"><br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115544032.png" srcset="/img/loading.gif" lazyload alt="dbeaver"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115503738.png" srcset="/img/loading.gif" lazyload alt="dbeaver"><br><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115510166.png" srcset="/img/loading.gif" lazyload alt="dbeaver"><br><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115518727.png" srcset="/img/loading.gif" lazyload alt="dbeaver"><br><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115544032.png" srcset="/img/loading.gif" lazyload alt="dbeaver"></p>
 <blockquote>
 <p><strong>可能出现连接问题：</strong><br>有些图形界面工具，特别是旧版本的图形界面工具，在连接MySQL8时出现“Authentication plugin ‘caching_sha2_password’ cannot be loaded”错误。</p>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115544032.png" srcset="/img/loading.gif" lazyload alt="dbeaver"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115544032.png" srcset="/img/loading.gif" lazyload alt="dbeaver"></p>
 <blockquote>
 <p>出现这个原因是MySQL8之前的版本中加密规则是mysql_native_password，而在MySQL8之后，加密规则是caching_sha2_password。解决问题方法有两种，第一种是升级图形界面工具版本，第二种是把MySQL8用户登录密码加密规则还原成mysql_native_password。</p>
 </blockquote>
@@ -1188,7 +1188,7 @@ net stop MySQL服务名
     #刷新权限
     FLUSH PRIVILEGES;
 </code></pre>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115544032.png" srcset="/img/loading.gif" lazyload alt="dbeaver"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513115544032.png" srcset="/img/loading.gif" lazyload alt="dbeaver"></p>
 <h2 id="2-6-MySQL目录结构与源码"><a href="#2-6-MySQL目录结构与源码" class="headerlink" title="2.6. MySQL目录结构与源码"></a>2.6. MySQL目录结构与源码</h2><blockquote>
 <ul>
 <li>首先，你要进入 MySQL下载界面。 这里你不要选择用默认的“Microsoft Windows”，而是要通过下拉栏，找到“Source Code”，在下面的操作系统版本里面， 选择 Windows（Architecture Independent），然后点击下载。</li>
@@ -1197,7 +1197,7 @@ net stop MySQL服务名
 <li>mysql-8.0.22 目录下的各个子目录，包含了 MySQL 各部分组件的源代码：</li>
 </ul>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513130405679.png" srcset="/img/loading.gif" lazyload alt="1在这里插入图片描述"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513130405679.png" srcset="/img/loading.gif" lazyload alt="1在这里插入图片描述"></p>
 <blockquote>
 <ul>
 <li>sql 子目录是 MySQL 核心代码；</li>
@@ -1209,7 +1209,7 @@ net stop MySQL服务名
 <blockquote>
 <p>源代码可以用记事本打开查看，如果你有 C++ 的开发环境，也可以在开发环境中打开查看。</p>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513130418329.png" srcset="/img/loading.gif" lazyload alt="1"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513130418329.png" srcset="/img/loading.gif" lazyload alt="1"></p>
 <blockquote>
 <p>如上图所示，源代码并不神秘，就是普通的 C++ 代码，跟你熟悉的一样，而且有很多注释，可以帮助你理解。阅读源代码就像在跟 MySQL 的开发人员对话一样，十分有趣。</p>
 </blockquote>
@@ -1236,7 +1236,7 @@ net stop MySQL服务名
 </blockquote>
 <p><strong>问题2：mysql命令报“不是内部或外部命令”</strong></p>
 <blockquote>
-<p>如果输入mysql命令报“不是内部或外部命令”，把mysql安装目录的bin目录配置到环境变量path中。如下：<br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513130443001.png" srcset="/img/loading.gif" lazyload alt="1"></p>
+<p>如果输入mysql命令报“不是内部或外部命令”，把mysql安装目录的bin目录配置到环境变量path中。如下：<br><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513130443001.png" srcset="/img/loading.gif" lazyload alt="1"></p>
 </blockquote>
 <p><strong>问题3：错误ERROR ：没有选择数据库就操作表格和数据</strong></p>
 <pre><code class="hljs">    mysql&gt; INSERT INTO t_stu VALUES(1,&#39;张三&#39;,&#39;男&#39;);
@@ -1245,15 +1245,15 @@ net stop MySQL服务名
 <blockquote>
 <p>原因：服务器端认为你的客户端的字符集是utf-8，而实际上你的客户端的字符集是GBK。</p>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513130514400.png" srcset="/img/loading.gif" lazyload alt="re"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513130514400.png" srcset="/img/loading.gif" lazyload alt="re"></p>
 <blockquote>
 <p>查看所有字符集：SHOW VARIABLES LIKE ‘character_set_%’;</p>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513130522095.png" srcset="/img/loading.gif" lazyload alt="2"></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513130522095.png" srcset="/img/loading.gif" lazyload alt="2"></p>
 <blockquote>
 <p>解决方案，设置当前连接的客户端字符集 “SET NAMES GBK;”</p>
 </blockquote>
-<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513130526900.png" srcset="/img/loading.gif" lazyload alt="1"><br><strong>问题5：修改数据库和表的字符编码</strong></p>
+<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAY3RmbHE=,size_20,color_FFFFFF,t_70,g_se,x_16-20220513130526900.png" srcset="/img/loading.gif" lazyload alt="1"><br><strong>问题5：修改数据库和表的字符编码</strong></p>
 <blockquote>
 <ul>
 <li>修改编码：<ul>
@@ -1393,7 +1393,7 @@ net stop MySQL服务名
   <div class="license-box my-3">
     <div class="license-title">
       <div>mysql详细笔记1-2章</div>
-      <div>https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql详细笔记1-2章/</div>
+      <div>https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql详细笔记1-2章/</div>
     </div>
     <div class="license-meta">
       

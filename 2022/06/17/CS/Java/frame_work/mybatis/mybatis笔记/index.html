@@ -19,23 +19,23 @@
     <meta name="description" content="mybatis MyBatis 框架:MyBatis 是一个优秀的基于 java 的持久层框架，内部封装了 jdbc，开发者只需要关注 sql 语句本身，而不需要处理加载驱动、创建连接、创建 statement、关闭连接，资源等繁杂的过程。 MyBatis 通过 xml 或注解两种方式将要执行的各种 sql 语句配置起来，并通过 java 对象和 sql 的 动态参数进行映射生成最终执行的 sql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mybatis笔记">
-<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/mybatis/mybatis%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:url" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/mybatis/mybatis%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="mybatis MyBatis 框架:MyBatis 是一个优秀的基于 java 的持久层框架，内部封装了 jdbc，开发者只需要关注 sql 语句本身，而不需要处理加载驱动、创建连接、创建 statement、关闭连接，资源等繁杂的过程。 MyBatis 通过 xml 或注解两种方式将要执行的各种 sql 语句配置起来，并通过 java 对象和 sql 的 动态参数进行映射生成最终执行的 sql">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/image-20220511111859016.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/image-20220511112434323.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/image-20220511112539114.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/image-20220511112555138.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/image-20220511112652817.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//image-20220511111859016.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//image-20220511112434323.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//image-20220511112539114.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//image-20220511112555138.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//image-20220511112652817.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T10:53:04.251Z">
+<meta property="article:modified_time" content="2022-06-24T11:16:58.693Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="frame_work">
 <meta property="article:tag" content="mybatis">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/xiechaoxin.github/image-20220511111859016.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/.io//image-20220511111859016.png">
   
   
   
@@ -358,7 +358,7 @@
 <p>所以，MyBatis 框架就抛开了 Dao 的实现类，直接定位到映射文件 mapper 中的相应 SQL 语句，对 DB 进行操作。这种对 Dao 的实现方式称为 Mapper 的动态代理方式。</p>
 <p>Mapper 动态代理方式无需程序员实现 Dao 接口。接口是由 MyBatis 结合映射文件自动生成的动态代理实现的。</p>
 <h2 id="3-MyBatis框架Dao代理"><a href="#3-MyBatis框架Dao代理" class="headerlink" title="3. MyBatis框架Dao代理"></a>3. <strong>MyBatis</strong>框架<strong>Dao</strong>代理</h2><h3 id="3-1-Dao-代理实现-CURD"><a href="#3-1-Dao-代理实现-CURD" class="headerlink" title="3.1 Dao 代理实现 CURD"></a>3.1 <strong>Dao</strong> 代理实现 <strong>CURD</strong></h3><p>(<strong>1</strong>)  去掉 <strong>Dao</strong> 接口实现类</p>
-<p><img src="/xiechaoxin.github/image-20220511111859016.png" srcset="/img/loading.gif" lazyload alt="image-20220511111859016"></p>
+<p><img src="/.io//image-20220511111859016.png" srcset="/img/loading.gif" lazyload alt="image-20220511111859016"></p>
 <p>(<strong>2</strong>)  <strong>getMapper</strong> 获取代理对象</p>
 <p>只需调用 SqlSession 的 getMapper()方法，即可获取指定接口的实现类对象。该方法的参数为指定 Dao接口类的 class 值。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">SqlSession</span> <span class="hljs-variable">session</span> <span class="hljs-operator">=</span> factory.openSession();<br><span class="hljs-type">StudentDao</span> <span class="hljs-variable">dao</span> <span class="hljs-operator">=</span> session.getMapper(StudentDao.class);<br><span class="hljs-type">StudentDao</span> <span class="hljs-variable">studentDao</span> <span class="hljs-operator">=</span> MyBatisUtil.getSqlSession().getMapper(StudentDao.class);<br></code></pre></td></tr></table></figure>
@@ -367,13 +367,13 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testSelect</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>    <span class="hljs-keyword">final</span> List&lt;Student&gt; studentList = studentDao.selectStudents();<br>    studentList.forEach( stu -&gt; System.out.println(stu));<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h4 id="3-1-1-原理"><a href="#3-1-1-原理" class="headerlink" title="3.1.1 原理"></a><strong>3.1.1</strong> 原理</h4><p>动态代理</p>
-<p><img src="/xiechaoxin.github/image-20220511112434323.png" srcset="/img/loading.gif" lazyload alt="image-20220511112434323"></p>
+<p><img src="/.io//image-20220511112434323.png" srcset="/img/loading.gif" lazyload alt="image-20220511112434323"></p>
 <p>MapperProxy 类定义:</p>
-<p><img src="/xiechaoxin.github/image-20220511112539114.png" srcset="/img/loading.gif" lazyload alt="image-20220511112539114"></p>
+<p><img src="/.io//image-20220511112539114.png" srcset="/img/loading.gif" lazyload alt="image-20220511112539114"></p>
 <p>invoke()方法:</p>
-<p><img src="/xiechaoxin.github/image-20220511112555138.png" srcset="/img/loading.gif" lazyload alt="image-20220511112555138"></p>
+<p><img src="/.io//image-20220511112555138.png" srcset="/img/loading.gif" lazyload alt="image-20220511112555138"></p>
 <p>重点方法:</p>
-<p><img src="/xiechaoxin.github/image-20220511112652817.png" srcset="/img/loading.gif" lazyload alt="image-20220511112652817"></p>
+<p><img src="/.io//image-20220511112652817.png" srcset="/img/loading.gif" lazyload alt="image-20220511112652817"></p>
 <h3 id="3-2-深入理解参数"><a href="#3-2-深入理解参数" class="headerlink" title="3.2 深入理解参数"></a><strong>3.2</strong> 深入理解参数</h3><h4 id="3-2-1-parameterType"><a href="#3-2-1-parameterType" class="headerlink" title="3.2.1 parameterType"></a><strong>3.2.1</strong> <strong>parameterType</strong></h4><p>parameterType: 接口中方法参数的类型， 类型的完全限定名或别名。这个属性是可选的，因为 MyBatis 可以推断出具体传入语句的参数，默认值为未设置(unset)。接口中方法的参数从 java 代码传入到mapper 文件的 sql 语句。</p>
 <p>int 或 java.lang.Integer</p>
 <p>hashmap 或 java.util.HashMap</p>
@@ -590,7 +590,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>mybatis笔记</div>
-      <div>https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/mybatis/mybatis笔记/</div>
+      <div>https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/mybatis/mybatis笔记/</div>
     </div>
     <div class="license-meta">
       

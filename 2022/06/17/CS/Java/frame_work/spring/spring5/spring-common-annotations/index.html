@@ -19,21 +19,21 @@
     <meta name="description" content="title:  Spring&#x2F;Spring Boot 常用注解总结！category: 框架tag:  SpringBoot Spring   0.前言大家好，我是 Guide 哥！这是我的 221 篇优质原创文章。如需转载，请在文首注明地址，蟹蟹！ 本文已经收录进我的 75K Star 的 Java 开源项目 JavaGuide：https:&#x2F;&#x2F;github.com&#x2F;Snailcli">
 <meta property="og:type" content="article">
 <meta property="og:title" content="spring-common-annotations">
-<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/spring5/spring-common-annotations/index.html">
+<meta property="og:url" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/spring5/spring-common-annotations/index.html">
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="title:  Spring&#x2F;Spring Boot 常用注解总结！category: 框架tag:  SpringBoot Spring   0.前言大家好，我是 Guide 哥！这是我的 221 篇优质原创文章。如需转载，请在文首注明地址，蟹蟹！ 本文已经收录进我的 75K Star 的 Java 开源项目 JavaGuide：https:&#x2F;&#x2F;github.com&#x2F;Snailcli">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/@RequestBody.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/c7bacd12-1c1a-4e41-aaaf-4cad840fc073.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//@RequestBody.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//c7bacd12-1c1a-4e41-aaaf-4cad840fc073.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T10:53:04.359Z">
+<meta property="article:modified_time" content="2022-06-24T11:16:58.789Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="frame_work">
 <meta property="article:tag" content="spring">
 <meta property="article:tag" content="spring5">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/xiechaoxin.github/@RequestBody.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/.io//@RequestBody.png">
   
   
   
@@ -375,7 +375,7 @@
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;userName&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;coder&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;fullName&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;shuangkou&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;password&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;123456&quot;</span><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
 
 <p>这样我们的后端就可以直接把 json 格式的数据映射到我们的 <code>UserRegisterRequest</code> 类上。</p>
-<p><img src="/xiechaoxin.github/@RequestBody.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/.io//@RequestBody.png" srcset="/img/loading.gif" lazyload></p>
 <p>👉 需要注意的是：**一个请求方法只可以有一个<code>@RequestBody</code>，但是可以有多个<code>@RequestParam</code>和<code>@PathVariable</code>**。 如果你的方法必须要用两个 <code>@RequestBody</code>来接受数据的话，大概率是你的数据库设计或者系统设计出问题了！</p>
 <h3 id="5-读取配置信息"><a href="#5-读取配置信息" class="headerlink" title="5. 读取配置信息"></a>5. 读取配置信息</h3><p><strong>很多时候我们需要将一些常用的配置信息比如阿里云 oss、发送短信、微信认证的相关配置信息等等放到配置文件中。</strong></p>
 <p><strong>下面我们来看一下 Spring 为我们提供了哪些方式帮助我们从配置文件中读取这些配置信息。</strong></p>
@@ -398,7 +398,7 @@
 <p>校验的时候我们实际用的是 <strong>Hibernate Validator</strong> 框架。Hibernate Validator 是 Hibernate 团队最初的数据校验框架，Hibernate Validator 4.x 是 Bean Validation 1.0（JSR 303）的参考实现，Hibernate Validator 5.x 是 Bean Validation 1.1（JSR 349）的参考实现，目前最新版的 Hibernate Validator 6.x 是 Bean Validation 2.0（JSR 380）的参考实现。</p>
 <p>SpringBoot 项目的 spring-boot-starter-web 依赖中已经有 hibernate-validator 包，不需要引用相关依赖。如下图所示（通过 idea 插件—Maven Helper 生成）：</p>
 <p><strong>注</strong>：更新版本的 spring-boot-starter-web 依赖中不再有 hibernate-validator 包（如2.3.11.RELEASE），需要自己引入 <code>spring-boot-starter-validation</code> 依赖。</p>
-<p><img src="/xiechaoxin.github/c7bacd12-1c1a-4e41-aaaf-4cad840fc073.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/.io//c7bacd12-1c1a-4e41-aaaf-4cad840fc073.png" srcset="/img/loading.gif" lazyload></p>
 <p>非 SpringBoot 项目需要自行引入相关依赖包，这里不多做讲解，具体可以查看我的这篇文章：《<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247485783&idx=1&sn=a407f3b75efa17c643407daa7fb2acd6&chksm=cea2469cf9d5cf8afbcd0a8a1c9cc4294d6805b8e01bee6f76bb2884c5bc15478e91459def49&token=292197051&lang=zh_CN#rd">如何在 Spring&#x2F;Spring Boot 中做参数校验？你需要了解的都在这里！</a>》。</p>
 <p>👉 需要注意的是： <strong>所有的注解，推荐使用 JSR 注解，即<code>javax.validation.constraints</code>，而不是<code>org.hibernate.validator.constraints</code></strong></p>
 <h4 id="6-1-一些常用的字段验证的注解"><a href="#6-1-一些常用的字段验证的注解" class="headerlink" title="6.1. 一些常用的字段验证的注解"></a>6.1. 一些常用的字段验证的注解</h4><ul>
@@ -639,7 +639,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>spring-common-annotations</div>
-      <div>https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/spring5/spring-common-annotations/</div>
+      <div>https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/spring5/spring-common-annotations/</div>
     </div>
     <div class="license-meta">
       

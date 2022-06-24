@@ -19,20 +19,20 @@
     <meta name="description" content="感谢 changfubai 对本文的改进做出的贡献！  HashMap 简介HashMap 主要用来存放键值对，它基于哈希表的 Map 接口实现，是常用的 Java 集合之一，是非线程安全的。  HashMap 可以存储 null 的 key 和 value，但 null 作为键只能有一个，null 作为值可以有多个 JDK1.8 之前 HashMap 由 数组+链表 组成的，数组是 HashM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hashmap-source-code">
-<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/collection/hashmap-source-code/index.html">
+<meta property="og:url" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/collection/hashmap-source-code/index.html">
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="感谢 changfubai 对本文的改进做出的贡献！  HashMap 简介HashMap 主要用来存放键值对，它基于哈希表的 Map 接口实现，是常用的 Java 集合之一，是非线程安全的。  HashMap 可以存储 null 的 key 和 value，但 null 作为键只能有一个，null 作为值可以有多个 JDK1.8 之前 HashMap 由 数组+链表 组成的，数组是 HashM">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/jdk1.8%E4%B9%8B%E5%89%8D%E7%9A%84%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/up-bba283228693dae74e78da1ef7a9a04c684.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/put%E6%96%B9%E6%B3%95.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//jdk1.8%E4%B9%8B%E5%89%8D%E7%9A%84%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//up-bba283228693dae74e78da1ef7a9a04c684.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//put%E6%96%B9%E6%B3%95.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T10:53:04.223Z">
+<meta property="article:modified_time" content="2022-06-24T11:16:58.669Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="collection">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/xiechaoxin.github/jdk1.8%E4%B9%8B%E5%89%8D%E7%9A%84%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/.io//jdk1.8%E4%B9%8B%E5%89%8D%E7%9A%84%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84.png">
   
   
   
@@ -297,10 +297,10 @@
 
 <p>相比于 JDK1.8 的 hash 方法 ，JDK 1.7 的 hash 方法的性能会稍差一点点，因为毕竟扰动了 4 次。</p>
 <p>所谓 <strong>“拉链法”</strong> 就是：将链表和数组相结合。也就是说创建一个链表数组，数组中每一格就是一个链表。若遇到哈希冲突，则将冲突的值加到链表中即可。</p>
-<p><img src="/xiechaoxin.github/jdk1.8%E4%B9%8B%E5%89%8D%E7%9A%84%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84.png" srcset="/img/loading.gif" lazyload alt="jdk1.8之前的内部结构"></p>
+<p><img src="/.io//jdk1.8%E4%B9%8B%E5%89%8D%E7%9A%84%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84.png" srcset="/img/loading.gif" lazyload alt="jdk1.8之前的内部结构"></p>
 <h3 id="JDK1-8-之后"><a href="#JDK1-8-之后" class="headerlink" title="JDK1.8 之后"></a>JDK1.8 之后</h3><p>相比于之前的版本，JDK1.8 以后在解决哈希冲突时有了较大的变化。</p>
 <p>当链表长度大于阈值（默认为 8）时，会首先调用 <code>treeifyBin()</code>方法。这个方法会根据 HashMap 数组来决定是否转换为红黑树。只有当数组长度大于或者等于 64 的情况下，才会执行转换红黑树操作，以减少搜索时间。否则，就是只是执行 <code>resize()</code> 方法对数组扩容。相关源码这里就不贴了，重点关注 <code>treeifyBin()</code>方法即可！</p>
-<p><img src="/xiechaoxin.github/up-bba283228693dae74e78da1ef7a9a04c684.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/.io//up-bba283228693dae74e78da1ef7a9a04c684.png" srcset="/img/loading.gif" lazyload></p>
 <p><strong>类的属性：</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HashMap</span>&lt;K,V&gt; <span class="hljs-keyword">extends</span> <span class="hljs-title class_">AbstractMap</span>&lt;K,V&gt; <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Map</span>&lt;K,V&gt;, Cloneable, Serializable &#123;<br>    <span class="hljs-comment">// 序列号</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> <span class="hljs-variable">serialVersionUID</span> <span class="hljs-operator">=</span> <span class="hljs-number">362498820763181265L</span>;<br>    <span class="hljs-comment">// 默认的初始容量是16</span><br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">DEFAULT_INITIAL_CAPACITY</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">4</span>;<br>    <span class="hljs-comment">// 最大容量</span><br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">MAXIMUM_CAPACITY</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">30</span>;<br>    <span class="hljs-comment">// 默认的填充因子</span><br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">float</span> <span class="hljs-variable">DEFAULT_LOAD_FACTOR</span> <span class="hljs-operator">=</span> <span class="hljs-number">0.75f</span>;<br>    <span class="hljs-comment">// 当桶(bucket)上的结点数大于这个值时会转成红黑树</span><br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">TREEIFY_THRESHOLD</span> <span class="hljs-operator">=</span> <span class="hljs-number">8</span>;<br>    <span class="hljs-comment">// 当桶(bucket)上的结点数小于这个值时树转链表</span><br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">UNTREEIFY_THRESHOLD</span> <span class="hljs-operator">=</span> <span class="hljs-number">6</span>;<br>    <span class="hljs-comment">// 桶中结构转化为红黑树对应的table的最小大小</span><br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">MIN_TREEIFY_CAPACITY</span> <span class="hljs-operator">=</span> <span class="hljs-number">64</span>;<br>    <span class="hljs-comment">// 存储元素的数组，总是2的幂次倍</span><br>    <span class="hljs-keyword">transient</span> Node&lt;k,v&gt;[] table;<br>    <span class="hljs-comment">// 存放具体元素的集</span><br>    <span class="hljs-keyword">transient</span> Set&lt;map.entry&lt;k,v&gt;&gt; entrySet;<br>    <span class="hljs-comment">// 存放元素的个数，注意这个不等于数组的长度。</span><br>    <span class="hljs-keyword">transient</span> <span class="hljs-type">int</span> size;<br>    <span class="hljs-comment">// 每次扩容和更改map结构的计数器</span><br>    <span class="hljs-keyword">transient</span> <span class="hljs-type">int</span> modCount;<br>    <span class="hljs-comment">// 临界值 当实际大小(容量*填充因子)超过临界值时，会进行扩容</span><br>    <span class="hljs-type">int</span> threshold;<br>    <span class="hljs-comment">// 加载因子</span><br>    <span class="hljs-keyword">final</span> <span class="hljs-type">float</span> loadFactor;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -332,7 +332,7 @@
 <li>如果定位到的数组位置没有元素 就直接插入。</li>
 <li>如果定位到的数组位置有元素就和要插入的 key 比较，如果 key 相同就直接覆盖，如果 key 不相同，就判断 p 是否是一个树节点，如果是就调用<code>e = ((TreeNode&lt;K,V&gt;)p).putTreeVal(this, tab, hash, key, value)</code>将元素添加进入。如果不是就遍历链表插入(插入的是链表尾部)。</li>
 </ol>
-<p><img src="/xiechaoxin.github/put%E6%96%B9%E6%B3%95.png" srcset="/img/loading.gif" lazyload alt=" "></p>
+<p><img src="/.io//put%E6%96%B9%E6%B3%95.png" srcset="/img/loading.gif" lazyload alt=" "></p>
 <p>说明:上图有两个小问题：</p>
 <ul>
 <li>直接覆盖之后应该就会 return，不会有后续操作。参考 JDK8 HashMap.java 658 行（<a target="_blank" rel="noopener" href="https://github.com/Snailclimb/JavaGuide/issues/608">issue#608</a>）。</li>
@@ -409,7 +409,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>hashmap-source-code</div>
-      <div>https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/collection/hashmap-source-code/</div>
+      <div>https://xiechaoxin.github.io/2022/06/17/CS/Java/collection/hashmap-source-code/</div>
     </div>
     <div class="license-meta">
       

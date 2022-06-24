@@ -19,20 +19,20 @@
     <meta name="description" content="C 指向指针的指针指向指针的指针是一种多级间接寻址的形式，或者说是一个指针链。通常，一个指针包含一个变量的地址。当我们定义一个指向指针的指针时，第一个指针包含了第二个指针的地址，第二个指针指向包含实际值的位置。  一个指向指针的指针变量必须如下声明，即在变量名前放置两个星号。例如，下面声明了一个指向 int 类型指针的指针： 1int **var;  当一个目标值被一个指针间接指向到另一个指针时，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="16-指向指针的指针">
-<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/C/runoob-C-program/16-%E6%8C%87%E9%92%88/16-%E6%8C%87%E5%90%91%E6%8C%87%E9%92%88%E7%9A%84%E6%8C%87%E9%92%88/index.html">
+<meta property="og:url" content="https://xiechaoxin.github.io/2022/06/17/CS/C/runoob-C-program/16-%E6%8C%87%E9%92%88/16-%E6%8C%87%E5%90%91%E6%8C%87%E9%92%88%E7%9A%84%E6%8C%87%E9%92%88/index.html">
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="C 指向指针的指针指向指针的指针是一种多级间接寻址的形式，或者说是一个指针链。通常，一个指针包含一个变量的地址。当我们定义一个指向指针的指针时，第一个指针包含了第二个指针的地址，第二个指针指向包含实际值的位置。  一个指向指针的指针变量必须如下声明，即在变量名前放置两个星号。例如，下面声明了一个指向 int 类型指针的指针： 1int **var;  当一个目标值被一个指针间接指向到另一个指针时，">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/pointer_to_pointer.jpg">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/c-pointerxxxxx.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//pointer_to_pointer.jpg">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//c-pointerxxxxx.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T10:53:04.071Z">
+<meta property="article:modified_time" content="2022-06-24T11:16:58.537Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="C">
 <meta property="article:tag" content="runoob-C-program">
 <meta property="article:tag" content="16-指针">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/xiechaoxin.github/pointer_to_pointer.jpg">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/.io//pointer_to_pointer.jpg">
   
   
   
@@ -279,12 +279,12 @@
               <div class="markdown-body">
                 
                 <h1 id="C-指向指针的指针"><a href="#C-指向指针的指针" class="headerlink" title="C 指向指针的指针"></a>C 指向指针的指针</h1><p>指向指针的指针是一种多级间接寻址的形式，或者说是一个指针链。通常，一个指针包含一个变量的地址。当我们定义一个指向指针的指针时，第一个指针包含了第二个指针的地址，第二个指针指向包含实际值的位置。</p>
-<p><img src="/xiechaoxin.github/pointer_to_pointer.jpg" srcset="/img/loading.gif" lazyload alt="C 中指向指针的指针"></p>
+<p><img src="/.io//pointer_to_pointer.jpg" srcset="/img/loading.gif" lazyload alt="C 中指向指针的指针"></p>
 <p>一个指向指针的指针变量必须如下声明，即在变量名前放置两个星号。例如，下面声明了一个指向 int 类型指针的指针：</p>
 <figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs axapta"><span class="hljs-built_in">int</span> **<span class="hljs-built_in">var</span>;<br></code></pre></td></tr></table></figure>
 
 <p>当一个目标值被一个指针间接指向到另一个指针时，访问这个值需要使用两个星号运算符，如下面实例所示：</p>
-<p><img src="/xiechaoxin.github/c-pointerxxxxx.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/.io//c-pointerxxxxx.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs c"><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br> <br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span> <span class="hljs-params">()</span><br>&#123;<br>   <span class="hljs-type">int</span>  V;<br>   <span class="hljs-type">int</span>  *Pt1;<br>   <span class="hljs-type">int</span>  **Pt2;<br> <br>   V = <span class="hljs-number">100</span>;<br> <br>   <span class="hljs-comment">/* 获取 V 的地址 */</span><br>   Pt1 = &amp;V;<br> <br>   <span class="hljs-comment">/* 使用运算符 &amp; 获取 Pt1 的地址 */</span><br>   Pt2 = &amp;Pt1;<br> <br>   <span class="hljs-comment">/* 使用 pptr 获取值 */</span><br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;var = %d\n&quot;</span>, V );<br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Pt1 = %p\n&quot;</span>, Pt1 );<br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;*Pt1 = %d\n&quot;</span>, *Pt1 );<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Pt2 = %p\n&quot;</span>, Pt2 );<br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;**Pt2 = %d\n&quot;</span>, **Pt2);<br> <br>   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
@@ -355,7 +355,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>16-指向指针的指针</div>
-      <div>https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/C/runoob-C-program/16-指针/16-指向指针的指针/</div>
+      <div>https://xiechaoxin.github.io/2022/06/17/CS/C/runoob-C-program/16-指针/16-指向指针的指针/</div>
     </div>
     <div class="license-meta">
       

@@ -19,19 +19,19 @@
     <meta name="description" content="《Java8指南》中文翻译随着 Java 8 的普及度越来越高，很多人都提到面试中关于Java 8 也是非常常问的知识点。应各位要求和需要，我打算对这部分知识做一个总结。本来准备自己总结的，后面看到Github 上有一个相关的仓库，地址：https:&#x2F;&#x2F;github.com&#x2F;winterbe&#x2F;java8-tutorial。这个仓库是英文的，我对其进行了翻译并添加和修改了部分内容，下面是正文。  欢">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java8-tutorial-translate">
-<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/new_features/java8-tutorial-translate/index.html">
+<meta property="og:url" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/new_features/java8-tutorial-translate/index.html">
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="《Java8指南》中文翻译随着 Java 8 的普及度越来越高，很多人都提到面试中关于Java 8 也是非常常问的知识点。应各位要求和需要，我打算对这部分知识做一个总结。本来准备自己总结的，后面看到Github 上有一个相关的仓库，地址：https:&#x2F;&#x2F;github.com&#x2F;winterbe&#x2F;java8-tutorial。这个仓库是英文的，我对其进行了翻译并添加和修改了部分内容，下面是正文。  欢">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/@FunctionalInterface.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/2021042717491413.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//@FunctionalInterface.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/.io//2021042717491413.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T10:53:04.387Z">
+<meta property="article:modified_time" content="2022-06-24T11:16:58.813Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="new_features">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/xiechaoxin.github/@FunctionalInterface.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/.io//@FunctionalInterface.png">
   
   
   
@@ -305,7 +305,7 @@
 <p>List 类本身就有一个 <code>sort</code> 方法。并且Java编译器可以自动推导出参数类型，所以你可以不用再写一次类型。接下来我们看看lambda表达式还有什么其他用法。</p>
 <h3 id="函数式接口-Functional-Interfaces"><a href="#函数式接口-Functional-Interfaces" class="headerlink" title="函数式接口(Functional Interfaces)"></a>函数式接口(Functional Interfaces)</h3><p><strong>译者注：</strong> 原文对这部分解释不太清楚，故做了修改！</p>
 <p>Java 语言设计者们投入了大量精力来思考如何使现有的函数友好地支持Lambda。最终采取的方法是：增加函数式接口的概念。<strong>“函数式接口”是指仅仅只包含一个抽象方法,但是可以有多个非抽象方法(也就是上面提到的默认方法)的接口。</strong> 像这样的接口，可以被隐式转换为lambda表达式。<code>java.lang.Runnable</code> 与 <code>java.util.concurrent.Callable</code> 是函数式接口最典型的两个例子。Java 8增加了一种特殊的注解<code>@FunctionalInterface</code>,但是这个注解通常不是必须的(某些情况建议使用)，只要接口只包含一个抽象方法，虚拟机会自动判断该接口为函数式接口。一般建议在接口上使用<code>@FunctionalInterface</code> 注解进行声明，这样的话，编译器如果发现你标注了这个注解的接口有多于一个抽象方法的时候会报错的，如下图所示</p>
-<p><img src="/xiechaoxin.github/@FunctionalInterface.png" srcset="/img/loading.gif" lazyload alt="@FunctionalInterface 注解"></p>
+<p><img src="/.io//@FunctionalInterface.png" srcset="/img/loading.gif" lazyload alt="@FunctionalInterface 注解"></p>
 <p>示例：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@FunctionalInterface</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Converter</span>&lt;F, T&gt; &#123;<br>  T <span class="hljs-title function_">convert</span><span class="hljs-params">(F from)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -482,7 +482,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">LocalDateTime</span> <span class="hljs-variable">rightNow</span> <span class="hljs-operator">=</span> LocalDateTime.of(<span class="hljs-number">2020</span>, <span class="hljs-number">12</span>, <span class="hljs-number">31</span>, <span class="hljs-number">12</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);<br>String date= DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(rightNow);<br><span class="hljs-comment">// 2020-12-31T12:00:00</span><br>System.out.println(date);<br><span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">formatterOfYYYY</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;YYYY-MM-dd HH:mm:ss&quot;</span>);<br><span class="hljs-comment">// 2021-12-31 12:00:00</span><br>System.out.println(formatterOfYYYY.format(rightNow));<br><br><span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">formatterOfYyyy</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>);<br><span class="hljs-comment">// 2020-12-31 12:00:00</span><br>System.out.println(formatterOfYyyy.format(rightNow));<br></code></pre></td></tr></table></figure>
 
 <p>从下图可以更清晰的看到具体的错误，并且 IDEA 已经智能地提示更倾向于使用  <code>yyyy</code> 而不是  <code>YYYY</code> 。</p>
-<p><img src="/xiechaoxin.github/2021042717491413.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/.io//2021042717491413.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="LocalDateTime-本地日期时间"><a href="#LocalDateTime-本地日期时间" class="headerlink" title="LocalDateTime(本地日期时间)"></a>LocalDateTime(本地日期时间)</h3><p>LocalDateTime 同时表示了时间和日期，相当于前两节内容合并到一个对象上了。LocalDateTime 和 LocalTime还有 LocalDate 一样，都是不可变的。LocalDateTime 提供了一些能访问具体字段的方法。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">LocalDateTime</span> <span class="hljs-variable">sylvester</span> <span class="hljs-operator">=</span> LocalDateTime.of(<span class="hljs-number">2014</span>, Month.DECEMBER, <span class="hljs-number">31</span>, <span class="hljs-number">23</span>, <span class="hljs-number">59</span>, <span class="hljs-number">59</span>);<br><br><span class="hljs-type">DayOfWeek</span> <span class="hljs-variable">dayOfWeek</span> <span class="hljs-operator">=</span> sylvester.getDayOfWeek();<br>System.out.println(dayOfWeek);      <span class="hljs-comment">// WEDNESDAY</span><br><br><span class="hljs-type">Month</span> <span class="hljs-variable">month</span> <span class="hljs-operator">=</span> sylvester.getMonth();<br>System.out.println(month);          <span class="hljs-comment">// DECEMBER</span><br><br><span class="hljs-type">long</span> <span class="hljs-variable">minuteOfDay</span> <span class="hljs-operator">=</span> sylvester.getLong(ChronoField.MINUTE_OF_DAY);<br>System.out.println(minuteOfDay);    <span class="hljs-comment">// 1439</span><br></code></pre></td></tr></table></figure>
 
@@ -565,7 +565,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>java8-tutorial-translate</div>
-      <div>https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/new_features/java8-tutorial-translate/</div>
+      <div>https://xiechaoxin.github.io/2022/06/17/CS/Java/new_features/java8-tutorial-translate/</div>
     </div>
     <div class="license-meta">
       
