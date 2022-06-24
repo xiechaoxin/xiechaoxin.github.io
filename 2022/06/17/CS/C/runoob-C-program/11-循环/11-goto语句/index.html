@@ -13,30 +13,30 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Jerry Xie">
   <meta name="keywords" content="">
   
     <meta name="description" content="C goto 语句建议不使用gotoC 语言中的 goto 语句允许把控制无条件转移到同一函数内的被标记的语句。 注意：在任何编程语言中，都不建议使用 goto 语句。因为它使得程序的控制流难以跟踪，使程序难以理解和难以修改。任何使用 goto 语句的程序可以改写成不需要使用 goto 语句的写法。 语法C 语言中 goto 语句的语法： 1234goto label;...label: stat">
 <meta property="og:type" content="article">
 <meta property="og:title" content="11-goto语句">
 <meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/C/runoob-C-program/11-%E5%BE%AA%E7%8E%AF/11-goto%E8%AF%AD%E5%8F%A5/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="C goto 语句建议不使用gotoC 语言中的 goto 语句允许把控制无条件转移到同一函数内的被标记的语句。 注意：在任何编程语言中，都不建议使用 goto 语句。因为它使得程序的控制流难以跟踪，使程序难以理解和难以修改。任何使用 goto 语句的程序可以改写成不需要使用 goto 语句的写法。 语法C 语言中 goto 语句的语法： 1234goto label;...label: stat">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/11-goto%E8%AF%AD%E5%8F%A5/goto.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/11-goto%E8%AF%AD%E5%8F%A5/c-goto-20200923-1.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/goto.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/c-goto-20200923-1.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T10:26:10.397Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2022-06-24T10:53:04.067Z">
+<meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="C">
 <meta property="article:tag" content="runoob-C-program">
 <meta property="article:tag" content="11-循环">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/11-goto%E8%AF%AD%E5%8F%A5/goto.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/xiechaoxin.github/goto.png">
   
   
   
-  <title>11-goto语句 - Hexo</title>
+  <title>11-goto语句 - Jerry&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -284,8 +284,8 @@
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css">goto <span class="hljs-selector-tag">label</span>;<br>..<br>.<br><span class="hljs-selector-tag">label</span>: statement;<br></code></pre></td></tr></table></figure>
 
 <p>在这里，<strong>label</strong> 可以是任何除 C 关键字以外的纯文本，它可以设置在 C 程序中 <strong>goto</strong> 语句的前面或者后面。</p>
-<p><img src="/11-goto%E8%AF%AD%E5%8F%A5/goto.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<h2 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h2><p><img src="/11-goto%E8%AF%AD%E5%8F%A5/c-goto-20200923-1.png" srcset="/img/loading.gif" lazyload alt="C goto 语句"></p>
+<p><img src="/xiechaoxin.github/goto.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h2><p><img src="/xiechaoxin.github/c-goto-20200923-1.png" srcset="/img/loading.gif" lazyload alt="C goto 语句"></p>
 <h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br> <br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span> <span class="hljs-params">()</span><br>&#123;<br>   <span class="hljs-comment">/* 局部变量定义 */</span><br>   <span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;<br><br>   <span class="hljs-comment">/* do 循环执行 */</span><br>   LOOP:<span class="hljs-keyword">do</span><br>   &#123;<br>      <span class="hljs-keyword">if</span>( a == <span class="hljs-number">15</span>)<br>      &#123;<br>         <span class="hljs-comment">/* 跳过迭代 */</span><br>         a = a + <span class="hljs-number">1</span>;<br>         <span class="hljs-keyword">goto</span> LOOP;<br>      &#125;<br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a 的值： %d\n&quot;</span>, a);<br>      a++;<br>     <br>   &#125;<span class="hljs-keyword">while</span>( a &lt; <span class="hljs-number">20</span> );<br> <br>   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>当上面的代码被编译和执行时，它会产生下列结果：</p>
@@ -360,7 +360,7 @@
       
         <div class="license-meta-item">
           <div>Author</div>
-          <div>John Doe</div>
+          <div>Jerry Xie</div>
         </div>
       
       

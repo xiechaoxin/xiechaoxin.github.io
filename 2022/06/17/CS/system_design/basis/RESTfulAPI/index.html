@@ -13,31 +13,31 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Jerry Xie">
   <meta name="keywords" content="">
   
     <meta name="description" content="RestFul API 简明教程 大家好，我是 Guide哥！ 这篇文章简单聊聊后端程序员必备的 RESTful API 相关的知识。 开始正式介绍 RESTful API 之前，我们需要首先搞清 ：API 到底是什么？ 何为 API？ API（Application Programming Interface） 翻译过来是应用程序编程接口的意思。 我们在进行后端开发的时候，主要的工作就是为前端或">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RESTfulAPI">
 <meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/system_design/basis/RESTfulAPI/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="RestFul API 简明教程 大家好，我是 Guide哥！ 这篇文章简单聊聊后端程序员必备的 RESTful API 相关的知识。 开始正式介绍 RESTful API 之前，我们需要首先搞清 ：API 到底是什么？ 何为 API？ API（Application Programming Interface） 翻译过来是应用程序编程接口的意思。 我们在进行后端开发的时候，主要的工作就是为前端或">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/RESTfulAPI/2021050713553862.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/RESTfulAPI/20210507153833945.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/RESTfulAPI/20210507130629538.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/RESTfulAPI/20210507154007779.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/2021050713553862.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/20210507153833945.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/20210507130629538.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/20210507154007779.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T10:26:11.801Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2022-06-24T10:53:05.547Z">
+<meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="system_design">
 <meta property="article:tag" content="basis">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/RESTfulAPI/2021050713553862.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/xiechaoxin.github/2021050713553862.png">
   
   
   
-  <title>RESTfulAPI - Hexo</title>
+  <title>RESTfulAPI - Jerry&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -279,14 +279,14 @@
             
               <div class="markdown-body">
                 
-                <h1 id="RestFul-API-简明教程"><a href="#RestFul-API-简明教程" class="headerlink" title="RestFul API 简明教程"></a>RestFul API 简明教程</h1><p><img src="/RESTfulAPI/2021050713553862.png" srcset="/img/loading.gif" lazyload></p>
+                <h1 id="RestFul-API-简明教程"><a href="#RestFul-API-简明教程" class="headerlink" title="RestFul API 简明教程"></a>RestFul API 简明教程</h1><p><img src="/xiechaoxin.github/2021050713553862.png" srcset="/img/loading.gif" lazyload></p>
 <p>大家好，我是 Guide哥！</p>
 <p>这篇文章简单聊聊后端程序员必备的 RESTful API 相关的知识。</p>
 <p>开始正式介绍 RESTful API 之前，我们需要首先搞清 ：<strong>API 到底是什么？</strong></p>
-<h2 id="何为-API？"><a href="#何为-API？" class="headerlink" title="何为 API？"></a>何为 API？</h2><p><img src="/RESTfulAPI/20210507153833945.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="何为-API？"><a href="#何为-API？" class="headerlink" title="何为 API？"></a>何为 API？</h2><p><img src="/xiechaoxin.github/20210507153833945.png" srcset="/img/loading.gif" lazyload></p>
 <p><strong>API（Application Programming Interface）</strong> 翻译过来是应用程序编程接口的意思。</p>
 <p>我们在进行后端开发的时候，主要的工作就是为前端或者其他后端服务提供 API 比如查询用户数据的 API 。</p>
-<p><img src="/RESTfulAPI/20210507130629538.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/20210507130629538.png" srcset="/img/loading.gif" lazyload></p>
 <p>但是， API 不仅仅代表后端系统暴露的接口，像框架中提供的方法也属于 API 的范畴。</p>
 <p>为了方便大家理解，我再列举几个例子 🌰：</p>
 <ol>
@@ -316,7 +316,7 @@
 <li>客户端和服务器之间，传递这种资源的某种表现形式比如 <code>json</code>，<code>xml</code>，<code>image</code>,<code>txt</code> 等等；</li>
 <li>客户端通过特定的 HTTP 动词，对服务器端资源进行操作，实现”表现层状态转化”。</li>
 </ol>
-<h2 id="RESTful-API-规范"><a href="#RESTful-API-规范" class="headerlink" title="RESTful API 规范"></a>RESTful API 规范</h2><p><img src="/RESTfulAPI/20210507154007779.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="RESTful-API-规范"><a href="#RESTful-API-规范" class="headerlink" title="RESTful API 规范"></a>RESTful API 规范</h2><p><img src="/xiechaoxin.github/20210507154007779.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="动作"><a href="#动作" class="headerlink" title="动作"></a>动作</h3><ul>
 <li><code>GET</code>：请求从服务器获取特定资源。举个例子：<code>GET /classes</code>（获取所有班级）</li>
 <li><code>POST</code> ：在服务器上创建一个新的资源。举个例子：<code>POST /classes</code>（创建班级）</li>
@@ -476,7 +476,7 @@
       
         <div class="license-meta-item">
           <div>Author</div>
-          <div>John Doe</div>
+          <div>Jerry Xie</div>
         </div>
       
       

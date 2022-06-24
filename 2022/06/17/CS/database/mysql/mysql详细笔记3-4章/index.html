@@ -13,43 +13,43 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Jerry Xie">
   <meta name="keywords" content="">
   
     <meta name="description" content="mysq详细笔记[toc] 第3章 基本的SELECT语句3.1. SQL概述3.1.1 SQL背景知识  1946 年，世界上第一台电脑诞生，如今，借由这台电脑发展起来的互联网已经自成江湖。在这几十年里，无数的技术、产业在这片江湖里沉浮，有的方兴未艾，有的已经几幕兴衰。但在这片浩荡的波动里，有一门技术从未消失，甚至“老当益壮”，那就是 SQL。 45 年前，也就是 1974 年，IBM 研究员发">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql详细笔记3-4章">
 <meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B03-4%E7%AB%A0/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="mysq详细笔记[toc] 第3章 基本的SELECT语句3.1. SQL概述3.1.1 SQL背景知识  1946 年，世界上第一台电脑诞生，如今，借由这台电脑发展起来的互联网已经自成江湖。在这几十年里，无数的技术、产业在这片江湖里沉浮，有的方兴未艾，有的已经几幕兴衰。但在这片浩荡的波动里，有一门技术从未消失，甚至“老当益壮”，那就是 SQL。 45 年前，也就是 1974 年，IBM 研究员发">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B03-4%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513132039662.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B03-4%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513150632471.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B03-4%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513150652258.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B03-4%E7%AB%A0/8e76e12ea5514ac481dda45204ee3834.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B03-4%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513153418551.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B03-4%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513153611345.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B03-4%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513154011880.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B03-4%E7%AB%A0/fa258c681d234947aafdaeb84dfb3117.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513132039662.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513150632471.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513150652258.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/8e76e12ea5514ac481dda45204ee3834.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513153418551.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513153611345.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513154011880.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/fa258c681d234947aafdaeb84dfb3117.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/e7c3abc996214fa3b944961bdbf400b0.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/dc5fe1483a514504af86e71037bf8082.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/b3c2e0be4bae438da6d4cc5eb7c58d28.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/f9eb5ae406b64181884155d2cfd023f2.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16">
-<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B03-4%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513202211167.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B03-4%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513202224004.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B03-4%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513202317047.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B03-4%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513202452030.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513202211167.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513202224004.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513202317047.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513202452030.png">
 <meta property="article:published_time" content="2022-06-17T17:59:12.000Z">
-<meta property="article:modified_time" content="2022-06-24T10:26:11.145Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2022-06-24T10:53:04.843Z">
+<meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="database">
 <meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B03-4%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513132039662.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513132039662.png">
   
   
   
-  <title>mysql详细笔记3-4章 - Hexo</title>
+  <title>mysql详细笔记3-4章 - Jerry&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -302,7 +302,7 @@
 <li>不同的数据库生产厂商都支持SQL语句，但都有特有内容。</li>
 </ul>
 </blockquote>
-<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B03-4%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513132039662.png" srcset="/img/loading.gif" lazyload alt="1"></p>
+<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513132039662.png" srcset="/img/loading.gif" lazyload alt="1"></p>
 <h3 id="3-1-2-SQL-分类"><a href="#3-1-2-SQL-分类" class="headerlink" title="3.1.2 SQL 分类"></a>3.1.2 SQL 分类</h3><blockquote>
 <ul>
 <li>SQL语言在功能上主要分为如下3大类：<ul>
@@ -425,7 +425,7 @@ SELECT 9/2; #没有任何子句
 <p>SELECT * FROM   departments;</p>
 </li>
 </ul>
-<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B03-4%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513150632471.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513150632471.png" srcset="/img/loading.gif" lazyload></p>
 <blockquote>
 <ul>
 <li>一般情况下，除非需要使用表中所有的字段数据，最好不要使用通配符‘*’。使用通配符虽然可以节省输入查询语句的时间，但是获取不需要的列数据通常会降低查询和所使用的应用程序的效率。通配符的优势是，当不知道所需要的列的名称时，可以通过它获取它们。</li>
@@ -437,7 +437,7 @@ SELECT 9/2; #没有任何子句
 <p>SELECT department_id, location_id FROM departments;</p>
 </li>
 </ul>
-<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B03-4%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513150652258.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513150652258.png" srcset="/img/loading.gif" lazyload></p>
 <blockquote>
 <p>MySQL中的SQL语句是不区分大小写的，因此SELECT和select的作用是相同的，但是，许多开发人员习惯将关键字大写、数据列和表名小写，读者也应该养成一个良好的编程习惯，这样写出来的代码更容易阅读和维护。</p>
 </blockquote>
@@ -455,14 +455,14 @@ SELECT 9/2; #没有任何子句
 <p>SELECT last_name AS name, commission_pct comm FROM	employees;</p>
 </li>
 </ul>
-<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B03-4%E7%AB%A0/8e76e12ea5514ac481dda45204ee3834.png" srcset="/img/loading.gif" lazyload alt=" "></p>
+<p><img src="/xiechaoxin.github/8e76e12ea5514ac481dda45204ee3834.png" srcset="/img/loading.gif" lazyload alt=" "></p>
 <h3 id="3-3-4-去除重复行"><a href="#3-3-4-去除重复行" class="headerlink" title="3.3.4 去除重复行"></a>3.3.4 去除重复行</h3><p>默认情况下，查询会返回全部行，包括重复行。</p>
 <pre><code class="hljs">SELECT department_id FROM employees;
 </code></pre>
-<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B03-4%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513153418551.png" srcset="/img/loading.gif" lazyload><br><strong>在SELECT语句中使用关键字DISTINCT去除重复行</strong></p>
+<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513153418551.png" srcset="/img/loading.gif" lazyload><br><strong>在SELECT语句中使用关键字DISTINCT去除重复行</strong></p>
 <pre><code class="hljs">SELECT DISTINCT department_id FROM employees;
 </code></pre>
-<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B03-4%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513153611345.png" srcset="/img/loading.gif" lazyload><br>针对于：</p>
+<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513153611345.png" srcset="/img/loading.gif" lazyload><br>针对于：</p>
 <pre><code class="hljs">SELECT DISTINCT department_id,salary FROM employees;
 </code></pre>
 <blockquote>
@@ -538,7 +538,7 @@ mysql&gt; desc employees;
 </ul>
 </blockquote>
 <h2 id="3-5-过滤数据"><a href="#3-5-过滤数据" class="headerlink" title="3.5. 过滤数据"></a>3.5. 过滤数据</h2><ul>
-<li><p>背景：<br><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B03-4%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513154011880.png" srcset="/img/loading.gif" lazyload></p>
+<li><p>背景：<br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513154011880.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>语法：</p>
 <p>SELECT 字段1,字段2 FROM 表名 WHERE 过滤条件</p>
@@ -555,7 +555,7 @@ mysql&gt; desc employees;
 <p>SELECT employee_id, last_name, job_id, department_id<br>FROM   employees<br>WHERE  department_id &#x3D; 90 ;</p>
 </li>
 </ul>
-<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B03-4%E7%AB%A0/fa258c681d234947aafdaeb84dfb3117.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/fa258c681d234947aafdaeb84dfb3117.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="3-6-练习sql"><a href="#3-6-练习sql" class="headerlink" title="3.6. 练习sql"></a>3.6. 练习sql</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br></pre></td><td class="code"><pre><code class="hljs sql">#第<span class="hljs-number">03</span>章_基本的<span class="hljs-keyword">SELECT</span>语句<br><br>#<span class="hljs-number">1.</span> <span class="hljs-keyword">SQL</span>的分类<br><span class="hljs-comment">/*</span><br><span class="hljs-comment">DDL:数据定义语言。CREATE \ ALTER \ DROP \ RENAME \ TRUNCATE</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"></span><br><span class="hljs-comment">DML:数据操作语言。INSERT \ DELETE \ UPDATE \ SELECT （重中之重）</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"></span><br><span class="hljs-comment">DCL:数据控制语言。COMMIT \ ROLLBACK \ SAVEPOINT \ GRANT \ REVOKE</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"></span><br><span class="hljs-comment">学习技巧：大处着眼、小处着手。</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">*/</span><br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">2.1 SQL的规则 ----必须要遵守</span><br><span class="hljs-comment">- SQL 可以写在一行或者多行。为了提高可读性，各子句分行写，必要时使用缩进</span><br><span class="hljs-comment">- 每条命令以 ; 或 \g 或 \G 结束</span><br><span class="hljs-comment">- 关键字不能被缩写也不能分行</span><br><span class="hljs-comment">- 关于标点符号</span><br><span class="hljs-comment">  - 必须保证所有的()、单引号、双引号是成对结束的</span><br><span class="hljs-comment">  - 必须使用英文状态下的半角输入方式</span><br><span class="hljs-comment">  - 字符串型和日期时间类型的数据可以使用单引号（&#x27; &#x27;）表示</span><br><span class="hljs-comment">  - 列的别名，尽量使用双引号（&quot; &quot;），而且不建议省略as</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">2.2 SQL的规范  ----建议遵守</span><br><span class="hljs-comment">- MySQL 在 Windows 环境下是大小写不敏感的</span><br><span class="hljs-comment">- MySQL 在 Linux 环境下是大小写敏感的</span><br><span class="hljs-comment">  - 数据库名、表名、表的别名、变量名是严格区分大小写的</span><br><span class="hljs-comment">  - 关键字、函数名、列名(或字段名)、列的别名(字段的别名) 是忽略大小写的。</span><br><span class="hljs-comment">- 推荐采用统一的书写规范：</span><br><span class="hljs-comment">  - 数据库名、表名、表别名、字段名、字段别名等都小写</span><br><span class="hljs-comment">  - SQL 关键字、函数名、绑定变量等都大写</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"></span><br><span class="hljs-comment">3. MySQL的三种注释的方式</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"></span><br><span class="hljs-comment">*/</span><br><br>USE dbtest2;<br><br><span class="hljs-comment">-- 这是一个查询语句</span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> emp;<br><br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> emp <br><span class="hljs-keyword">VALUES</span>(<span class="hljs-number">1002</span>,<span class="hljs-string">&#x27;Tom&#x27;</span>); #字符串、日期时间类型的变量需要使用一对<span class="hljs-string">&#x27;&#x27;</span>表示<br><br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> emp <br><span class="hljs-keyword">VALUES</span>(<span class="hljs-number">1003</span>,<span class="hljs-string">&#x27;Jerry&#x27;</span>);<br><br># <span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> emp\G<br><br><span class="hljs-keyword">SHOW</span> <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> emp\g<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">4. 导入现有的数据表、表的数据。</span><br><span class="hljs-comment">方式1：source 文件的全路径名</span><br><span class="hljs-comment">举例：source d:\atguigudb.sql;</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"></span><br><span class="hljs-comment">方式2：基于具体的图形化界面的工具可以导入数据</span><br><span class="hljs-comment">比如：SQLyog中 选择 “工具” -- “执行sql脚本” -- 选中xxx.sql即可。</span><br><span class="hljs-comment">*/</span><br><br>#<span class="hljs-number">5.</span> 最基本的<span class="hljs-keyword">SELECT</span>语句： <span class="hljs-keyword">SELECT</span> 字段<span class="hljs-number">1</span>,字段<span class="hljs-number">2</span>,... <span class="hljs-keyword">FROM</span> 表名 <br><span class="hljs-keyword">SELECT</span> <span class="hljs-number">1</span> <span class="hljs-operator">+</span> <span class="hljs-number">1</span>,<span class="hljs-number">3</span> <span class="hljs-operator">*</span> <span class="hljs-number">2</span>;<br><br><span class="hljs-keyword">SELECT</span> <span class="hljs-number">1</span> <span class="hljs-operator">+</span> <span class="hljs-number">1</span>,<span class="hljs-number">3</span> <span class="hljs-operator">*</span> <span class="hljs-number">2</span><br><span class="hljs-keyword">FROM</span> DUAL; #dual：伪表<br><br># <span class="hljs-operator">*</span>:表中的所有的字段（或列）<br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> employees;<br><br><span class="hljs-keyword">SELECT</span> employee_id,last_name,salary<br><span class="hljs-keyword">FROM</span> employees;<br><br><br>#<span class="hljs-number">6.</span> 列的别名<br># <span class="hljs-keyword">as</span>:全称：alias(别名),可以省略<br># 列的别名可以使用一对&quot;&quot;引起来，不要使用<span class="hljs-string">&#x27;&#x27;</span>。<br><span class="hljs-keyword">SELECT</span> employee_id emp_id,last_name <span class="hljs-keyword">AS</span> lname,department_id &quot;部门id&quot;,salary <span class="hljs-operator">*</span> <span class="hljs-number">12</span> <span class="hljs-keyword">AS</span> &quot;annual sal&quot;<br><span class="hljs-keyword">FROM</span> employees;<br><br># <span class="hljs-number">7.</span> 去除重复行<br>#查询员工表中一共有哪些部门id呢？<br>#错误的:没有去重的情况<br><span class="hljs-keyword">SELECT</span> department_id<br><span class="hljs-keyword">FROM</span> employees;<br>#正确的：去重的情况<br><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> department_id<br><span class="hljs-keyword">FROM</span> employees;<br><br>#错误的：<br><span class="hljs-keyword">SELECT</span> salary,<span class="hljs-keyword">DISTINCT</span> department_id<br><span class="hljs-keyword">FROM</span> employees;<br><br>#仅仅是没有报错，但是没有实际意义。<br><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> department_id,salary<br><span class="hljs-keyword">FROM</span> employees;<br><br>#<span class="hljs-number">8.</span> 空值参与运算<br># <span class="hljs-number">1.</span> 空值：<span class="hljs-keyword">null</span><br># <span class="hljs-number">2.</span> <span class="hljs-keyword">null</span>不等同于<span class="hljs-number">0</span>，<span class="hljs-string">&#x27;&#x27;</span>，<span class="hljs-string">&#x27;null&#x27;</span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> employees;<br><br>#<span class="hljs-number">3.</span> 空值参与运算：结果一定也为空。<br><span class="hljs-keyword">SELECT</span> employee_id,salary &quot;月工资&quot;,salary <span class="hljs-operator">*</span> (<span class="hljs-number">1</span> <span class="hljs-operator">+</span> commission_pct) <span class="hljs-operator">*</span> <span class="hljs-number">12</span> &quot;年工资&quot;,commission_pct<br><span class="hljs-keyword">FROM</span> employees;<br>#实际问题的解决方案：引入IFNULL<br><span class="hljs-keyword">SELECT</span> employee_id,salary &quot;月工资&quot;,salary <span class="hljs-operator">*</span> (<span class="hljs-number">1</span> <span class="hljs-operator">+</span> IFNULL(commission_pct,<span class="hljs-number">0</span>)) <span class="hljs-operator">*</span> <span class="hljs-number">12</span> &quot;年工资&quot;,commission_pct<br><span class="hljs-keyword">FROM</span> `employees`;<br><br>#<span class="hljs-number">9.</span> 着重号 ``<br><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> `<span class="hljs-keyword">order</span>`;<br><br>#<span class="hljs-number">10.</span> 查询常数<br><span class="hljs-keyword">SELECT</span> <span class="hljs-string">&#x27;尚硅谷&#x27;</span>,<span class="hljs-number">123</span>,employee_id,last_name<br><span class="hljs-keyword">FROM</span> employees;<br><br>#<span class="hljs-number">11.</span>显示表结构<br><br><span class="hljs-keyword">DESCRIBE</span> employees; #显示了表中字段的详细信息<br><br><span class="hljs-keyword">DESC</span> employees;<br><br><span class="hljs-keyword">DESC</span> departments;<br><br>#<span class="hljs-number">12.</span>过滤数据<br><br>#练习：查询<span class="hljs-number">90</span>号部门的员工信息<br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <br><span class="hljs-keyword">FROM</span> employees<br>#过滤条件,声明在<span class="hljs-keyword">FROM</span>结构的后面<br><span class="hljs-keyword">WHERE</span> department_id <span class="hljs-operator">=</span> <span class="hljs-number">90</span>;<br><br>#练习：查询last_name为<span class="hljs-string">&#x27;King&#x27;</span>的员工信息<br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <br><span class="hljs-keyword">FROM</span> EMPLOYEES<br><span class="hljs-keyword">WHERE</span> LAST_NAME <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;King&#x27;</span>; <br><br><br></code></pre></td></tr></table></figure>
 
 
@@ -953,7 +953,7 @@ where department_id in (10,20) XOR salary &gt; 8000;
 <h2 id="4-4-位运算符"><a href="#4-4-位运算符" class="headerlink" title="4.4. 位运算符"></a>4.4. 位运算符</h2><blockquote>
 <p>位运算符是在二进制数上进行计算的运算符。位运算符会先将操作数变成二进制数，然后进行位运算，最后将计算结果从二进制变回十进制数。</p>
 </blockquote>
-<p>MySQL支持的位运算符如下：<br><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B03-4%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513202211167.png" srcset="/img/loading.gif" lazyload></p>
+<p>MySQL支持的位运算符如下：<br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513202211167.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="4-4-1-按位与运算符"><a href="#4-4-1-按位与运算符" class="headerlink" title="4.4.1 按位与运算符"></a>4.4.1 按位与运算符</h3><blockquote>
 <p>按位与（&amp;）运算符将给定值对应的二进制数逐位进行逻辑与运算。当给定值对应的二进制位的数值都为1时，则该位返回1，否则返回0。</p>
 </blockquote>
@@ -1005,7 +1005,7 @@ where department_id in (10,20) XOR salary &gt; 8000;
 +--------+--------+--------+
 1 row in set (0.00 sec)
 </code></pre>
-<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B03-4%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513202224004.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513202224004.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <h3 id="4-4-4-按位取反运算符"><a href="#4-4-4-按位取反运算符" class="headerlink" title="4.4.4 按位取反运算符"></a>4.4.4 按位取反运算符</h3><blockquote>
 <p>按位取反（~）运算符将给定的值的二进制数逐位进行取反操作，即将1变为0，将0变为1。</p>
 </blockquote>
@@ -1048,7 +1048,7 @@ where department_id in (10,20) XOR salary &gt; 8000;
 <blockquote>
 <p>1的二进制数为0000 0001，左移两位为0000 0100，对应的十进制数为4。4的二进制数为0000 0100，左移两位为0001 0000，对应的十进制数为16。</p>
 </blockquote>
-<h2 id="4-5-运算符的优先级"><a href="#4-5-运算符的优先级" class="headerlink" title="4.5. 运算符的优先级"></a>4.5. 运算符的优先级</h2><p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B03-4%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513202317047.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h2 id="4-5-运算符的优先级"><a href="#4-5-运算符的优先级" class="headerlink" title="4.5. 运算符的优先级"></a>4.5. 运算符的优先级</h2><p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513202317047.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <blockquote>
 <p>数字编号越大，优先级越高，优先级高的运算符先进行计算。可以看到，赋值运算符的优先级最低，使用“()”括起来的表达式的优先级最高。</p>
 </blockquote>
@@ -1058,7 +1058,7 @@ where department_id in (10,20) XOR salary &gt; 8000;
 <li>MySQL中使用REGEXP关键字指定正则表达式的字符匹配模式。下表列出了REGEXP操作符中常用字符匹配列表。</li>
 </ul>
 </blockquote>
-<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B03-4%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513202452030.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>4.6.1 查询以特定字符或字符串开头的记录</strong></p>
+<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513202452030.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>4.6.1 查询以特定字符或字符串开头的记录</strong></p>
 <blockquote>
 <p>字符‘^’匹配以特定字符或者字符串开头的文本。</p>
 </blockquote>
@@ -1199,7 +1199,7 @@ mysql&gt; SELECT * FROM fruits WHERE f_name REGEXP &#39;ba&#123;1,3&#125;&#39;;
       
         <div class="license-meta-item">
           <div>Author</div>
-          <div>John Doe</div>
+          <div>Jerry Xie</div>
         </div>
       
       

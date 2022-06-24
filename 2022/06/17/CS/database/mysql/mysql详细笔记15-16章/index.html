@@ -13,29 +13,29 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Jerry Xie">
   <meta name="keywords" content="">
   
     <meta name="description" content="第15章 存储过程与函数15.1 存储过程概述15.1.1 理解 MySQL从5.0版本开始支持存储过程和函数。存储过程和函数能够将复杂的SQL逻辑封装在一起，应用程序无须关注存储过程和函数内部复杂的SQL逻辑，而只需要简单地调用存储过程和函数即可。   含义：存储过程的英文是 Stored Procedure。它的思想很简单，就是一组经过预先编译的 SQL 语句的封装。   执行过程：存储过程预">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql详细笔记15-16章">
 <meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B015-16%E7%AB%A0/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="第15章 存储过程与函数15.1 存储过程概述15.1.1 理解 MySQL从5.0版本开始支持存储过程和函数。存储过程和函数能够将复杂的SQL逻辑封装在一起，应用程序无须关注存储过程和函数内部复杂的SQL逻辑，而只需要简单地调用存储过程和函数即可。   含义：存储过程的英文是 Stored Procedure。它的思想很简单，就是一组经过预先编译的 SQL 语句的封装。   执行过程：存储过程预">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B015-16%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_17,color_FFFFFF,t_70,g_se,x_16-20220523012812859.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B015-16%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_16,color_FFFFFF,t_70,g_se,x_16.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_17,color_FFFFFF,t_70,g_se,x_16-20220523012812859.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_16,color_FFFFFF,t_70,g_se,x_16.png">
 <meta property="article:published_time" content="2022-06-17T17:59:12.000Z">
-<meta property="article:modified_time" content="2022-06-24T10:26:11.137Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2022-06-24T10:53:04.835Z">
+<meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="database">
 <meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B015-16%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_17,color_FFFFFF,t_70,g_se,x_16-20220523012812859.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_17,color_FFFFFF,t_70,g_se,x_16-20220523012812859.png">
   
   
   
-  <title>mysql详细笔记15-16章 - Hexo</title>
+  <title>mysql详细笔记15-16章 - Jerry&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -781,7 +781,7 @@ DROP FUNCTION CountProc;
 <blockquote>
 <p>每一个MySQL客户机成功连接MySQL服务器后，都会产生与之对应的会话。会话期间，MySQL服务实例会在MySQL服务器内存中生成与该会话对应的会话系统变量，这些会话系统变量的初始值是全局系统变量值的复制。如下图：</p>
 </blockquote>
-<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B015-16%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_17,color_FFFFFF,t_70,g_se,x_16-20220523012812859.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_17,color_FFFFFF,t_70,g_se,x_16-20220523012812859.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <blockquote>
 <ul>
 <li>全局系统变量针对于所有会话（连接）有效，但<code>不能跨重启</code></li>
@@ -1606,7 +1606,7 @@ DELIMITER ;
 <pre><code class="hljs">SELECT employee_id,last_name,salary FROM employees
 WHERE salary &gt; 15000;
 </code></pre>
-<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B015-16%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_16,color_FFFFFF,t_70,g_se,x_16.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_16,color_FFFFFF,t_70,g_se,x_16.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <blockquote>
 <p>这里我们就可以通过游标来操作数据行，如图所示此时游标所在的行是“108”的记录，我们也可以在结果集上滚动游标，指向结果集中的任意一行。</p>
 </blockquote>
@@ -1786,7 +1786,7 @@ Query OK, 0 rows affected (0.00 sec)
       
         <div class="license-meta-item">
           <div>Author</div>
-          <div>John Doe</div>
+          <div>Jerry Xie</div>
         </div>
       
       

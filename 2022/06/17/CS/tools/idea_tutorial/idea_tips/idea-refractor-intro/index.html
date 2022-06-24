@@ -13,37 +13,37 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Jerry Xie">
   <meta name="keywords" content="">
   
     <meta name="description" content="IDEA 重构入门我们在使用 IDEA 进行重构之前，先介绍一个方便我们进行重构的快捷键：ctrl+t(mac)&#x2F;ctrl+shift+alt+t（如果忘记快捷键的话，鼠标右键也能找到重构选项），使用这个快捷键可以快速调出常用重构的选项，如下图所示：  重命名(rename)快捷键：Shift + F6(mac) &#x2F; Shift + F6(windows&#x2F;Linux)： 对类、">
 <meta property="og:type" content="article">
 <meta property="og:title" content="idea-refractor-intro">
 <meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/tools/idea_tutorial/idea_tips/idea-refractor-intro/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="IDEA 重构入门我们在使用 IDEA 进行重构之前，先介绍一个方便我们进行重构的快捷键：ctrl+t(mac)&#x2F;ctrl+shift+alt+t（如果忘记快捷键的话，鼠标右键也能找到重构选项），使用这个快捷键可以快速调出常用重构的选项，如下图所示：  重命名(rename)快捷键：Shift + F6(mac) &#x2F; Shift + F6(windows&#x2F;Linux)： 对类、">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/idea-refractor-intro/refractor-help.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/idea-refractor-intro/rename.gif">
-<meta property="og:image" content="https://xiechaoxin.github.io/idea-refractor-intro/extract-constant.gif">
-<meta property="og:image" content="https://xiechaoxin.github.io/idea-refractor-intro/exact-parameter.gif">
-<meta property="og:image" content="https://xiechaoxin.github.io/idea-refractor-intro/exact-variable.gif">
-<meta property="og:image" content="https://xiechaoxin.github.io/idea-refractor-intro/exact-field.gif">
-<meta property="og:image" content="https://xiechaoxin.github.io/idea-refractor-intro/exact-variable.gif">
-<meta property="og:image" content="https://xiechaoxin.github.io/idea-refractor-intro/exact-method.gif">
-<meta property="og:image" content="https://xiechaoxin.github.io/idea-refractor-intro/exact-interface.gif">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/refractor-help.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/rename.gif">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/extract-constant.gif">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/exact-parameter.gif">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/exact-variable.gif">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/exact-field.gif">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/exact-variable.gif">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/exact-method.gif">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/exact-interface.gif">
 <meta property="article:published_time" content="2022-06-17T17:59:12.000Z">
-<meta property="article:modified_time" content="2022-06-24T10:26:12.161Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2022-06-24T10:53:05.927Z">
+<meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="tools">
 <meta property="article:tag" content="idea_tutorial">
 <meta property="article:tag" content="idea_tips">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/idea-refractor-intro/refractor-help.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/xiechaoxin.github/refractor-help.png">
   
   
   
-  <title>idea-refractor-intro - Hexo</title>
+  <title>idea-refractor-intro - Jerry&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -286,9 +286,9 @@
               <div class="markdown-body">
                 
                 <h1 id="IDEA-重构入门"><a href="#IDEA-重构入门" class="headerlink" title="IDEA 重构入门"></a>IDEA 重构入门</h1><p>我们在使用 IDEA 进行重构之前，先介绍一个方便我们进行重构的快捷键：<code>ctrl+t(mac)/ctrl+shift+alt+t</code>（如果忘记快捷键的话，鼠标右键也能找到重构选项），使用这个快捷键可以快速调出常用重构的选项，如下图所示：</p>
-<p><img src="/idea-refractor-intro/refractor-help.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/refractor-help.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="重命名-rename"><a href="#重命名-rename" class="headerlink" title="重命名(rename)"></a>重命名(rename)</h3><p>快捷键：<strong>Shift + F6(mac) &#x2F; Shift + F6(windows&#x2F;Linux)：</strong> 对类、变量或者方法名重命名。</p>
-<p><img src="/idea-refractor-intro/rename.gif" srcset="/img/loading.gif" lazyload alt="重命名"></p>
+<p><img src="/xiechaoxin.github/rename.gif" srcset="/img/loading.gif" lazyload alt="重命名"></p>
 <h3 id="提取相关重构手段"><a href="#提取相关重构手段" class="headerlink" title="提取相关重构手段"></a>提取相关重构手段</h3><p>这部分的快捷键实际很好记忆，我是这样记忆的:</p>
 <p>前面两个键位是  <code>command + option(mac) / ctrl + alt (Windows/Linux)</code> 是固定的，只有后面一个键位会变比如Extract constant (提取变量)就是 c（constant）、Extract variable (提取变量)就是 v(variable)。</p>
 <h4 id="提取常量-extract-constant"><a href="#提取常量-extract-constant" class="headerlink" title="提取常量(extract constant)"></a>提取常量(extract constant)</h4><ol>
@@ -296,38 +296,38 @@
 <li><strong>快捷键：</strong>  <code>command + option+ c(mac)/ ctrl + alt + c(Windows/Linux)</code></li>
 </ol>
 <p><strong>示例：</strong></p>
-<p><img src="/idea-refractor-intro/extract-constant.gif" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/extract-constant.gif" srcset="/img/loading.gif" lazyload></p>
 <h4 id="提取参数-exact-parameter"><a href="#提取参数-exact-parameter" class="headerlink" title="提取参数(exact parameter﻿)"></a>提取参数(exact parameter﻿)</h4><ol>
 <li><strong>使用场景</strong> ：提取参数到方法中。</li>
 <li><strong>快捷键：</strong>  <code>command + option+ p(mac)/ ctrl + alt + p(Windows/Linux)</code></li>
 </ol>
-<p><img src="/idea-refractor-intro/exact-parameter.gif" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/exact-parameter.gif" srcset="/img/loading.gif" lazyload></p>
 <h4 id="提取变量-exact-variable"><a href="#提取变量-exact-variable" class="headerlink" title="提取变量(exact variable)"></a>提取变量(exact variable)</h4><ol>
 <li><strong>使用场景</strong> ：提取多次出现的表达式。</li>
 <li><strong>快捷键：</strong> <code>command + option+ v(mac) / ctrl + alt + v(Windows/Linux) </code></li>
 </ol>
 <p><strong>示例：</strong></p>
-<p><img src="/idea-refractor-intro/exact-variable.gif" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/exact-variable.gif" srcset="/img/loading.gif" lazyload></p>
 <h4 id="提取属性-exact-field"><a href="#提取属性-exact-field" class="headerlink" title="提取属性(exact field)"></a>提取属性(exact field)</h4><ol>
 <li><strong>使用场景</strong> ：把当前表达式提取成为类的一个属性。</li>
 <li><strong>快捷键：</strong> <code>command + option+ f(mac) / ctrl + alt + f(Windows/Linux) </code></li>
 </ol>
 <p><strong>示例：</strong></p>
-<p><img src="/idea-refractor-intro/exact-field.gif" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/exact-field.gif" srcset="/img/loading.gif" lazyload></p>
 <p><strong>示例：</strong></p>
-<p><img src="/idea-refractor-intro/exact-variable.gif" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/exact-variable.gif" srcset="/img/loading.gif" lazyload></p>
 <h4 id="提取方法-exact-method"><a href="#提取方法-exact-method" class="headerlink" title="提取方法(exact method)"></a>提取方法(exact method)</h4><ol>
 <li><strong>使用场景</strong> ：1个或者多个表达式可以提取为一个方法。 提取方法也能使得你的编码更易读，更加语义化。</li>
 <li><strong>快捷键：</strong>  <code>command + option+ m(mac)/ ctrl + alt + m(Windows/Linux)</code></li>
 </ol>
 <p><strong>示例：</strong></p>
-<p><img src="/idea-refractor-intro/exact-method.gif" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/exact-method.gif" srcset="/img/loading.gif" lazyload></p>
 <h4 id="提取接口-exact-interface"><a href="#提取接口-exact-interface" class="headerlink" title="提取接口(exact interface)"></a>提取接口(exact interface)</h4><ol>
 <li><strong>使用场景</strong> ：想要把一个类中的1个或多个方法提取到一个接口中的时候。</li>
 <li><strong>快捷键：</strong>  <code>command + option+ m(mac)/ ctrl + alt + m(Windows/Linux)</code></li>
 </ol>
 <p><strong>示例：</strong></p>
-<p><img src="/idea-refractor-intro/exact-interface.gif" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/exact-interface.gif" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>
@@ -398,7 +398,7 @@
       
         <div class="license-meta-item">
           <div>Author</div>
-          <div>John Doe</div>
+          <div>Jerry Xie</div>
         </div>
       
       

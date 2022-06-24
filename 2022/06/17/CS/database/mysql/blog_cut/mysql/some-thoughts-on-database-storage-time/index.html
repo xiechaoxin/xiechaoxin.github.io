@@ -13,31 +13,31 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Jerry Xie">
   <meta name="keywords" content="">
   
     <meta name="description" content="title: 关于数据库中如何存储时间的一点思考category: 数据库tag:  MySQL   我们平时开发中不可避免的就是要存储时间，比如我们要记录操作表中这条记录的时间、记录转账的交易时间、记录出发时间等等。你会发现时间这个东西与我们开发的联系还是非常紧密的，用的好与不好会给我们的业务甚至功能带来很大的影响。所以，我们有必要重新出发，好好认识一下这个东西。 这是一篇短小精悍的文章，仔细">
 <meta property="og:type" content="article">
 <meta property="og:title" content="some-thoughts-on-database-storage-time">
 <meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/database/mysql/blog_cut/mysql/some-thoughts-on-database-storage-time/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="title: 关于数据库中如何存储时间的一点思考category: 数据库tag:  MySQL   我们平时开发中不可避免的就是要存储时间，比如我们要记录操作表中这条记录的时间、记录转账的交易时间、记录出发时间等等。你会发现时间这个东西与我们开发的联系还是非常紧密的，用的好与不好会给我们的业务甚至功能带来很大的影响。所以，我们有必要重新出发，好好认识一下这个东西。 这是一篇短小精悍的文章，仔细">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/some-thoughts-on-database-storage-time/FhRGUVHFK0ujRPNA75f6CuOXQHTE.jpeg">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/database/mysql/blog_cut/mysql/some-thoughts-on-database-storage-time/some-thoughts-on-database-storage-time/高性能mysql-不推荐用数值时间戳.jpg">
-<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/database/mysql/blog_cut/mysql/some-thoughts-on-database-storage-time/some-thoughts-on-database-storage-time/总结-常用日期存储方式.jpg">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/FhRGUVHFK0ujRPNA75f6CuOXQHTE.jpeg">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/高性能mysql-不推荐用数值时间戳.jpg">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/总结-常用日期存储方式.jpg">
 <meta property="article:published_time" content="2022-06-17T17:59:12.000Z">
-<meta property="article:modified_time" content="2022-06-24T10:26:11.005Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2022-06-24T10:53:04.699Z">
+<meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="blog_cut">
 <meta property="article:tag" content="database">
 <meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/some-thoughts-on-database-storage-time/FhRGUVHFK0ujRPNA75f6CuOXQHTE.jpeg">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/xiechaoxin.github/FhRGUVHFK0ujRPNA75f6CuOXQHTE.jpeg">
   
   
   
-  <title>some-thoughts-on-database-storage-time - Hexo</title>
+  <title>some-thoughts-on-database-storage-time - Jerry&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -329,7 +329,7 @@
 <p>Timestamp 在不同版本的 MySQL 中有细微差别。</p>
 </blockquote>
 <h3 id="3-再看-MySQL-日期类型存储空间"><a href="#3-再看-MySQL-日期类型存储空间" class="headerlink" title="3 再看 MySQL 日期类型存储空间"></a>3 再看 MySQL 日期类型存储空间</h3><p>下图是 MySQL 5.6 版本中日期类型所占的存储空间：</p>
-<p><img src="/some-thoughts-on-database-storage-time/FhRGUVHFK0ujRPNA75f6CuOXQHTE.jpeg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/FhRGUVHFK0ujRPNA75f6CuOXQHTE.jpeg" srcset="/img/loading.gif" lazyload></p>
 <p>可以看出 5.6.4 之后的 MySQL 多出了一个需要 0 ～ 3 字节的小数位。DateTime 和 Timestamp 会有几种不同的存储空间占用。</p>
 <p>为了方便，本文我们还是默认 Timestamp 只需要使用 4 个字节的存储空间，但是 DateTime 需要耗费 8 个字节的存储空间。</p>
 <h3 id="4-数值型时间戳是更好的选择吗？"><a href="#4-数值型时间戳是更好的选择吗？" class="headerlink" title="4.数值型时间戳是更好的选择吗？"></a>4.数值型时间戳是更好的选择吗？</h3><p>很多时候，我们也会使用 int 或者 bigint 类型的数值也就是时间戳来表示时间。</p>
@@ -343,10 +343,10 @@
 
 <h3 id="5-总结"><a href="#5-总结" class="headerlink" title="5.总结"></a>5.总结</h3><p>MySQL 中时间到底怎么存储才好？Datetime?Timestamp? 数值保存的时间戳？</p>
 <p>好像并没有一个银弹，很多程序员会觉得数值型时间戳是真的好，效率又高还各种兼容，但是很多人又觉得它表现的不够直观。这里插一嘴，《高性能 MySQL 》这本神书的作者就是推荐 Timestamp，原因是数值表示时间不够直观。下面是原文：</p>
-<img src="some-thoughts-on-database-storage-time/高性能mysql-不推荐用数值时间戳.jpg" srcset="/img/loading.gif" lazyload style="zoom:50%;" />
+<img src="/xiechaoxin.github/高性能mysql-不推荐用数值时间戳.jpg" srcset="/img/loading.gif" lazyload style="zoom:50%;">
 
 <p>每种方式都有各自的优势，根据实际场景才是王道。下面再对这三种方式做一个简单的对比，以供大家实际开发中选择正确的存放时间的数据类型：</p>
-<img src="some-thoughts-on-database-storage-time/总结-常用日期存储方式.jpg" srcset="/img/loading.gif" lazyload style="zoom:50%;" />
+<img src="/xiechaoxin.github/总结-常用日期存储方式.jpg" srcset="/img/loading.gif" lazyload style="zoom:50%;">
 
                 
               </div>
@@ -424,7 +424,7 @@
       
         <div class="license-meta-item">
           <div>Author</div>
-          <div>John Doe</div>
+          <div>Jerry Xie</div>
         </div>
       
       

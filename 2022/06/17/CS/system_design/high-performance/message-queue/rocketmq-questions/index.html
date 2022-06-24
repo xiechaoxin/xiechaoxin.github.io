@@ -13,29 +13,29 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Jerry Xie">
   <meta name="keywords" content="">
   
     <meta name="description" content="RocketMQ常见问题本文来自读者 PR。 1 单机版消息中心一个消息中心，最基本的需要支持多生产者、多消费者，例如下： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737">
 <meta property="og:type" content="article">
 <meta property="og:title" content="rocketmq-questions">
 <meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/system_design/high-performance/message-queue/rocketmq-questions/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="RocketMQ常见问题本文来自读者 PR。 1 单机版消息中心一个消息中心，最基本的需要支持多生产者、多消费者，例如下： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/rocketmq-questions/RocketMQ%E6%B5%81%E7%A8%8B.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/RocketMQ%E6%B5%81%E7%A8%8B.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T10:26:11.861Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2022-06-24T10:53:05.607Z">
+<meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="system_design">
 <meta property="article:tag" content="high-performance">
 <meta property="article:tag" content="message-queue">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/rocketmq-questions/RocketMQ%E6%B5%81%E7%A8%8B.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/xiechaoxin.github/RocketMQ%E6%B5%81%E7%A8%8B.png">
   
   
   
-  <title>rocketmq-questions - Hexo</title>
+  <title>rocketmq-questions - Jerry&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -345,7 +345,7 @@
 <li>ZooKeeper 作为支持顺序一致性的中间件，在某些情况下，它为了满足一致性，会丢失一定时间内的可用性，RocketMQ 需要注册中心只是为了发现组件地址，在某些情况下，RocketMQ 的注册中心可以出现数据不一致性，这同时也是 NameServer 的缺点，因为 NameServer 集群间互不通信，它们之间的注册信息可能会不一致</li>
 <li>另外，当有新的服务器加入时，NameServer 并不会立马通知到 Producer，而是由 Producer 定时去请求 NameServer 获取最新的 Broker&#x2F;Consumer 信息（这种情况是通过 Producer 发送消息时，负载均衡解决）</li>
 </ol>
-<h4 id="2-1-11-其它"><a href="#2-1-11-其它" class="headerlink" title="2.1.11 其它"></a>2.1.11 其它</h4><p><img src="/rocketmq-questions/RocketMQ%E6%B5%81%E7%A8%8B.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="2-1-11-其它"><a href="#2-1-11-其它" class="headerlink" title="2.1.11 其它"></a>2.1.11 其它</h4><p><img src="/xiechaoxin.github/RocketMQ%E6%B5%81%E7%A8%8B.png" srcset="/img/loading.gif" lazyload></p>
 <p>加分项咯 </p>
 <ol>
 <li>包括组件通信间使用 Netty 的自定义协议</li>
@@ -432,7 +432,7 @@
       
         <div class="license-meta-item">
           <div>Author</div>
-          <div>John Doe</div>
+          <div>Jerry Xie</div>
         </div>
       
       

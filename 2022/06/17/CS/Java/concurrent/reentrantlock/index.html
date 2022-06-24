@@ -13,43 +13,43 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Jerry Xie">
   <meta name="keywords" content="">
   
     <meta name="description" content="title:  从ReentrantLock的实现看AQS的原理及应用category: Javatag:  Java并发    本文转载自：https:&#x2F;&#x2F;tech.meituan.com&#x2F;2019&#x2F;12&#x2F;05&#x2F;aqs-theory-and-apply.html 作者：美团技术团队  前言Java 中的大部分同步类（Lock、Semaphore、ReentrantLock 等）都是基于 Abs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="reentrantlock">
 <meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/concurrent/reentrantlock/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="title:  从ReentrantLock的实现看AQS的原理及应用category: Javatag:  Java并发    本文转载自：https:&#x2F;&#x2F;tech.meituan.com&#x2F;2019&#x2F;12&#x2F;05&#x2F;aqs-theory-and-apply.html 作者：美团技术团队  前言Java 中的大部分同步类（Lock、Semaphore、ReentrantLock 等）都是基于 Abs">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/reentrantlock/412d294ff5535bbcddc0d979b2a339e6102264.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/reentrantlock/82077ccf14127a87b77cefd1ccf562d3253591.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/reentrantlock/d2f7f7fffdc30d85d17b44266c3ab05323338.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/reentrantlock/7132e4cef44c26f62835b197b239147b18062.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/reentrantlock/960271cf2b5c8a185eed23e98b72c75538637.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/reentrantlock/27605d483e8935da683a93be015713f331378.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/reentrantlock/3f1e1a44f5b7d77000ba4f9476189b2e32806.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/reentrantlock/b8b53a70984668bc68653efe9531573e78636.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/reentrantlock/7aadb272069d871bdee8bf3a218eed8136919.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/reentrantlock/f30c631c8ebbf820d3e8fcb6eee3c0ef18748.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/reentrantlock/e9e385c3c68f62c67c8d62ab0adb613921117.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/reentrantlock/c124b76dcbefb9bdc778458064703d1135485.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/reentrantlock/9af16e2481ad85f38ca322a225ae737535740.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/reentrantlock/b845211ced57561c24f79d56194949e822049.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/reentrantlock/ab89bfec875846e5028a4f8fead32b7117975.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/reentrantlock/45d0d9e4a6897eddadc4397cf53d6cd522452.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/412d294ff5535bbcddc0d979b2a339e6102264.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/82077ccf14127a87b77cefd1ccf562d3253591.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/d2f7f7fffdc30d85d17b44266c3ab05323338.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/7132e4cef44c26f62835b197b239147b18062.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/960271cf2b5c8a185eed23e98b72c75538637.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/27605d483e8935da683a93be015713f331378.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/3f1e1a44f5b7d77000ba4f9476189b2e32806.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/b8b53a70984668bc68653efe9531573e78636.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/7aadb272069d871bdee8bf3a218eed8136919.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/f30c631c8ebbf820d3e8fcb6eee3c0ef18748.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/e9e385c3c68f62c67c8d62ab0adb613921117.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/c124b76dcbefb9bdc778458064703d1135485.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/9af16e2481ad85f38ca322a225ae737535740.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/b845211ced57561c24f79d56194949e822049.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/ab89bfec875846e5028a4f8fead32b7117975.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/45d0d9e4a6897eddadc4397cf53d6cd522452.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T10:26:10.553Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2022-06-24T10:53:04.231Z">
+<meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="concurrent">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/reentrantlock/412d294ff5535bbcddc0d979b2a339e6102264.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/xiechaoxin.github/412d294ff5535bbcddc0d979b2a339e6102264.png">
   
   
   
-  <title>reentrantlock - Hexo</title>
+  <title>reentrantlock - Jerry&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -303,7 +303,7 @@
 </blockquote>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Java 中的大部分同步类（Lock、Semaphore、ReentrantLock 等）都是基于 AbstractQueuedSynchronizer（简称为 AQS）实现的。AQS 是一种提供了原子式管理同步状态、阻塞和唤醒线程功能以及队列模型的简单框架。本文会从应用层逐渐深入到原理层，并通过 ReentrantLock 的基本特性和 ReentrantLock 与 AQS 的关联，来深入解读 AQS 相关独占锁的知识点，同时采取问答的模式来帮助大家理解 AQS。由于篇幅原因，本篇文章主要阐述 AQS 中独占锁的逻辑和 Sync Queue，不讲述包含共享锁和 Condition Queue 的部分（本篇文章核心为 AQS 原理剖析，只是简单介绍了 ReentrantLock，感兴趣同学可以阅读一下 ReentrantLock 的源码）。</p>
 <h2 id="1-ReentrantLock"><a href="#1-ReentrantLock" class="headerlink" title="1 ReentrantLock"></a>1 ReentrantLock</h2><h3 id="1-1-ReentrantLock-特性概览"><a href="#1-1-ReentrantLock-特性概览" class="headerlink" title="1.1 ReentrantLock 特性概览"></a>1.1 ReentrantLock 特性概览</h3><p>ReentrantLock 意思为可重入锁，指的是一个线程能够对一个临界资源重复加锁。为了帮助大家更好地理解 ReentrantLock 的特性，我们先将 ReentrantLock 跟常用的 Synchronized 进行比较，其特性如下（蓝色部分为本篇文章主要剖析的点）：</p>
-<p><img src="/reentrantlock/412d294ff5535bbcddc0d979b2a339e6102264.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/xiechaoxin.github/412d294ff5535bbcddc0d979b2a339e6102264.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>下面通过伪代码，进行更加直观的比较：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// **************************Synchronized的使用方式**************************</span><br><span class="hljs-comment">// 1.用于代码块</span><br><span class="hljs-keyword">synchronized</span> (<span class="hljs-built_in">this</span>) &#123;&#125;<br><span class="hljs-comment">// 2.用于对象</span><br><span class="hljs-keyword">synchronized</span> (object) &#123;&#125;<br><span class="hljs-comment">// 3.用于方法</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test</span> <span class="hljs-params">()</span> &#123;&#125;<br><span class="hljs-comment">// 4.可重入</span><br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100</span>; i++) &#123;<br>	<span class="hljs-keyword">synchronized</span> (<span class="hljs-built_in">this</span>) &#123;&#125;<br>&#125;<br><span class="hljs-comment">// **************************ReentrantLock的使用方式**************************</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test</span> <span class="hljs-params">()</span> <span class="hljs-keyword">throw</span> Exception &#123;<br>	<span class="hljs-comment">// 1.初始化选择公平锁、非公平锁</span><br>	<span class="hljs-type">ReentrantLock</span> <span class="hljs-variable">lock</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReentrantLock</span>(<span class="hljs-literal">true</span>);<br>	<span class="hljs-comment">// 2.可用于代码块</span><br>	lock.lock();<br>	<span class="hljs-keyword">try</span> &#123;<br>		<span class="hljs-keyword">try</span> &#123;<br>			<span class="hljs-comment">// 3.支持多种加锁方式，比较灵活; 具有可重入特性</span><br>			<span class="hljs-keyword">if</span>(lock.tryLock(<span class="hljs-number">100</span>, TimeUnit.MILLISECONDS))&#123; &#125;<br>		&#125; <span class="hljs-keyword">finally</span> &#123;<br>			<span class="hljs-comment">// 4.手动释放锁</span><br>			lock.unlock()<br>		&#125;<br>	&#125; <span class="hljs-keyword">finally</span> &#123;<br>		lock.unlock();<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -334,21 +334,21 @@
 <p>结合公平锁和非公平锁的加锁流程，虽然流程上有一定的不同，但是都调用了 Acquire 方法，而 Acquire 方法是 FairSync 和 UnfairSync 的父类 AQS 中的核心方法。</p>
 <p>对于上边提到的问题，其实在 ReentrantLock 类源码中都无法解答，而这些问题的答案，都是位于 Acquire 方法所在的类 AbstractQueuedSynchronizer 中，也就是本文的核心——AQS。下面我们会对 AQS 以及 ReentrantLock 和 AQS 的关联做详细介绍（相关问题答案会在 2.3.5 小节中解答）。</p>
 <h2 id="2-AQS"><a href="#2-AQS" class="headerlink" title="2 AQS"></a>2 AQS</h2><p>首先，我们通过下面的架构图来整体了解一下 AQS 框架：</p>
-<p><img src="/reentrantlock/82077ccf14127a87b77cefd1ccf562d3253591.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/82077ccf14127a87b77cefd1ccf562d3253591.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>上图中有颜色的为 Method，无颜色的为 Attribution。</li>
 <li>总的来说，AQS 框架共分为五层，自上而下由浅入深，从 AQS 对外暴露的 API 到底层基础数据。</li>
 <li>当有自定义同步器接入时，只需重写第一层所需要的部分方法即可，不需要关注底层具体的实现流程。当自定义同步器进行加锁或者解锁操作时，先经过第一层的 API 进入 AQS 内部方法，然后经过第二层进行锁的获取，接着对于获取锁失败的流程，进入第三层和第四层的等待队列处理，而这些处理方式均依赖于第五层的基础数据提供层。</li>
 </ul>
 <p>下面我们会从整体到细节，从流程到方法逐一剖析 AQS 框架，主要分析过程如下：</p>
-<p><img src="/reentrantlock/d2f7f7fffdc30d85d17b44266c3ab05323338.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/d2f7f7fffdc30d85d17b44266c3ab05323338.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="2-1-原理概览"><a href="#2-1-原理概览" class="headerlink" title="2.1 原理概览"></a>2.1 原理概览</h3><p>AQS 核心思想是，如果被请求的共享资源空闲，那么就将当前请求资源的线程设置为有效的工作线程，将共享资源设置为锁定状态；如果共享资源被占用，就需要一定的阻塞等待唤醒机制来保证锁分配。这个机制主要用的是 CLH 队列的变体实现的，将暂时获取不到锁的线程加入到队列中。</p>
 <p>CLH：Craig、Landin and Hagersten 队列，是单向链表，AQS 中的队列是 CLH 变体的虚拟双向队列（FIFO），AQS 是通过将每条请求共享资源的线程封装成一个节点来实现锁的分配。</p>
 <p>主要原理图如下：</p>
-<p><img src="/reentrantlock/7132e4cef44c26f62835b197b239147b18062.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/7132e4cef44c26f62835b197b239147b18062.png" srcset="/img/loading.gif" lazyload></p>
 <p>AQS 使用一个 Volatile 的 int 类型的成员变量来表示同步状态，通过内置的 FIFO 队列来完成资源获取的排队工作，通过 CAS 完成对 State 值的修改。</p>
 <h4 id="2-1-1-AQS-数据结构"><a href="#2-1-1-AQS-数据结构" class="headerlink" title="2.1.1 AQS 数据结构"></a>2.1.1 AQS 数据结构</h4><p>先来看下 AQS 中最基本的数据结构——Node，Node 即为上面 CLH 变体队列中的节点。</p>
-<p><img src="/reentrantlock/960271cf2b5c8a185eed23e98b72c75538637.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/960271cf2b5c8a185eed23e98b72c75538637.png" srcset="/img/loading.gif" lazyload></p>
 <p>解释一下几个方法和属性值的含义：</p>
 <table>
 <thead>
@@ -453,8 +453,8 @@
 </tr>
 </tbody></table>
 <p>这几个方法都是 Final 修饰的，说明子类中无法重写它们。我们可以通过修改 State 字段表示的同步状态来实现多线程的独占模式和共享模式（加锁过程）。</p>
-<p><img src="/reentrantlock/27605d483e8935da683a93be015713f331378.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/reentrantlock/3f1e1a44f5b7d77000ba4f9476189b2e32806.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/27605d483e8935da683a93be015713f331378.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/3f1e1a44f5b7d77000ba4f9476189b2e32806.png" srcset="/img/loading.gif" lazyload></p>
 <p>对于我们自定义的同步工具，需要自定义获取同步状态和释放状态的方式，也就是 AQS 架构图中的第一层：API 层。</p>
 <h2 id="2-2-AQS-重要方法与-ReentrantLock-的关联"><a href="#2-2-AQS-重要方法与-ReentrantLock-的关联" class="headerlink" title="2.2 AQS 重要方法与 ReentrantLock 的关联"></a>2.2 AQS 重要方法与 ReentrantLock 的关联</h2><p>从架构图中可以得知，AQS 提供了大量用于自定义同步器实现的 Protected 方法。自定义同步器实现的相关方法也只是为了通过修改 State 字段来实现多线程的独占模式或者共享模式。自定义同步器需要实现以下方法（ReentrantLock 需要实现的方法如下，并不是全部）：</p>
 <table>
@@ -487,9 +487,9 @@
 </tbody></table>
 <p>一般来说，自定义同步器要么是独占方式，要么是共享方式，它们也只需实现 tryAcquire-tryRelease、tryAcquireShared-tryReleaseShared 中的一种即可。AQS 也支持自定义同步器同时实现独占和共享两种方式，如 ReentrantReadWriteLock。ReentrantLock 是独占锁，所以实现了 tryAcquire-tryRelease。</p>
 <p>以非公平锁为例，这里主要阐述一下非公平锁与 AQS 之间方法的关联之处，具体每一处核心方法的作用会在文章后面详细进行阐述。</p>
-<p><img src="/reentrantlock/b8b53a70984668bc68653efe9531573e78636.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/b8b53a70984668bc68653efe9531573e78636.png" srcset="/img/loading.gif" lazyload></p>
 <p>为了帮助大家理解 ReentrantLock 和 AQS 之间方法的交互过程，以非公平锁为例，我们将加锁和解锁的交互流程单独拎出来强调一下，以便于对后续内容的理解。</p>
-<p><img src="/reentrantlock/7aadb272069d871bdee8bf3a218eed8136919.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/7aadb272069d871bdee8bf3a218eed8136919.png" srcset="/img/loading.gif" lazyload></p>
 <p>加锁：</p>
 <ul>
 <li>通过 ReentrantLock 的加锁方法 Lock 进行加锁操作。</li>
@@ -505,7 +505,7 @@
 <li>释放成功后，所有处理由 AQS 框架完成，与自定义同步器无关。</li>
 </ul>
 <p>通过上面的描述，大概可以总结出 ReentrantLock 加锁解锁时 API 层核心方法的映射关系。</p>
-<p><img src="/reentrantlock/f30c631c8ebbf820d3e8fcb6eee3c0ef18748.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/f30c631c8ebbf820d3e8fcb6eee3c0ef18748.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="2-3-通过-ReentrantLock-理解-AQS"><a href="#2-3-通过-ReentrantLock-理解-AQS" class="headerlink" title="2.3 通过 ReentrantLock 理解 AQS"></a>2.3 通过 ReentrantLock 理解 AQS</h2><p>ReentrantLock 中公平锁和非公平锁在底层是相同的，这里以非公平锁为例进行分析。</p>
 <p>在非公平锁中，有一段这样的代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// java.util.concurrent.locks.ReentrantLock</span><br><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">NonfairSync</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Sync</span> &#123;<br>	...<br>	<span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">lock</span><span class="hljs-params">()</span> &#123;<br>		<span class="hljs-keyword">if</span> (compareAndSetState(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>))<br>			setExclusiveOwnerThread(Thread.currentThread());<br>		<span class="hljs-keyword">else</span><br>			acquire(<span class="hljs-number">1</span>);<br>	&#125;<br>  ...<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -542,7 +542,7 @@
 <li>当没有线程获取到锁时，线程 1 获取锁成功。</li>
 <li>线程 2 申请锁，但是锁被线程 1 占有。</li>
 </ol>
-<p><img src="/reentrantlock/e9e385c3c68f62c67c8d62ab0adb613921117.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/xiechaoxin.github/e9e385c3c68f62c67c8d62ab0adb613921117.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <ol>
 <li>如果再有线程要获取锁，依次在队列中往后排队即可。</li>
 </ol>
@@ -571,9 +571,9 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// java.util.concurrent.locks.AbstractQueuedSynchronizer</span><br><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">parkAndCheckInterrupt</span><span class="hljs-params">()</span> &#123;<br>    LockSupport.park(<span class="hljs-built_in">this</span>);<br>    <span class="hljs-keyword">return</span> Thread.interrupted();<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>上述方法的流程图如下：</p>
-<p><img src="/reentrantlock/c124b76dcbefb9bdc778458064703d1135485.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/c124b76dcbefb9bdc778458064703d1135485.png" srcset="/img/loading.gif" lazyload></p>
 <p>从上图可以看出，跳出当前循环的条件是当“前置节点是头结点，且当前线程获取锁成功”。为了防止因死循环导致 CPU 资源被浪费，我们会判断前置节点的状态来决定是否要将当前线程挂起，具体挂起流程用流程图表示如下（shouldParkAfterFailedAcquire 流程）：</p>
-<p><img src="/reentrantlock/9af16e2481ad85f38ca322a225ae737535740.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/9af16e2481ad85f38ca322a225ae737535740.png" srcset="/img/loading.gif" lazyload></p>
 <p>从队列中释放节点的疑虑打消了，那么又有新问题了：</p>
 <ul>
 <li>shouldParkAfterFailedAcquire 中取消节点是怎么生成的呢？什么时候会把一个节点的 waitStatus 设置为-1？</li>
@@ -595,11 +595,11 @@
 <p>(3) 当前节点不是 Head 的后继节点，也不是尾节点。</p>
 <p>根据上述第二条，我们来分析每一种情况的流程。</p>
 <p>当前节点是尾节点。</p>
-<p><img src="/reentrantlock/b845211ced57561c24f79d56194949e822049.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/b845211ced57561c24f79d56194949e822049.png" srcset="/img/loading.gif" lazyload></p>
 <p>当前节点是 Head 的后继节点。</p>
-<p><img src="/reentrantlock/ab89bfec875846e5028a4f8fead32b7117975.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/ab89bfec875846e5028a4f8fead32b7117975.png" srcset="/img/loading.gif" lazyload></p>
 <p>当前节点不是 Head 的后继节点，也不是尾节点。</p>
-<p><img src="/reentrantlock/45d0d9e4a6897eddadc4397cf53d6cd522452.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/45d0d9e4a6897eddadc4397cf53d6cd522452.png" srcset="/img/loading.gif" lazyload></p>
 <p>通过上面的流程，我们对于 CANCELLED 节点状态的产生和变化已经有了大致的了解，但是为什么所有的变化都是对 Next 指针进行了操作，而没有对 Prev 指针进行操作呢？什么情况下会对 Prev 指针进行操作？</p>
 <blockquote>
 <p>执行 cancelAcquire 的时候，当前节点的前置节点可能已经从队列中出去了（已经执行过 Try 代码块中的 shouldParkAfterFailedAcquire 方法了），如果此时修改 Prev 指针，有可能会导致 Prev 指向另一个已经移除队列的 Node，因此这块变化 Prev 指针不安全。 shouldParkAfterFailedAcquire 方法中，会执行下面的代码，其实就是在处理 Prev 指针。shouldParkAfterFailedAcquire 是获取锁失败的情况下才会执行，进入该方法后，说明共享资源已被获取，当前节点之前的节点都不会出现变化，因此这个时候变更 Prev 指针比较安全。</p>
@@ -779,7 +779,7 @@
       
         <div class="license-meta-item">
           <div>Author</div>
-          <div>John Doe</div>
+          <div>Jerry Xie</div>
         </div>
       
       

@@ -13,14 +13,14 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Jerry Xie">
   <meta name="keywords" content="">
   
     <meta name="description" content="尚硅谷_MyCat课程讲义 讲师：尚硅谷 宋红康 官网：http:&#x2F;&#x2F;www.atguigu.com  1. Mycat概述如今随着互联网的发展，数据的量级也是成指数的增长，从 GB 到 TB 到 PB。对数据的各种操作也是愈加的困难，传统的关系性数据库已经无法满足快速查询与插入数据的需求。这个时候 NoSQL 的出现暂时解决了这一危机。它通过降低数据的安全性，减少对事务的支持，减少对复杂查询的支">
 <meta property="og:type" content="article">
 <meta property="og:title" content="尚硅谷_宋红康_MyCat课程讲义">
 <meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/database/mysql/mycat/%E5%B0%9A%E7%A1%85%E8%B0%B7_%E5%AE%8B%E7%BA%A2%E5%BA%B7_MyCat%E8%AF%BE%E7%A8%8B%E8%AE%B2%E4%B9%89/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="尚硅谷_MyCat课程讲义 讲师：尚硅谷 宋红康 官网：http:&#x2F;&#x2F;www.atguigu.com  1. Mycat概述如今随着互联网的发展，数据的量级也是成指数的增长，从 GB 到 TB 到 PB。对数据的各种操作也是愈加的困难，传统的关系性数据库已经无法满足快速查询与插入数据的需求。这个时候 NoSQL 的出现暂时解决了这一危机。它通过降低数据的安全性，减少对事务的支持，减少对复杂查询的支">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://xiechaoxin.github.io/images/image-20210829223150660.png">
@@ -105,8 +105,8 @@
 <meta property="og:image" content="https://xiechaoxin.github.io/images/clip_image001-1629008105303.png">
 <meta property="og:image" content="https://xiechaoxin.github.io/images/clip_image001-1629008119048.png">
 <meta property="article:published_time" content="2022-06-17T17:59:12.000Z">
-<meta property="article:modified_time" content="2022-06-24T10:26:11.009Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2022-06-24T10:53:04.707Z">
+<meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="database">
 <meta property="article:tag" content="mysql">
 <meta property="article:tag" content="mycat">
@@ -115,7 +115,7 @@
   
   
   
-  <title>尚硅谷_宋红康_MyCat课程讲义 - Hexo</title>
+  <title>尚硅谷_宋红康_MyCat课程讲义 - Jerry&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -385,7 +385,7 @@
 <p><img src="/images/image-20210829223348714.png" srcset="/img/loading.gif" lazyload alt="image-20210829223348714"></p>
 <p><strong>3、Mycat的官网</strong></p>
 <p>  <a target="_blank" rel="noopener" href="http://www.mycat.io/">http://www.mycat.io/</a></p>
- <img src="images/image-20210815142309672.png" srcset="/img/loading.gif" lazyload alt="image-20210815142309672" style="zoom:50%;" />
+ <img src="images/image-20210815142309672.png" srcset="/img/loading.gif" lazyload alt="image-20210815142309672" style="zoom:50%;">
 
 <h3 id="1-2-Mycat作用"><a href="#1-2-Mycat作用" class="headerlink" title="1.2 Mycat作用"></a>1.2 Mycat作用</h3><p><strong>1、读写分离</strong></p>
 <p><img src="/images/image-20210825232422178.png" srcset="/img/loading.gif" lazyload alt="image-20210825232422178"></p>
@@ -503,7 +503,7 @@
 <p>二进制日志转储线程（Binlog dump thread）是一个主库线程。当从库线程连接的时候， 主库可以将二进制日志发送给从库，当主库读取事件的时候，会在 <code>Binlog 上加锁</code>，读取完成之后，再将锁释放掉。 </p>
 <p>从库 I&#x2F;O 线程会连接到主库，向主库发送请求更新 Binlog。这时从库的 I&#x2F;O 线程就可以读取到主库的二进制日志转储线程发送的 <code>Binlog 更新部分</code>，并且拷贝到本地形成中继日志 （Relay log）。 </p>
 <p>从库 SQL 线程会读取从库中的中继日志，并且<code>执行日志中的事件</code>，从而将从库中的数据与主库保持<code>同步</code>。</p>
-<img src="images/image-20210826171726917.png" srcset="/img/loading.gif" lazyload alt="image-20210826171726917" style="zoom: 80%;" />
+<img src="images/image-20210826171726917.png" srcset="/img/loading.gif" lazyload alt="image-20210826171726917" style="zoom: 80%;">
 
 <p>所以你能看到主从同步的内容就是二进制日志（Binlog），它虽然叫二进制日志，实际上存储的是一个又一个<code>事件（Event）</code>，这些事件分别对应着数据库的更新操作，比如 <code>INSERT</code>、<code>UPDATE</code>、<code>DELETE </code>等。另外我们还需要注意的是，不是所有版本的 MySQL 都默认开启服务器的二进制日志，在进行主从同步的时候，我们需要先检查服务器<code>是否已经开启了二进制日志</code>。</p>
 <p>从服务器通过配置可以读取主服务器中二进制日志，并且执行日志中的事件。每个从服务器都能收到整个二进制日志的内容。从服务器需要识别日志中哪些语句应该被执行。除非特殊指定，<code>默认情况下主服务器中所有的事件都将被执行</code>。</p>
@@ -891,12 +891,12 @@
 <tbody><tr>
 <td>1</td>
 <td>id（主键）、创建时间</td>
-<td>查询订单注重时效，历史订单被查询的次数少，<br/>如此分片会造成一个节点访问多，一个访问少，不平均。</td>
+<td>查询订单注重时效，历史订单被查询的次数少，<br>如此分片会造成一个节点访问多，一个访问少，不平均。</td>
 </tr>
 <tr>
 <td>2</td>
 <td>customer_id（客户id）</td>
-<td>根据客户id去分，两个节点访问平均，一个客户<br/>的所有订单都在同一个节点</td>
+<td>根据客户id去分，两个节点访问平均，一个客户<br>的所有订单都在同一个节点</td>
 </tr>
 </tbody></table>
 <h4 id="3、修改配置文件schema-xml"><a href="#3、修改配置文件schema-xml" class="headerlink" title="3、修改配置文件schema.xml"></a>3、修改配置文件schema.xml</h4><p>为orders表设置数据节点为dn1、dn2，并指定分片规则为mod_rule（自定义的名字）</p>
@@ -1131,7 +1131,7 @@
       
         <div class="license-meta-item">
           <div>Author</div>
-          <div>John Doe</div>
+          <div>Jerry Xie</div>
         </div>
       
       

@@ -13,37 +13,37 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Jerry Xie">
   <meta name="keywords" content="">
   
     <meta name="description" content="title: Shell 编程入门category: 计算机基础tag:  操作系统 Linux   Shell 编程入门走进 Shell 编程的大门为什么要学Shell？学一个东西，我们大部分情况都是往实用性方向着想。从工作角度来讲，学习 Shell 是为了提高我们自己工作效率，提高产出，让我们在更少的时间完成更多的事情。 很多人会说 Shell 编程属于运维方面的知识了，应该是运维人员来做，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="shell-intro">
 <meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/operating_system/shell-intro/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="title: Shell 编程入门category: 计算机基础tag:  操作系统 Linux   Shell 编程入门走进 Shell 编程的大门为什么要学Shell？学一个东西，我们大部分情况都是往实用性方向着想。从工作角度来讲，学习 Shell 是为了提高我们自己工作效率，提高产出，让我们在更少的时间完成更多的事情。 很多人会说 Shell 编程属于运维方面的知识了，应该是运维人员来做，">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/shell-intro/60190220.jpg">
-<meta property="og:image" content="https://xiechaoxin.github.io/shell-intro/19456505.jpg">
-<meta property="og:image" content="https://xiechaoxin.github.io/shell-intro/55296212.jpg">
-<meta property="og:image" content="https://xiechaoxin.github.io/shell-intro/19835037.jpg">
-<meta property="og:image" content="https://xiechaoxin.github.io/shell-intro/51148933.jpg">
-<meta property="og:image" content="https://xiechaoxin.github.io/shell-intro/4937342.jpg">
-<meta property="og:image" content="https://xiechaoxin.github.io/shell-intro/64391380.jpg">
-<meta property="og:image" content="https://xiechaoxin.github.io/shell-intro/60545848.jpg">
-<meta property="og:image" content="https://xiechaoxin.github.io/shell-intro/93961425.jpg">
-<meta property="og:image" content="https://xiechaoxin.github.io/shell-intro/309094.jpg">
-<meta property="og:image" content="https://xiechaoxin.github.io/shell-intro/60359774.jpg">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/60190220.jpg">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/19456505.jpg">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/55296212.jpg">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/19835037.jpg">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/51148933.jpg">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/4937342.jpg">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/64391380.jpg">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/60545848.jpg">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/93961425.jpg">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/309094.jpg">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/60359774.jpg">
 <meta property="article:published_time" content="2022-06-17T17:59:12.000Z">
-<meta property="article:modified_time" content="2022-06-24T10:26:11.441Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2022-06-24T10:53:05.163Z">
+<meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="operating_system">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/shell-intro/60190220.jpg">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/xiechaoxin.github/60190220.jpg">
   
   
   
-  <title>shell-intro - Hexo</title>
+  <title>shell-intro - Jerry&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -297,9 +297,9 @@
 <p>目前Linux系统下最流行的运维自动化语言就是Shell和Python了。</p>
 <p>两者之间，Shell几乎是IT企业必须使用的运维自动化编程语言，特别是在运维工作中的服务监控、业务快速部署、服务启动停止、数据备份及处理、日志分析等环节里，shell是不可缺的。Python 更适合处理复杂的业务逻辑，以及开发复杂的运维软件工具，实现通过web访问等。Shell是一个命令解释器，解释执行用户所输入的命令和程序。一输入命令，就立即回应的交互的对话方式。</p>
 <p>另外，了解 shell 编程也是大部分互联网公司招聘后端开发人员的要求。下图是我截取的一些知名互联网公司对于 Shell 编程的要求。</p>
-<p><img src="/shell-intro/60190220.jpg" srcset="/img/loading.gif" lazyload alt="大型互联网公司对于shell编程技能的要求"></p>
+<p><img src="/xiechaoxin.github/60190220.jpg" srcset="/img/loading.gif" lazyload alt="大型互联网公司对于shell编程技能的要求"></p>
 <h3 id="什么是-Shell？"><a href="#什么是-Shell？" class="headerlink" title="什么是 Shell？"></a>什么是 Shell？</h3><p>简单来说“Shell编程就是对一堆Linux命令的逻辑化处理”。</p>
-<p>W3Cschool 上的一篇文章是这样介绍 Shell的，如下图所示。<br><img src="/shell-intro/19456505.jpg" srcset="/img/loading.gif" lazyload alt="什么是 Shell？"></p>
+<p>W3Cschool 上的一篇文章是这样介绍 Shell的，如下图所示。<br><img src="/xiechaoxin.github/19456505.jpg" srcset="/img/loading.gif" lazyload alt="什么是 Shell？"></p>
 <h3 id="Shell-编程的-Hello-World"><a href="#Shell-编程的-Hello-World" class="headerlink" title="Shell 编程的 Hello World"></a>Shell 编程的 Hello World</h3><p>学习任何一门编程语言第一件事就是输出HelloWorld了！下面我会从新建文件到shell代码编写来说下Shell 编程如何输出Hello World。</p>
 <p>(1)新建一个文件 helloworld.sh :<code>touch helloworld.sh</code>，扩展名为 sh（sh代表Shell）（扩展名并不影响脚本执行，见名知意就好，如果你用 php 写 shell 脚本，扩展名就用 php 好了）</p>
 <p>(2) 使脚本具有执行权限：<code>chmod +x helloworld.sh</code></p>
@@ -309,7 +309,7 @@
 
 <p>shell中 # 符号表示注释。<strong>shell 的第一行比较特殊，一般都会以#!开始来指定使用的 shell 类型。在linux中，除了bash shell以外，还有很多版本的shell， 例如zsh、dash等等…不过bash shell还是我们使用最多的。</strong></p>
 <p>(4) 运行脚本:<code>./helloworld.sh</code> 。（注意，一定要写成 <code>./helloworld.sh</code> ，而不是 <code>helloworld.sh</code> ，运行其它二进制的程序也一样，直接写 <code>helloworld.sh</code> ，linux 系统会去 PATH 里寻找有没有叫 helloworld.sh 的，而只有 &#x2F;bin, &#x2F;sbin, &#x2F;usr&#x2F;bin，&#x2F;usr&#x2F;sbin 等在 PATH 里，你的当前目录通常不在 PATH 里，所以写成 <code>helloworld.sh</code> 是会找不到命令的，要用<code>./helloworld.sh</code> 告诉系统说，就在当前目录找。）</p>
-<p><img src="/shell-intro/55296212.jpg" srcset="/img/loading.gif" lazyload alt="shell 编程Hello World"></p>
+<p><img src="/xiechaoxin.github/55296212.jpg" srcset="/img/loading.gif" lazyload alt="shell 编程Hello World"></p>
 <h2 id="Shell-变量"><a href="#Shell-变量" class="headerlink" title="Shell 变量"></a>Shell 变量</h2><h3 id="Shell-编程中的变量介绍"><a href="#Shell-编程中的变量介绍" class="headerlink" title="Shell 编程中的变量介绍"></a>Shell 编程中的变量介绍</h3><p><strong>Shell编程中一般分为三种变量：</strong></p>
 <ol>
 <li><strong>我们自己定义的变量（自定义变量）:</strong> 仅在当前 Shell 实例中有效，其他 Shell 启动的程序不能访问局部变量。</li>
@@ -324,7 +324,7 @@
 <p>比如我们要看当前用户目录可以使用：<code>echo $HOME</code>命令；如果我们要看当前用户Shell类型 可以使用<code>echo $SHELL</code>命令。可以看出，使用方法非常简单。</p>
 <p><strong>使用自己定义的变量：</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/bin/bash</span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">自定义变量hello</span><br>hello=&quot;hello world&quot;<br>echo $hello<br>echo  &quot;helloworld!&quot;<br></code></pre></td></tr></table></figure>
-<p><img src="/shell-intro/19835037.jpg" srcset="/img/loading.gif" lazyload alt="使用自己定义的变量"></p>
+<p><img src="/xiechaoxin.github/19835037.jpg" srcset="/img/loading.gif" lazyload alt="使用自己定义的变量"></p>
 <p><strong>Shell 编程中的变量名的命名的注意事项：</strong></p>
 <ul>
 <li>命名只能使用英文字母，数字和下划线，首个字符不能以数字开头，但是可以使用下划线（_）开头。</li>
@@ -349,7 +349,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/bin/bash</span><br>name=&quot;SnailClimb&quot;<br><span class="hljs-meta prompt_"># </span><span class="language-bash">使用双引号拼接</span><br>greeting=&quot;hello, &quot;$name&quot; !&quot;<br>greeting_1=&quot;hello, $&#123;name&#125; !&quot;<br>echo $greeting  $greeting_1<br><span class="hljs-meta prompt_"># </span><span class="language-bash">使用单引号拼接</span><br>greeting_2=&#x27;hello, &#x27;$name&#x27; !&#x27;<br>greeting_3=&#x27;hello, $&#123;name&#125; !&#x27;<br>echo $greeting_2  $greeting_3<br></code></pre></td></tr></table></figure>
 
 <p>输出结果：</p>
-<p><img src="/shell-intro/51148933.jpg" srcset="/img/loading.gif" lazyload alt="输出结果"></p>
+<p><img src="/xiechaoxin.github/51148933.jpg" srcset="/img/loading.gif" lazyload alt="输出结果"></p>
 <p><strong>获取字符串长度：</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/bin/bash</span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">获取字符串长度</span><br>name=&quot;SnailClimb&quot;<br><span class="hljs-meta prompt_"># </span><span class="language-bash">第一种方式</span><br>echo $&#123;#name&#125; #输出 10<br><span class="hljs-meta prompt_"># </span><span class="language-bash">第二种方式</span><br>expr length &quot;$name&quot;;<br></code></pre></td></tr></table></figure>
 
@@ -383,32 +383,32 @@
 <li>字符串运算符</li>
 <li>文件测试运算符</li>
 </ul>
-<h3 id="算数运算符"><a href="#算数运算符" class="headerlink" title="算数运算符"></a>算数运算符</h3><p><img src="/shell-intro/4937342.jpg" srcset="/img/loading.gif" lazyload alt="算数运算符"></p>
+<h3 id="算数运算符"><a href="#算数运算符" class="headerlink" title="算数运算符"></a>算数运算符</h3><p><img src="/xiechaoxin.github/4937342.jpg" srcset="/img/loading.gif" lazyload alt="算数运算符"></p>
 <p>我以加法运算符做一个简单的示例（注意：不是单引号，是反引号）：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/bin/bash</span><br>a=3;b=3;<br>val=`expr $a + $b`<br><span class="hljs-meta prompt_">#</span><span class="language-bash">输出：Total value : 6</span><br>echo &quot;Total value : $val&quot;<br></code></pre></td></tr></table></figure>
 
 
 <h3 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h3><p>关系运算符只支持数字，不支持字符串，除非字符串的值是数字。</p>
-<p><img src="/shell-intro/64391380.jpg" srcset="/img/loading.gif" lazyload alt="shell关系运算符"></p>
+<p><img src="/xiechaoxin.github/64391380.jpg" srcset="/img/loading.gif" lazyload alt="shell关系运算符"></p>
 <p>通过一个简单的示例演示关系运算符的使用，下面shell程序的作用是当score&#x3D;100的时候输出A否则输出B。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/bin/bash</span><br>score=90;<br>maxscore=100;<br>if [ $score -eq $maxscore ]<br>then<br>   echo &quot;A&quot;<br>else<br>   echo &quot;B&quot;<br>fi<br></code></pre></td></tr></table></figure>
 
 <p>输出结果：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">B</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><p><img src="/shell-intro/60545848.jpg" srcset="/img/loading.gif" lazyload alt="逻辑运算符"></p>
+<h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><p><img src="/xiechaoxin.github/60545848.jpg" srcset="/img/loading.gif" lazyload alt="逻辑运算符"></p>
 <p>示例：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/bin/bash</span><br>a=$(( 1 &amp;&amp; 0))<br><span class="hljs-meta prompt_"># </span><span class="language-bash">输出：0；逻辑与运算只有相与的两边都是1，与的结果才是1；否则与的结果是0</span><br>echo $a;<br></code></pre></td></tr></table></figure>
 
-<h3 id="布尔运算符"><a href="#布尔运算符" class="headerlink" title="布尔运算符"></a>布尔运算符</h3><p><img src="/shell-intro/93961425.jpg" srcset="/img/loading.gif" lazyload alt="布尔运算符"></p>
+<h3 id="布尔运算符"><a href="#布尔运算符" class="headerlink" title="布尔运算符"></a>布尔运算符</h3><p><img src="/xiechaoxin.github/93961425.jpg" srcset="/img/loading.gif" lazyload alt="布尔运算符"></p>
 <p>这里就不做演示了，应该挺简单的。</p>
-<h3 id="字符串运算符"><a href="#字符串运算符" class="headerlink" title="字符串运算符"></a>字符串运算符</h3><p><img src="/shell-intro/309094.jpg" srcset="/img/loading.gif" lazyload alt=" 字符串运算符"></p>
+<h3 id="字符串运算符"><a href="#字符串运算符" class="headerlink" title="字符串运算符"></a>字符串运算符</h3><p><img src="/xiechaoxin.github/309094.jpg" srcset="/img/loading.gif" lazyload alt=" 字符串运算符"></p>
 <p>简单示例：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/bin/bash</span><br>a=&quot;abc&quot;;<br>b=&quot;efg&quot;;<br>if [ $a = $b ]<br>then<br>   echo &quot;a 等于 b&quot;<br>else<br>   echo &quot;a 不等于 b&quot;<br>fi<br></code></pre></td></tr></table></figure>
 <p>输出：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">a</span> 不等于 <span class="hljs-selector-tag">b</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="文件相关运算符"><a href="#文件相关运算符" class="headerlink" title="文件相关运算符"></a>文件相关运算符</h3><p><img src="/shell-intro/60359774.jpg" srcset="/img/loading.gif" lazyload alt="文件相关运算符"></p>
+<h3 id="文件相关运算符"><a href="#文件相关运算符" class="headerlink" title="文件相关运算符"></a>文件相关运算符</h3><p><img src="/xiechaoxin.github/60359774.jpg" srcset="/img/loading.gif" lazyload alt="文件相关运算符"></p>
 <p>使用方式很简单，比如我们定义好了一个文件路径<code>file=&quot;/usr/learnshell/test.sh&quot;</code> 如果我们想判断这个文件是否可读，可以这样<code>if [ -r $file ]</code> 如果想判断这个文件是否可写，可以这样<code>-w $file</code>，是不是很简单。</p>
 <h2 id="shell流程控制"><a href="#shell流程控制" class="headerlink" title="shell流程控制"></a>shell流程控制</h2><h3 id="if-条件语句"><a href="#if-条件语句" class="headerlink" title="if 条件语句"></a>if 条件语句</h3><p>简单的 if else-if else 的条件语句示例</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/bin/bash</span><br>a=3;<br>b=9;<br>if [ $a -eq $b ]<br>then<br>   echo &quot;a 等于 b&quot;<br>elif [ $a -gt $b ]<br>then<br>   echo &quot;a 大于 b&quot;<br>else<br>   echo &quot;a 小于 b&quot;<br>fi<br></code></pre></td></tr></table></figure>
@@ -509,7 +509,7 @@
       
         <div class="license-meta-item">
           <div>Author</div>
-          <div>John Doe</div>
+          <div>Jerry Xie</div>
         </div>
       
       

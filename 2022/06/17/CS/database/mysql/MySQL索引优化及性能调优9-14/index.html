@@ -13,54 +13,54 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Jerry Xie">
   <meta name="keywords" content="">
   
     <meta name="description" content="MySQL索引优化及性能调优9-149 慢查询日志 是什么  MySQL的慢查询日志是MySQL提供的一种日志记录，它用来记录在MySQL中响应时间超过阈值的语句，具体指运行时间超过long_query_time值的SQL，则会被记录到慢查询日志中。 long_query_time的默认值是10，意思是运行10秒以上的语句。 由它来查看哪些SQL超出了我们的最大忍耐时间值，比如一条sql执行超过5">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL索引优化及性能调优9-14">
 <meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/database/mysql/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="MySQL索引优化及性能调优9-149 慢查询日志 是什么  MySQL的慢查询日志是MySQL提供的一种日志记录，它用来记录在MySQL中响应时间超过阈值的语句，具体指运行时间超过long_query_time值的SQL，则会被记录到慢查询日志中。 long_query_time的默认值是10，意思是运行10秒以上的语句。 由它来查看哪些SQL超出了我们的最大忍耐时间值，比如一条sql执行超过5">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/45de96d96b53413fa898dabfe6792d74.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/a142cc3d0b54419fbb7ab6889dc0f890.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180135677.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/1e76699c4e614d7a8aa3b0573c1d2e7a.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180139297.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180135471.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_12,color_FFFFFF,t_70,g_se,x_16.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180141474.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180137678.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180136323.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180139085.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180136275.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180137273.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180137316.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180139874.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/f3423324f27045fbbfa108cab9631488.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180138307.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180139466.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180143726.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180144307.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180139709.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_17,color_FFFFFF,t_70,g_se,x_16-20220524180139673.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180145869.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180140904.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180144867.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/d975f4466cb14dca8f625ceb061d7ed9.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180144142.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/45de96d96b53413fa898dabfe6792d74.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/a142cc3d0b54419fbb7ab6889dc0f890.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180135677.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/1e76699c4e614d7a8aa3b0573c1d2e7a.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180139297.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180135471.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_12,color_FFFFFF,t_70,g_se,x_16.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180141474.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180137678.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180136323.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180139085.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180136275.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180137273.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180137316.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180139874.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/f3423324f27045fbbfa108cab9631488.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180138307.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180139466.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180143726.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180144307.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180139709.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_17,color_FFFFFF,t_70,g_se,x_16-20220524180139673.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180145869.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180140904.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180144867.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/d975f4466cb14dca8f625ceb061d7ed9.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180144142.png">
 <meta property="article:published_time" content="2022-06-17T17:59:12.000Z">
-<meta property="article:modified_time" content="2022-06-24T10:26:10.941Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2022-06-24T10:53:04.635Z">
+<meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="database">
 <meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/45de96d96b53413fa898dabfe6792d74.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/xiechaoxin.github/45de96d96b53413fa898dabfe6792d74.png">
   
   
   
-  <title>MySQL索引优化及性能调优9-14 - Hexo</title>
+  <title>MySQL索引优化及性能调优9-14 - Jerry&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -327,10 +327,10 @@
 </blockquote>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SHOW</span> VARIABLES <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;%slow_query_log%&#x27;</span>; <br></code></pre></td></tr></table></figure>
 
-<p><img src="/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/45de96d96b53413fa898dabfe6792d74.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/xiechaoxin.github/45de96d96b53413fa898dabfe6792d74.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-keyword">SET</span> GLOBAL <span class="hljs-comment">slow_query_log = 1</span> <br></code></pre></td></tr></table></figure>
 
-<p><img src="/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/a142cc3d0b54419fbb7ab6889dc0f890.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/xiechaoxin.github/a142cc3d0b54419fbb7ab6889dc0f890.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <blockquote>
 <p>开启：set global slow_query_log&#x3D;1;</p>
 <ul>
@@ -357,7 +357,7 @@
 <li>show global variables like ‘long_query_time’;</li>
 </ul>
 </li>
-<li>记录慢SQL并后续分析<br><img src="/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180135677.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+<li>记录慢SQL并后续分析<br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180135677.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
 <li>查询当前系统中有多少条慢查询记录：<br>show global status like ‘%Slow_queries%’;</li>
 </ul>
 </blockquote>
@@ -429,7 +429,7 @@
 </ul>
 <figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs gams">SHOW <span class="hljs-keyword">VARIABLES</span> LIKE <span class="hljs-comment">&#x27;profiling&#x27;</span>;<br>或者<br>SHOW <span class="hljs-keyword">VARIABLES</span> LIKE <span class="hljs-comment">&#x27;profiling%&#x27;</span>;<br>默认时关闭的，使用前需要开启 <br></code></pre></td></tr></table></figure>
 
-<p><img src="/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/1e76699c4e614d7a8aa3b0573c1d2e7a.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/xiechaoxin.github/1e76699c4e614d7a8aa3b0573c1d2e7a.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <ul>
 <li>开启功能，默认是关闭，使用前需要开启</li>
 </ul>
@@ -445,13 +445,13 @@
 </ul>
 <figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">show profiles<span class="hljs-comment">; </span><br></code></pre></td></tr></table></figure>
 
-<p><img src="/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180139297.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180139297.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <ul>
 <li>诊断SQL</li>
 </ul>
 <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-keyword">show </span>profile cpu, <span class="hljs-keyword">block </span>io for query <span class="hljs-comment">#上一步前面的问题SQL数字号码; </span><br></code></pre></td></tr></table></figure>
 
-<p><img src="/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180135471.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180135471.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <ul>
 <li>参数备注</li>
 </ul>
@@ -482,7 +482,7 @@
 <li>locked</li>
 </ul>
 </blockquote>
-<p><img src="/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_12,color_FFFFFF,t_70,g_se,x_16.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_12,color_FFFFFF,t_70,g_se,x_16.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <h1 id="12-全局查询日志"><a href="#12-全局查询日志" class="headerlink" title="12 全局查询日志"></a>12 全局查询日志</h1><ul>
 <li>配置启用</li>
 </ul>
@@ -502,7 +502,7 @@
 </ul>
 </blockquote>
 <ul>
-<li>生活购物<br><img src="/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180141474.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+<li>生活购物<br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180141474.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
 </ul>
 <blockquote>
 <p>锁的分类：</p>
@@ -531,9 +531,9 @@
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> mylock(<br>	id <span class="hljs-type">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">PRIMARY KEY</span> AUTO_INCREMENT,<br>	<span class="hljs-type">NAME</span> <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">20</span>)<br>)ENGINE MYISAM;<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> mylock(<span class="hljs-type">NAME</span>) <span class="hljs-keyword">VALUES</span>(<span class="hljs-string">&#x27;a&#x27;</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> mylock(<span class="hljs-type">NAME</span>) <span class="hljs-keyword">VALUES</span>(<span class="hljs-string">&#x27;b&#x27;</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> mylock(<span class="hljs-type">NAME</span>) <span class="hljs-keyword">VALUES</span>(<span class="hljs-string">&#x27;c&#x27;</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> mylock(<span class="hljs-type">NAME</span>) <span class="hljs-keyword">VALUES</span>(<span class="hljs-string">&#x27;d&#x27;</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> mylock(<span class="hljs-type">NAME</span>) <span class="hljs-keyword">VALUES</span>(<span class="hljs-string">&#x27;e&#x27;</span>);<br><br><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> mylock; <br></code></pre></td></tr></table></figure>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"># 手动增加表锁<br><span class="hljs-keyword">lock</span> <span class="hljs-keyword">table</span> 表名字 <span class="hljs-keyword">read</span>(<span class="hljs-keyword">write</span>), 表名字<span class="hljs-number">2</span> <span class="hljs-keyword">read</span>(<span class="hljs-keyword">write</span>), 其他;<br># 查看表上加过的锁<br><span class="hljs-keyword">show</span> <span class="hljs-keyword">open</span> <span class="hljs-keyword">tables</span>;<br># 释放表锁<br>unlock <span class="hljs-keyword">tables</span>; <br></code></pre></td></tr></table></figure>
 
-<p><strong>加读锁（我们为mylock表加read锁（读阻塞写例子））</strong><br><img src="/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180137678.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180136323.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>加写锁（我们为mylock表加write锁（MyISAM存储引擎的写阻塞读例子））</strong><br><img src="/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180139085.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180136275.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><strong>加读锁（我们为mylock表加read锁（读阻塞写例子））</strong><br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180137678.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180136323.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>加写锁（我们为mylock表加write锁（MyISAM存储引擎的写阻塞读例子））</strong><br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180139085.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180136275.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <ul>
-<li>案例结论<br><strong>简而言之，就是读锁会阻塞写，但是不会阻塞读。而写锁则会把读和写都阻塞。</strong><br><img src="/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180137273.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+<li>案例结论<br><strong>简而言之，就是读锁会阻塞写，但是不会阻塞读。而写锁则会把读和写都阻塞。</strong><br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180137273.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
 </ul>
 <blockquote>
 <p>表锁分析</p>
@@ -573,16 +573,16 @@
 </blockquote>
 <p><strong>并发事务处理带来的问题</strong></p>
 <ul>
-<li><strong>更新丢失（Lost Update）</strong><br><img src="/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180137316.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
-<li><strong>脏读（Dirty Reads）</strong><br><img src="/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180139874.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
-<li><strong>不可重复读（Non-Repeatable Reads）</strong><br><img src="/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/f3423324f27045fbbfa108cab9631488.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
-<li><strong>幻读（Phantom Reads）</strong><br><img src="/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180138307.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>事务隔离级别</strong>：<br><img src="/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180139466.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+<li><strong>更新丢失（Lost Update）</strong><br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180137316.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+<li><strong>脏读（Dirty Reads）</strong><br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180139874.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+<li><strong>不可重复读（Non-Repeatable Reads）</strong><br><img src="/xiechaoxin.github/f3423324f27045fbbfa108cab9631488.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+<li><strong>幻读（Phantom Reads）</strong><br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180138307.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>事务隔离级别</strong>：<br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180139466.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
 <li>案例分析</li>
 </ul>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"># 建表<span class="hljs-keyword">SQL</span><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> test_innodb_lock(<br>	a <span class="hljs-type">INT</span>(<span class="hljs-number">11</span>),<br>	b <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">16</span>)<br>)ENGINE=INNODB;<br><br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> test_innodb_lock <span class="hljs-keyword">VALUES</span>(<span class="hljs-number">1</span>,<span class="hljs-string">&#x27;b2&#x27;</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> test_innodb_lock <span class="hljs-keyword">VALUES</span>(<span class="hljs-number">3</span>,<span class="hljs-string">&#x27;3&#x27;</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> test_innodb_lock <span class="hljs-keyword">VALUES</span>(<span class="hljs-number">4</span>,<span class="hljs-string">&#x27;4000&#x27;</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> test_innodb_lock <span class="hljs-keyword">VALUES</span>(<span class="hljs-number">5</span>,<span class="hljs-string">&#x27;5000&#x27;</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> test_innodb_lock <span class="hljs-keyword">VALUES</span>(<span class="hljs-number">6</span>,<span class="hljs-string">&#x27;6000&#x27;</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> test_innodb_lock <span class="hljs-keyword">VALUES</span>(<span class="hljs-number">7</span>,<span class="hljs-string">&#x27;7000&#x27;</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> test_innodb_lock <span class="hljs-keyword">VALUES</span>(<span class="hljs-number">8</span>,<span class="hljs-string">&#x27;8000&#x27;</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> test_innodb_lock <span class="hljs-keyword">VALUES</span>(<span class="hljs-number">9</span>,<span class="hljs-string">&#x27;9000&#x27;</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> test_innodb_lock <span class="hljs-keyword">VALUES</span>(<span class="hljs-number">1</span>,<span class="hljs-string">&#x27;b1&#x27;</span>);<br><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> test_innodb_a_ind <span class="hljs-keyword">ON</span> test_innodb_lock(a);<br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> test_innodb_b_ind <span class="hljs-keyword">ON</span> test_innodb_lock(b); <br></code></pre></td></tr></table></figure>
 
 <ul>
-<li>行锁定基本演示<br><img src="/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180143726.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+<li>行锁定基本演示<br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180143726.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
 </ul>
 <blockquote>
 <ul>
@@ -590,7 +590,7 @@
 <li>如果在更新数据的时候出现了强制类型转换导致索引失效，使得行锁变表锁，即在操作不同行的时候，会出现阻塞的现象。</li>
 </ul>
 </li>
-<li>间隙锁危害<br><img src="/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180144307.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+<li>间隙锁危害<br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180144307.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
 <li>什么是间隙锁：当我们用范围条件而不是相等条件索引数据，并请求共享或排他锁时，InnoDB会给符合条件的已有数据记录的索引项加锁；对于键值在条件范围内但并不存在的记录，叫做“间隙（GAP）”。InnoDB也会对这个“间隙”加锁，这种锁机制就是所谓的间隙锁（Next-Key锁）。</li>
 <li>危害：<ul>
 <li>因为Query执行过程中通过范围查找的话，会锁定整个范围内所有的索引键值，即使这个键值并不存在。</li>
@@ -602,7 +602,7 @@
 <p>试题：常考如何锁定一行</p>
 <figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> 表 <span class="hljs-keyword">where</span> 某一行的条件 <span class="hljs-keyword">for</span> <span class="hljs-keyword">update</span>; <br></code></pre></td></tr></table></figure>
 
-<p><img src="/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180139709.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180139709.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <blockquote>
 <p>案例结论</p>
 <ul>
@@ -614,7 +614,7 @@
 <p>行锁分析</p>
 <ul>
 <li>如何分析行锁定<ul>
-<li>通过检查InnoDB_row_lock状态变量来分析系统上的行锁的争夺情况<br>show status like ‘innodb_row_lock%’;<br><img src="/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_17,color_FFFFFF,t_70,g_se,x_16-20220524180139673.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+<li>通过检查InnoDB_row_lock状态变量来分析系统上的行锁的争夺情况<br>show status like ‘innodb_row_lock%’;<br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_17,color_FFFFFF,t_70,g_se,x_16-20220524180139673.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
 <li>对各个状态量的说明如下：<ul>
 <li>Innodb_row_lock_current_waits：当前正在等待锁定的数量；</li>
 <li>innodb_row_lock_time：从系统启动到现在锁定总时间长度；</li>
@@ -660,7 +660,7 @@
 <li>三步骤+原理图</li>
 </ul>
 </blockquote>
-<p><img src="/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180145869.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180145869.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <blockquote>
 <p><strong>复制的基本原则</strong></p>
 <ul>
@@ -706,7 +706,7 @@
 <li><code>GRANT REPLICATION SLAVE ON *.* TO &#39;zhangsan&#39; @ &#39;192.168.14.167【从机数据库IP】&#39; IDENTIFIED BY &#39;123456&#39;;</code></li>
 <li>flush privileges;</li>
 <li>查询master的状态<ul>
-<li>show master status<br><img src="/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180140904.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+<li>show master status<br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180140904.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
 <li>记录下File和Position的值</li>
 </ul>
 </li>
@@ -714,7 +714,7 @@
 </ul>
 </li>
 <li>在Linux从机上配置需要复制的主机<ul>
-<li><code>CHANGE MASTER TO MASTER_HOST=&#39;主机IP&#39;, MASTER_USER=&#39;zhangsan&#39;, MASTER_PASSWORD=&#39;123456&#39;, MASTER_LOG_FILE=&#39;file名字&#39;, MASTER_LOG_POS=position数字;</code><br><img src="/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180144867.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>eg<br><img src="/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/d975f4466cb14dca8f625ceb061d7ed9.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+<li><code>CHANGE MASTER TO MASTER_HOST=&#39;主机IP&#39;, MASTER_USER=&#39;zhangsan&#39;, MASTER_PASSWORD=&#39;123456&#39;, MASTER_LOG_FILE=&#39;file名字&#39;, MASTER_LOG_POS=position数字;</code><br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180144867.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>eg<br><img src="/xiechaoxin.github/d975f4466cb14dca8f625ceb061d7ed9.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
 <li>启动从服务器复制功能<ul>
 <li>start slave;</li>
 </ul>
@@ -722,7 +722,7 @@
 <li>show slave status\G【\G是为了以键值的形式显示，好看一些】<ul>
 <li>下面两个参数都是Yes，则说明主从配置成功！</li>
 <li>Slave_IO_Running：Yes</li>
-<li>Slave_SQL_Running：Yes<br><img src="/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180144142.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+<li>Slave_SQL_Running：Yes<br><img src="/xiechaoxin.github/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180144142.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
 </ul>
 </li>
 </ul>
@@ -795,7 +795,7 @@
       
         <div class="license-meta-item">
           <div>Author</div>
-          <div>John Doe</div>
+          <div>Jerry Xie</div>
         </div>
       
       

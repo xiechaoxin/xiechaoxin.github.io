@@ -13,39 +13,39 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Jerry Xie">
   <meta name="keywords" content="">
   
     <meta name="description" content="认证授权基础认证 (Authentication) 和授权 (Authorization)的区别是什么？这是一个绝大多数人都会混淆的问题。首先先从读音上来认识这两个名词，很多人都会把它俩的读音搞混，所以我建议你先先去查一查这两个单词到底该怎么读，他们的具体含义是什么。 说简单点就是：  认证 (Authentication)： 你是谁。 授权 (Authorization)： 你有权限干什么。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="basis-of-authority-certification">
 <meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/system_design/security/basis-of-authority-certification/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="认证授权基础认证 (Authentication) 和授权 (Authorization)的区别是什么？这是一个绝大多数人都会混淆的问题。首先先从读音上来认识这两个名词，很多人都会把它俩的读音搞混，所以我建议你先先去查一查这两个单词到底该怎么读，他们的具体含义是什么。 说简单点就是：  认证 (Authentication)： 你是谁。 授权 (Authorization)： 你有权限干什么。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/basis-of-authority-certification/20210604160908352.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/basis-of-authority-certification/20210604161032412.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/basis-of-authority-certification/RBAC.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/basis-of-authority-certification/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1-%E6%9D%83%E9%99%90.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/basis-of-authority-certification/%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E6%A8%A1%E5%9D%97.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/basis-of-authority-certification/20210615162505880.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/basis-of-authority-certification/session-cookie.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/basis-of-authority-certification/20210615161108272.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/basis-of-authority-certification/jwt.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/basis-of-authority-certification/sso.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/basis-of-authority-certification/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98-fnglfdlgdfj.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/basis-of-authority-certification/20210615151716340.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/20210604160908352.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/20210604161032412.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/RBAC.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1-%E6%9D%83%E9%99%90.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E6%A8%A1%E5%9D%97.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/20210615162505880.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/session-cookie.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/20210615161108272.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/jwt.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/sso.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98-fnglfdlgdfj.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/20210615151716340.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T10:26:11.861Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2022-06-24T10:53:05.611Z">
+<meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="system_design">
 <meta property="article:tag" content="security">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/basis-of-authority-certification/20210604160908352.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/xiechaoxin.github/20210604160908352.png">
   
   
   
-  <title>basis-of-authority-certification - Hexo</title>
+  <title>basis-of-authority-certification - Jerry&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -299,22 +299,22 @@
 <li><strong>Authorization（授权）</strong> 发生在 <strong>Authentication（认证）</strong> 之后。授权嘛，光看意思大家应该就明白，它主要掌管我们访问系统的权限。比如有些特定资源只能具有特定权限的人才能访问比如 admin，有些对系统资源操作比如删除、添加、更新只能特定人才具有。</li>
 </ul>
 <p>认证 ：</p>
-<p><img src="/basis-of-authority-certification/20210604160908352.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/20210604160908352.png" srcset="/img/loading.gif" lazyload></p>
 <p>授权：</p>
-<p><img src="/basis-of-authority-certification/20210604161032412.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/20210604161032412.png" srcset="/img/loading.gif" lazyload></p>
 <p>这两个一般在我们的系统中被结合在一起使用，目的就是为了保护我们系统的安全性。</p>
 <h2 id="RBAC-模型了解吗？"><a href="#RBAC-模型了解吗？" class="headerlink" title="RBAC 模型了解吗？"></a>RBAC 模型了解吗？</h2><p>系统权限控制最常采用的访问控制模型就是 <strong>RBAC 模型</strong> 。</p>
 <p><strong>什么是 RBAC 呢？</strong></p>
 <p>RBAC 即基于角色的权限访问控制（Role-Based Access Control）。这是一种通过角色关联权限，角色同时又关联用户的授权的方式。</p>
 <p>简单地说：一个用户可以拥有若干角色，每一个角色又可以被分配若干权限，这样就构造成“用户-角色-权限” 的授权模型。在这种模型中，用户与角色、角色与权限之间构成了多对多的关系，如下图</p>
-<p><img src="/basis-of-authority-certification/RBAC.png" srcset="/img/loading.gif" lazyload alt="RBAC"></p>
+<p><img src="/xiechaoxin.github/RBAC.png" srcset="/img/loading.gif" lazyload alt="RBAC"></p>
 <p><strong>在 RBAC 中，权限与角色相关联，用户通过成为适当角色的成员而得到这些角色的权限。这就极大地简化了权限的管理。</strong></p>
 <p>本系统的权限设计相关的表如下（一共 5 张表，2 张用户建立表之间的联系）：</p>
-<p><img src="/basis-of-authority-certification/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1-%E6%9D%83%E9%99%90.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1-%E6%9D%83%E9%99%90.png" srcset="/img/loading.gif" lazyload></p>
 <p>通过这个权限模型，我们可以创建不同的角色并为不同的角色分配不同的权限范围（菜单）。</p>
-<p><img src="/basis-of-authority-certification/%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E6%A8%A1%E5%9D%97.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E6%A8%A1%E5%9D%97.png" srcset="/img/loading.gif" lazyload></p>
 <p>通常来说，如果系统对于权限控制要求比较严格的话，一般都会选择使用 RBAC 模型来做权限控制。</p>
-<h2 id="什么是-Cookie-Cookie-的作用是什么"><a href="#什么是-Cookie-Cookie-的作用是什么" class="headerlink" title="什么是 Cookie ? Cookie 的作用是什么?"></a>什么是 Cookie ? Cookie 的作用是什么?</h2><p><img src="/basis-of-authority-certification/20210615162505880.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="什么是-Cookie-Cookie-的作用是什么"><a href="#什么是-Cookie-Cookie-的作用是什么" class="headerlink" title="什么是 Cookie ? Cookie 的作用是什么?"></a>什么是 Cookie ? Cookie 的作用是什么?</h2><p><img src="/xiechaoxin.github/20210615162505880.png" srcset="/img/loading.gif" lazyload></p>
 <p><code>Cookie</code> 和 <code>Session</code> 都是用来跟踪浏览器用户身份的会话方式，但是两者的应用场景不太一样。</p>
 <p>维基百科是这样定义 <code>Cookie</code> 的：</p>
 <blockquote>
@@ -348,7 +348,7 @@
 <li>当用户向后端发起请求的时候会把 <code>SessionID</code> 带上，这样后端就知道你的身份状态了。</li>
 </ol>
 <p>关于这种认证方式更详细的过程如下：</p>
-<p><img src="/basis-of-authority-certification/session-cookie.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/session-cookie.png" srcset="/img/loading.gif" lazyload></p>
 <ol>
 <li>用户向服务器发送用户名、密码、验证码用于登陆系统。</li>
 <li>服务器验证通过后，服务器为用户创建一个 <code>Session</code>，并将 <code>Session</code> 信息存储起来。</li>
@@ -386,7 +386,7 @@
 <p>上面也提到过，进行 <code>Session</code> 认证的时候，我们一般使用 <code>Cookie</code> 来存储 <code>SessionId</code>,当我们登陆后后端生成一个 <code>SessionId</code> 放在 Cookie 中返回给客户端，服务端通过 Redis 或者其他存储工具记录保存着这个 <code>SessionId</code>，客户端登录以后每次请求都会带上这个 <code>SessionId</code>，服务端通过这个 <code>SessionId</code> 来标示你这个人。如果别人通过 <code>Cookie</code> 拿到了 <code>SessionId</code> 后就可以代替你的身份访问系统了。</p>
 <p><code>Session</code> 认证中 <code>Cookie</code> 中的 <code>SessionId</code> 是由浏览器发送到服务端的，借助这个特性，攻击者就可以通过让用户误点攻击链接，达到攻击效果。</p>
 <p>但是，我们使用 <code>Token</code> 的话就不会存在这个问题，在我们登录成功获得 <code>Token</code> 之后，一般会选择存放在 <code>localStorage</code> （浏览器本地存储）中。然后我们在前端通过某些方式会给每个发到后端的请求加上这个 <code>Token</code>,这样就不会出现 CSRF 漏洞的问题。因为，即使有个你点击了非法链接发送了请求到服务端，这个非法请求是不会携带 <code>Token</code> 的，所以这个请求将是非法的。</p>
-<p><img src="/basis-of-authority-certification/20210615161108272.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/20210615161108272.png" srcset="/img/loading.gif" lazyload></p>
 <p>需要注意的是不论是 <code>Cookie</code> 还是 <code>Token</code> 都无法避免 <strong>跨站脚本攻击（Cross Site Scripting）XSS</strong> 。</p>
 <blockquote>
 <p>跨站脚本攻击（Cross Site Scripting）缩写为 CSS 但这会与层叠样式表（Cascading Style Sheets，CSS）的缩写混淆。因此，有人将跨站脚本攻击缩写为 XSS。</p>
@@ -407,7 +407,7 @@
 <li><strong>Signature（签名）</strong> ：服务器通过<code>Payload</code>、<code>Header</code>和一个密钥(<code>secret</code>)使用 <code>Header</code> 里面指定的签名算法（默认是 HMAC SHA256）生成。</li>
 </ol>
 <h2 id="如何基于-Token-进行身份验证？"><a href="#如何基于-Token-进行身份验证？" class="headerlink" title="如何基于 Token 进行身份验证？"></a>如何基于 Token 进行身份验证？</h2><p>在基于 Token 进行身份验证的的应用程序中，服务器通过<code>Payload</code>、<code>Header</code>和一个密钥(<code>secret</code>)创建令牌（<code>Token</code>）并将 <code>Token</code> 发送给客户端，客户端将 <code>Token</code> 保存在 Cookie 或者 localStorage 里面，以后客户端发出的所有请求都会携带这个令牌。你可以把它放在 Cookie 里面自动发送，但是这样不能跨域，所以更好的做法是放在 HTTP Header 的 Authorization 字段中：<code>Authorization: Bearer Token</code>。</p>
-<p><img src="/basis-of-authority-certification/jwt.png" srcset="/img/loading.gif" lazyload alt="jwt"></p>
+<p><img src="/xiechaoxin.github/jwt.png" srcset="/img/loading.gif" lazyload alt="jwt"></p>
 <ol>
 <li>用户向服务器发送用户名和密码用于登陆系统。</li>
 <li>身份验证服务响应并返回了签名的 JWT，上面包含了用户是谁的内容。</li>
@@ -415,15 +415,15 @@
 <li>服务端检查 JWT 并从中获取用户相关信息。</li>
 </ol>
 <h2 id="什么是-SSO"><a href="#什么是-SSO" class="headerlink" title="什么是 SSO?"></a>什么是 SSO?</h2><p>SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中一个就有权访问与其相关的其他系统。举个例子我们在登陆了京东金融之后，我们同时也成功登陆京东的京东超市、京东国际、京东生鲜等子系统。</p>
-<p><img src="/basis-of-authority-certification/sso.png" srcset="/img/loading.gif" lazyload alt="sso"></p>
+<p><img src="/xiechaoxin.github/sso.png" srcset="/img/loading.gif" lazyload alt="sso"></p>
 <h2 id="什么是-OAuth-2-0？"><a href="#什么是-OAuth-2-0？" class="headerlink" title="什么是 OAuth 2.0？"></a>什么是 OAuth 2.0？</h2><p>OAuth 是一个行业的标准授权协议，主要用来授权第三方应用获取有限的权限。而 OAuth 2.0 是对 OAuth 1.0 的完全重新设计，OAuth 2.0 更快，更容易实现，OAuth 1.0 已经被废弃。详情请见：<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc6749">rfc6749</a>。</p>
 <p>实际上它就是一种授权机制，它的最终目的是为第三方应用颁发一个有时效性的令牌 Token，使得第三方应用能够通过该令牌获取相关的资源。</p>
 <p>OAuth 2.0 比较常用的场景就是第三方登录，当你的网站接入了第三方登录的时候一般就是使用的 OAuth 2.0 协议。</p>
 <p>另外，现在 OAuth 2.0 也常见于支付场景（微信支付、支付宝支付）和开发平台（微信开放平台、阿里开放平台等等）。</p>
 <p>微信支付账户相关参数：</p>
-<p><img src="/basis-of-authority-certification/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98-fnglfdlgdfj.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98-fnglfdlgdfj.png" srcset="/img/loading.gif" lazyload></p>
 <p>下图是 <a target="_blank" rel="noopener" href="https://api.slack.com/legacy/oauth">Slack OAuth 2.0 第三方登录</a>的示意图：</p>
-<p><img src="/basis-of-authority-certification/20210615151716340.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/20210615151716340.png" srcset="/img/loading.gif" lazyload></p>
 <p><strong>推荐阅读：</strong></p>
 <ul>
 <li><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2019/04/oauth_design.html">OAuth 2.0 的一个简单解释</a></li>
@@ -492,7 +492,7 @@
       
         <div class="license-meta-item">
           <div>Author</div>
-          <div>John Doe</div>
+          <div>Jerry Xie</div>
         </div>
       
       

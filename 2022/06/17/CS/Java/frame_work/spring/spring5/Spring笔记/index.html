@@ -13,19 +13,19 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Jerry Xie">
   <meta name="keywords" content="">
   
     <meta name="description" content="spring全家桶：spring ， springmvc ，spring boot , spring cloud  [TOC] 介绍  spring: 出现是在2002左右，解决企业开发的难度。减轻对项目模块之间的管理，          类和类之间的管理， 帮助开发人员创建对象，管理对象之间的关系。             spring核心技术 ioc ， aop 。能实现模块之间，类之间的解耦">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring笔记">
 <meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/spring5/Spring%E7%AC%94%E8%AE%B0/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="spring全家桶：spring ， springmvc ，spring boot , spring cloud  [TOC] 介绍  spring: 出现是在2002左右，解决企业开发的难度。减轻对项目模块之间的管理，          类和类之间的管理， 帮助开发人员创建对象，管理对象之间的关系。             spring核心技术 ioc ， aop 。能实现模块之间，类之间的解耦">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T10:26:10.677Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2022-06-24T10:53:04.359Z">
+<meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="frame_work">
 <meta property="article:tag" content="spring">
@@ -34,7 +34,7 @@
   
   
   
-  <title>Spring笔记 - Hexo</title>
+  <title>Spring笔记 - Jerry&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -304,7 +304,7 @@
 <li><p>创建类继承HttpServelt </p>
 </li>
 <li><p>在web.xml 注册servlet ， 使用</p>
-<p><servlet-name> myservlet </servlet-name><br><servelt-class>com.bjpwernode.controller.MyServlet1</servlet-class></p>
+<p><servlet-name> myservlet </servlet-name><br><servelt-class>com.bjpwernode.controller.MyServlet1</servelt-class></p>
 <pre><code class="hljs">3. 没有创建 Servlet对象， 没有 MyServlet myservlet = new MyServlet()
 
     4. Servlet 是Tomcat服务器它能你创建的。 Tomcat也称为容器
@@ -365,17 +365,17 @@
 <p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
 <h2 id="第四章：-把mybatis框架和spring集成在一起，向一个框架一样使用。"><a href="#第四章：-把mybatis框架和spring集成在一起，向一个框架一样使用。" class="headerlink" title="第四章： 把mybatis框架和spring集成在一起，向一个框架一样使用。"></a>第四章： 把mybatis框架和spring集成在一起，向一个框架一样使用。</h2><p>用的技术是：ioc 。<br>为什么ioc：能把mybatis和spring集成在一起，像一个框架， 是因为ioc能创建对象。<br> 可以把mybatis框架中的对象交给spring统一创建， 开发人员从spring中获取对象。<br> 开发人员就不用同时面对两个或多个框架了， 就面对一个spring</p>
 <p>mybatis使用步骤，对象<br>1.定义dao接口 ，StudentDao<br>2.定义mapper文件 StudentDao.xml<br>3.定义mybatis的主配置文件 mybatis.xml<br>4.创建dao的代理对象， StudentDao dao &#x3D; SqlSession.getMapper(StudentDao.class);</p>
-<p>   List<Student> students  &#x3D; dao.selectStudents();</p>
+<p>   List<Student> students  &#x3D; dao.selectStudents();</Student></p>
 <p>要使用dao对象，需要使用getMapper()方法，<br>怎么能使用getMapper()方法，需要哪些条件<br>1.获取SqlSession对象， 需要使用SqlSessionFactory的openSession()方法。<br>2.创建SqlSessionFactory对象。 通过读取mybatis的主配置文件，能创建SqlSessionFactory对象</p>
 <p>需要SqlSessionFactory对象， 使用Factory能获取SqlSession ，有了SqlSession就能有dao ， 目的就是获取dao对象<br>Factory创建需要读取主配置文件</p>
 <p>我们会使用独立的连接池类替换mybatis默认自己带的， 把连接池类也交给spring创建。</p>
-<p>主配置文件：<br> 1.数据库信息<br> <environment id="mydev"><br>            <transactionManager type="JDBC"/><br>            <dataSource type="POOLED"><br>                <!--数据库的驱动类名--><br>                <property name="driver" value="com.mysql.jdbc.Driver"/><br>                <!--连接数据库的url字符串--><br>                <property name="url" value="jdbc:mysql://localhost:3306/springdb"/><br>                <!--访问数据库的用户名--><br>                <property name="username" value="root"/><br>                <!--密码--><br>                <property name="password" value="123456"/><br>            </dataSource><br>2. mapper文件的位置<br>   <mappers><br>        <mapper resource="com/bjpowernode/dao/StudentDao.xml"/><br>        <!--<mapper resource="com/bjpowernode/dao/SchoolDao.xml" />--><br>    </mappers></p>
+<p>主配置文件：<br> 1.数据库信息<br> <environment id="mydev"><br>            <transactionManager type="JDBC"><br>            <dataSource type="POOLED"><br>                <!--数据库的驱动类名--><br>                <property name="driver" value="com.mysql.jdbc.Driver"><br>                <!--连接数据库的url字符串--><br>                <property name="url" value="jdbc:mysql://localhost:3306/springdb"><br>                <!--访问数据库的用户名--><br>                <property name="username" value="root"><br>                <!--密码--><br>                <property name="password" value="123456"><br>            </property></property></property></property></dataSource><br>2. mapper文件的位置<br>   <mappers><br>        <mapper resource="com/bjpowernode/dao/StudentDao.xml"><br>        <!--<mapper resource="com/bjpowernode/dao/SchoolDao.xml" />--><br>    </mapper></mappers></transactionManager></environment></p>
 <hr>
 <p>通过以上的说明，我们需要让spring创建以下对象<br>1.独立的连接池类的对象， 使用阿里的druid连接池<br>2.SqlSessionFactory对象<br>3.创建出dao对象</p>
 <p>需要学习就是上面三个对象的创建语法，使用xml的bean标签。</p>
-<p>连接池：多个连接Connection对象的集合， List<Connection>  connlist : connList就是连接池</p>
+<p>连接池：多个连接Connection对象的集合， List<Connection>  connlist : connList就是连接池</Connection></p>
 <p>通常使用Connection访问数据库<br>Connection conn &#x3D;DriverManger.getConnection(url,username,password);<br>Statemenet stmt &#x3D; conn.createStatement(sql);<br>stmt.executeQuery();<br>conn.close();</p>
-<p>使用连接池<br>在程序启动的时候，先创建一些Connection<br>Connection c1 &#x3D; …<br>Connection c2 &#x3D; …<br>Connection c3 &#x3D; …<br>List<Connection>  connlist &#x3D; new ArrayLits();<br>connList.add(c1);<br>connList.add(c2);<br>connList.add(c3);</p>
+<p>使用连接池<br>在程序启动的时候，先创建一些Connection<br>Connection c1 &#x3D; …<br>Connection c2 &#x3D; …<br>Connection c3 &#x3D; …<br>List<Connection>  connlist &#x3D; new ArrayLits();<br>connList.add(c1);<br>connList.add(c2);<br>connList.add(c3);</Connection></p>
 <p>Connection conn &#x3D; connList.get(0);<br>Statemenet stmt &#x3D; conn.createStatement(sql);<br>stmt.executeQuery();<br>把使用过的connection放回到连接池<br>connList.add(conn);</p>
 <p>Connection conn1 &#x3D; connList.get(1);<br>Statemenet stmt &#x3D; conn1.createStatement(sql);<br>stmt.executeQuery();<br>把使用过的connection放回到连接池<br>connList.add(conn1);</p>
 <hr>
@@ -390,7 +390,7 @@
 <p>6.处理事务，需要怎么做，做什么<br>  spring处理事务的模型，使用的步骤都是固定的。把事务使用的信息提供给spring就可以了</p>
 <p>  1 事务内部提交，回滚事务，使用的事务管理器对象，代替你完成commit，rollback<br>     事务管理器是一个接口和他的众多实现类。<br>      接口：PlatformTransactionManager ，定义了事务重要方法 commit ，rollback<br>      实现类：spring把每一种数据库访问技术对应的事务处理类都创建好了。<br>               mybatis访问数据库—spring创建好的是DataSourceTransactionManager<br>                  hibernate访问数据库—-spring创建的是HibernateTransactionManager</p>
 <blockquote>
-<p> 怎么使用：你需要告诉spring 你用是那种数据库的访问技术，怎么告诉spring呢？<br>  声明数据库访问技术对于的事务管理器实现类， 在spring的配置文件中使用<bean>声明就可以了<br>  例如，你要使用mybatis访问数据库，你应该在xml配置文件中<br>  &lt;bean id&#x3D;“xxx” class&#x3D;”…DataSourceTransactionManager”&gt; </p>
+<p> 怎么使用：你需要告诉spring 你用是那种数据库的访问技术，怎么告诉spring呢？<br>  声明数据库访问技术对于的事务管理器实现类， 在spring的配置文件中使用<bean>声明就可以了<br>  例如，你要使用mybatis访问数据库，你应该在xml配置文件中<br>  &lt;bean id&#x3D;“xxx” class&#x3D;”…DataSourceTransactionManager”&gt; </bean></p>
 </blockquote>
 <p>  2 你的业务方法需要什么样的事务，说明需要事务的类型。<br>     说明方法需要的事务：</p>
 <p>​	1）事务的隔离级别：有4个值。<br>​		DEFAULT：采用 DB 默认的事务隔离级别。MySql 的默认为 REPEATABLE_READ； Oracle默认为 READ_COMMITTED。<br>​		➢ READ_UNCOMMITTED：读未提交。未解决任何并发问题。<br>​		➢ READ_COMMITTED：读已提交。解决脏读，存在不可重复读与幻读。<br>​		➢ REPEATABLE_READ：可重复读。解决脏读、不可重复读，存在幻读<br>​		➢ SERIALIZABLE：串行化。不存在并发问题。</p>
@@ -405,11 +405,11 @@
 <ol start="3">
 <li>当你的业务方法抛出非运行时异常， 主要是受查异常时，提交事务<br>受查异常：在你写代码中，必须处理的异常。例如IOException, SQLException</li>
 </ol>
-<p>总结spring的事务<br>  1.管理事务的是 事务管理和他的实现类<br>  2.spring的事务是一个统一模型<br>     1）指定要使用的事务管理器实现类，使用<bean><br>      2）指定哪些类，哪些方法需要加入事务的功能<br>      3）指定方法需要的隔离级别，传播行为，超时</p>
+<p>总结spring的事务<br>  1.管理事务的是 事务管理和他的实现类<br>  2.spring的事务是一个统一模型<br>     1）指定要使用的事务管理器实现类，使用<bean><br>      2）指定哪些类，哪些方法需要加入事务的功能<br>      3）指定方法需要的隔离级别，传播行为，超时</bean></p>
 <pre><code class="hljs">  你需要告诉spring，你的项目中类信息，方法的名称，方法的事务传播行为。
 </code></pre>
 <p>spring框架中提供的事务处理方案<br>1.适合中小项目使用的， 注解方案。<br>  spring框架自己用aop实现给业务方法增加事务的功能， 使用@Transactional注解增加事务。<br>  @Transactional注解是spring框架自己注解，放在public方法的上面，表示当前方法具有事务。<br>  可以给注解的属性赋值，表示具体的隔离级别，传播行为，异常信息等等</p>
-<p>  使用@Transactional的步骤：<br>  1.需要声明事务管理器对象<br>    <bean id="xx" class="DataSourceTransactionManager"></p>
+<p>  使用@Transactional的步骤：<br>  1.需要声明事务管理器对象<br>    <bean id="xx" class="DataSourceTransactionManager"></bean></p>
 <p>  2.开启事务注解驱动， 告诉spring框架，我要使用注解的方式管理事务。<br>    spring使用aop机制，创建@Transactional所在的类代理对象，给方法加入事务的功能。<br>    spring给业务方法加入事务：<br>        在你的业务方法执行之前，先开启事务，在业务方法之后提交或回滚事务，使用aop的环绕通知</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Around(&quot;你要增加的事务功能的业务方法名称&quot;)</span><br>Object <span class="hljs-title function_">myAround</span><span class="hljs-params">()</span>&#123;<br>     开启事务，spring给你开启<br>  <span class="hljs-keyword">try</span>&#123;<br>     buy(<span class="hljs-number">1001</span>,<span class="hljs-number">10</span>);<br>	  spring的事务管理器.commit();<br>  &#125;<span class="hljs-keyword">catch</span>(Exception e)&#123;<br>       spring的事务管理器.rollback();<br>  &#125;<br> <br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -535,7 +535,7 @@ WebApplicationContext：web项目中的使用的容器对象
       
         <div class="license-meta-item">
           <div>Author</div>
-          <div>John Doe</div>
+          <div>Jerry Xie</div>
         </div>
       
       

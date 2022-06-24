@@ -13,28 +13,28 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Jerry Xie">
   <meta name="keywords" content="">
   
     <meta name="description" content="C 字符串在 C 语言中，字符串实际上是使用空字符 \0 结尾的一维字符数组。因此，\0 是用于标记字符串的结束。 空字符（Null character）又称结束符，缩写 NUL，是一个数值为 0 的控制字符，\0 是转义字符，意思是告诉编译器，这不是字符 0，而是空字符。 下面的声明和初始化创建了一个 RUNOOB 字符串。由于在数组的末尾存储了空字符 \0，所以字符数组的大小比单词 RUNOO">
 <meta property="og:type" content="article">
 <meta property="og:title" content="18-字符串">
 <meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/C/runoob-C-program/18-%E5%AD%97%E7%AC%A6%E4%B8%B2/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="C 字符串在 C 语言中，字符串实际上是使用空字符 \0 结尾的一维字符数组。因此，\0 是用于标记字符串的结束。 空字符（Null character）又称结束符，缩写 NUL，是一个数值为 0 的控制字符，\0 是转义字符，意思是告诉编译器，这不是字符 0，而是空字符。 下面的声明和初始化创建了一个 RUNOOB 字符串。由于在数组的末尾存储了空字符 \0，所以字符数组的大小比单词 RUNOO">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/18-%E5%AD%97%E7%AC%A6%E4%B8%B2/c-strings-2020-12-21.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/c-strings-2020-12-21.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T10:26:10.401Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2022-06-24T10:53:04.071Z">
+<meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="C">
 <meta property="article:tag" content="runoob-C-program">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/18-%E5%AD%97%E7%AC%A6%E4%B8%B2/c-strings-2020-12-21.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/xiechaoxin.github/c-strings-2020-12-21.png">
   
   
   
-  <title>18-字符串 - Hexo</title>
+  <title>18-字符串 - Jerry&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -285,7 +285,7 @@
 <figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">char site[] <span class="hljs-operator">=</span> <span class="hljs-string">&quot;RUNOOB&quot;</span><span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
 
 <p>以下是 C&#x2F;C++ 中定义的字符串的内存表示：</p>
-<p><img src="/18-%E5%AD%97%E7%AC%A6%E4%B8%B2/c-strings-2020-12-21.png" srcset="/img/loading.gif" lazyload alt="C/C++ 中的字符串表示"></p>
+<p><img src="/xiechaoxin.github/c-strings-2020-12-21.png" srcset="/img/loading.gif" lazyload alt="C/C++ 中的字符串表示"></p>
 <p>其实，您不需要把 <strong>null</strong> 字符放在字符串常量的末尾。C 编译器会在初始化数组时，自动把 <strong>\0</strong> 放在字符串的末尾。让我们尝试输出上面的字符串：</p>
 <h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br> <br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span> <span class="hljs-params">()</span><br>&#123;<br>   <span class="hljs-type">char</span> site[<span class="hljs-number">7</span>] = &#123;<span class="hljs-string">&#x27;R&#x27;</span>, <span class="hljs-string">&#x27;U&#x27;</span>, <span class="hljs-string">&#x27;N&#x27;</span>, <span class="hljs-string">&#x27;O&#x27;</span>, <span class="hljs-string">&#x27;O&#x27;</span>, <span class="hljs-string">&#x27;B&#x27;</span>, <span class="hljs-string">&#x27;\0&#x27;</span>&#125;;<br> <br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;菜鸟教程: %s\n&quot;</span>, site );<br> <br>   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -397,7 +397,7 @@
       
         <div class="license-meta-item">
           <div>Author</div>
-          <div>John Doe</div>
+          <div>Jerry Xie</div>
         </div>
       
       

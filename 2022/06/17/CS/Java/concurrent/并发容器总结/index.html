@@ -13,30 +13,30 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Jerry Xie">
   <meta name="keywords" content="">
   
     <meta name="description" content="title:  JDK 提供的并发容器总结category: Javatag:  Java并发   JDK 提供的这些容器大部分在 java.util.concurrent 包中。  ConcurrentHashMap : 线程安全的 HashMap CopyOnWriteArrayList : 线程安全的 List，在读多写少的场合性能非常好，远远好于 Vector。 ConcurrentLi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="并发容器总结">
 <meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/concurrent/%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8%E6%80%BB%E7%BB%93/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="title:  JDK 提供的并发容器总结category: Javatag:  Java并发   JDK 提供的这些容器大部分在 java.util.concurrent 包中。  ConcurrentHashMap : 线程安全的 HashMap CopyOnWriteArrayList : 线程安全的 List，在读多写少的场合性能非常好，远远好于 Vector。 ConcurrentLi">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8%E6%80%BB%E7%BB%93/51622268.jpg">
-<meta property="og:image" content="https://xiechaoxin.github.io/%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8%E6%80%BB%E7%BB%93/93666217.jpg">
-<meta property="og:image" content="https://xiechaoxin.github.io/%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8%E6%80%BB%E7%BB%93/32005738.jpg">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/51622268.jpg">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/93666217.jpg">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/32005738.jpg">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T10:26:10.561Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2022-06-24T10:53:04.243Z">
+<meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="concurrent">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8%E6%80%BB%E7%BB%93/51622268.jpg">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/xiechaoxin.github/51622268.jpg">
   
   
   
-  <title>并发容器总结 - Hexo</title>
+  <title>并发容器总结 - Jerry&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -313,7 +313,7 @@
 <p><code>ConcurrentLinkedQueue</code> 适合在对性能要求相对较高，同时对队列的读写存在多个线程同时进行的场景，即如果对队列加锁的成本较高则适合使用无锁的 <code>ConcurrentLinkedQueue</code> 来替代。</p>
 <h2 id="BlockingQueue"><a href="#BlockingQueue" class="headerlink" title="BlockingQueue"></a>BlockingQueue</h2><h3 id="BlockingQueue-简介"><a href="#BlockingQueue-简介" class="headerlink" title="BlockingQueue 简介"></a>BlockingQueue 简介</h3><p>上面我们己经提到了 <code>ConcurrentLinkedQueue</code> 作为高性能的非阻塞队列。下面我们要讲到的是阻塞队列——<code>BlockingQueue</code>。阻塞队列（<code>BlockingQueue</code>）被广泛使用在“生产者-消费者”问题中，其原因是 <code>BlockingQueue</code> 提供了可阻塞的插入和移除的方法。当队列容器已满，生产者线程会被阻塞，直到队列未满；当队列容器为空时，消费者线程会被阻塞，直至队列非空时为止。</p>
 <p><code>BlockingQueue</code> 是一个接口，继承自 <code>Queue</code>，所以其实现类也可以作为 <code>Queue</code> 的实现来使用，而 <code>Queue</code> 又继承自 <code>Collection</code> 接口。下面是 <code>BlockingQueue</code> 的相关实现类：</p>
-<p><img src="/%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8%E6%80%BB%E7%BB%93/51622268.jpg" srcset="/img/loading.gif" lazyload alt="BlockingQueue 的实现类"></p>
+<p><img src="/xiechaoxin.github/51622268.jpg" srcset="/img/loading.gif" lazyload alt="BlockingQueue 的实现类"></p>
 <p>下面主要介绍一下 3 个常见的 <code>BlockingQueue</code> 的实现类：<code>ArrayBlockingQueue</code>、<code>LinkedBlockingQueue</code> 、<code>PriorityBlockingQueue</code> 。</p>
 <h3 id="ArrayBlockingQueue"><a href="#ArrayBlockingQueue" class="headerlink" title="ArrayBlockingQueue"></a>ArrayBlockingQueue</h3><p><code>ArrayBlockingQueue</code> 是 <code>BlockingQueue</code> 接口的有界队列实现类，底层采用数组来实现。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ArrayBlockingQueue</span>&lt;E&gt;<br><span class="hljs-keyword">extends</span> <span class="hljs-title class_">AbstractQueue</span>&lt;E&gt;<br><span class="hljs-keyword">implements</span> <span class="hljs-title class_">BlockingQueue</span>&lt;E&gt;, Serializable&#123;&#125;<br></code></pre></td></tr></table></figure>
@@ -334,10 +334,10 @@
 <p>为了引出 <code>ConcurrentSkipListMap</code>，先带着大家简单理解一下跳表。</p>
 <p>对于一个单链表，即使链表是有序的，如果我们想要在其中查找某个数据，也只能从头到尾遍历链表，这样效率自然就会很低，跳表就不一样了。跳表是一种可以用来快速查找的数据结构，有点类似于平衡树。它们都可以对元素进行快速的查找。但一个重要的区别是：对平衡树的插入和删除往往很可能导致平衡树进行一次全局的调整。而对跳表的插入和删除只需要对整个数据结构的局部进行操作即可。这样带来的好处是：在高并发的情况下，你会需要一个全局锁来保证整个平衡树的线程安全。而对于跳表，你只需要部分锁即可。这样，在高并发环境下，你就可以拥有更好的性能。而就查询的性能而言，跳表的时间复杂度也是 <strong>O(logn)</strong> 所以在并发数据结构中，JDK 使用跳表来实现一个 Map。</p>
 <p>跳表的本质是同时维护了多个链表，并且链表是分层的，</p>
-<p><img src="/%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8%E6%80%BB%E7%BB%93/93666217.jpg" srcset="/img/loading.gif" lazyload alt="2级索引跳表"></p>
+<p><img src="/xiechaoxin.github/93666217.jpg" srcset="/img/loading.gif" lazyload alt="2级索引跳表"></p>
 <p>最低层的链表维护了跳表内所有的元素，每上面一层链表都是下面一层的子集。</p>
 <p>跳表内的所有链表的元素都是排序的。查找时，可以从顶级链表开始找。一旦发现被查找的元素大于当前链表中的取值，就会转入下一层链表继续找。这也就是说在查找过程中，搜索是跳跃式的。如上图所示，在跳表中查找元素 18。</p>
-<p><img src="/%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8%E6%80%BB%E7%BB%93/32005738.jpg" srcset="/img/loading.gif" lazyload alt="在跳表中查找元素18"></p>
+<p><img src="/xiechaoxin.github/32005738.jpg" srcset="/img/loading.gif" lazyload alt="在跳表中查找元素18"></p>
 <p>查找 18 的时候原来需要遍历 18 次，现在只需要 7 次即可。针对链表长度比较大的时候，构建索引查找效率的提升就会非常明显。</p>
 <p>从上面很容易看出，<strong>跳表是一种利用空间换时间的算法。</strong></p>
 <p>使用跳表实现 <code>Map</code> 和使用哈希算法实现 <code>Map</code> 的另外一个不同之处是：哈希并不会保存元素的顺序，而跳表内所有的元素都是排序的。因此在对跳表进行遍历时，你会得到一个有序的结果。所以，如果你的应用需要有序性，那么跳表就是你不二的选择。JDK 中实现这一数据结构的类是 <code>ConcurrentSkipListMap</code>。</p>
@@ -407,7 +407,7 @@
       
         <div class="license-meta-item">
           <div>Author</div>
-          <div>John Doe</div>
+          <div>Jerry Xie</div>
         </div>
       
       

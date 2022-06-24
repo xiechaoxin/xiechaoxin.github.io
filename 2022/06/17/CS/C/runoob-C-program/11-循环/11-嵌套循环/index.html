@@ -13,31 +13,31 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Jerry Xie">
   <meta name="keywords" content="">
   
     <meta name="description" content="C 嵌套循环C 语言允许在一个循环内使用另一个循环，下面演示几个实例来说明这个概念。 语法C 语言中 嵌套 for 循环 语句的语法： 12345678910for (initialization; condition; increment&#x2F;decrement)&amp;#123;    statement(s);    for (initialization; condition; increment&#x2F;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="11-嵌套循环">
 <meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/C/runoob-C-program/11-%E5%BE%AA%E7%8E%AF/11-%E5%B5%8C%E5%A5%97%E5%BE%AA%E7%8E%AF/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="C 嵌套循环C 语言允许在一个循环内使用另一个循环，下面演示几个实例来说明这个概念。 语法C 语言中 嵌套 for 循环 语句的语法： 12345678910for (initialization; condition; increment&#x2F;decrement)&amp;#123;    statement(s);    for (initialization; condition; increment&#x2F;">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/11-%E5%B5%8C%E5%A5%97%E5%BE%AA%E7%8E%AF/c-nested-loops-20200922-1.svg">
-<meta property="og:image" content="https://xiechaoxin.github.io/11-%E5%B5%8C%E5%A5%97%E5%BE%AA%E7%8E%AF/c-nested-loops-20200922-2.svg">
-<meta property="og:image" content="https://xiechaoxin.github.io/11-%E5%B5%8C%E5%A5%97%E5%BE%AA%E7%8E%AF/c-nested-loops-20200922-3.svg">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/c-nested-loops-20200922-1.svg">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/c-nested-loops-20200922-2.svg">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/c-nested-loops-20200922-3.svg">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T10:26:10.401Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2022-06-24T10:53:04.067Z">
+<meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="C">
 <meta property="article:tag" content="runoob-C-program">
 <meta property="article:tag" content="11-循环">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/11-%E5%B5%8C%E5%A5%97%E5%BE%AA%E7%8E%AF/c-nested-loops-20200922-1.svg">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/xiechaoxin.github/c-nested-loops-20200922-1.svg">
   
   
   
-  <title>11-嵌套循环 - Hexo</title>
+  <title>11-嵌套循环 - Jerry&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -284,17 +284,17 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">for</span> (initialization; condition; increment/decrement)<br>&#123;<br>    statement(s);<br>    <span class="hljs-keyword">for</span> (initialization; condition; increment/decrement)<br>    &#123;<br>        statement(s);c<br>        ... ... ...<br>    &#125;<br>    ... ... ...<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>流程图：</p>
-<p><img src="/11-%E5%B5%8C%E5%A5%97%E5%BE%AA%E7%8E%AF/c-nested-loops-20200922-1.svg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/xiechaoxin.github/c-nested-loops-20200922-1.svg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>C 语言中 <strong>嵌套 while 循环</strong> 语句的语法：</p>
 <figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs lasso"><span class="hljs-keyword">while</span> (condition1)<br>&#123;<br>    statement(s);<br>    <span class="hljs-keyword">while</span> (condition2)<br>    &#123;<br>        statement(s);<br>        <span class="hljs-params">...</span> <span class="hljs-params">...</span> <span class="hljs-params">...</span><br>    &#125;<br>    <span class="hljs-params">...</span> <span class="hljs-params">...</span> <span class="hljs-params">...</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>流程图：</p>
-<p><img src="/11-%E5%B5%8C%E5%A5%97%E5%BE%AA%E7%8E%AF/c-nested-loops-20200922-2.svg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/xiechaoxin.github/c-nested-loops-20200922-2.svg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>C 语言中 <strong>嵌套 do…while 循环</strong> 语句的语法：</p>
 <figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs lasso"><span class="hljs-keyword">do</span><br>&#123;<br>    statement(s);<br>    <span class="hljs-keyword">do</span><br>    &#123;<br>        statement(s);<br>        <span class="hljs-params">...</span> <span class="hljs-params">...</span> <span class="hljs-params">...</span><br>    &#125;<span class="hljs-keyword">while</span> (condition2);<br>    <span class="hljs-params">...</span> <span class="hljs-params">...</span> <span class="hljs-params">...</span><br>&#125;<span class="hljs-keyword">while</span> (condition1);<br></code></pre></td></tr></table></figure>
 
 <p>流程图：</p>
-<p><img src="/11-%E5%B5%8C%E5%A5%97%E5%BE%AA%E7%8E%AF/c-nested-loops-20200922-3.svg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/xiechaoxin.github/c-nested-loops-20200922-3.svg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>关于嵌套循环有一点值得注意，您可以在任何类型的循环内嵌套其他任何类型的循环。比如，一个 for 循环可以嵌套在一个 while 循环内，反之亦然。</p>
 <h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>下面的程序使用了一个嵌套的 for 循环来查找 2 到 100 中的质数：</p>
 <h2 id="for-嵌套实例"><a href="#for-嵌套实例" class="headerlink" title="for 嵌套实例"></a>for 嵌套实例</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br> <br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span> <span class="hljs-params">()</span><br>&#123;<br>   <span class="hljs-comment">/* 局部变量定义 */</span><br>   <span class="hljs-type">int</span> i, j;<br>   <br>   <span class="hljs-keyword">for</span>(i=<span class="hljs-number">2</span>; i&lt;<span class="hljs-number">100</span>; i++) &#123;<br>      <span class="hljs-keyword">for</span>(j=<span class="hljs-number">2</span>; j &lt;= (i/j); j++)<br>        <span class="hljs-keyword">if</span>(!(i%j)) <span class="hljs-keyword">break</span>; <span class="hljs-comment">// 如果找到，则不是质数</span><br>      <span class="hljs-keyword">if</span>(j &gt; (i/j)) <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d 是质数\n&quot;</span>, i);<br>   &#125;<br> <br>   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -387,7 +387,7 @@
       
         <div class="license-meta-item">
           <div>Author</div>
-          <div>John Doe</div>
+          <div>Jerry Xie</div>
         </div>
       
       

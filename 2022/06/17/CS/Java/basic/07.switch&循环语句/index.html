@@ -13,31 +13,31 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Jerry Xie">
   <meta name="keywords" content="">
   
     <meta name="description" content="1、流程控制语句（应用）在一个程序执行的过程中，各条语句的执行顺序对程序的结果是有直接影响的。所以，我们必须清楚每条语句的执行流程。而且，很多时候要通过控制语句的执行顺序来实现我们想要的功能。 1.1 流程控制语句分类​	顺序结构 ​	分支结构(if, switch) ​	循环结构(for, while, do…while) 1.2 顺序结构顺序结构是程序中最简单最基本的流程控制，没有特定的语法结">
 <meta property="og:type" content="article">
 <meta property="og:title" content="07.switch&amp;循环语句">
 <meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/basic/07.switch&%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="1、流程控制语句（应用）在一个程序执行的过程中，各条语句的执行顺序对程序的结果是有直接影响的。所以，我们必须清楚每条语句的执行流程。而且，很多时候要通过控制语句的执行顺序来实现我们想要的功能。 1.1 流程控制语句分类​	顺序结构 ​	分支结构(if, switch) ​	循环结构(for, while, do…while) 1.2 顺序结构顺序结构是程序中最简单最基本的流程控制，没有特定的语法结">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/07.switch&%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5/1545615769372.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/07.switch&%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5/1545616039363.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/07.switch&%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5/1545616221283.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/07.switch&%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5/1545616667104.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/basic/07/1545615769372.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/basic/07/1545616039363.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/basic/07/1545616221283.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/basic/07/1545616667104.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T10:26:10.505Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2022-06-24T10:53:04.179Z">
+<meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="basic">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/07.switch&%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5/1545615769372.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/basic/07/1545615769372.png">
   
   
   
-  <title>07.switch&amp;循环语句 - Hexo</title>
+  <title>07.switch&amp;循环语句 - Jerry&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -285,7 +285,7 @@
 <p>​	循环结构(for, while, do…while)</p>
 <h3 id="1-2-顺序结构"><a href="#1-2-顺序结构" class="headerlink" title="1.2 顺序结构"></a>1.2 顺序结构</h3><p>顺序结构是程序中最简单最基本的流程控制，没有特定的语法结构，按照代码的先后顺序，依次执行，程序中大多数的代码都是这样执行的。</p>
 <p>顺序结构执行流程图：</p>
-<p><img src="/07.switch&%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5/1545615769372.png" srcset="/img/loading.gif" lazyload alt="1545615769372"></p>
+<p><img src="/xiechaoxin.github.io/2022/06/17/CS/Java/basic/07/1545615769372.png" srcset="/img/loading.gif" lazyload alt="1545615769372"></p>
 <h3 id="1-3-分支结构：if语句"><a href="#1-3-分支结构：if语句" class="headerlink" title="1.3 分支结构：if语句"></a>1.3 分支结构：if语句</h3><h4 id="if语句格式1"><a href="#if语句格式1" class="headerlink" title="if语句格式1"></a>if语句格式1</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">格式：<br><span class="hljs-keyword">if</span> (关系表达式) &#123;<br>    语句体;	<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>执行流程：</p>
@@ -293,7 +293,7 @@
 <p>②如果关系表达式的值为true就执行语句体</p>
 <p>③如果关系表达式的值为false就不执行语句体</p>
 <p>④继续执行后面的语句内容</p>
-<p><img src="/07.switch&%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5/1545616039363.png" srcset="/img/loading.gif" lazyload alt="1545616039363"></p>
+<p><img src="/xiechaoxin.github.io/2022/06/17/CS/Java/basic/07/1545616039363.png" srcset="/img/loading.gif" lazyload alt="1545616039363"></p>
 <p>示例：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">IfDemo</span> &#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>		System.out.println(<span class="hljs-string">&quot;开始&quot;</span>);	<br>		<span class="hljs-comment">//定义两个变量</span><br>		<span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<br>		<span class="hljs-type">int</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> <span class="hljs-number">20</span>;	<br>		<span class="hljs-comment">//需求：判断a和b的值是否相等，如果相等，就在控制台输出：a等于b</span><br>		<span class="hljs-keyword">if</span>(a == b) &#123;<br>			System.out.println(<span class="hljs-string">&quot;a等于b&quot;</span>);<br>		&#125;		<br>		<span class="hljs-comment">//需求：判断a和c的值是否相等，如果相等，就在控制台输出：a等于c</span><br>		<span class="hljs-type">int</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<br>		<span class="hljs-keyword">if</span>(a == c) &#123;<br>			System.out.println(<span class="hljs-string">&quot;a等于c&quot;</span>);<br>		&#125;		<br>		System.out.println(<span class="hljs-string">&quot;结束&quot;</span>);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -304,7 +304,7 @@
 <p>②如果关系表达式的值为true就执行语句体1</p>
 <p>③如果关系表达式的值为false就执行语句体2</p>
 <p>④继续执行后面的语句内容</p>
-<p><img src="/07.switch&%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5/1545616221283.png" srcset="/img/loading.gif" lazyload alt="1545616221283"></p>
+<p><img src="/xiechaoxin.github.io/2022/06/17/CS/Java/basic/07/1545616221283.png" srcset="/img/loading.gif" lazyload alt="1545616221283"></p>
 <p>示例：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">IfDemo02</span> &#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>		System.out.println(<span class="hljs-string">&quot;开始&quot;</span>);		<br>		<span class="hljs-comment">//定义两个变量</span><br>		<span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<br>		<span class="hljs-type">int</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> <span class="hljs-number">20</span>;<br>		b = <span class="hljs-number">5</span>;	<br>		<span class="hljs-comment">//需求：判断a是否大于b，如果是，在控制台输出：a的值大于b，否则，在控制台输出：a的值不大于b</span><br>		<span class="hljs-keyword">if</span>(a &gt; b) &#123;<br>			System.out.println(<span class="hljs-string">&quot;a的值大于b&quot;</span>);<br>		&#125; <span class="hljs-keyword">else</span> &#123;<br>			System.out.println(<span class="hljs-string">&quot;a的值不大于b&quot;</span>);<br>		&#125;		<br>		System.out.println(<span class="hljs-string">&quot;结束&quot;</span>);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -325,7 +325,7 @@
 <p>③如果值为true就执行语句体2；如果值为false就计算关系表达式3的值</p>
 <p>④…</p>
 <p>⑤如果没有任何关系表达式为true，就执行语句体n+1。</p>
-<p><img src="/07.switch&%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5/1545616667104.png" srcset="/img/loading.gif" lazyload alt="1545616667104"></p>
+<p><img src="/xiechaoxin.github.io/2022/06/17/CS/Java/basic/07/1545616667104.png" srcset="/img/loading.gif" lazyload alt="1545616667104"></p>
 <p>示例：键盘录入一个星期数(1,2,…7)，输出对应的星期一，星期二，…星期日</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.Scanner;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">IfDemo03</span> &#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>		System.out.println(<span class="hljs-string">&quot;开始&quot;</span>);<br>		<span class="hljs-comment">// 需求：键盘录入一个星期数(1,2,...7)，输出对应的星期一，星期二，...星期日</span><br>		<span class="hljs-type">Scanner</span> <span class="hljs-variable">sc</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);<br>		System.out.println(<span class="hljs-string">&quot;请输入一个星期数(1-7)：&quot;</span>);<br>		<span class="hljs-type">int</span> <span class="hljs-variable">week</span> <span class="hljs-operator">=</span> sc.nextInt();<br>		<span class="hljs-keyword">if</span>(week == <span class="hljs-number">1</span>) &#123;<br>			System.out.println(<span class="hljs-string">&quot;星期一&quot;</span>);<br>		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(week == <span class="hljs-number">2</span>) &#123;<br>			System.out.println(<span class="hljs-string">&quot;星期二&quot;</span>);<br>		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(week == <span class="hljs-number">3</span>) &#123;<br>			System.out.println(<span class="hljs-string">&quot;星期三&quot;</span>);<br>		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(week == <span class="hljs-number">4</span>) &#123;<br>			System.out.println(<span class="hljs-string">&quot;星期四&quot;</span>);<br>		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(week == <span class="hljs-number">5</span>) &#123;<br>			System.out.println(<span class="hljs-string">&quot;星期五&quot;</span>);<br>		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(week == <span class="hljs-number">6</span>) &#123;<br>			System.out.println(<span class="hljs-string">&quot;星期六&quot;</span>);<br>		&#125; <span class="hljs-keyword">else</span> &#123;<br>			System.out.println(<span class="hljs-string">&quot;星期日&quot;</span>);<br>		&#125;	<br>		System.out.println(<span class="hljs-string">&quot;结束&quot;</span>);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -636,7 +636,7 @@
       
         <div class="license-meta-item">
           <div>Author</div>
-          <div>John Doe</div>
+          <div>Jerry Xie</div>
         </div>
       
       

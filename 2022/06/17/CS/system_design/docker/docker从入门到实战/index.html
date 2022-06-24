@@ -13,54 +13,54 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Jerry Xie">
   <meta name="keywords" content="">
   
     <meta name="description" content="Docker从入门到上手干事Docker介绍什么是 Docker？说实话关于 Docker 是什么并不太好说，下面我通过四点向你说明 Docker 到底是个什么东西。  Docker 是世界领先的软件容器平台，基于 Go 语言 进行开发实现。 Docker 能够自动执行重复性任务，例如搭建和配置开发环境，从而解放开发人员。 用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="docker从入门到实战">
 <meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/system_design/docker/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="Docker从入门到上手干事Docker介绍什么是 Docker？说实话关于 Docker 是什么并不太好说，下面我通过四点向你说明 Docker 到底是个什么东西。  Docker 是世界领先的软件容器平台，基于 Go 语言 进行开发实现。 Docker 能够自动执行重复性任务，例如搭建和配置开发环境，从而解放开发人员。 用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/container-20220527152744745.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/20210412220015698.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-4e3146984adaee0067bdc5e9b1d757bb479.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-96adfbfebe3e59097c8ba25e55f68ba7908.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-73ce678240826de0f49225250a970b4d205.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-9c7a96c332e56b9506325a1f1fdb608a659.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-aad4a58c5e917f7185908d6320d7fb06861.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-62ac3c9184bdc21387755294613ff5054c6.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-3585c7d6a4632134ed925493a7d43e14a43.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-37d083cc92fe36aad829e975646b9d27fa0.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-ced37002391a059754def9b3a6c2aa4e342.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-48ba3fdc99c93a96e18b929195ca8e93c6c.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-ed601649275c6cfe65bbe422b463c263a64.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-0a46effd262d3db1b613a0db597efa31f34.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-60f198e0106be6b43044969d2900272504f.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-2f6706a979b405dab01bc44a29bb6b26fc4.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-559083ae80e7501e86e95fbbad25b6d571a.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-68394e25f652964bb042571151c5e0fd2e9.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-abfdd51b9ad2ced3711268369f52b077b12.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-bd48e20ef07b7c91ad16f92821a3dbca5b5.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-16d9ff4d29094681f51424ea8d0ee4fd73e.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-16d9ff4d29094681f51424ea8d0ee4fd73e.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-7ec71a682712e56e90490f55c32cf660fd3.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-fd17796322f833685ca8ead592d38581898.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-fca74d4350cdfebfc2b06101e1cab411619.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-8fa1b23f6ea2567b5938370e7d7f636533f.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-712716a8c8c444ba3a77ade8ff27e7c6cf5.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/container-20220527152744745.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/20210412220015698.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/up-4e3146984adaee0067bdc5e9b1d757bb479.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/up-96adfbfebe3e59097c8ba25e55f68ba7908.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/up-73ce678240826de0f49225250a970b4d205.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/up-9c7a96c332e56b9506325a1f1fdb608a659.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/up-aad4a58c5e917f7185908d6320d7fb06861.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/up-62ac3c9184bdc21387755294613ff5054c6.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/up-3585c7d6a4632134ed925493a7d43e14a43.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/up-37d083cc92fe36aad829e975646b9d27fa0.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/up-ced37002391a059754def9b3a6c2aa4e342.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/up-48ba3fdc99c93a96e18b929195ca8e93c6c.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/up-ed601649275c6cfe65bbe422b463c263a64.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/up-0a46effd262d3db1b613a0db597efa31f34.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/up-60f198e0106be6b43044969d2900272504f.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/up-2f6706a979b405dab01bc44a29bb6b26fc4.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/up-559083ae80e7501e86e95fbbad25b6d571a.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/up-68394e25f652964bb042571151c5e0fd2e9.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/up-abfdd51b9ad2ced3711268369f52b077b12.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/up-bd48e20ef07b7c91ad16f92821a3dbca5b5.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/up-16d9ff4d29094681f51424ea8d0ee4fd73e.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/up-16d9ff4d29094681f51424ea8d0ee4fd73e.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/up-7ec71a682712e56e90490f55c32cf660fd3.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/up-fd17796322f833685ca8ead592d38581898.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/up-fca74d4350cdfebfc2b06101e1cab411619.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/up-8fa1b23f6ea2567b5938370e7d7f636533f.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/xiechaoxin.github/up-712716a8c8c444ba3a77ade8ff27e7c6cf5.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T10:26:11.837Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2022-06-24T10:53:05.583Z">
+<meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="system_design">
 <meta property="article:tag" content="docker">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/container-20220527152744745.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/xiechaoxin.github/container-20220527152744745.png">
   
   
   
-  <title>docker从入门到实战 - Hexo</title>
+  <title>docker从入门到实战 - Jerry&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -310,7 +310,7 @@
 <li>Docker 可以<strong>对进程进行封装隔离，属于操作系统层面的虚拟化技术。</strong> 由于隔离的进程独立于宿主和其它的隔离的进程，因此也称其为容器。</li>
 </ul>
 <p>官网地址：<a target="_blank" rel="noopener" href="https://www.docker.com/">https://www.docker.com/</a> 。</p>
-<p><img src="/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/container-20220527152744745.png" srcset="/img/loading.gif" lazyload alt="认识容器"></p>
+<p><img src="/xiechaoxin.github/container-20220527152744745.png" srcset="/img/loading.gif" lazyload alt="认识容器"></p>
 <h3 id="为什么要用-Docker"><a href="#为什么要用-Docker" class="headerlink" title="为什么要用 Docker?"></a>为什么要用 Docker?</h3><p>Docker 可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。</p>
 <p>容器是完全使用沙箱机制，相互之间不会有任何接口（类似 iPhone 的 app），更重要的是容器性能开销极低。</p>
 <p>传统的开发流程中，我们的项目通常需要使用 MySQL、Redis、FastDFS 等等环境，这些环境都是需要我们手动去进行下载并配置的，安装配置流程极其复杂，而且不同系统下的操作也不一样。</p>
@@ -321,23 +321,23 @@
 <li>可以通过镜像复制多个一致的容器</li>
 </ol>
 <p>另外，<a target="_blank" rel="noopener" href="https://yeasy.gitbook.io/docker_practice/introduction/why">《Docker 从入门到实践》</a> 这本开源书籍中也已经给出了使用 Docker 的原因。</p>
-<p><img src="/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/20210412220015698.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/20210412220015698.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="Docker-的安装"><a href="#Docker-的安装" class="headerlink" title="Docker 的安装"></a>Docker 的安装</h2><h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>接下来对 Docker 进行安装，以 Windows 系统为例，访问 Docker 的官网：</p>
-<p><img src="/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-4e3146984adaee0067bdc5e9b1d757bb479.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/up-4e3146984adaee0067bdc5e9b1d757bb479.png" srcset="/img/loading.gif" lazyload></p>
 <p>然后点击<code>Get Started</code>：</p>
-<p><img src="/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-96adfbfebe3e59097c8ba25e55f68ba7908.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/up-96adfbfebe3e59097c8ba25e55f68ba7908.png" srcset="/img/loading.gif" lazyload></p>
 <p>在此处点击<code>Download for Windows</code>即可进行下载。</p>
 <p>如果你的电脑是<code>Windows 10 64位专业版</code>的操作系统，则在安装 Docker 之前需要开启一下<code>Hyper-V</code>，开启方式如下。打开控制面板，选择程序：</p>
-<p><img src="/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-73ce678240826de0f49225250a970b4d205.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/up-73ce678240826de0f49225250a970b4d205.png" srcset="/img/loading.gif" lazyload></p>
 <p>点击<code>启用或关闭Windows功能</code>：</p>
-<p><img src="/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-9c7a96c332e56b9506325a1f1fdb608a659.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/up-9c7a96c332e56b9506325a1f1fdb608a659.png" srcset="/img/loading.gif" lazyload></p>
 <p>勾选上<code>Hyper-V</code>，点击确定即可：</p>
-<p><img src="/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-aad4a58c5e917f7185908d6320d7fb06861.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/up-aad4a58c5e917f7185908d6320d7fb06861.png" srcset="/img/loading.gif" lazyload></p>
 <p>完成更改后需要重启一下计算机。</p>
 <p>开启了<code>Hyper-V</code>后，我们就可以对 Docker 进行安装了，打开安装程序后，等待片刻点击<code>Ok</code>即可：</p>
-<p><img src="/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-62ac3c9184bdc21387755294613ff5054c6.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/up-62ac3c9184bdc21387755294613ff5054c6.png" srcset="/img/loading.gif" lazyload></p>
 <p>安装完成后，我们仍然需要重启计算机，重启后，若提示如下内容：</p>
-<p><img src="/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-3585c7d6a4632134ed925493a7d43e14a43.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/up-3585c7d6a4632134ed925493a7d43e14a43.png" srcset="/img/loading.gif" lazyload></p>
 <p>它的意思是询问我们是否使用 WSL2，这是基于 Windows 的一个 Linux 子系统，这里我们取消即可，它就会使用我们之前勾选的<code>Hyper-V</code>虚拟机。</p>
 <p>因为是图形界面的操作，这里就不介绍 Docker Desktop 的具体用法了。</p>
 <h3 id="Mac"><a href="#Mac" class="headerlink" title="Mac"></a>Mac</h3><p>直接使用 Homebrew 安装即可</p>
@@ -363,23 +363,23 @@
 <p>其中仓库又分为远程仓库和本地仓库，和 Maven 类似，倘若每次都从远程下载依赖，则会大大降低效率，为此，Maven 的策略是第一次访问依赖时，将其下载到本地仓库，第二次、第三次使用时直接用本地仓库的依赖即可，Docker 的远程仓库和本地仓库的作用也是类似的。</p>
 <h2 id="Docker-初体验"><a href="#Docker-初体验" class="headerlink" title="Docker 初体验"></a>Docker 初体验</h2><p>下面我们来对 Docker 进行一个初步的使用，这里以下载一个 MySQL 的镜像为例<code>(在CentOS7下进行)</code>。</p>
 <p>和 GitHub 一样，Docker 也提供了一个 DockerHub 用于查询各种镜像的地址和安装教程，为此，我们先访问 DockerHub：<a target="_blank" rel="noopener" href="https://hub.docker.com/">https://hub.docker.com/</a></p>
-<p><img src="/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-37d083cc92fe36aad829e975646b9d27fa0.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/up-37d083cc92fe36aad829e975646b9d27fa0.png" srcset="/img/loading.gif" lazyload></p>
 <p>在左上角的搜索框中输入<code>MySQL</code>并回车：</p>
-<p><img src="/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-ced37002391a059754def9b3a6c2aa4e342.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/up-ced37002391a059754def9b3a6c2aa4e342.png" srcset="/img/loading.gif" lazyload></p>
 <p>可以看到相关 MySQL 的镜像非常多，若右上角有<code>OFFICIAL IMAGE</code>标识，则说明是官方镜像，所以我们点击第一个 MySQL 镜像：</p>
-<p><img src="/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-48ba3fdc99c93a96e18b929195ca8e93c6c.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/up-48ba3fdc99c93a96e18b929195ca8e93c6c.png" srcset="/img/loading.gif" lazyload></p>
 <p>右边提供了下载 MySQL 镜像的指令为<code>docker pull MySQL</code>，但该指令始终会下载 MySQL 镜像的最新版本。</p>
 <p>若是想下载指定版本的镜像，则点击下面的<code>View Available Tags</code>：</p>
-<p><img src="/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-ed601649275c6cfe65bbe422b463c263a64.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/up-ed601649275c6cfe65bbe422b463c263a64.png" srcset="/img/loading.gif" lazyload></p>
 <p>这里就可以看到各种版本的镜像，右边有下载的指令，所以若是想下载 5.7.32 版本的 MySQL 镜像，则执行：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker pull MySQL:5.7.32<br></code></pre></td></tr></table></figure>
 
 <p>然而下载镜像的过程是非常慢的，所以我们需要配置一下镜像源加速下载，访问<code>阿里云</code>官网：</p>
-<p><img src="/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-0a46effd262d3db1b613a0db597efa31f34.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/up-0a46effd262d3db1b613a0db597efa31f34.png" srcset="/img/loading.gif" lazyload></p>
 <p>点击控制台：</p>
-<p><img src="/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-60f198e0106be6b43044969d2900272504f.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/up-60f198e0106be6b43044969d2900272504f.png" srcset="/img/loading.gif" lazyload></p>
 <p>然后点击左上角的菜单，在弹窗的窗口中，将鼠标悬停在产品与服务上，并在右侧搜索容器镜像服务，最后点击容器镜像服务：</p>
-<p><img src="/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-2f6706a979b405dab01bc44a29bb6b26fc4.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/up-2f6706a979b405dab01bc44a29bb6b26fc4.png" srcset="/img/loading.gif" lazyload></p>
 <p>点击左侧的镜像加速器，并依次执行右侧的配置指令即可。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo mkdir -p /etc/docker<br>sudo tee /etc/docker/daemon.json &lt;&lt;-&#x27;EOF&#x27;<br>&#123;<br>  &quot;registry-mirrors&quot;: [&quot;https://679xpnpz.mirror.aliyuncs.com&quot;]<br>&#125;<br>EOF<br>sudo systemctl daemon-reload<br>sudo systemctl restart docker<br></code></pre></td></tr></table></figure>
 
@@ -404,13 +404,13 @@
 <p>一般在下载镜像前我们需要搜索一下镜像有哪些版本才能对指定版本进行下载，使用指令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker search MySQL<br></code></pre></td></tr></table></figure>
 
-<p><img src="/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-559083ae80e7501e86e95fbbad25b6d571a.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/up-559083ae80e7501e86e95fbbad25b6d571a.png" srcset="/img/loading.gif" lazyload></p>
 <p>不过该指令只能查看 MySQL 相关的镜像信息，而不能知道有哪些版本，若想知道版本，则只能这样查询：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker search MySQL:5.5<br></code></pre></td></tr></table></figure>
 
-<p><img src="/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-68394e25f652964bb042571151c5e0fd2e9.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/up-68394e25f652964bb042571151c5e0fd2e9.png" srcset="/img/loading.gif" lazyload></p>
 <p>若是查询的版本不存在，则结果为空：</p>
-<p><img src="/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-abfdd51b9ad2ced3711268369f52b077b12.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/up-abfdd51b9ad2ced3711268369f52b077b12.png" srcset="/img/loading.gif" lazyload></p>
 <p>删除镜像使用指令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker image rm MySQL:5.5<br></code></pre></td></tr></table></figure>
 
@@ -438,14 +438,14 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker pull tomcat:8.0-jre8<br></code></pre></td></tr></table></figure>
 
 <p>下载完成后就可以运行了，运行后查看一下当前运行的容器：<code>docker ps</code> 。</p>
-<p><img src="/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-bd48e20ef07b7c91ad16f92821a3dbca5b5.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/up-bd48e20ef07b7c91ad16f92821a3dbca5b5.png" srcset="/img/loading.gif" lazyload></p>
 <p>其中<code>CONTAINER_ID</code>为容器的 id，<code>IMAGE</code>为镜像名，<code>COMMAND</code>为容器内执行的命令，<code>CREATED</code>为容器的创建时间，<code>STATUS</code>为容器的状态，<code>PORTS</code>为容器内服务监听的端口，<code>NAMES</code>为容器的名称。</p>
 <p>通过该方式运行的 tomcat 是不能直接被外部访问的，因为容器具有隔离性，若是想直接通过 8080 端口访问容器内部的 tomcat，则需要对宿主机端口与容器内的端口进行映射：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker run -p 8080:8080 tomcat:8.0-jre8<br></code></pre></td></tr></table></figure>
 
 <p>解释一下这两个端口的作用(<code>8080:8080</code>)，第一个 8080 为宿主机端口，第二个 8080 为容器内的端口，外部访问 8080 端口就会通过映射访问容器内的 8080 端口。</p>
 <p>此时外部就可以访问 Tomcat 了：</p>
-<p><img src="/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-16d9ff4d29094681f51424ea8d0ee4fd73e.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/up-16d9ff4d29094681f51424ea8d0ee4fd73e.png" srcset="/img/loading.gif" lazyload></p>
 <p>若是这样进行映射：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker run -p 8088:8080 tomcat:8.0-jre8<br></code></pre></td></tr></table></figure>
 
@@ -461,7 +461,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker ps -a<br></code></pre></td></tr></table></figure>
 
 <p>该参数会将运行和非运行的容器全部列举出来：</p>
-<p><img src="/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-16d9ff4d29094681f51424ea8d0ee4fd73e.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/up-16d9ff4d29094681f51424ea8d0ee4fd73e.png" srcset="/img/loading.gif" lazyload></p>
 <p><code>-q</code>参数将只查询正在运行的容器 id：<code>docker ps -q</code> 。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">[root@izrcf5u3j3q8xaz ~]# docker ps -q<br>f3aac8ee94a3<br>074bf575249b<br>1d557472a708<br>4421848ba294<br></code></pre></td></tr></table></figure>
 
@@ -508,11 +508,11 @@
 <p>查看容器内运行了哪些进程，可以使用指令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker top 289cc00dc5ed<br></code></pre></td></tr></table></figure>
 
-<p><img src="/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-7ec71a682712e56e90490f55c32cf660fd3.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/up-7ec71a682712e56e90490f55c32cf660fd3.png" srcset="/img/loading.gif" lazyload></p>
 <p>若是想与容器进行交互，则使用指令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker exec -it 289cc00dc5ed bash<br></code></pre></td></tr></table></figure>
 
-<p><img src="/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-fd17796322f833685ca8ead592d38581898.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/up-fd17796322f833685ca8ead592d38581898.png" srcset="/img/loading.gif" lazyload></p>
 <p>此时终端将会进入容器内部，执行的指令都将在容器中生效，在容器内只能执行一些比较简单的指令，如：ls、cd 等，若是想退出容器终端，重新回到 CentOS 中，则执行<code>exit</code>即可。</p>
 <p>现在我们已经能够进入容器终端执行相关操作了，那么该如何向 tomcat 容器中部署一个项目呢？</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker cp ./test.html 289cc00dc5ed:/usr/local/tomcat/webapps<br></code></pre></td></tr></table></figure>
@@ -528,13 +528,13 @@
 <p>虽然使用 Docker 启动软件环境非常简单，但同时也面临着一个问题，我们无法知晓容器内部具体的细节，比如监听的端口、绑定的 ip 地址等等，好在这些 Docker 都帮我们想到了，只需使用指令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker inspect 923c969b0d91<br></code></pre></td></tr></table></figure>
 
-<p><img src="/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-fca74d4350cdfebfc2b06101e1cab411619.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/up-fca74d4350cdfebfc2b06101e1cab411619.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="Docker-数据卷"><a href="#Docker-数据卷" class="headerlink" title="Docker 数据卷"></a>Docker 数据卷</h2><p>学习了容器的相关指令之后，我们来了解一下 Docker 中的数据卷，它能够实现宿主机与容器之间的文件共享，它的好处在于我们对宿主机的文件进行修改将直接影响容器，而无需再将宿主机的文件再复制到容器中。</p>
 <p>现在若是想将宿主机中<code>/opt/apps</code>目录与容器中<code>webapps</code>目录做一个数据卷，则应该这样编写指令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker run -d -p 8080:8080 --name tomcat01 -v /opt/apps:/usr/local/tomcat/webapps tomcat:8.0-jre8<br></code></pre></td></tr></table></figure>
 
 <p>然而此时访问 tomcat 会发现无法访问：</p>
-<p><img src="/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-8fa1b23f6ea2567b5938370e7d7f636533f.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/up-8fa1b23f6ea2567b5938370e7d7f636533f.png" srcset="/img/loading.gif" lazyload></p>
 <p>这就说明我们的数据卷设置成功了，Docker 会将容器内的<code>webapps</code>目录与<code>/opt/apps</code>目录进行同步，而此时<code>/opt/apps</code>目录是空的，导致<code>webapps</code>目录也会变成空目录，所以就访问不到了。</p>
 <p>此时我们只需向<code>/opt/apps</code>目录下添加文件，就会使得<code>webapps</code>目录也会拥有相同的文件，达到文件共享，测试一下：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">[root@centos-7 opt]# cd apps/<br>[root@centos-7 apps]# vim test.html<br>[root@centos-7 apps]# ls<br>test.html<br>[root@centos-7 apps]# cat test.html<br>&lt;h1&gt;This is a test html!&lt;/h1&gt;<br></code></pre></td></tr></table></figure>
@@ -546,7 +546,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HelloServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">HttpServlet</span> &#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doGet</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException &#123;<br>        resp.getWriter().println(<span class="hljs-string">&quot;Hello World!&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doPost</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException &#123;<br>        doGet(req,resp);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>这是一个非常简单的 Servlet，我们将其打包上传到<code>/opt/apps</code>中，那么容器内肯定就会同步到该文件，此时进行访问：</p>
-<p><img src="/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/up-712716a8c8c444ba3a77ade8ff27e7c6cf5.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/xiechaoxin.github/up-712716a8c8c444ba3a77ade8ff27e7c6cf5.png" srcset="/img/loading.gif" lazyload></p>
 <p>这种方式设置的数据卷称为自定义数据卷，因为数据卷的目录是由我们自己设置的，Docker 还为我们提供了另外一种设置数据卷的方式：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker run -d -p 8080:8080 --name tomcat01 -v aa:/usr/local/tomcat/webapps tomcat:8.0-jre8<br></code></pre></td></tr></table></figure>
 
@@ -631,7 +631,7 @@
       
         <div class="license-meta-item">
           <div>Author</div>
-          <div>John Doe</div>
+          <div>Jerry Xie</div>
         </div>
       
       
