@@ -1,0 +1,628 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Http网络协议包一.网络协议包：1.在网络中传递信息都是以【二进制】形式存在的.2.接收方【浏览器&#x2F;服务器】在接收信息后，要做第一件事      就是将【二进制数据】进行编译【文字，图片，视频，命令】3.传递信息数据量往往比较巨大，导致接收方很难在一组连续      二进制得到对应数据      比如 浏览器发送一个请求： http:&#x2F;&#x2F;192.168.100.2:8080&#x2F;index">
+<meta property="og:type" content="article">
+<meta property="og:title" content="02.http网络协议">
+<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/network/powerNode/02.http%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Http网络协议包一.网络协议包：1.在网络中传递信息都是以【二进制】形式存在的.2.接收方【浏览器&#x2F;服务器】在接收信息后，要做第一件事      就是将【二进制数据】进行编译【文字，图片，视频，命令】3.传递信息数据量往往比较巨大，导致接收方很难在一组连续      二进制得到对应数据      比如 浏览器发送一个请求： http:&#x2F;&#x2F;192.168.100.2:8080&#x2F;index">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xiechaoxin.github.io/02.http%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/%E7%AC%AC%E4%BA%8C%E7%89%88%E4%BA%92%E8%81%94%E7%BD%91%E9%80%9A%E4%BF%A1%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+<meta property="article:published_time" content="2022-06-17T17:59:12.000Z">
+<meta property="article:modified_time" content="2022-06-24T10:26:11.201Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="network">
+<meta property="article:tag" content="powerNode">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/02.http%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/%E7%AC%AC%E4%BA%8C%E7%89%88%E4%BA%92%E8%81%94%E7%BD%91%E9%80%9A%E4%BF%A1%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+  
+  
+  
+  <title>02.http网络协议 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xiechaoxin.github.io","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong> </strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">02.http网络协议</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-06-17 17:59" pubdate>
+          June 17, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">02.http网络协议</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Http网络协议包"><a href="#Http网络协议包" class="headerlink" title="Http网络协议包"></a>Http网络协议包</h1><h2 id="一-网络协议包："><a href="#一-网络协议包：" class="headerlink" title="一.网络协议包："></a>一.网络协议包：</h2><p>1.在网络中传递信息都是以【二进制】形式存在的.<br>2.接收方【浏览器&#x2F;服务器】在接收信息后，要做第一件事<br>      就是将【二进制数据】进行编译【文字，图片，视频，命令】<br>3.传递信息数据量往往比较巨大，导致接收方很难在一组连续<br>      二进制得到对应数据<br>      比如 浏览器发送一个请求： <a target="_blank" rel="noopener" href="http://192.168.100.2:8080/index.html">http://192.168.100.2:8080/index.html</a><br>           这个请求信息以二进制形式发送 01010101010110101010101101010<br>           Http服务器很难从二进制数据得到相关信息</p>
+<p>4.网络协议包一组有规律二进制数据，在这组数据存在了固定空间<br>      每一个空间专门存放特定信息，这样接收方在接收网络协议包之后<br>      就可以到固定空间得到对应信息，网络协议包出现极大降低了<br>      接收方对接收二进制数据编译难度</p>
+<p>​	  【0000（ip地址）0000（端口号）0000（资源文件名）0000】</p>
+<h2 id="二-常见网络协议："><a href="#二-常见网络协议：" class="headerlink" title="二.常见网络协议："></a>二.常见网络协议：</h2><p>1.FTP网络协议包</p>
+<p>2.Http网络协议包</p>
+<h2 id="三-Http网络协议包："><a href="#三-Http网络协议包：" class="headerlink" title="三.Http网络协议包："></a>三.Http网络协议包：</h2><p>在基于B&#x2F;S结构下互联网通信过程中，所有在网络中传递信息都是<br>    保存在Http网络协议包</p>
+<p>分类：<br>          Http请求协议包</p>
+<p>​	      Http响应协议包</p>
+<h2 id="四-Http请求协议包与Http响应协议包介绍"><a href="#四-Http请求协议包与Http响应协议包介绍" class="headerlink" title="四.Http请求协议包与Http响应协议包介绍:"></a>四.Http请求协议包与Http响应协议包介绍:</h2><p>1.Http请求协议包：<br>                       在浏览器准备发送请求时，负责创建一个Http请求协议包<br>               浏览器将请求信息以二进制形式保存在Http请求协议包各个空间<br>               由浏览器负责将Http请求协议包推送到指定服务端计算机</p>
+<p>2.Http响应协议包：<br>                       Http服务器在定位到被访问的资源文件之后.<br>               负责创建一个Http响应协议包<br>               Http服务器将定位文件内容或则文件命令以<br>               二进制形式写入到Http响应协议包各个空间<br>               由Http服务器负责将Http响应协议包推送回<br>               发起请求的浏览器上.</p>
+<h2 id="五-Http请求协议包内部空间"><a href="#五-Http请求协议包内部空间" class="headerlink" title="五.Http请求协议包内部空间"></a>五.Http请求协议包内部空间</h2><p> 1.按照自上而下划分，分为4个空间</p>
+<p> 2.空间划分:</p>
+<p>​            请求行：[<br>​	            url:请求地址（<a target="_blank" rel="noopener" href="http://192.168.100.2:8080/index.html%EF%BC%89">http://192.168.100.2:8080/index.html）</a><br>​	            method:请求方式（POST&#x2F;GET）<br>​	         ]</p>
+<p>​            请求头：[<br>​	<br>​	              请求参数信息【GET】<br>​	         ]</p>
+<p>​            空白行：[<br>​	                没有任何内容，起到隔离作用<br>​	<br>​	         ]</p>
+<p>​             请求体:[<br>​	<br>​	             请求参数信息【POST】<br>​	          ]</p>
+<h2 id="六-Http响应协议包内部结构"><a href="#六-Http响应协议包内部结构" class="headerlink" title="六.Http响应协议包内部结构"></a>六.Http响应协议包内部结构</h2><p>1.按照自上而下划分，分为4个空间</p>
+<p>2.空间划分:</p>
+<p>​             状态行：[<br>​	                  Http状态码<br>​	<br>​	              ]</p>
+<p>​                 响应头：[<br>​	                  content-type: 指定浏览器采用对应编译器<br>​			                对响应体二进制数据进行解析<br>​	<br>​	              ]</p>
+<p>​                 空白行：[<br>​	                  没有任何内容，起到隔离作用<br>​	<br>​	              ]<br>​                 响应体：[<br>​	                 可能被访问静态资源文件内容<br>​			 可能被访问的静态资源文件命令<br>​			 可能被访问的动态资源文件运行结果<br>​	                  **<em><strong>都是以二进制形式</strong></em><br>​	              ]</p>
+<p><img src="/02.http%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/%E7%AC%AC%E4%BA%8C%E7%89%88%E4%BA%92%E8%81%94%E7%BD%91%E9%80%9A%E4%BF%A1%E6%B5%81%E7%A8%8B%E5%9B%BE.png" srcset="/img/loading.gif" lazyload alt="第二版互联网通信流程图"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/network/" class="category-chain-item">network</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/network/powerNode/" class="category-chain-item">powerNode</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/network/">#network</a>
+      
+        <a href="/tags/powerNode/">#powerNode</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>02.http网络协议</div>
+      <div>https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/network/powerNode/02.http网络协议/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 17, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/network/powerNode/01.%E4%BA%92%E8%81%94%E7%BD%91%E9%80%9A%E4%BF%A1%E6%B5%81%E7%A8%8B/" title="01.互联网通信流程">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">01.互联网通信流程</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/network/powerNode/03.java_Servlet/" title="03.java_Servlet">
+                        <span class="hidden-mobile">03.java_Servlet</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

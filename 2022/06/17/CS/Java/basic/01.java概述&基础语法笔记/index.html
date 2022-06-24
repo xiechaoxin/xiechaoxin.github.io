@@ -1,0 +1,980 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="day01 - java基础语法test 1. Java概述1.1 Java语言发展史（了解）语言：人与人交流沟通的表达方式 计算机语言：人与计算机之间进行信息交流沟通的一种特殊语言 Java语言是美国Sun公司（Stanford University Network）在1995年推出的计算机语言 Java之父：詹姆斯·高斯林（James Gosling） 2009年，Sun公司被甲骨文公司收购，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="01.java概述&amp;基础语法笔记">
+<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/basic/01.java%E6%A6%82%E8%BF%B0&%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="day01 - java基础语法test 1. Java概述1.1 Java语言发展史（了解）语言：人与人交流沟通的表达方式 计算机语言：人与计算机之间进行信息交流沟通的一种特殊语言 Java语言是美国Sun公司（Stanford University Network）在1995年推出的计算机语言 Java之父：詹姆斯·高斯林（James Gosling） 2009年，Sun公司被甲骨文公司收购，">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xiechaoxin.github.io/01.java%E6%A6%82%E8%BF%B0&%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/image-20210923091350952.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/01.java%E6%A6%82%E8%BF%B0&%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/image-20210923091544110.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/01.java%E6%A6%82%E8%BF%B0&%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/image-20210923091654365.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/01.java%E6%A6%82%E8%BF%B0&%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/image-20210923091710450.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/01.java%E6%A6%82%E8%BF%B0&%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/image-20210923091721035.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/01.java%E6%A6%82%E8%BF%B0&%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/image-20210923100419575.png">
+<meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
+<meta property="article:modified_time" content="2022-06-24T10:26:10.485Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="basic">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/01.java%E6%A6%82%E8%BF%B0&%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/image-20210923091350952.png">
+  
+  
+  
+  <title>01.java概述&amp;基础语法笔记 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xiechaoxin.github.io","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong> </strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">01.java概述&基础语法笔记</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-06-17 17:59" pubdate>
+          June 17, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.4k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          46 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">01.java概述&amp;基础语法笔记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="day01-java基础语法"><a href="#day01-java基础语法" class="headerlink" title="day01 - java基础语法"></a>day01 - java基础语法</h1><p>test</p>
+<h2 id="1-Java概述"><a href="#1-Java概述" class="headerlink" title="1. Java概述"></a>1. Java概述</h2><h3 id="1-1-Java语言发展史（了解）"><a href="#1-1-Java语言发展史（了解）" class="headerlink" title="1.1 Java语言发展史（了解）"></a>1.1 Java语言发展史（了解）</h3><p>语言：人与人交流沟通的表达方式</p>
+<p>计算机语言：人与计算机之间进行信息交流沟通的一种特殊语言</p>
+<p>Java语言是美国Sun公司（Stanford University Network）在1995年推出的计算机语言</p>
+<p>Java之父：詹姆斯·高斯林（James Gosling）</p>
+<p>2009年，Sun公司被甲骨文公司收购，所以我们现在访问oracle官网即可：<a target="_blank" rel="noopener" href="https://www.oracle.com/">https://www.oracle.com</a> </p>
+<p>当前，我们课程使用的JDK版本：11.0</p>
+<h3 id="1-2-Java语言跨平台原理（理解）"><a href="#1-2-Java语言跨平台原理（理解）" class="headerlink" title="1.2 Java语言跨平台原理（理解）"></a>1.2 Java语言跨平台原理（理解）</h3><p>Java程序并非是直接运行的，Java编译器将Java源程序编译成与平台无关的字节码文件(class文件)，然后由Java虚拟机（JVM）对字节码文件解释执行。所以在不同的操作系统下，只需安装不同的Java虚拟机即可实现java程序的跨平台。</p>
+<p><img src="/01.java%E6%A6%82%E8%BF%B0&%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/image-20210923091350952.png" srcset="/img/loading.gif" lazyload alt="image-20210923091350952"></p>
+<h3 id="1-3-JRE和JDK（记忆）"><a href="#1-3-JRE和JDK（记忆）" class="headerlink" title="1.3 JRE和JDK（记忆）"></a>1.3 JRE和JDK（记忆）</h3><p><img src="/01.java%E6%A6%82%E8%BF%B0&%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/image-20210923091544110.png" srcset="/img/loading.gif" lazyload alt="image-20210923091544110"></p>
+<p>JVM（Java Virtual Machine），Java虚拟机</p>
+<p>JRE（Java Runtime Environment），Java运行环境，包含了JVM和Java的核心类库（Java API）</p>
+<p>JDK（Java Development Kit）称为Java开发工具，包含了JRE和开发工具</p>
+<p>总结：我们只需安装JDK即可，它包含了java的运行环境和虚拟机。</p>
+<h3 id="1-4-JDK的下载和安装（应用）"><a href="#1-4-JDK的下载和安装（应用）" class="headerlink" title="1.4 JDK的下载和安装（应用）"></a>1.4 JDK的下载和安装（应用）</h3><h4 id="1-4-1-下载"><a href="#1-4-1-下载" class="headerlink" title="1.4.1 下载"></a>1.4.1 下载</h4><p>通过官方网站获取JDK</p>
+<p><a target="_blank" rel="noopener" href="http://www.oracle.com/">http://www.oracle.com</a></p>
+<p><strong>注意</strong>：针对不同的操作系统，需要下载对应版本的JDK。</p>
+<p>具体下载步骤请参见《JDK下载及安装说明文档》</p>
+<h4 id="1-4-2-安装"><a href="#1-4-2-安装" class="headerlink" title="1.4.2 安装"></a>1.4.2 安装</h4><p>傻瓜式安装，下一步即可。但默认的安装路径是在C:\Program Files下，为方便统一管理建议修改安装路径，将与开发相关的软件都安装到一个目录下，例如：E:\develop。</p>
+<p><strong>注意</strong>：安装路径不要包含中文或者空格等特殊字符（使用纯英文目录）。</p>
+<p>具体安装步骤请参见《JDK下载及安装说明文档》</p>
+<h4 id="1-4-3-JDK的安装目录介绍"><a href="#1-4-3-JDK的安装目录介绍" class="headerlink" title="1.4.3 JDK的安装目录介绍"></a>1.4.3 JDK的安装目录介绍</h4><table>
+<thead>
+<tr>
+<th>目录名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bin</td>
+<td>该路径下存放了JDK的各种工具命令。javac和java就放在这个目录。</td>
+</tr>
+<tr>
+<td>conf</td>
+<td>该路径下存放了JDK的相关配置文件。</td>
+</tr>
+<tr>
+<td>include</td>
+<td>该路径下存放了一些平台特定的头文件。</td>
+</tr>
+<tr>
+<td>jmods</td>
+<td>该路径下存放了JDK的各种模块。</td>
+</tr>
+<tr>
+<td>legal</td>
+<td>该路径下存放了JDK各模块的授权文档。</td>
+</tr>
+<tr>
+<td>lib</td>
+<td>该路径下存放了JDK工具的一些补充JAR包。</td>
+</tr>
+</tbody></table>
+<h2 id="2-入门程序HelloWorld"><a href="#2-入门程序HelloWorld" class="headerlink" title="2. 入门程序HelloWorld"></a>2. 入门程序HelloWorld</h2><h3 id="2-1-常用DOS命令（应用）"><a href="#2-1-常用DOS命令（应用）" class="headerlink" title="2.1 常用DOS命令（应用）"></a>2.1 常用DOS命令（应用）</h3><p>在接触集成开发环境之前，我们需要使用命令行窗口对java程序进行编译和运行，所以需要知道一些常用DOS命令。</p>
+<p>1、打开命令行窗口的方式：win + r打开运行窗口，输入cmd，回车。</p>
+<p>2、常用命令及其作用</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>盘符名称:</td>
+<td>盘符切换。E:回车，表示切换到E盘。</td>
+</tr>
+<tr>
+<td>dir</td>
+<td>查看当前路径下的内容。</td>
+</tr>
+<tr>
+<td>cd 目录</td>
+<td>进入单级目录。cd itheima</td>
+</tr>
+<tr>
+<td>cd ..</td>
+<td>回退到上一级目录。</td>
+</tr>
+<tr>
+<td>cd 目录1\目录2...</td>
+<td>进入多级目录。cd itheima\JavaSE</td>
+</tr>
+<tr>
+<td>cd \</td>
+<td>回退到盘符目录。</td>
+</tr>
+<tr>
+<td>cls</td>
+<td>清屏。</td>
+</tr>
+<tr>
+<td>exit</td>
+<td>退出命令提示符窗口。</td>
+</tr>
+</tbody></table>
+<h3 id="2-2-Path环境变量的配置（应用）"><a href="#2-2-Path环境变量的配置（应用）" class="headerlink" title="2.2 Path环境变量的配置（应用）"></a>2.2 Path环境变量的配置（应用）</h3><h4 id="2-2-1-为什么配置环境变量"><a href="#2-2-1-为什么配置环境变量" class="headerlink" title="2.2.1 为什么配置环境变量"></a>2.2.1 为什么配置环境变量</h4><p>开发Java程序，需要使用JDK提供的开发工具（比如javac.exe、java.exe等命令），而这些工具在JDK的安装目录的bin目录下，如果不配置环境变量，那么这些命令只可以在该目录下执行。我们不可能把所有的java文件都放到JDK的bin目录下，所以配置环境变量的作用就是可以使bin目录下的java相关命令可以在任意目录下使用。</p>
+<p>注意：目前较新的JDK安装时会自动配置javac、java命令的路径到Path环境变量中去 ，所以javac、java可以直接使用。</p>
+<p><img src="/01.java%E6%A6%82%E8%BF%B0&%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/image-20210923091654365.png" srcset="/img/loading.gif" lazyload alt="image-20210923091654365"></p>
+<p>但是以前下载的老版本的JDK是没有自动配置的，此时必需要自己配置Path环境变量。</p>
+<p>①<strong>JAVA_HOME</strong>：告诉操作系统JDK安装在了哪个位置（未来其他技术要通过这个找JDK）</p>
+<p><img src="/01.java%E6%A6%82%E8%BF%B0&%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/image-20210923091710450.png" srcset="/img/loading.gif" lazyload alt="image-20210923091710450"></p>
+<p>②<strong>Path</strong>：告诉操作系统JDK提供的javac(编译)、java(执行)命令安装到了哪个位置</p>
+<p><img src="/01.java%E6%A6%82%E8%BF%B0&%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/image-20210923091721035.png" srcset="/img/loading.gif" lazyload alt="image-20210923091721035"></p>
+<p><strong>注意：新版本的JDK只是自动配置了Path，没有自动配置JAVA_HOME。</strong></p>
+<h3 id="2-3-HelloWorld案例（应用）"><a href="#2-3-HelloWorld案例（应用）" class="headerlink" title="2.3 HelloWorld案例（应用）"></a>2.3 HelloWorld案例（应用）</h3><p>HelloWorld案例是指在计算机屏幕上输出“HelloWorld”这行文字。各种计算机语言都习惯使用该案例作为第一个演示案例。</p>
+<h4 id="2-3-1-Java程序开发运行流程"><a href="#2-3-1-Java程序开发运行流程" class="headerlink" title="2.3.1 Java程序开发运行流程"></a>2.3.1 Java程序开发运行流程</h4><p>开发Java程序，需要三个步骤：编写程序，编译程序，运行程序。</p>
+<h4 id="2-3-2-HelloWorld案例的编写"><a href="#2-3-2-HelloWorld案例的编写" class="headerlink" title="2.3.2 HelloWorld案例的编写"></a>2.3.2 HelloWorld案例的编写</h4><p>1、新建文本文档文件，修改名称为HelloWorld.java。</p>
+<p>2、用记事本打开HelloWorld.java文件，输写程序内容。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HelloWorld</span> &#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>		System.out.println(<span class="hljs-string">&quot;HelloWorld&quot;</span>);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="2-3-3-HelloWorld案例的编译和运行"><a href="#2-3-3-HelloWorld案例的编译和运行" class="headerlink" title="2.3.3 HelloWorld案例的编译和运行"></a>2.3.3 HelloWorld案例的编译和运行</h4><p>存文件，打开命令行窗口，将目录切换至java文件所在目录，编译java文件生成class文件，运行class文件。</p>
+<blockquote>
+<p>编译：javac 文件名.java</p>
+<p>范例：javac HelloWorld.java</p>
+<p>执行：java 类名</p>
+<p>范例：java HelloWorld</p>
+</blockquote>
+<h3 id="2-4-HelloWorld案例常见问题（理解）"><a href="#2-4-HelloWorld案例常见问题（理解）" class="headerlink" title="2.4 HelloWorld案例常见问题（理解）"></a>2.4 HelloWorld案例常见问题（理解）</h3><h4 id="2-4-1-BUG"><a href="#2-4-1-BUG" class="headerlink" title="2.4.1 BUG"></a>2.4.1 BUG</h4><p>在电脑系统或程序中，隐藏着的一些未被发现的缺陷或问题统称为bug（漏洞）。</p>
+<h4 id="2-4-2-BUG的解决"><a href="#2-4-2-BUG的解决" class="headerlink" title="2.4.2 BUG的解决"></a>2.4.2 BUG的解决</h4><p>1、具备识别BUG的能力：多看</p>
+<p>2、具备分析BUG的能力：多思考，多查资料</p>
+<p>3、具备解决BUG的能力：多尝试，多总结</p>
+<h4 id="2-4-3-HelloWorld案例常见问题"><a href="#2-4-3-HelloWorld案例常见问题" class="headerlink" title="2.4.3 HelloWorld案例常见问题"></a>2.4.3 HelloWorld案例常见问题</h4><p>1、非法字符问题。Java中的符号都是英文格式的。</p>
+<p>2、大小写问题。Java语言对大小写敏感（区分大小写）。</p>
+<p>3、在系统中显示文件的扩展名，避免出现HelloWorld.java.txt文件。</p>
+<p>4、编译命令后的java文件名需要带文件后缀.java</p>
+<p>5、运行命令后的class文件名（类名）不带文件后缀.class</p>
+<p>…</p>
+<h2 id="3、IDEA安装使用"><a href="#3、IDEA安装使用" class="headerlink" title="3、IDEA安装使用"></a>3、IDEA安装使用</h2><p>参见<strong>“IDEA安装详解.pdf”</strong></p>
+
+
+	<div class="row">
+    <embed src="04.IDEA安装详解.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+
+<h2 id="4-java基础语法"><a href="#4-java基础语法" class="headerlink" title="4. java基础语法"></a>4. java基础语法</h2><h4 id="4-1-注释"><a href="#4-1-注释" class="headerlink" title="4.1 注释"></a>4.1 注释</h4><p>注释是对代码的解释和说明文字，可以提高程序的可读性，因此在程序中添加必要的注释文字十分重要。Java中的注释分为三种：</p>
+<p>单行注释。单行注释的格式是使用&#x2F;&#x2F;，从&#x2F;&#x2F;开始至本行结尾的文字将作为注释文字。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 这是单行注释文字</span><br></code></pre></td></tr></table></figure>
+
+<p>多行注释。多行注释的格式是使用&#x2F;* 和 *&#x2F;将一段较长的注释括起来。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/*</span><br><span class="hljs-comment">这是多行注释文字</span><br><span class="hljs-comment">这是多行注释文字</span><br><span class="hljs-comment">这是多行注释文字</span><br><span class="hljs-comment">*/</span><br>注意：多行注释不能嵌套使用。<br></code></pre></td></tr></table></figure>
+
+<p>文档注释。文档注释以<code>/**</code>开始，以<code>*/</code>结束。</p>
+<h4 id="4-2-字面量（应用）"><a href="#4-2-字面量（应用）" class="headerlink" title="4.2 字面量（应用）"></a>4.2 字面量（应用）</h4><p>作用：告诉程序员，数据在程序中的书写格式。</p>
+<table>
+<thead>
+<tr>
+<th><strong>字面量类型</strong></th>
+<th><strong>说明</strong></th>
+<th><strong>程序中的写法</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整数</td>
+<td>不带小数的数字</td>
+<td>666，-88</td>
+</tr>
+<tr>
+<td>小数</td>
+<td>带小数的数字</td>
+<td>13.14，-5.21</td>
+</tr>
+<tr>
+<td>字符</td>
+<td>必须使用单引号，有且仅能一个字符</td>
+<td>‘A’，‘0’，   ‘我’</td>
+</tr>
+<tr>
+<td>字符串</td>
+<td>必须使用双引号，内容可有可无</td>
+<td>“HelloWorld”，“黑马程序员”</td>
+</tr>
+<tr>
+<td>布尔值</td>
+<td>布尔值，表示真假，只有两个值：true，false</td>
+<td>true 、false</td>
+</tr>
+<tr>
+<td>空值</td>
+<td>一个特殊的值，空值</td>
+<td>值是：null</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        System.out.println(<span class="hljs-number">10</span>); <span class="hljs-comment">// 输出一个整数</span><br>        System.out.println(<span class="hljs-number">5.5</span>); <span class="hljs-comment">// 输出一个小数</span><br>        System.out.println(<span class="hljs-string">&#x27;a&#x27;</span>); <span class="hljs-comment">// 输出一个字符</span><br>        System.out.println(<span class="hljs-literal">true</span>); <span class="hljs-comment">// 输出boolean值true</span><br>        System.out.println(<span class="hljs-string">&quot;靓仔&quot;</span>); <span class="hljs-comment">// 输出字符串</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="4-3-数据类型（记忆、应用）"><a href="#4-3-数据类型（记忆、应用）" class="headerlink" title="4.3 数据类型（记忆、应用）"></a>4.3 数据类型（记忆、应用）</h4><h5 id="3-4-1-计算机存储单元"><a href="#3-4-1-计算机存储单元" class="headerlink" title="3.4.1 计算机存储单元"></a>3.4.1 计算机存储单元</h5><p>l计算机底层都是一些数字电路(理解成开关)，用开表示0、关表示1，这些01的形式就是二进制。</p>
+<p>数据在计算机底层都是采用二进制存储的，l在计算机中认为一个开关表示的0|1称为1位（b），每8位称为一个字节（B）， 所以1B&#x3D;8b</p>
+<p>字节是计算机中数据的最小单位。</p>
+<p>我们知道计算机是可以用来存储数据的，但是无论是内存还是硬盘，计算机存储设备的最小信息单元叫“位（bit）”，我们又称之为“比特位”，通常用小写的字母”b”表示。而计算机中最基本的存储单元叫“字节（byte）”，</p>
+<p>通常用大写字母”B”表示，字节是由连续的8个位组成。</p>
+<p>除了字节外还有一些常用的存储单位，其换算单位如下：</p>
+<p>1B（字节） &#x3D; 8bit</p>
+<p>1KB &#x3D; 1024B</p>
+<p>1MB &#x3D; 1024KB</p>
+<p>1GB &#x3D; 1024MB</p>
+<p>1TB &#x3D; 1024GB</p>
+<h5 id="3-4-2-Java中的数据类型"><a href="#3-4-2-Java中的数据类型" class="headerlink" title="3.4.2 Java中的数据类型"></a>3.4.2 Java中的数据类型</h5><p>Java是一个强类型语言，Java中的数据必须明确数据类型。在Java中的数据类型包括基本数据类型和引用数据类型两种。</p>
+<p>Java中的基本数据类型：</p>
+<table>
+<thead>
+<tr>
+<th align="center">数据类型</th>
+<th align="center">关键字</th>
+<th align="center">内存占用</th>
+<th align="center">取值范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">整数</td>
+<td align="center">byte</td>
+<td align="center">1</td>
+<td align="center">负的2的7次方 ~ 2的7次方-1(-128~127)</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">short</td>
+<td align="center">2</td>
+<td align="center">负的2的15次方 ~ 2的15次方-1(-32768~32767)</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">int</td>
+<td align="center">4</td>
+<td align="center">负的2的31次方 ~ 2的31次方-1</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">long</td>
+<td align="center">8</td>
+<td align="center">负的2的63次方 ~ 2的63次方-1</td>
+</tr>
+<tr>
+<td align="center">浮点数</td>
+<td align="center">float</td>
+<td align="center">4</td>
+<td align="center">1.401298e-45 ~ 3.402823e+38</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">double</td>
+<td align="center">8</td>
+<td align="center">4.9000000e-324 ~ 1.797693e+308</td>
+</tr>
+<tr>
+<td align="center">字符</td>
+<td align="center">char</td>
+<td align="center">2</td>
+<td align="center">0-65535</td>
+</tr>
+<tr>
+<td align="center">布尔</td>
+<td align="center">boolean</td>
+<td align="center">1</td>
+<td align="center">true，false</td>
+</tr>
+</tbody></table>
+<p>说明：</p>
+<p>​	为什么是 2^7-1？ 这8位分为符号位（最高位）和数值位（剩余七位），符号位0表示正数，1表示负数。所以1 byte数值表示负的2的7次方 ~ 2的7次方-1(-128~127)</p>
+<p>​	e+38表示是乘以10的38次方，同样，e-45表示乘以10的负45次方。</p>
+<p>​	在java中整数默认是int类型，浮点数默认是double类型。</p>
+<h4 id="4-4-变量（应用）"><a href="#4-4-变量（应用）" class="headerlink" title="4.4 变量（应用）"></a>4.4 变量（应用）</h4><h5 id="3-5-1-变量的定义"><a href="#3-5-1-变量的定义" class="headerlink" title="3.5.1 变量的定义"></a>3.5.1 变量的定义</h5><p>变量：在程序运行过程中，其值可以发生改变的量。</p>
+<p>从本质上讲，变量是内存中的一小块区域，其值可以在一定范围内变化。</p>
+<p>变量的定义格式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">数据类型 变量名 = 初始化值; <span class="hljs-comment">// 声明变量并赋值</span><br><span class="hljs-type">int</span> <span class="hljs-variable">age</span> <span class="hljs-operator">=</span> <span class="hljs-number">18</span>;<br>System.out.println(age);<br></code></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 先声明，后赋值（使用前赋值即可）</span><br>数据类型 变量名;<br>变量名 = 初始化值;<br><span class="hljs-type">double</span> money;<br>money = <span class="hljs-number">55.5</span>;<br>System.out.println(money);<br></code></pre></td></tr></table></figure>
+
+<p>还可以在同一行定义多个同一种数据类型的变量，中间使用逗号隔开。但不建议使用这种方式，降低程序的可读性。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>, b = <span class="hljs-number">20</span>; <span class="hljs-comment">// 定义int类型的变量a和b，中间使用逗号隔开</span><br>System.out.println(a);<br>System.out.println(b);<br><br><span class="hljs-type">int</span> c,d; <span class="hljs-comment">// 声明int类型的变量c和d，中间使用逗号隔开</span><br>c = <span class="hljs-number">30</span>;<br>d = <span class="hljs-number">40</span>;<br>System.out.println(c);<br>System.out.println(d);<br></code></pre></td></tr></table></figure>
+
+<p>变量的使用：通过变量名访问即可。</p>
+<h5 id="3-5-2-使用变量时的注意事项"><a href="#3-5-2-使用变量时的注意事项" class="headerlink" title="3.5.2 使用变量时的注意事项"></a>3.5.2 使用变量时的注意事项</h5><ol>
+<li>在同一对花括号中，变量名不能重复。</li>
+<li>变量在使用之前，必须初始化（赋值）。</li>
+<li>定义long类型的变量时，需要在整数的后面加L（大小写均可，建议大写）。因为整数默认是int类型，整数太大可能超出int范围。</li>
+<li>定义float类型的变量时，需要在小数的后面加F（大小写均可，建议大写）。因为浮点数的默认类型是double， double的取值范围是大于float的，类型不兼容。</li>
+</ol>
+<h4 id="4-5-关键字、标志符"><a href="#4-5-关键字、标志符" class="headerlink" title="4.5 关键字、标志符"></a>4.5 关键字、标志符</h4><p><strong>关键字</strong></p>
+<p>Java自己保留的一些单词，作为特殊功能的，例如：public、class、byte、short、int、long、double… </p>
+<p>我们不能用来作为类名或者是变量名称，否则报错。</p>
+<p>注意：关键字很多，不用刻意去记。</p>
+<table>
+<thead>
+<tr>
+<th><strong>abstract</strong></th>
+<th><strong>assert</strong></th>
+<th><strong>boolean</strong></th>
+<th><strong>break</strong></th>
+<th><strong>byte</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>case</strong></td>
+<td><strong>catch</strong></td>
+<td><strong>char</strong></td>
+<td><strong>class</strong></td>
+<td><strong>const</strong></td>
+</tr>
+<tr>
+<td><strong>continue</strong></td>
+<td><strong>default</strong></td>
+<td><strong>do</strong></td>
+<td><strong>double</strong></td>
+<td><strong>else</strong></td>
+</tr>
+<tr>
+<td><strong>enum</strong></td>
+<td><strong>extends</strong></td>
+<td><strong>final</strong></td>
+<td><strong>finally</strong></td>
+<td><strong>float</strong></td>
+</tr>
+<tr>
+<td><strong>for</strong></td>
+<td><strong>goto</strong></td>
+<td><strong>if</strong></td>
+<td><strong>implements</strong></td>
+<td><strong>import</strong></td>
+</tr>
+<tr>
+<td><strong>instanceof</strong></td>
+<td><strong>int</strong></td>
+<td><strong>interface</strong></td>
+<td><strong>long</strong></td>
+<td><strong>native</strong></td>
+</tr>
+<tr>
+<td><strong>new</strong></td>
+<td><strong>package</strong></td>
+<td><strong>private</strong></td>
+<td><strong>protected</strong></td>
+<td><strong>public</strong></td>
+</tr>
+<tr>
+<td><strong>return</strong></td>
+<td><strong>strictfp</strong></td>
+<td><strong>short</strong></td>
+<td><strong>static</strong></td>
+<td><strong>super</strong></td>
+</tr>
+<tr>
+<td><strong>switch</strong></td>
+<td><strong>synchronized</strong></td>
+<td><strong>this</strong></td>
+<td><strong>throw</strong></td>
+<td><strong>throws</strong></td>
+</tr>
+<tr>
+<td><strong>transient</strong></td>
+<td><strong>try</strong></td>
+<td><strong>void</strong></td>
+<td><strong>volatile</strong></td>
+<td><strong>while</strong></td>
+</tr>
+</tbody></table>
+<p><strong>标志符</strong></p>
+<p>标志符就是由一些字符、符号组合起来的名称，用于给类，方法，变量等起名字的规矩。</p>
+<p>基本要求：由数字、字母、下划线(_)和美元符($)等组成</p>
+<p>强制要求：不能以数字开头、不能是关键字、区分大小写</p>
+<p><strong>基本命令规范</strong></p>
+<p><img src="/01.java%E6%A6%82%E8%BF%B0&%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/image-20210923100419575.png" srcset="/img/loading.gif" lazyload alt="image-20210923100419575"></p>
+<p>变量名称：满足标识符规则，建议全英文、有意义、首字母小写，满足“驼峰模式”，例如：int studyNumber &#x3D; 59。</p>
+<p>类名称： 满足标识符规则，建议全英文、有意义、首字母大写，满足“驼峰模式”，例如：HelloWorld.java。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Java/basic/" class="category-chain-item">basic</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Java/">#Java</a>
+      
+        <a href="/tags/basic/">#basic</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>01.java概述&amp;基础语法笔记</div>
+      <div>https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/basic/01.java概述&amp;基础语法笔记/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 17, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/Java/blog_cut/%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6%E8%AF%A6%E8%A7%A3/" title="反射机制详解">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">反射机制详解</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/Java/basic/02.JDK%E5%AE%89%E8%A3%85win/" title="02.JDK安装win">
+                        <span class="hidden-mobile">02.JDK安装win</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

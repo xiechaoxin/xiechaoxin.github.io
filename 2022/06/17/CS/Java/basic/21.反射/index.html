@@ -1,0 +1,769 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1、回顾反射机制1.1、什么是反射机制？反射机制有什么用？     反射机制：可以操作字节码文件     作用：可以让程序更加灵活。  1.2、反射机制相关的类在哪个包下？     java.lang.reflect.*;  1.3、反射机制相关的主要的类？     java.lang.Class     java.lang.reflect.Method;     java.lang.reflec">
+<meta property="og:type" content="article">
+<meta property="og:title" content="21.反射">
+<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/basic/21.%E5%8F%8D%E5%B0%84/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1、回顾反射机制1.1、什么是反射机制？反射机制有什么用？     反射机制：可以操作字节码文件     作用：可以让程序更加灵活。  1.2、反射机制相关的类在哪个包下？     java.lang.reflect.*;  1.3、反射机制相关的主要的类？     java.lang.Class     java.lang.reflect.Method;     java.lang.reflec">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
+<meta property="article:modified_time" content="2022-06-24T10:26:10.521Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="basic">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>21.反射 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xiechaoxin.github.io","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong> </strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">21.反射</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-06-17 17:59" pubdate>
+          June 17, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          27 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">21.反射</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="1、回顾反射机制"><a href="#1、回顾反射机制" class="headerlink" title="1、回顾反射机制"></a>1、回顾反射机制</h2><pre><code class="hljs">1.1、什么是反射机制？反射机制有什么用？
+    反射机制：可以操作字节码文件
+    作用：可以让程序更加灵活。
+
+1.2、反射机制相关的类在哪个包下？
+    java.lang.reflect.*;
+
+1.3、反射机制相关的主要的类？
+    java.lang.Class
+    java.lang.reflect.Method;
+    java.lang.reflect.Constructor;
+    java.lang.reflect.Field;
+
+1.4、在java中获取Class的三种方式？
+    第一种：	 
+        Class c = Class.forName(&quot;完整类名&quot;);
+    第二种：
+        Class c = 对象.getClass();
+    第三种：
+        Class c = int.class;
+        Class c = String.class;
+
+1.5、获取了Class之后，可以调用无参数构造方法来实例化对象
+
+    //c代表的就是日期Date类型
+    Class c = Class.forName(&quot;java.util.Date&quot;);
+
+    //实例化一个Date日期类型的对象
+    Object obj = c.newInstance();
+
+    一定要注意：
+        newInstance()底层调用的是该类型的无参数构造方法。
+        如果没有这个无参数构造方法会出现&quot;实例化&quot;异常。
+
+1.6、如果你只想让一个类的“静态代码块”执行的话，你可以怎么做？
+    Class.forName(&quot;该类的类名&quot;);
+    这样类就加载，类加载的时候，静态代码块执行！！！！
+    在这里，对该方法的返回值不感兴趣，主要是为了使用“类加载”这个动作。
+
+1.7、关于路径问题？
+
+    String path = Thread.currentThread().getContextClassLoader()
+                      .getResource(&quot;写相对路径，但是这个相对路径从src出发开始找&quot;).getPath();	
+
+    String path = Thread.currentThread().getContextClassLoader()
+                      .getResource(&quot;abc&quot;).getPath();	//必须保证src下有abc文件。
+
+    String path = Thread.currentThread().getContextClassLoader()
+                      .getResource(&quot;a/db&quot;).getPath();	//必须保证src下有a目录，a目录下有db文件。
+    
+    String path = Thread.currentThread().getContextClassLoader()
+                      .getResource(&quot;com/bjpowernode/test.properties&quot;).getPath();	
+                      //必须保证src下有com目录，com目录下有bjpowernode目录。
+                      //bjpowernode目录下有test.properties文件。
+
+    这种方式是为了获取一个文件的绝对路径。（通用方式，不会受到环境移植的影响。）
+    但是该文件要求放在类路径下，换句话说：也就是放到src下面。
+    src下是类的根路径。
+
+    直接以流的形式返回：
+    InputStream in = Thread.currentThread().getContextClassLoader()
+                            .getResourceAsStream(&quot;com/bjpowernode/test.properties&quot;);
+
+1.8、IO + Properties，怎么快速绑定属性资源文件？
+
+    //要求：第一这个文件必须在类路径下
+    //第二这个文件必须是以.properties结尾。
+    ResourceBundle bundle = ResourceBundle.getBundle(&quot;com/bjpowernode/test&quot;);
+    String value = bundle.getString(key);
+</code></pre>
+<h2 id="2、反射机制的重点内容"><a href="#2、反射机制的重点内容" class="headerlink" title="2、反射机制的重点内容"></a>2、反射机制的重点内容</h2><p>​	2.1、通过反射机制访问对象的某个属性。<br>​	2.2、通过反射机制调用对象的某个方法。<br>​	2.3、通过反射机制调用某个构造方法实例化对象。<br>​	2.4、通过反射机制获取父类以及父类型接口。</p>
+<h2 id="3、注解"><a href="#3、注解" class="headerlink" title="3、注解"></a>3、注解</h2><pre><code class="hljs">3.1、注解，或者叫做注释类型，英文单词是：Annotation
+    疑问：注解到底是干啥的？？？？？？？？？
+
+3.2、注解Annotation是一种引用数据类型。编译之后也是生成xxx.class文件。
+
+3.3、怎么自定义注解呢？语法格式？
+
+     [修饰符列表] @interface 注解类型名&#123;
+
+     &#125;
+
+3.4、注解怎么使用，用在什么地方？
+
+    第一：注解使用时的语法格式是：
+        @注解类型名
+    
+    第二：注解可以出现在类上、属性上、方法上、变量上等....
+    注解还可以出现在注解类型上。
+
+3.5、JDK内置了哪些注解呢？
+
+    java.lang包下的注释类型：
+
+        掌握：
+        Deprecated 用 @Deprecated 注释的程序元素，
+        不鼓励程序员使用这样的元素，通常是因为它很危险或存在更好的选择。 
+
+        掌握：
+        Override 表示一个方法声明打算重写超类中的另一个方法声明。 
+
+        不用掌握：
+        SuppressWarnings 指示应该在注释元素（以及包含在该注释元素中的
+        所有程序元素）中取消显示指定的编译器警告。 
+
+3.6、元注解
+    什么是元注解？
+        用来标注“注解类型”的“注解”，称为元注解。
+
+    常见的元注解有哪些？
+        Target
+        Retention
+    
+    关于Target注解：
+        这是一个元注解，用来标注“注解类型”的“注解”
+        这个Target注解用来标注“被标注的注解”可以出现在哪些位置上。
+
+        @Target(ElementType.METHOD)：表示“被标注的注解”只能出现在方法上。
+        @Target(value=&#123;CONSTRUCTOR, FIELD, LOCAL_VARIABLE, METHOD, PACKAGE, MODULE, PARAMETER, TYPE&#125;)
+            表示该注解可以出现在：
+                构造方法上
+                字段上
+                局部变量上
+                方法上
+                ....
+                类上...
+    
+    关于Retention注解：
+        这是一个元注解，用来标注“注解类型”的“注解”
+        这个Retention注解用来标注“被标注的注解”最终保存在哪里。
+
+        @Retention(RetentionPolicy.SOURCE)：表示该注解只被保留在java源文件中。
+        @Retention(RetentionPolicy.CLASS)：表示该注解被保存在class文件中。
+        @Retention(RetentionPolicy.RUNTIME)：表示该注解被保存在class文件中，并且可以被反射机制所读取。
+    
+3.7、Retention的源代码
+
+        //元注解	
+        public @interface Retention &#123;
+            //属性
+            RetentionPolicy value();
+        &#125;
+        
+    RetentionPolicy的源代码：
+        public enum RetentionPolicy &#123;
+             SOURCE,
+             CLASS,
+             RUNTIME
+        &#125;
+
+        //@Retention(value=RetentionPolicy.RUNTIME)
+        @Retention(RetentionPolicy.RUNTIME)
+        public @interface MyAnnotation&#123;&#125;
+
+3.8、Target的源代码
+
+
+3.9、注解在开发中有什么用呢？
+
+    需求：
+        假设有这样一个注解，叫做：@Id
+        这个注解只能出现在类上面，当这个类上有这个注解的时候，
+        要求这个类中必须有一个int类型的id属性。如果没有这个属性
+        就报异常。如果有这个属性则正常执行！
+</code></pre>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Java/basic/" class="category-chain-item">basic</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Java/">#Java</a>
+      
+        <a href="/tags/basic/">#basic</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>21.反射</div>
+      <div>https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/basic/21.反射/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 17, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/Java/basic/20.%E5%A4%9A%E7%BA%BF%E7%A8%8B3/" title="20.多线程3">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">20.多线程3</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/Java/basic/22.Java_object_equal/" title="22.Java_object_equal">
+                        <span class="hidden-mobile">22.Java_object_equal</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

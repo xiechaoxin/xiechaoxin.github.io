@@ -1,0 +1,666 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="title: RestfulToolkit：RESTful Web 服务辅助开发工具category: IDEA指南tag:  IDEA IDEA插件   开始推荐这个 IDEA 插件之前，我觉得有必要花一小会时间简单聊聊 REST 这个我们经常打交道的概念。 REST 相关概念解读何为 REST？REST 即 REpresentational State Transfer 的缩写。这个词组的翻">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rest-devlop">
+<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/tools/idea_tutorial/idea_plugins/rest-devlop/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="title: RestfulToolkit：RESTful Web 服务辅助开发工具category: IDEA指南tag:  IDEA IDEA插件   开始推荐这个 IDEA 插件之前，我觉得有必要花一小会时间简单聊聊 REST 这个我们经常打交道的概念。 REST 相关概念解读何为 REST？REST 即 REpresentational State Transfer 的缩写。这个词组的翻">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xiechaoxin.github.io/rest-devlop/41a9bfa18920403ba4db83e324f8621e~tplv-k3u1fbpfcp-zoom-1.image">
+<meta property="og:image" content="https://xiechaoxin.github.io/rest-devlop/c26ea05ad472488fbf9eb21627964bee~tplv-k3u1fbpfcp-zoom-1.image">
+<meta property="og:image" content="https://xiechaoxin.github.io/rest-devlop/RestfulToolkit2.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/rest-devlop/RestfulToolkit3.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/rest-devlop/RestfulToolkit4.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/rest-devlop/image-20210830112030237.png">
+<meta property="article:published_time" content="2022-06-17T17:59:12.000Z">
+<meta property="article:modified_time" content="2022-06-24T10:26:12.137Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="tools">
+<meta property="article:tag" content="idea_tutorial">
+<meta property="article:tag" content="idea_plugins">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/rest-devlop/41a9bfa18920403ba4db83e324f8621e~tplv-k3u1fbpfcp-zoom-1.image">
+  
+  
+  
+  <title>rest-devlop - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xiechaoxin.github.io","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong> </strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">rest-devlop</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-06-17 17:59" pubdate>
+          June 17, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">rest-devlop</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <hr>
+<p>title: RestfulToolkit：RESTful Web 服务辅助开发工具<br>category: IDEA指南<br>tag:</p>
+<ul>
+<li>IDEA</li>
+<li>IDEA插件</li>
+</ul>
+<hr>
+<p>开始推荐这个 IDEA 插件之前，我觉得有必要花一小会时间简单聊聊 <strong>REST</strong> 这个我们经常打交道的概念。</p>
+<h2 id="REST-相关概念解读"><a href="#REST-相关概念解读" class="headerlink" title="REST 相关概念解读"></a>REST 相关概念解读</h2><h3 id="何为-REST？"><a href="#何为-REST？" class="headerlink" title="何为 REST？"></a>何为 REST？</h3><p>REST 即 <strong>REpresentational State Transfer</strong> 的缩写。这个词组的翻译过来就是”<strong>表现层状态转化</strong>“。</p>
+<p>这样理解起来甚是晦涩，实际上 REST 的全称是 <strong>Resource Representational State Transfer</strong> ，直白地翻译过来就是 <strong>“资源”在网络传输中以某种“表现形式”进行“状态转移”</strong> 。</p>
+<p><strong>有没有感觉很难理解？</strong></p>
+<p>没关系，看了我对 REST 涉及到的一些概念的解读之后你没准就能理解了！</p>
+<ul>
+<li><strong>资源（Resource）</strong> ：我们可以把真实的对象数据称为资源。一个资源既可以是一个集合，也可以是单个个体。比如我们的班级 classes 是代表一个集合形式的资源，而特定的 class 代表单个个体资源。每一种资源都有特定的 URI（统一资源定位符）与之对应，如果我们需要获取这个资源，访问这个 URI 就可以了，比如获取特定的班级：<code>/class/12</code>。另外，资源也可以包含子资源，比如 <code>/classes/classId/teachers</code>：列出某个指定班级的所有老师的信息</li>
+<li><strong>表现形式（Representational）</strong>：”资源”是一种信息实体，它可以有多种外在表现形式。我们把”资源”具体呈现出来的形式比如 json，xml，image,txt 等等叫做它的”表现层&#x2F;表现形式”。</li>
+<li><strong>状态转移（State Transfer）</strong> ：大家第一眼看到这个词语一定会很懵逼？内心 BB：这尼玛是啥啊？ <strong>大白话来说 REST 中的状态转移更多地描述的服务器端资源的状态，比如你通过增删改查（通过 HTTP 动词实现）引起资源状态的改变。</strong> （HTTP 协议是一个无状态的，所有的资源状态都保存在服务器端）</li>
+</ul>
+<h3 id="何为-RESTful-架构？"><a href="#何为-RESTful-架构？" class="headerlink" title="何为 RESTful 架构？"></a>何为 RESTful 架构？</h3><p>满足 REST 风格的架构设计就可以称为 RESTful 架构：</p>
+<ol>
+<li>每一个 URI 代表一种资源；</li>
+<li>客户端和服务器之间，传递这种资源的某种表现形式比如 json，xml，image,txt 等等；</li>
+<li>客户端通过特定的 HTTP 动词，对服务器端资源进行操作，实现”表现层状态转化”。</li>
+</ol>
+<h3 id="何为-RESTful-Web-服务？"><a href="#何为-RESTful-Web-服务？" class="headerlink" title="何为 RESTful Web 服务？"></a>何为 RESTful Web 服务？</h3><p>基于 REST 架构的 Web 服务就被称为 RESTful Web 服务。</p>
+<h2 id="RESTful-Web-服务辅助开发工具"><a href="#RESTful-Web-服务辅助开发工具" class="headerlink" title="RESTful Web 服务辅助开发工具"></a>RESTful Web 服务辅助开发工具</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>这个插件的名字叫做 “<strong>RestfulToolkit</strong>” 。我们直接在 IDEA 的插件市场即可找到这个插件。如下图所示。</p>
+<blockquote>
+<p>如果你因为网络问题没办法使用 IDEA 自带的插件市场的话，也可以通过<a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/idea">IDEA 插件市场的官网</a>手动下载安装。</p>
+</blockquote>
+<p><img src="/rest-devlop/41a9bfa18920403ba4db83e324f8621e~tplv-k3u1fbpfcp-zoom-1.image" srcset="/img/loading.gif" lazyload></p>
+<h3 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h3><h4 id="URL-跳转到对应方法"><a href="#URL-跳转到对应方法" class="headerlink" title="URL 跳转到对应方法"></a>URL 跳转到对应方法</h4><p>根据 URL 直接跳转到对应的方法定义 (Windows: <code>ctrl+\</code> or <code>ctrl+alt+n</code> Mac:<code>command+\</code> or <code>command+alt+n</code> )并且提供了一个服务的树形可视化显示窗口。 如下图所示。</p>
+<p><img src="/rest-devlop/c26ea05ad472488fbf9eb21627964bee~tplv-k3u1fbpfcp-zoom-1.image" srcset="/img/loading.gif" lazyload></p>
+<h4 id="作为-HTTP-请求工具"><a href="#作为-HTTP-请求工具" class="headerlink" title="作为 HTTP 请求工具"></a>作为 HTTP 请求工具</h4><p>这个插件还可以作为一个简单的 http 请求工具来使用。如下图所示。</p>
+<p><img src="/rest-devlop/RestfulToolkit2.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="复制生成-URL、复制方法参数…"><a href="#复制生成-URL、复制方法参数…" class="headerlink" title="复制生成 URL、复制方法参数…"></a>复制生成 URL、复制方法参数…</h4><p>这个插件还提供了生成 URL、查询参数、请求体（RequestBody）等功能。</p>
+<p>举个例子。我们选中 <code>Controller</code> 中的某个请求对应的方法右击，你会发现多了几个可选项。当你选择<code>Generate &amp; Copy Full URL</code>的话，就可以把整个请求的路径直接复制下来。eg：<code>http://localhost:9333/api/users?pageNum=1&amp;pageSize=1</code> 。</p>
+<p><img src="/rest-devlop/RestfulToolkit3.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="将-Java-类转换为对应的-JSON-格式"><a href="#将-Java-类转换为对应的-JSON-格式" class="headerlink" title="将 Java 类转换为对应的 JSON 格式"></a>将 Java 类转换为对应的 JSON 格式</h4><p>这个插件还为 Java 类上添加了 <strong>Convert to JSON</strong> 功能 。</p>
+<p>我们选中的某个类对应的方法然后右击，你会发现多了几个可选项。</p>
+<p><img src="/rest-devlop/RestfulToolkit4.png" srcset="/img/loading.gif" lazyload></p>
+<p>当我们选择<code>Convert to JSON</code>的话，你会得到如下 json 类型的数据：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;username&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;demoData&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;password&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;demoData&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;rememberMe&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-keyword">true</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>RESTFulToolkit 原作者不更新了，IDEA.201 及以上版本不再适配。</p>
+<p>因此，国内就有一个大佬参考 RESTFulToolkit 开发了一款类似的插件——RestfulTool（功能较少一些，不过够用了）。</p>
+<p><img src="/rest-devlop/image-20210830112030237.png" srcset="/img/loading.gif" lazyload></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/tools/" class="category-chain-item">tools</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/tools/idea-tutorial/" class="category-chain-item">idea_tutorial</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/tools/idea-tutorial/idea-plugins/" class="category-chain-item">idea_plugins</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/tools/">#tools</a>
+      
+        <a href="/tags/idea-tutorial/">#idea_tutorial</a>
+      
+        <a href="/tags/idea-plugins/">#idea_plugins</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>rest-devlop</div>
+      <div>https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/tools/idea_tutorial/idea_plugins/rest-devlop/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 17, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/tools/idea_tutorial/idea_plugins/others/" title="others">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">others</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/tools/idea_tutorial/idea_plugins/save-actions/" title="save-actions">
+                        <span class="hidden-mobile">save-actions</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

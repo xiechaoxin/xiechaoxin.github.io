@@ -1,0 +1,812 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Java8新特性实战 本文来自cowbi的投稿~  Oracle 于 2014 发布了 Java8（jdk1.8），诸多原因使它成为目前市场上使用最多的 jdk 版本。虽然发布距今已将近 7 年，但很多程序员对其新特性还是不够了解，尤其是用惯了 java8 之前版本的老程序员，比如我。 为了不脱离队伍太远，还是有必要对这些新特性做一些总结梳理。它较 jdk.7 有很多变化或者说是优化，比如 int">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java8-common-new-features">
+<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/new_features/java8-common-new-features/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Java8新特性实战 本文来自cowbi的投稿~  Oracle 于 2014 发布了 Java8（jdk1.8），诸多原因使它成为目前市场上使用最多的 jdk 版本。虽然发布距今已将近 7 年，但很多程序员对其新特性还是不够了解，尤其是用惯了 java8 之前版本的老程序员，比如我。 为了不脱离队伍太远，还是有必要对这些新特性做一些总结梳理。它较 jdk.7 有很多变化或者说是优化，比如 int">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
+<meta property="article:modified_time" content="2022-06-24T10:26:10.705Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="new_features">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>java8-common-new-features - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xiechaoxin.github.io","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong> </strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">java8-common-new-features</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-06-17 17:59" pubdate>
+          June 17, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          23k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          189 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">java8-common-new-features</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Java8新特性实战"><a href="#Java8新特性实战" class="headerlink" title="Java8新特性实战"></a>Java8新特性实战</h1><blockquote>
+<p>本文来自<a target="_blank" rel="noopener" href="https://github.com/cowbi">cowbi</a>的投稿~</p>
+</blockquote>
+<p>Oracle 于 2014 发布了 Java8（jdk1.8），诸多原因使它成为目前市场上使用最多的 jdk 版本。虽然发布距今已将近 7 年，但很多程序员对其新特性还是不够了解，尤其是用惯了 java8 之前版本的老程序员，比如我。</p>
+<p>为了不脱离队伍太远，还是有必要对这些新特性做一些总结梳理。它较 jdk.7 有很多变化或者说是优化，比如 interface 里可以有静态方法，并且可以有方法体，这一点就颠覆了之前的认知；<code>java.util.HashMap</code> 数据结构里增加了红黑树；还有众所周知的 Lambda 表达式等等。本文不能把所有的新特性都给大家一一分享，只列出比较常用的新特性给大家做详细讲解。更多相关内容请看<a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/javase/8-whats-new.html">官网关于 Java8 的新特性的介绍</a>。</p>
+<h2 id="Interface"><a href="#Interface" class="headerlink" title="Interface"></a>Interface</h2><p>interface 的设计初衷是面向抽象，提高扩展性。这也留有一点遗憾，Interface 修改的时候，实现它的类也必须跟着改。</p>
+<p>为了解决接口的修改与现有的实现不兼容的问题。新 interface 的方法可以用<code>default</code> 或 <code>static</code>修饰，这样就可以有方法体，实现类也不必重写此方法。</p>
+<p>一个 interface 中可以有多个方法被它们修饰，这 2 个修饰符的区别主要也是普通方法和静态方法的区别。</p>
+<ol>
+<li><code>default</code>修饰的方法，是普通实例方法，可以用<code>this</code>调用，可以被子类继承、重写。</li>
+<li><code>static</code>修饰的方法，使用上和一般类静态方法一样。但它不能被子类继承，只能用<code>Interface</code>调用。</li>
+</ol>
+<p>我们来看一个实际的例子。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">InterfaceNew</span> &#123;<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">sm</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;interface提供的方式实现&quot;</span>);<br>    &#125;<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">sm2</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;interface提供的方式实现&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">default</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">def</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;interface default方法&quot;</span>);<br>    &#125;<br>    <span class="hljs-keyword">default</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">def2</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;interface default2方法&quot;</span>);<br>    &#125;<br>    <span class="hljs-comment">//须要实现类重写</span><br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">f</span><span class="hljs-params">()</span>;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">InterfaceNew1</span> &#123;<br>    <span class="hljs-keyword">default</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">def</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;InterfaceNew1 default方法&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>如果有一个类既实现了 <code>InterfaceNew</code> 接口又实现了 <code>InterfaceNew1</code>接口，它们都有<code>def()</code>，并且 <code>InterfaceNew</code> 接口和 <code>InterfaceNew1</code>接口没有继承关系的话，这时就必须重写<code>def()</code>。不然的话，编译的时候就会报错。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">InterfaceNewImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">InterfaceNew</span> , InterfaceNew1&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">InterfaceNewImpl</span> <span class="hljs-variable">interfaceNew</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">InterfaceNewImpl</span>();<br>        interfaceNew.def();<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">def</span><span class="hljs-params">()</span> &#123;<br>        InterfaceNew1.<span class="hljs-built_in">super</span>.def();<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">f</span><span class="hljs-params">()</span> &#123;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>在 Java 8 ，接口和抽象类有什么区别的？</strong></p>
+<p>很多小伙伴认为：“既然 interface 也可以有自己的方法实现，似乎和 abstract class 没多大区别了。”</p>
+<p>其实它们还是有区别的</p>
+<ol>
+<li><p>interface 和 class 的区别，好像是废话，主要有：</p>
+<ul>
+<li>接口多实现，类单继承</li>
+<li>接口的方法是 public abstract 修饰，变量是 public static final 修饰。 abstract class 可以用其他修饰符</li>
+</ul>
+</li>
+<li><p>interface 的方法是更像是一个扩展插件。而 abstract class 的方法是要继承的。</p>
+</li>
+</ol>
+<p>开始我们也提到，interface 新增<code>default</code>和<code>static</code>修饰的方法，为了解决接口的修改与现有的实现不兼容的问题，并不是为了要替代<code>abstract class</code>。在使用上，该用 abstract class 的地方还是要用 abstract class，不要因为 interface 的新特性而将之替换。</p>
+<p><strong>记住接口永远和类不一样。</strong></p>
+<h2 id="functional-interface-函数式接口"><a href="#functional-interface-函数式接口" class="headerlink" title="functional interface 函数式接口"></a>functional interface 函数式接口</h2><p><strong>定义</strong>：也称 SAM 接口，即 Single Abstract Method interfaces，有且只有一个抽象方法，但可以有多个非抽象方法的接口。</p>
+<p>在 java 8 中专门有一个包放函数式接口<code>java.util.function</code>，该包下的所有接口都有 <code>@FunctionalInterface</code> 注解，提供函数式编程。</p>
+<p>在其他包中也有函数式接口，其中一些没有<code>@FunctionalInterface</code> 注解，但是只要符合函数式接口的定义就是函数式接口，与是否有</p>
+<p><code>@FunctionalInterface</code>注解无关，注解只是在编译时起到强制规范定义的作用。其在 Lambda 表达式中有广泛的应用。</p>
+<h2 id="Lambda-表达式"><a href="#Lambda-表达式" class="headerlink" title="Lambda 表达式"></a>Lambda 表达式</h2><p>接下来谈众所周知的 Lambda 表达式。它是推动 Java 8 发布的最重要新特性。是继泛型(<code>Generics</code>)和注解(<code>Annotation</code>)以来最大的变化。</p>
+<p>使用 Lambda 表达式可以使代码变的更加简洁紧凑。让 java 也能支持简单的<em>函数式编程</em>。</p>
+<blockquote>
+<p>Lambda 表达式是一个匿名函数，java 8 允许把函数作为参数传递进方法中。</p>
+</blockquote>
+<h3 id="语法格式"><a href="#语法格式" class="headerlink" title="语法格式"></a>语法格式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">(parameters) -&gt; expression 或<br>(parameters) -&gt;&#123; statements; &#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="Lambda-实战"><a href="#Lambda-实战" class="headerlink" title="Lambda 实战"></a>Lambda 实战</h3><p>我们用常用的实例来感受 Lambda 带来的便利</p>
+<h4 id="替代匿名内部类"><a href="#替代匿名内部类" class="headerlink" title="替代匿名内部类"></a>替代匿名内部类</h4><p>过去给方法传动态参数的唯一方法是使用内部类。比如</p>
+<p><strong>1.<code>Runnable</code> 接口</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Runnable</span>() &#123;<br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>                System.out.println(<span class="hljs-string">&quot;The runable now is using!&quot;</span>);<br>            &#125;<br>&#125;).start();<br><span class="hljs-comment">//用lambda</span><br><span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(() -&gt; System.out.println(<span class="hljs-string">&quot;It&#x27;s a lambda function!&quot;</span>)).start();<br></code></pre></td></tr></table></figure>
+
+<p><strong>2.<code>Comperator</code> 接口</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java">List&lt;Integer&gt; strings = Arrays.asList(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>);<br><br>Collections.sort(strings, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Comparator</span>&lt;Integer&gt;() &#123;<br><span class="hljs-meta">@Override</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">compare</span><span class="hljs-params">(Integer o1, Integer o2)</span> &#123;<br>    <span class="hljs-keyword">return</span> o1 - o2;&#125;<br>&#125;);<br><br><span class="hljs-comment">//Lambda</span><br>Collections.sort(strings, (Integer o1, Integer o2) -&gt; o1 - o2);<br><span class="hljs-comment">//分解开</span><br>Comparator&lt;Integer&gt; comperator = (Integer o1, Integer o2) -&gt; o1 - o2;<br>Collections.sort(strings, comperator);<br></code></pre></td></tr></table></figure>
+
+<p><strong>3.<code>Listener</code> 接口</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">JButton</span> <span class="hljs-variable">button</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">JButton</span>();<br>button.addItemListener(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ItemListener</span>() &#123;<br><span class="hljs-meta">@Override</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">itemStateChanged</span><span class="hljs-params">(ItemEvent e)</span> &#123;<br>   e.getItem();<br>&#125;<br>&#125;);<br><span class="hljs-comment">//lambda</span><br>button.addItemListener(e -&gt; e.getItem());<br></code></pre></td></tr></table></figure>
+
+<p><strong>4.自定义接口</strong></p>
+<p>上面的 3 个例子是我们在开发过程中最常见的，从中也能体会到 Lambda 带来的便捷与清爽。它只保留实际用到的代码，把无用代码全部省略。那它对接口有没有要求呢？我们发现这些匿名内部类只重写了接口的一个方法，当然也只有一个方法须要重写。这就是我们上文提到的<strong>函数式接口</strong>，也就是说只要方法的参数是函数式接口都可以用 Lambda 表达式。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@FunctionalInterface</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Comparator</span>&lt;T&gt;&#123;&#125;<br><br><span class="hljs-meta">@FunctionalInterface</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Runnable</span>&#123;&#125;<br></code></pre></td></tr></table></figure>
+
+<p>我们自定义一个函数式接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@FunctionalInterface</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">LambdaInterface</span> &#123;<br> <span class="hljs-keyword">void</span> <span class="hljs-title function_">f</span><span class="hljs-params">()</span>;<br>&#125;<br><span class="hljs-comment">//使用</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LambdaClass</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">forEg</span><span class="hljs-params">()</span> &#123;<br>        lambdaInterfaceDemo(()-&gt; System.out.println(<span class="hljs-string">&quot;自定义函数式接口&quot;</span>));<br>    &#125;<br>    <span class="hljs-comment">//函数式接口参数</span><br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">lambdaInterfaceDemo</span><span class="hljs-params">(LambdaInterface i)</span>&#123;<br>        System.out.println(i);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="集合迭代"><a href="#集合迭代" class="headerlink" title="集合迭代"></a>集合迭代</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">void</span> <span class="hljs-title function_">lamndaFor</span><span class="hljs-params">()</span> &#123;<br>        List&lt;String&gt; strings = Arrays.asList(<span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;2&quot;</span>, <span class="hljs-string">&quot;3&quot;</span>);<br>        <span class="hljs-comment">//传统foreach</span><br>        <span class="hljs-keyword">for</span> (String s : strings) &#123;<br>            System.out.println(s);<br>        &#125;<br>        <span class="hljs-comment">//Lambda foreach</span><br>        strings.forEach((s) -&gt; System.out.println(s));<br>        <span class="hljs-comment">//or</span><br>        strings.forEach(System.out::println);<br> 				<span class="hljs-comment">//map</span><br>        Map&lt;Integer, String&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>        map.forEach((k,v)-&gt;System.out.println(v));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="方法的引用"><a href="#方法的引用" class="headerlink" title="方法的引用"></a>方法的引用</h4><p>Java 8 允许使用 <code>::</code> 关键字来传递方法或者构造函数引用，无论如何，表达式返回的类型必须是 functional-interface。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LambdaClassSuper</span> &#123;<br>    LambdaInterface <span class="hljs-title function_">sf</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LambdaClass</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">LambdaClassSuper</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> LambdaInterface <span class="hljs-title function_">staticF</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> LambdaInterface <span class="hljs-title function_">f</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">show</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-comment">//1.调用静态函数，返回类型必须是functional-interface</span><br>        <span class="hljs-type">LambdaInterface</span> <span class="hljs-variable">t</span> <span class="hljs-operator">=</span> LambdaClass::staticF;<br><br>        <span class="hljs-comment">//2.实例方法调用</span><br>        <span class="hljs-type">LambdaClass</span> <span class="hljs-variable">lambdaClass</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">LambdaClass</span>();<br>        <span class="hljs-type">LambdaInterface</span> <span class="hljs-variable">lambdaInterface</span> <span class="hljs-operator">=</span> lambdaClass::f;<br><br>        <span class="hljs-comment">//3.超类上的方法调用</span><br>        <span class="hljs-type">LambdaInterface</span> <span class="hljs-variable">superf</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">super</span>::sf;<br><br>        <span class="hljs-comment">//4. 构造方法调用</span><br>        <span class="hljs-type">LambdaInterface</span> <span class="hljs-variable">tt</span> <span class="hljs-operator">=</span> LambdaClassSuper::<span class="hljs-keyword">new</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="访问变量"><a href="#访问变量" class="headerlink" title="访问变量"></a>访问变量</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>Collections.sort(strings, (Integer o1, Integer o2) -&gt; o1 - i);<br><span class="hljs-comment">//i =3;</span><br></code></pre></td></tr></table></figure>
+
+<p>lambda 表达式可以引用外边变量，但是该变量默认拥有 final 属性，不能被修改，如果修改，编译时就报错。</p>
+<h2 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h2><p>java 新增了 <code>java.util.stream</code> 包，它和之前的流大同小异。之前接触最多的是资源流，比如<code>java.io.FileInputStream</code>，通过流把文件从一个地方输入到另一个地方，它只是内容搬运工，对文件内容不做任何<em>CRUD</em>。</p>
+<p><code>Stream</code>依然不存储数据，不同的是它可以检索(Retrieve)和逻辑处理集合数据、包括筛选、排序、统计、计数等。可以想象成是 Sql 语句。</p>
+<p>它的源数据可以是 <code>Collection</code>、<code>Array</code> 等。由于它的方法参数都是函数式接口类型，所以一般和 Lambda 配合使用。</p>
+<h3 id="流类型"><a href="#流类型" class="headerlink" title="流类型"></a>流类型</h3><ol>
+<li>stream 串行流</li>
+<li>parallelStream 并行流，可多线程执行</li>
+</ol>
+<h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><p>接下来我们看<code>java.util.stream.Stream</code>常用方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 返回一个串行流</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">default</span> Stream&lt;E&gt; <span class="hljs-title function_">stream</span><span class="hljs-params">()</span><br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 返回一个并行流</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">default</span> Stream&lt;E&gt; <span class="hljs-title function_">parallelStream</span><span class="hljs-params">()</span><br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 返回T的流</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span>&lt;T&gt; Stream&lt;T&gt; <span class="hljs-title function_">of</span><span class="hljs-params">(T t)</span><br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 返回其元素是指定值的顺序流。</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span>&lt;T&gt; Stream&lt;T&gt; <span class="hljs-title function_">of</span><span class="hljs-params">(T... values)</span> &#123;<br>    <span class="hljs-keyword">return</span> Arrays.stream(values);<br>&#125;<br><br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 过滤，返回由与给定predicate匹配的该流的元素组成的流</span><br><span class="hljs-comment">*/</span><br>Stream&lt;T&gt; <span class="hljs-title function_">filter</span><span class="hljs-params">(Predicate&lt;? <span class="hljs-built_in">super</span> T&gt; predicate)</span>;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 此流的所有元素是否与提供的predicate匹配。</span><br><span class="hljs-comment">*/</span><br><span class="hljs-type">boolean</span> <span class="hljs-title function_">allMatch</span><span class="hljs-params">(Predicate&lt;? <span class="hljs-built_in">super</span> T&gt; predicate)</span><br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 此流任意元素是否有与提供的predicate匹配。</span><br><span class="hljs-comment">*/</span><br><span class="hljs-type">boolean</span> <span class="hljs-title function_">anyMatch</span><span class="hljs-params">(Predicate&lt;? <span class="hljs-built_in">super</span> T&gt; predicate)</span>;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 返回一个 Stream的构建器。</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span>&lt;T&gt; Builder&lt;T&gt; <span class="hljs-title function_">builder</span><span class="hljs-params">()</span>;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 使用 Collector对此流的元素进行归纳</span><br><span class="hljs-comment">*/</span><br>&lt;R, A&gt; R <span class="hljs-title function_">collect</span><span class="hljs-params">(Collector&lt;? <span class="hljs-built_in">super</span> T, A, R&gt; collector)</span>;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 返回此流中的元素数。</span><br><span class="hljs-comment">*/</span><br><span class="hljs-type">long</span> <span class="hljs-title function_">count</span><span class="hljs-params">()</span>;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 返回由该流的不同元素（根据 Object.equals(Object) ）组成的流。</span><br><span class="hljs-comment">*/</span><br>Stream&lt;T&gt; <span class="hljs-title function_">distinct</span><span class="hljs-params">()</span>;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 遍历</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">void</span> <span class="hljs-title function_">forEach</span><span class="hljs-params">(Consumer&lt;? <span class="hljs-built_in">super</span> T&gt; action)</span>;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 用于获取指定数量的流，截短长度不能超过 maxSize 。</span><br><span class="hljs-comment">*/</span><br>Stream&lt;T&gt; <span class="hljs-title function_">limit</span><span class="hljs-params">(<span class="hljs-type">long</span> maxSize)</span>;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 用于映射每个元素到对应的结果</span><br><span class="hljs-comment">*/</span><br>&lt;R&gt; Stream&lt;R&gt; <span class="hljs-title function_">map</span><span class="hljs-params">(Function&lt;? <span class="hljs-built_in">super</span> T, ? extends R&gt; mapper)</span>;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 根据提供的 Comparator进行排序。</span><br><span class="hljs-comment">*/</span><br>Stream&lt;T&gt; <span class="hljs-title function_">sorted</span><span class="hljs-params">(Comparator&lt;? <span class="hljs-built_in">super</span> T&gt; comparator)</span>;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 在丢弃流的第一个 n元素后，返回由该流的 n元素组成的流。</span><br><span class="hljs-comment">*/</span><br>Stream&lt;T&gt; <span class="hljs-title function_">skip</span><span class="hljs-params">(<span class="hljs-type">long</span> n)</span>;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 返回一个包含此流的元素的数组。</span><br><span class="hljs-comment">*/</span><br>Object[] toArray();<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 使用提供的 generator函数返回一个包含此流的元素的数组，以分配返回的数组，以及分区执行或调整大小可能需要的任何其他数组。</span><br><span class="hljs-comment">*/</span><br>&lt;A&gt; A[] toArray(IntFunction&lt;A[]&gt; generator);<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 合并流</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;T&gt; Stream&lt;T&gt; <span class="hljs-title function_">concat</span><span class="hljs-params">(Stream&lt;? extends T&gt; a, Stream&lt;? extends T&gt; b)</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h3><p>本文列出 <code>Stream</code> 具有代表性的方法之使用，更多的使用方法还是要看 Api。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test</span><span class="hljs-params">()</span> &#123;<br>  List&lt;String&gt; strings = Arrays.asList(<span class="hljs-string">&quot;abc&quot;</span>, <span class="hljs-string">&quot;def&quot;</span>, <span class="hljs-string">&quot;gkh&quot;</span>, <span class="hljs-string">&quot;abc&quot;</span>);<br>    <span class="hljs-comment">//返回符合条件的stream</span><br>    Stream&lt;String&gt; stringStream = strings.stream().filter(s -&gt; <span class="hljs-string">&quot;abc&quot;</span>.equals(s));<br>    <span class="hljs-comment">//计算流符合条件的流的数量</span><br>    <span class="hljs-type">long</span> <span class="hljs-variable">count</span> <span class="hljs-operator">=</span> stringStream.count();<br><br>    <span class="hljs-comment">//forEach遍历-&gt;打印元素</span><br>    strings.stream().forEach(System.out::println);<br><br>    <span class="hljs-comment">//limit 获取到1个元素的stream</span><br>    Stream&lt;String&gt; limit = strings.stream().limit(<span class="hljs-number">1</span>);<br>    <span class="hljs-comment">//toArray 比如我们想看这个limitStream里面是什么，比如转换成String[],比如循环</span><br>    String[] array = limit.toArray(String[]::<span class="hljs-keyword">new</span>);<br><br>    <span class="hljs-comment">//map 对每个元素进行操作返回新流</span><br>    Stream&lt;String&gt; map = strings.stream().map(s -&gt; s + <span class="hljs-string">&quot;22&quot;</span>);<br><br>    <span class="hljs-comment">//sorted 排序并打印</span><br>    strings.stream().sorted().forEach(System.out::println);<br><br>    <span class="hljs-comment">//Collectors collect 把abc放入容器中</span><br>    List&lt;String&gt; collect = strings.stream().filter(string -&gt; <span class="hljs-string">&quot;abc&quot;</span>.equals(string)).collect(Collectors.toList());<br>    <span class="hljs-comment">//把list转为string，各元素用，号隔开</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">mergedString</span> <span class="hljs-operator">=</span> strings.stream().filter(string -&gt; !string.isEmpty()).collect(Collectors.joining(<span class="hljs-string">&quot;,&quot;</span>));<br><br>    <span class="hljs-comment">//对数组的统计，比如用</span><br>    List&lt;Integer&gt; number = Arrays.asList(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>);<br><br>    <span class="hljs-type">IntSummaryStatistics</span> <span class="hljs-variable">statistics</span> <span class="hljs-operator">=</span> number.stream().mapToInt((x) -&gt; x).summaryStatistics();<br>    System.out.println(<span class="hljs-string">&quot;列表中最大的数 : &quot;</span>+statistics.getMax());<br>    System.out.println(<span class="hljs-string">&quot;列表中最小的数 : &quot;</span>+statistics.getMin());<br>    System.out.println(<span class="hljs-string">&quot;平均数 : &quot;</span>+statistics.getAverage());<br>    System.out.println(<span class="hljs-string">&quot;所有数之和 : &quot;</span>+statistics.getSum());<br><br>    <span class="hljs-comment">//concat 合并流</span><br>    List&lt;String&gt; strings2 = Arrays.asList(<span class="hljs-string">&quot;xyz&quot;</span>, <span class="hljs-string">&quot;jqx&quot;</span>);<br>    Stream.concat(strings2.stream(),strings.stream()).count();<br><br>    <span class="hljs-comment">//注意 一个Stream只能操作一次，不能断开，否则会报错。</span><br>    <span class="hljs-type">Stream</span> <span class="hljs-variable">stream</span> <span class="hljs-operator">=</span> strings.stream();<br>    <span class="hljs-comment">//第一次使用</span><br>    stream.limit(<span class="hljs-number">2</span>);<br>    <span class="hljs-comment">//第二次使用</span><br>    stream.forEach(System.out::println);<br>    <span class="hljs-comment">//报错 java.lang.IllegalStateException: stream has already been operated upon or closed</span><br><br>    <span class="hljs-comment">//但是可以这样, 连续使用</span><br>    stream.limit(<span class="hljs-number">2</span>).forEach(System.out::println);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="延迟执行"><a href="#延迟执行" class="headerlink" title="延迟执行"></a>延迟执行</h3><p>在执行返回 <code>Stream</code> 的方法时，并不立刻执行，而是等返回一个非 <code>Stream</code> 的方法后才执行。因为拿到 <code>Stream</code> 并不能直接用，而是需要处理成一个常规类型。这里的 <code>Stream</code> 可以想象成是二进制流（2 个完全不一样的东东），拿到也看不懂。</p>
+<p>我们下面分解一下 <code>filter</code> 方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">laziness</span><span class="hljs-params">()</span>&#123;<br>  List&lt;String&gt; strings = Arrays.asList(<span class="hljs-string">&quot;abc&quot;</span>, <span class="hljs-string">&quot;def&quot;</span>, <span class="hljs-string">&quot;gkh&quot;</span>, <span class="hljs-string">&quot;abc&quot;</span>);<br>  Stream&lt;Integer&gt; stream = strings.stream().filter(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Predicate</span>() &#123;<br>      <span class="hljs-meta">@Override</span><br>      <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">test</span><span class="hljs-params">(Object o)</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;Predicate.test 执行&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br>      &#125;);<br><br>   System.out.println(<span class="hljs-string">&quot;count 执行&quot;</span>);<br>   stream.count();<br>&#125;<br><span class="hljs-comment">/*-------执行结果--------*/</span><br>count 执行<br>Predicate.test 执行<br>Predicate.test 执行<br>Predicate.test 执行<br>Predicate.test 执行<br></code></pre></td></tr></table></figure>
+
+<p>按执行顺序应该是先打印 4 次「<code>Predicate.test</code> 执行」，再打印「<code>count</code> 执行」。实际结果恰恰相反。说明 filter 中的方法并没有立刻执行，而是等调用<code>count()</code>方法后才执行。</p>
+<p>上面都是串行 <code>Stream</code> 的实例。并行 <code>parallelStream</code> 在使用方法上和串行一样。主要区别是 <code>parallelStream</code> 可多线程执行，是基于 ForkJoin 框架实现的，有时间大家可以了解一下 <code>ForkJoin</code> 框架和 <code>ForkJoinPool</code>。这里可以简单的理解它是通过线程池来实现的，这样就会涉及到线程安全，线程消耗等问题。下面我们通过代码来体验一下并行流的多线程执行。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">parallelStreamTest</span><span class="hljs-params">()</span>&#123;<br>   List&lt;Integer&gt; numbers = Arrays.asList(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>);<br>   numbers.parallelStream() .forEach(num-&gt;System.out.println(Thread.currentThread().getName()+<span class="hljs-string">&quot;&gt;&gt;&quot;</span>+num));<br>&#125;<br><span class="hljs-comment">//执行结果</span><br>main&gt;&gt;<span class="hljs-number">5</span><br>ForkJoinPool.commonPool-worker-<span class="hljs-number">2</span>&gt;&gt;<span class="hljs-number">4</span><br>ForkJoinPool.commonPool-worker-<span class="hljs-number">11</span>&gt;&gt;<span class="hljs-number">1</span><br>ForkJoinPool.commonPool-worker-<span class="hljs-number">9</span>&gt;&gt;<span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+
+<p>从结果中我们看到，for-each 用到的是多线程。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>从源码和实例中我们可以总结出一些 stream 的特点</p>
+<ol>
+<li>通过简单的链式编程，使得它可以方便地对遍历处理后的数据进行再处理。</li>
+<li>方法参数都是函数式接口类型</li>
+<li>一个 Stream 只能操作一次，操作完就关闭了，继续使用这个 stream 会报错。</li>
+<li>Stream 不保存数据，不改变数据源</li>
+</ol>
+<h2 id="Optional"><a href="#Optional" class="headerlink" title="Optional"></a>Optional</h2><p>在<a target="_blank" rel="noopener" href="https://share.weiyun.com/ThuqEbD5">阿里巴巴开发手册关于 Optional 的介绍</a>中这样写到：</p>
+<blockquote>
+<p>防止 NPE，是程序员的基本修养，注意 NPE 产生的场景：</p>
+<p>1） 返回类型为基本数据类型，return 包装数据类型的对象时，自动拆箱有可能产生 NPE。</p>
+<p>反例：public int f() { return Integer 对象}， 如果为 null，自动解箱抛 NPE。</p>
+<p>2） 数据库的查询结果可能为 null。</p>
+<p>3） 集合里的元素即使 isNotEmpty，取出的数据元素也可能为 null。</p>
+<p>4） 远程调用返回对象时，一律要求进行空指针判断，防止 NPE。</p>
+<p>5） 对于 Session 中获取的数据，建议进行 NPE 检查，避免空指针。</p>
+<p>6） 级联调用 obj.getA().getB().getC()；一连串调用，易产生 NPE。</p>
+<p>正例：使用 JDK8 的 Optional 类来防止 NPE 问题。</p>
+</blockquote>
+<p>他建议使用 <code>Optional</code> 解决 NPE（<code>java.lang.NullPointerException</code>）问题，它就是为 NPE 而生的，其中可以包含空值或非空值。下面我们通过源码逐步揭开 <code>Optional</code> 的红盖头。</p>
+<p>假设有一个 <code>Zoo</code> 类，里面有个属性 <code>Dog</code>，需求要获取 <code>Dog</code> 的 <code>age</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Zoo</span> &#123;<br>   <span class="hljs-keyword">private</span> Dog dog;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Dog</span> &#123;<br>   <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> age;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>传统解决 NPE 的办法如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Zoo</span> <span class="hljs-variable">zoo</span> <span class="hljs-operator">=</span> getZoo();<br><span class="hljs-keyword">if</span>(zoo != <span class="hljs-literal">null</span>)&#123;<br>   <span class="hljs-type">Dog</span> <span class="hljs-variable">dog</span> <span class="hljs-operator">=</span> zoo.getDog();<br>   <span class="hljs-keyword">if</span>(dog != <span class="hljs-literal">null</span>)&#123;<br>      <span class="hljs-type">int</span> <span class="hljs-variable">age</span> <span class="hljs-operator">=</span> dog.getAge();<br>      System.out.println(age);<br>   &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>层层判断对象非空，有人说这种方式很丑陋不优雅，我并不这么认为。反而觉得很整洁，易读，易懂。你们觉得呢？</p>
+<p><code>Optional</code> 是这样的实现的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">Optional.ofNullable(zoo).map(o -&gt; o.getDog()).map(d -&gt; d.getAge()).ifPresent(age -&gt;<br>    System.out.println(age)<br>);<br></code></pre></td></tr></table></figure>
+
+<p>是不是简洁了很多呢？</p>
+<h3 id="如何创建一个-Optional"><a href="#如何创建一个-Optional" class="headerlink" title="如何创建一个 Optional"></a>如何创建一个 Optional</h3><p>上例中<code>Optional.ofNullable</code>是其中一种创建 Optional 的方式。我们先看一下它的含义和其他创建 Optional 的源码方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* Common instance for &#123;<span class="hljs-doctag">@code</span> empty()&#125;. 全局EMPTY对象</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Optional&lt;?&gt; EMPTY = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Optional</span>&lt;&gt;();<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* Optional维护的值</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> T value;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 如果value是null就返回EMPTY，否则就返回of(T)</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;T&gt; Optional&lt;T&gt; <span class="hljs-title function_">ofNullable</span><span class="hljs-params">(T value)</span> &#123;<br>   <span class="hljs-type">return</span> <span class="hljs-variable">value</span> <span class="hljs-operator">=</span>= <span class="hljs-literal">null</span> ? empty() : of(value);<br>&#125;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 返回 EMPTY 对象</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span>&lt;T&gt; Optional&lt;T&gt; <span class="hljs-title function_">empty</span><span class="hljs-params">()</span> &#123;<br>   Optional&lt;T&gt; t = (Optional&lt;T&gt;) EMPTY;<br>   <span class="hljs-keyword">return</span> t;<br>&#125;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 返回Optional对象</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;T&gt; Optional&lt;T&gt; <span class="hljs-title function_">of</span><span class="hljs-params">(T value)</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Optional</span>&lt;&gt;(value);<br>&#125;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 私有构造方法，给value赋值</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">private</span> <span class="hljs-title function_">Optional</span><span class="hljs-params">(T value)</span> &#123;<br>  <span class="hljs-built_in">this</span>.value = Objects.requireNonNull(value);<br>&#125;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 所以如果of(T value) 的value是null，会抛出NullPointerException异常，这样貌似就没处理NPE问题</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;T&gt; T <span class="hljs-title function_">requireNonNull</span><span class="hljs-params">(T obj)</span> &#123;<br>  <span class="hljs-keyword">if</span> (obj == <span class="hljs-literal">null</span>)<br>         <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">NullPointerException</span>();<br>  <span class="hljs-keyword">return</span> obj;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>ofNullable</code> 方法和<code>of</code>方法唯一区别就是当 value 为 null 时，<code>ofNullable</code> 返回的是<code>EMPTY</code>，of 会抛出 <code>NullPointerException</code> 异常。如果需要把 <code>NullPointerException</code> 暴漏出来就用 <code>of</code>，否则就用 <code>ofNullable</code>。</p>
+<h3 id="map-相关方法。"><a href="#map-相关方法。" class="headerlink" title="map()相关方法。"></a><code>map()</code>相关方法。</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 如果value为null，返回EMPTY，否则返回Optional封装的参数值</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">public</span>&lt;U&gt; Optional&lt;U&gt; <span class="hljs-title function_">map</span><span class="hljs-params">(Function&lt;? <span class="hljs-built_in">super</span> T, ? extends U&gt; mapper)</span> &#123;<br>        Objects.requireNonNull(mapper);<br>        <span class="hljs-keyword">if</span> (!isPresent())<br>            <span class="hljs-keyword">return</span> empty();<br>        <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">return</span> Optional.ofNullable(mapper.apply(value));<br>        &#125;<br>&#125;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 如果value为null，返回EMPTY，否则返回Optional封装的参数值，如果参数值返回null会抛 NullPointerException</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">public</span>&lt;U&gt; Optional&lt;U&gt; <span class="hljs-title function_">flatMap</span><span class="hljs-params">(Function&lt;? <span class="hljs-built_in">super</span> T, Optional&lt;U&gt;&gt; mapper)</span> &#123;<br>        Objects.requireNonNull(mapper);<br>        <span class="hljs-keyword">if</span> (!isPresent())<br>            <span class="hljs-keyword">return</span> empty();<br>        <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">return</span> Objects.requireNonNull(mapper.apply(value));<br>        &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong><code>map()</code> 和 <code>flatMap()</code> 有什么区别的？</strong></p>
+<p><strong>1.参数不一样，<code>map</code> 的参数上面看到过，<code>flatMap</code> 的参数是这样</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">ZooFlat</span> &#123;<br>        <span class="hljs-keyword">private</span> <span class="hljs-type">DogFlat</span> <span class="hljs-variable">dog</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DogFlat</span>();<br><br>        <span class="hljs-keyword">public</span> DogFlat <span class="hljs-title function_">getDog</span><span class="hljs-params">()</span> &#123;<br>            <span class="hljs-keyword">return</span> dog;<br>        &#125;<br>    &#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">DogFlat</span> &#123;<br>        <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-variable">age</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">public</span> Optional&lt;Integer&gt; <span class="hljs-title function_">getAge</span><span class="hljs-params">()</span> &#123;<br>            <span class="hljs-keyword">return</span> Optional.ofNullable(age);<br>        &#125;<br>&#125;<br><br><span class="hljs-type">ZooFlat</span> <span class="hljs-variable">zooFlat</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ZooFlat</span>();<br>Optional.ofNullable(zooFlat).map(o -&gt; o.getDog()).flatMap(d -&gt; d.getAge()).ifPresent(age -&gt;<br>    System.out.println(age)<br>);<br></code></pre></td></tr></table></figure>
+
+<p><strong>2.<code>flatMap()</code> 参数返回值如果是 null 会抛 <code>NullPointerException</code>，而 <code>map()</code> 返回<code>EMPTY</code>。</strong></p>
+<h3 id="判断-value-是否为-null"><a href="#判断-value-是否为-null" class="headerlink" title="判断 value 是否为 null"></a>判断 value 是否为 null</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* value是否为null</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isPresent</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-keyword">return</span> value != <span class="hljs-literal">null</span>;<br>&#125;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 如果value不为null执行consumer.accept</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">ifPresent</span><span class="hljs-params">(Consumer&lt;? <span class="hljs-built_in">super</span> T&gt; consumer)</span> &#123;<br>   <span class="hljs-keyword">if</span> (value != <span class="hljs-literal">null</span>)<br>    consumer.accept(value);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="获取-value"><a href="#获取-value" class="headerlink" title="获取 value"></a>获取 value</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* Return the value if present, otherwise invoke &#123;<span class="hljs-doctag">@code</span> other&#125; and return</span><br><span class="hljs-comment">* the result of that invocation.</span><br><span class="hljs-comment">* 如果value != null 返回value，否则返回other的执行结果</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">public</span> T <span class="hljs-title function_">orElseGet</span><span class="hljs-params">(Supplier&lt;? extends T&gt; other)</span> &#123;<br>    <span class="hljs-keyword">return</span> value != <span class="hljs-literal">null</span> ? value : other.get();<br>&#125;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 如果value != null 返回value，否则返回T</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">public</span> T <span class="hljs-title function_">orElse</span><span class="hljs-params">(T other)</span> &#123;<br>    <span class="hljs-keyword">return</span> value != <span class="hljs-literal">null</span> ? value : other;<br>&#125;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 如果value != null 返回value，否则抛出参数返回的异常</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">public</span> &lt;X <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Throwable</span>&gt; T <span class="hljs-title function_">orElseThrow</span><span class="hljs-params">(Supplier&lt;? extends X&gt; exceptionSupplier)</span> <span class="hljs-keyword">throws</span> X &#123;<br>        <span class="hljs-keyword">if</span> (value != <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> value;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">throw</span> exceptionSupplier.get();<br>        &#125;<br>&#125;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* value为null抛出NoSuchElementException，不为空返回value。</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">public</span> T <span class="hljs-title function_">get</span><span class="hljs-params">()</span> &#123;<br>  <span class="hljs-keyword">if</span> (value == <span class="hljs-literal">null</span>) &#123;<br>      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">NoSuchElementException</span>(<span class="hljs-string">&quot;No value present&quot;</span>);<br>  &#125;<br>  <span class="hljs-keyword">return</span> value;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="过滤值"><a href="#过滤值" class="headerlink" title="过滤值"></a>过滤值</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 1. 如果是empty返回empty</span><br><span class="hljs-comment">* 2. predicate.test(value)==true 返回this，否则返回empty</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">public</span> Optional&lt;T&gt; <span class="hljs-title function_">filter</span><span class="hljs-params">(Predicate&lt;? <span class="hljs-built_in">super</span> T&gt; predicate)</span> &#123;<br>        Objects.requireNonNull(predicate);<br>        <span class="hljs-keyword">if</span> (!isPresent())<br>            <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;<br>        <span class="hljs-keyword">else</span><br>            <span class="hljs-keyword">return</span> predicate.test(value) ? <span class="hljs-built_in">this</span> : empty();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h3><p>看完 <code>Optional</code> 源码，<code>Optional</code> 的方法真的非常简单，值得注意的是如果坚决不想看见 <code>NPE</code>，就不要用 <code>of() </code>、 <code>get()</code> 、<code>flatMap(..)</code>。最后再综合用一下 <code>Optional</code> 的高频方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">Optional.ofNullable(zoo).map(o -&gt; o.getDog()).map(d -&gt; d.getAge()).filter(v-&gt;v==<span class="hljs-number">1</span>).orElse(<span class="hljs-number">3</span>);<br></code></pre></td></tr></table></figure>
+
+<h2 id="Date-Time-API"><a href="#Date-Time-API" class="headerlink" title="Date-Time API"></a>Date-Time API</h2><p>这是对<code>java.util.Date</code>强有力的补充，解决了 Date 类的大部分痛点：</p>
+<ol>
+<li>非线程安全</li>
+<li>时区处理麻烦</li>
+<li>各种格式化、和时间计算繁琐</li>
+<li>设计有缺陷，Date 类同时包含日期和时间；还有一个 java.sql.Date，容易混淆。</li>
+</ol>
+<p>我们从常用的时间实例来对比 java.util.Date 和新 Date 有什么区别。用<code>java.util.Date</code>的代码该改改了。</p>
+<h3 id="java-time-主要类"><a href="#java-time-主要类" class="headerlink" title="java.time 主要类"></a>java.time 主要类</h3><p><code>java.util.Date</code> 既包含日期又包含时间，而  <code>java.time</code> 把它们进行了分离</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">LocalDateTime.class <span class="hljs-comment">//日期+时间 format: yyyy-MM-ddTHH:mm:ss.SSS</span><br>LocalDate.class <span class="hljs-comment">//日期 format: yyyy-MM-dd</span><br>LocalTime.class <span class="hljs-comment">//时间 format: HH:mm:ss</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h3><p><strong>Java 8 之前:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">oldFormat</span><span class="hljs-params">()</span>&#123;<br>		<span class="hljs-type">Date</span> <span class="hljs-variable">now</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>();<br>    <span class="hljs-comment">//format yyyy-MM-dd HH:mm:ss</span><br>    <span class="hljs-type">SimpleDateFormat</span> <span class="hljs-variable">sdf</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleDateFormat</span>(<span class="hljs-string">&quot;yyyy-MM-dd&quot;</span>);<br>    <span class="hljs-type">String</span> <span class="hljs-variable">date</span>  <span class="hljs-operator">=</span> sdf.format(now);<br>    System.out.println(String.format(<span class="hljs-string">&quot;date format : %s&quot;</span>, date));<br><br>    <span class="hljs-comment">//format HH:mm:ss</span><br>    <span class="hljs-type">SimpleDateFormat</span> <span class="hljs-variable">sdft</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleDateFormat</span>(<span class="hljs-string">&quot;HH:mm:ss&quot;</span>);<br>    <span class="hljs-type">String</span> <span class="hljs-variable">time</span> <span class="hljs-operator">=</span> sdft.format(now);<br>    System.out.println(String.format(<span class="hljs-string">&quot;time format : %s&quot;</span>, time));<br><br>    <span class="hljs-comment">//format yyyy-MM-dd HH:mm:ss</span><br>    <span class="hljs-type">SimpleDateFormat</span> <span class="hljs-variable">sdfdt</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleDateFormat</span>(<span class="hljs-string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>);<br>    <span class="hljs-type">String</span> <span class="hljs-variable">datetime</span> <span class="hljs-operator">=</span> sdfdt.format(now);<br>    System.out.println(String.format(<span class="hljs-string">&quot;dateTime format : %s&quot;</span>, datetime));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>Java 8 之后:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">newFormat</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-comment">//format yyyy-MM-dd</span><br>    <span class="hljs-type">LocalDate</span> <span class="hljs-variable">date</span> <span class="hljs-operator">=</span> LocalDate.now();<br>    System.out.println(String.format(<span class="hljs-string">&quot;date format : %s&quot;</span>, date));<br><br>    <span class="hljs-comment">//format HH:mm:ss</span><br>    <span class="hljs-type">LocalTime</span> <span class="hljs-variable">time</span> <span class="hljs-operator">=</span> LocalTime.now().withNano(<span class="hljs-number">0</span>);<br>    System.out.println(String.format(<span class="hljs-string">&quot;time format : %s&quot;</span>, time));<br><br>    <span class="hljs-comment">//format yyyy-MM-dd HH:mm:ss</span><br>    <span class="hljs-type">LocalDateTime</span> <span class="hljs-variable">dateTime</span> <span class="hljs-operator">=</span> LocalDateTime.now();<br>    <span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">dateTimeFormatter</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>);<br>    <span class="hljs-type">String</span> <span class="hljs-variable">dateTimeStr</span> <span class="hljs-operator">=</span> dateTime.format(dateTimeFormatter);<br>    System.out.println(String.format(<span class="hljs-string">&quot;dateTime format : %s&quot;</span>, dateTimeStr));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="字符串转日期格式"><a href="#字符串转日期格式" class="headerlink" title="字符串转日期格式"></a>字符串转日期格式</h3><p><strong>Java 8 之前:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//已弃用</span><br><span class="hljs-type">Date</span> <span class="hljs-variable">date</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(<span class="hljs-string">&quot;2021-01-26&quot;</span>);<br><span class="hljs-comment">//替换为</span><br><span class="hljs-type">SimpleDateFormat</span> <span class="hljs-variable">sdf</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleDateFormat</span>(<span class="hljs-string">&quot;yyyy-MM-dd&quot;</span>);<br><span class="hljs-type">Date</span> <span class="hljs-variable">date1</span> <span class="hljs-operator">=</span> sdf.parse(<span class="hljs-string">&quot;2021-01-26&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p><strong>Java 8 之后:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">LocalDate</span> <span class="hljs-variable">date</span> <span class="hljs-operator">=</span> LocalDate.of(<span class="hljs-number">2021</span>, <span class="hljs-number">1</span>, <span class="hljs-number">26</span>);<br>LocalDate.parse(<span class="hljs-string">&quot;2021-01-26&quot;</span>);<br><br><span class="hljs-type">LocalDateTime</span> <span class="hljs-variable">dateTime</span> <span class="hljs-operator">=</span> LocalDateTime.of(<span class="hljs-number">2021</span>, <span class="hljs-number">1</span>, <span class="hljs-number">26</span>, <span class="hljs-number">12</span>, <span class="hljs-number">12</span>, <span class="hljs-number">22</span>);<br>LocalDateTime.parse(<span class="hljs-string">&quot;2021-01-26 12:12:22&quot;</span>);<br><br><span class="hljs-type">LocalTime</span> <span class="hljs-variable">time</span> <span class="hljs-operator">=</span> LocalTime.of(<span class="hljs-number">12</span>, <span class="hljs-number">12</span>, <span class="hljs-number">22</span>);<br>LocalTime.parse(<span class="hljs-string">&quot;12:12:22&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p><strong>Java 8 之前</strong> 转换都需要借助 <code>SimpleDateFormat</code> 类，而<strong>Java 8 之后</strong>只需要 <code>LocalDate</code>、<code>LocalTime</code>、<code>LocalDateTime</code>的  <code>of</code> 或 <code>parse</code> 方法。</p>
+<h3 id="日期计算"><a href="#日期计算" class="headerlink" title="日期计算"></a>日期计算</h3><p>下面仅以<strong>一周后日期</strong>为例，其他单位（年、月、日、1&#x2F;2 日、时等等）大同小异。另外，这些单位都在 <em>java.time.temporal.ChronoUnit</em> 枚举中定义。</p>
+<p><strong>Java 8 之前:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">afterDay</span><span class="hljs-params">()</span>&#123;<br>     <span class="hljs-comment">//一周后的日期</span><br>     <span class="hljs-type">SimpleDateFormat</span> <span class="hljs-variable">formatDate</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleDateFormat</span>(<span class="hljs-string">&quot;yyyy-MM-dd&quot;</span>);<br>     <span class="hljs-type">Calendar</span> <span class="hljs-variable">ca</span> <span class="hljs-operator">=</span> Calendar.getInstance();<br>     ca.add(Calendar.DATE, <span class="hljs-number">7</span>);<br>     <span class="hljs-type">Date</span> <span class="hljs-variable">d</span> <span class="hljs-operator">=</span> ca.getTime();<br>     <span class="hljs-type">String</span> <span class="hljs-variable">after</span> <span class="hljs-operator">=</span> formatDate.format(d);<br>     System.out.println(<span class="hljs-string">&quot;一周后日期：&quot;</span> + after);<br><br>   <span class="hljs-comment">//算两个日期间隔多少天，计算间隔多少年，多少月方法类似</span><br>     <span class="hljs-type">String</span> <span class="hljs-variable">dates1</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;2021-12-23&quot;</span>;<br>   <span class="hljs-type">String</span> <span class="hljs-variable">dates2</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;2021-02-26&quot;</span>;<br>     <span class="hljs-type">SimpleDateFormat</span> <span class="hljs-variable">format</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleDateFormat</span>(<span class="hljs-string">&quot;yyyy-MM-dd&quot;</span>);<br>     <span class="hljs-type">Date</span> <span class="hljs-variable">date1</span> <span class="hljs-operator">=</span> format.parse(dates1);<br>     <span class="hljs-type">Date</span> <span class="hljs-variable">date2</span> <span class="hljs-operator">=</span> format.parse(dates2);<br>     <span class="hljs-type">int</span> <span class="hljs-variable">day</span> <span class="hljs-operator">=</span> (<span class="hljs-type">int</span>) ((date1.getTime() - date2.getTime()) / (<span class="hljs-number">1000</span> * <span class="hljs-number">3600</span> * <span class="hljs-number">24</span>));<br>     System.out.println(dates2 + <span class="hljs-string">&quot;和&quot;</span> + dates2 + <span class="hljs-string">&quot;相差&quot;</span> + day + <span class="hljs-string">&quot;天&quot;</span>);<br>     <span class="hljs-comment">//结果：2021-12-23和2021-12-23相差300天</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>Java 8 之后:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">pushWeek</span><span class="hljs-params">()</span>&#123;<br>     <span class="hljs-comment">//一周后的日期</span><br>     <span class="hljs-type">LocalDate</span> <span class="hljs-variable">localDate</span> <span class="hljs-operator">=</span> LocalDate.now();<br>     <span class="hljs-comment">//方法1</span><br>     <span class="hljs-type">LocalDate</span> <span class="hljs-variable">after</span> <span class="hljs-operator">=</span> localDate.plus(<span class="hljs-number">1</span>, ChronoUnit.WEEKS);<br>     <span class="hljs-comment">//方法2</span><br>     <span class="hljs-type">LocalDate</span> <span class="hljs-variable">after2</span> <span class="hljs-operator">=</span> localDate.plusWeeks(<span class="hljs-number">1</span>);<br>     System.out.println(<span class="hljs-string">&quot;一周后日期：&quot;</span> + after);<br><br>     <span class="hljs-comment">//算两个日期间隔多少天，计算间隔多少年，多少月</span><br>     <span class="hljs-type">LocalDate</span> <span class="hljs-variable">date1</span> <span class="hljs-operator">=</span> LocalDate.parse(<span class="hljs-string">&quot;2021-02-26&quot;</span>);<br>     <span class="hljs-type">LocalDate</span> <span class="hljs-variable">date2</span> <span class="hljs-operator">=</span> LocalDate.parse(<span class="hljs-string">&quot;2021-12-23&quot;</span>);<br>     <span class="hljs-type">Period</span> <span class="hljs-variable">period</span> <span class="hljs-operator">=</span> Period.between(date1, date2);<br>     System.out.println(<span class="hljs-string">&quot;date1 到 date2 相隔：&quot;</span><br>                + period.getYears() + <span class="hljs-string">&quot;年&quot;</span><br>                + period.getMonths() + <span class="hljs-string">&quot;月&quot;</span><br>                + period.getDays() + <span class="hljs-string">&quot;天&quot;</span>);<br>		 <span class="hljs-comment">//打印结果是 “date1 到 date2 相隔：0年9月27天”</span><br>     <span class="hljs-comment">//这里period.getDays()得到的天是抛去年月以外的天数，并不是总天数</span><br>     <span class="hljs-comment">//如果要获取纯粹的总天数应该用下面的方法</span><br>     <span class="hljs-type">long</span> <span class="hljs-variable">day</span> <span class="hljs-operator">=</span> date2.toEpochDay() - date1.toEpochDay();<br>     System.out.println(date2 + <span class="hljs-string">&quot;和&quot;</span> + date2 + <span class="hljs-string">&quot;相差&quot;</span> + day + <span class="hljs-string">&quot;天&quot;</span>);<br>     <span class="hljs-comment">//打印结果：2021-12-23和2021-12-23相差300天</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="获取指定日期"><a href="#获取指定日期" class="headerlink" title="获取指定日期"></a>获取指定日期</h3><p>除了日期计算繁琐，获取特定一个日期也很麻烦，比如获取本月最后一天，第一天。</p>
+<p><strong>Java 8 之前:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">getDay</span><span class="hljs-params">()</span> &#123;<br><br>        <span class="hljs-type">SimpleDateFormat</span> <span class="hljs-variable">format</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleDateFormat</span>(<span class="hljs-string">&quot;yyyy-MM-dd&quot;</span>);<br>        <span class="hljs-comment">//获取当前月第一天：</span><br>        <span class="hljs-type">Calendar</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> Calendar.getInstance();<br>        c.set(Calendar.DAY_OF_MONTH, <span class="hljs-number">1</span>);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">first</span> <span class="hljs-operator">=</span> format.format(c.getTime());<br>        System.out.println(<span class="hljs-string">&quot;first day:&quot;</span> + first);<br><br>        <span class="hljs-comment">//获取当前月最后一天</span><br>        <span class="hljs-type">Calendar</span> <span class="hljs-variable">ca</span> <span class="hljs-operator">=</span> Calendar.getInstance();<br>        ca.set(Calendar.DAY_OF_MONTH, ca.getActualMaximum(Calendar.DAY_OF_MONTH));<br>        <span class="hljs-type">String</span> <span class="hljs-variable">last</span> <span class="hljs-operator">=</span> format.format(ca.getTime());<br>        System.out.println(<span class="hljs-string">&quot;last day:&quot;</span> + last);<br><br>        <span class="hljs-comment">//当年最后一天</span><br>        <span class="hljs-type">Calendar</span> <span class="hljs-variable">currCal</span> <span class="hljs-operator">=</span> Calendar.getInstance();<br>        <span class="hljs-type">Calendar</span> <span class="hljs-variable">calendar</span> <span class="hljs-operator">=</span> Calendar.getInstance();<br>        calendar.clear();<br>        calendar.set(Calendar.YEAR, currCal.get(Calendar.YEAR));<br>        calendar.roll(Calendar.DAY_OF_YEAR, -<span class="hljs-number">1</span>);<br>        <span class="hljs-type">Date</span> <span class="hljs-variable">time</span> <span class="hljs-operator">=</span> calendar.getTime();<br>        System.out.println(<span class="hljs-string">&quot;last day:&quot;</span> + format.format(time));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>Java 8 之后:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">getDayNew</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">LocalDate</span> <span class="hljs-variable">today</span> <span class="hljs-operator">=</span> LocalDate.now();<br>    <span class="hljs-comment">//获取当前月第一天：</span><br>    <span class="hljs-type">LocalDate</span> <span class="hljs-variable">firstDayOfThisMonth</span> <span class="hljs-operator">=</span> today.with(TemporalAdjusters.firstDayOfMonth());<br>    <span class="hljs-comment">// 取本月最后一天</span><br>    <span class="hljs-type">LocalDate</span> <span class="hljs-variable">lastDayOfThisMonth</span> <span class="hljs-operator">=</span> today.with(TemporalAdjusters.lastDayOfMonth());<br>    <span class="hljs-comment">//取下一天：</span><br>    <span class="hljs-type">LocalDate</span> <span class="hljs-variable">nextDay</span> <span class="hljs-operator">=</span> lastDayOfThisMonth.plusDays(<span class="hljs-number">1</span>);<br>    <span class="hljs-comment">//当年最后一天</span><br>    <span class="hljs-type">LocalDate</span> <span class="hljs-variable">lastday</span> <span class="hljs-operator">=</span> today.with(TemporalAdjusters.lastDayOfYear());<br>    <span class="hljs-comment">//2021年最后一个周日，如果用Calendar是不得烦死。</span><br>    <span class="hljs-type">LocalDate</span> <span class="hljs-variable">lastMondayOf2021</span> <span class="hljs-operator">=</span> LocalDate.parse(<span class="hljs-string">&quot;2021-12-31&quot;</span>).with(TemporalAdjusters.lastInMonth(DayOfWeek.SUNDAY));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>java.time.temporal.TemporalAdjusters</code> 里面还有很多便捷的算法，这里就不带大家看 Api 了，都很简单，看了秒懂。</p>
+<h3 id="JDBC-和-java8"><a href="#JDBC-和-java8" class="headerlink" title="JDBC 和 java8"></a>JDBC 和 java8</h3><p>现在 jdbc 时间类型和 java8 时间类型对应关系是</p>
+<ol>
+<li><code>Date</code> —&gt; <code>LocalDate</code></li>
+<li><code>Time</code> —&gt; <code>LocalTime</code></li>
+<li><code>Timestamp</code> —&gt; <code>LocalDateTime</code></li>
+</ol>
+<p>而之前统统对应 <code>Date</code>，也只有 <code>Date</code>。</p>
+<h3 id="时区"><a href="#时区" class="headerlink" title="时区"></a>时区</h3><blockquote>
+<p>时区：正式的时区划分为每隔经度 15° 划分一个时区，全球共 24 个时区，每个时区相差 1 小时。但为了行政上的方便，常将 1 个国家或 1 个省份划在一起，比如我国幅员宽广，大概横跨 5 个时区，实际上只用东八时区的标准时即北京时间为准。</p>
+</blockquote>
+<p><code>java.util.Date</code> 对象实质上存的是 1970 年 1 月 1 日 0 点（ GMT）至 Date 对象所表示时刻所经过的毫秒数。也就是说不管在哪个时区 new Date，它记录的毫秒数都一样，和时区无关。但在使用上应该把它转换成当地时间，这就涉及到了时间的国际化。<code>java.util.Date</code> 本身并不支持国际化，需要借助 <code>TimeZone</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//北京时间：Wed Jan 27 14:05:29 CST 2021</span><br><span class="hljs-type">Date</span> <span class="hljs-variable">date</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>();<br><br><span class="hljs-type">SimpleDateFormat</span> <span class="hljs-variable">bjSdf</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleDateFormat</span>(<span class="hljs-string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>);<br><span class="hljs-comment">//北京时区</span><br>bjSdf.setTimeZone(TimeZone.getTimeZone(<span class="hljs-string">&quot;Asia/Shanghai&quot;</span>));<br>System.out.println(<span class="hljs-string">&quot;毫秒数:&quot;</span> + date.getTime() + <span class="hljs-string">&quot;, 北京时间:&quot;</span> + bjSdf.format(date));<br><br><span class="hljs-comment">//东京时区</span><br><span class="hljs-type">SimpleDateFormat</span> <span class="hljs-variable">tokyoSdf</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleDateFormat</span>(<span class="hljs-string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>);<br>tokyoSdf.setTimeZone(TimeZone.getTimeZone(<span class="hljs-string">&quot;Asia/Tokyo&quot;</span>));  <span class="hljs-comment">// 设置东京时区</span><br>System.out.println(<span class="hljs-string">&quot;毫秒数:&quot;</span> + date.getTime() + <span class="hljs-string">&quot;, 东京时间:&quot;</span> + tokyoSdf.format(date));<br><br><span class="hljs-comment">//如果直接print会自动转成当前时区的时间</span><br>System.out.println(date);<br><span class="hljs-comment">//Wed Jan 27 14:05:29 CST 2021</span><br></code></pre></td></tr></table></figure>
+
+<p>在新特性中引入了  <code>java.time.ZonedDateTime </code> 来表示带时区的时间。它可以看成是 <code>LocalDateTime + ZoneId</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//当前时区时间</span><br><span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">zonedDateTime</span> <span class="hljs-operator">=</span> ZonedDateTime.now();<br>System.out.println(<span class="hljs-string">&quot;当前时区时间: &quot;</span> + zonedDateTime);<br><br><span class="hljs-comment">//东京时间</span><br><span class="hljs-type">ZoneId</span> <span class="hljs-variable">zoneId</span> <span class="hljs-operator">=</span> ZoneId.of(ZoneId.SHORT_IDS.get(<span class="hljs-string">&quot;JST&quot;</span>));<br><span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">tokyoTime</span> <span class="hljs-operator">=</span> zonedDateTime.withZoneSameInstant(zoneId);<br>System.out.println(<span class="hljs-string">&quot;东京时间: &quot;</span> + tokyoTime);<br><br><span class="hljs-comment">// ZonedDateTime 转 LocalDateTime</span><br><span class="hljs-type">LocalDateTime</span> <span class="hljs-variable">localDateTime</span> <span class="hljs-operator">=</span> tokyoTime.toLocalDateTime();<br>System.out.println(<span class="hljs-string">&quot;东京时间转当地时间: &quot;</span> + localDateTime);<br><br><span class="hljs-comment">//LocalDateTime 转 ZonedDateTime</span><br><span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">localZoned</span> <span class="hljs-operator">=</span> localDateTime.atZone(ZoneId.systemDefault());<br>System.out.println(<span class="hljs-string">&quot;本地时区时间: &quot;</span> + localZoned);<br><br><span class="hljs-comment">//打印结果</span><br>当前时区时间: <span class="hljs-number">2021</span>-<span class="hljs-number">01</span>-27T14:<span class="hljs-number">43</span>:<span class="hljs-number">58.735</span>+08:<span class="hljs-number">00</span>[Asia/Shanghai]<br>东京时间: <span class="hljs-number">2021</span>-<span class="hljs-number">01</span>-27T15:<span class="hljs-number">43</span>:<span class="hljs-number">58.735</span>+09:<span class="hljs-number">00</span>[Asia/Tokyo]<br>东京时间转当地时间: <span class="hljs-number">2021</span>-<span class="hljs-number">01</span>-27T15:<span class="hljs-number">43</span>:<span class="hljs-number">58.735</span><br>当地时区时间: <span class="hljs-number">2021</span>-<span class="hljs-number">01</span>-27T15:<span class="hljs-number">53</span>:<span class="hljs-number">35.618</span>+08:<span class="hljs-number">00</span>[Asia/Shanghai]<br></code></pre></td></tr></table></figure>
+
+<h3 id="小结-2"><a href="#小结-2" class="headerlink" title="小结"></a>小结</h3><p>通过上面比较新老 <code>Date</code> 的不同，当然只列出部分功能上的区别，更多功能还得自己去挖掘。总之 date-time-api 给日期操作带来了福利。在日常工作中遇到 date 类型的操作，第一考虑的是 date-time-api，实在解决不了再考虑老的 Date。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我们梳理总结的 java 8 新特性有</p>
+<ul>
+<li>Interface &amp; functional Interface</li>
+<li>Lambda</li>
+<li>Stream</li>
+<li>Optional</li>
+<li>Date time-api</li>
+</ul>
+<p>这些都是开发当中比较常用的特性。梳理下来发现它们真香，而我却没有更早的应用。总觉得学习 java 8 新特性比较麻烦，一直使用老的实现方式。其实这些新特性几天就可以掌握，一但掌握，效率会有很大的提高。其实我们涨工资也是涨的学习的钱，不学习终究会被淘汰，35 岁危机会提前来临。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Java/new-features/" class="category-chain-item">new_features</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Java/">#Java</a>
+      
+        <a href="/tags/new-features/">#new_features</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>java8-common-new-features</div>
+      <div>https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/new_features/java8-common-new-features/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 17, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/Java/jvm/memory-area/" title="memory-area">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">memory-area</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/Java/new_features/java8-tutorial-translate/" title="java8-tutorial-translate">
+                        <span class="hidden-mobile">java8-tutorial-translate</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

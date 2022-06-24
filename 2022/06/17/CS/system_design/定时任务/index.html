@@ -1,0 +1,743 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Java定时任务大揭秘为什么需要定时任务？我们来看一下几个非常常见的业务场景：  某系统凌晨要进行数据备份。 某电商平台，用户下单半个小时未支付的情况下需要自动取消订单。 某媒体聚合平台，每 10 分钟动态抓取某某网站的数据为自己所用。 某博客平台，支持定时发送文章。 某基金平台，每晚定时计算用户当日收益情况并推送给用户最新的数据。 ……  这些场景往往都要求我们在某个特定的时间去做某个事情。 单">
+<meta property="og:type" content="article">
+<meta property="og:title" content="定时任务">
+<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/system_design/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Java定时任务大揭秘为什么需要定时任务？我们来看一下几个非常常见的业务场景：  某系统凌晨要进行数据备份。 某电商平台，用户下单半个小时未支付的情况下需要自动取消订单。 某媒体聚合平台，每 10 分钟动态抓取某某网站的数据为自己所用。 某博客平台，支持定时发送文章。 某基金平台，每晚定时计算用户当日收益情况并推送给用户最新的数据。 ……  这些场景往往都要求我们在某个特定的时间去做某个事情。 单">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xiechaoxin.github.io/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/20210607154324712.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/20210528145056880.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/20210607171334861.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/20210607193042151.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/20210607195206797.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/2021052814502425.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/20210528144508114.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/20210608080437356.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/up-a8f63f828666d43009d5d3497bcbd2cfb61.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/20210528144611728.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/20210608080550433.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/20210607202503193.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/up-b8ecc6acf651f112c4dfae98243d72adea3.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/20210607200728212.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/20210528145009701.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/up-795f5e9b0d875063717b1ee6a08f2ff1c01.png">
+<meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
+<meta property="article:modified_time" content="2022-06-24T10:26:11.877Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="system_design">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/20210607154324712.png">
+  
+  
+  
+  <title>定时任务 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xiechaoxin.github.io","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong> </strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">定时任务</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-06-17 17:59" pubdate>
+          June 17, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          68 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">定时任务</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Java定时任务大揭秘"><a href="#Java定时任务大揭秘" class="headerlink" title="Java定时任务大揭秘"></a>Java定时任务大揭秘</h1><h2 id="为什么需要定时任务？"><a href="#为什么需要定时任务？" class="headerlink" title="为什么需要定时任务？"></a>为什么需要定时任务？</h2><p>我们来看一下几个非常常见的业务场景：</p>
+<ol>
+<li>某系统凌晨要进行数据备份。</li>
+<li>某电商平台，用户下单半个小时未支付的情况下需要自动取消订单。</li>
+<li>某媒体聚合平台，每 10 分钟动态抓取某某网站的数据为自己所用。</li>
+<li>某博客平台，支持定时发送文章。</li>
+<li>某基金平台，每晚定时计算用户当日收益情况并推送给用户最新的数据。</li>
+<li>……</li>
+</ol>
+<p>这些场景往往都要求我们在某个特定的时间去做某个事情。</p>
+<h2 id="单机定时任务技术选型"><a href="#单机定时任务技术选型" class="headerlink" title="单机定时任务技术选型"></a>单机定时任务技术选型</h2><h3 id="Timer"><a href="#Timer" class="headerlink" title="Timer"></a>Timer</h3><p><code>java.util.Timer</code>是 JDK 1.3 开始就已经支持的一种定时任务的实现方式。</p>
+<p><code>Timer</code> 内部使用一个叫做 <code>TaskQueue</code> 的类存放定时任务，它是一个基于最小堆实现的优先级队列。<code>TaskQueue</code> 会按照任务距离下一次执行时间的大小将任务排序，保证在堆顶的任务最先执行。这样在需要执行任务时，每次只需要取出堆顶的任务运行即可！</p>
+<p><code>Timer</code> 使用起来比较简单，通过下面的方式我们就能创建一个 1s 之后执行的定时任务。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 示例代码：</span><br><span class="hljs-type">TimerTask</span> <span class="hljs-variable">task</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TimerTask</span>() &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;当前时间: &quot;</span> + <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>() + <span class="hljs-string">&quot;n&quot;</span> +<br>                <span class="hljs-string">&quot;线程名称: &quot;</span> + Thread.currentThread().getName());<br>    &#125;<br>&#125;;<br>System.out.println(<span class="hljs-string">&quot;当前时间: &quot;</span> + <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>() + <span class="hljs-string">&quot;n&quot;</span> +<br>        <span class="hljs-string">&quot;线程名称: &quot;</span> + Thread.currentThread().getName());<br><span class="hljs-type">Timer</span> <span class="hljs-variable">timer</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Timer</span>(<span class="hljs-string">&quot;Timer&quot;</span>);<br><span class="hljs-type">long</span> <span class="hljs-variable">delay</span> <span class="hljs-operator">=</span> <span class="hljs-number">1000L</span>;<br>timer.schedule(task, delay);<br><br><br><span class="hljs-comment">//输出：</span><br>当前时间: Fri May <span class="hljs-number">28</span> <span class="hljs-number">15</span>:<span class="hljs-number">18</span>:<span class="hljs-number">47</span> CST 2021n线程名称: main<br>当前时间: Fri May <span class="hljs-number">28</span> <span class="hljs-number">15</span>:<span class="hljs-number">18</span>:<span class="hljs-number">48</span> CST 2021n线程名称: Timer<br></code></pre></td></tr></table></figure>
+
+<p>不过其缺陷较多，比如一个 <code>Timer</code> 一个线程，这就导致 <code>Timer</code> 的任务的执行只能串行执行，一个任务执行时间过长的话会影响其他任务（性能非常差），再比如发生异常时任务直接停止（<code>Timer</code> 只捕获了 <code>InterruptedException</code> ）。</p>
+<p><code>Timer</code> 类上的有一段注释是这样写的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs JAVA">* This <span class="hljs-keyword">class</span> <span class="hljs-title class_">does</span> not offer real-time guarantees: it schedules<br>* tasks using the &lt;tt&gt;Object.wait(<span class="hljs-type">long</span>)&lt;/tt&gt; method.<br>*Java <span class="hljs-number">5.0</span> introduced the &#123;<span class="hljs-meta">@code</span> java.util.concurrent&#125; <span class="hljs-keyword">package</span> and<br>* one of the concurrency utilities therein is the &#123;<span class="hljs-meta">@link</span><br>* java.util.concurrent.ScheduledThreadPoolExecutor<br>* ScheduledThreadPoolExecutor&#125; which is a thread pool <span class="hljs-keyword">for</span> repeatedly<br>* executing tasks at a given rate or delay.  It is effectively a more<br>* versatile replacement <span class="hljs-keyword">for</span> the &#123;<span class="hljs-meta">@code</span> Timer&#125;/&#123;<span class="hljs-meta">@code</span> TimerTask&#125;<br>* combination, as it allows multiple service threads, accepts various<br>* time units, and doesn<span class="hljs-string">&#x27;t require subclassing &#123;@code TimerTask&#125; (just</span><br><span class="hljs-string">* implement &#123;@code Runnable&#125;).  Configuring &#123;@code</span><br><span class="hljs-string">* ScheduledThreadPoolExecutor&#125; with one thread makes it equivalent to</span><br><span class="hljs-string">* &#123;@code Timer&#125;.</span><br></code></pre></td></tr></table></figure>
+
+<p>大概的意思就是： <code>ScheduledThreadPoolExecutor</code> 支持多线程执行定时任务并且功能更强大，是 <code>Timer</code> 的替代品。</p>
+<h3 id="ScheduledExecutorService"><a href="#ScheduledExecutorService" class="headerlink" title="ScheduledExecutorService"></a>ScheduledExecutorService</h3><p><code>ScheduledExecutorService</code> 是一个接口，有多个实现类，比较常用的是 <code>ScheduledThreadPoolExecutor</code> 。</p>
+<p><img src="/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/20210607154324712.png" srcset="/img/loading.gif" lazyload></p>
+<p><code>ScheduledThreadPoolExecutor</code> 本身就是一个线程池，支持任务并发执行。并且，其内部使用 <code>DelayQueue</code> 作为任务队列。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 示例代码：</span><br><span class="hljs-type">TimerTask</span> <span class="hljs-variable">repeatedTask</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TimerTask</span>() &#123;<br>    <span class="hljs-meta">@SneakyThrows</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;当前时间: &quot;</span> + <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>() + <span class="hljs-string">&quot;n&quot;</span> +<br>                <span class="hljs-string">&quot;线程名称: &quot;</span> + Thread.currentThread().getName());<br>    &#125;<br>&#125;;<br>System.out.println(<span class="hljs-string">&quot;当前时间: &quot;</span> + <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>() + <span class="hljs-string">&quot;n&quot;</span> +<br>        <span class="hljs-string">&quot;线程名称: &quot;</span> + Thread.currentThread().getName());<br><span class="hljs-type">ScheduledExecutorService</span> <span class="hljs-variable">executor</span> <span class="hljs-operator">=</span> Executors.newScheduledThreadPool(<span class="hljs-number">3</span>);<br><span class="hljs-type">long</span> <span class="hljs-variable">delay</span>  <span class="hljs-operator">=</span> <span class="hljs-number">1000L</span>;<br><span class="hljs-type">long</span> <span class="hljs-variable">period</span> <span class="hljs-operator">=</span> <span class="hljs-number">1000L</span>;<br>executor.scheduleAtFixedRate(repeatedTask, delay, period, TimeUnit.MILLISECONDS);<br>Thread.sleep(delay + period * <span class="hljs-number">5</span>);<br>executor.shutdown();<br><span class="hljs-comment">//输出：</span><br>当前时间: Fri May <span class="hljs-number">28</span> <span class="hljs-number">15</span>:<span class="hljs-number">40</span>:<span class="hljs-number">46</span> CST 2021n线程名称: main<br>当前时间: Fri May <span class="hljs-number">28</span> <span class="hljs-number">15</span>:<span class="hljs-number">40</span>:<span class="hljs-number">47</span> CST 2021n线程名称: pool-<span class="hljs-number">1</span>-thread-<span class="hljs-number">1</span><br>当前时间: Fri May <span class="hljs-number">28</span> <span class="hljs-number">15</span>:<span class="hljs-number">40</span>:<span class="hljs-number">48</span> CST 2021n线程名称: pool-<span class="hljs-number">1</span>-thread-<span class="hljs-number">1</span><br>当前时间: Fri May <span class="hljs-number">28</span> <span class="hljs-number">15</span>:<span class="hljs-number">40</span>:<span class="hljs-number">49</span> CST 2021n线程名称: pool-<span class="hljs-number">1</span>-thread-<span class="hljs-number">2</span><br>当前时间: Fri May <span class="hljs-number">28</span> <span class="hljs-number">15</span>:<span class="hljs-number">40</span>:<span class="hljs-number">50</span> CST 2021n线程名称: pool-<span class="hljs-number">1</span>-thread-<span class="hljs-number">2</span><br>当前时间: Fri May <span class="hljs-number">28</span> <span class="hljs-number">15</span>:<span class="hljs-number">40</span>:<span class="hljs-number">51</span> CST 2021n线程名称: pool-<span class="hljs-number">1</span>-thread-<span class="hljs-number">2</span><br>当前时间: Fri May <span class="hljs-number">28</span> <span class="hljs-number">15</span>:<span class="hljs-number">40</span>:<span class="hljs-number">52</span> CST 2021n线程名称: pool-<span class="hljs-number">1</span>-thread-<span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+
+<p>不论是使用 <code>Timer</code> 还是 <code>ScheduledExecutorService</code> 都无法使用 Cron 表达式指定任务执行的具体时间。</p>
+<h3 id="Spring-Task"><a href="#Spring-Task" class="headerlink" title="Spring Task"></a>Spring Task</h3><p><img src="/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/20210528145056880.png" srcset="/img/loading.gif" lazyload></p>
+<p>我们直接通过 Spring 提供的 <code>@Scheduled</code> 注解即可定义定时任务，非常方便！</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * cron：使用Cron表达式。　每分钟的1，2秒运行</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Scheduled(cron = &quot;1-2 * * * * ? &quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">reportCurrentTimeWithCronExpression</span><span class="hljs-params">()</span> &#123;<br>  log.info(<span class="hljs-string">&quot;Cron Expression: The time is now &#123;&#125;&quot;</span>, dateFormat.format(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>()));<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>我在大学那会做的一个 SSM 的企业级项目，就是用的 Spring Task 来做的定时任务。</p>
+<p>并且，Spring Task 还是支持 <strong>Cron 表达式</strong> 的。Cron 表达式主要用于定时作业(定时任务)系统定义执行时间或执行频率的表达式，非常厉害，你可以通过 Cron 表达式进行设置定时任务每天或者每个月什么时候执行等等操作。咱们要学习定时任务的话，Cron 表达式是一定是要重点关注的。推荐一个在线 Cron 表达式生成器：<a target="_blank" rel="noopener" href="http://cron.qqe2.com/">http://cron.qqe2.com/</a> 。</p>
+<p>但是，Spring 自带的定时调度只支持单机，并且提供的功能比较单一。之前写过一篇文章:<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247485563&idx=1&sn=7419341f04036a10b141b74624a3f8c9&chksm=cea247b0f9d5cea6440759e6d49b4e77d06f4c99470243a10c1463834e873ca90266413fbc92&token=2133161636&lang=zh_CN#rd">《5 分钟搞懂如何在 Spring Boot 中 Schedule Tasks》</a> ，不了解的小伙伴可以参考一下。</p>
+<p>Spring Task 底层是基于 JDK 的 <code>ScheduledThreadPoolExecutor</code> 线程池来实现的。</p>
+<p><strong>优缺点总结：</strong></p>
+<ul>
+<li>优点： 简单，轻量，支持 Cron 表达式</li>
+<li>缺点 ：功能单一</li>
+</ul>
+<h3 id="时间轮"><a href="#时间轮" class="headerlink" title="时间轮"></a>时间轮</h3><p>Kafka、Dubbo、ZooKeeper、Netty 、Caffeine 、Akka 中都有对时间轮的实现。</p>
+<p>时间轮简单来说就是一个环形的队列（底层一般基于数组实现），队列中的每一个元素（时间格）都可以存放一个定时任务列表。</p>
+<p>时间轮中的每个时间格代表了时间轮的基本时间跨度或者说时间精度，加入时间一秒走一个时间格的话，那么这个时间轮的最高精度就是 1 秒（也就是说 3 s 和 3.9s 会在同一个时间格中）。</p>
+<p>下图是一个有 12 个时间格的时间轮，转完一圈需要 12 s。当我们需要新建一个 3s 后执行的定时任务，只需要将定时任务放在下标为 3 的时间格中即可。当我们需要新建一个 9s 后执行的定时任务，只需要将定时任务放在下标为 9 的时间格中即可。</p>
+<p><img src="/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/20210607171334861.png" srcset="/img/loading.gif" lazyload></p>
+<p>那当我们需要创建一个 13s 后执行的定时任务怎么办呢？这个时候可以引入一叫做 <strong>圈数&#x2F;轮数</strong> 的概念，也就是说这个任务还是放在下标为 3 的时间格中， 不过它的圈数为 2 。</p>
+<p>除了增加圈数这种方法之外，还有一种 <strong>多层次时间轮</strong> （类似手表），Kafka 采用的就是这种方案。</p>
+<p>针对下图的时间轮，我来举一个例子便于大家理解。</p>
+<p><img src="/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/20210607193042151.png" srcset="/img/loading.gif" lazyload></p>
+<p>上图的时间轮，第 1 层的时间精度为 1 ，第 2 层的时间精度为 20 ，第 3 层的时间精度为 400。假如我们需要添加一个 350s 后执行的任务 A 的话（当前时间是 0s），这个任务会被放在第 2 层（因为第二层的时间跨度为 20*20&#x3D;400&gt;350）的第 350&#x2F;20&#x3D;17 个时间格子。</p>
+<p>当第一层转了 17 圈之后，时间过去了 340s ，第 2 层的指针此时来到第 17 个时间格子。此时，第 2 层第 17 个格子的任务会被移动到第 1 层。</p>
+<p>任务 A 当前是 10s 之后执行，因此它会被移动到第 1 层的第 10 个时间格子。</p>
+<p>这里在层与层之间的移动也叫做时间轮的升降级。参考手表来理解就好！</p>
+<p><img src="/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/20210607195206797.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>时间轮比较适合任务数量比较多的定时任务场景，它的任务写入和执行的时间复杂度都是 0（1）。</strong></p>
+<h2 id="分布式定时任务技术选型"><a href="#分布式定时任务技术选型" class="headerlink" title="分布式定时任务技术选型"></a>分布式定时任务技术选型</h2><p>上面提到的一些定时任务的解决方案都是在单机下执行的，适用于比较简单的定时任务场景比如每天凌晨备份一次数据。</p>
+<p>如果我们需要一些高级特性比如支持任务在分布式场景下的分片和高可用的话，我们就需要用到分布式任务调度框架了。</p>
+<p>通常情况下，一个定时任务的执行往往涉及到下面这些角色：</p>
+<ul>
+<li><strong>任务</strong> ： 首先肯定是要执行的任务，这个任务就是具体的业务逻辑比如定时发送文章。</li>
+<li><strong>调度器</strong> ：其次是调度中心，调度中心主要负责任务管理，会分配任务给执行器。</li>
+<li><strong>执行器</strong> ： 最后就是执行器，执行器接收调度器分派的任务并执行。</li>
+</ul>
+<h3 id="Quartz"><a href="#Quartz" class="headerlink" title="Quartz"></a>Quartz</h3><p><img src="/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/2021052814502425.png" srcset="/img/loading.gif" lazyload></p>
+<p>一个很火的开源任务调度框架，完全由<code>Java</code>写成。<code>Quartz</code> 可以说是 Java 定时任务领域的老大哥或者说参考标准，其他的任务调度框架基本都是基于 <code>Quartz</code> 开发的，比如当当网的<code>elastic-job</code>就是基于<code>quartz</code>二次开发之后的分布式调度解决方案。</p>
+<p>使用 <code>Quartz</code> 可以很方便地与 <code>Spring</code> 集成，并且支持动态添加任务和集群。但是，<code>Quartz</code> 使用起来也比较麻烦，API 繁琐。</p>
+<p>并且，<code>Quzrtz</code> 并没有内置 UI 管理控制台，不过你可以使用 <a target="_blank" rel="noopener" href="https://github.com/zhaopeiym/quartzui">quartzui</a> 这个开源项目来解决这个问题。</p>
+<p>另外，<code>Quartz</code> 虽然也支持分布式任务。但是，它是在数据库层面，通过数据库的锁机制做的，有非常多的弊端比如系统侵入性严重、节点负载不均衡。有点伪分布式的味道。</p>
+<p><strong>优缺点总结：</strong></p>
+<ul>
+<li>优点： 可以与 <code>Spring</code> 集成，并且支持动态添加任务和集群。</li>
+<li>缺点 ：分布式支持不友好，没有内置 UI 管理控制台、使用麻烦（相比于其他同类型框架来说）</li>
+</ul>
+<h3 id="Elastic-Job"><a href="#Elastic-Job" class="headerlink" title="Elastic-Job"></a>Elastic-Job</h3><p><img src="/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/20210528144508114.png" srcset="/img/loading.gif" lazyload></p>
+<p><code>Elastic-Job</code> 是当当网开源的一个基于<code>Quartz</code>和<code>ZooKeeper</code>的分布式调度解决方案，由两个相互独立的子项目 <code>Elastic-Job-Lite</code> 和 <code>Elastic-Job-Cloud</code> 组成，一般我们只要使用 <code>Elastic-Job-Lite</code> 就好。</p>
+<p><code>ElasticJob</code> 支持任务在分布式场景下的分片和高可用、任务可视化管理等功能。</p>
+<p><img src="/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/20210608080437356.png" srcset="/img/loading.gif" lazyload></p>
+<p>ElasticJob-Lite 的架构设计如下图所示：</p>
+<p><img src="/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/up-a8f63f828666d43009d5d3497bcbd2cfb61.png" srcset="/img/loading.gif" lazyload></p>
+<p>从上图可以看出，<code>Elastic-Job</code> 没有调度中心这一概念，而是使用 <code>ZooKeeper</code> 作为注册中心，注册中心负责协调分配任务到不同的节点上。</p>
+<p>Elastic-Job 中的定时调度都是由执行器自行触发，这种设计也被称为去中心化设计（调度和处理都是执行器单独完成）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Component</span><br><span class="hljs-meta">@ElasticJobConf(name = &quot;dayJob&quot;, cron = &quot;0/10 * * * * ?&quot;, shardingTotalCount = 2,</span><br><span class="hljs-meta">        shardingItemParameters = &quot;0=AAAA,1=BBBB&quot;, description = &quot;简单任务&quot;, failover = true)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TestJob</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">SimpleJob</span> &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">execute</span><span class="hljs-params">(ShardingContext shardingContext)</span> &#123;<br>        log.info(<span class="hljs-string">&quot;TestJob任务名：【&#123;&#125;】, 片数：【&#123;&#125;】, param=【&#123;&#125;】&quot;</span>, shardingContext.getJobName(), shardingContext.getShardingTotalCount(),<br>                shardingContext.getShardingParameter());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>相关地址：</strong></p>
+<ul>
+<li>Github 地址：<a target="_blank" rel="noopener" href="https://github.com/apache/shardingsphere-elasticjob%E3%80%82">https://github.com/apache/shardingsphere-elasticjob。</a></li>
+<li>官方网站：<a target="_blank" rel="noopener" href="https://shardingsphere.apache.org/elasticjob/index_zh.html">https://shardingsphere.apache.org/elasticjob/index_zh.html</a> 。</li>
+</ul>
+<p><strong>优缺点总结：</strong></p>
+<ul>
+<li>优点 ：可以与 <code>Spring</code> 集成、支持分布式、支持集群、性能不错</li>
+<li>缺点 ：依赖了额外的中间件比如 Zookeeper（复杂度增加，可靠性降低、维护成本变高）</li>
+</ul>
+<h3 id="XXL-JOB"><a href="#XXL-JOB" class="headerlink" title="XXL-JOB"></a>XXL-JOB</h3><p><img src="/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/20210528144611728.png" srcset="/img/loading.gif" lazyload></p>
+<p><code>XXL-JOB</code> 于 2015 年开源，是一款优秀的轻量级分布式任务调度框架，支持任务可视化管理、弹性扩容缩容、任务失败重试和告警、任务分片等功能，</p>
+<p><img src="/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/20210608080550433.png" srcset="/img/loading.gif" lazyload></p>
+<p>根据 <code>XXL-JOB</code> 官网介绍，其解决了很多 <code>Quartz</code> 的不足。</p>
+<p><img src="/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/20210607202503193.png" srcset="/img/loading.gif" lazyload></p>
+<p><code>XXL-JOB</code> 的架构设计如下图所示：</p>
+<p><img src="/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/up-b8ecc6acf651f112c4dfae98243d72adea3.png" srcset="/img/loading.gif" lazyload></p>
+<p>从上图可以看出，<code>XXL-JOB</code> 由 <strong>调度中心</strong> 和 <strong>执行器</strong> 两大部分组成。调度中心主要负责任务管理、执行器管理以及日志管理。执行器主要是接收调度信号并处理。另外，调度中心进行任务调度时，是通过自研 RPC 来实现的。</p>
+<p>不同于 <code>Elastic-Job</code> 的去中心化设计， <code>XXL-JOB</code> 的这种设计也被称为中心化设计（调度中心调度多个执行器执行任务）。</p>
+<p>和 <code>Quzrtz</code> 类似 <code>XXL-JOB</code> 也是基于数据库锁调度任务，存在性能瓶颈。不过，一般在任务量不是特别大的情况下，没有什么影响的，可以满足绝大部分公司的要求。</p>
+<p>不要被 <code>XXL-JOB</code> 的架构图给吓着了，实际上，我们要用 <code>XXL-JOB</code> 的话，只需要重写 <code>IJobHandler</code> 自定义任务执行逻辑就可以了，非常易用！</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@JobHandler(value=&quot;myApiJobHandler&quot;)</span><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyApiJobHandler</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">IJobHandler</span> &#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> ReturnT&lt;String&gt; <span class="hljs-title function_">execute</span><span class="hljs-params">(String param)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-comment">//......</span><br>        <span class="hljs-keyword">return</span> ReturnT.SUCCESS;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>还可以直接基于注解定义任务。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@XxlJob(&quot;myAnnotationJobHandler&quot;)</span><br><span class="hljs-keyword">public</span> ReturnT&lt;String&gt; <span class="hljs-title function_">myAnnotationJobHandler</span><span class="hljs-params">(String param)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>  <span class="hljs-comment">//......</span><br>  <span class="hljs-keyword">return</span> ReturnT.SUCCESS;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/20210607200728212.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>相关地址：</strong></p>
+<ul>
+<li>Github 地址：<a target="_blank" rel="noopener" href="https://github.com/xuxueli/xxl-job/%E3%80%82">https://github.com/xuxueli/xxl-job/。</a></li>
+<li>官方介绍：<a target="_blank" rel="noopener" href="https://www.xuxueli.com/xxl-job/">https://www.xuxueli.com/xxl-job/</a> 。</li>
+</ul>
+<p><strong>优缺点总结：</strong></p>
+<ul>
+<li>优点：开箱即用（学习成本比较低）、与 Spring 集成、支持分布式、支持集群、内置了 UI 管理控制台。</li>
+<li>缺点：不支持动态添加任务（如果一定想要动态创建任务也是支持的，参见：<a target="_blank" rel="noopener" href="https://github.com/xuxueli/xxl-job/issues/277">xxl-job issue277</a>）。</li>
+</ul>
+<h3 id="PowerJob"><a href="#PowerJob" class="headerlink" title="PowerJob"></a>PowerJob</h3><p><img src="/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/20210528145009701.png" srcset="/img/loading.gif" lazyload></p>
+<p>非常值得关注的一个分布式任务调度框架，分布式任务调度领域的新星。目前，已经有很多公司接入比如 OPPO、京东、中通、思科。</p>
+<p>这个框架的诞生也挺有意思的，PowerJob 的作者当时在阿里巴巴实习过，阿里巴巴那会使用的是内部自研的 SchedulerX（阿里云付费产品）。实习期满之后，PowerJob 的作者离开了阿里巴巴。想着说自研一个 SchedulerX，防止哪天 SchedulerX 满足不了需求，于是 PowerJob 就诞生了。</p>
+<p>更多关于 PowerJob 的故事，小伙伴们可以去看看 PowerJob 作者的视频 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1SK411A7F3/">《我和我的任务调度中间件》</a>。简单点概括就是：“游戏没啥意思了，我要扛起了新一代分布式任务调度与计算框架的大旗！”。</p>
+<p>由于 SchedulerX 属于人民币产品，我这里就不过多介绍。PowerJob 官方也对比过其和 QuartZ、XXL-JOB 以及 SchedulerX。</p>
+<p><img src="/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/up-795f5e9b0d875063717b1ee6a08f2ff1c01.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这篇文章中，我主要介绍了：</p>
+<ul>
+<li><strong>定时任务的相关概念</strong> ：为什么需要定时任务、定时任务中的核心角色、分布式定时任务。</li>
+<li><strong>定时任务的技术选型</strong> ： XXL-JOB 2015 年推出，已经经过了很多年的考验。XXL-JOB 轻量级，并且使用起来非常简单。虽然存在性能瓶颈，但是，在绝大多数情况下，对于企业的基本需求来说是没有影响的。PowerJob 属于分布式任务调度领域里的新星，其稳定性还有待继续考察。ElasticJob 由于在架构设计上是基于 Zookeeper ，而 XXL-JOB 是基于数据库，性能方面的话，ElasticJob 略胜一筹。</li>
+</ul>
+<p>这篇文章并没有介绍到实际使用，但是，并不代表实际使用不重要。我在写这篇文章之前，已经动手写过相应的 Demo。像 Quartz，我在大学那会就用过。不过，当时用的是 Spring 。为了能够更好地体验，我自己又在 Spring Boot 上实际体验了一下。如果你并没有实际使用某个框架，就直接说它并不好用的话，是站不住脚的。</p>
+<p>最后，这篇文章要感谢艿艿的帮助，写这篇文章的时候向艿艿询问过一些问题。推荐一篇艿艿写的偏实战类型的硬核文章：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzUzMTA2NTU2Ng==&mid=2247490679&idx=1&sn=25374dbdcca95311d41be5d7b7db454d&chksm=fa4963c6cd3eead055bb9cd10cca13224bb35d0f7373a27aa22a55495f71e24b8273a7603314&scene=27#wechat_redirect">《Spring Job？Quartz？XXL-Job？年轻人才做选择，艿艿全莽~》</a> 。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/system-design/" class="category-chain-item">system_design</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/system-design/">#system_design</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>定时任务</div>
+      <div>https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/system_design/定时任务/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 17, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/system_design/J2EE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="J2EE基础知识">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">J2EE基础知识</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/C/mooc-C-program/MOOC_C%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0/" title="MOOC_C程序设计笔记">
+                        <span class="hidden-mobile">MOOC_C程序设计笔记</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

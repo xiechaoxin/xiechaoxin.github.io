@@ -1,0 +1,677 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="JAD 反编译jad反编译工具，已经不再更新，且只支持 JDK1.4，但并不影响其强大的功能。 基本用法：jad xxx.class，会生成直接可读的 xxx.jad 文件。 自动拆装箱对于基本类型和包装类型之间的转换，通过 xxxValue()和 valueOf()两个方法完成自动拆装箱，使用 jad 进行反编译可以看到该过程： 123456public class Demo &amp;#123;  p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jad">
+<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/performance/jad/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="JAD 反编译jad反编译工具，已经不再更新，且只支持 JDK1.4，但并不影响其强大的功能。 基本用法：jad xxx.class，会生成直接可读的 xxx.jad 文件。 自动拆装箱对于基本类型和包装类型之间的转换，通过 xxxValue()和 valueOf()两个方法完成自动拆装箱，使用 jad 进行反编译可以看到该过程： 123456public class Demo &amp;#123;  p">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
+<meta property="article:modified_time" content="2022-06-24T10:26:10.717Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="performance">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>jad - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xiechaoxin.github.io","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong> </strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">jad</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-06-17 17:59" pubdate>
+          June 17, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.2k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          60 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">jad</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="JAD-反编译"><a href="#JAD-反编译" class="headerlink" title="JAD 反编译"></a>JAD 反编译</h1><p><a target="_blank" rel="noopener" href="https://varaneckas.com/jad/">jad</a>反编译工具，已经不再更新，且只支持 JDK1.4，但并不影响其强大的功能。</p>
+<p>基本用法：<code>jad xxx.class</code>，会生成直接可读的 <code>xxx.jad</code> 文件。</p>
+<h2 id="自动拆装箱"><a href="#自动拆装箱" class="headerlink" title="自动拆装箱"></a>自动拆装箱</h2><p>对于基本类型和包装类型之间的转换，通过 xxxValue()和 valueOf()两个方法完成自动拆装箱，使用 jad 进行反编译可以看到该过程：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo</span> &#123;<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Integer</span>(<span class="hljs-number">10</span>);  <span class="hljs-comment">// 自动拆箱</span><br>    <span class="hljs-type">Integer</span> <span class="hljs-variable">y</span> <span class="hljs-operator">=</span> x;            <span class="hljs-comment">// 自动装箱</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>反编译后结果：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo</span><br>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Demo</span><span class="hljs-params">()</span>&#123;&#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String args[])</span><br>    &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> (<span class="hljs-keyword">new</span> <span class="hljs-title class_">Integer</span>(<span class="hljs-number">10</span>)).intValue();   <span class="hljs-comment">// intValue()拆箱</span><br>        <span class="hljs-type">Integer</span> <span class="hljs-variable">integer</span> <span class="hljs-operator">=</span> Integer.valueOf(i);   <span class="hljs-comment">// valueOf()装箱</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="foreach-语法糖"><a href="#foreach-语法糖" class="headerlink" title="foreach 语法糖"></a>foreach 语法糖</h2><p>在遍历迭代时可以 foreach 语法糖，对于数组类型直接转换成 for 循环：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 原始代码</span><br><span class="hljs-type">int</span>[] arr = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>&#125;;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> item: arr) &#123;<br>    	System.out.println(item);<br>	&#125;<br>&#125;<br><br><span class="hljs-comment">// 反编译后代码</span><br><span class="hljs-type">int</span> ai[] = &#123;<br>    <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span><br>&#125;;<br><span class="hljs-type">int</span> ai1[] = ai;<br><span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> ai1.length;<br><span class="hljs-comment">// 转换成for循环</span><br><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; j &lt; i; j++)<br>&#123;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">k</span> <span class="hljs-operator">=</span> ai1[j];<br>    System.out.println(k);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>对于容器类的遍历会使用 iterator 进行迭代：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.io.PrintStream;<br><span class="hljs-keyword">import</span> java.util.*;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo</span><br>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Demo</span><span class="hljs-params">()</span> &#123;&#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String args[])</span><br>    &#123;<br>        <span class="hljs-type">ArrayList</span> <span class="hljs-variable">arraylist</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>();<br>        arraylist.add(Integer.valueOf(<span class="hljs-number">1</span>));<br>        arraylist.add(Integer.valueOf(<span class="hljs-number">2</span>));<br>        arraylist.add(Integer.valueOf(<span class="hljs-number">3</span>));<br>        Integer integer;<br>        <span class="hljs-comment">// 使用的for循环+Iterator，类似于链表迭代：</span><br>        <span class="hljs-comment">// for (ListNode cur = head; cur != null; System.out.println(cur.val))&#123;</span><br>        <span class="hljs-comment">//     cur = cur.next;</span><br>    	<span class="hljs-comment">// &#125;</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">Iterator</span> <span class="hljs-variable">iterator</span> <span class="hljs-operator">=</span> arraylist.iterator(); iterator.hasNext(); System.out.println(integer))<br>            integer = (Integer)iterator.next();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="Arrays-asList-T…"><a href="#Arrays-asList-T…" class="headerlink" title="Arrays.asList(T…)"></a>Arrays.asList(T…)</h2><p>熟悉 Arrays.asList(T…)用法的小伙伴都应该知道，asList()方法传入的参数不能是基本类型的数组，必须包装成包装类型再使用，否则对应生成的列表的大小永远是 1：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.*;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo</span> &#123;<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>    <span class="hljs-type">int</span>[] arr1 = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>&#125;;<br>    Integer[] arr2 = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>&#125;;<br>    <span class="hljs-type">List</span> <span class="hljs-variable">lists1</span> <span class="hljs-operator">=</span> Arrays.asList(arr1);<br>    <span class="hljs-type">List</span> <span class="hljs-variable">lists2</span> <span class="hljs-operator">=</span> Arrays.asList(arr2);<br>    System.out.println(lists1.size()); <span class="hljs-comment">// 1</span><br>    System.out.println(lists2.size()); <span class="hljs-comment">// 3</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>从反编译结果来解释，为什么传入基本类型的数组后，返回的 List 大小是 1：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 反编译后文件</span><br><span class="hljs-keyword">import</span> java.io.PrintStream;<br><span class="hljs-keyword">import</span> java.util.Arrays;<br><span class="hljs-keyword">import</span> java.util.List;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo</span><br>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Demo</span><span class="hljs-params">()</span> &#123;&#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String args[])</span><br>    &#123;<br>        <span class="hljs-type">int</span> ai[] = &#123;<br>            <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span><br>        &#125;;<br>        <span class="hljs-comment">// 使用包装类型，全部元素由int包装为Integer</span><br>        Integer ainteger[] = &#123;<br>            Integer.valueOf(<span class="hljs-number">1</span>), Integer.valueOf(<span class="hljs-number">2</span>), Integer.valueOf(<span class="hljs-number">3</span>)<br>        &#125;;<br><br>        <span class="hljs-comment">// 注意这里被反编译成二维数组，而且是一个1行三列的二维数组</span><br>        <span class="hljs-comment">// list.size()当然返回1</span><br>        <span class="hljs-type">List</span> <span class="hljs-variable">list</span> <span class="hljs-operator">=</span> Arrays.asList(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[][] &#123; ai &#125;);<br>        <span class="hljs-type">List</span> <span class="hljs-variable">list1</span> <span class="hljs-operator">=</span> Arrays.asList(ainteger);<br>        System.out.println(list.size());<br>        System.out.println(list1.size());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>从上面结果可以看到，传入基本类型的数组后，会被转换成一个二维数组，而且是**new int[1][arr.length]**这样的数组，调用 list.size()当然返回 1。</p>
+<h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><p>Java 中的类、接口、枚举、注解都可以看做是类类型。使用 jad 来看一下@interface 被转换成什么：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.lang.annotation.Retention;<br><span class="hljs-keyword">import</span> java.lang.annotation.RetentionPolicy;<br><br><span class="hljs-meta">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> Foo&#123;<br>  String[] value();<br>  <span class="hljs-type">boolean</span> <span class="hljs-title function_">bar</span><span class="hljs-params">()</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>查看反编译代码可以看出：</p>
+<ul>
+<li>自定义的注解类 Foo 被转换成接口 Foo，并且继承 Annotation 接口</li>
+<li>原来自定义接口中的 value()和 bar()被转换成抽象方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.lang.annotation.Annotation;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Foo</span><br>    <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Annotation</span><br>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> String[] value();<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">bar</span><span class="hljs-params">()</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>注解通常和反射配合使用，而且既然自定义的注解最终被转换成接口，注解中的属性被转换成接口中的抽象方法，那么通过反射之后拿到接口实例，在通过接口实例自然能够调用对应的抽象方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.Arrays;<br><br><span class="hljs-meta">@Foo(value=&#123;&quot;sherman&quot;, &quot;decompiler&quot;&#125;, bar=true)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo</span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">Foo</span> <span class="hljs-variable">foo</span> <span class="hljs-operator">=</span> Demo.class.getAnnotation(Foo.class);<br>        System.out.println(Arrays.toString(foo.value())); <span class="hljs-comment">// [sherman, decompiler]</span><br>        System.out.println(foo.bar());                    <span class="hljs-comment">// true</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h2><p>通过 jad 反编译可以很好地理解枚举类。</p>
+<h3 id="空枚举"><a href="#空枚举" class="headerlink" title="空枚举"></a>空枚举</h3><p>先定义一个空的枚举类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">DummyEnum</span> &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>使用 jad 反编译查看结果：</p>
+<ul>
+<li>自定义枚举类被转换成 final 类，并且继承 Enum</li>
+<li>提供了两个参数（name，odinal）的私有构造器，并且调用了父类的构造器。注意即使没有提供任何参数，也会有该构造器，其中 name 就是枚举实例的名称，odinal 是枚举实例的索引号</li>
+<li>初始化了一个 private static final 自定义类型的空数组 <strong>$VALUES</strong></li>
+<li>提供了两个 public static 方法：<ul>
+<li>values()方法通过 clone()方法返回内部$VALUES 的浅拷贝。这个方法结合私有构造器可以完美实现单例模式，想一想 values()方法是不是和单例模式中 getInstance()方法功能类似</li>
+<li>valueOf(String s)：调用父类 Enum 的 valueOf 方法并强转返回</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DummyEnum</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Enum</span><br>&#123;<br>	<span class="hljs-comment">// 功能和单例模式的getInstance()方法相同</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> DummyEnum[] values()<br>    &#123;<br>        <span class="hljs-keyword">return</span> (DummyEnum[])$VALUES.clone();<br>    &#125;<br>	<span class="hljs-comment">// 调用父类的valueOf方法，并强转返回</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> DummyEnum <span class="hljs-title function_">valueOf</span><span class="hljs-params">(String s)</span><br>    &#123;<br>        <span class="hljs-keyword">return</span> (DummyEnum)Enum.valueOf(DummyEnum, s);<br>    &#125;<br>	<span class="hljs-comment">// 默认提供一个私有的两个参数的构造器，并调用父类Enum的构造器</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-title function_">DummyEnum</span><span class="hljs-params">(String s, <span class="hljs-type">int</span> i)</span><br>    &#123;<br>        <span class="hljs-built_in">super</span>(s, i);<br>    &#125;<br>	<span class="hljs-comment">// 初始化一个private static final的本类空数组</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> DummyEnum $VALUES[] = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DummyEnum</span>[<span class="hljs-number">0</span>];<br><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="包含抽象方法的枚举"><a href="#包含抽象方法的枚举" class="headerlink" title="包含抽象方法的枚举"></a>包含抽象方法的枚举</h3><p>枚举类中也可以包含抽象方法，但是必须定义枚举实例并且立即重写抽象方法，就像下面这样：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">DummyEnum</span> &#123;<br>    DUMMY1 &#123;<br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">dummyMethod</span><span class="hljs-params">()</span> &#123;<br>            System.out.println(<span class="hljs-string">&quot;[1]: implements abstract method in enum class&quot;</span>);<br>        &#125;<br>    &#125;,<br><br>    DUMMY2 &#123;<br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">dummyMethod</span><span class="hljs-params">()</span> &#123;<br>            System.out.println(<span class="hljs-string">&quot;[2]: implements abstract method in enum class&quot;</span>);<br>        &#125;<br>    &#125;;<br><br>    <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">dummyMethod</span><span class="hljs-params">()</span>;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>再来反编译看看有哪些变化：</p>
+<ul>
+<li>原来 final class 变成了 abstract class：这很好理解，有抽象方法的类自然是抽象类</li>
+<li>多了两个 public static final 的成员 DUMMY1、DUMMY2，这两个实例的初始化过程被放到了 static 代码块中，并且实例过程中直接重写了抽象方法，类似于匿名内部类的形式。</li>
+<li>数组 <strong>$VALUES[]</strong> 初始化时放入枚举实例</li>
+</ul>
+<p>还有其它变化么？</p>
+<p>在反编译后的 DummyEnum 类中，是存在抽象方法的，而枚举实例在静态代码块中初始化过程中重写了抽象方法。在 Java 中，抽象方法和抽象方法重写同时放在一个类中，只能通过内部类形式完成。因此上面第二点应该说成就是以内部类形式初始化。</p>
+<p>可以看一下 DummyEnum.class 存放的位置，应该多了两个文件：</p>
+<ul>
+<li>DummyEnum$1.class</li>
+<li>DummyEnum$2.class</li>
+</ul>
+<p>Java 中.class 文件出现 $ 符号表示有内部类存在，就像OutClass$InnerClass，这两个文件出现也应证了上面的匿名内部类初始化的说法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.io.PrintStream;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DummyEnum</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Enum</span><br>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> DummyEnum[] values()<br>    &#123;<br>        <span class="hljs-keyword">return</span> (DummyEnum[])$VALUES.clone();<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> DummyEnum <span class="hljs-title function_">valueOf</span><span class="hljs-params">(String s)</span><br>    &#123;<br>        <span class="hljs-keyword">return</span> (DummyEnum)Enum.valueOf(DummyEnum, s);<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-title function_">DummyEnum</span><span class="hljs-params">(String s, <span class="hljs-type">int</span> i)</span><br>    &#123;<br>        <span class="hljs-built_in">super</span>(s, i);<br>    &#125;<br><br>	<span class="hljs-comment">// 抽象方法</span><br>    <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">dummyMethod</span><span class="hljs-params">()</span>;<br><br>	<span class="hljs-comment">// 两个pubic static final实例</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> DummyEnum DUMMY1;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> DummyEnum DUMMY2;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> DummyEnum $VALUES[];<br><br> 	<span class="hljs-comment">// static代码块进行初始化</span><br>    <span class="hljs-keyword">static</span><br>    &#123;<br>        DUMMY1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DummyEnum</span>(<span class="hljs-string">&quot;DUMMY1&quot;</span>, <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">dummyMethod</span><span class="hljs-params">()</span><br>            &#123;<br>                System.out.println(<span class="hljs-string">&quot;[1]: implements abstract method in enum class&quot;</span>);<br>            &#125;<br>        &#125;<br>;<br>        DUMMY2 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DummyEnum</span>(<span class="hljs-string">&quot;DUMMY2&quot;</span>, <span class="hljs-number">1</span>) &#123;<br>            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">dummyMethod</span><span class="hljs-params">()</span><br>            &#123;<br>                System.out.println(<span class="hljs-string">&quot;[2]: implements abstract method in enum class&quot;</span>);<br>            &#125;<br>        &#125;<br>;<br>		<span class="hljs-comment">// 对本类数组进行初始化</span><br>        $VALUES = (<span class="hljs-keyword">new</span> <span class="hljs-title class_">DummyEnum</span>[] &#123;<br>            DUMMY1, DUMMY2<br>        &#125;);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="正常的枚举类"><a href="#正常的枚举类" class="headerlink" title="正常的枚举类"></a>正常的枚举类</h3><p>实际开发中，枚举类通常的形式是有两个参数（int code，Sring msg）的构造器，可以作为状态码进行返回。Enum 类实际上也是提供了包含两个参数且是 protected 的构造器，这里为了避免歧义，将枚举类的构造器设置为三个，使用 jad 反编译：</p>
+<p>最大的变化是：现在的 private 构造器从 2 个参数变成 5 个，而且在内部仍然将前两个参数通过 super 传递给父类，剩余的三个参数才是真正自己提供的参数。可以想象，如果自定义的枚举类只提供了一个参数，最终生成底层代码中 private 构造器应该有三个参数，前两个依然通过 super 传递给父类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CustomEnum</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Enum</span><br>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> CustomEnum[] values()<br>    &#123;<br>        <span class="hljs-keyword">return</span> (CustomEnum[])$VALUES.clone();<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> CustomEnum <span class="hljs-title function_">valueOf</span><span class="hljs-params">(String s)</span><br>    &#123;<br>        <span class="hljs-keyword">return</span> (CustomEnum)Enum.valueOf(CustomEnum, s);<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-title function_">CustomEnum</span><span class="hljs-params">(String s, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span> j, String s1, Object obj)</span><br>    &#123;<br>        <span class="hljs-built_in">super</span>(s, i);<br>        code = j;<br>        msg = s1;<br>        data = obj;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> CustomEnum FIRST;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> CustomEnum SECOND;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> CustomEnum THIRD;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> code;<br>    <span class="hljs-keyword">private</span> String msg;<br>    <span class="hljs-keyword">private</span> Object data;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> CustomEnum $VALUES[];<br><br>    <span class="hljs-keyword">static</span><br>    &#123;<br>        FIRST = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CustomEnum</span>(<span class="hljs-string">&quot;FIRST&quot;</span>, <span class="hljs-number">0</span>, <span class="hljs-number">10010</span>, <span class="hljs-string">&quot;first&quot;</span>, Long.valueOf(<span class="hljs-number">100L</span>));<br>        SECOND = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CustomEnum</span>(<span class="hljs-string">&quot;SECOND&quot;</span>, <span class="hljs-number">1</span>, <span class="hljs-number">10020</span>, <span class="hljs-string">&quot;second&quot;</span>, <span class="hljs-string">&quot;Foo&quot;</span>);<br>        THIRD = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CustomEnum</span>(<span class="hljs-string">&quot;THIRD&quot;</span>, <span class="hljs-number">2</span>, <span class="hljs-number">10030</span>, <span class="hljs-string">&quot;third&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>());<br>        $VALUES = (<span class="hljs-keyword">new</span> <span class="hljs-title class_">CustomEnum</span>[] &#123;<br>            FIRST, SECOND, THIRD<br>        &#125;);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Java/performance/" class="category-chain-item">performance</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Java/">#Java</a>
+      
+        <a href="/tags/performance/">#performance</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>jad</div>
+      <div>https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/performance/jad/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 17, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/Java/new_features/java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/" title="java新特性总结">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">java新特性总结</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/common/git/git-intro/" title="git-intro">
+                        <span class="hidden-mobile">git-intro</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,805 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="手把手教你定位常见 Java 性能问题 本文来自木木匠投稿。  概述性能优化一向是后端服务优化的重点，但是线上性能故障问题不是经常出现，或者受限于业务产品，根本就没办法出现性能问题，包括笔者自己遇到的性能问题也不多，所以为了提前储备知识，当出现问题的时候不会手忙脚乱，我们本篇文章来模拟下常见的几个 Java 性能故障，来学习怎么去分析和定位。 预备知识既然是定位问题，肯定是需要借助工具，我们先了解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手把手教你定位常见Java性能问题">
+<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/performance/locate-performance-problems/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AE%9A%E4%BD%8D%E5%B8%B8%E8%A7%81Java%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="手把手教你定位常见 Java 性能问题 本文来自木木匠投稿。  概述性能优化一向是后端服务优化的重点，但是线上性能故障问题不是经常出现，或者受限于业务产品，根本就没办法出现性能问题，包括笔者自己遇到的性能问题也不多，所以为了提前储备知识，当出现问题的时候不会手忙脚乱，我们本篇文章来模拟下常见的几个 Java 性能故障，来学习怎么去分析和定位。 预备知识既然是定位问题，肯定是需要借助工具，我们先了解">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xiechaoxin.github.io/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AE%9A%E4%BD%8D%E5%B8%B8%E8%A7%81Java%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98/3be5a280b0f5499a80c706c8e5da2a4f-1.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AE%9A%E4%BD%8D%E5%B8%B8%E8%A7%81Java%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98/3d8d5ffd3ada43fb86ef54b05408c656-1.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AE%9A%E4%BD%8D%E5%B8%B8%E8%A7%81Java%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98/1fb751b0d78b4a3b8d0f528598ae885d-1.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AE%9A%E4%BD%8D%E5%B8%B8%E8%A7%81Java%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98/e9bf831860f442a3a992eef64ebb6a50-1.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AE%9A%E4%BD%8D%E5%B8%B8%E8%A7%81Java%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98/392e4090c0094657ae29af030d3646e3-1.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AE%9A%E4%BD%8D%E5%B8%B8%E8%A7%81Java%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98/53fd3ee9a1a0448ca1878e865f4e5f96-1.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AE%9A%E4%BD%8D%E5%B8%B8%E8%A7%81Java%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98/ba07b0fee1754ffc943e546a18a3907e-1.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AE%9A%E4%BD%8D%E5%B8%B8%E8%A7%81Java%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98/0605fbf554814a23b80f6351408598be-1.png">
+<meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
+<meta property="article:modified_time" content="2022-06-24T10:26:10.717Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="performance">
+<meta property="article:tag" content="locate-performance-problems">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AE%9A%E4%BD%8D%E5%B8%B8%E8%A7%81Java%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98/3be5a280b0f5499a80c706c8e5da2a4f-1.png">
+  
+  
+  
+  <title>手把手教你定位常见Java性能问题 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xiechaoxin.github.io","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong> </strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">手把手教你定位常见Java性能问题</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-06-17 17:59" pubdate>
+          June 17, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          11k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          91 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">手把手教你定位常见Java性能问题</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="手把手教你定位常见-Java-性能问题"><a href="#手把手教你定位常见-Java-性能问题" class="headerlink" title="手把手教你定位常见 Java 性能问题"></a>手把手教你定位常见 Java 性能问题</h1><blockquote>
+<p>本文来自木木匠投稿。</p>
+</blockquote>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>性能优化一向是后端服务优化的重点，但是线上性能故障问题不是经常出现，或者受限于业务产品，根本就没办法出现性能问题，包括笔者自己遇到的性能问题也不多，所以为了提前储备知识，当出现问题的时候不会手忙脚乱，我们本篇文章来模拟下常见的几个 Java 性能故障，来学习怎么去分析和定位。</p>
+<h2 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h2><p>既然是定位问题，肯定是需要借助工具，我们先了解下需要哪些工具可以帮忙定位问题。</p>
+<p><strong>top 命令</strong></p>
+<p><code>top</code>命令使我们最常用的 Linux 命令之一，它可以实时的显示当前正在执行的进程的 CPU 使用率，内存使用率等系统信息。<code>top -Hp pid</code> 可以查看线程的系统资源使用情况。</p>
+<p><strong>vmstat 命令</strong></p>
+<p>vmstat 是一个指定周期和采集次数的虚拟内存检测工具，可以统计内存，CPU，swap 的使用情况，它还有一个重要的常用功能，用来观察进程的上下文切换。字段说明如下:</p>
+<ul>
+<li><p>r: 运行队列中进程数量（当数量大于 CPU 核数表示有阻塞的线程）</p>
+</li>
+<li><p>b: 等待 IO 的进程数量</p>
+</li>
+<li><p>swpd: 使用虚拟内存大小</p>
+</li>
+<li><p>free: 空闲物理内存大小</p>
+</li>
+<li><p>buff: 用作缓冲的内存大小(内存和硬盘的缓冲区)</p>
+</li>
+<li><p>cache: 用作缓存的内存大小（CPU 和内存之间的缓冲区）</p>
+</li>
+<li><p>si: 每秒从交换区写到内存的大小，由磁盘调入内存</p>
+</li>
+<li><p>so: 每秒写入交换区的内存大小，由内存调入磁盘</p>
+</li>
+<li><p>bi: 每秒读取的块数</p>
+</li>
+<li><p>bo: 每秒写入的块数</p>
+</li>
+<li><p>in: 每秒中断数，包括时钟中断。</p>
+</li>
+<li><p>cs: 每秒上下文切换数。</p>
+</li>
+<li><p>us: 用户进程执行时间百分比(user time)</p>
+</li>
+<li><p>sy: 内核系统进程执行时间百分比(system time)</p>
+</li>
+<li><p>wa: IO 等待时间百分比</p>
+</li>
+<li><p>id: 空闲时间百分比</p>
+<p><strong>pidstat 命令</strong></p>
+</li>
+</ul>
+<p>pidstat 是 Sysstat 中的一个组件，也是一款功能强大的性能监测工具，<code>top</code> 和 <code>vmstat</code> 两个命令都是监测进程的内存、CPU 以及 I&#x2F;O 使用情况，而 pidstat 命令可以检测到线程级别的。<code>pidstat</code>命令线程切换字段说明如下：</p>
+<ul>
+<li><p>UID ：被监控任务的真实用户 ID。</p>
+</li>
+<li><p>TGID ：线程组 ID。</p>
+</li>
+<li><p>TID：线程 ID。</p>
+</li>
+<li><p>cswch&#x2F;s：主动切换上下文次数，这里是因为资源阻塞而切换线程，比如锁等待等情况。</p>
+</li>
+<li><p>nvcswch&#x2F;s：被动切换上下文次数，这里指 CPU 调度切换了线程。</p>
+<p><strong>jstack 命令</strong></p>
+</li>
+</ul>
+<p>jstack 是 JDK 工具命令，它是一种线程堆栈分析工具，最常用的功能就是使用 <code>jstack pid</code> 命令查看线程的堆栈信息，也经常用来排除死锁情况。</p>
+<p><strong>jstat 命令</strong></p>
+<p>它可以检测 Java 程序运行的实时情况，包括堆内存信息和垃圾回收信息，我们常常用来查看程序垃圾回收情况。常用的命令是<code>jstat -gc pid</code>。信息字段说明如下：</p>
+<ul>
+<li><p>S0C：年轻代中 To Survivor 的容量（单位 KB）；</p>
+</li>
+<li><p>S1C：年轻代中 From Survivor 的容量（单位 KB）；</p>
+</li>
+<li><p>S0U：年轻代中 To Survivor 目前已使用空间（单位 KB）；</p>
+</li>
+<li><p>S1U：年轻代中 From Survivor 目前已使用空间（单位 KB）；</p>
+</li>
+<li><p>EC：年轻代中 Eden 的容量（单位 KB）；</p>
+</li>
+<li><p>EU：年轻代中 Eden 目前已使用空间（单位 KB）；</p>
+</li>
+<li><p>OC：老年代的容量（单位 KB）；</p>
+</li>
+<li><p>OU：老年代目前已使用空间（单位 KB）；</p>
+</li>
+<li><p>MC：元空间的容量（单位 KB）；</p>
+</li>
+<li><p>MU：元空间目前已使用空间（单位 KB）；</p>
+</li>
+<li><p>YGC：从应用程序启动到采样时年轻代中 gc 次数；</p>
+</li>
+<li><p>YGCT：从应用程序启动到采样时年轻代中 gc 所用时间 (s)；</p>
+</li>
+<li><p>FGC：从应用程序启动到采样时 老年代（Full Gc）gc 次数；</p>
+</li>
+<li><p>FGCT：从应用程序启动到采样时 老年代代（Full Gc）gc 所用时间 (s)；</p>
+</li>
+<li><p>GCT：从应用程序启动到采样时 gc 用的总时间 (s)。</p>
+<p><strong>jmap 命令</strong></p>
+</li>
+</ul>
+<p>jmap 也是 JDK 工具命令，他可以查看堆内存的初始化信息以及堆内存的使用情况，还可以生成 dump 文件来进行详细分析。查看堆内存情况命令<code>jmap -heap pid</code>。</p>
+<p><strong>mat 内存工具</strong></p>
+<p>MAT(Memory Analyzer Tool)工具是 eclipse 的一个插件(MAT 也可以单独使用)，它分析大内存的 dump 文件时，可以非常直观的看到各个对象在堆空间中所占用的内存大小、类实例数量、对象引用关系、利用 OQL 对象查询，以及可以很方便的找出对象 GC Roots 的相关信息。</p>
+<p><strong>idea 中也有这么一个插件，就是 JProfiler</strong>。</p>
+<p>相关阅读：<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000017795841">《性能诊断利器 JProfiler 快速入门和最佳实践》</a></p>
+<h2 id="模拟环境准备"><a href="#模拟环境准备" class="headerlink" title="模拟环境准备"></a>模拟环境准备</h2><p>基础环境 jdk1.8，采用 SpringBoot 框架来写几个接口来触发模拟场景，首先是模拟 CPU 占满情况</p>
+<h3 id="CPU-占满"><a href="#CPU-占满" class="headerlink" title="CPU 占满"></a>CPU 占满</h3><p>模拟 CPU 占满还是比较简单，直接写一个死循环计算消耗 CPU 即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">   * 模拟CPU占满</span><br><span class="hljs-comment">   */</span><br>  <span class="hljs-meta">@GetMapping(&quot;/cpu/loop&quot;)</span><br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testCPULoop</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> InterruptedException &#123;<br>      System.out.println(<span class="hljs-string">&quot;请求cpu死循环&quot;</span>);<br>      Thread.currentThread().setName(<span class="hljs-string">&quot;loop-thread-cpu&quot;</span>);<br>      <span class="hljs-type">int</span> <span class="hljs-variable">num</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>      <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123;<br>          num++;<br>          <span class="hljs-keyword">if</span> (num == Integer.MAX_VALUE) &#123;<br>              System.out.println(<span class="hljs-string">&quot;reset&quot;</span>);<br>          &#125;<br>          num = <span class="hljs-number">0</span>;<br>      &#125;<br><br>  &#125;<br></code></pre></td></tr></table></figure>
+
+<p>请求接口地址测试<code>curl localhost:8080/cpu/loop</code>,发现 CPU 立马飙升到 100%</p>
+<p><img src="/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AE%9A%E4%BD%8D%E5%B8%B8%E8%A7%81Java%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98/3be5a280b0f5499a80c706c8e5da2a4f-1.png" srcset="/img/loading.gif" lazyload></p>
+<p>通过执行<code>top -Hp 32805</code> 查看 Java 线程情况</p>
+<p><img src="/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AE%9A%E4%BD%8D%E5%B8%B8%E8%A7%81Java%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98/3d8d5ffd3ada43fb86ef54b05408c656-1.png" srcset="/img/loading.gif" lazyload></p>
+<p>执行 <code>printf &#39;%x&#39; 32826</code> 获取 16 进制的线程 id，用于<code>dump</code>信息查询，结果为 <code>803a</code>。最后我们执行<code>jstack 32805 |grep -A 20 803a</code>来查看下详细的<code>dump</code>信息。</p>
+<p><img src="/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AE%9A%E4%BD%8D%E5%B8%B8%E8%A7%81Java%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98/1fb751b0d78b4a3b8d0f528598ae885d-1.png" srcset="/img/loading.gif" lazyload></p>
+<p>这里<code>dump</code>信息直接定位出了问题方法以及代码行，这就定位出了 CPU 占满的问题。</p>
+<h3 id="内存泄露"><a href="#内存泄露" class="headerlink" title="内存泄露"></a>内存泄露</h3><p>模拟内存泄漏借助了 ThreadLocal 对象来完成，ThreadLocal 是一个线程私有变量，可以绑定到线程上，在整个线程的生命周期都会存在，但是由于 ThreadLocal 的特殊性，ThreadLocal 是基于 ThreadLocalMap 实现的，ThreadLocalMap 的 Entry 继承 WeakReference，而 Entry 的 Key 是 WeakReference 的封装，换句话说 Key 就是弱引用，弱引用在下次 GC 之后就会被回收，如果 ThreadLocal 在 set 之后不进行后续的操作，因为 GC 会把 Key 清除掉，但是 Value 由于线程还在存活，所以 Value 一直不会被回收，最后就会发生内存泄漏。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 模拟内存泄漏</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@GetMapping(value = &quot;/memory/leak&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">leak</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;模拟内存泄漏&quot;</span>);<br>        ThreadLocal&lt;Byte[]&gt; localVariable = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ThreadLocal</span>&lt;Byte[]&gt;();<br>        localVariable.set(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Byte</span>[<span class="hljs-number">4096</span> * <span class="hljs-number">1024</span>]);<span class="hljs-comment">// 为线程添加变量</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;ok&quot;</span>;<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p>我们给启动加上堆内存大小限制，同时设置内存溢出的时候输出堆栈快照并输出日志。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">java -jar -Xms500m -Xmx500m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/heapdump.hprof -XX:+PrintGCTimeStamps -XX:+PrintGCDetails -Xloggc:/tmp/heaplog.log analysis-demo-0.0.1-SNAPSHOT.jar<br></code></pre></td></tr></table></figure>
+
+<p>启动成功后我们循环执行 100 次,<code>for i in &#123;1..500&#125;; do curl localhost:8080/memory/leak;done</code>,还没执行完毕，系统已经返回 500 错误了。查看系统日志出现了如下异常：</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-keyword">java.lang.OutOfMemoryError: </span><span class="hljs-keyword">Java </span>heap space<br></code></pre></td></tr></table></figure>
+
+<p>我们用<code>jstat -gc pid</code> 命令来看看程序的 GC 情况。</p>
+<p><img src="/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AE%9A%E4%BD%8D%E5%B8%B8%E8%A7%81Java%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98/e9bf831860f442a3a992eef64ebb6a50-1.png" srcset="/img/loading.gif" lazyload></p>
+<p>很明显，内存溢出了，堆内存经过 45 次 Full Gc 之后都没释放出可用内存，这说明当前堆内存中的对象都是存活的，有 GC Roots 引用，无法回收。那是什么原因导致内存溢出呢？是不是我只要加大内存就行了呢？如果是普通的内存溢出也许扩大内存就行了，但是如果是内存泄漏的话，扩大的内存不一会就会被占满，所以我们还需要确定是不是内存泄漏。我们之前保存了堆 Dump 文件，这个时候借助我们的 MAT 工具来分析下。导入工具选择<code>Leak Suspects Report</code>，工具直接就会给你列出问题报告。</p>
+<p><img src="/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AE%9A%E4%BD%8D%E5%B8%B8%E8%A7%81Java%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98/392e4090c0094657ae29af030d3646e3-1.png" srcset="/img/loading.gif" lazyload></p>
+<p>这里已经列出了可疑的 4 个内存泄漏问题，我们点击其中一个查看详情。</p>
+<p><img src="/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AE%9A%E4%BD%8D%E5%B8%B8%E8%A7%81Java%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98/53fd3ee9a1a0448ca1878e865f4e5f96-1.png" srcset="/img/loading.gif" lazyload></p>
+<p>这里已经指出了内存被线程占用了接近 50M 的内存，占用的对象就是 ThreadLocal。如果想详细的通过手动去分析的话，可以点击<code>Histogram</code>,查看最大的对象占用是谁，然后再分析它的引用关系，即可确定是谁导致的内存溢出。</p>
+<p><img src="/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AE%9A%E4%BD%8D%E5%B8%B8%E8%A7%81Java%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98/ba07b0fee1754ffc943e546a18a3907e-1.png" srcset="/img/loading.gif" lazyload></p>
+<p>上图发现占用内存最大的对象是一个 Byte 数组，我们看看它到底被那个 GC Root 引用导致没有被回收。按照上图红框操作指引，结果如下图：</p>
+<p><img src="/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AE%9A%E4%BD%8D%E5%B8%B8%E8%A7%81Java%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98/0605fbf554814a23b80f6351408598be-1.png" srcset="/img/loading.gif" lazyload></p>
+<p>我们发现 Byte 数组是被线程对象引用的，图中也标明，Byte 数组对像的 GC Root 是线程，所以它是不会被回收的，展开详细信息查看，我们发现最终的内存占用对象是被 ThreadLocal 对象占据了。这也和 MAT 工具自动帮我们分析的结果一致。</p>
+<h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><p>死锁会导致耗尽线程资源，占用内存，表现就是内存占用升高，CPU 不一定会飙升(看场景决定)，如果是直接 new 线程，会导致 JVM 内存被耗尽，报无法创建线程的错误，这也是体现了使用线程池的好处。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs java"> <span class="hljs-type">ExecutorService</span> <span class="hljs-variable">service</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ThreadPoolExecutor</span>(<span class="hljs-number">4</span>, <span class="hljs-number">10</span>,<br>            <span class="hljs-number">0</span>, TimeUnit.SECONDS, <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedBlockingQueue</span>&lt;Runnable&gt;(<span class="hljs-number">1024</span>),<br>            Executors.defaultThreadFactory(),<br>            <span class="hljs-keyword">new</span> <span class="hljs-title class_">ThreadPoolExecutor</span>.AbortPolicy());<br>   <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 模拟死锁</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@GetMapping(&quot;/cpu/test&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">testCPU</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> InterruptedException &#123;<br>        System.out.println(<span class="hljs-string">&quot;请求cpu&quot;</span>);<br>        <span class="hljs-type">Object</span> <span class="hljs-variable">lock1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>();<br>        <span class="hljs-type">Object</span> <span class="hljs-variable">lock2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>();<br>        service.submit(<span class="hljs-keyword">new</span> <span class="hljs-title class_">DeadLockThread</span>(lock1, lock2), <span class="hljs-string">&quot;deadLookThread-&quot;</span> + <span class="hljs-keyword">new</span> <span class="hljs-title class_">Random</span>().nextInt());<br>        service.submit(<span class="hljs-keyword">new</span> <span class="hljs-title class_">DeadLockThread</span>(lock2, lock1), <span class="hljs-string">&quot;deadLookThread-&quot;</span> + <span class="hljs-keyword">new</span> <span class="hljs-title class_">Random</span>().nextInt());<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;ok&quot;</span>;<br>    &#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DeadLockThread</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Runnable</span> &#123;<br>    <span class="hljs-keyword">private</span> Object lock1;<br>    <span class="hljs-keyword">private</span> Object lock2;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">DeadLockThread1</span><span class="hljs-params">(Object lock1, Object lock2)</span> &#123;<br>        <span class="hljs-built_in">this</span>.lock1 = lock1;<br>        <span class="hljs-built_in">this</span>.lock2 = lock2;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">synchronized</span> (lock2) &#123;<br>            System.out.println(Thread.currentThread().getName()+<span class="hljs-string">&quot;get lock2 and wait lock1&quot;</span>);<br>            <span class="hljs-keyword">try</span> &#123;<br>                TimeUnit.MILLISECONDS.sleep(<span class="hljs-number">2000</span>);<br>            &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>                e.printStackTrace();<br>            &#125;<br>            <span class="hljs-keyword">synchronized</span> (lock1) &#123;<br>                System.out.println(Thread.currentThread().getName()+<span class="hljs-string">&quot;get lock1 and lock2 &quot;</span>);<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>我们循环请求接口 2000 次，发现不一会系统就出现了日志错误，线程池和队列都满了,由于我选择的当队列满了就拒绝的策略，所以系统直接抛出异常。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">java<span class="hljs-selector-class">.util</span><span class="hljs-selector-class">.concurrent</span><span class="hljs-selector-class">.RejectedExecutionException</span>: Task java<span class="hljs-selector-class">.util</span><span class="hljs-selector-class">.concurrent</span>.FutureTask@<span class="hljs-number">2760298</span> rejected from java<span class="hljs-selector-class">.util</span><span class="hljs-selector-class">.concurrent</span>.ThreadPoolExecutor@<span class="hljs-number">7</span>ea7cd51<span class="hljs-selector-attr">[Running, pool size = 10, active threads = 10, queued tasks = 1024, completed tasks = 846]</span><br></code></pre></td></tr></table></figure>
+
+<p>通过<code>ps -ef|grep java</code>命令找出 Java 进程 pid，执行<code>jstack pid</code> 即可出现 java 线程堆栈信息，这里发现了 5 个死锁，我们只列出其中一个，很明显线程<code>pool-1-thread-2</code>锁住了<code>0x00000000f8387d88</code>等待<code>0x00000000f8387d98</code>锁，线程<code>pool-1-thread-1</code>锁住了<code>0x00000000f8387d98</code>等待锁<code>0x00000000f8387d88</code>,这就产生了死锁。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs JAVA">Java stack information <span class="hljs-keyword">for</span> the threads listed above:<br>===================================================<br><span class="hljs-string">&quot;pool-1-thread-2&quot;</span>:<br>        at top.luozhou.analysisdemo.controller.DeadLockThread2.run(DeadLockThread.java:<span class="hljs-number">30</span>)<br>        - waiting to lock &lt;<span class="hljs-number">0x00000000f8387d98</span>&gt; (a java.lang.Object)<br>        - locked &lt;<span class="hljs-number">0x00000000f8387d88</span>&gt; (a java.lang.Object)<br>        at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:<span class="hljs-number">511</span>)<br>        at java.util.concurrent.FutureTask.run(FutureTask.java:<span class="hljs-number">266</span>)<br>        at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:<span class="hljs-number">1149</span>)<br>        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:<span class="hljs-number">624</span>)<br>        at java.lang.Thread.run(Thread.java:<span class="hljs-number">748</span>)<br><span class="hljs-string">&quot;pool-1-thread-1&quot;</span>:<br>        at top.luozhou.analysisdemo.controller.DeadLockThread1.run(DeadLockThread.java:<span class="hljs-number">30</span>)<br>        - waiting to lock &lt;<span class="hljs-number">0x00000000f8387d88</span>&gt; (a java.lang.Object)<br>        - locked &lt;<span class="hljs-number">0x00000000f8387d98</span>&gt; (a java.lang.Object)<br>        at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:<span class="hljs-number">511</span>)<br>        at java.util.concurrent.FutureTask.run(FutureTask.java:<span class="hljs-number">266</span>)<br>        at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:<span class="hljs-number">1149</span>)<br>        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:<span class="hljs-number">624</span>)<br>        at java.lang.Thread.run(Thread.java:<span class="hljs-number">748</span>)<br><br> Found <span class="hljs-number">5</span> deadlocks.<br></code></pre></td></tr></table></figure>
+
+<h3 id="线程频繁切换"><a href="#线程频繁切换" class="headerlink" title="线程频繁切换"></a>线程频繁切换</h3><p>上下文切换会导致将大量 CPU 时间浪费在寄存器、内核栈以及虚拟内存的保存和恢复上，导致系统整体性能下降。当你发现系统的性能出现明显的下降时候，需要考虑是否发生了大量的线程上下文切换。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"> <span class="hljs-meta">@GetMapping(value = &quot;/thread/swap&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">theadSwap</span><span class="hljs-params">(<span class="hljs-type">int</span> num)</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;模拟线程切换&quot;</span>);<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; num; i++) &#123;<br>            <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ThreadSwap1</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">AtomicInteger</span>(<span class="hljs-number">0</span>)),<span class="hljs-string">&quot;thread-swap&quot;</span>+i).start();<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;ok&quot;</span>;<br>    &#125;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ThreadSwap1</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Runnable</span> &#123;<br>    <span class="hljs-keyword">private</span> AtomicInteger integer;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">ThreadSwap1</span><span class="hljs-params">(AtomicInteger integer)</span> &#123;<br>        <span class="hljs-built_in">this</span>.integer = integer;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123;<br>            integer.addAndGet(<span class="hljs-number">1</span>);<br>            Thread.yield(); <span class="hljs-comment">//让出CPU资源</span><br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这里我创建多个线程去执行基础的原子+1 操作，然后让出 CPU 资源，理论上 CPU 就会去调度别的线程，我们请求接口创建 100 个线程看看效果如何，<code>curl localhost:8080/thread/swap?num=100</code>。接口请求成功后，我们执行 <code>vmstat 1 10</code>，表示每 1 秒打印一次，打印 10 次，线程切换采集结果如下：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">procs</span> -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----<br> <span class="hljs-attribute">r</span>  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st<br><span class="hljs-attribute">101</span>  <span class="hljs-number">0</span> <span class="hljs-number">128000</span> <span class="hljs-number">878384</span>    <span class="hljs-number">908</span> <span class="hljs-number">468684</span>    <span class="hljs-number">0</span>    <span class="hljs-number">0</span>     <span class="hljs-number">0</span>     <span class="hljs-number">0</span> <span class="hljs-number">4071</span> <span class="hljs-number">8110498</span> <span class="hljs-number">14</span> <span class="hljs-number">86</span>  <span class="hljs-number">0</span>  <span class="hljs-number">0</span>  <span class="hljs-number">0</span><br><span class="hljs-attribute">100</span>  <span class="hljs-number">0</span> <span class="hljs-number">128000</span> <span class="hljs-number">878384</span>    <span class="hljs-number">908</span> <span class="hljs-number">468684</span>    <span class="hljs-number">0</span>    <span class="hljs-number">0</span>     <span class="hljs-number">0</span>     <span class="hljs-number">0</span> <span class="hljs-number">4065</span> <span class="hljs-number">8312463</span> <span class="hljs-number">15</span> <span class="hljs-number">85</span>  <span class="hljs-number">0</span>  <span class="hljs-number">0</span>  <span class="hljs-number">0</span><br><span class="hljs-attribute">100</span>  <span class="hljs-number">0</span> <span class="hljs-number">128000</span> <span class="hljs-number">878384</span>    <span class="hljs-number">908</span> <span class="hljs-number">468684</span>    <span class="hljs-number">0</span>    <span class="hljs-number">0</span>     <span class="hljs-number">0</span>     <span class="hljs-number">0</span> <span class="hljs-number">4107</span> <span class="hljs-number">8207718</span> <span class="hljs-number">14</span> <span class="hljs-number">87</span>  <span class="hljs-number">0</span>  <span class="hljs-number">0</span>  <span class="hljs-number">0</span><br><span class="hljs-attribute">100</span>  <span class="hljs-number">0</span> <span class="hljs-number">128000</span> <span class="hljs-number">878384</span>    <span class="hljs-number">908</span> <span class="hljs-number">468684</span>    <span class="hljs-number">0</span>    <span class="hljs-number">0</span>     <span class="hljs-number">0</span>     <span class="hljs-number">0</span> <span class="hljs-number">4083</span> <span class="hljs-number">8410174</span> <span class="hljs-number">14</span> <span class="hljs-number">86</span>  <span class="hljs-number">0</span>  <span class="hljs-number">0</span>  <span class="hljs-number">0</span><br><span class="hljs-attribute">100</span>  <span class="hljs-number">0</span> <span class="hljs-number">128000</span> <span class="hljs-number">878384</span>    <span class="hljs-number">908</span> <span class="hljs-number">468684</span>    <span class="hljs-number">0</span>    <span class="hljs-number">0</span>     <span class="hljs-number">0</span>     <span class="hljs-number">0</span> <span class="hljs-number">4083</span> <span class="hljs-number">8264377</span> <span class="hljs-number">14</span> <span class="hljs-number">86</span>  <span class="hljs-number">0</span>  <span class="hljs-number">0</span>  <span class="hljs-number">0</span><br><span class="hljs-attribute">100</span>  <span class="hljs-number">0</span> <span class="hljs-number">128000</span> <span class="hljs-number">878384</span>    <span class="hljs-number">908</span> <span class="hljs-number">468688</span>    <span class="hljs-number">0</span>    <span class="hljs-number">0</span>     <span class="hljs-number">0</span>   <span class="hljs-number">108</span> <span class="hljs-number">4182</span> <span class="hljs-number">8346826</span> <span class="hljs-number">14</span> <span class="hljs-number">86</span>  <span class="hljs-number">0</span>  <span class="hljs-number">0</span>  <span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+
+<p>这里我们关注 4 个指标，<code>r</code>,<code>cs</code>,<code>us</code>,<code>sy</code>。</p>
+<p><strong>r&#x3D;100</strong>,说明等待的进程数量是 100，线程有阻塞。</p>
+<p><strong>cs&#x3D;800 多万</strong>，说明每秒上下文切换了 800 多万次，这个数字相当大了。</p>
+<p><strong>us&#x3D;14</strong>，说明用户态占用了 14%的 CPU 时间片去处理逻辑。</p>
+<p><strong>sy&#x3D;86</strong>，说明内核态占用了 86%的 CPU，这里明显就是做上下文切换工作了。</p>
+<p>我们通过<code>top</code>命令以及<code>top -Hp pid</code>查看进程和线程 CPU 情况，发现 Java 进程 CPU 占满了，但是线程 CPU 使用情况很平均，没有某一个线程把 CPU 吃满的情况。</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">PID</span> USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND<br> <span class="hljs-attribute">87093</span> root      <span class="hljs-number">20</span>   <span class="hljs-number">0</span> <span class="hljs-number">4194788</span> <span class="hljs-number">299056</span>  <span class="hljs-number">13252</span> S <span class="hljs-number">399</span>.<span class="hljs-number">7</span> <span class="hljs-number">16</span>.<span class="hljs-number">1</span>  <span class="hljs-number">65</span>:<span class="hljs-number">34</span>.<span class="hljs-number">67</span> java<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">PID</span> USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND<br><span class="hljs-attribute">87189</span> root      <span class="hljs-number">20</span>   <span class="hljs-number">0</span> <span class="hljs-number">4194788</span> <span class="hljs-number">299056</span>  <span class="hljs-number">13252</span> R  <span class="hljs-number">4</span>.<span class="hljs-number">7</span> <span class="hljs-number">16</span>.<span class="hljs-number">1</span>   <span class="hljs-number">0</span>:<span class="hljs-number">41</span>.<span class="hljs-number">11</span> java<br><span class="hljs-attribute">87129</span> root      <span class="hljs-number">20</span>   <span class="hljs-number">0</span> <span class="hljs-number">4194788</span> <span class="hljs-number">299056</span>  <span class="hljs-number">13252</span> R  <span class="hljs-number">4</span>.<span class="hljs-number">3</span> <span class="hljs-number">16</span>.<span class="hljs-number">1</span>   <span class="hljs-number">0</span>:<span class="hljs-number">41</span>.<span class="hljs-number">14</span> java<br><span class="hljs-attribute">87130</span> root      <span class="hljs-number">20</span>   <span class="hljs-number">0</span> <span class="hljs-number">4194788</span> <span class="hljs-number">299056</span>  <span class="hljs-number">13252</span> R  <span class="hljs-number">4</span>.<span class="hljs-number">3</span> <span class="hljs-number">16</span>.<span class="hljs-number">1</span>   <span class="hljs-number">0</span>:<span class="hljs-number">40</span>.<span class="hljs-number">51</span> java<br><span class="hljs-attribute">87133</span> root      <span class="hljs-number">20</span>   <span class="hljs-number">0</span> <span class="hljs-number">4194788</span> <span class="hljs-number">299056</span>  <span class="hljs-number">13252</span> R  <span class="hljs-number">4</span>.<span class="hljs-number">3</span> <span class="hljs-number">16</span>.<span class="hljs-number">1</span>   <span class="hljs-number">0</span>:<span class="hljs-number">40</span>.<span class="hljs-number">59</span> java<br><span class="hljs-attribute">87134</span> root      <span class="hljs-number">20</span>   <span class="hljs-number">0</span> <span class="hljs-number">4194788</span> <span class="hljs-number">299056</span>  <span class="hljs-number">13252</span> R  <span class="hljs-number">4</span>.<span class="hljs-number">3</span> <span class="hljs-number">16</span>.<span class="hljs-number">1</span>   <span class="hljs-number">0</span>:<span class="hljs-number">40</span>.<span class="hljs-number">95</span> java<br></code></pre></td></tr></table></figure>
+
+<p>结合上面用户态 CPU 只使用了 14%，内核态 CPU 占用了 86%，可以基本判断是 Java 程序线程上下文切换导致性能问题。</p>
+<p>我们使用<code>pidstat</code>命令来看看 Java 进程内部的线程切换数据，执行<code>pidstat -p 87093 -w 1 10</code>,采集数据如下：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">11</span>:<span class="hljs-number">04</span>:<span class="hljs-number">30</span> PM   UID       TGID       TID   cswch/s nvcswch/s  Command<br><span class="hljs-attribute">11</span>:<span class="hljs-number">04</span>:<span class="hljs-number">30</span> PM     <span class="hljs-number">0</span>         -     <span class="hljs-number">87128</span>      <span class="hljs-number">0</span>.<span class="hljs-number">00</span>     <span class="hljs-number">16</span>.<span class="hljs-number">07</span>  |__java<br><span class="hljs-attribute">11</span>:<span class="hljs-number">04</span>:<span class="hljs-number">30</span> PM     <span class="hljs-number">0</span>         -     <span class="hljs-number">87129</span>      <span class="hljs-number">0</span>.<span class="hljs-number">00</span>     <span class="hljs-number">15</span>.<span class="hljs-number">60</span>  |__java<br><span class="hljs-attribute">11</span>:<span class="hljs-number">04</span>:<span class="hljs-number">30</span> PM     <span class="hljs-number">0</span>         -     <span class="hljs-number">87130</span>      <span class="hljs-number">0</span>.<span class="hljs-number">00</span>     <span class="hljs-number">15</span>.<span class="hljs-number">54</span>  |__java<br><span class="hljs-attribute">11</span>:<span class="hljs-number">04</span>:<span class="hljs-number">30</span> PM     <span class="hljs-number">0</span>         -     <span class="hljs-number">87131</span>      <span class="hljs-number">0</span>.<span class="hljs-number">00</span>     <span class="hljs-number">15</span>.<span class="hljs-number">60</span>  |__java<br><span class="hljs-attribute">11</span>:<span class="hljs-number">04</span>:<span class="hljs-number">30</span> PM     <span class="hljs-number">0</span>         -     <span class="hljs-number">87132</span>      <span class="hljs-number">0</span>.<span class="hljs-number">00</span>     <span class="hljs-number">15</span>.<span class="hljs-number">43</span>  |__java<br><span class="hljs-attribute">11</span>:<span class="hljs-number">04</span>:<span class="hljs-number">30</span> PM     <span class="hljs-number">0</span>         -     <span class="hljs-number">87133</span>      <span class="hljs-number">0</span>.<span class="hljs-number">00</span>     <span class="hljs-number">16</span>.<span class="hljs-number">02</span>  |__java<br><span class="hljs-attribute">11</span>:<span class="hljs-number">04</span>:<span class="hljs-number">30</span> PM     <span class="hljs-number">0</span>         -     <span class="hljs-number">87134</span>      <span class="hljs-number">0</span>.<span class="hljs-number">00</span>     <span class="hljs-number">15</span>.<span class="hljs-number">66</span>  |__java<br><span class="hljs-attribute">11</span>:<span class="hljs-number">04</span>:<span class="hljs-number">30</span> PM     <span class="hljs-number">0</span>         -     <span class="hljs-number">87135</span>      <span class="hljs-number">0</span>.<span class="hljs-number">00</span>     <span class="hljs-number">15</span>.<span class="hljs-number">23</span>  |__java<br><span class="hljs-attribute">11</span>:<span class="hljs-number">04</span>:<span class="hljs-number">30</span> PM     <span class="hljs-number">0</span>         -     <span class="hljs-number">87136</span>      <span class="hljs-number">0</span>.<span class="hljs-number">00</span>     <span class="hljs-number">15</span>.<span class="hljs-number">33</span>  |__java<br><span class="hljs-attribute">11</span>:<span class="hljs-number">04</span>:<span class="hljs-number">30</span> PM     <span class="hljs-number">0</span>         -     <span class="hljs-number">87137</span>      <span class="hljs-number">0</span>.<span class="hljs-number">00</span>     <span class="hljs-number">16</span>.<span class="hljs-number">04</span>  |__java<br></code></pre></td></tr></table></figure>
+
+<p>根据上面采集的信息，我们知道 Java 的线程每秒切换 15 次左右，正常情况下，应该是个位数或者小数。结合这些信息我们可以断定 Java 线程开启过多，导致频繁上下文切换，从而影响了整体性能。</p>
+<p><strong>为什么系统的上下文切换是每秒 800 多万，而 Java 进程中的某一个线程切换才 15 次左右？</strong></p>
+<p>系统上下文切换分为三种情况:</p>
+<p>1、多任务：在多任务环境中，一个进程被切换出 CPU，运行另外一个进程，这里会发生上下文切换。</p>
+<p>2、中断处理：发生中断时，硬件会切换上下文。在 vmstat 命令中是<code>in</code></p>
+<p>3、用户和内核模式切换：当操作系统中需要在用户模式和内核模式之间进行转换时，需要进行上下文切换,比如进行系统函数调用。</p>
+<p>Linux 为每个 CPU 维护了一个就绪队列，将活跃进程按照优先级和等待 CPU 的时间排序，然后选择最需要 CPU 的进程，也就是优先级最高和等待 CPU 时间最长的进程来运行。也就是 vmstat 命令中的<code>r</code>。</p>
+<p>那么，进程在什么时候才会被调度到 CPU 上运行呢？</p>
+<ul>
+<li>进程执行完终止了，它之前使用的 CPU 会释放出来，这时再从就绪队列中拿一个新的进程来运行</li>
+<li>为了保证所有进程可以得到公平调度，CPU 时间被划分为一段段的时间片，这些时间片被轮流分配给各个进程。当某个进程时间片耗尽了就会被系统挂起，切换到其它等待 CPU 的进程运行。</li>
+<li>进程在系统资源不足时，要等待资源满足后才可以运行，这时进程也会被挂起，并由系统调度其它进程运行。</li>
+<li>当进程通过睡眠函数 sleep 主动挂起时，也会重新调度。</li>
+<li>当有优先级更高的进程运行时，为了保证高优先级进程的运行，当前进程会被挂起，由高优先级进程来运行。</li>
+<li>发生硬件中断时，CPU 上的进程会被中断挂起，转而执行内核中的中断服务程序。</li>
+</ul>
+<p>结合我们之前的内容分析，阻塞的就绪队列是 100 左右，而我们的 CPU 只有 4 核，这部分原因造成的上下文切换就可能会相当高，再加上中断次数是 4000 左右和系统的函数调用等，整个系统的上下文切换到 800 万也不足为奇了。Java 内部的线程切换才 15 次，是因为线程使用<code>Thread.yield()</code>来让出 CPU 资源，但是 CPU 有可能继续调度该线程，这个时候线程之间并没有切换，这也是为什么内部的某个线程切换次数并不是非常大的原因。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文模拟了常见的性能问题场景，分析了如何定位 CPU100%、内存泄漏、死锁、线程频繁切换问题。分析问题我们需要做好两件事，第一，掌握基本的原理，第二，借助好工具。本文也列举了分析问题的常用工具和命令，希望对你解决问题有所帮助。当然真正的线上环境可能十分复杂，并没有模拟的环境那么简单，但是原理是一样的，问题的表现也是类似的，我们重点抓住原理，活学活用，相信复杂的线上问题也可以顺利解决。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>1、<a target="_blank" rel="noopener" href="https://linux.die.net/man/1/pidstat">https://linux.die.net/man/1/pidstat</a></p>
+<p>2、<a target="_blank" rel="noopener" href="https://linux.die.net/man/8/vmstat">https://linux.die.net/man/8/vmstat</a></p>
+<p>3、<a target="_blank" rel="noopener" href="https://help.eclipse.org/2020-03/index.jsp?topic=/org.eclipse.mat.ui.help/welcome.html">https://help.eclipse.org/2020-03/index.jsp?topic=/org.eclipse.mat.ui.help/welcome.html</a></p>
+<p>4、<a target="_blank" rel="noopener" href="https://www.linuxblogs.cn/articles/18120200.html">https://www.linuxblogs.cn/articles/18120200.html</a></p>
+<p>5、<a target="_blank" rel="noopener" href="https://www.tutorialspoint.com/what-is-context-switching-in-operating-system">https://www.tutorialspoint.com/what-is-context-switching-in-operating-system</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Java/performance/" class="category-chain-item">performance</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Java/performance/locate-performance-problems/" class="category-chain-item">locate-performance-problems</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Java/">#Java</a>
+      
+        <a href="/tags/performance/">#performance</a>
+      
+        <a href="/tags/locate-performance-problems/">#locate-performance-problems</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>手把手教你定位常见Java性能问题</div>
+      <div>https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/performance/locate-performance-problems/手把手教你定位常见Java性能问题/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 17, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/Java/frame_work/redis/redis%E7%AC%94%E8%AE%B0/" title="redis笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">redis笔记</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/common/%E5%A4%A7%E4%BD%AC%E5%88%86%E4%BA%AB/advanced-programmer/seven-tips-for-becoming-an-advanced-programmer/" title="seven-tips-for-becoming-an-advanced-programmer">
+                        <span class="hidden-mobile">seven-tips-for-becoming-an-advanced-programmer</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,1216 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/page/20/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xiechaoxin.github.io","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong> </strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Life can be much broader</span>
+          
+        </div>
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/06/17/CS/CPP/heima/p_4_employee_system/%E8%AE%B2%E4%B9%89/assets/README/" target="_self">
+          README
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/06/17/CS/CPP/heima/p_4_employee_system/%E8%AE%B2%E4%B9%89/assets/README/" target="_self">
+        <div>
+          返回首页 返回上级 讲义 assets
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-06-17 17:59" pubdate>
+              2022-06-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/CPP/" class="category-chain-item">CPP</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CPP/heima/" class="category-chain-item">heima</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CPP/heima/p-4-employee-system/" class="category-chain-item">p_4_employee_system</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CPP/heima/p-4-employee-system/%E8%AE%B2%E4%B9%89/" class="category-chain-item">讲义</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CPP/heima/p-4-employee-system/%E8%AE%B2%E4%B9%89/assets/" class="category-chain-item">assets</a>
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/CPP/">#CPP</a>
+            
+              <a href="/tags/heima/">#heima</a>
+            
+              <a href="/tags/assets/">#assets</a>
+            
+              <a href="/tags/p-4-employee-system/">#p_4_employee_system</a>
+            
+              <a href="/tags/%E8%AE%B2%E4%B9%89/">#讲义</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/06/17/CS/CPP/heima/p_5_cpp_improvement/%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B%E8%83%BD%E5%8A%9B%E8%B5%84%E6%96%99/%E8%AE%B2%E4%B9%89/C++%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B/" target="_self">
+          C++提高编程
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/06/17/CS/CPP/heima/p_5_cpp_improvement/%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B%E8%83%BD%E5%8A%9B%E8%B5%84%E6%96%99/%E8%AE%B2%E4%B9%89/C++%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B/" target="_self">
+        <div>
+          C++提高编程 本阶段主要针对C++&#x3D;&#x3D;泛型编程&#x3D;&#x3D;和&#x3D;&#x3D;STL&#x3D;&#x3D;技术做详细讲解，探讨C++更深层的使用  1 模板1.1 模板的概念模板就是建立通用的模具，大大提高复用性 例如生活中的模板 一寸照片模板：  PPT模板：   模板的特点：  模板不可以直接使用，它只是一个框架 模板的通用并不是万能的  1.2 函数
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-06-17 17:59" pubdate>
+              2022-06-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/CPP/" class="category-chain-item">CPP</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CPP/heima/" class="category-chain-item">heima</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CPP/heima/p-5-cpp-improvement/" class="category-chain-item">p_5_cpp_improvement</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CPP/heima/p-5-cpp-improvement/%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B%E8%83%BD%E5%8A%9B%E8%B5%84%E6%96%99/" class="category-chain-item">提高编程能力资料</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CPP/heima/p-5-cpp-improvement/%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B%E8%83%BD%E5%8A%9B%E8%B5%84%E6%96%99/%E8%AE%B2%E4%B9%89/" class="category-chain-item">讲义</a>
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/CPP/">#CPP</a>
+            
+              <a href="/tags/heima/">#heima</a>
+            
+              <a href="/tags/%E8%AE%B2%E4%B9%89/">#讲义</a>
+            
+              <a href="/tags/p-5-cpp-improvement/">#p_5_cpp_improvement</a>
+            
+              <a href="/tags/%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B%E8%83%BD%E5%8A%9B%E8%B5%84%E6%96%99/">#提高编程能力资料</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/06/17/CS/CPP/heima/p_6_speech_competition/%E8%B5%84%E6%96%99/%E8%AE%B2%E4%B9%89/%E5%9F%BA%E4%BA%8ESTL%E7%9A%84%E6%BC%94%E8%AE%B2%E6%AF%94%E8%B5%9B%E6%B5%81%E7%A8%8B%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" target="_self">
+          基于STL的演讲比赛流程管理系统
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/06/17/CS/CPP/heima/p_6_speech_competition/%E8%B5%84%E6%96%99/%E8%AE%B2%E4%B9%89/%E5%9F%BA%E4%BA%8ESTL%E7%9A%84%E6%BC%94%E8%AE%B2%E6%AF%94%E8%B5%9B%E6%B5%81%E7%A8%8B%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" target="_self">
+        <div>
+          演讲比赛流程管理系统1、 演讲比赛程序需求 1.1 比赛规则 学校举行一场演讲比赛，共有12个人参加。比赛共两轮，第一轮为淘汰赛，第二轮为决赛。 比赛方式：分组比赛，每组6个人；选手每次要随机分组，进行比赛 每名选手都有对应的编号，如 10001 ~ 10012  第一轮分为两个小组，每组6个人。 整体按照选手编号进行抽签后顺序演讲。 当小组演讲完后，淘汰组内排名最后的三个选手，前三名晋级，进入下
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-06-17 17:59" pubdate>
+              2022-06-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/CPP/" class="category-chain-item">CPP</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CPP/heima/" class="category-chain-item">heima</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CPP/heima/p-6-speech-competition/" class="category-chain-item">p_6_speech_competition</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CPP/heima/p-6-speech-competition/%E8%B5%84%E6%96%99/" class="category-chain-item">资料</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CPP/heima/p-6-speech-competition/%E8%B5%84%E6%96%99/%E8%AE%B2%E4%B9%89/" class="category-chain-item">讲义</a>
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/CPP/">#CPP</a>
+            
+              <a href="/tags/heima/">#heima</a>
+            
+              <a href="/tags/%E8%AE%B2%E4%B9%89/">#讲义</a>
+            
+              <a href="/tags/p-6-speech-competition/">#p_6_speech_competition</a>
+            
+              <a href="/tags/%E8%B5%84%E6%96%99/">#资料</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/06/17/CS/CPP/heima/p_7_cpp_computer_room_appointment/%E6%9C%BA%E6%88%BF%E9%A2%84%E7%BA%A6%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%96%99/%E8%AE%B2%E4%B9%89/%E6%9C%BA%E6%88%BF%E9%A2%84%E7%BA%A6%E7%B3%BB%E7%BB%9F/" target="_self">
+          机房预约系统
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/06/17/CS/CPP/heima/p_7_cpp_computer_room_appointment/%E6%9C%BA%E6%88%BF%E9%A2%84%E7%BA%A6%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%96%99/%E8%AE%B2%E4%B9%89/%E6%9C%BA%E6%88%BF%E9%A2%84%E7%BA%A6%E7%B3%BB%E7%BB%9F/" target="_self">
+        <div>
+          机房预约系统1、机房预约系统需求1.1 系统简介 学校现有几个规格不同的机房，由于使用时经常出现”撞车”现象,现开发一套机房预约系统，解决这一问题。   1.2 身份简介分别有三种身份使用该程序  学生代表：申请使用机房 教师：审核学生的预约申请 管理员：给学生、教师创建账号  1.3 机房简介机房总共有3间  1号机房   — 最大容量20人 2号机房   — 最多容量50人 3号机房   —
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-06-17 17:59" pubdate>
+              2022-06-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/CPP/" class="category-chain-item">CPP</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CPP/heima/" class="category-chain-item">heima</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CPP/heima/p-7-cpp-computer-room-appointment/" class="category-chain-item">p_7_cpp_computer_room_appointment</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CPP/heima/p-7-cpp-computer-room-appointment/%E6%9C%BA%E6%88%BF%E9%A2%84%E7%BA%A6%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%96%99/" class="category-chain-item">机房预约系统资料</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CPP/heima/p-7-cpp-computer-room-appointment/%E6%9C%BA%E6%88%BF%E9%A2%84%E7%BA%A6%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%96%99/%E8%AE%B2%E4%B9%89/" class="category-chain-item">讲义</a>
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/CPP/">#CPP</a>
+            
+              <a href="/tags/heima/">#heima</a>
+            
+              <a href="/tags/%E8%AE%B2%E4%B9%89/">#讲义</a>
+            
+              <a href="/tags/p-7-cpp-computer-room-appointment/">#p_7_cpp_computer_room_appointment</a>
+            
+              <a href="/tags/%E6%9C%BA%E6%88%BF%E9%A2%84%E7%BA%A6%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%96%99/">#机房预约系统资料</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/06/17/CS/CPP/heima/p_5_cpp_improvement/%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B%E8%83%BD%E5%8A%9B%E8%B5%84%E6%96%99/%E8%AE%B2%E4%B9%89/assets/README/" target="_self">
+          README
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/06/17/CS/CPP/heima/p_5_cpp_improvement/%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B%E8%83%BD%E5%8A%9B%E8%B5%84%E6%96%99/%E8%AE%B2%E4%B9%89/assets/README/" target="_self">
+        <div>
+          返回首页 返回上级 讲义 assets
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-06-17 17:59" pubdate>
+              2022-06-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/CPP/" class="category-chain-item">CPP</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CPP/heima/" class="category-chain-item">heima</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CPP/heima/p-5-cpp-improvement/" class="category-chain-item">p_5_cpp_improvement</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CPP/heima/p-5-cpp-improvement/%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B%E8%83%BD%E5%8A%9B%E8%B5%84%E6%96%99/" class="category-chain-item">提高编程能力资料</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CPP/heima/p-5-cpp-improvement/%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B%E8%83%BD%E5%8A%9B%E8%B5%84%E6%96%99/%E8%AE%B2%E4%B9%89/" class="category-chain-item">讲义</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CPP/heima/p-5-cpp-improvement/%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B%E8%83%BD%E5%8A%9B%E8%B5%84%E6%96%99/%E8%AE%B2%E4%B9%89/assets/" class="category-chain-item">assets</a>
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/CPP/">#CPP</a>
+            
+              <a href="/tags/heima/">#heima</a>
+            
+              <a href="/tags/assets/">#assets</a>
+            
+              <a href="/tags/%E8%AE%B2%E4%B9%89/">#讲义</a>
+            
+              <a href="/tags/p-5-cpp-improvement/">#p_5_cpp_improvement</a>
+            
+              <a href="/tags/%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B%E8%83%BD%E5%8A%9B%E8%B5%84%E6%96%99/">#提高编程能力资料</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/06/17/CS/CPP/heima/p_6_speech_competition/%E8%B5%84%E6%96%99/%E8%AE%B2%E4%B9%89/assets/README/" target="_self">
+          README
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/06/17/CS/CPP/heima/p_6_speech_competition/%E8%B5%84%E6%96%99/%E8%AE%B2%E4%B9%89/assets/README/" target="_self">
+        <div>
+          返回首页 返回上级 讲义 assets
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-06-17 17:59" pubdate>
+              2022-06-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/CPP/" class="category-chain-item">CPP</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CPP/heima/" class="category-chain-item">heima</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CPP/heima/p-6-speech-competition/" class="category-chain-item">p_6_speech_competition</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CPP/heima/p-6-speech-competition/%E8%B5%84%E6%96%99/" class="category-chain-item">资料</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CPP/heima/p-6-speech-competition/%E8%B5%84%E6%96%99/%E8%AE%B2%E4%B9%89/" class="category-chain-item">讲义</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CPP/heima/p-6-speech-competition/%E8%B5%84%E6%96%99/%E8%AE%B2%E4%B9%89/assets/" class="category-chain-item">assets</a>
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/CPP/">#CPP</a>
+            
+              <a href="/tags/heima/">#heima</a>
+            
+              <a href="/tags/assets/">#assets</a>
+            
+              <a href="/tags/%E8%AE%B2%E4%B9%89/">#讲义</a>
+            
+              <a href="/tags/p-6-speech-competition/">#p_6_speech_competition</a>
+            
+              <a href="/tags/%E8%B5%84%E6%96%99/">#资料</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/06/17/CS/CPP/heima/p_7_cpp_computer_room_appointment/%E6%9C%BA%E6%88%BF%E9%A2%84%E7%BA%A6%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%96%99/%E8%AE%B2%E4%B9%89/assets/README/" target="_self">
+          README
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/06/17/CS/CPP/heima/p_7_cpp_computer_room_appointment/%E6%9C%BA%E6%88%BF%E9%A2%84%E7%BA%A6%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%96%99/%E8%AE%B2%E4%B9%89/assets/README/" target="_self">
+        <div>
+          返回首页 返回上级 讲义 assets
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-06-17 17:59" pubdate>
+              2022-06-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/CPP/" class="category-chain-item">CPP</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CPP/heima/" class="category-chain-item">heima</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CPP/heima/p-7-cpp-computer-room-appointment/" class="category-chain-item">p_7_cpp_computer_room_appointment</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CPP/heima/p-7-cpp-computer-room-appointment/%E6%9C%BA%E6%88%BF%E9%A2%84%E7%BA%A6%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%96%99/" class="category-chain-item">机房预约系统资料</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CPP/heima/p-7-cpp-computer-room-appointment/%E6%9C%BA%E6%88%BF%E9%A2%84%E7%BA%A6%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%96%99/%E8%AE%B2%E4%B9%89/" class="category-chain-item">讲义</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CPP/heima/p-7-cpp-computer-room-appointment/%E6%9C%BA%E6%88%BF%E9%A2%84%E7%BA%A6%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%96%99/%E8%AE%B2%E4%B9%89/assets/" class="category-chain-item">assets</a>
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/CPP/">#CPP</a>
+            
+              <a href="/tags/heima/">#heima</a>
+            
+              <a href="/tags/assets/">#assets</a>
+            
+              <a href="/tags/%E8%AE%B2%E4%B9%89/">#讲义</a>
+            
+              <a href="/tags/p-7-cpp-computer-room-appointment/">#p_7_cpp_computer_room_appointment</a>
+            
+              <a href="/tags/%E6%9C%BA%E6%88%BF%E9%A2%84%E7%BA%A6%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%96%99/">#机房预约系统资料</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/06/17/CS/assembly/%E6%B1%87%E7%BC%96%E7%AC%94%E8%AE%B0-%E5%B0%8F%E7%94%B2%E9%B1%BC%E9%9B%B6%E5%9F%BA%E7%A1%80%E6%B1%87%E7%BC%96/" target="_self">
+          汇编笔记-小甲鱼零基础汇编
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/06/17/CS/assembly/%E6%B1%87%E7%BC%96%E7%AC%94%E8%AE%B0-%E5%B0%8F%E7%94%B2%E9%B1%BC%E9%9B%B6%E5%9F%BA%E7%A1%80%E6%B1%87%E7%BC%96/" target="_self">
+        <div>
+          汇编语言学习笔记（【汇编语言】小甲鱼零基础汇编）[toc] 第一章 基础知识【学习汇编主要是：学习汇编的编程思想，掌握机器运行的思维】 汇编语言是直接在硬件上工作的编程语言，首先要了解硬件系统的结构，才能有效的应用汇编语言对其编程。 1.汇编课程的研究重点     如何利用硬件系统的编程结构和指令集有效灵活的控制系统进行工作 2.汇编语言的主体是汇编指令 3.汇编指令和机器指令的差别在于指令的表示
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-06-17 17:59" pubdate>
+              2022-06-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/assembly/" class="category-chain-item">assembly</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/assembly/">#assembly</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/06/17/CS/network/HTTPS%E4%B8%AD%E7%9A%84TLS/" target="_self">
+          HTTPS中的TLS
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/06/17/CS/network/HTTPS%E4%B8%AD%E7%9A%84TLS/" target="_self">
+        <div>
+          title: HTTPS中的TLScategory: 计算机基础tag:  计算机网络   1. SSL 与 TLSSSL：（Secure Socket Layer） 安全套接层，于 1994 年由网景公司设计，并于 1995 年发布了 3.0 版本TLS：（Transport Layer Security）传输层安全性协议，是 IETF 在 SSL3.0 的基础上设计的协议以下全部使用 TLS
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-06-17 17:59" pubdate>
+              2022-06-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/network/" class="category-chain-item">network</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/network/">#network</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/06/17/CS/network/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/" target="_self">
+          计算机网络常见面试题
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/06/17/CS/network/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/" target="_self">
+        <div>
+          title: 计算机网络常见面试题category: 计算机基础tag:  计算机网络   一 OSI 与 TCP&#x2F;IP 各层的结构与功能, 都有哪些协议?学习计算机网络时我们一般采用折中的办法，也就是中和 OSI 和 TCP&#x2F;IP 的优点，采用一种只有五层协议的体系结构，这样既简洁又能将概念阐述清楚。  结合互联网的情况，自上而下地，非常简要的介绍一下各层的作用。 1.1
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-06-17 17:59" pubdate>
+              2022-06-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/network/" class="category-chain-item">network</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/network/">#network</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/19/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/#board">18</a><a class="page-number" href="/page/19/#board">19</a><span class="page-number current">20</span><a class="page-number" href="/page/21/#board">21</a><a class="page-number" href="/page/22/#board">22</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/#board">29</a><a class="extend next" rel="next" href="/page/21/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

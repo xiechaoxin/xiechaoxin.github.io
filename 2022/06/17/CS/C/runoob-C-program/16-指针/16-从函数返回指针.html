@@ -1,0 +1,80 @@
+<hr>
+<p>title: 16-从函数返回指针<br>category: </p>
+<ul>
+<li>C</li>
+<li>runoob-C-program</li>
+<li>16-指针<br>tags:</li>
+<li>C</li>
+<li>runoob-C-program</li>
+<li>16-指针<br>date: 2022-06-17 17:59:13</li>
+</ul>
+<hr>
+<h1 id="C-从函数返回指针"><a href="#C-从函数返回指针" class="headerlink" title="C 从函数返回指针"></a>C 从函数返回指针</h1><p>在上一章中，我们已经了解了 C 语言中如何从函数返回数组，类似地，C 允许您从函数返回指针。为了做到这点，您必须声明一个返回指针的函数，如下所示：</p>
+<pre><code>int * myFunction()
+{
+.
+.
+.
+}
+</code></pre>
+<p>另外，C 语言不支持在调用函数时返回局部变量的地址，除非定义局部变量为 <strong>static</strong> 变量。</p>
+<p>现在，让我们来看下面的函数，它会生成 10 个随机数，并使用表示指针的数组名（即第一个数组元素的地址）来返回它们，具体如下：</p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><pre><code class="c">#include &lt;stdio.h&gt;
+#include &lt;time.h&gt;
+#include &lt;stdlib.h&gt; 
+ 
+/* 要生成和返回随机数的函数 */
+int * getRandom( )
+{
+   static int  r[10];
+   int i;
+ 
+   /* 设置种子 */
+   srand( (unsigned)time( NULL ) );
+   for ( i = 0; i &lt; 10; ++i)
+   {
+      r[i] = rand();
+      printf(&quot;%d\n&quot;, r[i] );
+   }
+ 
+   return r;
+}
+ 
+/* 要调用上面定义函数的主函数 */
+int main ()
+{
+   /* 一个指向整数的指针 */
+   int *p;
+   int i;
+ 
+   p = getRandom();
+   for ( i = 0; i &lt; 10; i++ )
+   {
+       printf(&quot;*(p + [%d]) : %d\n&quot;, i, *(p + i) );
+   }
+ 
+   return 0;
+}
+</code></pre>
+<p>当上面的代码被编译和执行时，它会产生下列结果：</p>
+<pre><code>1523198053
+1187214107
+1108300978
+430494959
+1421301276
+930971084
+123250484
+106932140
+1604461820
+149169022
+*(p + [0]) : 1523198053
+*(p + [1]) : 1187214107
+*(p + [2]) : 1108300978
+*(p + [3]) : 430494959
+*(p + [4]) : 1421301276
+*(p + [5]) : 930971084
+*(p + [6]) : 123250484
+*(p + [7]) : 106932140
+*(p + [8]) : 1604461820
+*(p + [9]) : 149169022
+</code></pre>

@@ -1,0 +1,53 @@
+<hr>
+<p>title: 11-continue语句<br>category: </p>
+<ul>
+<li>C</li>
+<li>runoob-C-program</li>
+<li>11-循环<br>tags:</li>
+<li>C</li>
+<li>runoob-C-program</li>
+<li>11-循环<br>date: 2022-06-17 17:59:13</li>
+</ul>
+<hr>
+<h1 id="C-continue-语句"><a href="#C-continue-语句" class="headerlink" title="C continue 语句"></a>C continue 语句</h1><p>C 语言中的 <strong>continue</strong> 语句有点像 <strong>break</strong> 语句。但它不是强制终止，continue 会跳过当前循环中的代码，强迫开始下一次循环。</p>
+<p>对于 <strong>for</strong> 循环，<strong>continue</strong> 语句执行后自增语句仍然会执行。对于 <strong>while</strong> 和 <strong>do…while</strong> 循环，<strong>continue</strong> 语句重新执行条件判断语句。</p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>C 语言中 <strong>continue</strong> 语句的语法：</p>
+<pre><code>continue;
+</code></pre>
+<p><img src="/11-continue%E8%AF%AD%E5%8F%A5/c-continue-statement-works.jpg" alt="img"></p>
+<h2 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h2><p><img src="/11-continue%E8%AF%AD%E5%8F%A5/8962A4F1-B78C-4877-B328-903366EA1470.jpg" alt="C continue 语句"></p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><pre><code class="c">#include &lt;stdio.h&gt;
+ 
+int main ()
+{
+   /* 局部变量定义 */
+   int a = 10;
+
+   /* do 循环执行 */
+   do
+   {
+      if( a == 15)
+      {
+         /* 跳过迭代 */
+         a = a + 1;
+         continue;
+      }
+      printf(&quot;a 的值： %d\n&quot;, a);
+      a++;
+     
+   }while( a &lt; 20 );
+ 
+   return 0;
+}
+</code></pre>
+<p>当上面的代码被编译和执行时，它会产生下列结果：</p>
+<pre><code>a 的值： 10
+a 的值： 11
+a 的值： 12
+a 的值： 13
+a 的值： 14
+a 的值： 16
+a 的值： 17
+a 的值： 18
+a 的值： 19
+</code></pre>

@@ -1,0 +1,962 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="5. DQL语言Data Query Language 查询: select 5.1 基础查询语法：select 查询列表 from 表名;  查询列表可以是：表中的字段、常量、表达式、函数 查询的结果是一个虚拟的表  1. 查询表中的字段 123456789101112use myemployees;#查询表中的单个字段select last_name from employees;#查询表中的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="02.DQL语言">
+<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/database/mysql/02.DQL%E8%AF%AD%E8%A8%80/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="5. DQL语言Data Query Language 查询: select 5.1 基础查询语法：select 查询列表 from 表名;  查询列表可以是：表中的字段、常量、表达式、函数 查询的结果是一个虚拟的表  1. 查询表中的字段 123456789101112use myemployees;#查询表中的单个字段select last_name from employees;#查询表中的">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-17T17:59:12.000Z">
+<meta property="article:modified_time" content="2022-06-24T10:26:10.897Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="database">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>02.DQL语言 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xiechaoxin.github.io","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong> </strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">02.DQL语言</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-06-17 17:59" pubdate>
+          June 17, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          20k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          165 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">02.DQL语言</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="5-DQL语言"><a href="#5-DQL语言" class="headerlink" title="5. DQL语言"></a>5. DQL语言</h2><p>Data Query Language</p>
+<p>查询: select</p>
+<h3 id="5-1-基础查询"><a href="#5-1-基础查询" class="headerlink" title="5.1 基础查询"></a>5.1 基础查询</h3><p>语法：<code>select 查询列表 from 表名;</code></p>
+<ol>
+<li>查询列表可以是：表中的字段、常量、表达式、函数</li>
+<li>查询的结果是一个虚拟的表</li>
+</ol>
+<p><strong>1. 查询表中的字段</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs sql">use myemployees;<br><br>#查询表中的单个字段<br><span class="hljs-keyword">select</span> last_name <span class="hljs-keyword">from</span> employees;<br><br>#查询表中的多个字段<br><span class="hljs-keyword">select</span> last_name, salary, email <span class="hljs-keyword">from</span> employees;<br><br>#查询表中的所有字段<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> employees;<br><br><span class="hljs-keyword">select</span> `name` <span class="hljs-keyword">from</span> employees;<br></code></pre></td></tr></table></figure>
+
+<p><strong>2. 查询常量值</strong></p>
+<ul>
+<li>字符型和日期型的常量值必须用单引号，数值型不需要</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-number">100</span>;<br><span class="hljs-keyword">select</span> <span class="hljs-string">&#x27;john&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+<p><strong>3. 查询表达式</strong></p>
+<ul>
+<li>不支持++、–、*&#x3D;<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-number">100</span><span class="hljs-operator">*</span><span class="hljs-number">98</span>;<br><span class="hljs-keyword">select</span> <span class="hljs-number">100</span><span class="hljs-operator">%</span><span class="hljs-number">98</span>;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>4. 查询函数</strong></p>
+<ul>
+<li>函数必须有返回值</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> VERSION();<br></code></pre></td></tr></table></figure>
+
+<p><strong>5. 起别名</strong></p>
+<ul>
+<li>便于理解</li>
+<li>如果查询的字段有重名的情况，使用别名可以区分开<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql">#方式一<br><span class="hljs-keyword">select</span> <span class="hljs-number">100</span><span class="hljs-operator">*</span><span class="hljs-number">98</span> <span class="hljs-keyword">as</span> <span class="hljs-keyword">result</span>;<br><span class="hljs-keyword">select</span> last_name <span class="hljs-keyword">as</span> lastName, first_name <span class="hljs-keyword">as</span> firstName <span class="hljs-keyword">from</span> employees;<br><br>#方式二<br><span class="hljs-keyword">select</span> last_name lastName, first_name firstName <span class="hljs-keyword">from</span> employees;<br><span class="hljs-keyword">select</span> salary <span class="hljs-keyword">as</span> <span class="hljs-string">&#x27;out put&#x27;</span> <span class="hljs-keyword">from</span> employees;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>6. 去重 distinct</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> department_id <span class="hljs-keyword">from</span> employees;<br><span class="hljs-keyword">select</span> <span class="hljs-keyword">distinct</span> department_id <span class="hljs-keyword">from</span> employees;<br></code></pre></td></tr></table></figure>
+
+<p><strong>7. +号的作用，concat()</strong></p>
+<ul>
+<li>mysql中的+号只有一个功能：运算符</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs sql">#两个操作数都为数值型，则做加法运算<br><span class="hljs-keyword">select</span> <span class="hljs-number">100</span><span class="hljs-operator">+</span><span class="hljs-number">90</span>;<br><br>#只要一方为字符型，试图将字符型数值转换成数值型<br>#如果转换成功，则继续做加法运算<br>#如果转换失败，则将字符型数值转换为<span class="hljs-number">0</span><br><span class="hljs-keyword">select</span> <span class="hljs-string">&#x27;123&#x27;</span><span class="hljs-operator">+</span><span class="hljs-number">90</span>;<br><span class="hljs-keyword">select</span> <span class="hljs-string">&#x27;john&#x27;</span><span class="hljs-operator">+</span><span class="hljs-number">90</span>;<br><br>#只要其中一方为<span class="hljs-keyword">null</span>，结果肯定为<span class="hljs-keyword">null</span><br><span class="hljs-keyword">select</span> <span class="hljs-keyword">null</span><span class="hljs-operator">+</span><span class="hljs-number">10</span>;<br><br>#查询员工名和姓连接成一个字段，并显示为姓名<br><span class="hljs-keyword">select</span> concat(last_name, first_name) <span class="hljs-keyword">as</span> <span class="hljs-string">&#x27;name&#x27;</span> <span class="hljs-keyword">from</span> employees;<br></code></pre></td></tr></table></figure>
+
+<p><strong>8. ifnull()</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <br>    concat(first_name,<span class="hljs-string">&#x27;,&#x27;</span>,last_name,<span class="hljs-string">&#x27;,&#x27;</span>, ifnull(commission_pct,<span class="hljs-number">0</span>)) <span class="hljs-keyword">as</span> out_put <br><span class="hljs-keyword">from</span> <br>    employees;<br></code></pre></td></tr></table></figure>
+
+<p><strong>9. isnull()</strong></p>
+<ul>
+<li>判断某字段或表达式是否为null，如果是，返回1，否则返回0<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> isnull(commission_pct), commission_pct <span class="hljs-keyword">from</span> employees;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="5-2-条件查询"><a href="#5-2-条件查询" class="headerlink" title="5.2 条件查询"></a>5.2 条件查询</h3><p>语法：<code>select 查询列表 from 表名 where 筛选条件;</code></p>
+<p>执行顺序：from -&gt; where -&gt; select</p>
+<p>分类：</p>
+<ol>
+<li>按条件表达式筛选<ul>
+<li>条件运算符：&gt;, &lt;, &#x3D;, &lt;&gt;, &gt;&#x3D;, &lt;&#x3D;</li>
+</ul>
+</li>
+<li>按逻辑表达式筛选<ul>
+<li>逻辑运算符: &amp;&amp; || !</li>
+<li>and or not</li>
+</ul>
+</li>
+<li>模糊查询<ul>
+<li>like</li>
+<li>between and </li>
+<li>in</li>
+<li>is null</li>
+</ul>
+</li>
+</ol>
+<p><strong>1. 按条件表达式筛选</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql">#查询工资<span class="hljs-operator">&gt;</span><span class="hljs-number">12000</span>的员工信息<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> salary <span class="hljs-operator">&gt;</span> <span class="hljs-number">12000</span>;<br><br>#查询部门编号不等于<span class="hljs-number">90</span>号的员工名和部门编号<br><span class="hljs-keyword">select</span> last_name, department_id <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> department_id<span class="hljs-operator">&lt;&gt;</span><span class="hljs-number">90</span>;<br></code></pre></td></tr></table></figure>
+
+<p><strong>2. 按逻辑表达式筛选</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql">#查询工资在<span class="hljs-number">10000</span>到<span class="hljs-number">20000</span>之间的员工名、工资以及奖金<br><span class="hljs-keyword">select</span> last_name, salary, commission_pct <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> salary<span class="hljs-operator">&gt;=</span><span class="hljs-number">10000</span> <span class="hljs-keyword">and</span> salary<span class="hljs-operator">&lt;=</span><span class="hljs-number">20000</span>;<br><br>#部门编号不是在<span class="hljs-number">90</span>到<span class="hljs-number">110</span>之间，或者工资高于<span class="hljs-number">15000</span>的员工信息<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> department_id<span class="hljs-operator">&lt;</span><span class="hljs-number">90</span> <span class="hljs-keyword">or</span> department_id<span class="hljs-operator">&gt;</span><span class="hljs-number">110</span> <span class="hljs-keyword">or</span> salary<span class="hljs-operator">&gt;</span><span class="hljs-number">15000</span>;<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> <span class="hljs-keyword">not</span>(department_id<span class="hljs-operator">&gt;=</span><span class="hljs-number">90</span> <span class="hljs-keyword">and</span> department_id<span class="hljs-operator">&lt;=</span><span class="hljs-number">110</span>) <span class="hljs-keyword">or</span> salary<span class="hljs-operator">&gt;</span><span class="hljs-number">15000</span>;<br></code></pre></td></tr></table></figure>
+
+<p><strong>3. 模糊查询</strong></p>
+<p>like</p>
+<ul>
+<li>一般和通配符搭配使用<ul>
+<li>% 任意多个字符，包含零个字符</li>
+<li>_ 任意单个字符</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs sql">#查询员工名中包含a的员工信息<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> empolyees <span class="hljs-keyword">where</span> last_name <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;%a%&#x27;</span>;<br><br>#查询员工名中第三个字符为e，第五个字符为a的员工名和工资<br><span class="hljs-keyword">select</span> last_name, salary <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> last_name <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;__n_l%&#x27;</span>;<br><br>#查询员工名中第二个字符为_的员工名<br><span class="hljs-keyword">select</span> last_name <span class="hljs-keyword">from</span> employess <span class="hljs-keyword">where</span> last_name <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;_\_%&#x27;</span>;<br>#推荐<br><span class="hljs-keyword">select</span> last_name <span class="hljs-keyword">from</span> employess <span class="hljs-keyword">where</span> last_name <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;_$_%&#x27;</span> <span class="hljs-keyword">escape</span> <span class="hljs-string">&#x27;$&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+<p>between and</p>
+<ul>
+<li>提高语句简洁度</li>
+<li>包含临界值</li>
+<li>两个临界值不要调换顺序</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql">#查询员工编号在<span class="hljs-number">100</span>到<span class="hljs-number">120</span>之间的员工信息<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> employee_id <span class="hljs-keyword">between</span> <span class="hljs-number">100</span> <span class="hljs-keyword">and</span> <span class="hljs-number">120</span>;<br></code></pre></td></tr></table></figure>
+
+<p>in</p>
+<ul>
+<li>判断某字段的值是否属于in列表中的一项</li>
+<li>提高语句简洁度</li>
+<li>in列表的值类型必须一致或兼容</li>
+<li>不支持通配符<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql">#查询员工的工种编号是 IT_PROG、AD_VP、AD_PRES中的一个员工名和工种编号<br><span class="hljs-keyword">select</span> last_name, job_id <span class="hljs-keyword">from</span> emplyees <span class="hljs-keyword">where</span> job_id <span class="hljs-keyword">in</span>(<span class="hljs-string">&#x27;IT_PROG&#x27;</span>, <span class="hljs-string">&#x27;AD_VP&#x27;</span>, <span class="hljs-string">&#x27;AD_PRES&#x27;</span>);<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p>is null</p>
+<ul>
+<li>&#x3D; 或 &lt;&gt; 不能用于判断null值</li>
+<li>is null 或 is not null 可以<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql">#查询没有奖金的员工名和奖金率<br><span class="hljs-keyword">select</span> last_name, commission_pct <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> commission_pct <span class="hljs-keyword">is</span> <span class="hljs-keyword">null</span>;<br>#查询有奖金的员工名和奖金率<br><span class="hljs-keyword">select</span> last_name, commission_pct <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> commission_pct <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span>;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p>安全等于 &lt;&#x3D;&gt;</p>
+<ul>
+<li>可读性较差<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql">#查询没有奖金的员工名和奖金率<br><span class="hljs-keyword">select</span> last_name, commission_pct <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> commission_pct <span class="hljs-operator">&lt;=&gt;</span> <span class="hljs-keyword">null</span>;<br><br>#查询工资为<span class="hljs-number">12000</span>的员工信息<br><span class="hljs-keyword">select</span> last_name, commission_pct <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> salary <span class="hljs-operator">&lt;=&gt;</span> <span class="hljs-number">12000</span>;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="5-3-排序查询"><a href="#5-3-排序查询" class="headerlink" title="5.3 排序查询"></a>5.3 排序查询</h3><p>语法：<code>select 查询列表 from 表名 where 筛选条件 order by 排序列表 asc|desc;</code></p>
+<ul>
+<li>执行顺序：from -&gt; where -&gt; select -&gt; order by</li>
+<li>默认升序</li>
+<li>asc 升序</li>
+<li>desc 降序</li>
+<li>order by子句 中可以支持单个字段，多个字段，表达式，函数，别名</li>
+<li>order by子句 一般放在查询语句的最后面，但 limit子句 除外<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs sql">#查询员工信息，要求工资从高到低排序<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> salary <span class="hljs-keyword">desc</span>;<br><br>#查询部门编号<span class="hljs-operator">&gt;=</span><span class="hljs-number">90</span>的员工信息，按入职时间的先后进行排序<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> department_id <span class="hljs-operator">&gt;=</span> <span class="hljs-number">90</span> <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> hiredate <span class="hljs-keyword">asc</span>;<br><br>#按表达式排序：按年薪的高低显示员工信息和年薪<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span>, salary<span class="hljs-operator">*</span><span class="hljs-number">12</span><span class="hljs-operator">*</span>(<span class="hljs-number">1</span><span class="hljs-operator">+</span>ifnull(commission_pct, <span class="hljs-number">0</span>)) annualPay <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> salary<span class="hljs-operator">*</span><span class="hljs-number">12</span><span class="hljs-operator">*</span>(<span class="hljs-number">1</span><span class="hljs-operator">+</span>ifnull(commission_pct, <span class="hljs-number">0</span>)) <span class="hljs-keyword">desc</span>;<br><br>#按别名排序：按年薪的高低显示员工信息和年薪<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span>, salary<span class="hljs-operator">*</span><span class="hljs-number">12</span><span class="hljs-operator">*</span>(<span class="hljs-number">1</span><span class="hljs-operator">+</span>ifnull(commission_pct, <span class="hljs-number">0</span>)) annualPay <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> annualPay <span class="hljs-keyword">desc</span>;<br><br>#按函数排序：按姓名的长度显示员工的姓名和工资<br><span class="hljs-keyword">select</span> length(last_name), last_name, salary <span class="hljs-keyword">from</span> emoloyees <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> length(last_name) <span class="hljs-keyword">desc</span>;<br><br>#查询员工信息，要求先按工资排序，再按员工编号排序<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> salary <span class="hljs-keyword">asc</span>, employee_id <span class="hljs-keyword">desc</span>;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="5-4-常见函数"><a href="#5-4-常见函数" class="headerlink" title="5.4 常见函数"></a>5.4 常见函数</h3><ul>
+<li>将一组逻辑语句封装在方法体中，对外暴露方法名</li>
+<li>隐藏实现细节</li>
+<li>提高代码的重用性</li>
+</ul>
+<p>语法：<code>select 函数名(实参列表) from 表名;</code></p>
+<ol>
+<li>函数名</li>
+<li>函数功能</li>
+</ol>
+<p><strong>1. 单行函数</strong></p>
+<p>concat、length、ifnull</p>
+<ul>
+<li>字符函数</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs sql">#length 获取参数值的字节数<br><span class="hljs-keyword">select</span> length(<span class="hljs-string">&#x27;john&#x27;</span>);<br><span class="hljs-keyword">show</span> variables <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;%char%&#x27;</span><br><br>#concat 拼接字符串<br><span class="hljs-keyword">select</span> concat(last_name, <span class="hljs-string">&#x27;_&#x27;</span>, first_name) <span class="hljs-keyword">from</span> employees;<br><br>#upper、lower<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">upper</span>(<span class="hljs-string">&#x27;john&#x27;</span>);<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">lower</span>(<span class="hljs-string">&#x27;joHn&#x27;</span>);<br>#将姓变大写，名变小写，然后拼接<br><span class="hljs-keyword">select</span> concat(<span class="hljs-built_in">upper</span>(last_name), <span class="hljs-built_in">lower</span>(first_name)) <span class="hljs-string">&#x27;name&#x27;</span> <span class="hljs-keyword">from</span> employees;<br><br>#substr、substring<br>#索引从<span class="hljs-number">1</span>开始<br>#截取从指定索引处后面的所有字符<br><span class="hljs-keyword">select</span> substr(<span class="hljs-string">&#x27;hello_world&#x27;</span>, <span class="hljs-number">7</span>) out_put;<br>#截取从指定索引处指定字符长度的字符<br><span class="hljs-keyword">select</span> substr(<span class="hljs-string">&#x27;hello_world&#x27;</span>, <span class="hljs-number">1</span>, <span class="hljs-number">5</span>) out_put;<br>#将姓名中首字符大写，其他字符小写，用_拼接<br><span class="hljs-keyword">select</span> concat(<span class="hljs-built_in">upper</span>(substr(last_name, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>)), <span class="hljs-string">&#x27;_&#x27;</span>, <span class="hljs-built_in">lower</span>(substr(last_name, <span class="hljs-number">2</span>))) out_put<br><span class="hljs-keyword">from</span> employees;<br><br>#instr 返回子串第一次出现的索引，如果找不到返回<span class="hljs-number">0</span><br><span class="hljs-keyword">select</span> instr(<span class="hljs-string">&#x27;hello_word_word&#x27;</span>, <span class="hljs-string">&#x27;word&#x27;</span>) <span class="hljs-keyword">as</span> out_put;<br><br>#trim 去前后<br><span class="hljs-keyword">select</span> length(<span class="hljs-built_in">trim</span>(<span class="hljs-string">&#x27;    hello    &#x27;</span>)) <span class="hljs-keyword">as</span> out_put;<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">trim</span>(<span class="hljs-string">&#x27;a&#x27;</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;aaaheaaalloaaa&#x27;</span>) <span class="hljs-keyword">as</span> out_put;<br><br>#lpad 用指定字符实现左填充指定长度<br><span class="hljs-keyword">select</span> lpad(<span class="hljs-string">&#x27;hello&#x27;</span>, <span class="hljs-number">10</span>, <span class="hljs-string">&#x27;*&#x27;</span>) <span class="hljs-keyword">as</span> out_put;<br><br>#rpad 用指定字符实现右填充指定长度<br><span class="hljs-keyword">select</span> rpad(<span class="hljs-string">&#x27;hello&#x27;</span>, <span class="hljs-number">10</span>, <span class="hljs-string">&#x27;*&#x27;</span>) <span class="hljs-keyword">as</span> out_put;<br><br>#replace 替换<br><span class="hljs-keyword">select</span> replace(<span class="hljs-string">&#x27;hello_world&#x27;</span>, <span class="hljs-string">&#x27;world&#x27;</span>, <span class="hljs-string">&#x27;mysql&#x27;</span>) <span class="hljs-keyword">as</span> out_put;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>数学函数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs sql">#round 四舍五入<br><span class="hljs-keyword">select</span> round(<span class="hljs-number">1.65</span>);<br><span class="hljs-keyword">select</span> round(<span class="hljs-number">1.567</span>, <span class="hljs-number">2</span>);<br><br>#ceil 向上取整，返回<span class="hljs-operator">&gt;=</span>该参数的最小整数<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">ceil</span>(<span class="hljs-number">1.52</span>);<br><br>#floor 向下取整<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">floor</span>(<span class="hljs-number">-9.99</span>);<br><br>#<span class="hljs-keyword">truncate</span> 截断<br><span class="hljs-keyword">select</span> <span class="hljs-keyword">truncate</span>(<span class="hljs-number">1.65</span>, <span class="hljs-number">1</span>);<br><br>#mod 取余 a<span class="hljs-operator">-</span>a<span class="hljs-operator">/</span>b<span class="hljs-operator">*</span>b<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">mod</span>(<span class="hljs-number">10</span>, <span class="hljs-number">3</span>);<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>日期函数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs sql">#now 返回当前系统日期<span class="hljs-operator">+</span>时间<br><span class="hljs-keyword">select</span> now();<br><br>#curdate<br><span class="hljs-keyword">select</span> curdate();<br><br>#curtime<br><span class="hljs-keyword">select</span> curtime();<br><br>#获取指定的部分<br><span class="hljs-keyword">select</span> <span class="hljs-keyword">year</span>(now());<br><span class="hljs-keyword">select</span> <span class="hljs-keyword">year</span>(<span class="hljs-string">&#x27;1998-1-1&#x27;</span>);<br><span class="hljs-keyword">select</span> <span class="hljs-keyword">year</span>(hiredate) <span class="hljs-keyword">from</span> employees;<br><br><span class="hljs-keyword">select</span> <span class="hljs-keyword">month</span>(now());<br><span class="hljs-keyword">select</span> monthname(now());<br><br>#str_to_date 将日期格式的字符转换成指定格式的日期<br><span class="hljs-comment">/*</span><br><span class="hljs-comment">%Y  四位的年份</span><br><span class="hljs-comment">%y  两位的年份</span><br><span class="hljs-comment">%m  月份(01,02...11,12)</span><br><span class="hljs-comment">%c  月份(1,2,...11,12)</span><br><span class="hljs-comment">%d  日(01,02,...)</span><br><span class="hljs-comment">%H  小时(24小时制)</span><br><span class="hljs-comment">%h  小时(12小时制)</span><br><span class="hljs-comment">%i  分钟(00,01...59)</span><br><span class="hljs-comment">%s  秒(00,01...59)</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">select</span> str_to_date(<span class="hljs-string">&#x27;1998-3-2&#x27;</span>, <span class="hljs-string">&#x27;%Y-%c-%d&#x27;</span>) <span class="hljs-keyword">as</span> out_put;<br>#查询入职日期为<span class="hljs-number">1992</span><span class="hljs-number">-4</span><span class="hljs-number">-3</span>的员工信息<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> hiredate<span class="hljs-operator">=</span><span class="hljs-string">&#x27;1992-4-3&#x27;</span>;<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> hiredate<span class="hljs-operator">=</span>str_to_date(<span class="hljs-string">&#x27;4-3-1992&#x27;</span>, <span class="hljs-string">&#x27;%c-%d-%Y&#x27;</span>);<br><br>#date_format 将日期转换成字符<br><span class="hljs-keyword">select</span> date_format(now(), <span class="hljs-string">&#x27;%y-%m-%d&#x27;</span>);<br>#查询有奖金的员工名和入职日期(x月<span class="hljs-operator">/</span>x日 x年)<br><span class="hljs-keyword">select</span> last_name, date_format(hiredate, <span class="hljs-string">&#x27;%m/%d %Y&#x27;</span>) <span class="hljs-keyword">from</span> employees;<br><br>#天数<br><span class="hljs-keyword">select</span> datediff(now(), <span class="hljs-string">&#x27;1997-5-14&#x27;</span>);<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>其他函数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> version();<br><span class="hljs-keyword">select</span> database();<br><span class="hljs-keyword">select</span> <span class="hljs-keyword">user</span>();<br>#返回MD5加密形式<br><span class="hljs-keyword">select</span> md5(<span class="hljs-string">&#x27;字符&#x27;</span>);<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>流程控制函数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><code class="hljs sql">#if函数<br><span class="hljs-keyword">select</span> if(<span class="hljs-number">10</span> <span class="hljs-operator">&gt;</span> <span class="hljs-number">5</span>, <span class="hljs-string">&#x27;yes&#x27;</span>, <span class="hljs-string">&#x27;no&#x27;</span>);<br><br><span class="hljs-keyword">SELECT</span> <br>    last_name,<br>    commission_pct,<br>    IF(commission_pct <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NULL</span>, <span class="hljs-string">&#x27;no&#x27;</span>, <span class="hljs-string">&#x27;yes&#x27;</span>) <span class="hljs-keyword">AS</span> <span class="hljs-keyword">result</span><br><span class="hljs-keyword">FROM</span><br>    employees;<br><br>#<span class="hljs-keyword">case</span>函数: switch <span class="hljs-keyword">case</span><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">case 要判断的字段或表达式</span><br><span class="hljs-comment">when 常量1 then 要显示的值1或语句1</span><br><span class="hljs-comment">when 常量2 then 要显示的值2或语句2</span><br><span class="hljs-comment">else 要显示的值n或语句n;</span><br><span class="hljs-comment">end</span><br><span class="hljs-comment">*/</span><br>#查询员工的工资，要求<br>#部门号<span class="hljs-operator">=</span><span class="hljs-number">30</span>，显示的工资为<span class="hljs-number">1.1</span>倍<br>#部门号<span class="hljs-operator">=</span><span class="hljs-number">40</span>，显示的工资为<span class="hljs-number">1.2</span>倍<br>#部门号<span class="hljs-operator">=</span><span class="hljs-number">50</span>，显示的工资为<span class="hljs-number">1.3</span>倍<br>#其他部门，显示的工资为原工资<br><span class="hljs-keyword">SELECT</span> <br>    salary,<br>    department_id,<br>    <span class="hljs-keyword">CASE</span> department_id<br>        <span class="hljs-keyword">WHEN</span> <span class="hljs-number">30</span> <span class="hljs-keyword">THEN</span> salary <span class="hljs-operator">*</span> <span class="hljs-number">1.1</span><br>        <span class="hljs-keyword">WHEN</span> <span class="hljs-number">40</span> <span class="hljs-keyword">THEN</span> salary <span class="hljs-operator">*</span> <span class="hljs-number">1.2</span><br>        <span class="hljs-keyword">WHEN</span> <span class="hljs-number">50</span> <span class="hljs-keyword">THEN</span> salary <span class="hljs-operator">*</span> <span class="hljs-number">1.3</span><br>        <span class="hljs-keyword">ELSE</span> salary<br>    <span class="hljs-keyword">END</span> <span class="hljs-keyword">AS</span> <span class="hljs-string">&#x27;new&#x27;</span><br><span class="hljs-keyword">FROM</span><br>    employees;<br>#<span class="hljs-keyword">case</span>: 多重if<br><span class="hljs-comment">/*</span><br><span class="hljs-comment">case</span><br><span class="hljs-comment">when 条件1 then 要显示的值1或语句1</span><br><span class="hljs-comment">when 条件2 then 要显示的值2或语句2</span><br><span class="hljs-comment">else 要显示的值n或语句n</span><br><span class="hljs-comment">end</span><br><span class="hljs-comment">*/</span><br>#查询员工的工资情况<br>#<span class="hljs-operator">&gt;</span><span class="hljs-number">20000</span>，显示A级别<br>#<span class="hljs-operator">&gt;</span><span class="hljs-number">15000</span>，显示B级别<br>#<span class="hljs-operator">&gt;</span><span class="hljs-number">10000</span>，显示C级别<br>#否则，显示D级别<br><span class="hljs-keyword">SELECT</span> <br>    salary,<br>    <span class="hljs-keyword">CASE</span><br>        <span class="hljs-keyword">WHEN</span> salary <span class="hljs-operator">&gt;</span> <span class="hljs-number">20000</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;A&#x27;</span><br>        <span class="hljs-keyword">WHEN</span> salary <span class="hljs-operator">&gt;</span> <span class="hljs-number">15000</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;B&#x27;</span><br>        <span class="hljs-keyword">WHEN</span> salary <span class="hljs-operator">&gt;</span> <span class="hljs-number">10000</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;C&#x27;</span><br>        <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&#x27;D&#x27;</span><br>    <span class="hljs-keyword">END</span> <span class="hljs-keyword">AS</span> <span class="hljs-string">&#x27;order&#x27;</span><br><span class="hljs-keyword">FROM</span><br>    employees;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>2. 分组函数</strong></p>
+<ul>
+<li>做统计使用，又称为统计函数、聚合函数、组函数</li>
+<li>sum, avg 一般处理数值型</li>
+<li>max, min, count 可以处理任何类型</li>
+<li>所有分组函数都忽略 null</li>
+<li>可以和 distinct 搭配</li>
+<li>一般使用 count(*) 统计行数</li>
+<li>和分组函数一同查询的字段要求是 group by 后的字段<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs sql">#sum<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">sum</span>(salary) <span class="hljs-keyword">from</span> employees;<br>#avg<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">avg</span>(salary) <span class="hljs-keyword">from</span> employees;<br>#max<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">max</span>(salary) <span class="hljs-keyword">from</span> employees;<br>#min<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">min</span>(salary) <span class="hljs-keyword">from</span> employees;<br>#count<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">count</span>(salary) <span class="hljs-keyword">from</span> employees;<br><br><span class="hljs-keyword">select</span> <span class="hljs-built_in">sum</span>(salary) <span class="hljs-string">&#x27;sum&#x27;</span>, round(<span class="hljs-built_in">avg</span>(salary), <span class="hljs-number">2</span>) <span class="hljs-string">&#x27;avg&#x27;</span> <span class="hljs-keyword">from</span> employees;<br><br>#参数支持哪些类型<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">sum</span>(last_name), <span class="hljs-built_in">avg</span>(last_name) <span class="hljs-keyword">from</span> employees;<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">sum</span>(hiredate), <span class="hljs-built_in">avg</span>(hiredate) <span class="hljs-keyword">from</span> employees;<br><br><span class="hljs-keyword">select</span> <span class="hljs-built_in">max</span>(last_name), <span class="hljs-built_in">min</span>(last_name) <span class="hljs-keyword">from</span> employees;<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">max</span>(hiredate), <span class="hljs-built_in">min</span>(hiredate) <span class="hljs-keyword">from</span> employees;<br><br><span class="hljs-keyword">select</span> <span class="hljs-built_in">count</span>(last_name) <span class="hljs-keyword">from</span> employees;<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">count</span>(commission_pct) <span class="hljs-keyword">from</span> employees;<br><br>#是否忽略<span class="hljs-keyword">null</span><br><span class="hljs-keyword">select</span> <span class="hljs-built_in">sum</span>(commission_pct), <span class="hljs-built_in">avg</span>(commission_pct), <span class="hljs-built_in">sum</span>(commission_pct)<span class="hljs-operator">/</span><span class="hljs-number">35</span>, <span class="hljs-built_in">sum</span>(commission_pct)<span class="hljs-operator">/</span><span class="hljs-number">107</span> <span class="hljs-keyword">from</span> employees;<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">max</span>(commission_pct), <span class="hljs-built_in">min</span>(commission_pct) <span class="hljs-keyword">from</span> employees;<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">count</span>(commission_pct) <span class="hljs-keyword">from</span> employees;<br><br>#和 <span class="hljs-keyword">distinct</span> 搭配<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">sum</span>(<span class="hljs-keyword">distinct</span> salary), <span class="hljs-built_in">sum</span>(salary) <span class="hljs-keyword">from</span> employees;<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">count</span>(<span class="hljs-keyword">distinct</span> salary), <span class="hljs-built_in">count</span>(salary) <span class="hljs-keyword">from</span> employees;<br><br>#count函数的详细介绍<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">count</span>(salary) <span class="hljs-keyword">from</span> employess;<br>#统计行数<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">count</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">from</span> employess;<br><br><span class="hljs-keyword">select</span> <span class="hljs-built_in">count</span>(<span class="hljs-number">1</span>) <span class="hljs-keyword">from</span> employess;<br><br>#效率<br>#MYISAM存储引擎下，cout(<span class="hljs-operator">*</span>)的效率高<br>#INNODB存储引擎下，cout(<span class="hljs-operator">*</span>)和<span class="hljs-built_in">count</span>(<span class="hljs-number">1</span>)的效率差不多，比<span class="hljs-built_in">count</span>(字段)要高一些<br><br>#和分组函数一同查询的字段有限制<br>#<span class="hljs-keyword">select</span> <span class="hljs-built_in">avg</span>(salary), employee_id <span class="hljs-keyword">from</span> employees;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="5-5-分组查询"><a href="#5-5-分组查询" class="headerlink" title="5.5 分组查询"></a>5.5 分组查询</h3><p>语法: <code>select 分组函数, 分组后的字段(要求出现在 group by 的后面) from 表名 where 筛选条件 group by 分组的字段 having 分组后的筛选 order by 排序列表;</code></p>
+<ul>
+<li>查询列表要求是分组函数和 group by 后出现的字段</li>
+<li>分组查询中的筛选条件分为两类<ul>
+<li>分组前筛选：原始表 | group by子句的前面 | where</li>
+<li>分组后筛选：分组后的结果集 | group by子句的后面 | having</li>
+</ul>
+</li>
+<li>分组函数做条件肯定放在 having 子句中</li>
+<li>能用分组前筛选，优先考虑分组前筛选</li>
+<li>group by子句支持单个字段分组，多个字段分组(多个字段之间用逗号隔开，没有顺序要求)</li>
+<li>排序放在整个分组查询的最后</li>
+</ul>
+<hr>
+<ul>
+<li><p>简单筛选</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs sql">#查询每个部门的平均工资<br><br>#查询每个工种的最高工资<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">max</span>(salary), job_id <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> job_id;<br><br>#查询每个位置上的部门个数<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">count</span>(<span class="hljs-operator">*</span>), location_id <span class="hljs-keyword">from</span> departments <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> location_id;<br><br>#添加筛选条件<br>#查询邮箱中包含a字符的，每个部门的平均工资<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">avg</span>(salary), department_id <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> email <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;%a%&#x27;</span> <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> department_id;<br><br>#查询有奖金的每个领导手下员工的最高工资<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">max</span>(salary), manager_id <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> commission_pct <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span> <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> manager_id;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>复杂筛选</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs sql">#查询哪个部门的员工个数 <span class="hljs-operator">&gt;</span> <span class="hljs-number">2</span><br>#<span class="hljs-number">1.</span> 查询每个部门的员工个数<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">count</span>(<span class="hljs-operator">*</span>), department_id <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> department_id;<br>#<span class="hljs-number">2.</span> 筛选哪个部门的员工个数<span class="hljs-operator">&gt;</span><span class="hljs-number">2</span><br><span class="hljs-keyword">select</span> <span class="hljs-built_in">count</span>(<span class="hljs-operator">*</span>), department_id <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> department_id <span class="hljs-keyword">having</span> <span class="hljs-built_in">count</span>(<span class="hljs-operator">*</span>)<span class="hljs-operator">&gt;</span><span class="hljs-number">2</span>;<br><br>#查询每个工种有奖金的员工的最高工资<span class="hljs-operator">&gt;</span><span class="hljs-number">12000</span>的工种编号和最高工资<br>#<span class="hljs-number">1.</span>查询每个工种有奖金的员工的最高工资<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">max</span>(salary), job_id <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> commission_pct <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span> <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> job_id;<br>#<span class="hljs-number">2.</span>筛选最高工资<span class="hljs-operator">&gt;</span><span class="hljs-number">12000</span>的<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">max</span>(salary), job_id <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> commission_pct <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span> <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> job_id <span class="hljs-keyword">having</span> <span class="hljs-built_in">max</span>(salary) <span class="hljs-operator">&gt;</span> <span class="hljs-number">12000</span>;<br><br>#查询领导编号<span class="hljs-operator">&gt;</span><span class="hljs-number">102</span>的每个领导手下的最低工资<span class="hljs-operator">&gt;</span><span class="hljs-number">5000</span>的领导编号是哪个，以及其最低工资<br>#查询每个领导手下的最低工资<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">min</span>(salary), manager_id <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> manager_id;<br>#编号<span class="hljs-operator">&gt;</span><span class="hljs-number">120</span><br><span class="hljs-keyword">select</span> <span class="hljs-built_in">min</span>(salary), manager_id <span class="hljs-keyword">where</span> manager_id <span class="hljs-operator">&gt;</span> <span class="hljs-number">102</span> <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> manager_id;<br>#最低工资<span class="hljs-operator">&gt;</span><span class="hljs-number">5000</span><br><span class="hljs-keyword">select</span> <span class="hljs-built_in">min</span>(salary), manager_id <span class="hljs-keyword">where</span> manager_id <span class="hljs-operator">&gt;</span> <span class="hljs-number">102</span> <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> manager_id <span class="hljs-keyword">having</span> <span class="hljs-built_in">min</span>(salary)<span class="hljs-operator">&gt;</span><span class="hljs-number">5000</span>;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>按表达式或函数筛选</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql">#按员工姓名的长度分组，查询每一组的员工个数，筛选员工个数<span class="hljs-operator">&gt;</span><span class="hljs-number">5</span>的有哪些<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">count</span>(<span class="hljs-operator">*</span>), length(last_name) <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> length(last_name) <span class="hljs-keyword">having</span> <span class="hljs-built_in">count</span>(<span class="hljs-operator">*</span>)<span class="hljs-operator">&gt;</span><span class="hljs-number">5</span>;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>按多个字段分组</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql">#查询每个部分，每个工种的员工的平均工资<br><span class="hljs-keyword">SELECT</span> <br>    <span class="hljs-built_in">AVG</span>(salary), department_id, job_id<br><span class="hljs-keyword">FROM</span><br>    employees<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> department_id , job_id;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>添加排序</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs sql">#查询每个部分，每个工种的员工的平均工资，并且按平均工资的高低显示<br><span class="hljs-keyword">SELECT</span> <br>    <span class="hljs-built_in">AVG</span>(salary), department_id, job_id<br><span class="hljs-keyword">FROM</span><br>    employees<br><span class="hljs-keyword">WHERE</span><br>    department_id <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span><br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> department_id , job_id<br><span class="hljs-keyword">HAVING</span> <span class="hljs-built_in">AVG</span>(salary) <span class="hljs-operator">&gt;</span> <span class="hljs-number">10000</span><br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-built_in">AVG</span>(salary) <span class="hljs-keyword">DESC</span>;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="5-6-连接查询"><a href="#5-6-连接查询" class="headerlink" title="5.6 连接查询"></a>5.6 连接查询</h3><p>多表查询：当要查询的字段来自多个表</p>
+<p><code>select 字段1, 字段2 from 表1, 表2;</code></p>
+<p>笛卡尔乘积现象：表1有m行，表2有n行，结果为m*n行</p>
+<p>发生原因：没有有效的连接条件</p>
+<p><strong>1. 分类</strong>：</p>
+<ul>
+<li>按年代<ul>
+<li>sql92：仅支持内连接</li>
+<li>sql99(推荐)：支持内连接+外连接（左外+右外）+ 交叉连接</li>
+</ul>
+</li>
+<li>按功能<ul>
+<li>内连接：等值连接、非等值连接、自连接</li>
+<li>外连接：左外连接、右外连接、全外连接(mysql不支持)</li>
+<li>交叉连接</li>
+</ul>
+</li>
+</ul>
+<p><strong>2. sql92标准</strong></p>
+<ul>
+<li>等值连接</li>
+</ul>
+<p><code>select 查询列表 from 表1 别名, 表2 别名 where 表1.key = 表2.key and 筛选条件 group by 分组字段 having 分组后的筛选 order by 排序字段;</code></p>
+<ol>
+<li>多表等值连接的结果为多表的交集部分</li>
+<li>n表连接，至少需要n-1个连接条件</li>
+<li>多表的顺序没有要求</li>
+<li>一般需要为表起别名</li>
+<li>可以搭配前面介绍的所有子句使用，比如排序，分组，筛选<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><code class="hljs sql">#查询女神名对应的男神名<br><span class="hljs-keyword">SELECT</span> <br>    name, boyName<br><span class="hljs-keyword">FROM</span><br>    boys,<br>    beauty<br><span class="hljs-keyword">WHERE</span><br>    beauty.boyfriend_id <span class="hljs-operator">=</span> boys.id;<br><br>#查询员工名和对应的部门名<br><span class="hljs-keyword">SELECT</span> <br>    last_name, department_name<br><span class="hljs-keyword">FROM</span><br>    employees,<br>    departments<br><span class="hljs-keyword">WHERE</span><br>    employees.department_id <span class="hljs-operator">=</span> departments.department_id;<br><br>#查询员工名、工种号、工种名<br>#为表起别名<br>#<span class="hljs-operator">-</span>提高语句的简洁度<br>#<span class="hljs-operator">-</span>区分多个重名的字段<br><span class="hljs-keyword">SELECT</span> <br>    last_name, e.job_id, job_title<br><span class="hljs-keyword">FROM</span><br>    employees e,<br>    jobs j<br><span class="hljs-keyword">WHERE</span><br>    e.job_id <span class="hljs-operator">=</span> j.job_id;<br><br>#两个表的顺序是否可以调换<br><span class="hljs-keyword">SELECT</span> <br>    last_name, e.job_id, job_title<br><span class="hljs-keyword">FROM</span><br>    jobs j,<br>    employees e<br><span class="hljs-keyword">WHERE</span><br>    e.job_id <span class="hljs-operator">=</span> j.job_id;<br><br>#可以加筛选<br>#查询有奖金的员工名、部门名<br><span class="hljs-keyword">SELECT</span> <br>    last_name, department_name, commission_pct<br><span class="hljs-keyword">FROM</span><br>    employees e,<br>    departments d<br><span class="hljs-keyword">WHERE</span><br>    e.department_id <span class="hljs-operator">=</span> d.department_id<br>        <span class="hljs-keyword">AND</span> e.commission_pct <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>;<br>#查询城市名中第二个字符为o的部门名和城市名<br><span class="hljs-keyword">SELECT</span> <br>    department_name, city<br><span class="hljs-keyword">FROM</span><br>    departments d,<br>    locations l<br><span class="hljs-keyword">WHERE</span><br>    d.location_id <span class="hljs-operator">=</span> l.location_id<br>        <span class="hljs-keyword">AND</span> city <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;_o%&#x27;</span>;<br><br>#加分组<br>#查询每个城市的部门个数<br><span class="hljs-keyword">SELECT</span> <br>    <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>), city<br><span class="hljs-keyword">FROM</span><br>    departments d,<br>    locations l<br><span class="hljs-keyword">WHERE</span><br>    d.location_id <span class="hljs-operator">=</span> l.location_id<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> city;<br>#查询有奖金的每个部门的部门名和部门的领导编号和该部门的最低工资<br><span class="hljs-keyword">SELECT</span> <br>    department_name, d.manager_id, <span class="hljs-built_in">MIN</span>(salary)<br><span class="hljs-keyword">FROM</span><br>    employees e,<br>    departments d<br><span class="hljs-keyword">WHERE</span><br>    e.department_id <span class="hljs-operator">=</span> d.department_id<br>        <span class="hljs-keyword">AND</span> commission_pct <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span><br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> department_name , d.manager_id;<br><br>#排序<br>#查询每个工种的工种名和员工的个数，并按照员工个数降序<br><span class="hljs-keyword">SELECT</span> <br>    job_title, <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>)<br><span class="hljs-keyword">FROM</span><br>    employees e,<br>    jobs j<br><span class="hljs-keyword">WHERE</span><br>    e.job_id <span class="hljs-operator">=</span> j.job_id<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> job_title<br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">DESC</span>;<br><br>#三表连接<br>#查询员工名、部门名和所在的城市<br><span class="hljs-keyword">SELECT</span> <br>    last_name, department_name, city<br><span class="hljs-keyword">FROM</span><br>    employees e,<br>    departments d,<br>    locations l<br><span class="hljs-keyword">WHERE</span><br>    e.department_id <span class="hljs-operator">=</span> d.department_id<br>        <span class="hljs-keyword">AND</span> d.location_id <span class="hljs-operator">=</span> l.location_id;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>非等值连接</li>
+</ul>
+<p><code>select 查询列表 from 表1 别名, 表2 别名 where 非等值的连接条件 and 筛选条件 group by 分组字段 having 分组后的筛选 order by 排序字段;</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql">#查询员工的工资和工资级别<br><span class="hljs-keyword">SELECT</span> <br>    salary, grade_level<br><span class="hljs-keyword">FROM</span><br>    employees e,<br>    job_grades j<br><span class="hljs-keyword">WHERE</span><br>    salary <span class="hljs-keyword">BETWEEN</span> j.lowest_sal <span class="hljs-keyword">AND</span> j.highest_sal;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>自连接</li>
+</ul>
+<p><code>select 查询列表 from 表 别名1, 表 别名2 where 等值的连接条件 and 筛选条件 group by 分组字段 having 分组后的筛选 order by 排序字段;</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql">#查询员工名和上级的名称<br><span class="hljs-keyword">SELECT</span> <br>    e.employee_id, e.last_name, m.employee_id, m.last_name<br><span class="hljs-keyword">FROM</span><br>    employees e,<br>    employees m<br><span class="hljs-keyword">WHERE</span><br>    e.manager_id <span class="hljs-operator">=</span> m.employee_id;<br></code></pre></td></tr></table></figure>
+
+<p><strong>3. sql99标准</strong></p>
+<p><code>select 查询列表 from 表1 别名 连接类型 join 表2 别名 on 连接条件 where 筛选条件;</code></p>
+<p>内连接: inner</p>
+<ul>
+<li>等值连接</li>
+<li>非等值连接</li>
+<li>自连接</li>
+</ul>
+<p>语法: <code>select 查询列表 from 表1 别名 inner join 表2 别名 on 连接条件;</code></p>
+<p>特点：</p>
+<ul>
+<li>表的顺序可以调换</li>
+<li>内连接的结果 &#x3D; 多表的交集</li>
+<li>n表连接至少需要 n-1 个连接条件</li>
+</ul>
+<hr>
+<ul>
+<li><p>等值连接</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs sql">#<span class="hljs-number">1.</span> 添加排序、分组、筛选<br>#<span class="hljs-number">2.</span> <span class="hljs-keyword">inner</span> 可以省略<br>#<span class="hljs-number">3.</span> 筛选条件放在<span class="hljs-keyword">where</span>后面，连接条件放在<span class="hljs-keyword">on</span>后面，提高分离性，便于阅读<br>#<span class="hljs-number">4.</span> <span class="hljs-keyword">inner</span> <span class="hljs-keyword">join</span> 连接 和 sql92语法中的等值连接效果是一样的，都是查询交集<br><br>#查询员工名、部门名<br><span class="hljs-keyword">select</span> last_name, depart_name <span class="hljs-keyword">from</span> employees e <span class="hljs-keyword">inner</span> <span class="hljs-keyword">join</span> department d <span class="hljs-keyword">on</span> e.department_id <span class="hljs-operator">=</span> d.department_id;<br><br>#添加筛选：查询名字中包含e的员工名和工种名<br><span class="hljs-keyword">select</span> last_name, job_title <span class="hljs-keyword">from</span> employees e <span class="hljs-keyword">inner</span> <span class="hljs-keyword">join</span> jobs j <span class="hljs-keyword">on</span> e.job_id <span class="hljs-operator">=</span> j.job_id <span class="hljs-keyword">where</span> e.last_name <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;%e%&#x27;</span>;<br><br>#添加分组<span class="hljs-operator">+</span>筛选<br>#查询部门个数<span class="hljs-operator">&gt;</span><span class="hljs-number">3</span>的城市名和部门个数<br><span class="hljs-keyword">select</span> city, <span class="hljs-built_in">count</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">from</span> locations l <span class="hljs-keyword">inner</span> <span class="hljs-keyword">join</span> departments d <span class="hljs-keyword">on</span> d.location_id <span class="hljs-operator">=</span> l.location_id <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> city <span class="hljs-keyword">having</span> <span class="hljs-built_in">count</span>(<span class="hljs-operator">*</span>) <span class="hljs-operator">&gt;</span> <span class="hljs-number">3</span>;<br><br>#添加排序<br>#查询哪个部门的员工个数<span class="hljs-operator">&gt;</span><span class="hljs-number">3</span>的部门名和员工个数，并按个数降序<br><span class="hljs-keyword">select</span> department_name, <span class="hljs-built_in">count</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">from</span> employees e <span class="hljs-keyword">inner</span> <span class="hljs-keyword">join</span> departments d <span class="hljs-keyword">on</span> e.department_id <span class="hljs-operator">=</span> d.department_id <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> department_name <span class="hljs-keyword">having</span> <span class="hljs-built_in">count</span>(<span class="hljs-operator">*</span>) <span class="hljs-operator">&gt;</span> <span class="hljs-number">3</span> <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> <span class="hljs-built_in">count</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">desc</span>;<br><br>#三表查询<br>#查询员工名、部门名、工种名，并按部门名降序<br><span class="hljs-keyword">select</span> last_name, department_name, job_title <span class="hljs-keyword">from</span> employees e <span class="hljs-keyword">inner</span> <span class="hljs-keyword">join</span> departments d <span class="hljs-keyword">on</span> e.department_id <span class="hljs-operator">=</span> d.depaetment_id <span class="hljs-keyword">inner</span> <span class="hljs-keyword">join</span> jobs <span class="hljs-keyword">on</span> e.job_id <span class="hljs-operator">=</span> j.job_id <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> department_name <span class="hljs-keyword">desc</span>;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>非等值连接</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs sql">#查询员工工资级别<br><span class="hljs-keyword">SELECT</span> <br>    salary, grade_level<br><span class="hljs-keyword">FROM</span><br>    employees e<br>        <span class="hljs-keyword">JOIN</span><br>    job_grades j <span class="hljs-keyword">ON</span> e.salary <span class="hljs-keyword">BETWEEN</span> j.lowest_sal <span class="hljs-keyword">AND</span> j.highest_sal;  <br>#查询工资基别的个数<span class="hljs-operator">&gt;</span><span class="hljs-number">2</span>的个数，并且按工资级别降序<br><span class="hljs-keyword">SELECT</span> <br>    <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>), grade_level<br><span class="hljs-keyword">FROM</span><br>    employees e<br>        <span class="hljs-keyword">JOIN</span><br>    job_grades j <span class="hljs-keyword">ON</span> e.salary <span class="hljs-keyword">BETWEEN</span> j.lowest_sal <span class="hljs-keyword">AND</span> j.highest_sal<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> grade_level<br><span class="hljs-keyword">HAVING</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-operator">&gt;</span> <span class="hljs-number">20</span><br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> grade_level <span class="hljs-keyword">DESC</span>;  <br></code></pre></td></tr></table></figure>
+</li>
+<li><p>自连接</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs sql">#查询员工的名字和上级的名字<br><span class="hljs-keyword">SELECT</span> <br>    e.last_name, m.last_name<br><span class="hljs-keyword">FROM</span><br>    employees e<br>        <span class="hljs-keyword">JOIN</span><br>    employees m <span class="hljs-keyword">ON</span> e.manager_id <span class="hljs-operator">=</span> m.employee_id;<br><br>#查询员工名字包含k的名字和上级的名字<br><span class="hljs-keyword">SELECT</span> <br>    e.last_name, m.last_name<br><span class="hljs-keyword">FROM</span><br>    employees e<br>        <span class="hljs-keyword">JOIN</span><br>    employees m <span class="hljs-keyword">ON</span> e.manager_id <span class="hljs-operator">=</span> m.employee_id<br><span class="hljs-keyword">where</span> e.last_name <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;%k%&#x27;</span>;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p>外连接</p>
+<ul>
+<li>左外: leftouter</li>
+<li>右外: rightouter</li>
+<li>全外: fullouter</li>
+</ul>
+<p>语法: <code>select 查询列表 from 表1 别名 left|right|full outer join 表2 别名 on 连接条件;</code></p>
+<p>应用场景：用于查询一个表中有，另一个表没有的记录</p>
+<p>特点：</p>
+<ol>
+<li>外连接的查询结果为主表中的所有记录，如果从表中有匹配的，则显示匹配的值；如果没有，则显示null</li>
+<li>左外连接：left 左边的是主表</li>
+<li>右外连接：right 右边的是主表</li>
+<li>全外连接：full join 两边都是主表</li>
+<li>左外和右外交换两个表的顺序可以实现同样的效果</li>
+<li>一般用于查询除了交集部分的剩余的不匹配的行</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs sql">#查询男朋友不在男神表的女神名<br>#左外连接<br><span class="hljs-keyword">SELECT</span> <br>    b.name, bo.<span class="hljs-operator">*</span><br><span class="hljs-keyword">FROM</span><br>    beauty b<br>        <span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">OUTER</span> <span class="hljs-keyword">JOIN</span><br>    boys bo <span class="hljs-keyword">ON</span> b.boyfriend_id <span class="hljs-operator">=</span> bo.id<br><span class="hljs-keyword">WHERE</span><br>    bo.id <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NULL</span>;<br>#右外连接<br><span class="hljs-keyword">SELECT</span> <br>    b.name, bo.<span class="hljs-operator">*</span><br><span class="hljs-keyword">FROM</span><br>    boys bo<br>        <span class="hljs-keyword">RIGHT</span> <span class="hljs-keyword">OUTER</span> <span class="hljs-keyword">JOIN</span><br>    beauty b <span class="hljs-keyword">ON</span> b.boyfriend_id <span class="hljs-operator">=</span> bo.id<br><span class="hljs-keyword">WHERE</span><br>    bo.id <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NULL</span>;<br><br>#查询哪个部门没有员工<br><span class="hljs-keyword">select</span> d.<span class="hljs-operator">*</span>, e.employee_id <span class="hljs-keyword">from</span> departments d <span class="hljs-keyword">left</span> <span class="hljs-keyword">outer</span> <span class="hljs-keyword">join</span> employees e <span class="hljs-keyword">on</span> d.department_id <span class="hljs-operator">=</span> e.department_id <span class="hljs-keyword">where</span> e.employee_id <span class="hljs-keyword">is</span> <span class="hljs-keyword">null</span>;<br><br>#全外连接 <span class="hljs-operator">=</span> 内连接的结果 <span class="hljs-operator">+</span> 表<span class="hljs-number">1</span>中有但表<span class="hljs-number">2</span>中没有的 <span class="hljs-operator">+</span> 表<span class="hljs-number">2</span>中有但表<span class="hljs-number">1</span>中没有的<br><span class="hljs-keyword">select</span> b.<span class="hljs-operator">*</span>, bo.<span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> beauty b <span class="hljs-keyword">full</span> <span class="hljs-keyword">outer</span> <span class="hljs-keyword">join</span> bo <span class="hljs-keyword">on</span> b.boyfriend_id <span class="hljs-operator">=</span> bo.id;<br></code></pre></td></tr></table></figure>
+
+<p>交叉连接(mysql不支持): cross</p>
+<p>语法: <code>select 查询列表 from 表1 别名 cross join 表2 别名;</code></p>
+<p>特点：类似于笛卡尔乘积</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> b.<span class="hljs-operator">*</span>, bo.<span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> beauty b <span class="hljs-keyword">cross</span> <span class="hljs-keyword">join</span> boys bo;<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-7-子查询"><a href="#5-7-子查询" class="headerlink" title="5.7 子查询"></a>5.7 子查询</h3><p>含义：</p>
+<ul>
+<li>出现在其他语句中的select语句，成为子查询或内查询</li>
+<li>外部的查询语句，称为主查询或外查询</li>
+<li>主查询可以是 insert, update, delete, select，一般是select</li>
+</ul>
+<p>分类：</p>
+<ul>
+<li>按子查询出现的位置<ul>
+<li>select 后面：仅支持标量子查询</li>
+<li>from 后面：表子查询</li>
+<li>⭐where &#x2F; having 后面：⭐标量子查询，⭐列子查询，行子查询</li>
+<li>exists 后面（相关子查询）：表子查询</li>
+</ul>
+</li>
+<li>按结果集的行列数<ul>
+<li>标量子查询（结果集只有一行一列）</li>
+<li>列子查询（一列多行）</li>
+<li>行子查询（一行多列）</li>
+<li>表子查询（一般为多行多列）</li>
+</ul>
+</li>
+</ul>
+<p><strong>1. where &#x2F; having 后面</strong></p>
+<ol>
+<li>子查询在小括号内</li>
+<li>子查询一般放在条件的右侧</li>
+<li>标量子查询，一般配合单行操作符使用 &gt;、&lt;、&lt;&#x3D;、&gt;&#x3D;、&lt;&gt;</li>
+<li>列子查询，一般搭配多行操作符使用 ⭐in、any&#x2F;some、all</li>
+<li>子查询的执行优先于主查询的执行</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs sql">#标量子查询（单行子查询）<br>#谁的工资比Abel高<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> salary <span class="hljs-operator">&gt;</span> (<span class="hljs-keyword">select</span> salary <span class="hljs-keyword">from</span> emoloyees <span class="hljs-keyword">where</span> last_name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Abel&#x27;</span>);<br>#返回job_id与<span class="hljs-number">141</span>号员工相同，salary比<span class="hljs-number">143</span>号多的员工 姓名、job_id 和工资<br><span class="hljs-keyword">select</span> last_name, job_id, salary <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> job_id <span class="hljs-operator">=</span> (<br>    <span class="hljs-keyword">select</span> job_id <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> employee_id <span class="hljs-operator">=</span> <span class="hljs-number">141</span><br>) <span class="hljs-keyword">and</span> salary <span class="hljs-operator">&gt;</span> (<br>    <span class="hljs-keyword">select</span> salary <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> employee_id <span class="hljs-operator">=</span> <span class="hljs-number">143</span><br>);<br>#返回公司工资最少的员工的last_name, job_id 和 salary<br><span class="hljs-keyword">select</span> last_name, job_id, salary <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> salary <span class="hljs-operator">=</span> (<br>    <span class="hljs-keyword">select</span> <span class="hljs-built_in">min</span>(salary) <span class="hljs-keyword">from</span> employees<br>); <br>#查询最低工资大于<span class="hljs-number">50</span>号部门最低工资的部门id和其最低工资<br><span class="hljs-keyword">select</span> department_id, <span class="hljs-built_in">min</span>(salary) <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> department_id <span class="hljs-keyword">having</span> <span class="hljs-built_in">min</span>(salary) <span class="hljs-operator">&gt;</span>(<br>    <span class="hljs-keyword">select</span> <span class="hljs-built_in">min</span>(salary) <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> department_id <span class="hljs-operator">=</span> <span class="hljs-number">50</span><br>);<br>#非法使用标量子查询<br><span class="hljs-keyword">select</span> department_id, <span class="hljs-built_in">min</span>(salary) <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> department_id <span class="hljs-keyword">having</span> salary <span class="hljs-operator">&gt;</span>(<br>    <span class="hljs-keyword">select</span> <span class="hljs-built_in">min</span>(salary) <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> department_id <span class="hljs-operator">=</span> <span class="hljs-number">50</span><br>);<br><br><br>#列子查询（多行子查询）<br>#返回lacation_id是<span class="hljs-number">1400</span>或<span class="hljs-number">1700</span>的部门中的所有员工姓名<br>#<span class="hljs-number">1.</span>查询location_id是<span class="hljs-number">1400</span>或<span class="hljs-number">1700</span>的部门编号<br><span class="hljs-keyword">select</span> <span class="hljs-keyword">distinct</span> department_id <span class="hljs-keyword">from</span> departments <span class="hljs-keyword">where</span> location_id <span class="hljs-keyword">in</span>(<span class="hljs-number">1400</span>, <span class="hljs-number">1700</span>);<br>#<span class="hljs-number">2.</span>查询员工姓名<br><span class="hljs-keyword">select</span> last_name <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> department_id <span class="hljs-keyword">in</span>(<br>    <span class="hljs-keyword">select</span> <span class="hljs-keyword">distinct</span> department_id <span class="hljs-keyword">from</span> departments <span class="hljs-keyword">where</span> location_id <span class="hljs-keyword">in</span>(<span class="hljs-number">1400</span>, <span class="hljs-number">1700</span>);<br>);<br>#返回其他部门中比job_id为<span class="hljs-string">&#x27;IT_PROG&#x27;</span>部门任一工资低的员工的工号、姓名、job_id以及salary<br>#<span class="hljs-number">1.</span> 查询job_id为<span class="hljs-string">&#x27;IT_PROG&#x27;</span>部门任一工资<br><span class="hljs-keyword">select</span> <span class="hljs-keyword">distinct</span> salary <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> job_id <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;IT_PROG&#x27;</span>;<br>#<span class="hljs-number">2.</span> 查询员工的工号、姓名、job_id以及salary<br><span class="hljs-keyword">select</span> last_name, employee_id, job_id, salary <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> salary <span class="hljs-operator">&lt;</span> <span class="hljs-keyword">any</span>(<br>    <span class="hljs-keyword">select</span> <span class="hljs-keyword">distinct</span> salary <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> job_id <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;IT_PROG&#x27;</span><br>) <span class="hljs-keyword">and</span> job_id <span class="hljs-operator">&lt;&gt;</span> <span class="hljs-string">&#x27;IT_PROG&#x27;</span>;<br><br><br>#行子查询（多列多行）<br>#查询员工编号最小并且工资最高的员工信息<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> (employee_id, salary) <span class="hljs-operator">=</span> (<br>    <span class="hljs-keyword">select</span> <span class="hljs-built_in">min</span>(employee_id), <span class="hljs-built_in">max</span>(salary) <span class="hljs-keyword">from</span> employees;<br>);<br><br>#<span class="hljs-number">1.</span> 查询最小的员工编号<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">min</span>(employee_id) <span class="hljs-keyword">from</span> employees;<br>#<span class="hljs-number">2.</span> 查询最高工资<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">max</span>(salary) <span class="hljs-keyword">from</span> employees;<br>#<span class="hljs-number">3.</span> 查询员工信息<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> employee_id <span class="hljs-operator">=</span> (<br>    <span class="hljs-keyword">select</span> <span class="hljs-built_in">min</span>(employee_id) <span class="hljs-keyword">from</span> employees<br>) <span class="hljs-keyword">and</span> salary <span class="hljs-operator">=</span> (<br>    <span class="hljs-keyword">select</span> <span class="hljs-built_in">max</span>(salary) <span class="hljs-keyword">from</span> employees<br>);<br></code></pre></td></tr></table></figure>
+
+<p><strong>2. select 后面（仅支持标量子查询）</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs sql">#查询每个部门的员工个数<br><span class="hljs-keyword">SELECT</span> <br>    d.<span class="hljs-operator">*</span>,<br>    (<span class="hljs-keyword">SELECT</span> <br>            <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>)<br>        <span class="hljs-keyword">FROM</span><br>            employees e<br>        <span class="hljs-keyword">WHERE</span><br>            e.department_id <span class="hljs-operator">=</span> d.department_id)<br><span class="hljs-keyword">FROM</span><br>    departments d;<br>#查询员工号<span class="hljs-operator">=</span><span class="hljs-number">102</span>的部门名<br><span class="hljs-keyword">SELECT</span> <br>    (<span class="hljs-keyword">SELECT</span> <br>            department_name<br>        <span class="hljs-keyword">FROM</span><br>            departments d<br>                <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span><br>            employees e <span class="hljs-keyword">ON</span> d.department_id <span class="hljs-operator">=</span> e.department_id<br>        <span class="hljs-keyword">WHERE</span><br>            e.employee_id <span class="hljs-operator">=</span> <span class="hljs-number">102</span>);<br></code></pre></td></tr></table></figure>
+
+<p><strong>3. from 后面</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs sql">#查询每个部门的平均工资的工资等级<br>#<span class="hljs-number">1.</span>每个部门的平均工资<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">avg</span>(salary), department_id <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> department_id;<br>#<span class="hljs-number">2.</span><br><span class="hljs-keyword">SELECT</span> <br>    ag_dep.<span class="hljs-operator">*</span>, g.grade_level<br><span class="hljs-keyword">FROM</span><br>    (<span class="hljs-keyword">SELECT</span> <br>        <span class="hljs-built_in">AVG</span>(salary) ag, department_id<br>    <span class="hljs-keyword">FROM</span><br>        employees<br>    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> department_id) ag_dep<br>        <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span><br>    job_grades g <span class="hljs-keyword">ON</span> ag_dep.ag <span class="hljs-keyword">BETWEEN</span> lowest_sal <span class="hljs-keyword">AND</span> highest_sal;<br></code></pre></td></tr></table></figure>
+
+<p><strong>4. exists 后面（相关子查询）</strong></p>
+<p>语法：<code>exists(完整的查询语句)</code></p>
+<p>结果：1或0</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-keyword">exists</span>(<span class="hljs-keyword">select</span> employee_id <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> salary <span class="hljs-operator">=</span> <span class="hljs-number">30000</span>);<br>#查询有员工名的部门名<br><span class="hljs-keyword">SELECT</span> <br>    department_name<br><span class="hljs-keyword">FROM</span><br>    departments d<br><span class="hljs-keyword">WHERE</span><br>    <span class="hljs-keyword">EXISTS</span>( <span class="hljs-keyword">SELECT</span> <br>            <span class="hljs-operator">*</span><br>        <span class="hljs-keyword">FROM</span><br>            employees e<br>        <span class="hljs-keyword">WHERE</span><br>            e.department_id <span class="hljs-operator">=</span> d.department_id);<br>#查询没有女朋友的男生信息<br><span class="hljs-keyword">select</span> bo.<span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> boys bo <span class="hljs-keyword">where</span> bo.id <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span>(<br>    <span class="hljs-keyword">select</span> boyfrined_id <span class="hljs-keyword">from</span> beauty<br>);<br><span class="hljs-keyword">select</span> bo.<span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> boys bo <span class="hljs-keyword">where</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">exists</span>(<br>    <span class="hljs-keyword">select</span> boyfrined_id <span class="hljs-keyword">from</span> beauty b <span class="hljs-keyword">where</span> bo.id <span class="hljs-operator">=</span> b.boyfrined_id<br>);<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-8-分页查询"><a href="#5-8-分页查询" class="headerlink" title="5.8 分页查询"></a>5.8 分页查询</h3><p>应用场景：当要显示的数据，一页显示不全，需要分页提交sql请求</p>
+<p>语法：<code>select 查询列表 from 表名 jointype join 表2 on 连接条件 where 筛选条件 group by 分组字段 having 分组后的筛选 order by 排序的字段 limit offset,size;</code></p>
+<ul>
+<li>offset：要显示条目的起始索引（从0开始）</li>
+<li>size：要显示的条目个数</li>
+<li>from -&gt; join on -&gt; where -&gt; group by -&gt; having -&gt; select -&gt; order by -&gt; limit</li>
+</ul>
+<p>特点：</p>
+<ul>
+<li>limit语句放在查询语句的最后</li>
+<li>公式：要显示的页数page, 每页的条目数size<ul>
+<li><code>select 查询列表 from 表 limit (page - 1)*size, size;</code></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs sql">#查询前<span class="hljs-number">5</span>条员工信息<br><span class="hljs-keyword">SELECT</span> <br>    <span class="hljs-operator">*</span><br><span class="hljs-keyword">FROM</span><br>    employees<br>LIMIT <span class="hljs-number">0</span> , <span class="hljs-number">5</span>;<br><span class="hljs-keyword">SELECT</span> <br>    <span class="hljs-operator">*</span><br><span class="hljs-keyword">FROM</span><br>    employees<br>LIMIT <span class="hljs-number">5</span>;<br>#查询第<span class="hljs-number">11</span>条到第<span class="hljs-number">25</span>条<br><span class="hljs-keyword">SELECT</span> <br>    <span class="hljs-operator">*</span><br><span class="hljs-keyword">FROM</span><br>    employees<br>LIMIT <span class="hljs-number">10</span>, <span class="hljs-number">15</span>;<br>#有奖金的员工信息，并且工资较高的前<span class="hljs-number">10</span>名显示<br><span class="hljs-keyword">SELECT</span> <br>    <span class="hljs-operator">*</span><br><span class="hljs-keyword">FROM</span><br>    employees<br><span class="hljs-keyword">WHERE</span><br>    commission_pct <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span><br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> salary <span class="hljs-keyword">DESC</span><br>LIMIT <span class="hljs-number">0</span> , <span class="hljs-number">10</span>;<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-9-联合查询"><a href="#5-9-联合查询" class="headerlink" title="5.9 联合查询"></a>5.9 联合查询</h3><p>union：合并，将多条查询语句的结果合并成一个结果</p>
+<p>应用场景：要查询的结果来自于多个表，且多个表没有直接的连接关系，但查询的信息一致</p>
+<p>特点：</p>
+<ol>
+<li>要求多条查询语句的查询列数是一致的</li>
+<li>要求多条查询语句的查询的每一列的类型和顺序最好一致</li>
+<li>默认去重，使用 union all 查询所有数据项</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql">#查询部门编号<span class="hljs-operator">&gt;</span><span class="hljs-number">90</span>或邮箱包含a的员工信息<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> email <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;%a%&#x27;</span><br><span class="hljs-keyword">union</span> #<span class="hljs-keyword">all</span><br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> employees <span class="hljs-keyword">where</span> department_id <span class="hljs-operator">&gt;</span> <span class="hljs-number">90</span>;<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-10-查询总结"><a href="#5-10-查询总结" class="headerlink" title="5.10 查询总结"></a>5.10 查询总结</h3><p>语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> 查询列表<br><span class="hljs-keyword">from</span> 表<span class="hljs-number">1</span> 别名<br>连接类型 <span class="hljs-keyword">join</span> 表<span class="hljs-number">2</span><br><span class="hljs-keyword">on</span> 连接条件<br><span class="hljs-keyword">where</span> 诗选<br><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> 分组列表<br><span class="hljs-keyword">having</span> 筛选<br><span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> 排序列表<br>limit 起始条目索引, 条目数;<br></code></pre></td></tr></table></figure>
+
+<p>执行顺序：</p>
+<p>from -&gt; join -&gt; on -&gt; where -&gt; group by -&gt; having -&gt; select -&gt; order by -&gt; limit</p>
+<p>实际生产过程：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> 表名;<br>#实际写全各个列名（可读性，效率高）<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/database/" class="category-chain-item">database</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/database/mysql/" class="category-chain-item">mysql</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/database/">#database</a>
+      
+        <a href="/tags/mysql/">#mysql</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>02.DQL语言</div>
+      <div>https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/database/mysql/02.DQL语言/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 17, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/database/mysql/01.%E4%BA%86%E8%A7%A3%E6%95%B0%E6%8D%AE%E5%BA%93/" title="01.了解数据库">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">01.了解数据库</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/database/mysql/03.DML%E8%AF%AD%E8%A8%80/" title="03.DML语言">
+                        <span class="hidden-mobile">03.DML语言</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

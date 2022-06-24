@@ -1,0 +1,80 @@
+<hr>
+<p>title: 16-传递指针给函数<br>category: </p>
+<ul>
+<li>C</li>
+<li>runoob-C-program</li>
+<li>16-指针<br>tags:</li>
+<li>C</li>
+<li>runoob-C-program</li>
+<li>16-指针<br>date: 2022-06-17 17:59:13</li>
+</ul>
+<hr>
+<h1 id="C-传递指针给函数"><a href="#C-传递指针给函数" class="headerlink" title="C 传递指针给函数"></a>C 传递指针给函数</h1><p>C 语言允许您传递指针给函数，只需要简单地声明函数参数为指针类型即可。</p>
+<p>下面的实例中，我们传递一个无符号的 long 型指针给函数，并在函数内改变这个值：</p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><pre><code class="c">#include &lt;stdio.h&gt;
+#include &lt;time.h&gt;
+ 
+void getSeconds(unsigned long *par);
+
+int main ()
+{
+   unsigned long sec;
+
+
+   getSeconds( &amp;sec );
+
+   /* 输出实际值 */
+   printf(&quot;Number of seconds: %ld\n&quot;, sec );
+
+   return 0;
+}
+
+void getSeconds(unsigned long *par)
+{
+   /* 获取当前的秒数 */
+   *par = time( NULL );
+   return;
+}
+</code></pre>
+<p>当上面的代码被编译和执行时，它会产生下列结果：</p>
+<pre><code>Number of seconds :1294450468
+</code></pre>
+<p>能接受指针作为参数的函数，也能接受数组作为参数，如下所示：</p>
+<h2 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h2><pre><code class="c">#include &lt;stdio.h&gt;
+ 
+/* 函数声明 */
+double getAverage(int *arr, int size);
+ 
+int main ()
+{
+   /* 带有 5 个元素的整型数组  */
+   int balance[5] = {1000, 2, 3, 17, 50};
+   double avg;
+ 
+   /* 传递一个指向数组的指针作为参数 */
+   avg = getAverage( balance, 5 ) ;
+ 
+   /* 输出返回值  */
+   printf(&quot;Average value is: %f\n&quot;, avg );
+   
+   return 0;
+}
+
+double getAverage(int *arr, int size)
+{
+  int    i, sum = 0;      
+  double avg;          
+ 
+  for (i = 0; i &lt; size; ++i)
+  {
+    sum += arr[i];
+  }
+ 
+  avg = (double)sum / size;
+ 
+  return avg;
+}
+</code></pre>
+<p>当上面的代码被编译和执行时，它会产生下列结果：</p>
+<pre><code>Average value is: 214.40000
+</code></pre>

@@ -1,0 +1,641 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一.涉及技术1.控制浏览器行为技术： HTML ，CSS ,JavaScript 2.控制硬盘上数据库行为技术：MySql数据库服务器管理使用（SQL重点），JDBC规范 3.控制服务端Java行为技术： Http服务器，Servlet，JSP 4.互联网通信流程开发规则： MVC 二.什么是互联网通信简单理解，两台计算机通过网络实现文件共享行为，就是【互联网通信】  三.互联网通信过程角色划分1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="01.互联网通信流程">
+<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/network/powerNode/01.%E4%BA%92%E8%81%94%E7%BD%91%E9%80%9A%E4%BF%A1%E6%B5%81%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一.涉及技术1.控制浏览器行为技术： HTML ，CSS ,JavaScript 2.控制硬盘上数据库行为技术：MySql数据库服务器管理使用（SQL重点），JDBC规范 3.控制服务端Java行为技术： Http服务器，Servlet，JSP 4.互联网通信流程开发规则： MVC 二.什么是互联网通信简单理解，两台计算机通过网络实现文件共享行为，就是【互联网通信】  三.互联网通信过程角色划分1">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xiechaoxin.github.io/01.%E4%BA%92%E8%81%94%E7%BD%91%E9%80%9A%E4%BF%A1%E6%B5%81%E7%A8%8B/%E7%AC%AC%E4%B8%80%E7%89%88%E4%BA%92%E8%81%94%E7%BD%91%E9%80%9A%E4%BF%A1%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/01.%E4%BA%92%E8%81%94%E7%BD%91%E9%80%9A%E4%BF%A1%E6%B5%81%E7%A8%8B/%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E5%9C%A8%E4%BA%92%E8%81%94%E7%BD%91%E9%80%9A%E4%BF%A1%E8%BF%87%E7%A8%8B%E6%8B%85%E8%B4%9F%E8%81%8C%E8%B4%A3.png">
+<meta property="article:published_time" content="2022-06-17T17:59:12.000Z">
+<meta property="article:modified_time" content="2022-06-24T10:26:11.201Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="network">
+<meta property="article:tag" content="powerNode">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/01.%E4%BA%92%E8%81%94%E7%BD%91%E9%80%9A%E4%BF%A1%E6%B5%81%E7%A8%8B/%E7%AC%AC%E4%B8%80%E7%89%88%E4%BA%92%E8%81%94%E7%BD%91%E9%80%9A%E4%BF%A1%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+  
+  
+  
+  <title>01.互联网通信流程 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xiechaoxin.github.io","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong> </strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">01.互联网通信流程</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-06-17 17:59" pubdate>
+          June 17, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.7k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          15 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">01.互联网通信流程</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="一-涉及技术"><a href="#一-涉及技术" class="headerlink" title="一.涉及技术"></a>一.涉及技术</h2><p>1.控制浏览器行为技术： HTML ，CSS ,JavaScript</p>
+<p>2.控制硬盘上数据库行为技术：MySql数据库服务器管理使用（SQL重点），JDBC规范</p>
+<p>3.控制服务端Java行为技术： Http服务器，Servlet，JSP</p>
+<p>4.互联网通信流程开发规则： MVC</p>
+<h2 id="二-什么是互联网通信"><a href="#二-什么是互联网通信" class="headerlink" title="二.什么是互联网通信"></a>二.什么是互联网通信</h2><p>简单理解，两台计算机通过网络实现文件共享行为，就是【互联网通信】</p>
+<p><img src="/01.%E4%BA%92%E8%81%94%E7%BD%91%E9%80%9A%E4%BF%A1%E6%B5%81%E7%A8%8B/%E7%AC%AC%E4%B8%80%E7%89%88%E4%BA%92%E8%81%94%E7%BD%91%E9%80%9A%E4%BF%A1%E6%B5%81%E7%A8%8B%E5%9B%BE.png" srcset="/img/loading.gif" lazyload alt="第一版互联网通信流程图"></p>
+<h2 id="三-互联网通信过程角色划分"><a href="#三-互联网通信过程角色划分" class="headerlink" title="三.互联网通信过程角色划分"></a>三.互联网通信过程角色划分</h2><p>1.客户端计算机：用于发送请求，来索要资源文件的计算机</p>
+<p>2.服务端计算机：用于接收请求，并提供对应的资源文件计算机</p>
+<h2 id="四-互联网通信模型"><a href="#四-互联网通信模型" class="headerlink" title="四.互联网通信模型"></a>四.互联网通信模型</h2><h3 id="1-C-x2F-S通信模型："><a href="#1-C-x2F-S通信模型：" class="headerlink" title="1.C&#x2F;S通信模型："></a>1.C&#x2F;S通信模型：</h3><h4 id="C-client-software-客户端软件"><a href="#C-client-software-客户端软件" class="headerlink" title="C,client software;客户端软件"></a>C,client software;客户端软件</h4><p>​		     1）客户端软件专门安装在客户端计算机上<br>​		     2）帮助客户端计算机向指定服务端计算机发送请求，索要资源文件<br>​		     3）帮助客户端计算机将服务端计算机发送回来【二进制数据】解析<br>​		        为【文字，数字，图片，视频，命令】</p>
+<h4 id="S-server-software-服务器软件"><a href="#S-server-software-服务器软件" class="headerlink" title="S,server software;服务器软件"></a>S,server software;服务器软件</h4><p>​		     1)服务器软件专门安装在服务端计算机上<br>​		     2)服务器软件用于接收来自于特定的客户端软件发送请求<br>​		     3)服务器软件在接收到请求之后自动的在服务端计算机上定位被访问的资源文件<br>​		     4)服务器软件自动的将定位的文件内容解析为【二进制数据】通过网络发送回<br>​		       发起请求的客户端软件上</p>
+<p>​                         适用场景：C&#x2F;S通信模型普遍用于个人娱乐市场，比如【微信，淘宝&#x2F;京东，视频（优酷&#x2F;B站），大型网络游戏(魔兽&#x2F;英雄联盟)】<br>​		               企业办公领域相对应用较少</p>
+<p>​                         优缺点:</p>
+<p>​		               优点:<br>​			             1.安全性较高<br>​				     2.有效降低服务端计算机工作压力</p>
+<p>​                                   缺点：<br>​			             1.增加客户获得服务的成本<br>​				     2.更新较为繁琐</p>
+<h3 id="2-B-x2F-S通信模型："><a href="#2-B-x2F-S通信模型：" class="headerlink" title="2.B&#x2F;S通信模型："></a>2.B&#x2F;S通信模型：</h3><h4 id="B-browser-浏览器"><a href="#B-browser-浏览器" class="headerlink" title="B:browser,浏览器"></a>B:browser,浏览器</h4><p>​			     1）浏览器安装在客户端计算机软件<br>​			     2）可以向任意服务器发送请求，索要资源文件<br>​			     3）可以将服务器返回的【二进制数据】解析为<br>​			        【文字，数字，图片，视频，命令】</p>
+<h4 id="S-server-software-服务器软件-1"><a href="#S-server-software-服务器软件-1" class="headerlink" title="S: server software 服务器软件"></a>S: server software 服务器软件</h4><p>​			     1)服务器软件专门安装在服务端计算机上<br>​			     2)可以接收任意浏览器发送请求<br>​			     3)自动的在服务端计算机上定位被访问的资源文件<br>​			     4)自动的将定位的资源文件内容以二进制形式发送回发起请求浏览器上</p>
+<p>​			     适用场景： 既适用于个人娱乐市场，又广泛适用于企业日常活动</p>
+<p>​			     优缺点：<br>​			                 优点：<br>​					       1.不会增加用户获得服务的成本<br>​					       2.几乎不需要更新浏览器</p>
+<p>​                                             缺点：<br>​					       1.几乎无法有效对服务端计算机资源文件进行保护<br>​					       2.服务端计算机工作压力异常巨大—–》【B&#x2F;S通信下高并发解决方案】</p>
+<h2 id="五-共享资源文件："><a href="#五-共享资源文件：" class="headerlink" title="五.共享资源文件："></a>五.共享资源文件：</h2><h4 id="1-什么是共享资源文件"><a href="#1-什么是共享资源文件" class="headerlink" title="1.什么是共享资源文件:"></a>1.什么是共享资源文件:</h4><p>​        可以通过网络进行传输的文件，都被称为共享资源文件<br>​    所有的文件内容都可以通过网络传输，所有文件都是共享资源文件</p>
+<h4 id="2-Http服务器下对于共享资源文件分类"><a href="#2-Http服务器下对于共享资源文件分类" class="headerlink" title="2.Http服务器下对于共享资源文件分类"></a>2.Http服务器下对于共享资源文件分类</h4><p>​        1）静态资源文件<br>​    2）动态资源文件</p>
+<h4 id="3-静态资源文件"><a href="#3-静态资源文件" class="headerlink" title="3.静态资源文件:"></a>3.静态资源文件:</h4><pre><code class="hljs">     1) 如果文件内容是固定，这种文件可以被称为【静态资源文件】
+            (文档，图片，视频)
+              2) 如果文件存放不是内容而是命令，这些命令只能在浏览器编译与执行
+                    这种文件可以被称为【静态资源文件】
+（.html,.css,.js）
+</code></pre>
+<h4 id="4-动态资源文件"><a href="#4-动态资源文件" class="headerlink" title="4.动态资源文件:"></a>4.动态资源文件:</h4><p>​            如果文件存放命令，并且命令不能在浏览器编译与执行；只能在服务端<br>​	计算机编译执行，这样的文件可以被称为【动态资源文件】<br>​	（.class）</p>
+<h4 id="5-静态资源文件与动态资源文件调用区别"><a href="#5-静态资源文件与动态资源文件调用区别" class="headerlink" title="5.静态资源文件与动态资源文件调用区别"></a>5.静态资源文件与动态资源文件调用区别</h4><p>​              静态文件被索要时，Http服务器直接通过【输出流】将静态文件中内容或则命令<br>​	  以【二进制形式】推送给发起请求浏览器</p>
+<p>​	  动态文件被索要时，Http服务器需要创建当前class文件的实例对象,通过实例对象<br>​	  调用对应的方法处理用户请求，通过【输出流】将运行结果以【二进制形式】推送<br>​              给发起请求浏览器 </p>
+<p>​	  class Student{<br>​	     public int add(int num1,int num2){<br>​	        int sum &#x3D; num1 + num2;<br>​		return sum;<br>​	     }<br>​	  }<br>​              Http服务器（自动）<br>​	  Student stu &#x3D; new Student();<br>​	  int 结果 &#x3D; stu.add(10,20);<br>​	  out.print(结果)</p>
+<h2 id="六-开发人员在互联网通信流程担负职责"><a href="#六-开发人员在互联网通信流程担负职责" class="headerlink" title="六.开发人员在互联网通信流程担负职责:"></a>六.开发人员在互联网通信流程担负职责:</h2><p>​       1.控制浏览器行为</p>
+<p>​       2.开发动态资源文件来解决用户请求</p>
+<p><img src="/01.%E4%BA%92%E8%81%94%E7%BD%91%E9%80%9A%E4%BF%A1%E6%B5%81%E7%A8%8B/%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E5%9C%A8%E4%BA%92%E8%81%94%E7%BD%91%E9%80%9A%E4%BF%A1%E8%BF%87%E7%A8%8B%E6%8B%85%E8%B4%9F%E8%81%8C%E8%B4%A3.png" srcset="/img/loading.gif" lazyload alt="开发人员在互联网通信过程担负职责"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/network/" class="category-chain-item">network</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/network/powerNode/" class="category-chain-item">powerNode</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/network/">#network</a>
+      
+        <a href="/tags/powerNode/">#powerNode</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>01.互联网通信流程</div>
+      <div>https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/network/powerNode/01.互联网通信流程/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 17, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/network/TCPIP%E8%AF%A6%E8%A7%A3%E5%8D%B7%E4%B8%80/TCPIP%E5%8D%B7%E4%B8%80%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" title="TCPIP卷一阅读笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">TCPIP卷一阅读笔记</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/network/powerNode/02.http%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" title="02.http网络协议">
+                        <span class="hidden-mobile">02.http网络协议</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

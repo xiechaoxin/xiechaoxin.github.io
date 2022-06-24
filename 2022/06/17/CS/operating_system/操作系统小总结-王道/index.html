@@ -1,0 +1,909 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="操作系统小总结目录第一章 计算机系统概述 1.1操作系统 第二章 进程管理 2.1进程和线程 2.2调度 2.3互斥同步 2.4死锁 第三章 内存管理 3.1内存管理概念 3.2虚拟内存管理 第四章 文件管理 4.1文件管理 4.2磁盘管理 第五章 输入输出管理(IO) 5.1输入输出管理(IO)  第一章 概述操作系统在干嘛，底层思想 第二章 进程管理操作系统的最大作用，核心功能 第三章 内存管">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统小总结-王道">
+<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/operating_system/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%B0%8F%E6%80%BB%E7%BB%93-%E7%8E%8B%E9%81%93/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="操作系统小总结目录第一章 计算机系统概述 1.1操作系统 第二章 进程管理 2.1进程和线程 2.2调度 2.3互斥同步 2.4死锁 第三章 内存管理 3.1内存管理概念 3.2虚拟内存管理 第四章 文件管理 4.1文件管理 4.2磁盘管理 第五章 输入输出管理(IO) 5.1输入输出管理(IO)  第一章 概述操作系统在干嘛，底层思想 第二章 进程管理操作系统的最大作用，核心功能 第三章 内存管">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xiechaoxin.github.io/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%B0%8F%E6%80%BB%E7%BB%93-%E7%8E%8B%E9%81%93/image-20210818095638474.png">
+<meta property="article:published_time" content="2022-06-17T17:59:12.000Z">
+<meta property="article:modified_time" content="2022-06-24T10:26:11.797Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="operating_system">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%B0%8F%E6%80%BB%E7%BB%93-%E7%8E%8B%E9%81%93/image-20210818095638474.png">
+  
+  
+  
+  <title>操作系统小总结-王道 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xiechaoxin.github.io","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong> </strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">操作系统小总结-王道</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-06-17 17:59" pubdate>
+          June 17, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          13k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          108 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">操作系统小总结-王道</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="操作系统小总结"><a href="#操作系统小总结" class="headerlink" title="操作系统小总结"></a>操作系统小总结</h1><h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><p>第一章 计算机系统概述</p>
+<p>1.1操作系统</p>
+<p>第二章 进程管理</p>
+<p>2.1进程和线程</p>
+<p>2.2调度</p>
+<p>2.3互斥同步</p>
+<p>2.4死锁</p>
+<p>第三章 内存管理</p>
+<p>3.1内存管理概念</p>
+<p>3.2虚拟内存管理</p>
+<p>第四章 文件管理</p>
+<p>4.1文件管理</p>
+<p>4.2磁盘管理</p>
+<p>第五章 输入输出管理(IO)</p>
+<p>5.1输入输出管理(IO)</p>
+<hr>
+<h2 id="第一章-概述"><a href="#第一章-概述" class="headerlink" title="第一章 概述"></a>第一章 概述</h2><p>操作系统在干嘛，底层思想</p>
+<h2 id="第二章-进程管理"><a href="#第二章-进程管理" class="headerlink" title="第二章 进程管理"></a>第二章 进程管理</h2><p>操作系统的最大作用，核心功能</p>
+<h2 id="第三章-内存管理"><a href="#第三章-内存管理" class="headerlink" title="第三章 内存管理"></a>第三章 内存管理</h2><p>物理地址到逻辑地址的映射，脱离硬件第一步</p>
+<h2 id="第四章-文件管理"><a href="#第四章-文件管理" class="headerlink" title="第四章 文件管理"></a>第四章 文件管理</h2><p>再封装管理各种数据，脱离硬件第二部，到达软件层面</p>
+<h2 id="第五章-I-x2F-O管理"><a href="#第五章-I-x2F-O管理" class="headerlink" title="第五章 I&#x2F;O管理"></a>第五章 I&#x2F;O管理</h2><p>联通硬件和软件，捋一下各种功能</p>
+<h1 id="第一章-计算机系统概述"><a href="#第一章-计算机系统概述" class="headerlink" title="第一章 计算机系统概述"></a>第一章 计算机系统概述</h1><p>目的：为什么要有操作系统，拿来干嘛？管理什么？</p>
+<p>思想：有什么底层思想支撑操作系统的开发？</p>
+<p>历史：操作系统是怎样一步一步发展起来的？</p>
+<p>组成：操作系统运行机制，靠什么实现的？</p>
+<p>操作：由底层思想可以延伸出什么基本操作？</p>
+<p>状态：操作系统在运行过程中有哪些状态？</p>
+<p>结构：操作系统的结构，和位于计算机哪个位置？</p>
+<hr>
+<h3 id="目的：为什么要有操作系统，拿来干嘛？管理什么？"><a href="#目的：为什么要有操作系统，拿来干嘛？管理什么？" class="headerlink" title="目的：为什么要有操作系统，拿来干嘛？管理什么？"></a>目的：为什么要有操作系统，拿来干嘛？管理什么？</h3><p>&#x3D;&#x3D;概念、功能、管理、接口&#x3D;&#x3D;</p>
+<h3 id="思想：有什么底层思想支撑操作系统的开发？"><a href="#思想：有什么底层思想支撑操作系统的开发？" class="headerlink" title="思想：有什么底层思想支撑操作系统的开发？"></a>思想：有什么底层思想支撑操作系统的开发？</h3><p>&#x3D;&#x3D;并发、共享、虚拟、异步、封装&#x3D;&#x3D;</p>
+<h3 id="历史：操作系统是怎样一步一步发展起来的？"><a href="#历史：操作系统是怎样一步一步发展起来的？" class="headerlink" title="历史：操作系统是怎样一步一步发展起来的？"></a>历史：操作系统是怎样一步一步发展起来的？</h3><p>&#x3D;&#x3D;手工操作阶段、单道批处理、多道批处理、分时操作系统、实时操作系统、分布式、个人&#x3D;&#x3D;</p>
+<h3 id="组成：操作系统运行机制，靠什么实现的？"><a href="#组成：操作系统运行机制，靠什么实现的？" class="headerlink" title="组成：操作系统运行机制，靠什么实现的？"></a>组成：操作系统运行机制，靠什么实现的？</h3><p>&#x3D;&#x3D;内核程序、自编程序、原语、时钟管理、中断机制&#x3D;&#x3D;</p>
+<h3 id="操作：由底层思想可以延伸出什么基本操作？"><a href="#操作：由底层思想可以延伸出什么基本操作？" class="headerlink" title="操作：由底层思想可以延伸出什么基本操作？"></a>操作：由底层思想可以延伸出什么基本操作？</h3><p>&#x3D;&#x3D;中断、异常、系统调用&#x3D;&#x3D;</p>
+<h3 id="状态：操作系统在运行过程中有哪些状态？"><a href="#状态：操作系统在运行过程中有哪些状态？" class="headerlink" title="状态：操作系统在运行过程中有哪些状态？"></a>状态：操作系统在运行过程中有哪些状态？</h3><p>&#x3D;&#x3D;用户态、内核态&#x3D;&#x3D;</p>
+<h3 id="结构：操作系统的结构，和位于计算机哪个位置？"><a href="#结构：操作系统的结构，和位于计算机哪个位置？" class="headerlink" title="结构：操作系统的结构，和位于计算机哪个位置？"></a>结构：操作系统的结构，和位于计算机哪个位置？</h3><p>&#x3D;&#x3D;大内核、微内核、用户、应用程序、非内核功能、进程管理、存储管理、设备管理、时钟管理、中断处理、原语、裸机（纯硬件）&#x3D;&#x3D;</p>
+<h1 id="第二章-进程管理-1"><a href="#第二章-进程管理-1" class="headerlink" title="第二章 进程管理"></a>第二章 进程管理</h1><h2 id="2-1进程和线程"><a href="#2-1进程和线程" class="headerlink" title="2.1进程和线程"></a>2.1进程和线程</h2><p>进程是什么？</p>
+<p>进程的功能有哪些特征实现？</p>
+<p>进程的状态有哪些，怎么转换？</p>
+<p>进程是怎样控制的？</p>
+<p>进程由什么组成？</p>
+<p>进程间怎么通信？</p>
+<p>线程是什么和进程有什么不一样？</p>
+<p>线程有哪些，多线程有哪些？</p>
+<hr>
+<h3 id="进程是什么？"><a href="#进程是什么？" class="headerlink" title="进程是什么？"></a>进程是什么？</h3><p>&#x3D;&#x3D;实现操作系统的并发性和共享性&#x3D;&#x3D;</p>
+<h3 id="进程的功能有哪些特征实现？"><a href="#进程的功能有哪些特征实现？" class="headerlink" title="进程的功能有哪些特征实现？"></a>进程的功能有哪些特征实现？</h3><p>&#x3D;&#x3D;动态性、并发性、独立性、异步性、结构性&#x3D;&#x3D;</p>
+<h3 id="进程的状态有哪些，怎么转换？"><a href="#进程的状态有哪些，怎么转换？" class="headerlink" title="进程的状态有哪些，怎么转换？"></a>进程的状态有哪些，怎么转换？</h3><p>&#x3D;&#x3D;运行态、就绪态、阻塞态、创建态、结束态&#x3D;&#x3D;</p>
+<p>&#x3D;&#x3D;运行态可以返回就绪态，时间片结束&#x3D;&#x3D;</p>
+<h3 id="进程是怎样控制的？"><a href="#进程是怎样控制的？" class="headerlink" title="进程是怎样控制的？"></a>进程是怎样控制的？</h3><p>&#x3D;&#x3D;进程创建（PCB）、进程终止（正常结束、异常结束、外界干预）、进程的阻塞和唤醒（阻塞原语、唤醒原语）、进程切换（内核态下完成）&#x3D;&#x3D;</p>
+<h3 id="进程由什么组成，组织方式有哪些？"><a href="#进程由什么组成，组织方式有哪些？" class="headerlink" title="进程由什么组成，组织方式有哪些？"></a>进程由什么组成，组织方式有哪些？</h3><p>&#x3D;&#x3D;进程控制块（进程描述信息、进程控制和管理信息、资源分配清单、处理及相关信息）、程序段（CPU执行程序代码段）、数据段（原始数据、中间数据、最终结果）&#x3D;&#x3D;</p>
+<p>&#x3D;&#x3D;链接方式（PCB组成的队列）、索引方式（索引表）&#x3D;&#x3D;</p>
+<h3 id="进程间怎么通信？"><a href="#进程间怎么通信？" class="headerlink" title="进程间怎么通信？"></a>进程间怎么通信？</h3><p>&#x3D;&#x3D;共享存储、信息传递（原语）、管道通信（半双工）&#x3D;&#x3D;</p>
+<h3 id="线程是什么和进程有什么不一样？"><a href="#线程是什么和进程有什么不一样？" class="headerlink" title="线程是什么和进程有什么不一样？"></a>线程是什么和进程有什么不一样？</h3><p>&#x3D;&#x3D;进程是独立调度的基本单位，线程是支援的基本单位&#x3D;&#x3D;</p>
+<h3 id="线程有哪些，多线程有哪些？"><a href="#线程有哪些，多线程有哪些？" class="headerlink" title="线程有哪些，多线程有哪些？"></a>线程有哪些，多线程有哪些？</h3><p>&#x3D;&#x3D;用户级线程、内核级线程&#x3D;&#x3D;</p>
+<p>&#x3D;&#x3D;多对一（效率高、一堵全堵、不能同时运行在处理机）、一对一（开销大）、多对多（提高并发性，又适当降低开销）&#x3D;&#x3D;</p>
+<h2 id="2-2调度"><a href="#2-2调度" class="headerlink" title="2.2调度"></a>2.2调度</h2><p>调度是什么，有哪些？</p>
+<p>调度的使用时机在哪？</p>
+<p>调度的方式有哪些？</p>
+<p>调度的基本准则是什么？</p>
+<p>加入调度后进程的基本状态变为哪七种？</p>
+<p>典型调度算法有哪些？</p>
+<hr>
+<h3 id="调度是什么，有哪些？"><a href="#调度是什么，有哪些？" class="headerlink" title="调度是什么，有哪些？"></a>调度是什么，有哪些？</h3><p>&#x3D;&#x3D;合理的分配处理机&#x3D;&#x3D;</p>
+<p>&#x3D;&#x3D;作业调度（高级调度，一次）、中级调度（内存调度，进出内存）、进程调度（低级调度，选取就绪队列）&#x3D;&#x3D;</p>
+<h3 id="调度的使用时机在哪？"><a href="#调度的使用时机在哪？" class="headerlink" title="调度的使用时机在哪？"></a>调度的使用时机在哪？</h3><p>&#x3D;&#x3D;不能切换的情况、可以切换的情况&#x3D;&#x3D;</p>
+<h3 id="调度的方式有哪些？"><a href="#调度的方式有哪些？" class="headerlink" title="调度的方式有哪些？"></a>调度的方式有哪些？</h3><p>&#x3D;&#x3D;非剥夺调度方式、剥夺调度方式&#x3D;&#x3D;</p>
+<h3 id="调度的基本准则是什么？"><a href="#调度的基本准则是什么？" class="headerlink" title="调度的基本准则是什么？"></a>调度的基本准则是什么？</h3><p>&#x3D;&#x3D;CPU利用率（尽可能忙碌）、系统吞吐量（单位时间内处理的作业数量）、周转时间（作业提交到完成的时间）、等待时间（作业等待处理机的时间）、响应时间（提交到首次响应的时间）&#x3D;&#x3D;</p>
+<h3 id="加入调度后进程的基本状态多了什么？"><a href="#加入调度后进程的基本状态多了什么？" class="headerlink" title="加入调度后进程的基本状态多了什么？"></a>加入调度后进程的基本状态多了什么？</h3><p>&#x3D;&#x3D;就绪挂起、阻塞挂起&#x3D;&#x3D;</p>
+<h3 id="典型调度算法有哪些？"><a href="#典型调度算法有哪些？" class="headerlink" title="典型调度算法有哪些？"></a>典型调度算法有哪些？</h3><p>先来先服务（不利于IO繁忙型业务）</p>
+<p>短作业优先算法（平均周转时间最短、饥饿）</p>
+<p>优先级调度算法（饥饿）</p>
+<p>高响应比算法（响应比 &#x3D;（等待时间+要求服务时间）&#x2F; 要求服务时间 &#x3D; 1 + 等待时间 &#x2F; 要求服务时间）</p>
+<p>时间片轮转法（分时系统）</p>
+<p>多级反馈队列调度法（饥饿）</p>
+<h2 id="2-3互斥同步"><a href="#2-3互斥同步" class="headerlink" title="2.3互斥同步"></a>2.3互斥同步</h2><p>临界资源</p>
+<p>同步</p>
+<p>互斥</p>
+<p>信号量机制</p>
+<p>管程</p>
+<hr>
+<h3 id="临界资源"><a href="#临界资源" class="headerlink" title="临界资源"></a>临界资源</h3><p>只允许一个进程使用</p>
+<h3 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h3><p>直接制约关系，相互合作</p>
+<p>&#x3D;&#x3D;空闲让进、忙则等待、有限等待、让权等待&#x3D;&#x3D;</p>
+<h3 id="互斥"><a href="#互斥" class="headerlink" title="互斥"></a>互斥</h3><p>间接制约关系，一个访问临界区另一个不能访问</p>
+<h3 id="信号量机制"><a href="#信号量机制" class="headerlink" title="信号量机制"></a>信号量机制</h3><p>wait：资源-1、signal：资源+1</p>
+<p>两个原语</p>
+<p>&#x3D;&#x3D;互斥信号量mutex、进入区P（申请资源）、退出区V（释放资源）&#x3D;&#x3D;</p>
+<h3 id="管程"><a href="#管程" class="headerlink" title="管程"></a>管程</h3><p>模块化</p>
+<h2 id="2-4死锁"><a href="#2-4死锁" class="headerlink" title="2.4死锁"></a>2.4死锁</h2><p>定义</p>
+<p>原因</p>
+<p>策略</p>
+<p>预防</p>
+<p>避免</p>
+<p>检测和解除</p>
+<p>区别</p>
+<hr>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>资源竞争造成的僵局，没有外力作用无法解除</p>
+<h3 id="原因和必要条件"><a href="#原因和必要条件" class="headerlink" title="原因和必要条件"></a>原因和必要条件</h3><p>&#x3D;&#x3D;资源竞争、顺序非法&#x3D;&#x3D;</p>
+<p>&#x3D;&#x3D;互斥条件、不可剥夺条件、请求并保持条件、循环等待条件（你等我我等你）&#x3D;&#x3D;</p>
+<h3 id="预防"><a href="#预防" class="headerlink" title="预防"></a>预防</h3><p>破坏某一个必要条件</p>
+<p>破坏互斥条件（&#x3D;&#x3D;允许共享使用&#x3D;&#x3D;）、破坏不可剥夺条件（导致饥饿）、破坏请求并保持条件（&#x3D;&#x3D;一次申请完&#x3D;&#x3D;它所需要的全部资源）、破坏循环等待条件（顺序资源分配法）</p>
+<h3 id="避免"><a href="#避免" class="headerlink" title="避免"></a>避免</h3><p>银行家算法（只分配给会进入安全状态的程序）</p>
+<h3 id="检测和解除"><a href="#检测和解除" class="headerlink" title="检测和解除"></a>检测和解除</h3><p>资源分配图，只要能约掉就不存在死锁。矩形表示资源节点，小圆代表资源数量。</p>
+<p>资源&#x3D;&#x3D;剥夺&#x3D;&#x3D;法、&#x3D;&#x3D;撤销&#x3D;&#x3D;进程法、进程&#x3D;&#x3D;回退&#x3D;&#x3D;法</p>
+<h2 id="2-5-信号量机制的各种问题应用"><a href="#2-5-信号量机制的各种问题应用" class="headerlink" title="2.5 信号量机制的各种问题应用"></a>2.5 信号量机制的各种问题应用</h2><p>生产者消费者问题</p>
+<p>多生产者多消费者问题</p>
+<p>吸烟者问题</p>
+<p>读者-写者问题</p>
+<p>哲学家问题</p>
+<hr>
+<h3 id="生产者消费者问题"><a href="#生产者消费者问题" class="headerlink" title="生产者消费者问题"></a>生产者消费者问题</h3><p>&#x3D;&#x3D;互斥P一定要在同步P之后&#x3D;&#x3D;</p>
+<p>否则会导致：我要放东西通过了，没人占用但满了放不进去，去到消费者，通道被生产者占住了，形成死锁<br>同步：查看缓存区容量和非空区<br>互斥：消费者和生产者不能同时使用缓存区</p>
+<h3 id="多生产者多消费者问题"><a href="#多生产者多消费者问题" class="headerlink" title="多生产者多消费者问题"></a>多生产者多消费者问题</h3><p>互斥：前P后V</p>
+<p>同步、前驱：前V后P</p>
+<h3 id="吸烟者问题"><a href="#吸烟者问题" class="headerlink" title="吸烟者问题"></a>吸烟者问题</h3><p>供应者到抽烟者一一对应，&#x3D;&#x3D;多个&#x3D;&#x3D;信号量</p>
+<p>抽烟者抽完只有&#x3D;&#x3D;一种&#x3D;&#x3D;返回信号</p>
+<h3 id="读者-写者问题"><a href="#读者-写者问题" class="headerlink" title="读者-写者问题"></a>读者-写者问题</h3><p>写和读，写和写不能同时访问，&#x3D;&#x3D;但读和读可以同时访问&#x3D;&#x3D;</p>
+<ul>
+<li>读优先：&#x3D;&#x3D;第一个读者先加两把锁，都关上，再打开互斥锁，让其他读者进行访问&#x3D;&#x3D;</li>
+<li>写优先（相对优先）：&#x3D;&#x3D;第一个读者先加三把锁，都关上，再打开互斥锁和写优先锁，且先打开写优先锁，使只要读者读完就给写&#x3D;&#x3D;</li>
+</ul>
+<h3 id="哲学家问题"><a href="#哲学家问题" class="headerlink" title="哲学家问题"></a>哲学家问题</h3><p>SB问题</p>
+<h1 id="第三章-内存管理-1"><a href="#第三章-内存管理-1" class="headerlink" title="第三章 内存管理"></a>第三章 内存管理</h1><h2 id="3-1-内存管理概念"><a href="#3-1-内存管理概念" class="headerlink" title="3.1 内存管理概念"></a>3.1 内存管理概念</h2><p>为什么要有内存管理？</p>
+<p>内存管理的功能是什么？</p>
+<p>程序是怎么装入和链接的？</p>
+<p>动态分区分配</p>
+<p>分页</p>
+<p>分段</p>
+<hr>
+<h3 id="为什么要有内存管理？"><a href="#为什么要有内存管理？" class="headerlink" title="为什么要有内存管理？"></a>为什么要有内存管理？</h3><p>程序执行前需要先放到内存中才能被CPU处理——&#x3D;&#x3D;缓和CPU与硬盘之间的速度矛盾&#x3D;&#x3D;</p>
+<h3 id="内存管理的功能是什么？"><a href="#内存管理的功能是什么？" class="headerlink" title="内存管理的功能是什么？"></a>内存管理的功能是什么？</h3><p>&#x3D;&#x3D;内存空间的分配与回收、地址转换、内存空间的扩充、存储保护&#x3D;&#x3D;</p>
+<h4 id="分配与回收"><a href="#分配与回收" class="headerlink" title="分配与回收"></a>分配与回收</h4><p>连续分配管理方式：&#x3D;&#x3D;单一连续分配&#x3D;&#x3D;（低地址区，单用户、利用率低）、&#x3D;&#x3D;固定分区分配&#x3D;&#x3D;（固定划分相等或不等的区、内部碎片、多道程序、利用率低）、&#x3D;&#x3D;动态分区分配&#x3D;&#x3D;（根据大小建立分区、分区外部碎片、紧凑技术）</p>
+<p>非连续分配管理方式：&#x3D;&#x3D;分页、分段&#x3D;&#x3D;</p>
+<h4 id="地址转换"><a href="#地址转换" class="headerlink" title="地址转换"></a>地址转换</h4><p>绝对装入（单道程序阶段）：无操作系统</p>
+<p>可重定位装入（静态重定位）（早期多道批处理阶段）：一次性全部装入，不能在内存中移动）</p>
+<p>动态运行时装入（动态重定位）（&#x3D;&#x3D;现代操作系统&#x3D;&#x3D;）：&#x3D;&#x3D;当程序真正执行时才进行转换&#x3D;&#x3D;</p>
+<p>&#x3D;&#x3D;地址转换过程：逻辑地址-&gt;界地址寄存器-&gt;重定位寄存器-&gt;物理地址&#x3D;&#x3D;</p>
+<h4 id="内存空间的扩充（覆盖、交换、虚拟）"><a href="#内存空间的扩充（覆盖、交换、虚拟）" class="headerlink" title="内存空间的扩充（覆盖、交换、虚拟）"></a>内存空间的扩充（覆盖、交换、虚拟）</h4><p>覆盖技术：将用户空间分为&#x3D;&#x3D;一个&#x3D;&#x3D;固定区和&#x3D;&#x3D;若干&#x3D;&#x3D;覆盖区，活跃部分放在&#x3D;&#x3D;固定区&#x3D;&#x3D;，即将访问的段放在&#x3D;&#x3D;覆盖区&#x3D;&#x3D;。</p>
+<p>交换技术：把磁盘空间分为&#x3D;&#x3D;文件区&#x3D;&#x3D;和&#x3D;&#x3D;对换区&#x3D;&#x3D;两部分，将处于等待状态的程序从内存中转移到辅存，&#x3D;&#x3D;暂时换出&#x3D;&#x3D;外存。</p>
+<p>覆盖与交换区别：覆盖是在&#x3D;&#x3D;同一个程序&#x3D;&#x3D;或进程中的；交换是在&#x3D;&#x3D;不同进程（或作业）&#x3D;&#x3D;之间的</p>
+<h4 id="内存保护"><a href="#内存保护" class="headerlink" title="内存保护"></a>内存保护</h4><p>CPU中设置上、下限寄存器，&#x3D;&#x3D;判断是否越界&#x3D;&#x3D;</p>
+<p>重定位寄存器（基址寄存器）和界地址寄存器（限长寄存器）：重定位寄存器中包含最小物理地址值，界地址寄存器包含&#x3D;&#x3D;逻辑地址的最大值&#x3D;&#x3D;</p>
+<h3 id="程序是怎么装入和链接的？"><a href="#程序是怎么装入和链接的？" class="headerlink" title="程序是怎么装入和链接的？"></a>程序是怎么装入和链接的？</h3><p>步骤：编译（形成若干目标模块）、链接（目标模块与库函数链接）、装入（内存执行）</p>
+<p>链接：静态链接（完整可执行）、装入时动态链接（边装入变链接）、运行时动态链接（需要时才链接）</p>
+<p>装入：绝对装入（实际内存地址）、可重定位装入（相对地址）、动态运行时装入（需要时才地址转换）</p>
+<h3 id="动态分区分配"><a href="#动态分区分配" class="headerlink" title="动态分区分配"></a>动态分区分配</h3><p>&#x3D;&#x3D;首次适应算法&#x3D;&#x3D;（不排序第一个）、&#x3D;&#x3D;最佳适应算法&#x3D;&#x3D;（容量递增顺序排列第一个、最多的外部碎片）、&#x3D;&#x3D;最坏适应算法&#x3D;&#x3D;（容量递减第一个、减少小碎片、不利于大工程）、&#x3D;&#x3D;邻近适应算法&#x3D;&#x3D;（上次结束位置查找，概率相同，所以容易把高地址大分区用完）</p>
+<h3 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h3><p>第一步：分好块，在第几块第几个（页号P和页内偏移量W）</p>
+<p>第二部：去问一下我的新家在哪，获得新家块（去&#x3D;&#x3D;页表寄存器&#x3D;&#x3D;看页表起始地址和判断，查&#x3D;&#x3D;页表&#x3D;&#x3D;找到内存块号）</p>
+<p>第三步：新家号，在加上偏移量，就算出物理地址（内存块号加页内偏移W得到物理地址）</p>
+<p>添加&#x3D;&#x3D;块表&#x3D;&#x3D;，直接省略第二步，因为如果有，直接就能查到内存块号</p>
+<p>两级列表解决页表必须连续存储的问题</p>
+<h3 id="分段"><a href="#分段" class="headerlink" title="分段"></a>分段</h3><p>页是信息的&#x3D;&#x3D;物理单位&#x3D;&#x3D;，完全是&#x3D;&#x3D;系统行为&#x3D;&#x3D;，对用户是&#x3D;&#x3D;不可见的&#x3D;&#x3D;。分页的用户进程地址空间是&#x3D;&#x3D;一维&#x3D;&#x3D;的，程序员只需给出一个记忆符即可表示一个&#x3D;&#x3D;地址&#x3D;&#x3D;。</p>
+<p>段是信息的&#x3D;&#x3D;逻辑单位&#x3D;&#x3D;，分段对用户是&#x3D;&#x3D;可见的&#x3D;&#x3D;，用户编程时需要显式地给出&#x3D;&#x3D;段名&#x3D;&#x3D;。分段的用户进程地址空间是&#x3D;&#x3D;二维&#x3D;&#x3D;的，程序员在标识一个地址时，既要给出&#x3D;&#x3D;段名&#x3D;&#x3D;，也要给出&#x3D;&#x3D;段内地址&#x3D;&#x3D;。</p>
+<h2 id="3-2-虚拟内存管理"><a href="#3-2-虚拟内存管理" class="headerlink" title="3.2 虚拟内存管理"></a>3.2 虚拟内存管理</h2><p>虚拟内存管理与传统存储管理的不同在哪？</p>
+<p>什么是局部性原理？</p>
+<p>虚拟内存是怎样实现的？</p>
+<p>有哪些页面置换法？</p>
+<p>有哪些页面分配策略？</p>
+<p>抖动</p>
+<p>工作集</p>
+<hr>
+<h3 id="虚拟内存管理与传统存储管理的不同在哪？"><a href="#虚拟内存管理与传统存储管理的不同在哪？" class="headerlink" title="虚拟内存管理与传统存储管理的不同在哪？"></a>虚拟内存管理与传统存储管理的不同在哪？</h3><p>传统：作业必须一次性&#x3D;&#x3D;全部装入&#x3D;&#x3D;内存后，才能开始运行，作业装入内存后，&#x3D;&#x3D;一直驻留在内存中&#x3D;&#x3D;，任何部分不会被换出。</p>
+<p>虚拟：基于局部性原理，程序的一部分装入内存，一部分留在外存，&#x3D;&#x3D;需要的时候将外存内容调入内存&#x3D;&#x3D;，就好像产生了一个巨大的内存空间</p>
+<p>&#x3D;&#x3D;多次性（一次作业多次调入）、对换性（换进换出）、虚拟性（大于实际内存）&#x3D;&#x3D;</p>
+<h3 id="什么是局部性原理？"><a href="#什么是局部性原理？" class="headerlink" title="什么是局部性原理？"></a>什么是局部性原理？</h3><h4 id="时间局部性"><a href="#时间局部性" class="headerlink" title="时间局部性"></a>时间局部性</h4><p>一条指令执行后，不就之后指令可能被再次执行，数据被访问后，不久后数据可能再次被访问</p>
+<p>原因：程序中存在着大量的&#x3D;&#x3D;循环操作&#x3D;&#x3D;</p>
+<p>时间局部性通过将&#x3D;&#x3D;最近使用的指令&#x3D;&#x3D;和数据存储在&#x3D;&#x3D;高速缓冲存储器中&#x3D;&#x3D;</p>
+<h4 id="空间局部性"><a href="#空间局部性" class="headerlink" title="空间局部性"></a>空间局部性</h4><p>一旦程序访问了某个存储单元，不久之后附近的存储单元也将被访问</p>
+<p>原因：指令通常是&#x3D;&#x3D;顺序存放&#x3D;&#x3D;，顺序执行的，数据一般也是以向量、数组、表等形式簇聚存储的</p>
+<p>空间局部性使用较大的&#x3D;&#x3D;高速缓存&#x3D;&#x3D;，将预取机制继承到高速缓存控制逻辑中实现</p>
+<h3 id="虚拟内存是怎样实现的？"><a href="#虚拟内存是怎样实现的？" class="headerlink" title="虚拟内存是怎样实现的？"></a>虚拟内存是怎样实现的？</h3><p>请求&#x3D;&#x3D;分页&#x3D;&#x3D;存储管理、请求&#x3D;&#x3D;分段&#x3D;&#x3D;存储管理、&#x3D;&#x3D;请求段页式&#x3D;&#x3D;存储管理</p>
+<p>一定容量的内存和外存、页表机制（或者段表机制）、中断机制、地址变换机制</p>
+<h3 id="有哪些页面置换法？"><a href="#有哪些页面置换法？" class="headerlink" title="有哪些页面置换法？"></a>有哪些页面置换法？</h3><p>最佳置换算法（OPT）：选择永不使用或者&#x3D;&#x3D;最长时间内&#x3D;&#x3D;不再访问的页面进行淘汰，但是现实中是无法预知的</p>
+<p>先进先出页面置换算法（FIFO ）：优先淘汰&#x3D;&#x3D;最早进入&#x3D;&#x3D;的页面，与进程的实际运行规律不匹配</p>
+<p>最近最久未使用（LRU ）置换算法：选择&#x3D;&#x3D;最近最长时间&#x3D;&#x3D;没有被访问的页面进行淘汰，每个页面设置一个访问字段，用来标识上次被访问到现在经历的时间</p>
+<p>时钟（CLOCK）置换算法：当某页&#x3D;&#x3D;被访问时，其访问位置为1&#x3D;&#x3D;。当需要淘汰一个页面时，只需检查页的访问位。&#x3D;&#x3D;如果是0，就选择该页换出&#x3D;&#x3D;；&#x3D;&#x3D;如果是1，则将它置为0&#x3D;&#x3D;，暂不换出，继续检查下一个页面，若第一轮扫 描中所有页面都是1，则将这些页面的访问位依次置为0后，再进行第二轮扫描（第二轮扫描中一定会 有访问位为0的页面，因此简单的CLOCK 算法选择一个淘汰页面&#x3D;&#x3D;最多会经过两轮扫描&#x3D;&#x3D;）</p>
+<p>改进型CLOCK算法：使用位（访问位）的基础上增加&#x3D;&#x3D;修改位&#x3D;&#x3D;</p>
+<h3 id="有哪些页面分配策略？"><a href="#有哪些页面分配策略？" class="headerlink" title="有哪些页面分配策略？"></a>有哪些页面分配策略？</h3><p>固定分配局部置换</p>
+<p>可变分配全局置换</p>
+<p>可变分配局部置换</p>
+<h3 id="抖动"><a href="#抖动" class="headerlink" title="抖动"></a>抖动</h3><p>&#x3D;&#x3D;刚换出的页面又要换入内存&#x3D;&#x3D;</p>
+<h3 id="工作集"><a href="#工作集" class="headerlink" title="工作集"></a>工作集</h3><p>某段时间内，&#x3D;&#x3D;进程要访问的页面集合&#x3D;&#x3D;。</p>
+<h1 id="第四章-文件管理-1"><a href="#第四章-文件管理-1" class="headerlink" title="第四章 文件管理"></a>第四章 文件管理</h1><h2 id="4-1-文件管理"><a href="#4-1-文件管理" class="headerlink" title="4.1 文件管理"></a>4.1 文件管理</h2><p>文件相关概念</p>
+<p>文件逻辑结构</p>
+<p>目录结构</p>
+<p>文件共享</p>
+<p>文件保护</p>
+<p>文件系统的实现</p>
+<hr>
+<h3 id="文件相关概念"><a href="#文件相关概念" class="headerlink" title="文件相关概念"></a>文件相关概念</h3><p>数据项、记录、文件</p>
+<p>名称、标识符、类型、位置、大小、保护、时间</p>
+<p>创建文件、写、读、文件重定位（文件寻址）、删除文件、截断文件</p>
+<h3 id="文件逻辑结构"><a href="#文件逻辑结构" class="headerlink" title="文件逻辑结构"></a>文件逻辑结构</h3><p>无结构文件：流式文件，&#x3D;&#x3D;字符流&#x3D;&#x3D;组成</p>
+<p>有结构文件（记录式文件）：顺序文件（效率高、增删改查难）、索引文件（定长、变长）、索引顺序文件（分组）、直接文件或散列文件（函数转换决定地址）</p>
+<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><p>单级目录（不能重名）、两级目录结构（不能分类）、多级目录结构（树形）、无环图目录结构（同一节点有向边，共享）</p>
+<h3 id="文件共享"><a href="#文件共享" class="headerlink" title="文件共享"></a>文件共享</h3><p>基于索引节点的共享方式（&#x3D;&#x3D;硬&#x3D;&#x3D;链接）：直接指针指向文件，只要还有一个指针，文件（索引节点）就&#x3D;&#x3D;不能删除&#x3D;&#x3D;<br>利用符合链实现文件共享（&#x3D;&#x3D;软&#x3D;&#x3D;链接）：保存共享文件的路径（&#x3D;&#x3D;快捷方式&#x3D;&#x3D;），根据路径寻找文件。</p>
+<h3 id="文件保护"><a href="#文件保护" class="headerlink" title="文件保护"></a>文件保护</h3><p>口令保护：用户请求访问时需要提供相应的口令，直接存储在系统内部&#x3D;&#x3D;不安全&#x3D;&#x3D;</p>
+<p>加密保护：用户访问需要秘钥&#x3D;&#x3D;解密&#x3D;&#x3D;，加密和解密需要&#x3D;&#x3D;花费一定时间&#x3D;&#x3D;</p>
+<p>访问控制：&#x3D;&#x3D;规定每个用户名及其所允许的访问类型&#x3D;&#x3D;</p>
+<h2 id="4-2-文件系统的实现"><a href="#4-2-文件系统的实现" class="headerlink" title="4.2 文件系统的实现"></a>4.2 文件系统的实现</h2><h3 id="文件层结构"><a href="#文件层结构" class="headerlink" title="文件层结构"></a>文件层结构</h3><p>用户调用接口：文件系统&#x3D;&#x3D;为用户提供&#x3D;&#x3D;与文件及目录有关的&#x3D;&#x3D;调用&#x3D;&#x3D;</p>
+<p>文件目录系统：&#x3D;&#x3D;管理文件目录&#x3D;&#x3D;，管理活跃文件目录表，管理读写状态信息表，管理用户进程的打开文件表，管理与组织存储设备上的文件目录结构，调用下一级存取控制模块。</p>
+<p>存取控制验证：实现&#x3D;&#x3D;文件保护&#x3D;&#x3D;，将用户的访问请求与FCB中指示的访问控制权限进行比较，以确认访问的合法性</p>
+<p>逻辑文件系统管理文件信息缓冲区：逻辑文件系统与文件信息缓冲区的主要功能是，根据文件的逻辑结构将用户要读写的逻辑记录转换成文件&#x3D;&#x3D;逻辑结构内的相应块号&#x3D;&#x3D;</p>
+<p>物理文件系统:把逻辑记录所在的相对块号转换成实际的&#x3D;&#x3D;物理地址&#x3D;&#x3D;</p>
+<p>辅助分配模块：管理辅存空间，负责&#x3D;&#x3D;分配&#x3D;&#x3D;辅存空闲空间和&#x3D;&#x3D;回收&#x3D;&#x3D;辅存空间</p>
+<p>设备管理程序模块：&#x3D;&#x3D;分配设备&#x3D;&#x3D;，分配设备读写用缓冲区，磁盘调度，启动设备，处理设备中断，释放设备读写缓冲区，&#x3D;&#x3D;释放设备&#x3D;&#x3D;</p>
+<h3 id="目录实现"><a href="#目录实现" class="headerlink" title="目录实现"></a>目录实现</h3><p>线性表、哈希表</p>
+<h3 id="文件分配方式"><a href="#文件分配方式" class="headerlink" title="文件分配方式"></a>文件分配方式</h3><p>连续分配：每个文件在磁盘上占有一组&#x3D;&#x3D;连续的块&#x3D;&#x3D;，磁盘地址定义了磁盘上的一个线性排序。访存1次</p>
+<p>链接分配：磁盘块分布在磁盘的任何地方，除最后一个盘块，其他盘块都有指向&#x3D;&#x3D;下一个盘块的指针&#x3D;&#x3D;</p>
+<p>索引分配：索引分配解决了链接分配不能直接访问的问题，支持&#x3D;&#x3D;随机访问&#x3D;&#x3D;</p>
+<h3 id="文件存储空间管理"><a href="#文件存储空间管理" class="headerlink" title="文件存储空间管理"></a>文件存储空间管理</h3><p>文件存储设备管理的实质是对空闲块的组织和管理，包括空闲块的组织、分配与回收等问题</p>
+<h4 id="空闲表法"><a href="#空闲表法" class="headerlink" title="空闲表法"></a>空闲表法</h4><p>属于连续分配方式，系统为空闲区建立一张空闲盘块表，每个空闲区第一个盘块号，该区的空闲盘块数等信息。</p>
+<h4 id="空闲链表法"><a href="#空闲链表法" class="headerlink" title="空闲链表法"></a>空闲链表法</h4><p>将所有的空闲盘区拉成一条空闲链，根据构成链所有的基本元素不同，可以把链表分成两种形式</p>
+<p><img src="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%B0%8F%E6%80%BB%E7%BB%93-%E7%8E%8B%E9%81%93/image-20210818095638474.png" srcset="/img/loading.gif" lazyload alt="image-20210818095638474"></p>
+<p>空闲盘块链：将磁盘上所有空闲空间以盘块为单位拉成一条链</p>
+<p>空闲盘区链：将磁盘上所有空闲盘区拉成一条链</p>
+<h4 id="位示图法"><a href="#位示图法" class="headerlink" title="位示图法"></a>位示图法</h4><p>采用二进制的一位来表示一个盘块的使用情况，磁盘上所有的盘块都有一个二进制位与之对应</p>
+<h4 id="成组链接法"><a href="#成组链接法" class="headerlink" title="成组链接法"></a>成组链接法</h4><p>UNIX使用，结合了空闲表和空闲链表法克服了表太大的缺点</p>
+<p>把顺序的n个空闲扇区地址保存在第一个空闲扇区内，其后一个空闲扇区内则保存另一顺序空闲扇区的地址</p>
+<h2 id="4-3-磁盘管理"><a href="#4-3-磁盘管理" class="headerlink" title="4.3 磁盘管理"></a>4.3 磁盘管理</h2><h3 id="磁盘结构"><a href="#磁盘结构" class="headerlink" title="磁盘结构"></a>磁盘结构</h3><p>磁盘、磁道（同心圆）、扇区（数据量相同）、盘面、柱面</p>
+<p>磁头是否可移动</p>
+<p>固定头磁盘∶磁头相对于盘片的径向方向固定</p>
+<p>活动头磁盘：每个磁道一个磁头，磁头可以移动</p>
+<p>盘片是否可更换</p>
+<p>固定盘磁盘∶磁头臂可以来回伸缩定位磁道，磁盘永久固定在磁盘驱动器内</p>
+<p>可换盘磁盘∶可以移动和替换</p>
+<h3 id="磁盘调度算法"><a href="#磁盘调度算法" class="headerlink" title="磁盘调度算法"></a>磁盘调度算法</h3><h4 id="读写时间组成"><a href="#读写时间组成" class="headerlink" title="读写时间组成"></a>读写时间组成</h4><p>&#x3D;&#x3D;寻找时间（寻道时间）TS&#x3D;&#x3D;：在读&#x2F;写数据前，将磁头移动到指定磁道所花的时间。</p>
+<p>①启动磁头臂是需要时间的。假设耗时为s；</p>
+<p>②移动磁头也是需要时间的。假设磁头匀速移动，每跨越一个磁道耗时为m，总共需要跨越n条磁道。则：寻道时间TS &#x3D; s + m*n</p>
+<p>&#x3D;&#x3D;延迟时间TR&#x3D;&#x3D;：通过旋转磁盘，使磁头定位到目标扇区所需要的时间。</p>
+<p>设磁盘转速为r（单位：转&#x2F;秒，或转&#x2F;分），则平均所需的延迟时间TR &#x3D; （1&#x2F;2）*（1&#x2F;r） &#x3D; 1&#x2F;2r</p>
+<p>&#x3D;&#x3D;传输时间Tt&#x3D;&#x3D;：从磁盘读出或向磁盘写入数据所经历的时间，假设磁盘转速为r，此次读&#x2F;写的字节数为b，每个磁道上的字节数为N。则：传输时间Tt &#x3D; （1&#x2F;r） * （b&#x2F;N） &#x3D; b&#x2F;（rN）</p>
+<h4 id="先来先服务（FCFS）"><a href="#先来先服务（FCFS）" class="headerlink" title="先来先服务（FCFS）"></a>先来先服务（FCFS）</h4><p>按照进程请求访问磁盘的先后顺序进行调度</p>
+<p>优点：公平实现简单</p>
+<p>缺点：适用于少量进程访问，如果进程过多算法更倾向于&#x3D;&#x3D;随机调度&#x3D;&#x3D;</p>
+<h4 id="最短寻找时间优先（SSTF）"><a href="#最短寻找时间优先（SSTF）" class="headerlink" title="最短寻找时间优先（SSTF）"></a>最短寻找时间优先（SSTF）</h4><p>选择调度处理的磁道是与当前磁头所在磁道距离最近的磁道</p>
+<p>优点：性能强于先来先服务算法</p>
+<p>缺点：容易产生&#x3D;&#x3D;饥饿&#x3D;&#x3D;现象</p>
+<h4 id="扫描算法（SCAN）"><a href="#扫描算法（SCAN）" class="headerlink" title="扫描算法（SCAN）"></a>扫描算法（SCAN）</h4><p>在磁头当前&#x3D;&#x3D;移动方向上&#x3D;&#x3D;选择与当前磁头所在的磁道距离最近的请求作为下一次服务对象，只有磁头移动到&#x3D;&#x3D;最外侧磁道的时候才能往内移动&#x3D;&#x3D;，移动到最内侧磁道的时候才能往外移动，因此也叫电梯算法。</p>
+<p>优点：寻道性能好，可以&#x3D;&#x3D;避免饥饿&#x3D;&#x3D;现象</p>
+<p>缺点：对最近扫描过的区域不公平，访问局部性方面不如FCFS和SSTF好</p>
+<h4 id="循环扫描算法（c-SCAN）"><a href="#循环扫描算法（c-SCAN）" class="headerlink" title="循环扫描算法（c-SCAN）"></a>循环扫描算法（c-SCAN）</h4><p>磁头单向移动，回返时直接回到起始端，而不服务任何请求</p>
+<h4 id="LOOK与C-LOOK"><a href="#LOOK与C-LOOK" class="headerlink" title="LOOK与C-LOOK"></a>LOOK与C-LOOK</h4><p>在SCAN与C-SCAN算法的基础上规定了查看移动方向上是否有请求，如果没有就不会继续向前移动，而是直接改变方向（LOOK）或者直接回到第一个请求处（ C-LOOK）</p>
+<h3 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h3><h4 id="磁盘初始化"><a href="#磁盘初始化" class="headerlink" title="磁盘初始化"></a>磁盘初始化</h4><p>低级格式化：磁盘分扇区，为每个扇区采用特别的数据结构（头、数据区域、尾部组成），头部含有一些磁盘控制器所使用的信息</p>
+<p>进一步格式化处理∶磁盘分区，对物理分区进行&#x3D;&#x3D;逻辑格式化&#x3D;&#x3D;（创建文件管理系统），包括空闲和已分配的空间及一个初始为&#x3D;&#x3D;空的目录&#x3D;&#x3D;</p>
+<h4 id="引导块"><a href="#引导块" class="headerlink" title="引导块"></a>引导块</h4><p>计算机启动时运行&#x3D;&#x3D;自举程序&#x3D;&#x3D;，初始化CPU寄存器、设备控制器和内存等，然后启动操作系统</p>
+<p>组局程序通常保存在ROM中，在ROM中保留很小的自举块，完整的自举程序保存在启动块上拥有启动分区的磁盘称为启动&#x3D;&#x3D;磁盘或系统磁盘&#x3D;&#x3D;</p>
+<h4 id="坏块"><a href="#坏块" class="headerlink" title="坏块"></a>坏块</h4><p>无法使用的扇区</p>
+<p>对于简单的磁盘，可以在逻辑格式化时（建立文件系统时）对整个磁盘进行坏块检查，&#x3D;&#x3D;标明哪些扇区是坏扇区&#x3D;&#x3D;，比如：在FAT表上标明</p>
+<p>处理方式</p>
+<p>简单磁盘：&#x3D;&#x3D;手动处理&#x3D;&#x3D;，对坏块进行标记，程序不会使用</p>
+<p>复杂磁盘：控制器维护一个&#x3D;&#x3D;磁盘坏块链表&#x3D;&#x3D;，同时将一些块作为&#x3D;&#x3D;备用&#x3D;&#x3D;，用于替代坏块（扇区备用）</p>
+<h1 id="第五章-输入输出管理-IO"><a href="#第五章-输入输出管理-IO" class="headerlink" title="第五章 输入输出管理(IO)"></a>第五章 输入输出管理(IO)</h1><p>I&#x2F;O控制器的主要功能是什么？</p>
+<p>I&#x2F;O有哪些控制方式？</p>
+<p>I&#x2F;O有哪些层次结构？</p>
+<p>核心子系统包含哪些？</p>
+<p>假脱机</p>
+<p>设备的分配与回收</p>
+<p>缓冲区管理</p>
+<hr>
+<h2 id="I-x2F-O控制器的主要功能是什么？"><a href="#I-x2F-O控制器的主要功能是什么？" class="headerlink" title="I&#x2F;O控制器的主要功能是什么？"></a>I&#x2F;O控制器的主要功能是什么？</h2><p>接收和识别CPU发出的命令（要有控制寄存器）、向CPU报告设备的状态（状态寄存器）、数据交换（数据寄存器）、地址识别（由I&#x2F;O逻辑实现）</p>
+<h2 id="I-x2F-O有哪些控制方式？"><a href="#I-x2F-O有哪些控制方式？" class="headerlink" title="I&#x2F;O有哪些控制方式？"></a>I&#x2F;O有哪些控制方式？</h2><h3 id="程序直接控制方式"><a href="#程序直接控制方式" class="headerlink" title="程序直接控制方式"></a>程序直接控制方式</h3><p>计算机从外部设备读取数据到存储器，每次读一个字的数据，对读入的每个字，CPU都要对外没状态进行&#x3D;&#x3D;循环检查&#x3D;&#x3D;，知道确定该字已经在I设备控制器的数据寄存器中。</p>
+<p>读写单位：&#x3D;&#x3D;字&#x3D;&#x3D;</p>
+<p>优点：容易实现，操作简单</p>
+<p>缺陷∶CPU高速性和IO设备的低速性的矛盾（降低了CPU的利用率），CPU和IO设备只能串行工作</p>
+<h3 id="中断驱动方式"><a href="#中断驱动方式" class="headerlink" title="中断驱动方式"></a>中断驱动方式</h3><p>允许IO设备主动打断CPU的运行并请求服务，进而&#x3D;&#x3D;解放CPU&#x3D;&#x3D;，使其向IO控制器发送读命令后可以继续做其他有用的工作</p>
+<p>读写单位∶&#x3D;&#x3D;字&#x3D;&#x3D;</p>
+<p>优点∶比程序直接控制方式有效</p>
+<p>缺点：数据的传输必须要经过CPU，仍然后消耗CPU的时间</p>
+<h3 id="DMA方式"><a href="#DMA方式" class="headerlink" title="DMA方式"></a>DMA方式</h3><p>在IO设备和内存之间开辟直接的数据交换通路，&#x3D;&#x3D;彻底解放CPU&#x3D;&#x3D;</p>
+<p>读写单位：&#x3D;&#x3D;数据块&#x3D;&#x3D;</p>
+<p>设备&#x3D;&#x3D;直接送入内存&#x3D;&#x3D;</p>
+<p>只有当一个或多个数据块开始和结束的时候，CPU才会进行干预</p>
+<p>命令&#x2F;状态寄存器（CR）：用于接收CPU发送的IO命令和有关控制信息或者设备状态</p>
+<p>内存地址寄存器（MAR）：数据直接在设备与内存之间交互</p>
+<p>数据寄存器（DR）：用于暂存从设备到内存或者从内存到设备的数据</p>
+<p>数据计数器（DC） ：存放本次要传送的字（节）数</p>
+<h3 id="通道控制方式"><a href="#通道控制方式" class="headerlink" title="通道控制方式"></a>通道控制方式</h3><p>设置一个专门负责输入&#x2F;输出的处理机（DMA方式的发展），实现对一组数块的读写以及相关控制和管理为单位干预</p>
+<p>读写单位：&#x3D;&#x3D;一组块&#x3D;&#x3D;</p>
+<p>优点：有效的提高了系统资源利用率</p>
+<p>缺点：实现较为复杂</p>
+<h3 id="DMA与通道的区别"><a href="#DMA与通道的区别" class="headerlink" title="DMA与通道的区别"></a>DMA与通道的区别</h3><p>DMA需要&#x3D;&#x3D;CPU来控制&#x3D;&#x3D;传输的数据块大小、传输的内存位置、而通道方式中这些信息是由&#x3D;&#x3D;通道控制&#x3D;&#x3D;的</p>
+<p>DMA控制器对应一台设备与内存传递数据，通道可以控制多态设备与内存的数据交换</p>
+<h2 id="I-x2F-O有哪些层次结构？"><a href="#I-x2F-O有哪些层次结构？" class="headerlink" title="I&#x2F;O有哪些层次结构？"></a>I&#x2F;O有哪些层次结构？</h2><h3 id="用户层IO软件"><a href="#用户层IO软件" class="headerlink" title="用户层IO软件"></a>用户层IO软件</h3><p>&#x3D;&#x3D;实现与用户交互的接口&#x3D;&#x3D;，用户可以直接调用在用户层提供的，与IO操作有关的&#x3D;&#x3D;库函数&#x3D;&#x3D;，对设备进行操作</p>
+<h3 id="设备独立性软件"><a href="#设备独立性软件" class="headerlink" title="设备独立性软件"></a>设备独立性软件</h3><p>用于实现用户程序与设备驱动器的&#x3D;&#x3D;统一接口、设备命令、设备保护、差错控制及设备分配与释放&#x3D;&#x3D;，同时为设备管理与数据传送提供必要的存储空间</p>
+<p>设备独立性也称为设备&#x3D;&#x3D;无关性&#x3D;&#x3D;，使得应用程序独立于具体使用的物理设备（使用逻辑设备名）</p>
+<p>使用逻辑设备名的好处：增加设备分配的灵活性；易于实现IO重定向</p>
+<p>主要功能</p>
+<p>执行所有设备的公有操作（设备的分配与回收，&#x3D;&#x3D;逻辑设备名映射为物理设备名&#x3D;&#x3D;，对设备进行保护，进制用户直接访问设备），屏蔽设备之间数据交换的速度差异等</p>
+<p>向用户层（文件层）提供统一接口∶无论哪种设备，他们向用户提供的&#x3D;&#x3D;接口都是相同的&#x3D;&#x3D;</p>
+<h3 id="设备驱动程序"><a href="#设备驱动程序" class="headerlink" title="设备驱动程序"></a>设备驱动程序</h3><p>与硬件直接相关，负责实现系统&#x3D;&#x3D;对设备发出的操作命令&#x3D;&#x3D;，驱动IO设备工作的驱动程序</p>
+<h3 id="中断处理程序"><a href="#中断处理程序" class="headerlink" title="中断处理程序"></a>中断处理程序</h3><p>用于保存被中断进程的CPU环境，转入相应的中断处理程序进行处理，处理完并恢复被中断进程的现场后，返回被中断进程</p>
+<h3 id="硬件设备"><a href="#硬件设备" class="headerlink" title="硬件设备"></a>硬件设备</h3><p>IO设备通常包括一个机械部件和一个电子部件</p>
+<h2 id="核心子系统包含哪些？"><a href="#核心子系统包含哪些？" class="headerlink" title="核心子系统包含哪些？"></a>核心子系统包含哪些？</h2><p>设备独立性软件、设备驱动程序、中断处理程序</p>
+<p>主要提供&#x3D;&#x3D;IO调度&#x3D;&#x3D;，缓冲与高速缓存，设备分配与回收，假脱机，设备保护和差错处理</p>
+<h2 id="假脱机"><a href="#假脱机" class="headerlink" title="假脱机"></a>假脱机</h2><p>输入进程∶模拟脱机输入时的外围控制机，将用户要求的数据从输入机&#x3D;&#x3D;通过输入缓冲区送到输入并中&#x3D;&#x3D;，当CPU需要数据，直接将&#x3D;&#x3D;输出井中的数据送入内存&#x3D;&#x3D;</p>
+<p>输出进程：模拟脱机输出时的外围控制机，把用户要求输出的数据先从内存送到输出井中，待输出设备空闲时，再将输出井中的数据经过输出缓冲区送到输出设备</p>
+<p>通俗一点就是，如果设备被占用，我们就先把数据暂存一下，等到设备空闲了就把这些数据输送到设备中</p>
+<h2 id="设备的分配与回收"><a href="#设备的分配与回收" class="headerlink" title="设备的分配与回收"></a>设备的分配与回收</h2><p>―根据用户IO请求分配设备，原则：充分发挥设备的使用效率，避免进程死锁</p>
+<h2 id="缓冲区管理"><a href="#缓冲区管理" class="headerlink" title="缓冲区管理"></a>缓冲区管理</h2><p>缓和CPU与IO之间的速度差异矛盾</p>
+<p>单缓冲、双缓冲、循环缓冲、缓冲池</p>
+<h3 id="高速缓存与缓冲区对比"><a href="#高速缓存与缓冲区对比" class="headerlink" title="高速缓存与缓冲区对比"></a>高速缓存与缓冲区对比</h3><h4 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h4><p>都介于高速设备和低速设备之间</p>
+<h4 id="不同"><a href="#不同" class="headerlink" title="不同"></a>不同</h4><ul>
+<li><p>存放数据</p>
+<p>高速缓存：存放的是低速设备上的某些数据的&#x3D;&#x3D;复制数据&#x3D;&#x3D;</p>
+<p>缓冲区：存放的是低速设备&#x3D;&#x3D;传递&#x3D;&#x3D;给高速设备的数据，这些数据在低速设备上&#x3D;&#x3D;不一定有备份&#x3D;&#x3D;，这些数据再从缓冲区传送到高速设备</p>
+</li>
+<li><p>目的</p>
+<p>高速缓存∶高速缓存存放的是高速设备&#x3D;&#x3D;经常要访问&#x3D;&#x3D;的数据，如高速缓存中数据不在，高速设备就要访问低速设备</p>
+<p>高速设备和低速设备的通信都要经过&#x3D;&#x3D;缓冲区&#x3D;&#x3D;，&#x3D;&#x3D;高速设备永远不会去直接访问低速设备&#x3D;&#x3D;</p>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/operating-system/" class="category-chain-item">operating_system</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/operating-system/">#operating_system</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>操作系统小总结-王道</div>
+      <div>https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/operating_system/操作系统小总结-王道/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 17, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/operating_system/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%8E%8B%E9%81%93/" title="操作系统-王道">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">操作系统-王道</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/operating_system/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98&amp;%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" title="操作系统常见面试题&amp;知识点总结">
+                        <span class="hidden-mobile">操作系统常见面试题&amp;知识点总结</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

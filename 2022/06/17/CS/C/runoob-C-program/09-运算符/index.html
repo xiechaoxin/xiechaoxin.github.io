@@ -1,0 +1,1058 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="C 运算符运算符是一种告诉编译器执行特定的数学或逻辑操作的符号。C 语言内置了丰富的运算符，并提供了以下类型的运算符：  算术运算符 关系运算符 逻辑运算符 位运算符 赋值运算符 杂项运算符  本章将逐一介绍算术运算符、关系运算符、逻辑运算符、位运算符、赋值运算符和其他运算符。 算术运算符下表显示了 C 语言支持的所有算术运算符。假设变量 A 的值为 10，变量 B 的值为 20，则：    运算">
+<meta property="og:type" content="article">
+<meta property="og:title" content="09-运算符">
+<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/C/runoob-C-program/09-%E8%BF%90%E7%AE%97%E7%AC%A6/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="C 运算符运算符是一种告诉编译器执行特定的数学或逻辑操作的符号。C 语言内置了丰富的运算符，并提供了以下类型的运算符：  算术运算符 关系运算符 逻辑运算符 位运算符 赋值运算符 杂项运算符  本章将逐一介绍算术运算符、关系运算符、逻辑运算符、位运算符、赋值运算符和其他运算符。 算术运算符下表显示了 C 语言支持的所有算术运算符。假设变量 A 的值为 10，变量 B 的值为 20，则：    运算">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
+<meta property="article:modified_time" content="2022-06-24T10:26:10.397Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="C">
+<meta property="article:tag" content="runoob-C-program">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>09-运算符 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xiechaoxin.github.io","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong> </strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">09-运算符</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-06-17 17:59" pubdate>
+          June 17, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.3k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          69 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">09-运算符</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="C-运算符"><a href="#C-运算符" class="headerlink" title="C 运算符"></a>C 运算符</h1><p>运算符是一种告诉编译器执行特定的数学或逻辑操作的符号。C 语言内置了丰富的运算符，并提供了以下类型的运算符：</p>
+<ul>
+<li>算术运算符</li>
+<li>关系运算符</li>
+<li>逻辑运算符</li>
+<li>位运算符</li>
+<li>赋值运算符</li>
+<li>杂项运算符</li>
+</ul>
+<p>本章将逐一介绍算术运算符、关系运算符、逻辑运算符、位运算符、赋值运算符和其他运算符。</p>
+<h2 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h2><p>下表显示了 C 语言支持的所有算术运算符。假设变量 <strong>A</strong> 的值为 10，变量 <strong>B</strong> 的值为 20，则：</p>
+<table>
+<thead>
+<tr>
+<th align="left">运算符</th>
+<th align="left">描述</th>
+<th align="left">实例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">+</td>
+<td align="left">把两个操作数相加</td>
+<td align="left">A + B 将得到 30</td>
+</tr>
+<tr>
+<td align="left">-</td>
+<td align="left">从第一个操作数中减去第二个操作数</td>
+<td align="left">A - B 将得到 -10</td>
+</tr>
+<tr>
+<td align="left">*</td>
+<td align="left">把两个操作数相乘</td>
+<td align="left">A * B 将得到 200</td>
+</tr>
+<tr>
+<td align="left">&#x2F;</td>
+<td align="left">分子除以分母</td>
+<td align="left">B &#x2F; A 将得到 2</td>
+</tr>
+<tr>
+<td align="left">%</td>
+<td align="left">取模运算符，整除后的余数</td>
+<td align="left">B % A 将得到 0</td>
+</tr>
+<tr>
+<td align="left">++</td>
+<td align="left">自增运算符，整数值增加 1</td>
+<td align="left">A++ 将得到 11</td>
+</tr>
+<tr>
+<td align="left">–</td>
+<td align="left">自减运算符，整数值减少 1</td>
+<td align="left">A– 将得到 9</td>
+</tr>
+</tbody></table>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>请看下面的实例，了解 C 语言中所有可用的算术运算符：</p>
+<h2 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br> <br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>   <span class="hljs-type">int</span> a = <span class="hljs-number">21</span>;<br>   <span class="hljs-type">int</span> b = <span class="hljs-number">10</span>;<br>   <span class="hljs-type">int</span> c ;<br> <br>   c = a + b;<br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 1 - c 的值是 %d\n&quot;</span>, c );<br>   c = a - b;<br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 2 - c 的值是 %d\n&quot;</span>, c );<br>   c = a * b;<br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 3 - c 的值是 %d\n&quot;</span>, c );<br>   c = a / b;<br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 4 - c 的值是 %d\n&quot;</span>, c );<br>   c = a % b;<br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 5 - c 的值是 %d\n&quot;</span>, c );<br>   c = a++;  <span class="hljs-comment">// 赋值后再加 1 ，c 为 21，a 为 22</span><br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 6 - c 的值是 %d\n&quot;</span>, c );<br>   c = a--;  <span class="hljs-comment">// 赋值后再减 1 ，c 为 22 ，a 为 21</span><br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 7 - c 的值是 %d\n&quot;</span>, c );<br> <br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>当上面的代码被编译和执行时，它会产生下列结果：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Line</span> <span class="hljs-number">1</span> - c 的值是 <span class="hljs-number">31</span><br><span class="hljs-attribute">Line</span> <span class="hljs-number">2</span> - c 的值是 <span class="hljs-number">11</span><br><span class="hljs-attribute">Line</span> <span class="hljs-number">3</span> - c 的值是 <span class="hljs-number">210</span><br><span class="hljs-attribute">Line</span> <span class="hljs-number">4</span> - c 的值是 <span class="hljs-number">2</span><br><span class="hljs-attribute">Line</span> <span class="hljs-number">5</span> - c 的值是 <span class="hljs-number">1</span><br><span class="hljs-attribute">Line</span> <span class="hljs-number">6</span> - c 的值是 <span class="hljs-number">21</span><br><span class="hljs-attribute">Line</span> <span class="hljs-number">7</span> - c 的值是 <span class="hljs-number">22</span><br></code></pre></td></tr></table></figure>
+
+<p>以下实例演示了 a++ 与 ++a 的区别：</p>
+<h2 id="实例-2"><a href="#实例-2" class="headerlink" title="实例"></a>实例</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br> <br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>   <span class="hljs-type">int</span> c;<br>   <span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;<br>   c = a++; <br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;先赋值后运算：\n&quot;</span>);<br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 1 - c 的值是 %d\n&quot;</span>, c );<br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 2 - a 的值是 %d\n&quot;</span>, a );<br>   a = <span class="hljs-number">10</span>;<br>   c = a--; <br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 3 - c 的值是 %d\n&quot;</span>, c );<br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 4 - a 的值是 %d\n&quot;</span>, a );<br> <br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;先运算后赋值：\n&quot;</span>);<br>   a = <span class="hljs-number">10</span>;<br>   c = ++a; <br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 5 - c 的值是 %d\n&quot;</span>, c );<br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 6 - a 的值是 %d\n&quot;</span>, a );<br>   a = <span class="hljs-number">10</span>;<br>   c = --a; <br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 7 - c 的值是 %d\n&quot;</span>, c );<br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 8 - a 的值是 %d\n&quot;</span>, a );<br> <br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>以上程序执行输出结果为：</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs mathematica">先赋值后运算：<br><span class="hljs-built_in">Line</span> <span class="hljs-number">1</span> <span class="hljs-operator">-</span> <span class="hljs-variable">c</span> 的值是 <span class="hljs-number">10</span><br><span class="hljs-built_in">Line</span> <span class="hljs-number">2</span> <span class="hljs-operator">-</span> <span class="hljs-variable">a</span> 的值是 <span class="hljs-number">11</span><br><span class="hljs-built_in">Line</span> <span class="hljs-number">3</span> <span class="hljs-operator">-</span> <span class="hljs-variable">c</span> 的值是 <span class="hljs-number">10</span><br><span class="hljs-built_in">Line</span> <span class="hljs-number">4</span> <span class="hljs-operator">-</span> <span class="hljs-variable">a</span> 的值是 <span class="hljs-number">9</span><br>先运算后赋值：<br><span class="hljs-built_in">Line</span> <span class="hljs-number">5</span> <span class="hljs-operator">-</span> <span class="hljs-variable">c</span> 的值是 <span class="hljs-number">11</span><br><span class="hljs-built_in">Line</span> <span class="hljs-number">6</span> <span class="hljs-operator">-</span> <span class="hljs-variable">a</span> 的值是 <span class="hljs-number">11</span><br><span class="hljs-built_in">Line</span> <span class="hljs-number">7</span> <span class="hljs-operator">-</span> <span class="hljs-variable">c</span> 的值是 <span class="hljs-number">9</span><br><span class="hljs-built_in">Line</span> <span class="hljs-number">8</span> <span class="hljs-operator">-</span> <span class="hljs-variable">a</span> 的值是 <span class="hljs-number">9</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h2><p>下表显示了 C 语言支持的所有关系运算符。假设变量 <strong>A</strong> 的值为 10，变量 <strong>B</strong> 的值为 20，则：</p>
+<table>
+<thead>
+<tr>
+<th align="left">运算符</th>
+<th align="left">描述</th>
+<th align="left">实例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">&#x3D;&#x3D;</td>
+<td align="left">检查两个操作数的值是否相等，如果相等则条件为真。</td>
+<td align="left">(A &#x3D;&#x3D; B) 为假。</td>
+</tr>
+<tr>
+<td align="left">!&#x3D;</td>
+<td align="left">检查两个操作数的值是否相等，如果不相等则条件为真。</td>
+<td align="left">(A !&#x3D; B) 为真。</td>
+</tr>
+<tr>
+<td align="left">&gt;</td>
+<td align="left">检查左操作数的值是否大于右操作数的值，如果是则条件为真。</td>
+<td align="left">(A &gt; B) 为假。</td>
+</tr>
+<tr>
+<td align="left">&lt;</td>
+<td align="left">检查左操作数的值是否小于右操作数的值，如果是则条件为真。</td>
+<td align="left">(A &lt; B) 为真。</td>
+</tr>
+<tr>
+<td align="left">&gt;&#x3D;</td>
+<td align="left">检查左操作数的值是否大于或等于右操作数的值，如果是则条件为真。</td>
+<td align="left">(A &gt;&#x3D; B) 为假。</td>
+</tr>
+<tr>
+<td align="left">&lt;&#x3D;</td>
+<td align="left">检查左操作数的值是否小于或等于右操作数的值，如果是则条件为真。</td>
+<td align="left">(A &lt;&#x3D; B) 为真。</td>
+</tr>
+</tbody></table>
+<h3 id="实例-3"><a href="#实例-3" class="headerlink" title="实例"></a>实例</h3><p>请看下面的实例，了解 C 语言中所有可用的关系运算符：</p>
+<h2 id="实例-4"><a href="#实例-4" class="headerlink" title="实例"></a>实例</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br> <br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>   <span class="hljs-type">int</span> a = <span class="hljs-number">21</span>;<br>   <span class="hljs-type">int</span> b = <span class="hljs-number">10</span>;<br>   <span class="hljs-type">int</span> c ;<br> <br>   <span class="hljs-keyword">if</span>( a == b )<br>   &#123;<br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 1 - a 等于 b\n&quot;</span> );<br>   &#125;<br>   <span class="hljs-keyword">else</span><br>   &#123;<br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 1 - a 不等于 b\n&quot;</span> );<br>   &#125;<br>   <span class="hljs-keyword">if</span> ( a &lt; b )<br>   &#123;<br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 2 - a 小于 b\n&quot;</span> );<br>   &#125;<br>   <span class="hljs-keyword">else</span><br>   &#123;<br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 2 - a 不小于 b\n&quot;</span> );<br>   &#125;<br>   <span class="hljs-keyword">if</span> ( a &gt; b )<br>   &#123;<br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 3 - a 大于 b\n&quot;</span> );<br>   &#125;<br>   <span class="hljs-keyword">else</span><br>   &#123;<br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 3 - a 不大于 b\n&quot;</span> );<br>   &#125;<br>   <span class="hljs-comment">/* 改变 a 和 b 的值 */</span><br>   a = <span class="hljs-number">5</span>;<br>   b = <span class="hljs-number">20</span>;<br>   <span class="hljs-keyword">if</span> ( a &lt;= b )<br>   &#123;<br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 4 - a 小于或等于 b\n&quot;</span> );<br>   &#125;<br>   <span class="hljs-keyword">if</span> ( b &gt;= a )<br>   &#123;<br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 5 - b 大于或等于 a\n&quot;</span> );<br>   &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>当上面的代码被编译和执行时，它会产生下列结果：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css">Line <span class="hljs-number">1</span> - <span class="hljs-selector-tag">a</span> 不等于 <span class="hljs-selector-tag">b</span><br>Line <span class="hljs-number">2</span> - <span class="hljs-selector-tag">a</span> 不小于 <span class="hljs-selector-tag">b</span><br>Line <span class="hljs-number">3</span> - <span class="hljs-selector-tag">a</span> 大于 <span class="hljs-selector-tag">b</span><br>Line <span class="hljs-number">4</span> - <span class="hljs-selector-tag">a</span> 小于或等于 <span class="hljs-selector-tag">b</span><br>Line <span class="hljs-number">5</span> - <span class="hljs-selector-tag">b</span> 大于或等于 <span class="hljs-selector-tag">a</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h2><p>下表显示了 C 语言支持的所有关系逻辑运算符。假设变量 <strong>A</strong> 的值为 1，变量 <strong>B</strong> 的值为 0，则：</p>
+<table>
+<thead>
+<tr>
+<th align="left">运算符</th>
+<th align="left">描述</th>
+<th align="left">实例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">&amp;&amp;</td>
+<td align="left">称为逻辑与运算符。如果两个操作数都非零，则条件为真。</td>
+<td align="left">(A &amp;&amp; B) 为假。</td>
+</tr>
+<tr>
+<td align="left">||</td>
+<td align="left">称为逻辑或运算符。如果两个操作数中有任意一个非零，则条件为真。</td>
+<td align="left">(A || B) 为真。</td>
+</tr>
+<tr>
+<td align="left">!</td>
+<td align="left">称为逻辑非运算符。用来逆转操作数的逻辑状态。如果条件为真则逻辑非运算符将使其为假。</td>
+<td align="left">!(A &amp;&amp; B) 为真。</td>
+</tr>
+</tbody></table>
+<h3 id="实例-5"><a href="#实例-5" class="headerlink" title="实例"></a>实例</h3><p>请看下面的实例，了解 C 语言中所有可用的逻辑运算符：</p>
+<h2 id="实例-6"><a href="#实例-6" class="headerlink" title="实例"></a>实例</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br> <br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>   <span class="hljs-type">int</span> a = <span class="hljs-number">5</span>;<br>   <span class="hljs-type">int</span> b = <span class="hljs-number">20</span>;<br>   <span class="hljs-type">int</span> c ;<br> <br>   <span class="hljs-keyword">if</span> ( a &amp;&amp; b )<br>   &#123;<br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 1 - 条件为真\n&quot;</span> );<br>   &#125;<br>   <span class="hljs-keyword">if</span> ( a || b )<br>   &#123;<br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 2 - 条件为真\n&quot;</span> );<br>   &#125;<br>   <span class="hljs-comment">/* 改变 a 和 b 的值 */</span><br>   a = <span class="hljs-number">0</span>;<br>   b = <span class="hljs-number">10</span>;<br>   <span class="hljs-keyword">if</span> ( a &amp;&amp; b )<br>   &#123;<br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 3 - 条件为真\n&quot;</span> );<br>   &#125;<br>   <span class="hljs-keyword">else</span><br>   &#123;<br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 3 - 条件为假\n&quot;</span> );<br>   &#125;<br>   <span class="hljs-keyword">if</span> ( !(a &amp;&amp; b) )<br>   &#123;<br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 4 - 条件为真\n&quot;</span> );<br>   &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>当上面的代码被编译和执行时，它会产生下列结果：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Line</span> <span class="hljs-number">1</span> - 条件为真<br><span class="hljs-attribute">Line</span> <span class="hljs-number">2</span> - 条件为真<br><span class="hljs-attribute">Line</span> <span class="hljs-number">3</span> - 条件为假<br><span class="hljs-attribute">Line</span> <span class="hljs-number">4</span> - 条件为真<br></code></pre></td></tr></table></figure>
+
+<h2 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h2><p>位运算符作用于位，并逐位执行操作。&amp;、 | 和 ^ 的真值表如下所示：</p>
+<table>
+<thead>
+<tr>
+<th align="left">p</th>
+<th align="left">q</th>
+<th align="left">p &amp; q</th>
+<th align="left">p | q</th>
+<th align="left">p ^ q</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+</tbody></table>
+<p>假设如果 A &#x3D; 60，且 B &#x3D; 13，现在以二进制格式表示，它们如下所示：</p>
+<p>A &#x3D; 0011 1100</p>
+<p>B &#x3D; 0000 1101</p>
+<p>-—————-</p>
+<p>A&amp;B &#x3D; 0000 1100</p>
+<p>A|B &#x3D; 0011 1101</p>
+<p>A^B &#x3D; 0011 0001</p>
+<p>~A &#x3D; 1100 0011</p>
+<p>下表显示了 C 语言支持的位运算符。假设变量 <strong>A</strong> 的值为 60，变量 <strong>B</strong> 的值为 13，则：</p>
+<table>
+<thead>
+<tr>
+<th align="left">运算符</th>
+<th align="left">描述</th>
+<th align="left">实例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">&amp;</td>
+<td align="left">按位与操作，按二进制位进行”与”运算。运算规则：<code>0&amp;0=0;    0&amp;1=0;     1&amp;0=0;      1&amp;1=1;</code></td>
+<td align="left">(A &amp; B) 将得到 12，即为 0000 1100</td>
+</tr>
+<tr>
+<td align="left">|</td>
+<td align="left">按位或运算符，按二进制位进行”或”运算。运算规则：&#96;0</td>
+<td align="left">0&#x3D;0;    0</td>
+</tr>
+<tr>
+<td align="left">^</td>
+<td align="left">异或运算符，按二进制位进行”异或”运算。运算规则：<code>0^0=0;    0^1=1;    1^0=1;   1^1=0;</code></td>
+<td align="left">(A ^ B) 将得到 49，即为 0011 0001</td>
+</tr>
+<tr>
+<td align="left">~</td>
+<td align="left">取反运算符，按二进制位进行”取反”运算。运算规则：<code>~1=-2;    ~0=-1;</code></td>
+<td align="left">(~A ) 将得到 -61，即为 1100 0011，一个有符号二进制数的补码形式。</td>
+</tr>
+<tr>
+<td align="left">&lt;&lt;</td>
+<td align="left">二进制左移运算符。将一个运算对象的各二进制位全部左移若干位（左边的二进制位丢弃，右边补0）。</td>
+<td align="left">A &lt;&lt; 2 将得到 240，即为 1111 0000</td>
+</tr>
+<tr>
+<td align="left">&gt;&gt;</td>
+<td align="left">二进制右移运算符。将一个数的各二进制位全部右移若干位，正数左补0，负数左补1，右边丢弃。</td>
+<td align="left">A &gt;&gt; 2 将得到 15，即为 0000 1111</td>
+</tr>
+</tbody></table>
+<h3 id="实例-7"><a href="#实例-7" class="headerlink" title="实例"></a>实例</h3><p>请看下面的实例，了解 C 语言中所有可用的位运算符：</p>
+<h2 id="实例-8"><a href="#实例-8" class="headerlink" title="实例"></a>实例</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br> <br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br> <br>   <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> a = <span class="hljs-number">60</span>;    <span class="hljs-comment">/* 60 = 0011 1100 */</span>  <br>   <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> b = <span class="hljs-number">13</span>;    <span class="hljs-comment">/* 13 = 0000 1101 */</span><br>   <span class="hljs-type">int</span> c = <span class="hljs-number">0</span>;           <br> <br>   c = a &amp; b;       <span class="hljs-comment">/* 12 = 0000 1100 */</span> <br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 1 - c 的值是 %d\n&quot;</span>, c );<br> <br>   c = a | b;       <span class="hljs-comment">/* 61 = 0011 1101 */</span><br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 2 - c 的值是 %d\n&quot;</span>, c );<br> <br>   c = a ^ b;       <span class="hljs-comment">/* 49 = 0011 0001 */</span><br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 3 - c 的值是 %d\n&quot;</span>, c );<br> <br>   c = ~a;          <span class="hljs-comment">/*-61 = 1100 0011 */</span><br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 4 - c 的值是 %d\n&quot;</span>, c );<br> <br>   c = a &lt;&lt; <span class="hljs-number">2</span>;     <span class="hljs-comment">/* 240 = 1111 0000 */</span><br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 5 - c 的值是 %d\n&quot;</span>, c );<br> <br>   c = a &gt;&gt; <span class="hljs-number">2</span>;     <span class="hljs-comment">/* 15 = 0000 1111 */</span><br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 6 - c 的值是 %d\n&quot;</span>, c );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>当上面的代码被编译和执行时，它会产生下列结果：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Line</span> <span class="hljs-number">1</span> - c 的值是 <span class="hljs-number">12</span><br><span class="hljs-attribute">Line</span> <span class="hljs-number">2</span> - c 的值是 <span class="hljs-number">61</span><br><span class="hljs-attribute">Line</span> <span class="hljs-number">3</span> - c 的值是 <span class="hljs-number">49</span><br><span class="hljs-attribute">Line</span> <span class="hljs-number">4</span> - c 的值是 -<span class="hljs-number">61</span><br><span class="hljs-attribute">Line</span> <span class="hljs-number">5</span> - c 的值是 <span class="hljs-number">240</span><br><span class="hljs-attribute">Line</span> <span class="hljs-number">6</span> - c 的值是 <span class="hljs-number">15</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h2><p>下表列出了 C 语言支持的赋值运算符：</p>
+<table>
+<thead>
+<tr>
+<th align="left">运算符</th>
+<th align="left">描述</th>
+<th align="left">实例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">&#x3D;</td>
+<td align="left">简单的赋值运算符，把右边操作数的值赋给左边操作数</td>
+<td align="left">C &#x3D; A + B 将把 A + B 的值赋给 C</td>
+</tr>
+<tr>
+<td align="left">+&#x3D;</td>
+<td align="left">加且赋值运算符，把右边操作数加上左边操作数的结果赋值给左边操作数</td>
+<td align="left">C +&#x3D; A 相当于 C &#x3D; C + A</td>
+</tr>
+<tr>
+<td align="left">-&#x3D;</td>
+<td align="left">减且赋值运算符，把左边操作数减去右边操作数的结果赋值给左边操作数</td>
+<td align="left">C -&#x3D; A 相当于 C &#x3D; C - A</td>
+</tr>
+<tr>
+<td align="left">*&#x3D;</td>
+<td align="left">乘且赋值运算符，把右边操作数乘以左边操作数的结果赋值给左边操作数</td>
+<td align="left">C *&#x3D; A 相当于 C &#x3D; C * A</td>
+</tr>
+<tr>
+<td align="left">&#x2F;&#x3D;</td>
+<td align="left">除且赋值运算符，把左边操作数除以右边操作数的结果赋值给左边操作数</td>
+<td align="left">C &#x2F;&#x3D; A 相当于 C &#x3D; C &#x2F; A</td>
+</tr>
+<tr>
+<td align="left">%&#x3D;</td>
+<td align="left">求模且赋值运算符，求两个操作数的模赋值给左边操作数</td>
+<td align="left">C %&#x3D; A 相当于 C &#x3D; C % A</td>
+</tr>
+<tr>
+<td align="left">&lt;&lt;&#x3D;</td>
+<td align="left">左移且赋值运算符</td>
+<td align="left">C &lt;&lt;&#x3D; 2 等同于 C &#x3D; C &lt;&lt; 2</td>
+</tr>
+<tr>
+<td align="left">&gt;&gt;&#x3D;</td>
+<td align="left">右移且赋值运算符</td>
+<td align="left">C &gt;&gt;&#x3D; 2 等同于 C &#x3D; C &gt;&gt; 2</td>
+</tr>
+<tr>
+<td align="left">&amp;&#x3D;</td>
+<td align="left">按位与且赋值运算符</td>
+<td align="left">C &amp;&#x3D; 2 等同于 C &#x3D; C &amp; 2</td>
+</tr>
+<tr>
+<td align="left">^&#x3D;</td>
+<td align="left">按位异或且赋值运算符</td>
+<td align="left">C ^&#x3D; 2 等同于 C &#x3D; C ^ 2</td>
+</tr>
+<tr>
+<td align="left">|&#x3D;</td>
+<td align="left">按位或且赋值运算符</td>
+<td align="left">C |&#x3D; 2 等同于 C &#x3D; C | 2</td>
+</tr>
+</tbody></table>
+<h3 id="实例-9"><a href="#实例-9" class="headerlink" title="实例"></a>实例</h3><p>请看下面的实例，了解 C 语言中所有可用的赋值运算符：</p>
+<h2 id="实例-10"><a href="#实例-10" class="headerlink" title="实例"></a>实例</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br> <br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>   <span class="hljs-type">int</span> a = <span class="hljs-number">21</span>;<br>   <span class="hljs-type">int</span> c ;<br> <br>   c =  a;<br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 1 - =  运算符实例，c 的值 = %d\n&quot;</span>, c );<br> <br>   c +=  a;<br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 2 - += 运算符实例，c 的值 = %d\n&quot;</span>, c );<br> <br>   c -=  a;<br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 3 - -= 运算符实例，c 的值 = %d\n&quot;</span>, c );<br> <br>   c *=  a;<br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 4 - *= 运算符实例，c 的值 = %d\n&quot;</span>, c );<br> <br>   c /=  a;<br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 5 - /= 运算符实例，c 的值 = %d\n&quot;</span>, c );<br> <br>   c  = <span class="hljs-number">200</span>;<br>   c %=  a;<br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 6 - %%= 运算符实例，c 的值 = %d\n&quot;</span>, c );<br> <br>   c &lt;&lt;=  <span class="hljs-number">2</span>;<br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 7 - &lt;&lt;= 运算符实例，c 的值 = %d\n&quot;</span>, c );<br> <br>   c &gt;&gt;=  <span class="hljs-number">2</span>;<br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 8 - &gt;&gt;= 运算符实例，c 的值 = %d\n&quot;</span>, c );<br> <br>   c &amp;=  <span class="hljs-number">2</span>;<br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 9 - &amp;= 运算符实例，c 的值 = %d\n&quot;</span>, c );<br> <br>   c ^=  <span class="hljs-number">2</span>;<br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 10 - ^= 运算符实例，c 的值 = %d\n&quot;</span>, c );<br> <br>   c |=  <span class="hljs-number">2</span>;<br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 11 - |= 运算符实例，c 的值 = %d\n&quot;</span>, c );<br> <br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>当上面的代码被编译和执行时，它会产生下列结果：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Line</span> <span class="hljs-number">1</span> - =  运算符实例，c 的值 = <span class="hljs-number">21</span><br><span class="hljs-attribute">Line</span> <span class="hljs-number">2</span> - += 运算符实例，c 的值 = <span class="hljs-number">42</span><br><span class="hljs-attribute">Line</span> <span class="hljs-number">3</span> - -= 运算符实例，c 的值 = <span class="hljs-number">21</span><br><span class="hljs-attribute">Line</span> <span class="hljs-number">4</span> - *= 运算符实例，c 的值 = <span class="hljs-number">441</span><br><span class="hljs-attribute">Line</span> <span class="hljs-number">5</span> - /= 运算符实例，c 的值 = <span class="hljs-number">21</span><br><span class="hljs-attribute">Line</span> <span class="hljs-number">6</span> - %= 运算符实例，c 的值 = <span class="hljs-number">11</span><br><span class="hljs-attribute">Line</span> <span class="hljs-number">7</span> - &lt;&lt;= 运算符实例，c 的值 = <span class="hljs-number">44</span><br><span class="hljs-attribute">Line</span> <span class="hljs-number">8</span> - &gt;&gt;= 运算符实例，c 的值 = <span class="hljs-number">11</span><br><span class="hljs-attribute">Line</span> <span class="hljs-number">9</span> - &amp;= 运算符实例，c 的值 = <span class="hljs-number">2</span><br><span class="hljs-attribute">Line</span> <span class="hljs-number">10</span> - ^= 运算符实例，c 的值 = <span class="hljs-number">0</span><br><span class="hljs-attribute">Line</span> <span class="hljs-number">11</span> - |= 运算符实例，c 的值 = <span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="杂项运算符-↦-sizeof-amp-三元"><a href="#杂项运算符-↦-sizeof-amp-三元" class="headerlink" title="杂项运算符 ↦ sizeof &amp; 三元"></a>杂项运算符 ↦ sizeof &amp; 三元</h2><p>下表列出了 C 语言支持的其他一些重要的运算符，包括 <strong>sizeof</strong> 和 <strong>? :</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">运算符</th>
+<th align="left">描述</th>
+<th align="left">实例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">sizeof()</td>
+<td align="left">返回变量的大小。</td>
+<td align="left">sizeof(a) 将返回 4，其中 a 是整数。</td>
+</tr>
+<tr>
+<td align="left">&amp;</td>
+<td align="left">返回变量的地址。</td>
+<td align="left">&amp;a; 将给出变量的实际地址。</td>
+</tr>
+<tr>
+<td align="left">*</td>
+<td align="left">指向一个变量。</td>
+<td align="left">*a; 将指向一个变量。</td>
+</tr>
+<tr>
+<td align="left">? :</td>
+<td align="left">条件表达式</td>
+<td align="left">如果条件为真 ? 则值为 X : 否则值为 Y</td>
+</tr>
+</tbody></table>
+<h3 id="实例-11"><a href="#实例-11" class="headerlink" title="实例"></a>实例</h3><p>请看下面的实例，了解 C 语言中所有可用的杂项运算符：</p>
+<h2 id="实例-12"><a href="#实例-12" class="headerlink" title="实例"></a>实例</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br> <br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>   <span class="hljs-type">int</span> a = <span class="hljs-number">4</span>;<br>   <span class="hljs-type">short</span> b;<br>   <span class="hljs-type">double</span> c;<br>   <span class="hljs-type">int</span>* ptr;<br> <br>   <span class="hljs-comment">/* sizeof 运算符实例 */</span><br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 1 - 变量 a 的大小 = %lu\n&quot;</span>, <span class="hljs-keyword">sizeof</span>(a) );<br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 2 - 变量 b 的大小 = %lu\n&quot;</span>, <span class="hljs-keyword">sizeof</span>(b) );<br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 3 - 变量 c 的大小 = %lu\n&quot;</span>, <span class="hljs-keyword">sizeof</span>(c) );<br> <br>   <span class="hljs-comment">/* &amp; 和 * 运算符实例 */</span><br>   ptr = &amp;a;    <span class="hljs-comment">/* &#x27;ptr&#x27; 现在包含 &#x27;a&#x27; 的地址 */</span><br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a 的值是 %d\n&quot;</span>, a);<br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;*ptr 是 %d\n&quot;</span>, *ptr);<br> <br>   <span class="hljs-comment">/* 三元运算符实例 */</span><br>   a = <span class="hljs-number">10</span>;<br>   b = (a == <span class="hljs-number">1</span>) ? <span class="hljs-number">20</span>: <span class="hljs-number">30</span>;<br>   <span class="hljs-built_in">printf</span>( <span class="hljs-string">&quot;b 的值是 %d\n&quot;</span>, b );<br> <br>   b = (a == <span class="hljs-number">10</span>) ? <span class="hljs-number">20</span>: <span class="hljs-number">30</span>;<br>   <span class="hljs-built_in">printf</span>( <span class="hljs-string">&quot;b 的值是 %d\n&quot;</span>, b );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>当上面的代码被编译和执行时，它会产生下列结果：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs stylus">Line <span class="hljs-number">1</span> - 变量 <span class="hljs-selector-tag">a</span> 的大小 = <span class="hljs-number">4</span><br>Line <span class="hljs-number">2</span> - 变量 <span class="hljs-selector-tag">b</span> 的大小 = <span class="hljs-number">2</span><br>Line <span class="hljs-number">3</span> - 变量 c 的大小 = <span class="hljs-number">8</span><br><span class="hljs-selector-tag">a</span> 的值是 <span class="hljs-number">4</span><br>*ptr 是 <span class="hljs-number">4</span><br><span class="hljs-selector-tag">b</span> 的值是 <span class="hljs-number">30</span><br><span class="hljs-selector-tag">b</span> 的值是 <span class="hljs-number">20</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="C-中的运算符优先级"><a href="#C-中的运算符优先级" class="headerlink" title="C 中的运算符优先级"></a>C 中的运算符优先级</h2><p>运算符的优先级确定表达式中项的组合。这会影响到一个表达式如何计算。某些运算符比其他运算符有更高的优先级，例如，乘除运算符具有比加减运算符更高的优先级。</p>
+<p>例如 x &#x3D; 7 + 3 * 2，在这里，x 被赋值为 13，而不是 20，因为运算符 * 具有比 + 更高的优先级，所以首先计算乘法 3*2，然后再加上 7。</p>
+<p>下表将按运算符优先级从高到低列出各个运算符，具有较高优先级的运算符出现在表格的上面，具有较低优先级的运算符出现在表格的下面。在表达式中，较高优先级的运算符会优先被计算。</p>
+<table>
+<thead>
+<tr>
+<th align="left">类别</th>
+<th align="left">运算符</th>
+<th align="left">结合性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">后缀</td>
+<td align="left">() [] -&gt; . ++ - -</td>
+<td align="left">从左到右</td>
+</tr>
+<tr>
+<td align="left">一元</td>
+<td align="left">+ - ! ~ ++ - - (type)* &amp; sizeof</td>
+<td align="left">从右到左</td>
+</tr>
+<tr>
+<td align="left">乘除</td>
+<td align="left">* &#x2F; %</td>
+<td align="left">从左到右</td>
+</tr>
+<tr>
+<td align="left">加减</td>
+<td align="left">+ -</td>
+<td align="left">从左到右</td>
+</tr>
+<tr>
+<td align="left">移位</td>
+<td align="left">&lt;&lt; &gt;&gt;</td>
+<td align="left">从左到右</td>
+</tr>
+<tr>
+<td align="left">关系</td>
+<td align="left">&lt; &lt;&#x3D; &gt; &gt;&#x3D;</td>
+<td align="left">从左到右</td>
+</tr>
+<tr>
+<td align="left">相等</td>
+<td align="left">&#x3D;&#x3D; !&#x3D;</td>
+<td align="left">从左到右</td>
+</tr>
+<tr>
+<td align="left">位与 AND</td>
+<td align="left">&amp;</td>
+<td align="left">从左到右</td>
+</tr>
+<tr>
+<td align="left">位异或 XOR</td>
+<td align="left">^</td>
+<td align="left">从左到右</td>
+</tr>
+<tr>
+<td align="left">位或 OR</td>
+<td align="left">|</td>
+<td align="left">从左到右</td>
+</tr>
+<tr>
+<td align="left">逻辑与 AND</td>
+<td align="left">&amp;&amp;</td>
+<td align="left">从左到右</td>
+</tr>
+<tr>
+<td align="left">逻辑或 OR</td>
+<td align="left">||</td>
+<td align="left">从左到右</td>
+</tr>
+<tr>
+<td align="left">条件</td>
+<td align="left">?:</td>
+<td align="left">从右到左</td>
+</tr>
+<tr>
+<td align="left">赋值</td>
+<td align="left">&#x3D; +&#x3D; -&#x3D; *&#x3D; &#x2F;&#x3D; %&#x3D;&gt;&gt;&#x3D; &lt;&lt;&#x3D; &amp;&#x3D; ^&#x3D; |&#x3D;</td>
+<td align="left">从右到左</td>
+</tr>
+<tr>
+<td align="left">逗号</td>
+<td align="left">,</td>
+<td align="left">从左到右</td>
+</tr>
+</tbody></table>
+<h3 id="实例-13"><a href="#实例-13" class="headerlink" title="实例"></a>实例</h3><p>请看下面的实例，了解 C 语言中运算符的优先级：</p>
+<h2 id="实例-14"><a href="#实例-14" class="headerlink" title="实例"></a>实例</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br> <br>main()<br>&#123;<br>   <span class="hljs-type">int</span> a = <span class="hljs-number">20</span>;<br>   <span class="hljs-type">int</span> b = <span class="hljs-number">10</span>;<br>   <span class="hljs-type">int</span> c = <span class="hljs-number">15</span>;<br>   <span class="hljs-type">int</span> d = <span class="hljs-number">5</span>;<br>   <span class="hljs-type">int</span> e;<br> <br>   e = (a + b) * c / d;      <span class="hljs-comment">// ( 30 * 15 ) / 5</span><br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;(a + b) * c / d 的值是 %d\n&quot;</span>,  e );<br> <br>   e = ((a + b) * c) / d;    <span class="hljs-comment">// (30 * 15 ) / 5</span><br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;((a + b) * c) / d 的值是 %d\n&quot;</span> ,  e );<br> <br>   e = (a + b) * (c / d);   <span class="hljs-comment">// (30) * (15/5)</span><br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;(a + b) * (c / d) 的值是 %d\n&quot;</span>,  e );<br> <br>   e = a + (b * c) / d;     <span class="hljs-comment">//  20 + (150/5)</span><br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a + (b * c) / d 的值是 %d\n&quot;</span> ,  e );<br>  <br>   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>当上面的代码被编译和执行时，它会产生下列结果：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c">(a + b) * c / d 的值是 <span class="hljs-number">90</span><br>((a + b) * c) / d 的值是 <span class="hljs-number">90</span><br>(a + b) * (c / d) 的值是 <span class="hljs-number">90</span><br>a + (b * c) / d 的值是 <span class="hljs-number">50</span><br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/C/" class="category-chain-item">C</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/C/runoob-C-program/" class="category-chain-item">runoob-C-program</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/C/">#C</a>
+      
+        <a href="/tags/runoob-C-program/">#runoob-C-program</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>09-运算符</div>
+      <div>https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/C/runoob-C-program/09-运算符/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 17, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/C/runoob-C-program/08-%E5%AD%98%E5%82%A8%E7%B1%BB/" title="08-存储类">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">08-存储类</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/C/runoob-C-program/10-%E5%88%A4%E6%96%AD/" title="10-判断">
+                        <span class="hidden-mobile">10-判断</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

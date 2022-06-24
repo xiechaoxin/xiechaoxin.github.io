@@ -1,0 +1,778 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="category: Javatag:  JVM   类文件结构详解一 概述在 Java 中，JVM 可以理解的代码就叫做字节码（即扩展名为 .class 的文件），它不面向任何特定的处理器，只面向虚拟机。Java 语言通过字节码的方式，在一定程度上解决了传统解释型语言执行效率低的问题，同时又保留了解释型语言可移植的特点。所以 Java 程序运行时比较高效，而且，由于字节码并不针对一种特定的机器，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="class-file-structure">
+<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/jvm/class-file-structure/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="category: Javatag:  JVM   类文件结构详解一 概述在 Java 中，JVM 可以理解的代码就叫做字节码（即扩展名为 .class 的文件），它不面向任何特定的处理器，只面向虚拟机。Java 语言通过字节码的方式，在一定程度上解决了传统解释型语言执行效率低的问题，同时又保留了解释型语言可移植的特点。所以 Java 程序运行时比较高效，而且，由于字节码并不针对一种特定的机器，">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xiechaoxin.github.io/class-file-structure/desktop%E7%B1%BB%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E6%A6%82%E8%A7%88.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/class-file-structure/16d5ec47609818fc.jpeg">
+<meta property="og:image" content="https://xiechaoxin.github.io/class-file-structure/image-20210401170711475.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/class-file-structure/%E8%AE%BF%E9%97%AE%E6%A0%87%E5%BF%97.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/class-file-structure/%E6%9F%A5%E7%9C%8B%E7%B1%BB%E7%9A%84%E8%AE%BF%E9%97%AE%E6%A0%87%E5%BF%97.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/class-file-structure/%E5%AD%97%E6%AE%B5%E8%A1%A8%E7%9A%84%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/class-file-structure/image-20201031084342859.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/class-file-structure/%E6%96%B9%E6%B3%95%E8%A1%A8%E7%9A%84%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/class-file-structure/image-20201031084248965.png">
+<meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
+<meta property="article:modified_time" content="2022-06-24T10:26:10.685Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="jvm">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/class-file-structure/desktop%E7%B1%BB%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E6%A6%82%E8%A7%88.png">
+  
+  
+  
+  <title>class-file-structure - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xiechaoxin.github.io","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong> </strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">class-file-structure</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-06-17 17:59" pubdate>
+          June 17, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.6k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          39 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">class-file-structure</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <hr>
+<p>category: Java<br>tag:</p>
+<ul>
+<li>JVM</li>
+</ul>
+<hr>
+<h1 id="类文件结构详解"><a href="#类文件结构详解" class="headerlink" title="类文件结构详解"></a>类文件结构详解</h1><h2 id="一-概述"><a href="#一-概述" class="headerlink" title="一 概述"></a>一 概述</h2><p>在 Java 中，JVM 可以理解的代码就叫做<code>字节码</code>（即扩展名为 <code>.class</code> 的文件），它不面向任何特定的处理器，只面向虚拟机。Java 语言通过字节码的方式，在一定程度上解决了传统解释型语言执行效率低的问题，同时又保留了解释型语言可移植的特点。所以 Java 程序运行时比较高效，而且，由于字节码并不针对一种特定的机器，因此，Java 程序无须重新编译便可在多种不同操作系统的计算机上运行。</p>
+<p>Clojure（Lisp 语言的一种方言）、Groovy、Scala 等语言都是运行在 Java 虚拟机之上。下图展示了不同的语言被不同的编译器编译成<code>.class</code>文件最终运行在 Java 虚拟机之上。<code>.class</code>文件的二进制格式可以使用 <a target="_blank" rel="noopener" href="https://www.x-ways.net/winhex/">WinHex</a> 查看。</p>
+<p><img src="/class-file-structure/desktop%E7%B1%BB%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E6%A6%82%E8%A7%88.png" srcset="/img/loading.gif" lazyload alt="java虚拟机"></p>
+<p>可以说<code>.class</code>文件是不同的语言在 Java 虚拟机之间的重要桥梁，同时也是支持 Java 跨平台很重要的一个原因。</p>
+<h2 id="二-Class-文件结构总结"><a href="#二-Class-文件结构总结" class="headerlink" title="二 Class 文件结构总结"></a>二 Class 文件结构总结</h2><p>根据 Java 虚拟机规范，Class 文件通过 <code>ClassFile</code> 定义，有点类似 C 语言的结构体。</p>
+<p><code>ClassFile</code> 的结构如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java">ClassFile &#123;<br>    u4             magic; <span class="hljs-comment">//Class 文件的标志</span><br>    u2             minor_version;<span class="hljs-comment">//Class 的小版本号</span><br>    u2             major_version;<span class="hljs-comment">//Class 的大版本号</span><br>    u2             constant_pool_count;<span class="hljs-comment">//常量池的数量</span><br>    cp_info        constant_pool[constant_pool_count-<span class="hljs-number">1</span>];<span class="hljs-comment">//常量池</span><br>    u2             access_flags;<span class="hljs-comment">//Class 的访问标记</span><br>    u2             this_class;<span class="hljs-comment">//当前类</span><br>    u2             super_class;<span class="hljs-comment">//父类</span><br>    u2             interfaces_count;<span class="hljs-comment">//接口</span><br>    u2             interfaces[interfaces_count];<span class="hljs-comment">//一个类可以实现多个接口</span><br>    u2             fields_count;<span class="hljs-comment">//Class 文件的字段属性</span><br>    field_info     fields[fields_count];<span class="hljs-comment">//一个类会可以有多个字段</span><br>    u2             methods_count;<span class="hljs-comment">//Class 文件的方法数量</span><br>    method_info    methods[methods_count];<span class="hljs-comment">//一个类可以有个多个方法</span><br>    u2             attributes_count;<span class="hljs-comment">//此类的属性表中的属性数</span><br>    attribute_info attributes[attributes_count];<span class="hljs-comment">//属性表集合</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>通过分析 <code>ClassFile</code> 的内容，我们便可以知道 class 文件的组成。</p>
+<p><img src="/class-file-structure/16d5ec47609818fc.jpeg" srcset="/img/loading.gif" lazyload></p>
+<p>下面这张图是通过 IDEA 插件 <code>jclasslib</code> 查看的，你可以更直观看到 Class 文件结构。</p>
+<p><img src="/class-file-structure/image-20210401170711475.png" srcset="/img/loading.gif" lazyload></p>
+<p>使用 <code>jclasslib</code> 不光可以直观地查看某个类对应的字节码文件，还可以查看类的基本信息、常量池、接口、属性、函数等信息。</p>
+<p>下面详细介绍一下 Class 文件结构涉及到的一些组件。</p>
+<h3 id="2-1-魔数（Magic-Number）"><a href="#2-1-魔数（Magic-Number）" class="headerlink" title="2.1 魔数（Magic Number）"></a>2.1 魔数（Magic Number）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">u4             magic; <span class="hljs-comment">//Class 文件的标志</span><br></code></pre></td></tr></table></figure>
+
+<p>每个 Class 文件的头 4 个字节称为魔数（Magic Number）,它的唯一作用是<strong>确定这个文件是否为一个能被虚拟机接收的 Class 文件</strong>。</p>
+<p>程序设计者很多时候都喜欢用一些特殊的数字表示固定的文件类型或者其它特殊的含义。</p>
+<h3 id="2-2-Class-文件版本号（Minor-amp-Major-Version）"><a href="#2-2-Class-文件版本号（Minor-amp-Major-Version）" class="headerlink" title="2.2 Class 文件版本号（Minor&amp;Major Version）"></a>2.2 Class 文件版本号（Minor&amp;Major Version）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">u2             minor_version;<span class="hljs-comment">//Class 的小版本号</span><br>u2             major_version;<span class="hljs-comment">//Class 的大版本号</span><br></code></pre></td></tr></table></figure>
+
+<p>紧接着魔数的四个字节存储的是 Class 文件的版本号：第 5 和第 6 位是<strong>次版本号</strong>，第 7 和第 8 位是<strong>主版本号</strong>。</p>
+<p>每当 Java 发布大版本（比如 Java 8，Java9）的时候，主版本号都会加 1。你可以使用 <code>javap -v</code> 命令来快速查看 Class 文件的版本号信息。</p>
+<p>高版本的 Java 虚拟机可以执行低版本编译器生成的 Class 文件，但是低版本的 Java 虚拟机不能执行高版本编译器生成的 Class 文件。所以，我们在实际开发的时候要确保开发的的 JDK 版本和生产环境的 JDK 版本保持一致。</p>
+<h3 id="2-3-常量池（Constant-Pool）"><a href="#2-3-常量池（Constant-Pool）" class="headerlink" title="2.3 常量池（Constant Pool）"></a>2.3 常量池（Constant Pool）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">u2             constant_pool_count;<span class="hljs-comment">//常量池的数量</span><br>cp_info        constant_pool[constant_pool_count-<span class="hljs-number">1</span>];<span class="hljs-comment">//常量池</span><br></code></pre></td></tr></table></figure>
+
+<p>紧接着主次版本号之后的是常量池，常量池的数量是 <code>constant_pool_count-1</code>（<strong>常量池计数器是从 1 开始计数的，将第 0 项常量空出来是有特殊考虑的，索引值为 0 代表“不引用任何一个常量池项”</strong>）。</p>
+<p>常量池主要存放两大常量：字面量和符号引用。字面量比较接近于 Java 语言层面的的常量概念，如文本字符串、声明为 final 的常量值等。而符号引用则属于编译原理方面的概念。包括下面三类常量：</p>
+<ul>
+<li>类和接口的全限定名</li>
+<li>字段的名称和描述符</li>
+<li>方法的名称和描述符</li>
+</ul>
+<p>常量池中每一项常量都是一个表，这 14 种表有一个共同的特点：<strong>开始的第一位是一个 u1 类型的标志位 -tag 来标识常量的类型，代表当前这个常量属于哪种常量类型．</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">标志（tag）</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">CONSTANT_utf8_info</td>
+<td align="center">1</td>
+<td align="center">UTF-8 编码的字符串</td>
+</tr>
+<tr>
+<td align="center">CONSTANT_Integer_info</td>
+<td align="center">3</td>
+<td align="center">整形字面量</td>
+</tr>
+<tr>
+<td align="center">CONSTANT_Float_info</td>
+<td align="center">4</td>
+<td align="center">浮点型字面量</td>
+</tr>
+<tr>
+<td align="center">CONSTANT_Long_info</td>
+<td align="center">５</td>
+<td align="center">长整型字面量</td>
+</tr>
+<tr>
+<td align="center">CONSTANT_Double_info</td>
+<td align="center">６</td>
+<td align="center">双精度浮点型字面量</td>
+</tr>
+<tr>
+<td align="center">CONSTANT_Class_info</td>
+<td align="center">７</td>
+<td align="center">类或接口的符号引用</td>
+</tr>
+<tr>
+<td align="center">CONSTANT_String_info</td>
+<td align="center">８</td>
+<td align="center">字符串类型字面量</td>
+</tr>
+<tr>
+<td align="center">CONSTANT_Fieldref_info</td>
+<td align="center">９</td>
+<td align="center">字段的符号引用</td>
+</tr>
+<tr>
+<td align="center">CONSTANT_Methodref_info</td>
+<td align="center">10</td>
+<td align="center">类中方法的符号引用</td>
+</tr>
+<tr>
+<td align="center">CONSTANT_InterfaceMethodref_info</td>
+<td align="center">11</td>
+<td align="center">接口中方法的符号引用</td>
+</tr>
+<tr>
+<td align="center">CONSTANT_NameAndType_info</td>
+<td align="center">12</td>
+<td align="center">字段或方法的符号引用</td>
+</tr>
+<tr>
+<td align="center">CONSTANT_MothodType_info</td>
+<td align="center">16</td>
+<td align="center">标志方法类型</td>
+</tr>
+<tr>
+<td align="center">CONSTANT_MethodHandle_info</td>
+<td align="center">15</td>
+<td align="center">表示方法句柄</td>
+</tr>
+<tr>
+<td align="center">CONSTANT_InvokeDynamic_info</td>
+<td align="center">18</td>
+<td align="center">表示一个动态方法调用点</td>
+</tr>
+</tbody></table>
+<p><code>.class</code> 文件可以通过<code>javap -v class类名</code> 指令来看一下其常量池中的信息(<code>javap -v class类名-&gt; temp.txt</code> ：将结果输出到 temp.txt 文件)。</p>
+<h3 id="2-4-访问标志-Access-Flags"><a href="#2-4-访问标志-Access-Flags" class="headerlink" title="2.4 访问标志(Access Flags)"></a>2.4 访问标志(Access Flags)</h3><p>在常量池结束之后，紧接着的两个字节代表访问标志，这个标志用于识别一些类或者接口层次的访问信息，包括：这个 Class 是类还是接口，是否为 <code>public</code> 或者 <code>abstract</code> 类型，如果是类的话是否声明为 <code>final</code> 等等。</p>
+<p>类访问和属性修饰符:</p>
+<p><img src="/class-file-structure/%E8%AE%BF%E9%97%AE%E6%A0%87%E5%BF%97.png" srcset="/img/loading.gif" lazyload alt="类访问和属性修饰符"></p>
+<p>我们定义了一个 Employee 类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> top.snailclimb.bean;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Employee</span> &#123;<br>   ...<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>通过<code>javap -v class类名</code> 指令来看一下类的访问标志。</p>
+<p><img src="/class-file-structure/%E6%9F%A5%E7%9C%8B%E7%B1%BB%E7%9A%84%E8%AE%BF%E9%97%AE%E6%A0%87%E5%BF%97.png" srcset="/img/loading.gif" lazyload alt="查看类的访问标志"></p>
+<h3 id="2-5-当前类（This-Class）、父类（Super-Class）、接口（Interfaces）索引集合"><a href="#2-5-当前类（This-Class）、父类（Super-Class）、接口（Interfaces）索引集合" class="headerlink" title="2.5 当前类（This Class）、父类（Super Class）、接口（Interfaces）索引集合"></a>2.5 当前类（This Class）、父类（Super Class）、接口（Interfaces）索引集合</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">u2             this_class;<span class="hljs-comment">//当前类</span><br>u2             super_class;<span class="hljs-comment">//父类</span><br>u2             interfaces_count;<span class="hljs-comment">//接口</span><br>u2             interfaces[interfaces_count];<span class="hljs-comment">//一个类可以实现多个接口</span><br></code></pre></td></tr></table></figure>
+
+<p>类索引用于确定这个类的全限定名，父类索引用于确定这个类的父类的全限定名，由于 Java 语言的单继承，所以父类索引只有一个，除了 <code>java.lang.Object</code> 之外，所有的 java 类都有父类，因此除了 <code>java.lang.Object</code> 外，所有 Java 类的父类索引都不为 0。</p>
+<p>接口索引集合用来描述这个类实现了那些接口，这些被实现的接口将按 <code>implements</code> (如果这个类本身是接口的话则是<code>extends</code>) 后的接口顺序从左到右排列在接口索引集合中。</p>
+<h3 id="2-6-字段表集合（Fields）"><a href="#2-6-字段表集合（Fields）" class="headerlink" title="2.6 字段表集合（Fields）"></a>2.6 字段表集合（Fields）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">u2             fields_count;<span class="hljs-comment">//Class 文件的字段的个数</span><br>field_info     fields[fields_count];<span class="hljs-comment">//一个类会可以有个字段</span><br></code></pre></td></tr></table></figure>
+
+<p>字段表（field info）用于描述接口或类中声明的变量。字段包括类级变量以及实例变量，但不包括在方法内部声明的局部变量。</p>
+<p><strong>field info(字段表) 的结构:</strong></p>
+<p><img src="/class-file-structure/%E5%AD%97%E6%AE%B5%E8%A1%A8%E7%9A%84%E7%BB%93%E6%9E%84.png" srcset="/img/loading.gif" lazyload alt="字段表的结构 "></p>
+<ul>
+<li><strong>access_flags:</strong> 字段的作用域（<code>public</code> ,<code>private</code>,<code>protected</code>修饰符），是实例变量还是类变量（<code>static</code>修饰符）,可否被序列化（transient 修饰符）,可变性（final）,可见性（volatile 修饰符，是否强制从主内存读写）。</li>
+<li><strong>name_index:</strong> 对常量池的引用，表示的字段的名称；</li>
+<li><strong>descriptor_index:</strong> 对常量池的引用，表示字段和方法的描述符；</li>
+<li><strong>attributes_count:</strong> 一个字段还会拥有一些额外的属性，attributes_count 存放属性的个数；</li>
+<li><strong>attributes[attributes_count]:</strong> 存放具体属性具体内容。</li>
+</ul>
+<p>上述这些信息中，各个修饰符都是布尔值，要么有某个修饰符，要么没有，很适合使用标志位来表示。而字段叫什么名字、字段被定义为什么数据类型这些都是无法固定的，只能引用常量池中常量来描述。</p>
+<p><strong>字段的 access_flag 的取值:</strong></p>
+<p><img src="/class-file-structure/image-20201031084342859.png" srcset="/img/loading.gif" lazyload alt="字段的 access_flag 的取值"></p>
+<h3 id="2-7-方法表集合（Methods）"><a href="#2-7-方法表集合（Methods）" class="headerlink" title="2.7 方法表集合（Methods）"></a>2.7 方法表集合（Methods）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">u2             methods_count;<span class="hljs-comment">//Class 文件的方法的数量</span><br>method_info    methods[methods_count];<span class="hljs-comment">//一个类可以有个多个方法</span><br></code></pre></td></tr></table></figure>
+
+<p>methods_count 表示方法的数量，而 method_info 表示方法表。</p>
+<p>Class 文件存储格式中对方法的描述与对字段的描述几乎采用了完全一致的方式。方法表的结构如同字段表一样，依次包括了访问标志、名称索引、描述符索引、属性表集合几项。</p>
+<p><strong>method_info(方法表的) 结构:</strong></p>
+<p><img src="/class-file-structure/%E6%96%B9%E6%B3%95%E8%A1%A8%E7%9A%84%E7%BB%93%E6%9E%84.png" srcset="/img/loading.gif" lazyload alt="方法表的结构"></p>
+<p><strong>方法表的 access_flag 取值：</strong></p>
+<p><img src="/class-file-structure/image-20201031084248965.png" srcset="/img/loading.gif" lazyload alt="方法表的 access_flag 取值"></p>
+<p>注意：因为<code>volatile</code>修饰符和<code>transient</code>修饰符不可以修饰方法，所以方法表的访问标志中没有这两个对应的标志，但是增加了<code>synchronized</code>、<code>native</code>、<code>abstract</code>等关键字修饰方法，所以也就多了这些关键字对应的标志。</p>
+<h3 id="2-8-属性表集合（Attributes）"><a href="#2-8-属性表集合（Attributes）" class="headerlink" title="2.8 属性表集合（Attributes）"></a>2.8 属性表集合（Attributes）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">u2             attributes_count;<span class="hljs-comment">//此类的属性表中的属性数</span><br>attribute_info attributes[attributes_count];<span class="hljs-comment">//属性表集合</span><br></code></pre></td></tr></table></figure>
+
+<p>在 Class 文件，字段表，方法表中都可以携带自己的属性表集合，以用于描述某些场景专有的信息。与 Class 文件中其它的数据项目要求的顺序、长度和内容不同，属性表集合的限制稍微宽松一些，不再要求各个属性表具有严格的顺序，并且只要不与已有的属性名重复，任何人实现的编译器都可以向属性表中写 入自己定义的属性信息，Java 虚拟机运行时会忽略掉它不认识的属性。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-4.html">https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-4.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://coolshell.cn/articles/9229.html">https://coolshell.cn/articles/9229.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/luanlouis/article/details/39960815">https://blog.csdn.net/luanlouis/article/details/39960815</a></li>
+<li>《实战 Java 虚拟机》</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Java/jvm/" class="category-chain-item">jvm</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Java/">#Java</a>
+      
+        <a href="/tags/jvm/">#jvm</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>class-file-structure</div>
+      <div>https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/jvm/class-file-structure/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 17, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/Java/interview/JavaOOP%E9%9D%A2%E8%AF%95%E9%A2%98/" title="JavaOOP面试题">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JavaOOP面试题</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/Java/jvm/class-loading-process/" title="class-loading-process">
+                        <span class="hidden-mobile">class-loading-process</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

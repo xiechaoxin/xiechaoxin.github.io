@@ -1,0 +1,1599 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="mysq详细笔记[toc] 第7章 单行函数7.1 函数的理解7.1.1 什么是函数 函数在计算机语言的使用中贯穿始终，函数的作用是什么呢？它可以把我们经常使用的代码封装起来，需要的时候直接调用即可。这样既提高了代码效率，又提高了可维护性。在 SQL 中我们也可以使用函数对检索出来的数据进行函数操作。使用这些函数，可以极大地提高用户对数据库的管理效率。    从函数定义的角度出发，我们可以将函数分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql详细笔记7-8章">
+<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="mysq详细笔记[toc] 第7章 单行函数7.1 函数的理解7.1.1 什么是函数 函数在计算机语言的使用中贯穿始终，函数的作用是什么呢？它可以把我们经常使用的代码封装起来，需要的时候直接调用即可。这样既提高了代码效率，又提高了可维护性。在 SQL 中我们也可以使用函数对检索出来的数据进行函数操作。使用这些函数，可以极大地提高用户对数据库的管理效率。    从函数定义的角度出发，我们可以将函数分">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513230738229.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513230749303.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/08c49659f63b458392ad8ce7a055bd97.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/01bf91a97c6e463b810a2d7adc430078.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/361d1584fae046fc9fdf013110062368.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/8b76f7d24c6a4689bc0627143ca6e539.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/b2d0810e112845539144294e9817bd2b.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/bceb5080226a4cb9934a042f90b2e2f4.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/7f2824169dad4332b899615c9a64cdfa.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/618610f74f5f4331ba249d8031de19b0.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/eb150d95799c4f158362cda2a193197a.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/a2edbd532dc74f5cb01c8bb3bf767a93.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/8df87645a3fb463cb593aa3f4aef90d7.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/a3914ebab4ed4f2f9e8429780001940d.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/1ed6ceae98ab4dedbf2be4f87c32def4.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/ca86d89287be47fbbc0ccf542fb57a63.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/367b529c2c8540fe8e504595f8c9a326.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/88c5ce12d5644e94aba87aade1bbec8b.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/e3f169857d144b3896f9a8ed4c16a73e.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/be4878706dbd489895b4b97a505fbce2.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/77453bf238d04b628e295667ea2101bd.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/843b241a153347e4af6a543a75d5f201.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/b6a1b7646f7a4f689d56011cc0566e1b.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/e82ac2c574754169a6ccd6b6ed9d1994.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/737d3dfa22ca46aabe22118d4c76dc6b.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/ceabd8f6c1ff4d94aa677bd08bbc59a3.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/9efc898eed13430b8e76541211974baf.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/fdc0ab1da5894dc498cf1aaab903f361.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/ed35dd1ec14a4e01a1dee202f3c9e3a3.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/900b7a90db0940ac9833f168165a67e6.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/eb5239c0ab7b495982a8b6688eba7027.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/c7bdb33bf68b47bd984d0214884a4312.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-3240356.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/b0a32727980f4964badc1c2acd75bb20.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/0cacd611aeee41129e022d7dee5646ee.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/e6e53a54896c4cb7b6734369f2230622.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/72bc357a74604c76a750992b74519a45.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/573c9396b7694572886270af9d5d88d8.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/611ca03eee20413084b582eadde75aa7.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/90b532ad482047f894c3a99e5f9035d3.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/041fe748a5c2449eb44f06a104c2fddc.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/85a2986aed5e4c16ab294045b21877b1.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/92178882cd3040e3904289bcc1562749.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/f72ddc523ec24db78ecfae7fa2860758.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/3376496e1a9e4e629853646ba6ab2371.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/38001c9a4f724e09b661acb54ebbb836.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/149bcd03c4c74914a75b02f7cba35dd4.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/7f35906c0ca04cd9b450cc4fc63c8078.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/27a2424ee0bd4998895fdbfab5d5f7ae.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/15e49d139fd54125b9607dad465e0403.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/5cca5d9899094724addd192ff3fb74f9.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/94644cc54380410c9b208ab1e6a5ad3f.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/2a542413a53d4981bb913f3f5a3aea65.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012556060.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/8cf4ce1335294f3e89830843cebec5d5.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/e038b03aa47b48f4a73e99dee47ffb03.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/9d531268b9ef4bdba62be63324702fa7.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/99e4f68662ba48588896f45c4f0b2abe.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/e3c0b433da8246d1b8aa22bea67442ab.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012556116.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012556127.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012556119.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012556124.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012556123.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012556174.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/6271b1902934467682d298e36cc5349d.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/0d123255ae6d44a8ba9d0a15c65db120.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/95ba2a259f144edba92d22c9feb465fc.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_17,color_FFFFFF,t_70,g_se,x_16.png">
+<meta property="article:published_time" content="2022-06-17T17:59:12.000Z">
+<meta property="article:modified_time" content="2022-06-24T10:26:11.173Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="database">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513230738229.png">
+  
+  
+  
+  <title>mysql详细笔记7-8章 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xiechaoxin.github.io","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong> </strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">mysql详细笔记7-8章</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-06-17 17:59" pubdate>
+          June 17, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          33k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          274 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">mysql详细笔记7-8章</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="mysq详细笔记"><a href="#mysq详细笔记" class="headerlink" title="mysq详细笔记"></a>mysq详细笔记</h1><p>[toc]</p>
+<h1 id="第7章-单行函数"><a href="#第7章-单行函数" class="headerlink" title="第7章 单行函数"></a>第7章 单行函数</h1><h2 id="7-1-函数的理解"><a href="#7-1-函数的理解" class="headerlink" title="7.1 函数的理解"></a>7.1 函数的理解</h2><h3 id="7-1-1-什么是函数"><a href="#7-1-1-什么是函数" class="headerlink" title="7.1.1 什么是函数"></a>7.1.1 什么是函数</h3><blockquote>
+<p>函数在计算机语言的使用中贯穿始终，函数的作用是什么呢？它可以把我们经常使用的代码封装起来，需要的时候直接调用即可。这样既提高了代码效率，又提高了可维护性。在 SQL 中我们也可以使用函数对检索出来的数据进行函数操作。使用这些函数，可以极大地提高用户对数据库的管理效率。</p>
+</blockquote>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513230738229.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<blockquote>
+<p>从函数定义的角度出发，我们可以将函数分成内置函数和自定义函数。在 SQL 语言中，同样也包括了内置函数和自定义函数。内置函数是系统内置的通用函数，而自定义函数是我们根据自己的需要编写的，本章及下一章讲解的是 SQL 的内置函数。</p>
+</blockquote>
+<h3 id="7-1-2-不同DBMS函数的差异"><a href="#7-1-2-不同DBMS函数的差异" class="headerlink" title="7.1.2 不同DBMS函数的差异"></a>7.1.2 不同DBMS函数的差异</h3><blockquote>
+<p>我们在使用 SQL 语言的时候，不是直接和这门语言打交道，而是通过它使用不同的数据库软件，即 DBMS。DBMS 之间的差异性很大，远大于同一个语言不同版本之间的差异。实际上，只有很少的函数是被 DBMS 同时支持的。比如，大多数 DBMS 使用（||）或者（+）来做拼接符，而在 MySQL 中的字符串拼接函数为concat()。大部分 DBMS 会有自己特定的函数，这就意味着采用 SQL 函数的代码可移植性是很差的，因此在使用函数的时候需要特别注意。</p>
+</blockquote>
+<h3 id="7-1-3-MySQL的内置函数及分类"><a href="#7-1-3-MySQL的内置函数及分类" class="headerlink" title="7.1.3 MySQL的内置函数及分类"></a>7.1.3 MySQL的内置函数及分类</h3><blockquote>
+<ul>
+<li>MySQL提供了丰富的内置函数，这些函数使得数据的维护与管理更加方便，能够更好地提供数据的分析与统计功能，在一定程度上提高了开发人员进行数据分析与统计的效率。</li>
+<li>MySQL提供的内置函数从实现的功能角度可以分为数值函数、字符串函数、日期和时间函数、流程控制函数、加密与解密函数、获取MySQL信息函数、聚合函数等。这里，我将这些丰富的内置函数再分为两类：单行函数、聚合函数（或分组函数）。</li>
+</ul>
+</blockquote>
+<p><strong>两种SQL函数</strong><br><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513230749303.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>单行函数</strong></p>
+<blockquote>
+<ul>
+<li>操作数据对象</li>
+<li>接受参数返回一个结果</li>
+<li>只对一行进行变换</li>
+<li>每行返回一个结果</li>
+<li>可以嵌套</li>
+<li>参数可以是一列或一个值</li>
+</ul>
+</blockquote>
+<h2 id="7-2-数值函数"><a href="#7-2-数值函数" class="headerlink" title="7.2 数值函数"></a>7.2 数值函数</h2><h3 id="7-2-1-基本函数"><a href="#7-2-1-基本函数" class="headerlink" title="7.2.1 基本函数"></a>7.2.1 基本函数</h3><p>函数</p>
+<p>用法</p>
+<p>ABS(x)</p>
+<p>返回x的绝对值</p>
+<p>SIGN(X)</p>
+<p>返回X的符号。正数返回1，负数返回-1，0返回0</p>
+<p>PI()</p>
+<p>返回圆周率的值</p>
+<p>CEIL(x)，CEILING(x)</p>
+<p>返回大于或等于某个值的最小整数</p>
+<p>FLOOR(x)</p>
+<p>返回小于或等于某个值的最大整数</p>
+<p>LEAST(e1,e2,e3…)</p>
+<p>返回列表中的最小值</p>
+<p>GREATEST(e1,e2,e3…)</p>
+<p>返回列表中的最大值</p>
+<p>MOD(x,y)</p>
+<p>返回X除以Y后的余数</p>
+<p>RAND()</p>
+<p>返回0~1的随机值</p>
+<p>RAND(x)</p>
+<p>返回0~1的随机值，其中x的值用作种子值，相同的X值会产生相同的随机数</p>
+<p>ROUND(x)</p>
+<p>返回一个对x的值进行四舍五入后，最接近于X的整数</p>
+<p>ROUND(x,y)</p>
+<p>返回一个对x的值进行四舍五入后最接近X的值，并保留到小数点后面Y位</p>
+<p>TRUNCATE(x,y)</p>
+<p>返回数字x截断为y位小数的结果</p>
+<p>SQRT(x)</p>
+<p>返回x的平方根。当X的值为负数时，返回NULL</p>
+<p><strong>举例</strong></p>
+<pre><code class="hljs">SELECT ABS(-123),ABS(123),SIGN(-23),SIGN(23),PI(),CEIL(32.32),
+       CEILING(-43.23),FLOOR(32.32),FLOOR(-43.23),MOD(12,5)
+FROM DUAL;
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/08c49659f63b458392ad8ce7a055bd97.png" srcset="/img/loading.gif" lazyload></p>
+<pre><code class="hljs">SELECT RAND(),RAND(),RAND(10),RAND(10),RAND(-1),RAND(-1)
+FROM DUAL;
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/01bf91a97c6e463b810a2d7adc430078.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT ROUND(12.33),ROUND(12.343,2),ROUND(12.324,-1),TRUNCATE(12.66,1),TRUNCATE(12.66,-1)
+FROM DUAL;
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/361d1584fae046fc9fdf013110062368.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h3 id="7-2-2-角度与弧度互换函数"><a href="#7-2-2-角度与弧度互换函数" class="headerlink" title="7.2.2 角度与弧度互换函数"></a>7.2.2 角度与弧度互换函数</h3><p>函数</p>
+<p>用法</p>
+<p>RADIANS(x)</p>
+<p>将角度转化为弧度，其中，参数x为角度值</p>
+<p>DEGREES(x)</p>
+<p>将弧度转化为角度，其中，参数x为弧度值</p>
+<pre><code class="hljs">SELECT RADIANS(30),RADIANS(60),RADIANS(90),DEGREES(2*PI()),DEGREES(RADIANS(90))
+FROM DUAL;
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/8b76f7d24c6a4689bc0627143ca6e539.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h3 id="7-2-3-三角函数"><a href="#7-2-3-三角函数" class="headerlink" title="7.2.3 三角函数"></a>7.2.3 三角函数</h3><p>函数</p>
+<p>用法</p>
+<p>SIN(x)</p>
+<p>返回x的正弦值，其中，参数x为弧度值</p>
+<p>ASIN(x)</p>
+<p>返回x的反正弦值，即获取正弦为x的值。如果x的值不在-1到1之间，则返回NULL</p>
+<p>COS(x)</p>
+<p>返回x的余弦值，其中，参数x为弧度值</p>
+<p>ACOS(x)</p>
+<p>返回x的反余弦值，即获取余弦为x的值。如果x的值不在-1到1之间，则返回NULL</p>
+<p>TAN(x)</p>
+<p>返回x的正切值，其中，参数x为弧度值</p>
+<p>ATAN(x)</p>
+<p>返回x的反正切值，即返回正切值为x的值</p>
+<p>ATAN2(m,n)</p>
+<p>返回两个参数的反正切值</p>
+<p>COT(x)</p>
+<p>返回x的余切值，其中，X为弧度值</p>
+<p><strong>举例</strong></p>
+<blockquote>
+<p>ATAN2(M,N)函数返回两个参数的反正切值。<br>与ATAN(X)函数相比，ATAN2(M,N)需要两个参数，例如有两个点point(x1,y1)和point(x2,y2)，使用ATAN(X)函数计算反正切值为ATAN((y2-y1)&#x2F;(x2-x1))，使用ATAN2(M,N)计算反正切值则为ATAN2(y2-y1,x2-x1)。由使用方式可以看出，当x2-x1等于0时，ATAN(X)函数会报错，而ATAN2(M,N)函数则仍然可以计算。</p>
+</blockquote>
+<p>ATAN2(M,N)函数的使用示例如下：</p>
+<pre><code class="hljs">SELECT SIN(RADIANS(30)),DEGREES(ASIN(1)),TAN(RADIANS(45)),DEGREES(ATAN(1)),DEGREES(ATAN2(1,1))
+FROM DUAL;
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/b2d0810e112845539144294e9817bd2b.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h3 id="7-2-4-三角函数"><a href="#7-2-4-三角函数" class="headerlink" title="7.2.4 三角函数"></a>7.2.4 三角函数</h3><p>函数</p>
+<p>用法</p>
+<p>POW(x,y)，</p>
+<p>POWER(X,Y) 返回x的y次方</p>
+<p>EXP(X)</p>
+<p>返回e的X次方，其中e是一个常数，2.718281828459045</p>
+<p>LN(X)，LOG(X)</p>
+<p>返回以e为底的X的对数，当X &lt;&#x3D; 0 时，返回的结果为NULL</p>
+<p>LOG10(X)</p>
+<p>返回以10为底的X的对数，当X &lt;&#x3D; 0 时，返回的结果为NULL</p>
+<p>LOG2(X)</p>
+<p>返回以2为底的X的对数，当X &lt;&#x3D; 0 时，返回NULL</p>
+<pre><code class="hljs">SELECT POW(2,5),POWER(2,4),EXP(2),LN(10),LOG10(10),LOG2(4)
+FROM DUAL;
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/bceb5080226a4cb9934a042f90b2e2f4.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h3 id="7-2-5-进制间的转换"><a href="#7-2-5-进制间的转换" class="headerlink" title="7.2.5 进制间的转换"></a>7.2.5 进制间的转换</h3><p>函数</p>
+<p>用法</p>
+<p>BIN(x)</p>
+<p>返回x的二进制编码</p>
+<p>HEX(x)</p>
+<p>返回x的十六进制编码</p>
+<p>OCT(x)</p>
+<p>返回x的八进制编码</p>
+<p>CONV(x,f1,f2)</p>
+<p>返回f1进制数变成f2进制数</p>
+<pre><code class="hljs">SELECT BIN(10),HEX(10),OCT(10),CONV(10,2,8)
+FROM DUAL;
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/7f2824169dad4332b899615c9a64cdfa.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h2 id="7-3-字符串函数"><a href="#7-3-字符串函数" class="headerlink" title="7.3 字符串函数"></a>7.3 字符串函数</h2><p>函数</p>
+<p>用法</p>
+<p>ASCII(S)</p>
+<p>返回字符串S中的第一个字符的ASCII码值</p>
+<p>CHAR_LENGTH(s)</p>
+<p>返回字符串s的字符数。作用与CHARACTER_LENGTH(s)相同</p>
+<p>LENGTH(s)</p>
+<p>返回字符串s的字节数，和字符集有关</p>
+<p>CONCAT(s1,s2,…,sn)</p>
+<p>连接s1,s2,…,sn为一个字符串</p>
+<p>CONCAT_WS(x, s1,s2,…,sn)</p>
+<p>同CONCAT(s1,s2,…)函数，但是每个字符串之间要加上x</p>
+<p>INSERT(str, idx, len, replacestr)</p>
+<p>将字符串str从第idx位置开始，len个字符长的子串替换为字符串replacestr</p>
+<p>REPLACE(str, a, b)</p>
+<p>用字符串b替换字符串str中所有出现的字符串a</p>
+<p>UPPER(s) 或 UCASE(s)</p>
+<p>将字符串s的所有字母转成大写字母</p>
+<p>LOWER(s) 或LCASE(s)</p>
+<p>将字符串s的所有字母转成小写字母</p>
+<p>LEFT(str,n)</p>
+<p>返回字符串str最左边的n个字符</p>
+<p>RIGHT(str,n)</p>
+<p>返回字符串str最右边的n个字符</p>
+<p>LPAD(str, len, pad)</p>
+<p>用字符串pad对str最左边进行填充，直到str的长度为len个字符</p>
+<p>RPAD(str ,len, pad)</p>
+<p>用字符串pad对str最右边进行填充，直到str的长度为len个字符</p>
+<p>LTRIM(s)</p>
+<p>去掉字符串s左侧的空格</p>
+<p>RTRIM(s)</p>
+<p>去掉字符串s右侧的空格</p>
+<p>TRIM(s)</p>
+<p>去掉字符串s开始与结尾的空格</p>
+<p>TRIM(s1 FROM s)</p>
+<p>去掉字符串s开始与结尾的s1</p>
+<p>TRIM(LEADING s1 FROM s)</p>
+<p>去掉字符串s开始处的s1</p>
+<p>TRIM(TRAILING s1 FROM s)</p>
+<p>去掉字符串s结尾处的s1</p>
+<p>REPEAT(str, n)</p>
+<p>返回str重复n次的结果</p>
+<p>SPACE(n)</p>
+<p>返回n个空格</p>
+<p>STRCMP(s1,s2)</p>
+<p>比较字符串s1,s2的ASCII码值的大小</p>
+<p>SUBSTR(s,index,len)</p>
+<p>返回从字符串s的index位置其len个字符，作用与SUBSTRING(s,n,len)、MID(s,n,len)相同</p>
+<p>LOCATE(substr,str)</p>
+<p>返回字符串substr在字符串str中首次出现的位置，作用于POSITION(substr IN str)、INSTR(str,substr)相同。未找到，返回0</p>
+<p>ELT(m,s1,s2,…,sn)</p>
+<p>返回指定位置的字符串，如果m&#x3D;1，则返回s1，如果m&#x3D;2，则返回s2，如果m&#x3D;n，则返回sn</p>
+<p>FIELD(s,s1,s2,…,sn)</p>
+<p>返回字符串s在字符串列表中第一次出现的位置</p>
+<p>FIND_IN_SET(s1,s2)</p>
+<p>返回字符串s1在字符串s2中出现的位置。其中，字符串s2是一个以逗号分隔的字符串</p>
+<p>REVERSE(s)</p>
+<p>返回s反转后的字符串</p>
+<p>NULLIF(value1,value2)</p>
+<p>比较两个字符串，如果value1与value2相等，则返回NULL，否则返回value1</p>
+<blockquote>
+<p>注意：MySQL中，字符串的位置是从1开始的。</p>
+</blockquote>
+<pre><code class="hljs">SELECT FIELD(&#39;mm&#39;,&#39;hello&#39;,&#39;msm&#39;,&#39;amma&#39;),FIND_IN_SET(&#39;mm&#39;,&#39;hello,mm,amma&#39;)
+FROM DUAL;
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/618610f74f5f4331ba249d8031de19b0.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT NULLIF(&#39;mysql&#39;,&#39;mysql&#39;),NULLIF(&#39;mysql&#39;, &#39;&#39;);
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/eb150d95799c4f158362cda2a193197a.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h2 id="7-4-日期和时间函数"><a href="#7-4-日期和时间函数" class="headerlink" title="7.4 日期和时间函数"></a>7.4 日期和时间函数</h2><h3 id="7-4-1-获取日期、时间"><a href="#7-4-1-获取日期、时间" class="headerlink" title="7.4.1 获取日期、时间"></a>7.4.1 获取日期、时间</h3><p>函数</p>
+<p>用法</p>
+<p>CURDATE() ，CURRENT_DATE()</p>
+<p>返回当前日期，只包含年、月、日</p>
+<p>CURTIME() ， CURRENT_TIME()</p>
+<p>返回当前时间，只包含时、分、秒</p>
+<p>NOW() &#x2F; SYSDATE() &#x2F; CURRENT_TIMESTAMP() &#x2F; LOCALTIME() &#x2F; LOCALTIMESTAMP()</p>
+<p>返回当前系统日期和时间</p>
+<p>UTC_DATE()</p>
+<p>返回UTC（世界标准时间）日期</p>
+<p>UTC_TIME()</p>
+<p>返回UTC（世界标准时间）时间</p>
+<pre><code class="hljs">SELECT CURDATE(),CURTIME(),NOW(),SYSDATE()+0,UTC_DATE(),UTC_DATE()+0,UTC_TIME(),UTC_TIME()+0
+FROM DUAL;
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/a2edbd532dc74f5cb01c8bb3bf767a93.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h3 id="7-4-2-日期与时间戳的转换"><a href="#7-4-2-日期与时间戳的转换" class="headerlink" title="7.4.2 日期与时间戳的转换"></a>7.4.2 日期与时间戳的转换</h3><p>函数</p>
+<p>用法</p>
+<p>UNIX_TIMESTAMP()</p>
+<p>以UNIX时间戳的形式返回当前时间。SELECT UNIX_TIMESTAMP() -&gt;1634348884</p>
+<p>UNIX_TIMESTAMP(date)</p>
+<p>将时间date以UNIX时间戳的形式返回。</p>
+<p>FROM_UNIXTIME(timestamp)</p>
+<p>将UNIX时间戳的时间转换为普通格式的时间</p>
+<p><strong>举例</strong></p>
+<pre><code class="hljs">SELECT UNIX_TIMESTAMP(NOW());
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/8df87645a3fb463cb593aa3f4aef90d7.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT UNIX_TIMESTAMP(CURDATE());
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/a3914ebab4ed4f2f9e8429780001940d.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT UNIX_TIMESTAMP(&#39;2011-11-11 11:11:11&#39;)
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/1ed6ceae98ab4dedbf2be4f87c32def4.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT FROM_UNIXTIME(1576380910);
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/ca86d89287be47fbbc0ccf542fb57a63.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h3 id="7-4-3-获取月份、星期、星期数、天数等函数"><a href="#7-4-3-获取月份、星期、星期数、天数等函数" class="headerlink" title="7.4.3 获取月份、星期、星期数、天数等函数"></a>7.4.3 获取月份、星期、星期数、天数等函数</h3><p>函数</p>
+<p>用法</p>
+<p>YEAR(date) &#x2F; MONTH(date) &#x2F; DAY(date)</p>
+<p>返回具体的日期值</p>
+<p>HOUR(time) &#x2F; MINUTE(time) &#x2F; SECOND(time)</p>
+<p>返回具体的时间值</p>
+<p>MONTHNAME(date)</p>
+<p>返回月份：January，…</p>
+<p>DAYNAME(date)</p>
+<p>返回星期几：MONDAY，TUESDAY…SUNDAY</p>
+<p>WEEKDAY(date)</p>
+<p>返回周几，注意，周1是0，周2是1，。。。周日是6</p>
+<p>QUARTER(date)</p>
+<p>返回日期对应的季度，范围为1～4</p>
+<p>WEEK(date) ， WEEKOFYEAR(date)</p>
+<p>返回一年中的第几周</p>
+<p>DAYOFYEAR(date)</p>
+<p>返回日期是一年中的第几天</p>
+<p>DAYOFMONTH(date)</p>
+<p>返回日期位于所在月份的第几天</p>
+<p>DAYOFWEEK(date)</p>
+<p>返回周几，注意：周日是1，周一是2，。。。周六是7</p>
+<pre><code class="hljs">SELECT YEAR(CURDATE()),MONTH(CURDATE()),DAY(CURDATE()),
+HOUR(CURTIME()),MINUTE(NOW()),SECOND(SYSDATE())
+FROM DUAL;
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/367b529c2c8540fe8e504595f8c9a326.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT MONTHNAME(&#39;2021-10-26&#39;),DAYNAME(&#39;2021-10-26&#39;),WEEKDAY(&#39;2021-10-26&#39;),
+QUARTER(CURDATE()),WEEK(CURDATE()),DAYOFYEAR(NOW()),
+DAYOFMONTH(NOW()),DAYOFWEEK(NOW())
+FROM DUAL;
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/88c5ce12d5644e94aba87aade1bbec8b.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h3 id="7-4-4-日期的操作函数"><a href="#7-4-4-日期的操作函数" class="headerlink" title="7.4.4 日期的操作函数"></a>7.4.4 日期的操作函数</h3><p>函数</p>
+<p>用法</p>
+<p>EXTRACT(type FROM date)</p>
+<p>返回指定日期中特定的部分，type指定返回的值</p>
+<p><strong>EXTRACT(type FROM date)函数中type的取值与含义：</strong></p>
+<p>type取值</p>
+<p>含义</p>
+<p>–</p>
+<p>–</p>
+<p>MICROSECOND</p>
+<p>返回毫秒值</p>
+<p>SECOND</p>
+<p>返回秒数</p>
+<p>MINUTE</p>
+<p>返回分钟数</p>
+<p>HOUR</p>
+<p>返回小时数</p>
+<p>DAY</p>
+<p>返回天数</p>
+<p>WEEK</p>
+<p>返回日期在一年中的第几个星期</p>
+<p>MONTH</p>
+<p>返回日期在一年中的第几个月</p>
+<p>QUARTER</p>
+<p>返回日期在一年中的第几个季度</p>
+<p>YEAR</p>
+<p>返回日期的年丰</p>
+<p>SECOND_MICROSECOND</p>
+<p>返回秒和毫秒值</p>
+<p>MINUTE_MICROSECOND</p>
+<p>返回分钟和毫秒值</p>
+<p>MINUTE_SECOND</p>
+<p>返回分钟和秒值</p>
+<p>HOUR_MICROSECOND</p>
+<p>返回小时和毫秒值</p>
+<p>HOUR_SECOND</p>
+<p>返回小时和秒值</p>
+<p>HOUR_MINUTE</p>
+<p>返回小时和分钟值</p>
+<p>DAY_MICROSECOND</p>
+<p>返回天和毫秒值</p>
+<p>DAY_SECOND</p>
+<p>返回天和秒值</p>
+<p>DAY_MINUTE</p>
+<p>返回天和分钟值</p>
+<p>DAY_HOUR</p>
+<p>返回天和小时</p>
+<p>YEAR_MONTH</p>
+<p>返回年和月</p>
+<pre><code class="hljs">SELECT EXTRACT(MINUTE FROM NOW()),EXTRACT( WEEK FROM NOW()),
+EXTRACT( QUARTER FROM NOW()),EXTRACT( MINUTE_SECOND FROM NOW())
+FROM DUAL;
+</code></pre>
+<h3 id="7-4-5-时间和秒钟转换的函数"><a href="#7-4-5-时间和秒钟转换的函数" class="headerlink" title="7.4.5 时间和秒钟转换的函数"></a>7.4.5 时间和秒钟转换的函数</h3><p>函数</p>
+<p>用法</p>
+<p>TIME_TO_SEC(time)</p>
+<p>将 time 转化为秒并返回结果值。转化的公式为：小时_3600+分钟_60+秒</p>
+<p>SEC_TO_TIME(seconds)</p>
+<p>将 seconds 描述转化为包含小时、分钟和秒的时间</p>
+<pre><code class="hljs">SELECT TIME_TO_SEC(NOW());
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/e3f169857d144b3896f9a8ed4c16a73e.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT SEC_TO_TIME(71507);
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/be4878706dbd489895b4b97a505fbce2.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h3 id="7-4-6-计算日期和时间的函数"><a href="#7-4-6-计算日期和时间的函数" class="headerlink" title="7.4.6 计算日期和时间的函数"></a>7.4.6 计算日期和时间的函数</h3><p>第一组:</p>
+<p>函数</p>
+<p>用法</p>
+<p>DATE_ADD(datetime, INTERVAL expr type)，ADDDATE(date,INTERVAL expr type)</p>
+<p>返回与给定日期时间相差INTERVAL时间段的日期时间</p>
+<p>DATE_SUB(date,INTERVAL expr type)，SUBDATE(date,INTERVAL expr type)</p>
+<p>返回与date相差INTERVAL时间间隔的日期</p>
+<p>上述函数中type的取值:</p>
+<p>间隔类型</p>
+<p>含义</p>
+<p>HOUR</p>
+<p>小时</p>
+<p>MINUTE</p>
+<p>分钟</p>
+<p>SECOND</p>
+<p>秒</p>
+<p>YEAR</p>
+<p>年</p>
+<p>MONTH</p>
+<p>月</p>
+<p>DAY</p>
+<p>日</p>
+<p>YEAR_MONTH</p>
+<p>年和月</p>
+<p>DAY_HOUR</p>
+<p>日和小时</p>
+<p>DAY_MINUTE</p>
+<p>日和分钟</p>
+<p>DAY_SECOND</p>
+<p>日和秒</p>
+<p>HOUR_MINUTE</p>
+<p>小时和分钟</p>
+<p>HOUR_SECOND</p>
+<p>小时和秒</p>
+<p>MINUTE_SECOND</p>
+<p>分钟和秒</p>
+<pre><code class="hljs">SELECT DATE_ADD(NOW(), INTERVAL 1 DAY) AS col1,DATE_ADD(&#39;2022-2-26 20:02:02&#39;,INTERVAL 1 SECOND) AS col2,
+       ADDDATE(&#39;2022-2-26 20:02:02&#39;,INTERVAL 1 SECOND) AS col3,
+       DATE_ADD(&#39;2022-2-26 20:02:02&#39;,INTERVAL &#39;1_1&#39; MINUTE_SECOND) AS col4,
+       DATE_ADD(NOW(), INTERVAL -1 YEAR) AS col5, #可以是负数
+       DATE_ADD(NOW(), INTERVAL &#39;1_1&#39; YEAR_MONTH) AS col6 #需要单引号
+FROM DUAL;
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/77453bf238d04b628e295667ea2101bd.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT DATE_SUB(&#39;2022-2-26&#39;,INTERVAL 31 DAY) AS col1,
+       SUBDATE(&#39;2022-2-26&#39;,INTERVAL 31 DAY) AS col2,
+       DATE_SUB(&#39;2022-2-26 20:04:02&#39;,INTERVAL &#39;1 1&#39; DAY_HOUR) AS col3
+FROM DUAL;
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/843b241a153347e4af6a543a75d5f201.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>第二组:</p>
+<p>函数</p>
+<p>用法</p>
+<p>ADDTIME(time1,time2)</p>
+<p>返回time1加上time2的时间。当time2为一个数字时，代表的是<code>秒</code>，可以为负数</p>
+<p>SUBTIME(time1,time2)</p>
+<p>返回time1减去time2后的时间。当time2为一个数字时，代表的是<code>秒</code>，可以为负数</p>
+<p>DATEDIFF(date1,date2)</p>
+<p>返回date1 - date2的日期间隔天数</p>
+<p>TIMEDIFF(time1, time2)</p>
+<p>返回time1 - time2的时间间隔</p>
+<p>FROM_DAYS(N)</p>
+<p>返回从0000年1月1日起，N天以后的日期</p>
+<p>TO_DAYS(date)</p>
+<p>返回日期date距离0000年1月1日的天数</p>
+<p>LAST_DAY(date)</p>
+<p>返回date所在月份的最后一天的日期</p>
+<p>MAKEDATE(year,n)</p>
+<p>针对给定年份与所在年份中的天数返回一个日期</p>
+<p>MAKETIME(hour,minute,second)</p>
+<p>将给定的小时、分钟和秒组合成时间并返回</p>
+<p>PERIOD_ADD(time,n)</p>
+<p>返回time加上n后的时间</p>
+<pre><code class="hljs">SELECT ADDTIME(NOW(),20),SUBTIME(NOW(),30),SUBTIME(NOW(),&#39;1:1:3&#39;),DATEDIFF(NOW(),&#39;2022-2-26&#39;),
+       TIMEDIFF(NOW(),&#39;2022-2-26 20:06:52&#39;),FROM_DAYS(366),TO_DAYS(&#39;0000-12-25&#39;),
+       LAST_DAY(NOW()),MAKEDATE(YEAR(NOW()),12),MAKETIME(10,21,23),PERIOD_ADD(20200101010101,10)
+FROM DUAL;
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/b6a1b7646f7a4f689d56011cc0566e1b.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT ADDTIME(NOW(),50); #当期时间加50秒
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/e82ac2c574754169a6ccd6b6ed9d1994.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT ADDTIME(NOW(),&#39;1:1:1&#39;); #当前时间加1小时1分钟1秒
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/737d3dfa22ca46aabe22118d4c76dc6b.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT SUBTIME(NOW(),&#39;1:1:1&#39;); #当前时间减1小时1分钟1秒
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/ceabd8f6c1ff4d94aa677bd08bbc59a3.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT SUBTIME(NOW(), &#39;-1:-1:-1&#39;); 
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/9efc898eed13430b8e76541211974baf.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT FROM_DAYS(366);
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/fdc0ab1da5894dc498cf1aaab903f361.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT MAKEDATE(2022,1);
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/ed35dd1ec14a4e01a1dee202f3c9e3a3.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT MAKETIME(1,1,1);
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/900b7a90db0940ac9833f168165a67e6.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT PERIOD_ADD(20200101010101,1);
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/eb5239c0ab7b495982a8b6688eba7027.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT TO_DAYS(NOW());
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/c7bdb33bf68b47bd984d0214884a4312.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">#查询 7 天内的新增用户数有多少？
+SELECT COUNT(*) AS num FROM new_user WHERE TO_DAYS(NOW())-TO_DAYS(regist_time)&lt;=7
+</code></pre>
+<h3 id="7-4-7-日期的格式化与解析"><a href="#7-4-7-日期的格式化与解析" class="headerlink" title="7.4.7 日期的格式化与解析"></a>7.4.7 日期的格式化与解析</h3><p>函数</p>
+<p>用法</p>
+<p>DATE_FORMAT(date,fmt)</p>
+<p>按照字符串fmt格式化日期date值</p>
+<p>TIME_FORMAT(time,fmt)</p>
+<p>按照字符串fmt格式化时间time值</p>
+<p>GET_FORMAT(date_type,format_type)</p>
+<p>返回日期字符串的显示格式</p>
+<p>STR_TO_DATE(str, fmt)</p>
+<p>按照字符串fmt对str进行解析，解析为一个日期</p>
+<p>上述非GET_FORMAT函数中fmt参数常用的格式符：</p>
+<p>格式符</p>
+<p>说明</p>
+<p>格式符</p>
+<p>说明</p>
+<p>%Y</p>
+<p>4位数字表示年份</p>
+<p>%y</p>
+<p>表示两位数字表示年份</p>
+<p>%M</p>
+<p>月名表示月份（January,…）</p>
+<p>%m</p>
+<p>两位数字表示月份（01,02,03。。。）</p>
+<p>%b</p>
+<p>缩写的月名（Jan.，Feb.，…）</p>
+<p>%c</p>
+<p>数字表示月份（1,2,3,…）</p>
+<p>%D</p>
+<p>英文后缀表示月中的天数（1st,2nd,3rd,…）</p>
+<p>%d</p>
+<p>两位数字表示月中的天数(01,02…)</p>
+<p>%e</p>
+<p>数字形式表示月中的天数（1,2,3,4,5…）</p>
+<p>%H</p>
+<p>两位数字表示小数，24小时制（01,02…）</p>
+<p>%h和%I</p>
+<p>两位数字表示小时，12小时制（01,02…）</p>
+<p>%k</p>
+<p>数字形式的小时，24小时制(1,2,3)</p>
+<p>%l</p>
+<p>数字形式表示小时，12小时制（1,2,3,4…）</p>
+<p>%i</p>
+<p>两位数字表示分钟（00,01,02）</p>
+<p>%S和%s</p>
+<p>两位数字表示秒(00,01,02…)</p>
+<p>%W</p>
+<p>一周中的星期名称（Sunday…）</p>
+<p>%a</p>
+<p>一周中的星期缩写（Sun.，Mon.,Tues.，…）</p>
+<p>%w</p>
+<p>以数字表示周中的天数(0&#x3D;Sunday,1&#x3D;Monday…)</p>
+<p>%j</p>
+<p>以3位数字表示年中的天数(001,002…)</p>
+<p>%U</p>
+<p>以数字表示年中的第几周，（1,2,3。。）其中Sunday为周中第一天</p>
+<p>%u</p>
+<p>以数字表示年中的第几周，（1,2,3。。）其中Monday为周中第一天</p>
+<p>%T</p>
+<p>24小时制</p>
+<p>%r</p>
+<p>12小时制</p>
+<p>%p</p>
+<p>AM或PM</p>
+<p>%%</p>
+<p>表示%</p>
+<p>GET_FORMAT函数中date_type和format_type参数取值如下：</p>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-3240356.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT DATE_FORMAT(NOW(), &#39;%H:%i:%s&#39;);
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/b0a32727980f4964badc1c2acd75bb20.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT STR_TO_DATE(&#39;09/01/2009&#39;,&#39;%m/%d/%Y&#39;)
+FROM DUAL;
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/0cacd611aeee41129e022d7dee5646ee.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT STR_TO_DATE(&#39;20140422154706&#39;,&#39;%Y%m%d%H%i%s&#39;)
+FROM DUAL;
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/e6e53a54896c4cb7b6734369f2230622.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT STR_TO_DATE(&#39;2014-04-22 15:47:06&#39;,&#39;%Y-%m-%d %H:%i:%s&#39;)
+FROM DUAL;
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/72bc357a74604c76a750992b74519a45.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT GET_FORMAT(DATE, &#39;USA&#39;);
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/573c9396b7694572886270af9d5d88d8.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT DATE_FORMAT(NOW(),GET_FORMAT(DATE,&#39;USA&#39;)) FROM DUAL;
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/611ca03eee20413084b582eadde75aa7.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT STR_TO_DATE(&#39;2020-01-01 00:00:00&#39;,&#39;%Y-%m-%d&#39;);
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/90b532ad482047f894c3a99e5f9035d3.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h2 id="7-5-流程控制函数"><a href="#7-5-流程控制函数" class="headerlink" title="7.5 流程控制函数"></a>7.5 流程控制函数</h2><blockquote>
+<p>流程处理函数可以根据不同的条件，执行不同的处理流程，可以在SQL语句中实现不同的条件选择。MySQL中的流程处理函数主要包括IF()、IFNULL()和CASE()函数。</p>
+</blockquote>
+<p>函数</p>
+<p>用法</p>
+<p>IF(value,value1,value2)</p>
+<p>如果value的值为TRUE，返回value1，否则返回value2</p>
+<p>IFNULL(value1, value2)</p>
+<p>如果value1不为NULL，返回value1，否则返回value2</p>
+<p>CASE WHEN 条件1 THEN 结果1 WHEN 条件2 THEN 结果2 … [ELSE resultn] END</p>
+<p>相当于Java的if…else if…else…</p>
+<p>CASE expr WHEN 常量值1 THEN 值1 WHEN 常量值1 THEN 值1 … [ELSE 值n] END</p>
+<p>相当于Java的switch…case…</p>
+<pre><code class="hljs">SELECT IF(1&gt;0,&#39;正确&#39;,&#39;错误&#39;)
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/041fe748a5c2449eb44f06a104c2fddc.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT IFNULL(NULL,&#39;Hello Word&#39;);
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/85a2986aed5e4c16ab294045b21877b1.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT CASE WHEN 1 &gt; 0 THEN &#39;1&gt;0&#39;
+            WHEN 2 &gt; 0 THEN &#39;2&gt;0&#39;
+       ELSE &#39;3 &gt; 0&#39;
+       END;
+
+
+SELECT employee_id,salary, CASE WHEN salary&gt;=15000 THEN &#39;高薪&#39; 
+                  WHEN salary&gt;=10000 THEN &#39;潜力股&#39;  
+                  WHEN salary&gt;=8000 THEN &#39;屌丝&#39; 
+                  ELSE &#39;草根&#39; END  &quot;描述&quot;
+FROM employees; 
+SELECT oid,`status`, CASE `status` WHEN 1 THEN &#39;未付款&#39; 
+                                   WHEN 2 THEN &#39;已付款&#39; 
+                                   WHEN 3 THEN &#39;已发货&#39;  
+                                   WHEN 4 THEN &#39;确认收货&#39;  
+                                   ELSE &#39;无效订单&#39; END 
+FROM t_order;
+</code></pre>
+<h2 id="7-6-流程控制函数"><a href="#7-6-流程控制函数" class="headerlink" title="7.6 流程控制函数"></a>7.6 流程控制函数</h2><blockquote>
+<p>加密与解密函数主要用于对数据库中的数据进行加密和解密处理，以防止数据被他人窃取。这些函数在保证数据库安全时非常有用。</p>
+</blockquote>
+<p>函数</p>
+<p>用法</p>
+<p>PASSWORD(str)</p>
+<p>返回字符串str的加密版本，41位长的字符串。加密结果不可逆，常用于用户的密码加密</p>
+<p>MD5(str)</p>
+<p>返回字符串str的md5加密后的值，也是一种加密方式。若参数为NULL，则会返回NULL</p>
+<p>SHA(str)</p>
+<p>从原明文密码str计算并返回加密后的密码字符串，当参数为NULL时，返回NULL。SHA加密算法比MD5更加安全。</p>
+<p>ENCODE(value,password_seed)</p>
+<p>返回使用password_seed作为加密密码加密value</p>
+<p>DECODE(value,password_seed)</p>
+<p>返回使用password_seed作为加密密码解密value</p>
+<blockquote>
+<p>可以看到，ENCODE(value,password_seed)函数与DECODE(value,password_seed)函数互为反函数。</p>
+</blockquote>
+<pre><code class="hljs">mysql&gt; SELECT PASSWORD(&#39;mysql&#39;), PASSWORD(NULL);
++-------------------------------------------+----------------+
+| PASSWORD(&#39;mysql&#39;)                         | PASSWORD(NULL) |
++-------------------------------------------+----------------+
+| *E74858DB86EBA20BC33D0AECAE8A8108C56B17FA |                |
++-------------------------------------------+----------------+
+1 row in set, 1 warning (0.00 sec)
+
+
+SELECT md5(&#39;123&#39;)
+-&gt;202cb962ac59075b964b07152d234b70
+
+
+SELECT SHA(&#39;Tom123&#39;)
+-&gt;c7c506980abc31cc390a2438c90861d0f1216d50
+
+
+mysql&gt; SELECT ENCODE(&#39;mysql&#39;, &#39;mysql&#39;);
++--------------------------+
+| ENCODE(&#39;mysql&#39;, &#39;mysql&#39;) |
++--------------------------+
+| íg　¼　ìÉ                  |
++--------------------------+
+1 row in set, 1 warning (0.01 sec)
+
+
+mysql&gt; SELECT DECODE(ENCODE(&#39;mysql&#39;,&#39;mysql&#39;),&#39;mysql&#39;);
++-----------------------------------------+
+| DECODE(ENCODE(&#39;mysql&#39;,&#39;mysql&#39;),&#39;mysql&#39;) |
++-----------------------------------------+
+| mysql                                   |
++-----------------------------------------+
+1 row in set, 2 warnings (0.00 sec)
+</code></pre>
+<h2 id="7-7-MySQL信息函数"><a href="#7-7-MySQL信息函数" class="headerlink" title="7.7 MySQL信息函数"></a>7.7 MySQL信息函数</h2><blockquote>
+<p>MySQL中内置了一些可以查询MySQL信息的函数，这些函数主要用于帮助数据库开发或运维人员更好地对数据库进行维护工作。</p>
+</blockquote>
+<p>函数</p>
+<p>用法</p>
+<p>VERSION()</p>
+<p>返回当前MySQL的版本号</p>
+<p>CONNECTION_ID()</p>
+<p>返回当前MySQL服务器的连接数</p>
+<p>DATABASE()，SCHEMA()</p>
+<p>返回MySQL命令行当前所在的数据库</p>
+<p>USER()，CURRENT_USER()、SYSTEM_USER()，SESSION_USER()</p>
+<p>返回当前连接MySQL的用户名，返回结果格式为“主机名@用户名”</p>
+<p>CHARSET(value)</p>
+<p>返回字符串value自变量的字符集</p>
+<p>COLLATION(value)</p>
+<p>返回字符串value的比较规则</p>
+<pre><code class="hljs"> SELECT DATABASE();
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/92178882cd3040e3904289bcc1562749.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT USER(), CURRENT_USER(), SYSTEM_USER(),SESSION_USER();
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/f72ddc523ec24db78ecfae7fa2860758.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT CHARSET(&#39;ABC&#39;);
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/3376496e1a9e4e629853646ba6ab2371.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT COLLATION(&#39;ABC&#39;);
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/38001c9a4f724e09b661acb54ebbb836.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h2 id="7-8-其他函数"><a href="#7-8-其他函数" class="headerlink" title="7.8 其他函数"></a>7.8 其他函数</h2><blockquote>
+<p>MySQL中有些函数无法对其进行具体的分类，但是这些函数在MySQL的开发和运维过程中也是不容忽视的。</p>
+</blockquote>
+<p>函数</p>
+<p>用法</p>
+<p>FORMAT(value,n)</p>
+<p>返回对数字value进行格式化后的结果数据。n表示四舍五入后保留到小数点后n位</p>
+<p>CONV(value,from,to)</p>
+<p>将value的值进行不同进制之间的转换</p>
+<p>INET_ATON(ipvalue)</p>
+<p>将以点分隔的IP地址转化为一个数字</p>
+<p>INET_NTOA(value)</p>
+<p>将数字形式的IP地址转化为以点分隔的IP地址</p>
+<p>BENCHMARK(n,expr)</p>
+<p>将表达式expr重复执行n次。用于测试MySQL处理expr表达式所耗费的时间</p>
+<p>CONVERT(value USING char_code)</p>
+<p>将value所使用的字符编码修改为char_code</p>
+<pre><code class="hljs"># 如果n的值小于或者等于0，则只保留整数部分
+SELECT FORMAT(123.123, 2), FORMAT(123.523, 0), FORMAT(123.123, -2);
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/149bcd03c4c74914a75b02f7cba35dd4.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT CONV(16, 10, 2), CONV(8888,10,16), CONV(NULL, 10, 2);
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/7f35906c0ca04cd9b450cc4fc63c8078.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT INET_ATON(&#39;192.168.1.100&#39;);
+# 以“192.168.1.100”为例，计算方式为192乘以256的3次方，加上168乘以256的2次方，加上1乘以256，再加上100。
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/27a2424ee0bd4998895fdbfab5d5f7ae.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT INET_NTOA(3232235876);
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/15e49d139fd54125b9607dad465e0403.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT BENCHMARK(1, MD5(&#39;mysql&#39;));
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/5cca5d9899094724addd192ff3fb74f9.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT BENCHMARK(1000000, MD5(&#39;mysql&#39;)); 
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/94644cc54380410c9b208ab1e6a5ad3f.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT CHARSET(&#39;mysql&#39;), CHARSET(CONVERT(&#39;mysql&#39; USING &#39;utf8&#39;));
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/2a542413a53d4981bb913f3f5a3aea65.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h2 id="7-9-练习sql"><a href="#7-9-练习sql" class="headerlink" title="7.9. 练习sql"></a>7.9. 练习sql</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br></pre></td><td class="code"><pre><code class="hljs sql">#第<span class="hljs-number">07</span>章_单行函数<br><br>#<span class="hljs-number">1.</span>数值函数<br>#基本的操作<br><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">ABS</span>(<span class="hljs-number">-123</span>),<span class="hljs-built_in">ABS</span>(<span class="hljs-number">32</span>),SIGN(<span class="hljs-number">-23</span>),SIGN(<span class="hljs-number">43</span>),PI(),<span class="hljs-built_in">CEIL</span>(<span class="hljs-number">32.32</span>),<span class="hljs-built_in">CEILING</span>(<span class="hljs-number">-43.23</span>),<span class="hljs-built_in">FLOOR</span>(<span class="hljs-number">32.32</span>),<br><span class="hljs-built_in">FLOOR</span>(<span class="hljs-number">-43.23</span>),<span class="hljs-built_in">MOD</span>(<span class="hljs-number">12</span>,<span class="hljs-number">5</span>),<span class="hljs-number">12</span> MOD <span class="hljs-number">5</span>,<span class="hljs-number">12</span> <span class="hljs-operator">%</span> <span class="hljs-number">5</span><br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#取随机数<br><span class="hljs-keyword">SELECT</span> RAND(),RAND(),RAND(<span class="hljs-number">10</span>),RAND(<span class="hljs-number">10</span>),RAND(<span class="hljs-number">-1</span>),RAND(<span class="hljs-number">-1</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#四舍五入，截断操作<br><span class="hljs-keyword">SELECT</span> ROUND(<span class="hljs-number">123.556</span>),ROUND(<span class="hljs-number">123.456</span>,<span class="hljs-number">0</span>),ROUND(<span class="hljs-number">123.456</span>,<span class="hljs-number">1</span>),ROUND(<span class="hljs-number">123.456</span>,<span class="hljs-number">2</span>),<br>ROUND(<span class="hljs-number">123.456</span>,<span class="hljs-number">-1</span>),ROUND(<span class="hljs-number">153.456</span>,<span class="hljs-number">-2</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">TRUNCATE</span>(<span class="hljs-number">123.456</span>,<span class="hljs-number">0</span>),<span class="hljs-keyword">TRUNCATE</span>(<span class="hljs-number">123.496</span>,<span class="hljs-number">1</span>),<span class="hljs-keyword">TRUNCATE</span>(<span class="hljs-number">129.45</span>,<span class="hljs-number">-1</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#单行函数可以嵌套<br><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">TRUNCATE</span>(ROUND(<span class="hljs-number">123.456</span>,<span class="hljs-number">2</span>),<span class="hljs-number">0</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#角度与弧度的互换<br><br><span class="hljs-keyword">SELECT</span> RADIANS(<span class="hljs-number">30</span>),RADIANS(<span class="hljs-number">45</span>),RADIANS(<span class="hljs-number">60</span>),RADIANS(<span class="hljs-number">90</span>),<br>DEGREES(<span class="hljs-number">2</span><span class="hljs-operator">*</span>PI()),DEGREES(RADIANS(<span class="hljs-number">60</span>))<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><br>#三角函数<br><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">SIN</span>(RADIANS(<span class="hljs-number">30</span>)),DEGREES(<span class="hljs-built_in">ASIN</span>(<span class="hljs-number">1</span>)),<span class="hljs-built_in">TAN</span>(RADIANS(<span class="hljs-number">45</span>)),DEGREES(<span class="hljs-built_in">ATAN</span>(<span class="hljs-number">1</span>))<br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#指数和对数<br><span class="hljs-keyword">SELECT</span> POW(<span class="hljs-number">2</span>,<span class="hljs-number">5</span>),<span class="hljs-built_in">POWER</span>(<span class="hljs-number">2</span>,<span class="hljs-number">4</span>),<span class="hljs-built_in">EXP</span>(<span class="hljs-number">2</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">LN</span>(<span class="hljs-built_in">EXP</span>(<span class="hljs-number">2</span>)),<span class="hljs-built_in">LOG</span>(<span class="hljs-built_in">EXP</span>(<span class="hljs-number">2</span>)),<span class="hljs-built_in">LOG10</span>(<span class="hljs-number">10</span>),LOG2(<span class="hljs-number">4</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#进制间的转换<br><span class="hljs-keyword">SELECT</span> BIN(<span class="hljs-number">10</span>),HEX(<span class="hljs-number">10</span>),OCT(<span class="hljs-number">10</span>),CONV(<span class="hljs-number">10</span>,<span class="hljs-number">10</span>,<span class="hljs-number">8</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><br>#<span class="hljs-number">2.</span> 字符串函数<br><br><span class="hljs-keyword">SELECT</span> ASCII(<span class="hljs-string">&#x27;Abcdfsf&#x27;</span>),<span class="hljs-keyword">CHAR_LENGTH</span>(<span class="hljs-string">&#x27;hello&#x27;</span>),<span class="hljs-keyword">CHAR_LENGTH</span>(<span class="hljs-string">&#x27;我们&#x27;</span>),<br>LENGTH(<span class="hljs-string">&#x27;hello&#x27;</span>),LENGTH(<span class="hljs-string">&#x27;我们&#x27;</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br># xxx worked <span class="hljs-keyword">for</span> yyy<br><span class="hljs-keyword">SELECT</span> CONCAT(emp.last_name,<span class="hljs-string">&#x27; worked for &#x27;</span>,mgr.last_name) &quot;details&quot;<br><span class="hljs-keyword">FROM</span> employees emp <span class="hljs-keyword">JOIN</span> employees mgr<br><span class="hljs-keyword">WHERE</span> emp.`manager_id` <span class="hljs-operator">=</span> mgr.employee_id;<br><br><span class="hljs-keyword">SELECT</span> CONCAT_WS(<span class="hljs-string">&#x27;-&#x27;</span>,<span class="hljs-string">&#x27;hello&#x27;</span>,<span class="hljs-string">&#x27;world&#x27;</span>,<span class="hljs-string">&#x27;hello&#x27;</span>,<span class="hljs-string">&#x27;beijing&#x27;</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br>#字符串的索引是从<span class="hljs-number">1</span>开始的！<br><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">INSERT</span>(<span class="hljs-string">&#x27;helloworld&#x27;</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-string">&#x27;aaaaa&#x27;</span>),REPLACE(<span class="hljs-string">&#x27;hello&#x27;</span>,<span class="hljs-string">&#x27;lol&#x27;</span>,<span class="hljs-string">&#x27;mmm&#x27;</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">UPPER</span>(<span class="hljs-string">&#x27;HelLo&#x27;</span>),<span class="hljs-built_in">LOWER</span>(<span class="hljs-string">&#x27;HelLo&#x27;</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><span class="hljs-keyword">SELECT</span> last_name,salary<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">WHERE</span> <span class="hljs-built_in">LOWER</span>(last_name) <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;King&#x27;</span>;<br><br><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">LEFT</span>(<span class="hljs-string">&#x27;hello&#x27;</span>,<span class="hljs-number">2</span>),<span class="hljs-keyword">RIGHT</span>(<span class="hljs-string">&#x27;hello&#x27;</span>,<span class="hljs-number">3</span>),<span class="hljs-keyword">RIGHT</span>(<span class="hljs-string">&#x27;hello&#x27;</span>,<span class="hljs-number">13</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br># LPAD:实现右对齐效果<br># RPAD:实现左对齐效果<br><span class="hljs-keyword">SELECT</span> employee_id,last_name,LPAD(salary,<span class="hljs-number">10</span>,<span class="hljs-string">&#x27; &#x27;</span>)<br><span class="hljs-keyword">FROM</span> employees;<br><br><span class="hljs-keyword">SELECT</span> CONCAT(<span class="hljs-string">&#x27;---&#x27;</span>,LTRIM(<span class="hljs-string">&#x27;    h  el  lo   &#x27;</span>),<span class="hljs-string">&#x27;***&#x27;</span>),<br><span class="hljs-built_in">TRIM</span>(<span class="hljs-string">&#x27;oo&#x27;</span> <span class="hljs-keyword">FROM</span> <span class="hljs-string">&#x27;ooheollo&#x27;</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><span class="hljs-keyword">SELECT</span> REPEAT(<span class="hljs-string">&#x27;hello&#x27;</span>,<span class="hljs-number">4</span>),LENGTH(SPACE(<span class="hljs-number">5</span>)),STRCMP(<span class="hljs-string">&#x27;abc&#x27;</span>,<span class="hljs-string">&#x27;abe&#x27;</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><br><span class="hljs-keyword">SELECT</span> SUBSTR(<span class="hljs-string">&#x27;hello&#x27;</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>),LOCATE(<span class="hljs-string">&#x27;lll&#x27;</span>,<span class="hljs-string">&#x27;hello&#x27;</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><span class="hljs-keyword">SELECT</span> ELT(<span class="hljs-number">2</span>,<span class="hljs-string">&#x27;a&#x27;</span>,<span class="hljs-string">&#x27;b&#x27;</span>,<span class="hljs-string">&#x27;c&#x27;</span>,<span class="hljs-string">&#x27;d&#x27;</span>),FIELD(<span class="hljs-string">&#x27;mm&#x27;</span>,<span class="hljs-string">&#x27;gg&#x27;</span>,<span class="hljs-string">&#x27;jj&#x27;</span>,<span class="hljs-string">&#x27;mm&#x27;</span>,<span class="hljs-string">&#x27;dd&#x27;</span>,<span class="hljs-string">&#x27;mm&#x27;</span>),<br>FIND_IN_SET(<span class="hljs-string">&#x27;mm&#x27;</span>,<span class="hljs-string">&#x27;gg,mm,jj,dd,mm,gg&#x27;</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><span class="hljs-keyword">SELECT</span> employee_id,<span class="hljs-built_in">NULLIF</span>(LENGTH(first_name),LENGTH(last_name)) &quot;compare&quot;<br><span class="hljs-keyword">FROM</span> employees;<br><br>#<span class="hljs-number">3.</span> 日期和时间函数<br><br>#<span class="hljs-number">3.1</span>  获取日期、时间<br><span class="hljs-keyword">SELECT</span> CURDATE(),<span class="hljs-built_in">CURRENT_DATE</span>(),CURTIME(),NOW(),SYSDATE(),<br>UTC_DATE(),UTC_TIME()<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><span class="hljs-keyword">SELECT</span> CURDATE(),CURDATE() <span class="hljs-operator">+</span> <span class="hljs-number">0</span>,CURTIME() <span class="hljs-operator">+</span> <span class="hljs-number">0</span>,NOW() <span class="hljs-operator">+</span> <span class="hljs-number">0</span><br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#<span class="hljs-number">3.2</span> 日期与时间戳的转换<br><span class="hljs-keyword">SELECT</span> UNIX_TIMESTAMP(),UNIX_TIMESTAMP(<span class="hljs-string">&#x27;2021-10-01 12:12:32&#x27;</span>),<br>FROM_UNIXTIME(<span class="hljs-number">1635173853</span>),FROM_UNIXTIME(<span class="hljs-number">1633061552</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#<span class="hljs-number">3.3</span> 获取月份、星期、星期数、天数等函数<br><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">YEAR</span>(CURDATE()),<span class="hljs-keyword">MONTH</span>(CURDATE()),<span class="hljs-keyword">DAY</span>(CURDATE()),<br><span class="hljs-keyword">HOUR</span>(CURTIME()),<span class="hljs-keyword">MINUTE</span>(NOW()),<span class="hljs-keyword">SECOND</span>(SYSDATE())<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><br><span class="hljs-keyword">SELECT</span> MONTHNAME(<span class="hljs-string">&#x27;2021-10-26&#x27;</span>),DAYNAME(<span class="hljs-string">&#x27;2021-10-26&#x27;</span>),WEEKDAY(<span class="hljs-string">&#x27;2021-10-26&#x27;</span>),<br>QUARTER(CURDATE()),WEEK(CURDATE()),DAYOFYEAR(NOW()),<br>DAYOFMONTH(NOW()),DAYOFWEEK(NOW())<br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#<span class="hljs-number">3.4</span> 日期的操作函数<br><br><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">EXTRACT</span>(<span class="hljs-keyword">SECOND</span> <span class="hljs-keyword">FROM</span> NOW()),<span class="hljs-built_in">EXTRACT</span>(<span class="hljs-keyword">DAY</span> <span class="hljs-keyword">FROM</span> NOW()),<br><span class="hljs-built_in">EXTRACT</span>(HOUR_MINUTE <span class="hljs-keyword">FROM</span> NOW()),<span class="hljs-built_in">EXTRACT</span>(QUARTER <span class="hljs-keyword">FROM</span> <span class="hljs-string">&#x27;2021-05-12&#x27;</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#<span class="hljs-number">3.5</span> 时间和秒钟转换的函数<br><span class="hljs-keyword">SELECT</span> TIME_TO_SEC(CURTIME()),<br>SEC_TO_TIME(<span class="hljs-number">83355</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#<span class="hljs-number">3.6</span> 计算日期和时间的函数<br><br><span class="hljs-keyword">SELECT</span> NOW(),DATE_ADD(NOW(),<span class="hljs-type">INTERVAL</span> <span class="hljs-number">1</span> <span class="hljs-keyword">YEAR</span>),<br>DATE_ADD(NOW(),<span class="hljs-type">INTERVAL</span> <span class="hljs-number">-1</span> <span class="hljs-keyword">YEAR</span>),<br>DATE_SUB(NOW(),<span class="hljs-type">INTERVAL</span> <span class="hljs-number">1</span> <span class="hljs-keyword">YEAR</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><br><span class="hljs-keyword">SELECT</span> DATE_ADD(NOW(), <span class="hljs-type">INTERVAL</span> <span class="hljs-number">1</span> <span class="hljs-keyword">DAY</span>) <span class="hljs-keyword">AS</span> col1,DATE_ADD(<span class="hljs-string">&#x27;2021-10-21 23:32:12&#x27;</span>,<span class="hljs-type">INTERVAL</span> <span class="hljs-number">1</span> <span class="hljs-keyword">SECOND</span>) <span class="hljs-keyword">AS</span> col2,<br>ADDDATE(<span class="hljs-string">&#x27;2021-10-21 23:32:12&#x27;</span>,<span class="hljs-type">INTERVAL</span> <span class="hljs-number">1</span> <span class="hljs-keyword">SECOND</span>) <span class="hljs-keyword">AS</span> col3,<br>DATE_ADD(<span class="hljs-string">&#x27;2021-10-21 23:32:12&#x27;</span>,<span class="hljs-type">INTERVAL</span> <span class="hljs-string">&#x27;1_1&#x27;</span> MINUTE_SECOND) <span class="hljs-keyword">AS</span> col4,<br>DATE_ADD(NOW(), <span class="hljs-type">INTERVAL</span> <span class="hljs-number">-1</span> <span class="hljs-keyword">YEAR</span>) <span class="hljs-keyword">AS</span> col5, #可以是负数<br>DATE_ADD(NOW(), <span class="hljs-type">INTERVAL</span> <span class="hljs-string">&#x27;1_1&#x27;</span> YEAR_MONTH) <span class="hljs-keyword">AS</span> col6 #需要单引号<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><br><span class="hljs-keyword">SELECT</span> ADDTIME(NOW(),<span class="hljs-number">20</span>),SUBTIME(NOW(),<span class="hljs-number">30</span>),SUBTIME(NOW(),<span class="hljs-string">&#x27;1:1:3&#x27;</span>),DATEDIFF(NOW(),<span class="hljs-string">&#x27;2021-10-01&#x27;</span>),<br>TIMEDIFF(NOW(),<span class="hljs-string">&#x27;2021-10-25 22:10:10&#x27;</span>),FROM_DAYS(<span class="hljs-number">366</span>),TO_DAYS(<span class="hljs-string">&#x27;0000-12-25&#x27;</span>),<br>LAST_DAY(NOW()),MAKEDATE(<span class="hljs-keyword">YEAR</span>(NOW()),<span class="hljs-number">32</span>),MAKETIME(<span class="hljs-number">10</span>,<span class="hljs-number">21</span>,<span class="hljs-number">23</span>),PERIOD_ADD(<span class="hljs-number">20200101010101</span>,<span class="hljs-number">10</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#<span class="hljs-number">3.7</span> 日期的格式化与解析<br># 格式化：日期 <span class="hljs-comment">---&gt; 字符串</span><br># 解析：  字符串 <span class="hljs-comment">----&gt; 日期</span><br><br>#此时我们谈的是日期的显式格式化和解析<br><br>#之前，我们接触过隐式的格式化或解析<br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span><br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">WHERE</span> hire_date <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;1993-01-13&#x27;</span>;<br><br>#格式化：<br><span class="hljs-keyword">SELECT</span> DATE_FORMAT(CURDATE(),<span class="hljs-string">&#x27;%Y-%M-%D&#x27;</span>),<br>DATE_FORMAT(NOW(),<span class="hljs-string">&#x27;%Y-%m-%d&#x27;</span>),TIME_FORMAT(CURTIME(),<span class="hljs-string">&#x27;%h:%i:%S&#x27;</span>),<br>DATE_FORMAT(NOW(),<span class="hljs-string">&#x27;%Y-%M-%D %h:%i:%S %W %w %T %r&#x27;</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#解析：格式化的逆过程<br><span class="hljs-keyword">SELECT</span> STR_TO_DATE(<span class="hljs-string">&#x27;2021-October-25th 11:37:30 Monday 1&#x27;</span>,<span class="hljs-string">&#x27;%Y-%M-%D %h:%i:%S %W %w&#x27;</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><span class="hljs-keyword">SELECT</span> GET_FORMAT(<span class="hljs-type">DATE</span>,<span class="hljs-string">&#x27;USA&#x27;</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><span class="hljs-keyword">SELECT</span> DATE_FORMAT(CURDATE(),GET_FORMAT(<span class="hljs-type">DATE</span>,<span class="hljs-string">&#x27;USA&#x27;</span>))<br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#<span class="hljs-number">4.</span>流程控制函数<br>#<span class="hljs-number">4.1</span> IF(<span class="hljs-keyword">VALUE</span>,VALUE1,VALUE2)<br><br><span class="hljs-keyword">SELECT</span> last_name,salary,IF(salary <span class="hljs-operator">&gt;=</span> <span class="hljs-number">6000</span>,<span class="hljs-string">&#x27;高工资&#x27;</span>,<span class="hljs-string">&#x27;低工资&#x27;</span>) &quot;details&quot;<br><span class="hljs-keyword">FROM</span> employees;<br><br><span class="hljs-keyword">SELECT</span> last_name,commission_pct,IF(commission_pct <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,commission_pct,<span class="hljs-number">0</span>) &quot;details&quot;,<br>salary <span class="hljs-operator">*</span> <span class="hljs-number">12</span> <span class="hljs-operator">*</span> (<span class="hljs-number">1</span> <span class="hljs-operator">+</span> IF(commission_pct <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,commission_pct,<span class="hljs-number">0</span>)) &quot;annual_sal&quot;<br><span class="hljs-keyword">FROM</span> employees;<br><br>#<span class="hljs-number">4.2</span> IFNULL(VALUE1,VALUE2):看做是IF(<span class="hljs-keyword">VALUE</span>,VALUE1,VALUE2)的特殊情况<br><span class="hljs-keyword">SELECT</span> last_name,commission_pct,IFNULL(commission_pct,<span class="hljs-number">0</span>) &quot;details&quot;<br><span class="hljs-keyword">FROM</span> employees;<br><br>#<span class="hljs-number">4.3</span> <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> ... <span class="hljs-keyword">THEN</span> ...<span class="hljs-keyword">WHEN</span> ... <span class="hljs-keyword">THEN</span> ... <span class="hljs-keyword">ELSE</span> ... <span class="hljs-keyword">END</span><br># 类似于java的if ... <span class="hljs-keyword">else</span> if ... <span class="hljs-keyword">else</span> if ... <span class="hljs-keyword">else</span><br><span class="hljs-keyword">SELECT</span> last_name,salary,<span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> salary <span class="hljs-operator">&gt;=</span> <span class="hljs-number">15000</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;白骨精&#x27;</span> <br>			     <span class="hljs-keyword">WHEN</span> salary <span class="hljs-operator">&gt;=</span> <span class="hljs-number">10000</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;潜力股&#x27;</span><br>			     <span class="hljs-keyword">WHEN</span> salary <span class="hljs-operator">&gt;=</span> <span class="hljs-number">8000</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;小屌丝&#x27;</span><br>			     <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&#x27;草根&#x27;</span> <span class="hljs-keyword">END</span> &quot;details&quot;,department_id<br><span class="hljs-keyword">FROM</span> employees;<br><br><span class="hljs-keyword">SELECT</span> last_name,salary,<span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> salary <span class="hljs-operator">&gt;=</span> <span class="hljs-number">15000</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;白骨精&#x27;</span> <br>			     <span class="hljs-keyword">WHEN</span> salary <span class="hljs-operator">&gt;=</span> <span class="hljs-number">10000</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;潜力股&#x27;</span><br>			     <span class="hljs-keyword">WHEN</span> salary <span class="hljs-operator">&gt;=</span> <span class="hljs-number">8000</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;小屌丝&#x27;</span><br>			     <span class="hljs-keyword">END</span> &quot;details&quot;<br><span class="hljs-keyword">FROM</span> employees;<br><br>#<span class="hljs-number">4.4</span> <span class="hljs-keyword">CASE</span> ... <span class="hljs-keyword">WHEN</span> ... <span class="hljs-keyword">THEN</span> ... <span class="hljs-keyword">WHEN</span> ... <span class="hljs-keyword">THEN</span> ... <span class="hljs-keyword">ELSE</span> ... <span class="hljs-keyword">END</span><br># 类似于java的swich ... case...<br><span class="hljs-comment">/*</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">练习1</span><br><span class="hljs-comment">查询部门号为 10,20, 30 的员工信息, </span><br><span class="hljs-comment">若部门号为 10, 则打印其工资的 1.1 倍, </span><br><span class="hljs-comment">20 号部门, 则打印其工资的 1.2 倍, </span><br><span class="hljs-comment">30 号部门,打印其工资的 1.3 倍数,</span><br><span class="hljs-comment">其他部门,打印其工资的 1.4 倍数</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">SELECT</span> employee_id,last_name,department_id,salary,<span class="hljs-keyword">CASE</span> department_id <span class="hljs-keyword">WHEN</span> <span class="hljs-number">10</span> <span class="hljs-keyword">THEN</span> salary <span class="hljs-operator">*</span> <span class="hljs-number">1.1</span><br>								     <span class="hljs-keyword">WHEN</span> <span class="hljs-number">20</span> <span class="hljs-keyword">THEN</span> salary <span class="hljs-operator">*</span> <span class="hljs-number">1.2</span><br>								     <span class="hljs-keyword">WHEN</span> <span class="hljs-number">30</span> <span class="hljs-keyword">THEN</span> salary <span class="hljs-operator">*</span> <span class="hljs-number">1.3</span><br>								     <span class="hljs-keyword">ELSE</span> salary <span class="hljs-operator">*</span> <span class="hljs-number">1.4</span> <span class="hljs-keyword">END</span> &quot;details&quot;<br><span class="hljs-keyword">FROM</span> employees;<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">练习2</span><br><span class="hljs-comment">查询部门号为 10,20, 30 的员工信息, </span><br><span class="hljs-comment">若部门号为 10, 则打印其工资的 1.1 倍, </span><br><span class="hljs-comment">20 号部门, 则打印其工资的 1.2 倍, </span><br><span class="hljs-comment">30 号部门打印其工资的 1.3 倍数</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">SELECT</span> employee_id,last_name,department_id,salary,<span class="hljs-keyword">CASE</span> department_id <span class="hljs-keyword">WHEN</span> <span class="hljs-number">10</span> <span class="hljs-keyword">THEN</span> salary <span class="hljs-operator">*</span> <span class="hljs-number">1.1</span><br>								     <span class="hljs-keyword">WHEN</span> <span class="hljs-number">20</span> <span class="hljs-keyword">THEN</span> salary <span class="hljs-operator">*</span> <span class="hljs-number">1.2</span><br>								     <span class="hljs-keyword">WHEN</span> <span class="hljs-number">30</span> <span class="hljs-keyword">THEN</span> salary <span class="hljs-operator">*</span> <span class="hljs-number">1.3</span><br>								     <span class="hljs-keyword">END</span> &quot;details&quot;<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">WHERE</span> department_id <span class="hljs-keyword">IN</span> (<span class="hljs-number">10</span>,<span class="hljs-number">20</span>,<span class="hljs-number">30</span>);<br><br>#<span class="hljs-number">5.</span> 加密与解密的函数<br># PASSWORD()在mysql8<span class="hljs-number">.0</span>中弃用。<br><span class="hljs-keyword">SELECT</span> MD5(<span class="hljs-string">&#x27;mysql&#x27;</span>),SHA(<span class="hljs-string">&#x27;mysql&#x27;</span>),MD5(MD5(<span class="hljs-string">&#x27;mysql&#x27;</span>))<br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#ENCODE()\DECODE() 在mysql8<span class="hljs-number">.0</span>中弃用。<br><span class="hljs-comment">/*</span><br><span class="hljs-comment">SELECT ENCODE(&#x27;atguigu&#x27;,&#x27;mysql&#x27;),DECODE(ENCODE(&#x27;atguigu&#x27;,&#x27;mysql&#x27;),&#x27;mysql&#x27;)</span><br><span class="hljs-comment">FROM DUAL;</span><br><span class="hljs-comment">*/</span><br><br>#<span class="hljs-number">6.</span> MySQL信息函数<br><br><span class="hljs-keyword">SELECT</span> VERSION(),CONNECTION_ID(),DATABASE(),SCHEMA(),<br><span class="hljs-keyword">USER</span>(),<span class="hljs-built_in">CURRENT_USER</span>(),CHARSET(<span class="hljs-string">&#x27;尚硅谷&#x27;</span>),<span class="hljs-keyword">COLLATION</span>(<span class="hljs-string">&#x27;尚硅谷&#x27;</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#<span class="hljs-number">7.</span> 其他函数<br>#如果n的值小于或者等于<span class="hljs-number">0</span>，则只保留整数部分<br><span class="hljs-keyword">SELECT</span> FORMAT(<span class="hljs-number">123.125</span>,<span class="hljs-number">2</span>),FORMAT(<span class="hljs-number">123.125</span>,<span class="hljs-number">0</span>),FORMAT(<span class="hljs-number">123.125</span>,<span class="hljs-number">-2</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><span class="hljs-keyword">SELECT</span> CONV(<span class="hljs-number">16</span>, <span class="hljs-number">10</span>, <span class="hljs-number">2</span>), CONV(<span class="hljs-number">8888</span>,<span class="hljs-number">10</span>,<span class="hljs-number">16</span>), CONV(<span class="hljs-keyword">NULL</span>, <span class="hljs-number">10</span>, <span class="hljs-number">2</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br>#以“<span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.100</span>”为例，计算方式为<span class="hljs-number">192</span>乘以<span class="hljs-number">256</span>的<span class="hljs-number">3</span>次方，加上<span class="hljs-number">168</span>乘以<span class="hljs-number">256</span>的<span class="hljs-number">2</span>次方，加上<span class="hljs-number">1</span>乘以<span class="hljs-number">256</span>，再加上<span class="hljs-number">100</span>。<br><span class="hljs-keyword">SELECT</span> INET_ATON(<span class="hljs-string">&#x27;192.168.1.100&#x27;</span>),INET_NTOA(<span class="hljs-number">3232235876</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#BENCHMARK()用于测试表达式的执行效率<br><span class="hljs-keyword">SELECT</span> BENCHMARK(<span class="hljs-number">100000</span>,MD5(<span class="hljs-string">&#x27;mysql&#x27;</span>))<br><span class="hljs-keyword">FROM</span> DUAL;<br># <span class="hljs-keyword">CONVERT</span>():可以实现字符集的转换<br><span class="hljs-keyword">SELECT</span> CHARSET(<span class="hljs-string">&#x27;atguigu&#x27;</span>),CHARSET(<span class="hljs-keyword">CONVERT</span>(<span class="hljs-string">&#x27;atguigu&#x27;</span> <span class="hljs-keyword">USING</span> <span class="hljs-string">&#x27;gbk&#x27;</span>))<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><code class="hljs sql">#第<span class="hljs-number">07</span>章_单行函数的课后练习<br><br><br># <span class="hljs-number">1.</span>显示系统时间(注：日期<span class="hljs-operator">+</span>时间)<br><span class="hljs-keyword">SELECT</span> NOW(),SYSDATE(),<span class="hljs-built_in">CURRENT_TIMESTAMP</span>(),<span class="hljs-built_in">LOCALTIME</span>(),<span class="hljs-built_in">LOCALTIMESTAMP</span>() #大家只需要掌握一个函数就可以了<br><span class="hljs-keyword">FROM</span> DUAL;<br><br># <span class="hljs-number">2.</span>查询员工号，姓名，工资，以及工资提高百分之<span class="hljs-number">20</span><span class="hljs-operator">%</span>后的结果（<span class="hljs-keyword">new</span> salary）<br><span class="hljs-keyword">SELECT</span> employee_id,last_name,salary,salary <span class="hljs-operator">*</span> <span class="hljs-number">1.2</span> &quot;new salary&quot;<br><span class="hljs-keyword">FROM</span> employees;<br><br><br># <span class="hljs-number">3.</span>将员工的姓名按首字母排序，并写出姓名的长度（length）<br><span class="hljs-keyword">SELECT</span> last_name,LENGTH(last_name) &quot;name_length&quot;<br><span class="hljs-keyword">FROM</span> employees<br>#<span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> last_name <span class="hljs-keyword">asc</span>;<br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> name_length <span class="hljs-keyword">ASC</span>;<br><br><br># <span class="hljs-number">4.</span>查询员工id,last_name,salary，并作为一个列输出，别名为OUT_PUT<br><br><span class="hljs-keyword">SELECT</span> CONCAT(employee_id,<span class="hljs-string">&#x27;,&#x27;</span>,last_name,<span class="hljs-string">&#x27;,&#x27;</span>,salary) &quot;OUT_PUT&quot;<br><span class="hljs-keyword">FROM</span> employees;<br><br><br># <span class="hljs-number">5.</span>查询公司各员工工作的年数、工作的天数，并按工作年数的降序排序<br><br><span class="hljs-keyword">SELECT</span> employee_id,DATEDIFF(CURDATE(),hire_date)<span class="hljs-operator">/</span><span class="hljs-number">365</span> &quot;worked_years&quot;,DATEDIFF(CURDATE(),hire_date) &quot;worked_days&quot;,<br>TO_DAYS(CURDATE()) <span class="hljs-operator">-</span> TO_DAYS(hire_date) &quot;worked_days1&quot;<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> worked_years <span class="hljs-keyword">DESC</span>;<br><br># <span class="hljs-number">6.</span>查询员工姓名，hire_date , department_id，满足以下条件：<br>#雇用时间在<span class="hljs-number">1997</span>年之后，department_id 为<span class="hljs-number">80</span> 或 <span class="hljs-number">90</span> 或<span class="hljs-number">110</span>, commission_pct不为空<br><span class="hljs-keyword">SELECT</span> last_name,hire_date,department_id<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">WHERE</span> department_id <span class="hljs-keyword">IN</span> (<span class="hljs-number">80</span>,<span class="hljs-number">90</span>,<span class="hljs-number">110</span>)<br><span class="hljs-keyword">AND</span> commission_pct <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span><br>#<span class="hljs-keyword">and</span> hire_date <span class="hljs-operator">&gt;=</span> <span class="hljs-string">&#x27;1997-01-01&#x27;</span>;  #存在着隐式转换<br>#<span class="hljs-keyword">and</span>  date_format(hire_date,<span class="hljs-string">&#x27;%Y-%m-%d&#x27;</span>) <span class="hljs-operator">&gt;=</span> <span class="hljs-string">&#x27;1997-01-01&#x27;</span>;  # 显式转换操作，格式化：日期<span class="hljs-comment">---&gt; 字符串</span><br>#<span class="hljs-keyword">and</span>  date_format(hire_date,<span class="hljs-string">&#x27;%Y&#x27;</span>) <span class="hljs-operator">&gt;=</span> <span class="hljs-string">&#x27;1997&#x27;</span>;   # 显式转换操作，格式化<br><span class="hljs-keyword">AND</span> hire_date <span class="hljs-operator">&gt;=</span> STR_TO_DATE(<span class="hljs-string">&#x27;1997-01-01&#x27;</span>,<span class="hljs-string">&#x27;%Y-%m-%d&#x27;</span>);# 显式转换操作，解析：字符串 <span class="hljs-comment">----&gt; 日期</span><br><br># <span class="hljs-number">7.</span>查询公司中入职超过<span class="hljs-number">10000</span>天的员工姓名、入职时间<br><span class="hljs-keyword">SELECT</span> last_name,hire_date<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">WHERE</span> DATEDIFF(CURDATE(),hire_date) <span class="hljs-operator">&gt;=</span> <span class="hljs-number">10000</span>;<br><br><br># <span class="hljs-number">8.</span>做一个查询，产生下面的结果<br>#<span class="hljs-operator">&lt;</span>last_name<span class="hljs-operator">&gt;</span> earns <span class="hljs-operator">&lt;</span>salary<span class="hljs-operator">&gt;</span> monthly but wants <span class="hljs-operator">&lt;</span>salary<span class="hljs-operator">*</span><span class="hljs-number">3</span><span class="hljs-operator">&gt;</span> <br><br><span class="hljs-keyword">SELECT</span> CONCAT(last_name,<span class="hljs-string">&#x27; earns &#x27;</span>,<span class="hljs-keyword">TRUNCATE</span>(salary,<span class="hljs-number">0</span>), <span class="hljs-string">&#x27; monthly but wants &#x27;</span>,<span class="hljs-keyword">TRUNCATE</span>(salary <span class="hljs-operator">*</span> <span class="hljs-number">3</span>,<span class="hljs-number">0</span>)) &quot;Dream Salary&quot;<br><span class="hljs-keyword">FROM</span> employees;<br><br><br># <span class="hljs-number">9.</span>使用<span class="hljs-keyword">case</span><span class="hljs-operator">-</span><span class="hljs-keyword">when</span>，按照下面的条件：<br><span class="hljs-comment">/*job                  grade</span><br><span class="hljs-comment">AD_PRES              	A</span><br><span class="hljs-comment">ST_MAN               	B</span><br><span class="hljs-comment">IT_PROG              	C</span><br><span class="hljs-comment">SA_REP               	D</span><br><span class="hljs-comment">ST_CLERK             	E</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">产生下面的结果:</span><br><span class="hljs-comment">*/</span><br><br><span class="hljs-keyword">SELECT</span> last_name &quot;Last_name&quot;,job_id &quot;Job_id&quot;,<span class="hljs-keyword">CASE</span> job_id <span class="hljs-keyword">WHEN</span> <span class="hljs-string">&#x27;AD_PRES&#x27;</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;A&#x27;</span><br>							 <span class="hljs-keyword">WHEN</span> <span class="hljs-string">&#x27;ST_MAN&#x27;</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;B&#x27;</span><br>							 <span class="hljs-keyword">WHEN</span> <span class="hljs-string">&#x27;IT_PROG&#x27;</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;C&#x27;</span><br>							 <span class="hljs-keyword">WHEN</span> <span class="hljs-string">&#x27;SA_REP&#x27;</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;D&#x27;</span><br>							 <span class="hljs-keyword">WHEN</span> <span class="hljs-string">&#x27;ST_CLERK&#x27;</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;E&#x27;</span><br>							 <span class="hljs-keyword">END</span> &quot;Grade&quot;<br><span class="hljs-keyword">FROM</span> employees;<br><br><br><span class="hljs-keyword">SELECT</span> last_name &quot;Last_name&quot;,job_id &quot;Job_id&quot;,<span class="hljs-keyword">CASE</span> job_id <span class="hljs-keyword">WHEN</span> <span class="hljs-string">&#x27;AD_PRES&#x27;</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;A&#x27;</span><br>							 <span class="hljs-keyword">WHEN</span> <span class="hljs-string">&#x27;ST_MAN&#x27;</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;B&#x27;</span><br>							 <span class="hljs-keyword">WHEN</span> <span class="hljs-string">&#x27;IT_PROG&#x27;</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;C&#x27;</span><br>							 <span class="hljs-keyword">WHEN</span> <span class="hljs-string">&#x27;SA_REP&#x27;</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;D&#x27;</span><br>							 <span class="hljs-keyword">WHEN</span> <span class="hljs-string">&#x27;ST_CLERK&#x27;</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;E&#x27;</span><br>							 <span class="hljs-keyword">ELSE</span> &quot;undefined&quot; <span class="hljs-keyword">END</span> &quot;Grade&quot;<br><span class="hljs-keyword">FROM</span> employees;<br><br><br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="第8章-聚合函数"><a href="#第8章-聚合函数" class="headerlink" title="第8章 聚合函数"></a>第8章 聚合函数</h1><blockquote>
+<p>我们上一章讲到了 SQL 单行函数。实际上 SQL 函数还有一类，叫做聚合（或聚集、分组）函数，它是对一组数据进行汇总的函数，输入的是一组数据的集合，输出的是单个值。</p>
+</blockquote>
+<h2 id="8-1-聚合函数介绍"><a href="#8-1-聚合函数介绍" class="headerlink" title="8.1 聚合函数介绍"></a>8.1 聚合函数介绍</h2><p><strong>什么是聚合函数</strong></p>
+<blockquote>
+<p>聚合函数作用于一组数据，并对一组数据返回一个值。</p>
+</blockquote>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012556060.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<blockquote>
+<p>聚合函数类型</p>
+<ul>
+<li>AVG()</li>
+<li>SUM()</li>
+<li>MAX()</li>
+<li>MIN()</li>
+<li>COUNT()</li>
+</ul>
+</blockquote>
+<p><strong>聚合函数语法</strong><br><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/8cf4ce1335294f3e89830843cebec5d5.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<blockquote>
+<p>聚合函数不能嵌套调用。比如不能出现类似“AVG(SUM(字段名称))”形式的调用</p>
+</blockquote>
+<h3 id="8-1-1-AVG和SUM函数"><a href="#8-1-1-AVG和SUM函数" class="headerlink" title="8.1.1 AVG和SUM函数"></a>8.1.1 AVG和SUM函数</h3><blockquote>
+<p>可以对数值型数据使用AVG 和 SUM 函数。</p>
+</blockquote>
+<pre><code class="hljs">SELECT AVG(salary), MAX(salary),MIN(salary), SUM(salary)
+FROM   employees
+WHERE  job_id LIKE &#39;%REP%&#39;;
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/e038b03aa47b48f4a73e99dee47ffb03.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h3 id="8-1-2-MIN和MAX函数"><a href="#8-1-2-MIN和MAX函数" class="headerlink" title="8.1.2 MIN和MAX函数"></a>8.1.2 MIN和MAX函数</h3><blockquote>
+<p>可以对任意数据类型的数据使用 MIN 和 MAX 函数。</p>
+</blockquote>
+<pre><code class="hljs">SELECT MIN(hire_date), MAX(hire_date)
+FROM	  employees;
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/9d531268b9ef4bdba62be63324702fa7.png" srcset="/img/loading.gif" lazyload alt="加粗样式"></p>
+<h3 id="8-1-3-COUNT函数"><a href="#8-1-3-COUNT函数" class="headerlink" title="8.1.3 COUNT函数"></a>8.1.3 COUNT函数</h3><blockquote>
+<p>COUNT(*)返回表中记录总数，适用于任意数据类型。</p>
+</blockquote>
+<pre><code class="hljs">SELECT COUNT(*)
+FROM	  employees
+WHERE  department_id = 50;
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/99e4f68662ba48588896f45c4f0b2abe.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<blockquote>
+<p>COUNT(expr) 返回expr不为空的记录总数。</p>
+</blockquote>
+<pre><code class="hljs">SELECT COUNT(commission_pct)
+FROM   employees
+WHERE  department_id = 50;
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/e3c0b433da8246d1b8aa22bea67442ab.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<blockquote>
+<p>问题：用count(*)，count(1)，count(列名)谁好呢?</p>
+<ul>
+<li>其实，对于MyISAM引擎的表是没有区别的。这种引擎内部有一计数器在维护着行数。</li>
+<li>Innodb引擎的表用count(*),count(1)直接读行数，复杂度是O(n)，因为innodb真的要去数一遍。但好于具体的count(列名)。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>问题：能不能使用count(列名)替换count(*)?</p>
+<ul>
+<li>不要使用 count(列名)来替代 count(<em>)，count(</em>)是 SQL92 定义的标准统计行数的语法，跟数据库无关，跟 NULL 和非 NULL 无关。</li>
+<li>说明：count(*)会统计值为 NULL 的行，而 count(列名)不会统计此列为 NULL 值的行。</li>
+</ul>
+</blockquote>
+<h2 id="8-2-GROUP-BY"><a href="#8-2-GROUP-BY" class="headerlink" title="8.2 GROUP BY"></a>8.2 GROUP BY</h2><h3 id="8-2-1-基本使用"><a href="#8-2-1-基本使用" class="headerlink" title="8.2.1 基本使用"></a>8.2.1 基本使用</h3><p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012556116.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>可以使用GROUP BY子句将表中的数据分成若干组</strong></p>
+<pre><code class="hljs">SELECT column, group_function(column)
+FROM table
+[WHERE	condition]
+[GROUP BY	group_by_expression]
+[ORDER BY	column];
+</code></pre>
+<p><strong>在SELECT列表中所有未包含在组函数中的列都应该包含在 GROUP BY子句中</strong></p>
+<pre><code class="hljs">SELECT   department_id, AVG(salary)
+FROM     employees
+GROUP BY department_id ;
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012556127.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>包含在 GROUP BY 子句中的列不必包含在SELECT 列表中</p>
+<pre><code class="hljs">SELECT   AVG(salary)
+FROM     employees
+GROUP BY department_id ;
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012556119.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h3 id="8-2-2-使用多个列分组"><a href="#8-2-2-使用多个列分组" class="headerlink" title="8.2.2 使用多个列分组"></a>8.2.2 使用多个列分组</h3><p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012556124.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT   department_id dept_id, job_id, SUM(salary)
+FROM     employees
+GROUP BY department_id, job_id ;
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012556123.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h3 id="8-2-3-GROUP-BY中使用WITH-ROLLUP"><a href="#8-2-3-GROUP-BY中使用WITH-ROLLUP" class="headerlink" title="8.2.3 GROUP BY中使用WITH ROLLUP"></a>8.2.3 GROUP BY中使用WITH ROLLUP</h3><blockquote>
+<p>使用<code>WITH ROLLUP</code>关键字之后，在所有查询出的分组记录之后增加一条记录，该记录计算查询出的所有记录的总和，即统计记录数量。</p>
+</blockquote>
+<pre><code class="hljs">SELECT department_id,AVG(salary)
+FROM employees
+WHERE department_id &gt; 80
+GROUP BY department_id WITH ROLLUP;
+</code></pre>
+<blockquote>
+<p>注意：<code>当使用ROLLUP时，不能同时使用ORDER BY子句进行结果排序，即ROLLUP和ORDER BY是互相排斥的。</code></p>
+</blockquote>
+<h2 id="8-3-HAVING"><a href="#8-3-HAVING" class="headerlink" title="8.3 HAVING"></a>8.3 HAVING</h2><h3 id="8-3-1-基本使用"><a href="#8-3-1-基本使用" class="headerlink" title="8.3.1 基本使用"></a>8.3.1 基本使用</h3><p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012556174.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<blockquote>
+<p><strong>过滤分组：HAVING子句</strong></p>
+<ul>
+<li>行已经被分组。</li>
+<li>使用了聚合函数。</li>
+<li>满足HAVING 子句中条件的分组将被显示。</li>
+<li>HAVING 不能单独使用，必须要跟 GROUP BY 一起使用。</li>
+</ul>
+</blockquote>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/6271b1902934467682d298e36cc5349d.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<pre><code class="hljs">SELECT   department_id, MAX(salary)
+FROM     employees
+GROUP BY department_id
+HAVING   MAX(salary)&gt;10000 ;
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/0d123255ae6d44a8ba9d0a15c65db120.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>**非法使用聚合函数 ： 不能在 WHERE 子句中使用聚合函数。**如下：</p>
+<pre><code class="hljs">SELECT   department_id, AVG(salary)
+FROM     employees
+WHERE    AVG(salary) &gt; 8000
+GROUP BY department_id;
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/95ba2a259f144edba92d22c9feb465fc.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h3 id="8-3-2-WHERE和HAVING的对比"><a href="#8-3-2-WHERE和HAVING的对比" class="headerlink" title="8.3.2 WHERE和HAVING的对比"></a>8.3.2 WHERE和HAVING的对比</h3><blockquote>
+<p><strong>区别1：WHERE 可以直接使用表中的字段作为筛选条件，但不能使用分组中的计算函数作为筛选条件；HAVING 必须要与 GROUP BY 配合使用，可以把分组计算的函数和分组字段作为筛选条件。</strong></p>
+</blockquote>
+<blockquote>
+<p>这决定了，在需要对数据进行分组统计的时候，HAVING 可以完成 WHERE 不能完成的任务。这是因为，在查询语法结构中，WHERE 在 GROUP BY 之前，所以无法对分组结果进行筛选。HAVING 在 GROUP BY 之后，可以使用分组字段和分组中的计算函数，对分组的结果集进行筛选，这个功能是 WHERE 无法完成的。另外，WHERE排除的记录不再包括在分组中。</p>
+</blockquote>
+<blockquote>
+<p><strong>区别2：如果需要通过连接从关联表中获取需要的数据，WHERE 是先筛选后连接，而 HAVING 是先连接后筛选。</strong> 这一点，就决定了在关联查询中，WHERE 比 HAVING 更高效。因为 WHERE 可以先筛选，用一个筛选后的较小数据集和关联表进行连接，这样占用的资源比较少，执行效率也比较高。HAVING 则需要先把结果集准备好，也就是用未被筛选的数据集进行关联，然后对这个大的数据集进行筛选，这样占用的资源就比较多，执行效率也较低。</p>
+</blockquote>
+<p>小结如下：</p>
+<p>优点</p>
+<p>缺点</p>
+<p>WHERE</p>
+<p>先筛选数据再关联，执行效率高 不能使用分组中的计算函数进行筛选</p>
+<p>HAVING</p>
+<p>可以使用分组中的计算函数 在最后的结果集中进行筛选，执行效率较低</p>
+<p><strong>开发中的选择：</strong></p>
+<blockquote>
+<p>WHERE 和 HAVING 也不是互相排斥的，我们可以在一个查询里面同时使用 WHERE 和 HAVING。包含分组统计函数的条件用 HAVING，普通条件用 WHERE。这样，我们就既利用了 WHERE 条件的高效快速，又发挥了 HAVING 可以使用包含分组统计函数的查询条件的优点。当数据量特别大的时候，运行效率会有很大的差别。</p>
+</blockquote>
+<h2 id="8-4-SELECT的执行过程"><a href="#8-4-SELECT的执行过程" class="headerlink" title="8.4 SELECT的执行过程"></a>8.4 SELECT的执行过程</h2><h3 id="8-4-1-查询的结构"><a href="#8-4-1-查询的结构" class="headerlink" title="8.4.1 查询的结构"></a>8.4.1 查询的结构</h3><pre><code class="hljs">#方式1：
+SELECT ...,....,...
+FROM ...,...,....
+WHERE 多表的连接条件
+AND 不包含组函数的过滤条件
+GROUP BY ...,...
+HAVING 包含组函数的过滤条件
+ORDER BY ... ASC/DESC
+LIMIT ...,...
+
+#方式2：
+SELECT ...,....,...
+FROM ... JOIN ... 
+ON 多表的连接条件
+JOIN ...
+ON ...
+WHERE 不包含组函数的过滤条件
+AND/OR 不包含组函数的过滤条件
+GROUP BY ...,...
+HAVING 包含组函数的过滤条件
+ORDER BY ... ASC/DESC
+LIMIT ...,...
+
+#其中：
+#（1）from：从哪些表中筛选
+#（2）on：关联多表查询时，去除笛卡尔积
+#（3）where：从表中筛选的条件
+#（4）group by：分组依据
+#（5）having：在统计结果中再次筛选
+#（6）order by：排序
+#（7）limit：分页
+</code></pre>
+<h3 id="8-4-2-SELECT执行顺序"><a href="#8-4-2-SELECT执行顺序" class="headerlink" title="8.4.2 SELECT执行顺序"></a>8.4.2 SELECT执行顺序</h3><p>你需要记住 SELECT 查询时的两个顺序：</p>
+<p><strong>关键字的顺序是不能颠倒的：</strong></p>
+<pre><code class="hljs">SELECT ... FROM ... WHERE ... GROUP BY ... HAVING ... ORDER BY ... LIMIT...
+</code></pre>
+<p><strong>SELECT 语句的执行顺序（在 MySQL 和 Oracle 中，SELECT 执行顺序基本相同）：</strong></p>
+<pre><code class="hljs">FROM -&gt; WHERE -&gt; GROUP BY -&gt; HAVING -&gt; SELECT 的字段 -&gt; DISTINCT -&gt; ORDER BY -&gt; LIMIT
+</code></pre>
+<p><img src="/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_17,color_FFFFFF,t_70,g_se,x_16.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>比如你写了一个 SQL 语句，那么它的关键字顺序和执行顺序是下面这样的：</p>
+<pre><code class="hljs">SELECT DISTINCT player_id, player_name, count(*) as num # 顺序 5
+FROM player JOIN team ON player.team_id = team.team_id # 顺序 1
+WHERE height &gt; 1.80 # 顺序 2
+GROUP BY player.team_id # 顺序 3
+HAVING num &gt; 2 # 顺序 4
+ORDER BY num DESC # 顺序 6
+LIMIT 2 # 顺序 7
+</code></pre>
+<blockquote>
+<p>在 SELECT 语句执行这些步骤的时候，每个步骤都会产生一个虚拟表，然后将这个虚拟表传入下一个步骤中作为输入。需要注意的是，这些步骤隐含在 SQL 的执行过程中，对于我们来说是不可见的。</p>
+</blockquote>
+<h3 id="8-4-3-SQL-的执行原理"><a href="#8-4-3-SQL-的执行原理" class="headerlink" title="8.4.3 SQL 的执行原理"></a>8.4.3 SQL 的执行原理</h3><blockquote>
+<ul>
+<li>SELECT 是先执行 FROM 这一步的。在这个阶段，如果是多张表联查，还会经历下面的几个步骤：<ul>
+<li>首先先通过 CROSS JOIN 求笛卡尔积，相当于得到虚拟表 vt（virtual table）1-1；</li>
+<li>通过 ON 进行筛选，在虚拟表 vt1-1 的基础上进行筛选，得到虚拟表 vt1-2；</li>
+<li>添加外部行。如果我们使用的是左连接、右链接或者全连接，就会涉及到外部行，也就是在虚拟表 vt1-2 的基础上增加外部行，得到虚拟表 vt1-3。</li>
+</ul>
+</li>
+<li>当然如果我们操作的是两张以上的表，还会重复上面的步骤，直到所有表都被处理完为止。这个过程得到是我们的原始数据。</li>
+<li>当我们拿到了查询数据表的原始数据，也就是最终的虚拟表 vt1，就可以在此基础上再进行 WHERE 阶段。在这个阶段中，会根据 vt1 表的结果进行筛选过滤，得到虚拟表 vt2。</li>
+<li>然后进入第三步和第四步，也就是 GROUP 和 HAVING 阶段。在这个阶段中，实际上是在虚拟表 vt2 的基础上进行分组和分组过滤，得到中间的虚拟表 vt3 和 vt4。</li>
+<li>当我们完成了条件筛选部分之后，就可以筛选表中提取的字段，也就是进入到 SELECT 和 DISTINCT 阶段。</li>
+<li>首先在 SELECT 阶段会提取想要的字段，然后在 DISTINCT 阶段过滤掉重复的行，分别得到中间的虚拟表 vt5-1 和 vt5-2。</li>
+<li>当我们提取了想要的字段数据之后，就可以按照指定的字段进行排序，也就是 ORDER BY 阶段，得到虚拟表 vt6。</li>
+<li>最后在 vt6 的基础上，取出指定行的记录，也就是 LIMIT 阶段，得到最终的结果，对应的是虚拟表 vt7。</li>
+<li>当然我们在写 SELECT 语句的时候，不一定存在所有的关键字，相应的阶段就会省略。</li>
+<li>同时因为 SQL 是一门类似英语的结构化查询语言，所以我们在写 SELECT 语句的时候，还要注意相应的关键字顺序，*<em>所谓底层运行的原理，就是我们刚才讲到的执行顺序。</em></li>
+</ul>
+<h2 id="8-4-练习sql"><a href="#8-4-练习sql" class="headerlink" title="8.4. 练习sql"></a>8.4. 练习sql</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br></pre></td><td class="code"><pre><code class="hljs sql"># 第<span class="hljs-number">08</span>章_聚合函数<br><br>#<span class="hljs-number">1.</span> 常见的几个聚合函数<br>#<span class="hljs-number">1.1</span> AVG <span class="hljs-operator">/</span> SUM ：只适用于数值类型的字段（或变量）<br><br><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">AVG</span>(salary),<span class="hljs-built_in">SUM</span>(salary),<span class="hljs-built_in">AVG</span>(salary) <span class="hljs-operator">*</span> <span class="hljs-number">107</span><br><span class="hljs-keyword">FROM</span> employees;<br>#如下的操作没有意义<br><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">SUM</span>(last_name),<span class="hljs-built_in">AVG</span>(last_name),<span class="hljs-built_in">SUM</span>(hire_date)<br><span class="hljs-keyword">FROM</span> employees;<br><br><br>#<span class="hljs-number">1.2</span> MAX <span class="hljs-operator">/</span> MIN :适用于数值类型、字符串类型、日期时间类型的字段（或变量）<br><br><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">MAX</span>(salary),<span class="hljs-built_in">MIN</span>(salary)<br><span class="hljs-keyword">FROM</span> employees;<br><br><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">MAX</span>(last_name),<span class="hljs-built_in">MIN</span>(last_name),<span class="hljs-built_in">MAX</span>(hire_date),<span class="hljs-built_in">MIN</span>(hire_date)<br><span class="hljs-keyword">FROM</span> employees;<br><br><br>#<span class="hljs-number">1.3</span> COUNT：<br># ① 作用：计算指定字段在查询结构中出现的个数（不包含<span class="hljs-keyword">NULL</span>值的）<br><br><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">COUNT</span>(employee_id),<span class="hljs-built_in">COUNT</span>(salary),<span class="hljs-built_in">COUNT</span>(<span class="hljs-number">2</span> <span class="hljs-operator">*</span> salary),<span class="hljs-built_in">COUNT</span>(<span class="hljs-number">1</span>),<span class="hljs-built_in">COUNT</span>(<span class="hljs-number">2</span>),<span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>)<br><span class="hljs-keyword">FROM</span> employees ;<br><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span><br><span class="hljs-keyword">FROM</span> employees;<br><br>#如果计算表中有多少条记录，如何实现？<br>#方式<span class="hljs-number">1</span>：<span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>)<br>#方式<span class="hljs-number">2</span>：<span class="hljs-built_in">COUNT</span>(<span class="hljs-number">1</span>)<br>#方式<span class="hljs-number">3</span>：<span class="hljs-built_in">COUNT</span>(具体字段) : 不一定对！<br><br>#② 注意：计算指定字段出现的个数时，是不计算<span class="hljs-keyword">NULL</span>值的。<br><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">COUNT</span>(commission_pct)<br><span class="hljs-keyword">FROM</span> employees;<br><br><span class="hljs-keyword">SELECT</span> commission_pct<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">WHERE</span> commission_pct <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>;<br><br>#③ 公式：AVG <span class="hljs-operator">=</span> SUM <span class="hljs-operator">/</span> COUNT<br><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">AVG</span>(salary),<span class="hljs-built_in">SUM</span>(salary)<span class="hljs-operator">/</span><span class="hljs-built_in">COUNT</span>(salary),<br><span class="hljs-built_in">AVG</span>(commission_pct),<span class="hljs-built_in">SUM</span>(commission_pct)<span class="hljs-operator">/</span><span class="hljs-built_in">COUNT</span>(commission_pct),<br><span class="hljs-built_in">SUM</span>(commission_pct) <span class="hljs-operator">/</span> <span class="hljs-number">107</span><br><span class="hljs-keyword">FROM</span> employees;<br><br>#需求：查询公司中平均奖金率<br>#错误的！<br><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">AVG</span>(commission_pct)<br><span class="hljs-keyword">FROM</span> employees;<br><br>#正确的：<br><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">SUM</span>(commission_pct) <span class="hljs-operator">/</span> <span class="hljs-built_in">COUNT</span>(IFNULL(commission_pct,<span class="hljs-number">0</span>)),<br><span class="hljs-built_in">AVG</span>(IFNULL(commission_pct,<span class="hljs-number">0</span>))<br><span class="hljs-keyword">FROM</span> employees;<br><br># 如何需要统计表中的记录数，使用<span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>)、<span class="hljs-built_in">COUNT</span>(<span class="hljs-number">1</span>)、<span class="hljs-built_in">COUNT</span>(具体字段) 哪个效率更高呢？<br># 如果使用的是MyISAM 存储引擎，则三者效率相同，都是O(<span class="hljs-number">1</span>)<br># 如果使用的是InnoDB 存储引擎，则三者效率：<span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-operator">=</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-number">1</span>)<span class="hljs-operator">&gt;</span> <span class="hljs-built_in">COUNT</span>(字段)<br><br><br>#其他：方差、标准差、中位数<br><br>#<span class="hljs-number">2.</span> <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> 的使用<br><br>#需求：查询各个部门的平均工资，最高工资<br><span class="hljs-keyword">SELECT</span> department_id,<span class="hljs-built_in">AVG</span>(salary),<span class="hljs-built_in">SUM</span>(salary)<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> department_id<br><br>#需求：查询各个job_id的平均工资<br><span class="hljs-keyword">SELECT</span> job_id,<span class="hljs-built_in">AVG</span>(salary)<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> job_id;<br><br>#需求：查询各个department_id,job_id的平均工资<br>#方式<span class="hljs-number">1</span>：<br><span class="hljs-keyword">SELECT</span> department_id,job_id,<span class="hljs-built_in">AVG</span>(salary)<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span>  department_id,job_id;<br>#方式<span class="hljs-number">2</span>：<br><span class="hljs-keyword">SELECT</span> job_id,department_id,<span class="hljs-built_in">AVG</span>(salary)<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> job_id,department_id;<br><br><br>#错误的！<br><span class="hljs-keyword">SELECT</span> department_id,job_id,<span class="hljs-built_in">AVG</span>(salary)<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> department_id;<br><br>#结论<span class="hljs-number">1</span>：<span class="hljs-keyword">SELECT</span>中出现的非组函数的字段必须声明在<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> 中。<br>#      反之，<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span>中声明的字段可以不出现在<span class="hljs-keyword">SELECT</span>中。<br><br>#结论<span class="hljs-number">2</span>：<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> 声明在<span class="hljs-keyword">FROM</span>后面、<span class="hljs-keyword">WHERE</span>后面，<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> 前面、LIMIT前面<br><br>#结论<span class="hljs-number">3</span>：MySQL中<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span>中使用<span class="hljs-keyword">WITH</span> <span class="hljs-keyword">ROLLUP</span><br><br><span class="hljs-keyword">SELECT</span> department_id,<span class="hljs-built_in">AVG</span>(salary)<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> department_id <span class="hljs-keyword">WITH</span> <span class="hljs-keyword">ROLLUP</span>;<br><br>#需求：查询各个部门的平均工资，按照平均工资升序排列<br><span class="hljs-keyword">SELECT</span> department_id,<span class="hljs-built_in">AVG</span>(salary) avg_sal<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> department_id<br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> avg_sal <span class="hljs-keyword">ASC</span>;<br><br>#说明：当使用<span class="hljs-keyword">ROLLUP</span>时，不能同时使用<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span>子句进行结果排序，即<span class="hljs-keyword">ROLLUP</span>和<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span>是互相排斥的。<br>#错误的：<br><span class="hljs-keyword">SELECT</span> department_id,<span class="hljs-built_in">AVG</span>(salary) avg_sal<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> department_id <span class="hljs-keyword">WITH</span> <span class="hljs-keyword">ROLLUP</span><br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> avg_sal <span class="hljs-keyword">ASC</span>;<br><br>#<span class="hljs-number">3.</span> <span class="hljs-keyword">HAVING</span>的使用 (作用：用来过滤数据的)<br>#练习：查询各个部门中最高工资比<span class="hljs-number">10000</span>高的部门信息<br>#错误的写法：<br><span class="hljs-keyword">SELECT</span> department_id,<span class="hljs-built_in">MAX</span>(salary)<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">WHERE</span> <span class="hljs-built_in">MAX</span>(salary) <span class="hljs-operator">&gt;</span> <span class="hljs-number">10000</span><br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> department_id;<br><br><br>#要求<span class="hljs-number">1</span>：如果过滤条件中使用了聚合函数，则必须使用<span class="hljs-keyword">HAVING</span>来替换<span class="hljs-keyword">WHERE</span>。否则，报错。<br>#要求<span class="hljs-number">2</span>：<span class="hljs-keyword">HAVING</span> 必须声明在 <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> 的后面。<br><br>#正确的写法：<br><span class="hljs-keyword">SELECT</span> department_id,<span class="hljs-built_in">MAX</span>(salary)<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> department_id<br><span class="hljs-keyword">HAVING</span> <span class="hljs-built_in">MAX</span>(salary) <span class="hljs-operator">&gt;</span> <span class="hljs-number">10000</span>;<br><br>#要求<span class="hljs-number">3</span>：开发中，我们使用<span class="hljs-keyword">HAVING</span>的前提是<span class="hljs-keyword">SQL</span>中使用了<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span>。<br><br><br>#练习：查询部门id为<span class="hljs-number">10</span>,<span class="hljs-number">20</span>,<span class="hljs-number">30</span>,<span class="hljs-number">40</span>这<span class="hljs-number">4</span>个部门中最高工资比<span class="hljs-number">10000</span>高的部门信息<br>#方式<span class="hljs-number">1</span>：推荐，执行效率高于方式<span class="hljs-number">2.</span><br><span class="hljs-keyword">SELECT</span> department_id,<span class="hljs-built_in">MAX</span>(salary)<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">WHERE</span> department_id <span class="hljs-keyword">IN</span> (<span class="hljs-number">10</span>,<span class="hljs-number">20</span>,<span class="hljs-number">30</span>,<span class="hljs-number">40</span>)<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> department_id<br><span class="hljs-keyword">HAVING</span> <span class="hljs-built_in">MAX</span>(salary) <span class="hljs-operator">&gt;</span> <span class="hljs-number">10000</span>;<br><br>#方式<span class="hljs-number">2</span>：<br><span class="hljs-keyword">SELECT</span> department_id,<span class="hljs-built_in">MAX</span>(salary)<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> department_id<br><span class="hljs-keyword">HAVING</span> <span class="hljs-built_in">MAX</span>(salary) <span class="hljs-operator">&gt;</span> <span class="hljs-number">10000</span> <span class="hljs-keyword">AND</span> department_id <span class="hljs-keyword">IN</span> (<span class="hljs-number">10</span>,<span class="hljs-number">20</span>,<span class="hljs-number">30</span>,<span class="hljs-number">40</span>);<br><br>#结论：当过滤条件中有聚合函数时，则此过滤条件必须声明在<span class="hljs-keyword">HAVING</span>中。<br>#      当过滤条件中没有聚合函数时，则此过滤条件声明在<span class="hljs-keyword">WHERE</span>中或<span class="hljs-keyword">HAVING</span>中都可以。但是，建议大家声明在<span class="hljs-keyword">WHERE</span>中。<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">  WHERE 与 HAVING 的对比</span><br><span class="hljs-comment">1. 从适用范围上来讲，HAVING的适用范围更广。 </span><br><span class="hljs-comment">2. 如果过滤条件中没有聚合函数：这种情况下，WHERE的执行效率要高于HAVING</span><br><span class="hljs-comment">*/</span><br><br>#<span class="hljs-number">4.</span> <span class="hljs-keyword">SQL</span>底层执行原理<br>#<span class="hljs-number">4.1</span> <span class="hljs-keyword">SELECT</span> 语句的完整结构<br><span class="hljs-comment">/*</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">#sql92语法：</span><br><span class="hljs-comment">SELECT ....,....,....(存在聚合函数)</span><br><span class="hljs-comment">FROM ...,....,....</span><br><span class="hljs-comment">WHERE 多表的连接条件 AND 不包含聚合函数的过滤条件</span><br><span class="hljs-comment">GROUP BY ...,....</span><br><span class="hljs-comment">HAVING 包含聚合函数的过滤条件</span><br><span class="hljs-comment">ORDER BY ....,...(ASC / DESC )</span><br><span class="hljs-comment">LIMIT ...,....</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"></span><br><span class="hljs-comment">#sql99语法：</span><br><span class="hljs-comment">SELECT ....,....,....(存在聚合函数)</span><br><span class="hljs-comment">FROM ... (LEFT / RIGHT)JOIN ....ON 多表的连接条件 </span><br><span class="hljs-comment">(LEFT / RIGHT)JOIN ... ON ....</span><br><span class="hljs-comment">WHERE 不包含聚合函数的过滤条件</span><br><span class="hljs-comment">GROUP BY ...,....</span><br><span class="hljs-comment">HAVING 包含聚合函数的过滤条件</span><br><span class="hljs-comment">ORDER BY ....,...(ASC / DESC )</span><br><span class="hljs-comment">LIMIT ...,....</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"></span><br><span class="hljs-comment">*/</span><br><br>#<span class="hljs-number">4.2</span> <span class="hljs-keyword">SQL</span>语句的执行过程：<br>#<span class="hljs-keyword">FROM</span> ...,...<span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">ON</span> <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> (<span class="hljs-keyword">LEFT</span><span class="hljs-operator">/</span>RIGNT  <span class="hljs-keyword">JOIN</span>) <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">WHERE</span> <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">HAVING</span> <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">SELECT</span> <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">DISTINCT</span> <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <br># <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> LIMIT<br><br><br><br></code></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs sql"><br># 第<span class="hljs-number">08</span>章_聚合函数的课后练习<br><br>#<span class="hljs-number">1.</span><span class="hljs-keyword">where</span>子句可否使用组函数进行过滤?  <span class="hljs-keyword">No</span><span class="hljs-operator">!</span><br><br>#<span class="hljs-number">2.</span>查询公司员工工资的最大值，最小值，平均值，总和<br><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">MAX</span>(salary) max_sal ,<span class="hljs-built_in">MIN</span>(salary) mim_sal,<span class="hljs-built_in">AVG</span>(salary) avg_sal,<span class="hljs-built_in">SUM</span>(salary) sum_sal<br><span class="hljs-keyword">FROM</span> employees;<br><br>#<span class="hljs-number">3.</span>查询各job_id的员工工资的最大值，最小值，平均值，总和<br><br><span class="hljs-keyword">SELECT</span> job_id,<span class="hljs-built_in">MAX</span>(salary),<span class="hljs-built_in">MIN</span>(salary),<span class="hljs-built_in">AVG</span>(salary),<span class="hljs-built_in">SUM</span>(salary)<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> job_id;<br><br>#<span class="hljs-number">4.</span>选择具有各个job_id的员工人数<br><span class="hljs-keyword">SELECT</span> job_id,<span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>)<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> job_id;<br><br># <span class="hljs-number">5.</span>查询员工最高工资和最低工资的差距（DIFFERENCE）  #DATEDIFF<br><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">MAX</span>(salary) <span class="hljs-operator">-</span> <span class="hljs-built_in">MIN</span>(salary) &quot;DIFFERENCE&quot;<br><span class="hljs-keyword">FROM</span> employees;<br><br><br># <span class="hljs-number">6.</span>查询各个管理者手下员工的最低工资，其中最低工资不能低于<span class="hljs-number">6000</span>，没有管理者的员工不计算在内<br><br><span class="hljs-keyword">SELECT</span> manager_id,<span class="hljs-built_in">MIN</span>(salary)<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">WHERE</span> manager_id <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span><br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> manager_id<br><span class="hljs-keyword">HAVING</span> <span class="hljs-built_in">MIN</span>(salary) <span class="hljs-operator">&gt;=</span> <span class="hljs-number">6000</span>;<br><br><br># <span class="hljs-number">7.</span>查询所有部门的名字，location_id，员工数量和平均工资，并按平均工资降序 <br><br><span class="hljs-keyword">SELECT</span> d.department_name,d.location_id,<span class="hljs-built_in">COUNT</span>(employee_id),<span class="hljs-built_in">AVG</span>(salary)<br><span class="hljs-keyword">FROM</span> departments d <span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> employees e<br><span class="hljs-keyword">ON</span> d.`department_id` <span class="hljs-operator">=</span> e.`department_id`<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> department_name,location_id<br><br><br># <span class="hljs-number">8.</span>查询每个工种、每个部门的部门名、工种名和最低工资 <br><br><span class="hljs-keyword">SELECT</span> d.department_name,e.job_id,<span class="hljs-built_in">MIN</span>(salary)<br><span class="hljs-keyword">FROM</span> departments d <span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> employees e<br><span class="hljs-keyword">ON</span> d.`department_id` <span class="hljs-operator">=</span> e.`department_id`<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> department_name,job_id<br><br><br><br><br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/database/" class="category-chain-item">database</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/database/mysql/" class="category-chain-item">mysql</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/database/">#database</a>
+      
+        <a href="/tags/mysql/">#mysql</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>mysql详细笔记7-8章</div>
+      <div>https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql详细笔记7-8章/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 17, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/" title="mysql详细笔记5-6章">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">mysql详细笔记5-6章</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B09-10%E7%AB%A0/" title="mysql详细笔记9-10章">
+                        <span class="hidden-mobile">mysql详细笔记9-10章</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

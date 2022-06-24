@@ -1,0 +1,57 @@
+<hr>
+<p>title: 11-goto语句<br>category: </p>
+<ul>
+<li>C</li>
+<li>runoob-C-program</li>
+<li>11-循环<br>tags:</li>
+<li>C</li>
+<li>runoob-C-program</li>
+<li>11-循环<br>date: 2022-06-17 17:59:13</li>
+</ul>
+<hr>
+<h1 id="C-goto-语句"><a href="#C-goto-语句" class="headerlink" title="C goto 语句"></a>C goto 语句</h1><h1 id="建议不使用goto"><a href="#建议不使用goto" class="headerlink" title="建议不使用goto"></a>建议不使用goto</h1><p>C 语言中的 <strong>goto</strong> 语句允许把控制无条件转移到同一函数内的被标记的语句。</p>
+<p><strong>注意：</strong>在任何编程语言中，都不建议使用 goto 语句。因为它使得程序的控制流难以跟踪，使程序难以理解和难以修改。任何使用 goto 语句的程序可以改写成不需要使用 goto 语句的写法。</p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>C 语言中 <strong>goto</strong> 语句的语法：</p>
+<pre><code>goto label;
+..
+.
+label: statement;
+</code></pre>
+<p>在这里，<strong>label</strong> 可以是任何除 C 关键字以外的纯文本，它可以设置在 C 程序中 <strong>goto</strong> 语句的前面或者后面。</p>
+<p><img src="/11-goto%E8%AF%AD%E5%8F%A5/goto.png" alt="img"></p>
+<h2 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h2><p><img src="/11-goto%E8%AF%AD%E5%8F%A5/c-goto-20200923-1.png" alt="C goto 语句"></p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><pre><code class="c">#include &lt;stdio.h&gt;
+ 
+int main ()
+{
+   /* 局部变量定义 */
+   int a = 10;
+
+   /* do 循环执行 */
+   LOOP:do
+   {
+      if( a == 15)
+      {
+         /* 跳过迭代 */
+         a = a + 1;
+         goto LOOP;
+      }
+      printf(&quot;a 的值： %d\n&quot;, a);
+      a++;
+     
+   }while( a &lt; 20 );
+ 
+   return 0;
+}
+</code></pre>
+<p>当上面的代码被编译和执行时，它会产生下列结果：</p>
+<pre><code>a 的值： 10
+a 的值： 11
+a 的值： 12
+a 的值： 13
+a 的值： 14
+a 的值： 16
+a 的值： 17
+a 的值： 18
+a 的值： 19
+</code></pre>

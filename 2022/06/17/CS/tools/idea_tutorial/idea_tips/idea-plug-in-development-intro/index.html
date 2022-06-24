@@ -1,0 +1,697 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="IDEA 插件开发入门我这个人没事就喜欢推荐一些好用的 IDEA 插件给大家。这些插件极大程度上提高了我们的生产效率以及编码舒适度。 不知道大家有没有想过自己开发一款 IDEA 插件呢？ 我自己想过，但是没去尝试过。刚好有一位读者想让我写一篇入门 IDEA 开发的文章，所以，我在周末就花了一会时间简单了解一下。  不过，这篇文章只是简单带各位小伙伴入门一下 IDEA 插件开发，个人精力有限，暂时不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="idea-plug-in-development-intro">
+<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/tools/idea_tutorial/idea_tips/idea-plug-in-development-intro/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="IDEA 插件开发入门我这个人没事就喜欢推荐一些好用的 IDEA 插件给大家。这些插件极大程度上提高了我们的生产效率以及编码舒适度。 不知道大家有没有想过自己开发一款 IDEA 插件呢？ 我自己想过，但是没去尝试过。刚好有一位读者想让我写一篇入门 IDEA 开发的文章，所以，我在周末就花了一会时间简单了解一下。  不过，这篇文章只是简单带各位小伙伴入门一下 IDEA 插件开发，个人精力有限，暂时不">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xiechaoxin.github.io/idea-plug-in-development-intro/image-20201118071711216.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/idea-plug-in-development-intro/1.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/idea-plug-in-development-intro/2.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/idea-plug-in-development-intro/%E6%8F%92%E4%BB%B6%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E6%A6%82%E8%A7%88.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/idea-plug-in-development-intro/006BkP2Hly1fsxxff7zd9g304g0480td.gif">
+<meta property="og:image" content="https://xiechaoxin.github.io/idea-plug-in-development-intro/%E6%96%B0%E5%BB%BAaction%20(1).png">
+<meta property="og:image" content="https://xiechaoxin.github.io/idea-plug-in-development-intro/%E9%85%8D%E7%BD%AE%E5%8A%A8%E4%BD%9C%E5%B1%9E%E6%80%A7%20(1).png">
+<meta property="og:image" content="https://xiechaoxin.github.io/idea-plug-in-development-intro/image-20201113192255689.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/idea-plug-in-development-intro/image-20201113201634643.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/idea-plug-in-development-intro/image-20201118075912490.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/idea-plug-in-development-intro/image-20201118080358764.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/idea-plug-in-development-intro/IDEA%E6%8F%92%E4%BB%B6HelloWorld.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/idea-plug-in-development-intro/image-20201114100213337.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/idea-plug-in-development-intro/image-20201118075453172.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/idea-plug-in-development-intro/image-20201118075803163.png">
+<meta property="article:published_time" content="2022-06-17T17:59:12.000Z">
+<meta property="article:modified_time" content="2022-06-24T10:26:12.157Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="tools">
+<meta property="article:tag" content="idea_tutorial">
+<meta property="article:tag" content="idea_tips">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/idea-plug-in-development-intro/image-20201118071711216.png">
+  
+  
+  
+  <title>idea-plug-in-development-intro - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xiechaoxin.github.io","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong> </strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">idea-plug-in-development-intro</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-06-17 17:59" pubdate>
+          June 17, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.3k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          37 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">idea-plug-in-development-intro</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="IDEA-插件开发入门"><a href="#IDEA-插件开发入门" class="headerlink" title="IDEA 插件开发入门"></a>IDEA 插件开发入门</h1><p>我这个人没事就喜欢推荐一些好用的 <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&album_id=1319419426898329600&__biz=Mzg2OTA0Njk0OA==#wechat_redirect">IDEA 插件</a>给大家。这些插件极大程度上提高了我们的生产效率以及编码舒适度。</p>
+<p><strong>不知道大家有没有想过自己开发一款 IDEA 插件呢？</strong></p>
+<p>我自己想过，但是没去尝试过。刚好有一位读者想让我写一篇入门 IDEA 开发的文章，所以，我在周末就花了一会时间简单了解一下。</p>
+<p><img src="/idea-plug-in-development-intro/image-20201118071711216.png" srcset="/img/loading.gif" lazyload></p>
+<p>不过，<strong>这篇文章只是简单带各位小伙伴入门一下 IDEA 插件开发</strong>，个人精力有限，暂时不会深入探讨太多。如果你已经有 IDEA 插件开发的相关经验的话，这篇文章就可以不用看了，因为会浪费你 3 分钟的时间。</p>
+<p>好的废话不多说！咱们直接开始!</p>
+<h2 id="01-新建一个基于-Gradle-的插件项目"><a href="#01-新建一个基于-Gradle-的插件项目" class="headerlink" title="01 新建一个基于 Gradle 的插件项目"></a>01 新建一个基于 Gradle 的插件项目</h2><p>这里我们基于 Gradle 进行插件开发，这也是 IntelliJ 官方的推荐的插件开发解决方案。</p>
+<p><strong>第一步，选择 Gradle 项目类型并勾选上相应的依赖。</strong></p>
+<p><img src="/idea-plug-in-development-intro/1.png" srcset="/img/loading.gif" lazyload alt="选择 Gradle 项目类型并勾选上相应的依赖"></p>
+<p><strong>第二步，填写项目相关的属性比如 GroupId、ArtifactId。</strong></p>
+<p><img src="/idea-plug-in-development-intro/2.png" srcset="/img/loading.gif" lazyload alt="填写项目相关的属性"></p>
+<p><strong>第三步，静静等待项目下载相关依赖。</strong></p>
+<p>第一次创建 IDEA 插件项目的话，这一步会比较慢。因为要下载 IDEA 插件开发所需的 SDK 。</p>
+<h2 id="02-插件项目结构概览"><a href="#02-插件项目结构概览" class="headerlink" title="02 插件项目结构概览"></a>02 插件项目结构概览</h2><p>新建完成的项目结构如下图所示。</p>
+<p><img src="/idea-plug-in-development-intro/%E6%8F%92%E4%BB%B6%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E6%A6%82%E8%A7%88.png" srcset="/img/loading.gif" lazyload alt="插件项目结构概览"></p>
+<p>这里需要额外注意的是下面这两个配置文件。</p>
+<p><strong><code>plugin.xml</code> ：插件的核心配置文件。通过它可以配置插件名称、插件介绍、插件作者信息、Action 等信息。</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">idea-plugin</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>github.javaguide.my-first-idea-plugin<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span><br>    <span class="hljs-comment">&lt;!--插件的名称--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>Beauty<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>    <span class="hljs-comment">&lt;!--插件的作者相关信息--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">vendor</span> <span class="hljs-attr">email</span>=<span class="hljs-string">&quot;koushuangbwcx@163.com&quot;</span> <span class="hljs-attr">url</span>=<span class="hljs-string">&quot;https://github.com/Snailclimb&quot;</span>&gt;</span>JavaGuide<span class="hljs-tag">&lt;/<span class="hljs-name">vendor</span>&gt;</span><br>    <span class="hljs-comment">&lt;!--插件的介绍--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">description</span>&gt;</span>&lt;![CDATA[<br>     Guide哥代码开发的第一款IDEA插件&lt;br&gt;<br>    &lt;em&gt;这尼玛是什么垃圾插件！！！&lt;/em&gt;<br>    ]]&gt;<span class="hljs-tag">&lt;/<span class="hljs-name">description</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html</span><br><span class="hljs-comment">         on how to target different products --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">depends</span>&gt;</span>com.intellij.modules.platform<span class="hljs-tag">&lt;/<span class="hljs-name">depends</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">extensions</span> <span class="hljs-attr">defaultExtensionNs</span>=<span class="hljs-string">&quot;com.intellij&quot;</span>&gt;</span><br>        <span class="hljs-comment">&lt;!-- Add your extensions here --&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">extensions</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">actions</span>&gt;</span><br>        <span class="hljs-comment">&lt;!-- Add your actions here --&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">actions</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">idea-plugin</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong><code>build.gradle</code> ：项目依赖配置文件。通过它可以配置项目第三方依赖、插件版本、插件版本更新记录等信息。</strong></p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs groovy">plugins &#123;<br>    id <span class="hljs-string">&#x27;java&#x27;</span><br>    id <span class="hljs-string">&#x27;org.jetbrains.intellij&#x27;</span> version <span class="hljs-string">&#x27;0.6.3&#x27;</span><br>&#125;<br><br>group <span class="hljs-string">&#x27;github.javaguide&#x27;</span><br><span class="hljs-comment">// 当前插件版本</span><br>version <span class="hljs-string">&#x27;1.0-SNAPSHOT&#x27;</span><br><br>repositories &#123;<br>    mavenCentral()<br>&#125;<br><br><span class="hljs-comment">// 项目依赖</span><br>dependencies &#123;<br>    testCompile <span class="hljs-attr">group:</span> <span class="hljs-string">&#x27;junit&#x27;</span>, <span class="hljs-attr">name:</span> <span class="hljs-string">&#x27;junit&#x27;</span>, <span class="hljs-attr">version:</span> <span class="hljs-string">&#x27;4.12&#x27;</span><br>&#125;<br><br><span class="hljs-comment">// See https://github.com/JetBrains/gradle-intellij-plugin/</span><br><span class="hljs-comment">// 当前开发该插件的 IDEA 版本</span><br>intellij &#123;<br>    version <span class="hljs-string">&#x27;2020.1.2&#x27;</span><br>&#125;<br>patchPluginXml &#123;<br>    <span class="hljs-comment">// 版本更新记录</span><br>    changeNotes <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">      Add change notes here.&lt;br&gt;</span><br><span class="hljs-string">      &lt;em&gt;most HTML tags may be used&lt;/em&gt;&quot;&quot;&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>没有开发过 IDEA 插件的小伙伴直接看这两个配置文件内容可能会有点蒙。所以，我专门找了一个 IDEA 插件市场提供的现成插件来说明一下。小伙伴们对照下面这张图来看下面的配置文件内容就非常非常清晰了。</p>
+<p>![插件信息](idea-plug-in-development-intro&#x2F;iShot2020-11-13 16.15.53.png)</p>
+<p>这就非常贴心了！如果这都不能让你点赞，我要这文章有何用!</p>
+<p><img src="/idea-plug-in-development-intro/006BkP2Hly1fsxxff7zd9g304g0480td.gif" srcset="/img/loading.gif" lazyload></p>
+<h2 id="03-手动创建-Action"><a href="#03-手动创建-Action" class="headerlink" title="03 手动创建 Action"></a>03 手动创建 Action</h2><p>我们可以把 Action 看作是 IDEA 提高的事件响应处理器，通过 Action 我们可以自定义一些事件处理逻辑&#x2F;动作。比如说你点击某个菜单的时候，我们进行一个展示对话框的操作。</p>
+<p><strong>第一步，右键<code>java</code>目录并选择 new 一个 Action</strong></p>
+<p><img src="/idea-plug-in-development-intro/%E6%96%B0%E5%BB%BAaction%20(1).png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>第二步，配置 Action 相关信息比如展示名称。</strong></p>
+<p><img src="/idea-plug-in-development-intro/%E9%85%8D%E7%BD%AE%E5%8A%A8%E4%BD%9C%E5%B1%9E%E6%80%A7%20(1).png" srcset="/img/loading.gif" lazyload alt="配置动作属性 (1)"></p>
+<p>创建完成之后，我们的 <code>plugin.xml</code> 的 <code>&lt;actions&gt;</code>节点下会自动生成我们刚刚创建的 Action 信息：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">actions</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- Add your actions here --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">action</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;test.hello&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;HelloAction&quot;</span> <span class="hljs-attr">text</span>=<span class="hljs-string">&quot;Hello&quot;</span> <span class="hljs-attr">description</span>=<span class="hljs-string">&quot;IDEA插件入门&quot;</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">add-to-group</span> <span class="hljs-attr">group-id</span>=<span class="hljs-string">&quot;ToolsMenu&quot;</span> <span class="hljs-attr">anchor</span>=<span class="hljs-string">&quot;first&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">action</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">actions</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>并且 <code>java</code> 目录下为生成一个叫做 <code>HelloAction</code> 的类。并且，这个类继承了 <code>AnAction</code> ，并覆盖了 <code>actionPerformed()</code> 方法。这个 <code>actionPerformed</code> 方法就好比 JS 中的 <code>onClick</code> 方法，会在你点击的时候被触发对应的动作。</p>
+<p>我简单对<code>actionPerformed</code> 方法进行了修改，添加了一行代码。这行代码很简单，就是显示 1 个对话框并展示一些信息。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HelloAction</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">AnAction</span> &#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">actionPerformed</span><span class="hljs-params">(AnActionEvent e)</span> &#123;<br>        <span class="hljs-comment">//显示对话框并展示对应的信息</span><br>        Messages.showInfoMessage(<span class="hljs-string">&quot;素材不够，插件来凑！&quot;</span>, <span class="hljs-string">&quot;Hello&quot;</span>);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>另外，我们上面也说了，每个动作都会归属到一个 Group 中，这个 Group 可以简单看作 IDEA 中已经存在的菜单。</p>
+<p>举个例子。我上面创建的 Action 的所属 Group 是 <strong>ToolsMenu(Tools)</strong> 。这样的话，我们创建的 Action 所在的位置就在 Tools 这个菜单下。</p>
+<p><img src="/idea-plug-in-development-intro/image-20201113192255689.png" srcset="/img/loading.gif" lazyload></p>
+<p>再举个例子。加入我上面创建的 Action 所属的 Group 是<strong>MainMenu</strong> （IDEA 最上方的主菜单栏）下的 <strong>FileMenu(File)</strong> 的话。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">actions</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- Add your actions here --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">action</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;test.hello&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;HelloAction&quot;</span> <span class="hljs-attr">text</span>=<span class="hljs-string">&quot;Hello&quot;</span> <span class="hljs-attr">description</span>=<span class="hljs-string">&quot;IDEA插件入门&quot;</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">add-to-group</span> <span class="hljs-attr">group-id</span>=<span class="hljs-string">&quot;FileMenu&quot;</span> <span class="hljs-attr">anchor</span>=<span class="hljs-string">&quot;first&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">action</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">actions</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>我们创建的 Action 所在的位置就在 File 这个菜单下。</p>
+<p><img src="/idea-plug-in-development-intro/image-20201113201634643.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="04-验收成果"><a href="#04-验收成果" class="headerlink" title="04 验收成果"></a>04 验收成果</h2><p>点击 <code>Gradle -&gt; runIde</code> 就会启动一个默认了这个插件的 IDEA。然后，你可以在这个 IDEA 上实际使用这个插件了。</p>
+<p><img src="/idea-plug-in-development-intro/image-20201118075912490.png" srcset="/img/loading.gif" lazyload alt="点击 runIde 就会启动一个默认了这个插件的 IDEA"></p>
+<p>效果如下：</p>
+<p><img src="/idea-plug-in-development-intro/image-20201118080358764.png" srcset="/img/loading.gif" lazyload alt="点击 runIde 就会启动一个默认了这个插件的 IDEA"></p>
+<p>我们点击自定义的 Hello Action 的话就会弹出一个对话框并展示出我们自定义的信息。</p>
+<p><img src="/idea-plug-in-development-intro/IDEA%E6%8F%92%E4%BB%B6HelloWorld.png" srcset="/img/loading.gif" lazyload alt="IDEA插件HelloWorld"></p>
+<h2 id="05-完善一下"><a href="#05-完善一下" class="headerlink" title="05 完善一下"></a>05 完善一下</h2><p>想要弄点界面花里胡哨一下， 我们还可以通过 Swing 来写一个界面。</p>
+<p>这里我们简单实现一个聊天机器人。代码的话，我是直接参考的我大二刚学 Java 那会写的一个小项目（_当时写的代码实在太烂了！就很菜！_）。</p>
+<p><img src="/idea-plug-in-development-intro/image-20201114100213337.png" srcset="/img/loading.gif" lazyload></p>
+<p>首先，你需要在<a target="_blank" rel="noopener" href="http://www.tuling123.com/" title="图灵机器人官网">图灵机器人官网</a>申请一个机器人。（_其他机器人也一样，感觉这个图灵机器人没有原来好用了，并且免费调用次数也不多_）</p>
+<p><img src="/idea-plug-in-development-intro/image-20201118075453172.png" srcset="/img/loading.gif" lazyload></p>
+<p>然后，简单写一个方法来请求调用机器人。由于代码比较简单，我这里就不放出来了，大家简单看一下效果就好。</p>
+<p><img src="/idea-plug-in-development-intro/image-20201118075803163.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="06-深入学习"><a href="#06-深入学习" class="headerlink" title="06 深入学习"></a>06 深入学习</h2><p>如果你想要深入学习的 IDEA 插件的话，可以看一下官网文档：<a target="_blank" rel="noopener" href="https://jetbrains.org/intellij/sdk/docs/basics/basics.html" title="https://jetbrains.org/intellij/sdk/docs/basics/basics.html ">https://jetbrains.org/intellij/sdk/docs/basics/basics.html </a> 。</p>
+<p>这方面的资料还是比较少的。除了官方文档的话，你还可以简单看看下面这几篇文章：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/777850?spm=a2c6h.12873581.0.dArticle777850.118d6446r096V4&groupCode=alitech" title="8 条经验轻松上手 IDEA 插件开发">8 条经验轻松上手 IDEA 插件开发</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.xiaohansong.com/idea-plugin-development.html" title="IDEA 插件开发入门教程">IDEA 插件开发入门教程</a></li>
+</ul>
+<h2 id="07-后记"><a href="#07-后记" class="headerlink" title="07 后记"></a>07 后记</h2><p>我们开发 IDEA 插件主要是为了让 IDEA 更加好用，比如有些框架使用之后可以减少重复代码的编写、有些主题类型的插件可以让你的 IDEA 更好看。</p>
+<p>我这篇文章的这个案例说实话只是为了让大家简单入门一下 IDEA 开发，没有任何实际应用意义。<strong>如果你想要开发一个不错的 IDEA 插件的话，还要充分发挥想象，利用 IDEA 插件平台的能力。</strong></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/tools/" class="category-chain-item">tools</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/tools/idea-tutorial/" class="category-chain-item">idea_tutorial</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/tools/idea-tutorial/idea-tips/" class="category-chain-item">idea_tips</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/tools/">#tools</a>
+      
+        <a href="/tags/idea-tutorial/">#idea_tutorial</a>
+      
+        <a href="/tags/idea-tips/">#idea_tips</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>idea-plug-in-development-intro</div>
+      <div>https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/tools/idea_tutorial/idea_tips/idea-plug-in-development-intro/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 17, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/tools/idea_tutorial/idea_plugins/translation/" title="translation">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">translation</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/tools/idea_tutorial/idea_tips/idea-refractor-intro/" title="idea-refractor-intro">
+                        <span class="hidden-mobile">idea-refractor-intro</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

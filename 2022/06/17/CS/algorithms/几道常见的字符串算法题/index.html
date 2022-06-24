@@ -1,0 +1,717 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="几道常见的字符串算法题 授权转载！  本文作者：wwwxmu 原文地址:https:&#x2F;&#x2F;www.weiweiblog.cn&#x2F;13string&#x2F;   1. KMP 算法谈到字符串问题，不得不提的就是 KMP 算法，它是用来解决字符串查找的问题，可以在一个字符串（S）中查找一个子串（W）出现的位置。KMP 算法把字符匹配的时间复杂度缩小到 O(m+n) ,而空间复杂度也只有O(m)。因为“暴力搜索”的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="几道常见的字符串算法题">
+<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/algorithms/%E5%87%A0%E9%81%93%E5%B8%B8%E8%A7%81%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AE%97%E6%B3%95%E9%A2%98/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="几道常见的字符串算法题 授权转载！  本文作者：wwwxmu 原文地址:https:&#x2F;&#x2F;www.weiweiblog.cn&#x2F;13string&#x2F;   1. KMP 算法谈到字符串问题，不得不提的就是 KMP 算法，它是用来解决字符串查找的问题，可以在一个字符串（S）中查找一个子串（W）出现的位置。KMP 算法把字符匹配的时间复杂度缩小到 O(m+n) ,而空间复杂度也只有O(m)。因为“暴力搜索”的">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
+<meta property="article:modified_time" content="2022-06-24T10:26:10.725Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="algorithms">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>几道常见的字符串算法题 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xiechaoxin.github.io","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong> </strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">几道常见的字符串算法题</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-06-17 17:59" pubdate>
+          June 17, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.7k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          73 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">几道常见的字符串算法题</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="几道常见的字符串算法题"><a href="#几道常见的字符串算法题" class="headerlink" title="几道常见的字符串算法题"></a>几道常见的字符串算法题</h1><blockquote>
+<p>授权转载！</p>
+<ul>
+<li>本文作者：wwwxmu</li>
+<li>原文地址:<a target="_blank" rel="noopener" href="https://www.weiweiblog.cn/13string/">https://www.weiweiblog.cn/13string/</a></li>
+</ul>
+</blockquote>
+<h2 id="1-KMP-算法"><a href="#1-KMP-算法" class="headerlink" title="1. KMP 算法"></a>1. KMP 算法</h2><p>谈到字符串问题，不得不提的就是 KMP 算法，它是用来解决字符串查找的问题，可以在一个字符串（S）中查找一个子串（W）出现的位置。KMP 算法把字符匹配的时间复杂度缩小到 O(m+n) ,而空间复杂度也只有O(m)。因为“暴力搜索”的方法会反复回溯主串，导致效率低下，而KMP算法可以利用已经部分匹配这个有效信息，保持主串上的指针不回溯，通过修改子串的指针，让模式串尽量地移动到有效的位置。</p>
+<p>具体算法细节请参考：</p>
+<ul>
+<li><strong>字符串匹配的KMP算法:</strong> <a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html">http://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html</a></li>
+<li><strong>从头到尾彻底理解KMP:</strong> <a target="_blank" rel="noopener" href="https://blog.csdn.net/v_july_v/article/details/7041827">https://blog.csdn.net/v_july_v/article/details/7041827</a></li>
+<li><strong>如何更好的理解和掌握 KMP 算法?:</strong> <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/21923021">https://www.zhihu.com/question/21923021</a></li>
+<li><strong>KMP 算法详细解析:</strong>  <a target="_blank" rel="noopener" href="https://blog.sengxian.com/algorithms/kmp">https://blog.sengxian.com/algorithms/kmp</a></li>
+<li><strong>图解 KMP 算法:</strong> <a target="_blank" rel="noopener" href="http://blog.jobbole.com/76611/">http://blog.jobbole.com/76611/</a></li>
+<li><strong>汪都能听懂的KMP字符串匹配算法【双语字幕】:</strong> <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av3246487/?from=search&amp;seid=17173603269940723925">https://www.bilibili.com/video/av3246487/?from=search&amp;seid=17173603269940723925</a></li>
+<li><strong>KMP字符串匹配算法1:</strong> <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av11866460?from=search&amp;seid=12730654434238709250">https://www.bilibili.com/video/av11866460?from=search&amp;seid=12730654434238709250</a></li>
+</ul>
+<p><strong>除此之外，再来了解一下BM算法！</strong></p>
+<blockquote>
+<p>BM算法也是一种精确字符串匹配算法，它采用从右向左比较的方法，同时应用到了两种启发式规则，即坏字符规则 和好后缀规则 ，来决定向右跳跃的距离。基本思路就是从右往左进行字符匹配，遇到不匹配的字符后从坏字符表和好后缀表找一个最大的右移值，将模式串右移继续匹配。<br>《字符串匹配的KMP算法》:<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html">http://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html</a></p>
+</blockquote>
+<h2 id="2-替换空格"><a href="#2-替换空格" class="headerlink" title="2. 替换空格"></a>2. 替换空格</h2><blockquote>
+<p>剑指offer：请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。</p>
+</blockquote>
+<p>这里我提供了两种方法：①常规方法；②利用 API 解决。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//https://www.weiweiblog.cn/replacespace/</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><br>  <span class="hljs-comment">/**</span><br><span class="hljs-comment">   * 第一种方法：常规方法。利用String.charAt(i)以及String.valueOf(char).equals(&quot; &quot;</span><br><span class="hljs-comment">   * )遍历字符串并判断元素是否为空格。是则替换为&quot;%20&quot;,否则不替换</span><br><span class="hljs-comment">   */</span><br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">replaceSpace</span><span class="hljs-params">(StringBuffer str)</span> &#123;<br><br>    <span class="hljs-type">int</span> <span class="hljs-variable">length</span> <span class="hljs-operator">=</span> str.length();<br>    <span class="hljs-comment">// System.out.println(&quot;length=&quot; + length);</span><br>    <span class="hljs-type">StringBuffer</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuffer</span>();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; length; i++) &#123;<br>      <span class="hljs-type">char</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> str.charAt(i);<br>      <span class="hljs-keyword">if</span> (String.valueOf(b).equals(<span class="hljs-string">&quot; &quot;</span>)) &#123;<br>        result.append(<span class="hljs-string">&quot;%20&quot;</span>);<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        result.append(b);<br>      &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> result.toString();<br><br>  &#125;<br><br>  <span class="hljs-comment">/**</span><br><span class="hljs-comment">   * 第二种方法：利用API替换掉所用空格，一行代码解决问题</span><br><span class="hljs-comment">   */</span><br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">replaceSpace2</span><span class="hljs-params">(StringBuffer str)</span> &#123;<br><br>    <span class="hljs-keyword">return</span> str.toString().replaceAll(<span class="hljs-string">&quot;\\s&quot;</span>, <span class="hljs-string">&quot;%20&quot;</span>);<br>  &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="3-最长公共前缀"><a href="#3-最长公共前缀" class="headerlink" title="3. 最长公共前缀"></a>3. 最长公共前缀</h2><blockquote>
+<p>Leetcode:  编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串 “”。</p>
+</blockquote>
+<p>示例 1:</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs prolog">输入: [<span class="hljs-string">&quot;flower&quot;</span>,<span class="hljs-string">&quot;flow&quot;</span>,<span class="hljs-string">&quot;flight&quot;</span>]<br>输出: <span class="hljs-string">&quot;fl&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>示例 2:</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs prolog">输入: [<span class="hljs-string">&quot;dog&quot;</span>,<span class="hljs-string">&quot;racecar&quot;</span>,<span class="hljs-string">&quot;car&quot;</span>]<br>输出: <span class="hljs-string">&quot;&quot;</span><br>解释: 输入不存在公共前缀。<br></code></pre></td></tr></table></figure>
+
+
+<p>思路很简单！先利用Arrays.sort(strs)为数组排序，再将数组第一个元素和最后一个元素的字符从前往后对比即可！</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">replaceSpace</span><span class="hljs-params">(String[] strs)</span> &#123;<br><br>		<span class="hljs-comment">// 如果检查值不合法及就返回空串</span><br>		<span class="hljs-keyword">if</span> (!checkStrs(strs)) &#123;<br>			<span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>;<br>		&#125;<br>		<span class="hljs-comment">// 数组长度</span><br>		<span class="hljs-type">int</span> <span class="hljs-variable">len</span> <span class="hljs-operator">=</span> strs.length;<br>		<span class="hljs-comment">// 用于保存结果</span><br>		<span class="hljs-type">StringBuilder</span> <span class="hljs-variable">res</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>();<br>		<span class="hljs-comment">// 给字符串数组的元素按照升序排序(包含数字的话，数字会排在前面)</span><br>		Arrays.sort(strs);<br>		<span class="hljs-type">int</span> <span class="hljs-variable">m</span> <span class="hljs-operator">=</span> strs[<span class="hljs-number">0</span>].length();<br>		<span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> strs[len - <span class="hljs-number">1</span>].length();<br>		<span class="hljs-type">int</span> <span class="hljs-variable">num</span> <span class="hljs-operator">=</span> Math.min(m, n);<br>		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; num; i++) &#123;<br>			<span class="hljs-keyword">if</span> (strs[<span class="hljs-number">0</span>].charAt(i) == strs[len - <span class="hljs-number">1</span>].charAt(i)) &#123;<br>				res.append(strs[<span class="hljs-number">0</span>].charAt(i));<br>			&#125; <span class="hljs-keyword">else</span><br>				<span class="hljs-keyword">break</span>;<br><br>		&#125;<br>		<span class="hljs-keyword">return</span> res.toString();<br><br>	&#125;<br><br>	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">chechStrs</span><span class="hljs-params">(String[] strs)</span> &#123;<br>		<span class="hljs-type">boolean</span> <span class="hljs-variable">flag</span> <span class="hljs-operator">=</span> <span class="hljs-literal">false</span>;<br>		<span class="hljs-keyword">if</span> (strs != <span class="hljs-literal">null</span>) &#123;<br>			<span class="hljs-comment">// 遍历strs检查元素值</span><br>			<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; strs.length; i++) &#123;<br>				<span class="hljs-keyword">if</span> (strs[i] != <span class="hljs-literal">null</span> &amp;&amp; strs[i].length() != <span class="hljs-number">0</span>) &#123;<br>					flag = <span class="hljs-literal">true</span>;<br>				&#125; <span class="hljs-keyword">else</span> &#123;<br>					flag = <span class="hljs-literal">false</span>;<br>					<span class="hljs-keyword">break</span>;<br>				&#125;<br>			&#125;<br>		&#125;<br>		<span class="hljs-keyword">return</span> flag;<br>	&#125;<br><br>	<span class="hljs-comment">// 测试</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>		String[] strs = &#123; <span class="hljs-string">&quot;customer&quot;</span>, <span class="hljs-string">&quot;car&quot;</span>, <span class="hljs-string">&quot;cat&quot;</span> &#125;;<br>		<span class="hljs-comment">// String[] strs = &#123; &quot;customer&quot;, &quot;car&quot;, null &#125;;//空串</span><br>		<span class="hljs-comment">// String[] strs = &#123;&#125;;//空串</span><br>		<span class="hljs-comment">// String[] strs = null;//空串</span><br>		System.out.println(Main.replaceSpace(strs));<span class="hljs-comment">// c</span><br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="4-回文串"><a href="#4-回文串" class="headerlink" title="4. 回文串"></a>4. 回文串</h2><h3 id="4-1-最长回文串"><a href="#4-1-最长回文串" class="headerlink" title="4.1. 最长回文串"></a>4.1. 最长回文串</h3><blockquote>
+<p>LeetCode:  给定一个包含大写字母和小写字母的字符串，找到通过这些字母构造成的最长的回文串。在构造过程中，请注意区分大小写。比如<code>&quot;Aa&quot;</code>不能当做一个回文字符串。注<br>意:假设字符串的长度不会超过 1010。</p>
+</blockquote>
+<blockquote>
+<p>回文串：“回文串”是一个正读和反读都一样的字符串，比如“level”或者“noon”等等就是回文串。——百度百科  地址：<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%9B%9E%E6%96%87%E4%B8%B2/1274921?fr=aladdin">https://baike.baidu.com/item/%E5%9B%9E%E6%96%87%E4%B8%B2/1274921?fr=aladdin</a></p>
+</blockquote>
+<p>示例 1:</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">输入:</span><br><span class="hljs-string">&quot;abccccdd&quot;</span><br><br><span class="hljs-section">输出:</span><br>7<br><br><span class="hljs-section">解释:</span><br>我们可以构造的最长的回文串是<span class="hljs-string">&quot;dccaccd&quot;</span>, 它的长度是 7。<br></code></pre></td></tr></table></figure>
+
+<p>我们上面已经知道了什么是回文串？现在我们考虑一下可以构成回文串的两种情况：</p>
+<ul>
+<li>字符出现次数为双数的组合</li>
+<li><strong>字符出现次数为偶数的组合+单个字符中出现次数最多且为奇数次的字符</strong> （参见 <strong><a target="_blank" rel="noopener" href="https://github.com/Snailclimb/JavaGuide/issues/665">issue665</a></strong> ）</li>
+</ul>
+<p>统计字符出现的次数即可，双数才能构成回文。因为允许中间一个数单独出现，比如“abcba”，所以如果最后有字母落单，总长度可以加 1。首先将字符串转变为字符数组。然后遍历该数组，判断对应字符是否在hashset中，如果不在就加进去，如果在就让count++，然后移除该字符！这样就能找到出现次数为双数的字符个数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//https://leetcode-cn.com/problems/longest-palindrome/description/</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>  <span class="hljs-keyword">public</span>  <span class="hljs-type">int</span> <span class="hljs-title function_">longestPalindrome</span><span class="hljs-params">(String s)</span> &#123;<br>    <span class="hljs-keyword">if</span> (s.length() == <span class="hljs-number">0</span>)<br>      <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">// 用于存放字符</span><br>    HashSet&lt;Character&gt; hashset = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>&lt;Character&gt;();<br>    <span class="hljs-type">char</span>[] chars = s.toCharArray();<br>    <span class="hljs-type">int</span> <span class="hljs-variable">count</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; chars.length; i++) &#123;<br>      <span class="hljs-keyword">if</span> (!hashset.contains(chars[i])) &#123;<span class="hljs-comment">// 如果hashset没有该字符就保存进去</span><br>        hashset.add(chars[i]);<br>      &#125; <span class="hljs-keyword">else</span> &#123;<span class="hljs-comment">// 如果有,就让count++（说明找到了一个成对的字符），然后把该字符移除</span><br>        hashset.remove(chars[i]);<br>        count++;<br>      &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> hashset.isEmpty() ? count * <span class="hljs-number">2</span> : count * <span class="hljs-number">2</span> + <span class="hljs-number">1</span>;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="4-2-验证回文串"><a href="#4-2-验证回文串" class="headerlink" title="4.2. 验证回文串"></a>4.2. 验证回文串</h3><blockquote>
+<p>LeetCode: 给定一个字符串，验证它是否是回文串，只考虑字母和数字字符，可以忽略字母的大小写。 说明：本题中，我们将空字符串定义为有效的回文串。</p>
+</blockquote>
+<p>示例 1:</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs actionscript">输入: <span class="hljs-string">&quot;A man, a plan, a canal: Panama&quot;</span><br>输出: <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+
+<p>示例 2:</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs actionscript">输入: <span class="hljs-string">&quot;race a car&quot;</span><br>输出: <span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//https://leetcode-cn.com/problems/valid-palindrome/description/</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>  <span class="hljs-keyword">public</span>  <span class="hljs-type">boolean</span> <span class="hljs-title function_">isPalindrome</span><span class="hljs-params">(String s)</span> &#123;<br>    <span class="hljs-keyword">if</span> (s.length() == <span class="hljs-number">0</span>)<br>      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">l</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>, r = s.length() - <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span> (l &lt; r) &#123;<br>      <span class="hljs-comment">// 从头和尾开始向中间遍历</span><br>      <span class="hljs-keyword">if</span> (!Character.isLetterOrDigit(s.charAt(l))) &#123;<span class="hljs-comment">// 字符不是字母和数字的情况</span><br>        l++;<br>      &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!Character.isLetterOrDigit(s.charAt(r))) &#123;<span class="hljs-comment">// 字符不是字母和数字的情况</span><br>        r--;<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-comment">// 判断二者是否相等</span><br>        <span class="hljs-keyword">if</span> (Character.toLowerCase(s.charAt(l)) != Character.toLowerCase(s.charAt(r)))<br>          <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        l++;<br>        r--;<br>      &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="4-3-最长回文子串"><a href="#4-3-最长回文子串" class="headerlink" title="4.3. 最长回文子串"></a>4.3. 最长回文子串</h3><blockquote>
+<p>Leetcode: LeetCode: 最长回文子串 给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为1000。</p>
+</blockquote>
+<p>示例 1：</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs 1c">输入: <span class="hljs-string">&quot;babad&quot;</span><br>输出: <span class="hljs-string">&quot;bab&quot;</span><br>注意: <span class="hljs-string">&quot;aba&quot;</span>也是一个有效答案。<br></code></pre></td></tr></table></figure>
+
+<p>示例 2：</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs 1c">输入: <span class="hljs-string">&quot;cbbd&quot;</span><br>输出: <span class="hljs-string">&quot;bb&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>以某个元素为中心，分别计算偶数长度的回文最大长度和奇数长度的回文最大长度。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//https://leetcode-cn.com/problems/longest-palindromic-substring/description/</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>  <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> index, len;<br><br>  <span class="hljs-keyword">public</span> String <span class="hljs-title function_">longestPalindrome</span><span class="hljs-params">(String s)</span> &#123;<br>    <span class="hljs-keyword">if</span> (s.length() &lt; <span class="hljs-number">2</span>)<br>      <span class="hljs-keyword">return</span> s;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; s.length() - <span class="hljs-number">1</span>; i++) &#123;<br>      PalindromeHelper(s, i, i);<br>      PalindromeHelper(s, i, i + <span class="hljs-number">1</span>);<br>    &#125;<br>    <span class="hljs-keyword">return</span> s.substring(index, index + len);<br>  &#125;<br><br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">PalindromeHelper</span><span class="hljs-params">(String s, <span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r)</span> &#123;<br>    <span class="hljs-keyword">while</span> (l &gt;= <span class="hljs-number">0</span> &amp;&amp; r &lt; s.length() &amp;&amp; s.charAt(l) == s.charAt(r)) &#123;<br>      l--;<br>      r++;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (len &lt; r - l - <span class="hljs-number">1</span>) &#123;<br>      index = l + <span class="hljs-number">1</span>;<br>      len = r - l - <span class="hljs-number">1</span>;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-4-最长回文子序列"><a href="#4-4-最长回文子序列" class="headerlink" title="4.4. 最长回文子序列"></a>4.4. 最长回文子序列</h3><blockquote>
+<p>LeetCode: 最长回文子序列<br>给定一个字符串s，找到其中最长的回文子序列。可以假设s的最大长度为1000。<br><strong>最长回文子序列和上一题最长回文子串的区别是，子串是字符串中连续的一个序列，而子序列是字符串中保持相对位置的字符序列，例如，”bbbb”可以是字符串”bbbab”的子序列但不是子串。</strong></p>
+</blockquote>
+<p>给定一个字符串s，找到其中最长的回文子序列。可以假设s的最大长度为1000。</p>
+<p>示例 1:</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">输入:</span><br><span class="hljs-string">&quot;bbbab&quot;</span><br><span class="hljs-section">输出:</span><br>4<br></code></pre></td></tr></table></figure>
+<p>一个可能的最长回文子序列为 “bbbb”。</p>
+<p>示例 2:</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">输入:</span><br><span class="hljs-string">&quot;cbbd&quot;</span><br><span class="hljs-section">输出:</span><br>2<br></code></pre></td></tr></table></figure>
+
+<p>一个可能的最长回文子序列为 “bb”。</p>
+<p><strong>动态规划：</strong>  dp[i][j] &#x3D; dp[i+1][j-1] + 2 if s.charAt(i) &#x3D;&#x3D; s.charAt(j) otherwise, dp[i][j] &#x3D; Math.max(dp[i+1][j], dp[i][j-1])</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">longestPalindromeSubseq</span><span class="hljs-params">(String s)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">len</span> <span class="hljs-operator">=</span> s.length();<br>        <span class="hljs-type">int</span> [][] dp = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[len][len];<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> len - <span class="hljs-number">1</span>; i&gt;=<span class="hljs-number">0</span>; i--)&#123;<br>            dp[i][i] = <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> i+<span class="hljs-number">1</span>; j &lt; len; j++)&#123;<br>                <span class="hljs-keyword">if</span>(s.charAt(i) == s.charAt(j))<br>                    dp[i][j] = dp[i+<span class="hljs-number">1</span>][j-<span class="hljs-number">1</span>] + <span class="hljs-number">2</span>;<br>                <span class="hljs-keyword">else</span><br>                    dp[i][j] = Math.max(dp[i+<span class="hljs-number">1</span>][j], dp[i][j-<span class="hljs-number">1</span>]);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> dp[<span class="hljs-number">0</span>][len-<span class="hljs-number">1</span>];<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="5-括号匹配深度"><a href="#5-括号匹配深度" class="headerlink" title="5. 括号匹配深度"></a>5. 括号匹配深度</h2><blockquote>
+<p>爱奇艺 2018 秋招 Java：<br>一个合法的括号匹配序列有以下定义:</p>
+<ol>
+<li>空串””是一个合法的括号匹配序列</li>
+<li>如果”X”和”Y”都是合法的括号匹配序列,”XY”也是一个合法的括号匹配序列</li>
+<li>如果”X”是一个合法的括号匹配序列,那么”(X)”也是一个合法的括号匹配序列</li>
+<li>每个合法的括号序列都可以由以上规则生成。</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>例如: “”,”()”,”()()”,”((()))”都是合法的括号序列<br>对于一个合法的括号序列我们又有以下定义它的深度:</p>
+<ol>
+<li>空串””的深度是0</li>
+<li>如果字符串”X”的深度是x,字符串”Y”的深度是y,那么字符串”XY”的深度为max(x,y)   </li>
+<li>如果”X”的深度是x,那么字符串”(X)”的深度是x+1</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>例如: “()()()”的深度是1,”((()))”的深度是3。牛牛现在给你一个合法的括号序列,需要你计算出其深度。 </p>
+</blockquote>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs arcade">输入描述:<br>输入包括一个合法的括号序列s,s长度<span class="hljs-built_in">length</span>(<span class="hljs-number">2</span> ≤ <span class="hljs-built_in">length</span> ≤ <span class="hljs-number">50</span>),序列中只包含<span class="hljs-string">&#x27;(&#x27;</span>和<span class="hljs-string">&#x27;)&#x27;</span>。<br><br>输出描述:<br>输出一个正整数,即这个序列的深度。<br></code></pre></td></tr></table></figure>
+
+<p>示例：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">输入:</span><br>(())<br><span class="hljs-section">输出:</span><br>2<br></code></pre></td></tr></table></figure>
+
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.Scanner;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * https://www.nowcoder.com/test/8246651/summary</span><br><span class="hljs-comment"> * </span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> Snailclimb</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span> 2018年9月6日</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@Description</span>: TODO 求给定合法括号序列的深度</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>    <span class="hljs-type">Scanner</span> <span class="hljs-variable">sc</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);<br>    <span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> sc.nextLine();<br>    <span class="hljs-type">int</span> <span class="hljs-variable">cnt</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>, max = <span class="hljs-number">0</span>, i;<br>    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; s.length(); ++i) &#123;<br>      <span class="hljs-keyword">if</span> (s.charAt(i) == <span class="hljs-string">&#x27;(&#x27;</span>)<br>        cnt++;<br>      <span class="hljs-keyword">else</span><br>        cnt--;<br>      max = Math.max(max, cnt);<br>    &#125;<br>    sc.close();<br>    System.out.println(max);<br>  &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="6-把字符串转换成整数"><a href="#6-把字符串转换成整数" class="headerlink" title="6. 把字符串转换成整数"></a>6. 把字符串转换成整数</h2><blockquote>
+<p>剑指offer:  将一个字符串转换成一个整数(实现Integer.valueOf(string)的功能，但是string不符合数字要求时返回0)，要求不能使用字符串转换整数的库函数。 数值为0或者字符串不是一个合法的数值则返回0。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//https://www.weiweiblog.cn/strtoint/</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;<br><br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">StrToInt</span><span class="hljs-params">(String str)</span> &#123;<br>    <span class="hljs-keyword">if</span> (str.length() == <span class="hljs-number">0</span>)<br>      <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-type">char</span>[] chars = str.toCharArray();<br>    <span class="hljs-comment">// 判断是否存在符号位</span><br>    <span class="hljs-type">int</span> <span class="hljs-variable">flag</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">if</span> (chars[<span class="hljs-number">0</span>] == <span class="hljs-string">&#x27;+&#x27;</span>)<br>      flag = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (chars[<span class="hljs-number">0</span>] == <span class="hljs-string">&#x27;-&#x27;</span>)<br>      flag = <span class="hljs-number">2</span>;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">start</span> <span class="hljs-operator">=</span> flag &gt; <span class="hljs-number">0</span> ? <span class="hljs-number">1</span> : <span class="hljs-number">0</span>;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">res</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<span class="hljs-comment">// 保存结果</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> start; i &lt; chars.length; i++) &#123;<br>      <span class="hljs-keyword">if</span> (Character.isDigit(chars[i])) &#123;<span class="hljs-comment">// 调用Character.isDigit(char)方法判断是否是数字，是返回True，否则False</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">temp</span> <span class="hljs-operator">=</span> chars[i] - <span class="hljs-string">&#x27;0&#x27;</span>;<br>        res = res * <span class="hljs-number">10</span> + temp;<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>      &#125;<br>    &#125;<br>   <span class="hljs-keyword">return</span> flag != <span class="hljs-number">2</span> ? res : -res;<br><br>  &#125;<br><br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>    <span class="hljs-comment">// TODO Auto-generated method stub</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;-12312312&quot;</span>;<br>    System.out.println(<span class="hljs-string">&quot;使用库函数转换：&quot;</span> + Integer.valueOf(s));<br>    <span class="hljs-type">int</span> <span class="hljs-variable">res</span> <span class="hljs-operator">=</span> Main.StrToInt(s);<br>    System.out.println(<span class="hljs-string">&quot;使用自己写的方法转换：&quot;</span> + res);<br><br>  &#125;<br><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/algorithms/" class="category-chain-item">algorithms</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/algorithms/">#algorithms</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>几道常见的字符串算法题</div>
+      <div>https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/algorithms/几道常见的字符串算法题/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 17, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/algorithms/%E5%87%A0%E9%81%93%E5%B8%B8%E8%A7%81%E7%9A%84%E9%93%BE%E8%A1%A8%E7%AE%97%E6%B3%95%E9%A2%98/" title="几道常见的链表算法题">
+                        <span class="hidden-mobile">几道常见的链表算法题</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

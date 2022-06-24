@@ -1,0 +1,961 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一文带你看遍 JDK9~15 的重要新特性！Java 8 新特性见这里：Java8 新特性最佳指南 。 你可以在 Archived OpenJDK General-Availability Releases 上下载自己需要的 JDK 版本！ 官方的新特性说明文档地址： https:&#x2F;&#x2F;openjdk.java.net&#x2F;projects&#x2F;jdk&#x2F; 。 Guide ：别人家的特性都用了几年了，我 Ja">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java新特性总结">
+<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/new_features/java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一文带你看遍 JDK9~15 的重要新特性！Java 8 新特性见这里：Java8 新特性最佳指南 。 你可以在 Archived OpenJDK General-Availability Releases 上下载自己需要的 JDK 版本！ 官方的新特性说明文档地址： https:&#x2F;&#x2F;openjdk.java.net&#x2F;projects&#x2F;jdk&#x2F; 。 Guide ：别人家的特性都用了几年了，我 Ja">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xiechaoxin.github.io/java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/module-structure.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/image-20210816083417616.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/image-20210816104614414.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/image-20210816154125579.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/20210603202746605.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/image-20210820153955587.png">
+<meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
+<meta property="article:modified_time" content="2022-06-24T10:26:10.717Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="new_features">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/module-structure.png">
+  
+  
+  
+  <title>java新特性总结 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xiechaoxin.github.io","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong> </strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">java新特性总结</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-06-17 17:59" pubdate>
+          June 17, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          22k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          182 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">java新特性总结</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="一文带你看遍-JDK9-15-的重要新特性！"><a href="#一文带你看遍-JDK9-15-的重要新特性！" class="headerlink" title="一文带你看遍 JDK9~15 的重要新特性！"></a>一文带你看遍 JDK9~15 的重要新特性！</h1><p>Java 8 新特性见这里：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247484744&idx=1&sn=9db31dca13d327678845054af75efb74&chksm=cea24a83f9d5c3956f4feb9956b068624ab2fdd6c4a75fe52d5df5dca356a016577301399548&token=1082669959&lang=zh_CN&scene=21#wechat_redirect">Java8 新特性最佳指南</a> 。</p>
+<p>你可以在 <a target="_blank" rel="noopener" href="http://jdk.java.net/archive/">Archived OpenJDK General-Availability Releases</a> 上下载自己需要的 JDK 版本！</p>
+<p>官方的新特性说明文档地址： <a target="_blank" rel="noopener" href="https://openjdk.java.net/projects/jdk/">https://openjdk.java.net/projects/jdk/</a> 。</p>
+<p><em>Guide ：别人家的特性都用了几年了，我 Java 才出来，哈哈！真实！</em></p>
+<h2 id="Java9"><a href="#Java9" class="headerlink" title="Java9"></a>Java9</h2><p>发布于 2017 年 9 月 21 日 。作为 Java8 之后 3 年半才发布的新版本，Java 9 带 来了很多重大的变化其中最重要的改动是 Java 平台模块系统的引入，其他还有诸如集合、Stream 流</p>
+<h3 id="Java-平台模块系统"><a href="#Java-平台模块系统" class="headerlink" title="Java 平台模块系统"></a>Java 平台模块系统</h3><p>Java 平台模块系统是<a target="_blank" rel="noopener" href="https://openjdk.java.net/projects/jigsaw/">Jigsaw Project</a>的一部分，把模块化开发实践引入到了 Java 平台中，可以让我们的代码可重用性更好！</p>
+<p>什么是模块系统？官方的定义是：A uniquely named, reusable group of related packages, as well as resources (such as images and XML files) and a module descriptor.</p>
+<p>简单来说，你可以将一个模块看作是一组唯一命名、可重用的包、资源和模块描述文件（module-info.java）。</p>
+<p>任意一个 jar 文件，只要加上一个 模块描述文件（module-info.java），就可以升级为一个模块。</p>
+<p><img src="/java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/module-structure.png" srcset="/img/loading.gif" lazyload></p>
+<p>在引入了模块系统之后，JDK 被重新组织成 94 个模块。Java 应用可以通过新增的 jlink 工具，创建出只包含所依赖的 JDK 模块的自定义运行时镜像。这样可以极大的减少 Java 运行时环境的大小。</p>
+<p>我们可以通过 exports 关键词精准控制哪些类可以对外开放使用，哪些类只能内部使用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">module</span> my.<span class="hljs-keyword">module</span> &#123;<br>    <span class="hljs-comment">//exports 公开指定包的所有公共成员</span><br>    <span class="hljs-keyword">exports</span> com.my.<span class="hljs-keyword">package</span>.name;<br>&#125;<br><br><span class="hljs-keyword">module</span> my.<span class="hljs-keyword">module</span> &#123;<br>     <span class="hljs-comment">//exports…to 限制访问的成员范围</span><br>    export com.my.<span class="hljs-keyword">package</span>.name to com.specific.<span class="hljs-keyword">package</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>Java 9 模块的重要特征是在其工件（artifact）的根目录中包含了一个描述模块的 <code>module-info.java</code> 文 件。 工件的格式可以是传统的 JAR 文件或是 Java 9 新增的 JMOD 文件。</p>
+<p>想要深入了解 Java 9 的模块化，参见：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://openjdk.java.net/projects/jigsaw/quick-start">《Project Jigsaw: Module System Quick-Start Guide》</a></li>
+<li><a target="_blank" rel="noopener" href="https://stacktraceguru.com/java9/module-introduction">《Java 9 Modules: part 1》</a></li>
+</ul>
+<h3 id="Jshell"><a href="#Jshell" class="headerlink" title="Jshell"></a>Jshell</h3><p>jshell 是 Java 9 新增的一个实用工具。为 Java 提供了类似于 Python 的实时命令行交互工具。</p>
+<p>在 Jshell 中可以直接输入表达式并查看其执行结果。</p>
+<p><img src="/java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/image-20210816083417616.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="集合增强"><a href="#集合增强" class="headerlink" title="集合增强"></a>集合增强</h3><p>增加 了 <code>List.of()</code>、<code>Set.of()</code>、<code>Map.of()</code> 和 <code>Map.ofEntries()</code>等工厂方法来创建不可变集合（这部分内容有点参考 Guava 的味道）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">List.of(<span class="hljs-string">&quot;Java&quot;</span>, <span class="hljs-string">&quot;C++&quot;</span>);<br>Set.of(<span class="hljs-string">&quot;Java&quot;</span>, <span class="hljs-string">&quot;C++&quot;</span>);<br>Map.of(<span class="hljs-string">&quot;Java&quot;</span>, <span class="hljs-number">1</span>, <span class="hljs-string">&quot;C++&quot;</span>, <span class="hljs-number">2</span>);<br></code></pre></td></tr></table></figure>
+
+<p>使用 <code>of()</code> 创建的集合为不可变集合，不能进行添加、删除、替换、 排序等操作，不然会报 <code>java.lang.UnsupportedOperationException</code> 异常。</p>
+<p><code>Collectors</code> 中增加了新的方法 <code>filtering()</code> 和 <code>flatMapping()</code>。</p>
+<p><code>Collectors</code> 的 <code>filtering()</code> 方法类似于 <code>Stream</code> 类的 <code>filter()</code> 方法，都是用于过滤元素。</p>
+<blockquote>
+<p>Java 8 为 <code>Collectors</code> 类引入了 <code>groupingBy</code> 操作，用于根据特定的属性将对象分组。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java">List&lt;String&gt; list = List.of(<span class="hljs-string">&quot;x&quot;</span>,<span class="hljs-string">&quot;www&quot;</span>, <span class="hljs-string">&quot;yy&quot;</span>, <span class="hljs-string">&quot;zz&quot;</span>);<br>Map&lt;Integer, List&lt;String&gt;&gt; result = list.stream()<br>        .collect(Collectors.groupingBy(String::length,<br>                Collectors.filtering(s -&gt; !s.contains(<span class="hljs-string">&quot;z&quot;</span>),<br>                        Collectors.toList())));<br><br>System.out.println(result); <span class="hljs-comment">// &#123;1=[x], 2=[yy], 3=[www]&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="Stream-amp-Optional-增强"><a href="#Stream-amp-Optional-增强" class="headerlink" title="Stream &amp; Optional 增强"></a>Stream &amp; Optional 增强</h3><p><code>Stream</code> 中增加了新的方法 <code>ofNullable()</code>、<code>dropWhile()</code>、<code>takeWhile()</code> 以及 <code>iterate()</code> 方法的重载方法。</p>
+<p>Java 9 中的 <code>ofNullable()</code> 方 法允许我们创建一个单元素的 <code>Stream</code>，可以包含一个非空元素，也可以创建一个空 <code>Stream</code>。 而在 Java 8 中则不可以创建空的 <code>Stream</code> 。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">Stream&lt;String&gt; stringStream = Stream.ofNullable(<span class="hljs-string">&quot;Java&quot;</span>);<br>System.out.println(stringStream.count());<span class="hljs-comment">// 1</span><br>Stream&lt;String&gt; nullStream = Stream.ofNullable(<span class="hljs-literal">null</span>);<br>System.out.println(nullStream.count());<span class="hljs-comment">//0</span><br></code></pre></td></tr></table></figure>
+
+<p><code>takeWhile()</code> 方法可以从 <code>Stream</code> 中依次获取满足条件的元素，直到不满足条件为止结束获取。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">List&lt;Integer&gt; integerList = List.of(<span class="hljs-number">11</span>, <span class="hljs-number">33</span>, <span class="hljs-number">66</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">13</span>);<br>integerList.stream().takeWhile(x -&gt; x &lt; <span class="hljs-number">50</span>).forEach(System.out::println);<span class="hljs-comment">// 11 33</span><br></code></pre></td></tr></table></figure>
+
+<p><code>dropWhile()</code> 方法的效果和 <code>takeWhile()</code> 相反。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">List&lt;Integer&gt; integerList2 = List.of(<span class="hljs-number">11</span>, <span class="hljs-number">33</span>, <span class="hljs-number">66</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">13</span>);<br>integerList2.stream().dropWhile(x -&gt; x &lt; <span class="hljs-number">50</span>).forEach(System.out::println);<span class="hljs-comment">// 66 8 9 13</span><br></code></pre></td></tr></table></figure>
+
+<p><code>iterate()</code> 方法的新重载方法提供了一个 <code>Predicate</code> 参数 (判断条件)来决定什么时候结束迭代</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span>&lt;T&gt; Stream&lt;T&gt; <span class="hljs-title function_">iterate</span><span class="hljs-params">(<span class="hljs-keyword">final</span> T seed, <span class="hljs-keyword">final</span> UnaryOperator&lt;T&gt; f)</span> &#123;<br>&#125;<br><span class="hljs-comment">// 新增加的重载方法</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span>&lt;T&gt; Stream&lt;T&gt; <span class="hljs-title function_">iterate</span><span class="hljs-params">(T seed, Predicate&lt;? <span class="hljs-built_in">super</span> T&gt; hasNext, UnaryOperator&lt;T&gt; next)</span> &#123;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>两者的使用对比如下，新的 <code>iterate()</code> 重载方法更加灵活一些。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 使用原始 iterate() 方法输出数字 1~10</span><br>Stream.iterate(<span class="hljs-number">1</span>, i -&gt; i + <span class="hljs-number">1</span>).limit(<span class="hljs-number">10</span>).forEach(System.out::println);<br><span class="hljs-comment">// 使用新的 iterate() 重载方法输出数字 1~10</span><br>Stream.iterate(<span class="hljs-number">1</span>, i -&gt; i &lt;= <span class="hljs-number">10</span>, i -&gt; i + <span class="hljs-number">1</span>).forEach(System.out::println);<br></code></pre></td></tr></table></figure>
+
+<p><code>Optional</code> 类中新增了 <code>ifPresentOrElse()</code>、<code>or()</code> 和 <code>stream()</code> 等方法</p>
+<p><code>ifPresentOrElse()</code> 方法接受两个参数 <code>Consumer</code> 和 <code>Runnable</code> ，如果 <code>Optional</code> 不为空调用 <code>Consumer</code> 参数，为空则调用 <code>Runnable</code> 参数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">ifPresentOrElse</span><span class="hljs-params">(Consumer&lt;? <span class="hljs-built_in">super</span> T&gt; action, Runnable emptyAction)</span><br><br>Optional&lt;Object&gt; objectOptional = Optional.empty();<br>objectOptional.ifPresentOrElse(System.out::println, () -&gt; System.out.println(<span class="hljs-string">&quot;Empty!!!&quot;</span>));<span class="hljs-comment">// Empty!!!</span><br></code></pre></td></tr></table></figure>
+
+<p><code>or()</code> 方法接受一个 <code>Supplier</code> 参数 ，如果 <code>Optional</code> 为空则返回 <code>Supplier</code> 参数指定的 <code>Optional</code> 值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> Optional&lt;T&gt; <span class="hljs-title function_">or</span><span class="hljs-params">(Supplier&lt;? extends Optional&lt;? extends T&gt;&gt; supplier)</span><br><br>Optional&lt;Object&gt; objectOptional = Optional.empty();<br>objectOptional.or(() -&gt; Optional.of(<span class="hljs-string">&quot;java&quot;</span>)).ifPresent(System.out::println);<span class="hljs-comment">//java</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="String-存储结构变更"><a href="#String-存储结构变更" class="headerlink" title="String 存储结构变更"></a>String 存储结构变更</h3><p>JDK 8 及之前的版本，<code>String</code> 一直是用 <code>char[]</code> 存储。在 Java 9 之后，<code>String</code> 的实现改用 <code>byte[]</code> 数组存储字符串。</p>
+<h3 id="进程-API"><a href="#进程-API" class="headerlink" title="进程 API"></a>进程 API</h3><p>Java 9 增加了 <code>ProcessHandle</code> 接口，可以对原生进程进行管理，尤其适合于管理长时间运行的进程。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">System.out.println(ProcessHandle.current().pid());<br>System.out.println(ProcessHandle.current().info());<br></code></pre></td></tr></table></figure>
+
+<p><img src="/java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/image-20210816104614414.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="平台日志-API-和服务"><a href="#平台日志-API-和服务" class="headerlink" title="平台日志 API 和服务"></a>平台日志 API 和服务</h3><p>Java 9 允许为 JDK 和应用配置同样的日志实现。新增了 <code>System.LoggerFinder</code> 用来管理 JDK 使 用的日志记录器实现。JVM 在运行时只有一个系统范围的 <code>LoggerFinder</code> 实例。</p>
+<p>我们可以通过添加自己的 <code>System.LoggerFinder</code> 实现来让 JDK 和应用使用 SLF4J 等其他日志记录框架。</p>
+<h3 id="反应式流-（-Reactive-Streams-）"><a href="#反应式流-（-Reactive-Streams-）" class="headerlink" title="反应式流 （ Reactive Streams ）"></a>反应式流 （ Reactive Streams ）</h3><p>在 Java9 中的 <code>java.util.concurrent.Flow</code> 类中新增了反应式流规范的核心接口 。</p>
+<p><code>Flow</code> 中包含了 <code>Flow.Publisher</code>、<code>Flow.Subscriber</code>、<code>Flow.Subscription</code> 和 <code>Flow.Processor</code> 等 4 个核心接口。Java 9 还提供了<code>SubmissionPublisher</code> 作为<code>Flow.Publisher</code> 的一个实现。</p>
+<h3 id="变量句柄"><a href="#变量句柄" class="headerlink" title="变量句柄"></a>变量句柄</h3><p>变量句柄是一个变量或一组变量的引用，包括静态域，非静态域，数组元素和堆外数据结构中的组成部分等</p>
+<p>变量句柄的含义类似于已有的方法句柄 <code>MethodHandle</code> ，由 Java 类 <code>java.lang.invoke.VarHandle</code> 来表示，可以使用类 <code>java.lang.invoke.MethodHandles.Lookup</code> 中的静态工厂方法来创建 <code>VarHandle</code> 对象。</p>
+<p><code>VarHandle</code> 的出现替代了 <code>java.util.concurrent.atomic</code> 和 <code>sun.misc.Unsafe</code> 的部分操作。并且提供了一系列标准的内存屏障操作，用于更加细粒度的控制内存排序。在安全性、可用性、性能上都要优于现有的 API。</p>
+<h3 id="改进方法句柄（Method-Handle）"><a href="#改进方法句柄（Method-Handle）" class="headerlink" title="改进方法句柄（Method Handle）"></a>改进方法句柄（Method Handle）</h3><p>方法句柄从 Java7 开始引入，Java9 在类<code>java.lang.invoke.MethodHandles</code> 中新增了更多的静态方法来创建不同类型的方法句柄。</p>
+<h3 id="接口私有方法"><a href="#接口私有方法" class="headerlink" title="接口私有方法"></a>接口私有方法</h3><p>Java 9 允许在接口中使用私有方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">MyInterface</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">methodPrivate</span><span class="hljs-params">()</span>&#123;<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="Java9-其它新特性"><a href="#Java9-其它新特性" class="headerlink" title="Java9 其它新特性"></a>Java9 其它新特性</h3><ul>
+<li><strong>try-with-resources 增强</strong> ：在 try-with-resources 语句中可以使用 effectively-final 变量（什么是 effectively-final 变量，见这篇文章：<a target="_blank" rel="noopener" href="https://ilkinulas.github.io/programming/java/2016/03/27/effectively-final-java.html">《Effectively Final Variables in Java》</a></li>
+<li>类 <code>CompletableFuture</code> 中增加了几个新的方法（<code>completeAsync</code> ，<code>orTimeout</code> 等）</li>
+<li><strong>Nashorn 引擎的增强</strong> ：Nashorn 从 Java8 开始引入的 JavaScript 引擎，Java9 对 Nashorn 做了些增强，实现了一些 ES6 的新特性（Java 11 中已经被弃用）。</li>
+<li><strong>I&#x2F;O 流的新特性</strong> ：增加了新的方法来读取和复制 <code>InputStream</code> 中包含的数据</li>
+<li><strong>改进应用的安全性能</strong> ：Java 9 新增了 4 个 SHA- 3 哈希算法，SHA3-224、SHA3-256、SHA3-384 和 SHA3-512</li>
+<li>……</li>
+</ul>
+<h2 id="Java10"><a href="#Java10" class="headerlink" title="Java10"></a>Java10</h2><p>发布于 2018 年 3 月 20 日，最知名的特性应该是 var 关键字（局部变量类型推断）的引入了，其他还有垃圾收集器改善、GC 改进、性能提升、线程管控等一批新特性</p>
+<h3 id="var-局部变量推断"><a href="#var-局部变量推断" class="headerlink" title="var(局部变量推断)"></a>var(局部变量推断)</h3><p>由于太多 Java 开发者希望 Java 中引入局部变量推断，于是 Java 10 的时候它来了，也算是众望所归了！</p>
+<p>Java 10 提供了 var 关键字声明局部变量。</p>
+<blockquote>
+<p>Scala 和 Kotlin 中有 val 关键字 ( <code>final var</code> 组合关键字)，Java10 中并没有引入。</p>
+</blockquote>
+<p>Java 10 只引入了 var，而</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">var</span> <span class="hljs-variable">id</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><span class="hljs-type">var</span> <span class="hljs-variable">codefx</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">URL</span>(<span class="hljs-string">&quot;https://mp.weixin.qq.com/&quot;</span>);<br><span class="hljs-type">var</span> <span class="hljs-variable">list</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br><span class="hljs-type">var</span> <span class="hljs-variable">list</span> <span class="hljs-operator">=</span> List.of(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>);<br><span class="hljs-type">var</span> <span class="hljs-variable">map</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;String, String&gt;();<br><span class="hljs-type">var</span> <span class="hljs-variable">p</span> <span class="hljs-operator">=</span> Paths.of(<span class="hljs-string">&quot;src/test/java/Java9FeaturesTest.java&quot;</span>);<br><span class="hljs-type">var</span> <span class="hljs-variable">numbers</span> <span class="hljs-operator">=</span> List.of(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>);<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> n : list)<br>    System.out.print(n+ <span class="hljs-string">&quot; &quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>var 关键字只能用于带有构造器的局部变量和 for 循环中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">var</span> count=<span class="hljs-literal">null</span>; <span class="hljs-comment">//❌编译不通过，不能声明为 null</span><br><span class="hljs-type">var</span> <span class="hljs-variable">r</span> <span class="hljs-operator">=</span> () -&gt; Math.random();<span class="hljs-comment">//❌编译不通过,不能声明为 Lambda表达式</span><br><span class="hljs-type">var</span> <span class="hljs-variable">array</span> <span class="hljs-operator">=</span> &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>&#125;;<span class="hljs-comment">//❌编译不通过,不能声明数组</span><br></code></pre></td></tr></table></figure>
+
+<p>var 并不会改变 Java 是一门静态类型语言的事实，编译器负责推断出类型。</p>
+<p>相关阅读：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/34911982">《Java 10 新特性之局部变量类型推断》</a>。</p>
+<h3 id="集合增强-1"><a href="#集合增强-1" class="headerlink" title="集合增强"></a>集合增强</h3><p><code>list</code>，<code>set</code>，<code>map</code> 提供了静态方法<code>copyOf()</code>返回入参集合的一个不可变拷贝。</p>
+<p>以下为 JDK 的源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">static</span> &lt;E&gt; List&lt;E&gt; <span class="hljs-title function_">copyOf</span><span class="hljs-params">(Collection&lt;? extends E&gt; coll)</span> &#123;<br>    <span class="hljs-keyword">return</span> ImmutableCollections.listCopy(coll);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>使用 <code>copyOf()</code> 创建的集合为不可变集合，不能进行添加、删除、替换、 排序等操作，不然会报 <code>java.lang.UnsupportedOperationException</code> 异常。 IDEA 也会有相应的提示。</p>
+<p><img src="/java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/image-20210816154125579.png" srcset="/img/loading.gif" lazyload></p>
+<p><code>java.util.stream.Collectors</code> 中新增了静态方法，用于将流中的元素收集为不可变的集合。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">var</span> <span class="hljs-variable">list</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>list.stream().collect(Collectors.toUnmodifiableList());<br>list.stream().collect(Collectors.toUnmodifiableSet());<br></code></pre></td></tr></table></figure>
+
+<h3 id="Optional"><a href="#Optional" class="headerlink" title="Optional"></a>Optional</h3><p>新增了<code>orElseThrow()</code>方法来在没有值时抛出指定的异常。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">Optional.ofNullable(cache.getIfPresent(key))<br>        .orElseThrow(() -&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">PrestoException</span>(NOT_FOUND, <span class="hljs-string">&quot;Missing entry found for key: &quot;</span> + key));<br></code></pre></td></tr></table></figure>
+
+<h3 id="并行全垃圾回收器-G1"><a href="#并行全垃圾回收器-G1" class="headerlink" title="并行全垃圾回收器 G1"></a>并行全垃圾回收器 G1</h3><p>从 Java9 开始 G1 就了默认的垃圾回收器，G1 是以一种低延时的垃圾回收器来设计的，旨在避免进行 Full GC,但是 Java9 的 G1 的 FullGC 依然是使用单线程去完成标记清除算法,这可能会导致垃圾回收期在无法回收内存的时候触发 Full GC。</p>
+<p>为了最大限度地减少 Full GC 造成的应用停顿的影响，从 Java10 开始，G1 的 FullGC 改为并行的标记清除算法，同时会使用与年轻代回收和混合回收相同的并行工作线程数量，从而减少了 Full GC 的发生，以带来更好的性能提升、更大的吞吐量。</p>
+<h3 id="应用程序类数据共享-扩展-CDS-功能"><a href="#应用程序类数据共享-扩展-CDS-功能" class="headerlink" title="应用程序类数据共享(扩展 CDS 功能)"></a>应用程序类数据共享(扩展 CDS 功能)</h3><p>在 Java 5 中就已经引入了类数据共享机制 (Class Data Sharing，简称 CDS)，允许将一组类预处理为共享归档文件，以便在运行时能够进行内存映射以减少 Java 程序的启动时间，当多个 Java 虚拟机（JVM）共享相同的归档文件时，还可以减少动态内存的占用量，同时减少多个虚拟机在同一个物理或虚拟的机器上运行时的资源占用。CDS 在当时还是 Oracle JDK 的商业特性。</p>
+<p>Java 10 在现有的 CDS 功能基础上再次拓展，以允许应用类放置在共享存档中。CDS 特性在原来的 bootstrap 类基础之上，扩展加入了应用类的 CDS 为 (Application Class-Data Sharing，AppCDS) 支持，大大加大了 CDS 的适用范围。其原理为：在启动时记录加载类的过程，写入到文本文件中，再次启动时直接读取此启动文本并加载。设想如果应用环境没有大的变化，启动速度就会得到提升。</p>
+<h3 id="Java10-其他新特性"><a href="#Java10-其他新特性" class="headerlink" title="Java10 其他新特性"></a>Java10 其他新特性</h3><ul>
+<li><strong>线程-局部管控</strong>：Java 10 中线程管控引入 JVM 安全点的概念，将允许在不运行全局 JVM 安全点的情况下实现线程回调，由线程本身或者 JVM 线程来执行，同时保持线程处于阻塞状态，这种方式使得停止单个线程变成可能，而不是只能启用或停止所有线程</li>
+<li><strong>备用存储装置上的堆分配</strong>：Java 10 中将使得 JVM 能够使用适用于不同类型的存储机制的堆，在可选内存设备上进行堆内存分配</li>
+<li><strong>统一的垃圾回收接口</strong>：Java 10 中，hotspot&#x2F;gc 代码实现方面，引入一个干净的 GC 接口，改进不同 GC 源代码的隔离性，多个 GC 之间共享的实现细节代码应该存在于辅助类中。统一垃圾回收接口的主要原因是：让垃圾回收器（GC）这部分代码更加整洁，便于新人上手开发，便于后续排查相关问题。</li>
+<li>……</li>
+</ul>
+<h2 id="Java11"><a href="#Java11" class="headerlink" title="Java11"></a>Java11</h2><p>Java11 于 2018 年 9 月 25 日正式发布，这是很重要的一个版本！Java 11 和 2017 年 9 月份发布的 Java 9 以及 2018 年 3 月份发布的 Java 10 相比，其最大的区别就是：在长期支持(Long-Term-Support)方面，<strong>Oracle 表示会对 Java 11 提供大力支持，这一支持将会持续至 2026 年 9 月。这是据 Java 8 以后支持的首个长期版本。</strong></p>
+<p><img src="/java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/20210603202746605.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><p>Java 11 增加了一系列的字符串处理方法，如以下所示。</p>
+<p><em>Guide：说白点就是多了层封装，JDK 开发组的人没少看市面上常见的工具类框架啊!</em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//判断字符串是否为空</span><br><span class="hljs-string">&quot; &quot;</span>.isBlank();<span class="hljs-comment">//true</span><br><span class="hljs-comment">//去除字符串首尾空格</span><br><span class="hljs-string">&quot; Java &quot;</span>.strip();<span class="hljs-comment">// &quot;Java&quot;</span><br><span class="hljs-comment">//去除字符串首部空格</span><br><span class="hljs-string">&quot; Java &quot;</span>.stripLeading();   <span class="hljs-comment">// &quot;Java &quot;</span><br><span class="hljs-comment">//去除字符串尾部空格</span><br><span class="hljs-string">&quot; Java &quot;</span>.stripTrailing();  <span class="hljs-comment">// &quot; Java&quot;</span><br><span class="hljs-comment">//重复字符串多少次</span><br><span class="hljs-string">&quot;Java&quot;</span>.repeat(<span class="hljs-number">3</span>);             <span class="hljs-comment">// &quot;JavaJavaJava&quot;</span><br><br><span class="hljs-comment">//返回由行终止符分隔的字符串集合。</span><br><span class="hljs-string">&quot;A\nB\nC&quot;</span>.lines().count();    <span class="hljs-comment">// 3</span><br><span class="hljs-string">&quot;A\nB\nC&quot;</span>.lines().collect(Collectors.toList());<br></code></pre></td></tr></table></figure>
+
+<h3 id="Optional-1"><a href="#Optional-1" class="headerlink" title="Optional"></a>Optional</h3><p>新增了<code>empty()</code>方法来判断指定的 <code>Optional</code> 对象是否为空。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">var</span> <span class="hljs-variable">op</span> <span class="hljs-operator">=</span> Optional.empty();<br>System.out.println(op.isEmpty());<span class="hljs-comment">//判断指定的 Optional 对象是否为空</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="ZGC-可伸缩低延迟垃圾收集器"><a href="#ZGC-可伸缩低延迟垃圾收集器" class="headerlink" title="ZGC(可伸缩低延迟垃圾收集器)"></a>ZGC(可伸缩低延迟垃圾收集器)</h3><p><strong>ZGC 即 Z Garbage Collector</strong>，是一个可伸缩的、低延迟的垃圾收集器。</p>
+<p>ZGC 主要为了满足如下目标进行设计：</p>
+<ul>
+<li>GC 停顿时间不超过 10ms</li>
+<li>即能处理几百 MB 的小堆，也能处理几个 TB 的大堆</li>
+<li>应用吞吐能力不会下降超过 15%（与 G1 回收算法相比）</li>
+<li>方便在此基础上引入新的 GC 特性和利用 colored 针以及 Load barriers 优化奠定基础</li>
+<li>当前只支持 Linux&#x2F;x64 位平台</li>
+</ul>
+<p>ZGC 目前 <strong>处在实验阶段</strong>，只支持 Linux&#x2F;x64 平台。</p>
+<p>与 CMS 中的 ParNew 和 G1 类似，ZGC 也采用标记-复制算法，不过 ZGC 对该算法做了重大改进。</p>
+<p>在 ZGC 中出现 Stop The World 的情况会更少！</p>
+<p>详情可以看 ： <a target="_blank" rel="noopener" href="https://tech.meituan.com/2020/08/06/new-zgc-practice-in-meituan.html">《新一代垃圾回收器 ZGC 的探索与实践》</a></p>
+<h3 id="标准-HTTP-Client-升级"><a href="#标准-HTTP-Client-升级" class="headerlink" title="标准 HTTP Client 升级"></a>标准 HTTP Client 升级</h3><p>Java 11 对 Java 9 中引入并在 Java 10 中进行了更新的 Http Client API 进行了标准化，在前两个版本中进行孵化的同时，Http Client 几乎被完全重写，并且现在完全支持异步非阻塞。</p>
+<p>并且，Java11 中，Http Client 的包名由 <code>jdk.incubator.http</code> 改为<code>java.net.http</code>，该 API 通过 <code>CompleteableFuture</code> 提供非阻塞请求和响应语义。使用起来也很简单，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">var</span> <span class="hljs-variable">request</span> <span class="hljs-operator">=</span> HttpRequest.newBuilder()<br>    .uri(URI.create(<span class="hljs-string">&quot;https://javastack.cn&quot;</span>))<br>    .GET()<br>    .build();<br><span class="hljs-type">var</span> <span class="hljs-variable">client</span> <span class="hljs-operator">=</span> HttpClient.newHttpClient();<br><br><span class="hljs-comment">// 同步</span><br>HttpResponse&lt;String&gt; response = client.send(request, HttpResponse.BodyHandlers.ofString());<br>System.out.println(response.body());<br><br><span class="hljs-comment">// 异步</span><br>client.sendAsync(request, HttpResponse.BodyHandlers.ofString())<br>    .thenApply(HttpResponse::body)<br>    .thenAccept(System.out::println);<br></code></pre></td></tr></table></figure>
+
+<h3 id="var-Lambda-参数的局部变量语法"><a href="#var-Lambda-参数的局部变量语法" class="headerlink" title="var(Lambda 参数的局部变量语法)"></a>var(Lambda 参数的局部变量语法)</h3><p>从 Java 10 开始，便引入了局部变量类型推断这一关键特性。类型推断允许使用关键字 var 作为局部变量的类型而不是实际类型，编译器根据分配给变量的值推断出类型。</p>
+<p>Java 10 中对 var 关键字存在几个限制</p>
+<ul>
+<li>只能用于局部变量上</li>
+<li>声明时必须初始化</li>
+<li>不能用作方法参数</li>
+<li>不能在 Lambda 表达式中使用</li>
+</ul>
+<p>Java11 开始允许开发者在 Lambda 表达式中使用 var 进行参数声明。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 下面两者是等价的</span><br>Consumer&lt;String&gt; consumer = (<span class="hljs-keyword">var</span> i) -&gt; System.out.println(i);<br>Consumer&lt;String&gt; consumer = (String i) -&gt; System.out.println(i);<br></code></pre></td></tr></table></figure>
+
+<h3 id="启动单文件源代码程序"><a href="#启动单文件源代码程序" class="headerlink" title="启动单文件源代码程序"></a>启动单文件源代码程序</h3><p><a target="_blank" rel="noopener" href="https://openjdk.java.net/jeps/330">JEP 330:启动单文件源代码程序（aunch Single-File Source-Code Programs）</a> 可以让我们运行单一文件的 Java 源代码。此功能允许使用 Java 解释器直接执行 Java 源代码。源代码在内存中编译，然后由解释器执行，不需要在磁盘上生成 <code>.class</code> 文件了。</p>
+<p>唯一的约束在于所有相关的类必须定义在同一个 Java 文件中。</p>
+<p>对于 Java 初学者并希望尝试简单程序的人特别有用，并且能和 jshell 一起使用</p>
+<p>一定能程度上增强了使用 Java 来写脚本程序的能力。</p>
+<h3 id="Java11-其他新特性"><a href="#Java11-其他新特性" class="headerlink" title="Java11 其他新特性"></a>Java11 其他新特性</h3><ul>
+<li><strong>新的垃圾回收器 Epsilon</strong> ：一个完全消极的 GC 实现，分配有限的内存资源，最大限度的降低内存占用和内存吞吐延迟时间</li>
+<li><strong>低开销的 Heap Profiling</strong> ：Java 11 中提供一种低开销的 Java 堆分配采样方法，能够得到堆分配的 Java 对象信息，并且能够通过 JVMTI 访问堆信息</li>
+<li><strong>TLS1.3 协议</strong> ：Java 11 中包含了传输层安全性（TLS）1.3 规范（RFC 8446）的实现，替换了之前版本中包含的 TLS，包括 TLS 1.2，同时还改进了其他 TLS 功能，例如 OCSP 装订扩展（RFC 6066，RFC 6961），以及会话散列和扩展主密钥扩展（RFC 7627），在安全性和性能方面也做了很多提升</li>
+<li><strong>飞行记录器(Java Flight Recorder)</strong> ：飞行记录器之前是商业版 JDK 的一项分析工具，但在 Java 11 中，其代码被包含到公开代码库中，这样所有人都能使用该功能了。</li>
+<li>……</li>
+</ul>
+<h2 id="Java12"><a href="#Java12" class="headerlink" title="Java12"></a>Java12</h2><h3 id="String-1"><a href="#String-1" class="headerlink" title="String"></a>String</h3><p>Java 11 增加了两个的字符串处理方法，如以下所示。</p>
+<p><code>indent()</code> 方法可以实现字符串缩进。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">text</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Java&quot;</span>;<br><span class="hljs-comment">// 缩进 4 格</span><br>text = text.indent(<span class="hljs-number">4</span>);<br>System.out.println(text);<br>text = text.indent(-<span class="hljs-number">10</span>);<br>System.out.println(text);<br></code></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">     Java</span><br><span class="hljs-attribute">Java</span><br></code></pre></td></tr></table></figure>
+
+<p><code>transform()</code> 方法可以用来转变指定字符串。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;foo&quot;</span>.transform(input -&gt; input + <span class="hljs-string">&quot; bar&quot;</span>);<br>System.out.println(result); <span class="hljs-comment">// foo bar</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="文件比较"><a href="#文件比较" class="headerlink" title="文件比较"></a>文件比较</h3><p>Java 12 添加了以下方法来比较两个文件：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">long</span> <span class="hljs-title function_">mismatch</span><span class="hljs-params">(Path path, Path path2)</span> <span class="hljs-keyword">throws</span> IOException<br></code></pre></td></tr></table></figure>
+
+<p><code>mismatch()</code> 方法用于比较两个文件，并返回第一个不匹配字符的位置，如果文件相同则返回 -1L。</p>
+<p>代码示例（两个文件内容相同的情况）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Path</span> <span class="hljs-variable">filePath1</span> <span class="hljs-operator">=</span> Files.createTempFile(<span class="hljs-string">&quot;file1&quot;</span>, <span class="hljs-string">&quot;.txt&quot;</span>);<br><span class="hljs-type">Path</span> <span class="hljs-variable">filePath2</span> <span class="hljs-operator">=</span> Files.createTempFile(<span class="hljs-string">&quot;file2&quot;</span>, <span class="hljs-string">&quot;.txt&quot;</span>);<br>Files.writeString(filePath1, <span class="hljs-string">&quot;Java 12 Article&quot;</span>);<br>Files.writeString(filePath2, <span class="hljs-string">&quot;Java 12 Article&quot;</span>);<br><br><span class="hljs-type">long</span> <span class="hljs-variable">mismatch</span> <span class="hljs-operator">=</span> Files.mismatch(filePath1, filePath2);<br>assertEquals(-<span class="hljs-number">1</span>, mismatch);<br></code></pre></td></tr></table></figure>
+
+<p>代码示例（两个文件内容不相同的情况）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Path</span> <span class="hljs-variable">filePath3</span> <span class="hljs-operator">=</span> Files.createTempFile(<span class="hljs-string">&quot;file3&quot;</span>, <span class="hljs-string">&quot;.txt&quot;</span>);<br><span class="hljs-type">Path</span> <span class="hljs-variable">filePath4</span> <span class="hljs-operator">=</span> Files.createTempFile(<span class="hljs-string">&quot;file4&quot;</span>, <span class="hljs-string">&quot;.txt&quot;</span>);<br>Files.writeString(filePath3, <span class="hljs-string">&quot;Java 12 Article&quot;</span>);<br>Files.writeString(filePath4, <span class="hljs-string">&quot;Java 12 Tutorial&quot;</span>);<br><br><span class="hljs-type">long</span> <span class="hljs-variable">mismatch</span> <span class="hljs-operator">=</span> Files.mismatch(filePath3, filePath4);<br>assertEquals(<span class="hljs-number">8</span>, mismatch);<br></code></pre></td></tr></table></figure>
+
+<h3 id="数字格式化工具类"><a href="#数字格式化工具类" class="headerlink" title="数字格式化工具类"></a>数字格式化工具类</h3><p><code>NumberFormat</code> 新增了对复杂的数字进行格式化的支持</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">NumberFormat</span> <span class="hljs-variable">fmt</span> <span class="hljs-operator">=</span> NumberFormat.getCompactNumberInstance(Locale.US, NumberFormat.Style.SHORT);<br><span class="hljs-type">String</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> fmt.format(<span class="hljs-number">1000</span>);<br> System.out.println(result); <span class="hljs-comment">// 输出为 1K，计算工资是多少K更方便了。。。</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="Shenandoah-GC"><a href="#Shenandoah-GC" class="headerlink" title="Shenandoah GC"></a>Shenandoah GC</h3><p>Redhat 主导开发的 Pauseless GC 实现，主要目标是 99.9% 的暂停小于 10ms，暂停与堆大小无关等</p>
+<p>和 Java11 开源的 ZGC 相比（需要升级到 JDK11 才能使用），Shenandoah GC 有稳定的 JDK8u 版本，在 Java8 占据主要市场份额的今天有更大的可落地性。</p>
+<h3 id="G1-收集器提升"><a href="#G1-收集器提升" class="headerlink" title="G1 收集器提升"></a>G1 收集器提升</h3><p>Java12 为默认的垃圾收集器 G1 带来了两项更新:</p>
+<ul>
+<li><strong>可中止的混合收集集合</strong> ：JEP344 的实现，为了达到用户提供的停顿时间目标，JEP 344 通过把要被回收的区域集（混合收集集合）拆分为强制和可选部分，使 G1 垃圾回收器能中止垃圾回收过程。 G1 可以中止可选部分的回收以达到停顿时间目标</li>
+<li><strong>及时返回未使用的已分配内存</strong> ：JEP346 的实现，增强 G1 GC，以便在空闲时自动将 Java 堆内存返回给操作系统</li>
+</ul>
+<h3 id="预览新特性"><a href="#预览新特性" class="headerlink" title="预览新特性"></a>预览新特性</h3><p>作为预览特性加入，需要在<code>javac</code>编译和<code>java</code>运行时增加参数<code>--enable-preview</code> 。</p>
+<h4 id="增强-Switch"><a href="#增强-Switch" class="headerlink" title="增强 Switch"></a>增强 Switch</h4><p>传统的 <code>switch</code> 语法存在容易漏写 <code>break</code> 的问题，而且从代码整洁性层面来看，多个 break 本质也是一种重复</p>
+<p>Java12 增强了 <code>swtich</code> 表达式，使用类似 lambda 语法条件匹配成功后的执行块，不需要多写 break 。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">switch</span> (day) &#123;<br>    <span class="hljs-keyword">case</span> MONDAY, FRIDAY, SUNDAY -&gt; System.out.println(<span class="hljs-number">6</span>);<br>    <span class="hljs-keyword">case</span> TUESDAY                -&gt; System.out.println(<span class="hljs-number">7</span>);<br>    <span class="hljs-keyword">case</span> THURSDAY, SATURDAY     -&gt; System.out.println(<span class="hljs-number">8</span>);<br>    <span class="hljs-keyword">case</span> WEDNESDAY              -&gt; System.out.println(<span class="hljs-number">9</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="instanceof-模式匹配"><a href="#instanceof-模式匹配" class="headerlink" title="instanceof 模式匹配"></a>instanceof 模式匹配</h4><p><code>instanceof</code> 主要在<strong>类型强转前探测对象的具体类型</strong>。</p>
+<p>之前的版本中，我们需要显示地对对象进行类型转换。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Object</span> <span class="hljs-variable">obj</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;我是字符串&quot;</span>;<br><span class="hljs-keyword">if</span>(obj <span class="hljs-keyword">instanceof</span> String)&#123;<br>   <span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> (String) obj;<br>	System.out.println(str);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>新版的 <code>instanceof</code> 可以在判断是否属于具体的类型同时完成转换。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Object</span> <span class="hljs-variable">obj</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;我是字符串&quot;</span>;<br><span class="hljs-keyword">if</span>(obj <span class="hljs-keyword">instanceof</span> String str)&#123;<br>	System.out.println(str);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="Java13"><a href="#Java13" class="headerlink" title="Java13"></a>Java13</h2><h3 id="增强-ZGC-释放未使用内存"><a href="#增强-ZGC-释放未使用内存" class="headerlink" title="增强 ZGC(释放未使用内存)"></a>增强 ZGC(释放未使用内存)</h3><p>在 Java 11 中是实验性的引入的 ZGC 在实际的使用中存在未能主动将未使用的内存释放给操作系统的问题。</p>
+<p>ZGC 堆由一组称为 ZPages 的堆区域组成。在 GC 周期中清空 ZPages 区域时，它们将被释放并返回到页面缓存 <strong>ZPageCache</strong> 中，此缓存中的 ZPages 按最近最少使用（LRU）的顺序，并按照大小进行组织。</p>
+<p>在 Java 13 中，ZGC 将向操作系统返回被标识为长时间未使用的页面，这样它们将可以被其他进程重用。</p>
+<h3 id="SocketAPI-重构"><a href="#SocketAPI-重构" class="headerlink" title="SocketAPI 重构"></a>SocketAPI 重构</h3><p>Java Socket API 终于迎来了重大更新！</p>
+<p>Java 13 将 Socket API 的底层进行了重写， <code>NioSocketImpl</code> 是对 <code>PlainSocketImpl</code> 的直接替代，它使用 <code>java.util.concurrent</code> 包下的锁而不是同步方法。如果要使用旧实现，请使用 <code>-Djdk.net.usePlainSocketImpl=true</code>。</p>
+<p>并且，在 Java 13 中是默认使用新的 Socket 实现。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">NioSocketImpl</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">SocketImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">PlatformSocketImpl</span> &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="FileSystems"><a href="#FileSystems" class="headerlink" title="FileSystems"></a>FileSystems</h3><p><code>FileSystems</code> 类中添加了以下三种新方法，以便更容易地使用将文件内容视为文件系统的文件系统提供程序：</p>
+<ul>
+<li><code>newFileSystem(Path)</code></li>
+<li><code>newFileSystem(Path, Map&lt;String, ?&gt;)</code></li>
+<li><code>newFileSystem(Path, Map&lt;String, ?&gt;, ClassLoader)</code></li>
+</ul>
+<h3 id="动态-CDS-存档"><a href="#动态-CDS-存档" class="headerlink" title="动态 CDS 存档"></a>动态 CDS 存档</h3><p>Java 13 中对 Java 10 中引入的应用程序类数据共享(AppCDS)进行了进一步的简化、改进和扩展，即：<strong>允许在 Java 应用程序执行结束时动态进行类归档</strong>，具体能够被归档的类包括所有已被加载，但不属于默认基层 CDS 的应用程序类和引用类库中的类。</p>
+<p>这提高了应用程序类数据共享（<a target="_blank" rel="noopener" href="https://openjdk.java.net/jeps/310">AppCDS</a>）的可用性。无需用户进行试运行来为每个应用程序创建类列表。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ java -XX:ArchiveClassesAtExit=my_app_cds.jsa -<span class="hljs-built_in">cp</span> my_app.jar<br>$ java -XX:SharedArchiveFile=my_app_cds.jsa -<span class="hljs-built_in">cp</span> my_app.jar<br></code></pre></td></tr></table></figure>
+
+<h3 id="预览新特性-1"><a href="#预览新特性-1" class="headerlink" title="预览新特性"></a>预览新特性</h3><h4 id="文本块"><a href="#文本块" class="headerlink" title="文本块"></a>文本块</h4><p>解决 Java 定义多行字符串时只能通过换行转义或者换行连接符来变通支持的问题，引入<strong>三重双引号</strong>来定义多行文本。</p>
+<p>Java 13 支持两个 <code>&quot;&quot;&quot;</code> 符号中间的任何内容都会被解释为字符串的一部分，包括换行符。</p>
+<p>未支持文本块之前的 HTML 写法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">json</span> <span class="hljs-operator">=</span><span class="hljs-string">&quot;&#123;\n&quot;</span> +<br>              <span class="hljs-string">&quot;   \&quot;name\&quot;:\&quot;mkyong\&quot;,\n&quot;</span> +<br>              <span class="hljs-string">&quot;   \&quot;age\&quot;:38\n&quot;</span> +<br>              <span class="hljs-string">&quot;&#125;\n&quot;</span>;<br></code></pre></td></tr></table></figure>
+
+<p>支持文本块之后的 HTML 写法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">json</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">               &#123;</span><br><span class="hljs-string">                   &quot;name&quot;:&quot;mkyong&quot;,</span><br><span class="hljs-string">                   &quot;age&quot;:38</span><br><span class="hljs-string">               &#125;</span><br><span class="hljs-string">               &quot;&quot;&quot;</span>;<br></code></pre></td></tr></table></figure>
+
+<p>未支持文本块之前的 SQL 写法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql">String query <span class="hljs-operator">=</span> &quot;SELECT `EMP_ID`, `LAST_NAME` FROM `EMPLOYEE_TB`\n&quot; <span class="hljs-operator">+</span><br>               &quot;WHERE `CITY` = &#x27;INDIANAPOLIS&#x27;\n&quot; <span class="hljs-operator">+</span><br>               &quot;ORDER BY `EMP_ID`, `LAST_NAME`;\n&quot;;<br></code></pre></td></tr></table></figure>
+
+<p>支持文本块之后的 SQL 写法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql">String query <span class="hljs-operator">=</span> &quot;&quot;&quot;<br>               SELECT `EMP_ID`, `LAST_NAME` FROM `EMPLOYEE_TB`<br>               WHERE `CITY` = &#x27;INDIANAPOLIS&#x27;<br>               ORDER BY `EMP_ID`, `LAST_NAME`;<br>               &quot;&quot;&quot;;<br></code></pre></td></tr></table></figure>
+
+<p>另外，<code>String</code> 类新增加了 3 个新的方法来操作文本块：</p>
+<ul>
+<li><code>formatted(Object... args)</code> ：它类似于 <code>String</code> 的<code>format()</code>方法。添加它是为了支持文本块的格式设置。</li>
+<li><code>stripIndent()</code> ：用于去除文本块中每一行开头和结尾的空格。</li>
+<li><code>translateEscapes()</code> ：转义序列如 <em>“\\t”</em> 转换为 <em>“\t”</em></li>
+</ul>
+<p>由于文本块是一项预览功能，可以在未来版本中删除，因此这些新方法被标记为弃用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Deprecated(forRemoval=true, since=&quot;13&quot;)</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">stripIndent</span><span class="hljs-params">()</span> &#123;<br>&#125;<br><span class="hljs-meta">@Deprecated(forRemoval=true, since=&quot;13&quot;)</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">formatted</span><span class="hljs-params">(Object... args)</span> &#123;<br><br>&#125;<br><span class="hljs-meta">@Deprecated(forRemoval=true, since=&quot;13&quot;)</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">translateEscapes</span><span class="hljs-params">()</span> &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="增强-Switch-引入-yield-关键字到-Switch-中"><a href="#增强-Switch-引入-yield-关键字到-Switch-中" class="headerlink" title="增强 Switch(引入 yield 关键字到 Switch 中)"></a>增强 Switch(引入 yield 关键字到 Switch 中)</h4><p><code>Switch</code> 表达式中就多了一个关键字用于跳出 <code>Switch</code> 块的关键字 <code>yield</code>，主要用于返回一个值</p>
+<p><code>yield</code>和 <code>return</code> 的区别在于：<code>return</code> 会直接跳出当前循环或者方法，而 <code>yield</code> 只会跳出当前 <code>Switch</code> 块，同时在使用 <code>yield</code> 时，需要有 <code>default</code> 条件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">descLanguage</span><span class="hljs-params">(String name)</span> &#123;<br>       <span class="hljs-keyword">return</span> <span class="hljs-keyword">switch</span> (name) &#123;<br>           <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;Java&quot;</span>: yield <span class="hljs-string">&quot;object-oriented, platform independent and secured&quot;</span>;<br>           <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;Ruby&quot;</span>: yield <span class="hljs-string">&quot;a programmer&#x27;s best friend&quot;</span>;<br>           <span class="hljs-keyword">default</span>: yield name +<span class="hljs-string">&quot; is a good language&quot;</span>;<br>       &#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="Java14"><a href="#Java14" class="headerlink" title="Java14"></a>Java14</h2><h3 id="空指针异常精准提示"><a href="#空指针异常精准提示" class="headerlink" title="空指针异常精准提示"></a>空指针异常精准提示</h3><p>通过 JVM 参数中添加<code>-XX:+ShowCodeDetailsInExceptionMessages</code>，可以在空指针异常中获取更为详细的调用信息，更快的定位和解决问题。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">a.b.c.i = <span class="hljs-number">99</span>; <span class="hljs-comment">// 假设这段代码会发生空指针</span><br></code></pre></td></tr></table></figure>
+
+<p>Java 14 之前：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">Exception in thread <span class="hljs-string">&quot;main&quot;</span> java.lang.NullPointerException<br>    at NullPointerExample.main(NullPointerExample.java:<span class="hljs-number">5</span>)<br></code></pre></td></tr></table></figure>
+
+<p>Java 14 之后：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"> <span class="hljs-comment">// 增加参数后提示的异常中很明确的告知了哪里为空导致</span><br>Exception in thread <span class="hljs-string">&quot;main&quot;</span> java.lang.NullPointerException:<br>        Cannot read field <span class="hljs-string">&#x27;c&#x27;</span> because <span class="hljs-string">&#x27;a.b&#x27;</span> is <span class="hljs-literal">null</span>.<br>    at Prog.main(Prog.java:<span class="hljs-number">5</span>)<br></code></pre></td></tr></table></figure>
+
+<h3 id="switch-的增强-转正"><a href="#switch-的增强-转正" class="headerlink" title="switch 的增强(转正)"></a>switch 的增强(转正)</h3><p>Java12 引入的 switch（预览特性）在 Java14 变为正式版本，不需要增加参数来启用，直接在 JDK14 中就能使用。</p>
+<p>Java12 为 switch 表达式引入了类似 lambda 语法条件匹配成功后的执行块，不需要多写 break ，Java13 提供了 <code>yield</code> 来在 block 中返回值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">switch</span> (day) &#123;<br>            <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;M&quot;</span>, <span class="hljs-string">&quot;W&quot;</span>, <span class="hljs-string">&quot;F&quot;</span> -&gt; <span class="hljs-string">&quot;MWF&quot;</span>;<br>            <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;T&quot;</span>, <span class="hljs-string">&quot;TH&quot;</span>, <span class="hljs-string">&quot;S&quot;</span> -&gt; <span class="hljs-string">&quot;TTS&quot;</span>;<br>            <span class="hljs-keyword">default</span> -&gt; &#123;<br>                <span class="hljs-keyword">if</span>(day.isEmpty())<br>                    yield <span class="hljs-string">&quot;Please insert a valid day.&quot;</span>;<br>                <span class="hljs-keyword">else</span><br>                    yield <span class="hljs-string">&quot;Looks like a Sunday.&quot;</span>;<br>            &#125;<br><br>        &#125;;<br>System.out.println(result);<br></code></pre></td></tr></table></figure>
+
+<h3 id="预览新特性-2"><a href="#预览新特性-2" class="headerlink" title="预览新特性"></a>预览新特性</h3><h4 id="record-关键字"><a href="#record-关键字" class="headerlink" title="record 关键字"></a>record 关键字</h4><p><code>record</code> 关键字可以简化 <strong>数据类</strong>（一个 Java 类一旦实例化就不能再修改）的定义方式，使用 <code>record</code> 代替 <code>class</code> 定义的类，只需要声明属性，就可以在获得属性的访问方法，以及 <code>toString()</code>，<code>hashCode()</code>, <code>equals()</code>方法</p>
+<p>类似于使用 <code>class</code> 定义类，同时使用了 lombok 插件，并打上了<code>@Getter,@ToString,@EqualsAndHashCode</code>注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 这个类具有两个特征</span><br><span class="hljs-comment"> * 1. 所有成员属性都是final</span><br><span class="hljs-comment"> * 2. 全部方法由构造方法，和两个成员属性访问器组成（共三个）</span><br><span class="hljs-comment"> * 那么这种类就很适合使用record来声明</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Rectangle</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Shape</span> &#123;<br>    <span class="hljs-keyword">final</span> <span class="hljs-type">double</span> length;<br>    <span class="hljs-keyword">final</span> <span class="hljs-type">double</span> width;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Rectangle</span><span class="hljs-params">(<span class="hljs-type">double</span> length, <span class="hljs-type">double</span> width)</span> &#123;<br>        <span class="hljs-built_in">this</span>.length = length;<br>        <span class="hljs-built_in">this</span>.width = width;<br>    &#125;<br><br>    <span class="hljs-type">double</span> <span class="hljs-title function_">length</span><span class="hljs-params">()</span> &#123; <span class="hljs-keyword">return</span> length; &#125;<br>    <span class="hljs-type">double</span> <span class="hljs-title function_">width</span><span class="hljs-params">()</span> &#123; <span class="hljs-keyword">return</span> width; &#125;<br>&#125;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 1. 使用record声明的类会自动拥有上面类中的三个方法</span><br><span class="hljs-comment"> * 2. 在这基础上还附赠了equals()，hashCode()方法以及toString()方法</span><br><span class="hljs-comment"> * 3. toString方法中包括所有成员属性的字符串表示形式及其名称</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">record</span> <span class="hljs-title class_">Rectangle</span><span class="hljs-params">(<span class="hljs-type">float</span> length, <span class="hljs-type">float</span> width)</span> &#123; &#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="文本块-1"><a href="#文本块-1" class="headerlink" title="文本块"></a>文本块</h4><p>Java14 中，文本块依然是预览特性，不过，其引入了两个新的转义字符：</p>
+<ul>
+<li><code>\</code> : 表示行尾，不引入换行符</li>
+<li><code>\s</code> ：表示单个空格</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;凡心所向，素履所往，生如逆旅，一苇以航。&quot;</span>;<br><br><span class="hljs-type">String</span> <span class="hljs-variable">str2</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">        凡心所向，素履所往， \</span><br><span class="hljs-string">        生如逆旅，一苇以航。&quot;&quot;&quot;</span>;<br>System.out.println(str2);<span class="hljs-comment">// 凡心所向，素履所往， 生如逆旅，一苇以航。</span><br><span class="hljs-type">String</span> <span class="hljs-variable">text</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">        java</span><br><span class="hljs-string">        c++\sphp</span><br><span class="hljs-string">        &quot;&quot;&quot;</span>;<br>System.out.println(text);<br><span class="hljs-comment">//输出：</span><br>java<br>c++ php<br></code></pre></td></tr></table></figure>
+
+<h4 id="instanceof-增强"><a href="#instanceof-增强" class="headerlink" title="instanceof 增强"></a>instanceof 增强</h4><p>依然是<strong>预览特性</strong> ，Java 12 新特性中介绍过。</p>
+<h3 id="Java14-其他特性"><a href="#Java14-其他特性" class="headerlink" title="Java14 其他特性"></a>Java14 其他特性</h3><ul>
+<li>从 Java11 引入的 ZGC 作为继 G1 过后的下一代 GC 算法，从支持 Linux 平台到 Java14 开始支持 MacOS 和 Window（个人感觉是终于可以在日常开发工具中先体验下 ZGC 的效果了，虽然其实 G1 也够用）</li>
+<li>移除了 CMS(Concurrent Mark Sweep) 垃圾收集器（功成而退）</li>
+<li>新增了 jpackage 工具，标配将应用打成 jar 包外，还支持不同平台的特性包，比如 linux 下的<code>deb</code>和<code>rpm</code>，window 平台下的<code>msi</code>和<code>exe</code></li>
+</ul>
+<h2 id="Java15"><a href="#Java15" class="headerlink" title="Java15"></a>Java15</h2><h3 id="CharSequence"><a href="#CharSequence" class="headerlink" title="CharSequence"></a>CharSequence</h3><p><code>CharSequence</code> 接口添加了一个默认方法 <code>isEmpty()</code> 来判断字符序列为空，如果是则返回 true。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">CharSequence</span> &#123;<br>  <span class="hljs-keyword">default</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isEmpty</span><span class="hljs-params">()</span> &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.length() == <span class="hljs-number">0</span>;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h3><p><code>TreeMap</code> 新引入了下面这些方法：</p>
+<ul>
+<li><code>putIfAbsent()</code></li>
+<li><code>computeIfAbsent()</code></li>
+<li><code>computeIfPresent()</code></li>
+<li><code>compute()</code></li>
+<li><code>merge()</code></li>
+</ul>
+<h3 id="ZGC-转正"><a href="#ZGC-转正" class="headerlink" title="ZGC(转正)"></a>ZGC(转正)</h3><p>Java11 的时候 ，ZGC 还在试验阶段。</p>
+<p>当时，ZGC 的出现让众多 Java 开发者看到了垃圾回收器的另外一种可能，因此备受关注。</p>
+<p>经过多个版本的迭代，不断的完善和修复问题，ZGC 在 Java 15 已经可以正式使用了！</p>
+<p>不过，默认的垃圾回收器依然是 G1。你可以通过下面的参数启动 ZGC：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ java -XX:+UseZGC className<br></code></pre></td></tr></table></figure>
+
+<h3 id="EdDSA-数字签名算法"><a href="#EdDSA-数字签名算法" class="headerlink" title="EdDSA(数字签名算法)"></a>EdDSA(数字签名算法)</h3><p>新加入了一个安全性和性能都更强的基于 Edwards-Curve Digital Signature Algorithm （EdDSA）实现的数字签名算法。</p>
+<p>虽然其性能优于现有的 ECDSA 实现，不过，它并不会完全取代 JDK 中现有的椭圆曲线数字签名算法( ECDSA)。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">KeyPairGenerator</span> <span class="hljs-variable">kpg</span> <span class="hljs-operator">=</span> KeyPairGenerator.getInstance(<span class="hljs-string">&quot;Ed25519&quot;</span>);<br><span class="hljs-type">KeyPair</span> <span class="hljs-variable">kp</span> <span class="hljs-operator">=</span> kpg.generateKeyPair();<br><br><span class="hljs-type">byte</span>[] msg = <span class="hljs-string">&quot;test_string&quot;</span>.getBytes(StandardCharsets.UTF_8);<br><br><span class="hljs-type">Signature</span> <span class="hljs-variable">sig</span> <span class="hljs-operator">=</span> Signature.getInstance(<span class="hljs-string">&quot;Ed25519&quot;</span>);<br>sig.initSign(kp.getPrivate());<br>sig.update(msg);<br><span class="hljs-type">byte</span>[] s = sig.sign();<br><br><span class="hljs-type">String</span> <span class="hljs-variable">encodedString</span> <span class="hljs-operator">=</span> Base64.getEncoder().encodeToString(s);<br>System.out.println(encodedString);<br></code></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-number">0</span>Hc0lxxASZNvS52WsvnncJOH<span class="hljs-regexp">/mlFhnA8Tc6D/</span>k5DtAX5BSsNVjtPF4R4+yMWXVjrvB2mxVXmChIbki6goFBgAg==<br></code></pre></td></tr></table></figure>
+
+<h3 id="文本块-转正"><a href="#文本块-转正" class="headerlink" title="文本块(转正)"></a>文本块(转正)</h3><p>在 Java 15 ，文本块是正式的功能特性了。</p>
+<h3 id="隐藏类-Hidden-Classes"><a href="#隐藏类-Hidden-Classes" class="headerlink" title="隐藏类(Hidden Classes)"></a>隐藏类(Hidden Classes)</h3><p>隐藏类是为框架（frameworks）所设计的，隐藏类不能直接被其他类的字节码使用，只能在运行时生成类并通过反射间接使用它们。</p>
+<h3 id="预览新特性-3"><a href="#预览新特性-3" class="headerlink" title="预览新特性"></a>预览新特性</h3><h4 id="密封类"><a href="#密封类" class="headerlink" title="密封类"></a>密封类</h4><p>Java 15 对 Java 14 中引入的预览新特性进行了增强，主要是引入了一个新的概念 <strong>密封类（Sealed Classes）。</strong></p>
+<p>密封类可以对继承或者实现它们的类进行限制。</p>
+<p>比如抽象类 <code>Person</code> 只允许 <code>Employee</code> 和 <code>Manager</code> 继承。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">sealed</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span><br>    permits Employee, Manager &#123;<br><br>    <span class="hljs-comment">//...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>另外，任何扩展密封类的类本身都必须声明为 <code>sealed</code>、<code>non-sealed</code> 或 <code>final</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Employee</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Person</span> &#123;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">non-sealed</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Manager</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Person</span> &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="/java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/image-20210820153955587.png" srcset="/img/loading.gif" lazyload></p>
+<p>如果允许扩展的子类和封闭类在同一个源代码文件里，封闭类可以不使用 permits 语句，Java 编译器将检索源文件，在编译期为封闭类添加上许可的子类。</p>
+<h4 id="instanceof-模式匹配-1"><a href="#instanceof-模式匹配-1" class="headerlink" title="instanceof 模式匹配"></a>instanceof 模式匹配</h4><p>Java 15 并没有对此特性进行调整，继续预览特性，主要用于接受更多的使用反馈。</p>
+<p>在未来的 Java 版本中，Java 的目标是继续完善 <code>instanceof</code> 模式匹配新特性。</p>
+<h3 id="Java15-其他新特性"><a href="#Java15-其他新特性" class="headerlink" title="Java15 其他新特性"></a>Java15 其他新特性</h3><ul>
+<li><strong>Nashorn JavaScript 引擎彻底移除</strong> ：Nashorn 从 Java8 开始引入的 JavaScript 引擎，Java9 对 Nashorn 做了些增强，实现了一些 ES6 的新特性。在 Java 11 中就已经被弃用，到了 Java 15 就彻底被删除了。</li>
+<li><strong>DatagramSocket API 重构</strong></li>
+<li><strong>禁用和废弃偏向锁（Biased Locking）</strong> ： 偏向锁的引入增加了 JVM 的复杂性大于其带来的性能提升。不过，你仍然可以使用 <code>-XX:+UseBiasedLocking</code> 启用偏向锁定，但它会提示 这是一个已弃用的 API。</li>
+<li>……</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="关于预览特性"><a href="#关于预览特性" class="headerlink" title="关于预览特性"></a>关于预览特性</h3><p>先贴一段 oracle 官网原文：<code>This is a preview feature, which is a feature whose design, specification, and implementation are complete, but is not permanent, which means that the feature may exist in a different form or not at all in future JDK releases. To compile and run code that contains preview features, you must specify additional command-line options.</code></p>
+<p>这是一个预览功能，该功能的设计，规格和实现是完整的，但不是永久性的，这意味着该功能可能以其他形式存在或在将来的 JDK 版本中根本不存在。 要编译和运行包含预览功能的代码，必须指定其他命令行选项。</p>
+<p>就以<code>switch</code>的增强为例子，从 Java12 中推出，到 Java13 中将继续增强，直到 Java14 才正式转正进入 JDK 可以放心使用，不用考虑后续 JDK 版本对其的改动或修改</p>
+<p>一方面可以看出 JDK 作为标准平台在增加新特性的严谨态度，另一方面个人认为是对于预览特性应该采取审慎使用的态度。特性的设计和实现容易，但是其实际价值依然需要在使用中去验证</p>
+<h3 id="JVM-虚拟机优化"><a href="#JVM-虚拟机优化" class="headerlink" title="JVM 虚拟机优化"></a>JVM 虚拟机优化</h3><p>每次 Java 版本的发布都伴随着对 JVM 虚拟机的优化，包括对现有垃圾回收算法的改进，引入新的垃圾回收算法，移除老旧的不再适用于今天的垃圾回收算法等</p>
+<p>整体优化的方向是<strong>高效，低时延的垃圾回收表现</strong></p>
+<p>对于日常的应用开发者可能比较关注新的语法特性，但是从一个公司角度来说，在考虑是否升级 Java 平台时更加考虑的是<strong>JVM 运行时的提升</strong></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li>JDK Project Overview ： &lt;<a target="_blank" rel="noopener" href="https://openjdk.java.net/projects/jdk/">https://openjdk.java.net/projects/jdk/</a> &gt;</li>
+<li>IBM Developer Java9 <a target="_blank" rel="noopener" href="https://www.ibm.com/developerworks/cn/java/the-new-features-of-Java-9/">https://www.ibm.com/developerworks/cn/java/the-new-features-of-Java-9/</a></li>
+<li>Guide to Java10 <a target="_blank" rel="noopener" href="https://www.baeldung.com/java-10-overview">https://www.baeldung.com/java-10-overview</a></li>
+<li>Java 10 新特性介绍<a target="_blank" rel="noopener" href="https://www.ibm.com/developerworks/cn/java/the-new-features-of-Java-10/index.html">https://www.ibm.com/developerworks/cn/java/the-new-features-of-Java-10/index.html</a></li>
+<li>IBM Devloper Java11 <a target="_blank" rel="noopener" href="https://www.ibm.com/developerworks/cn/java/the-new-features-of-Java-11/index.html">https://www.ibm.com/developerworks/cn/java/the-new-features-of-Java-11/index.html</a></li>
+<li>Java 11 – Features and Comparison： <a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/java-11-features-and-comparison/">https://www.geeksforgeeks.org/java-11-features-and-comparison/</a></li>
+<li>Oracle Java12 ReleaseNote <a target="_blank" rel="noopener" href="https://www.oracle.com/technetwork/java/javase/12all-relnotes-5211423.html#NewFeature">https://www.oracle.com/technetwork/java/javase/12all-relnotes-5211423.html#NewFeature</a></li>
+<li>Oracle Java13 ReleaseNote <a target="_blank" rel="noopener" href="https://www.oracle.com/technetwork/java/javase/13all-relnotes-5461743.html#NewFeature">https://www.oracle.com/technetwork/java/javase/13all-relnotes-5461743.html#NewFeature</a></li>
+<li>New Features in Java 12 <a target="_blank" rel="noopener" href="https://www.baeldung.com/java-12-new-features">https://www.baeldung.com/java-12-new-features</a></li>
+<li>New Java13 Features <a target="_blank" rel="noopener" href="https://www.baeldung.com/java-13-new-features">https://www.baeldung.com/java-13-new-features</a></li>
+<li>Java13 新特性概述 <a target="_blank" rel="noopener" href="https://www.ibm.com/developerworks/cn/java/the-new-features-of-Java-13/index.html">https://www.ibm.com/developerworks/cn/java/the-new-features-of-Java-13/index.html</a></li>
+<li>Oracle Java14 record <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/14/language/records.html">https://docs.oracle.com/en/java/javase/14/language/records.html</a></li>
+<li>java14-features <a target="_blank" rel="noopener" href="https://www.techgeeknext.com/java/java14-features">https://www.techgeeknext.com/java/java14-features</a></li>
+<li>Java 14 Features : <a target="_blank" rel="noopener" href="https://www.journaldev.com/37273/java-14-features">https://www.journaldev.com/37273/java-14-features</a></li>
+<li>What is new in Java 15: <a target="_blank" rel="noopener" href="https://mkyong.com/java/what-is-new-in-java-15/">https://mkyong.com/java/what-is-new-in-java-15/</a></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Java/new-features/" class="category-chain-item">new_features</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Java/">#Java</a>
+      
+        <a href="/tags/new-features/">#new_features</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>java新特性总结</div>
+      <div>https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/new_features/java新特性总结/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 17, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/Java/new_features/java8-tutorial-translate/" title="java8-tutorial-translate">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">java8-tutorial-translate</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/Java/performance/jad/" title="jad">
+                        <span class="hidden-mobile">jad</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,758 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1、线程这块还有那些内容呢？列举一下 1.1、守护线程      java语言中线程分为两大类：         一类是：用户线程         一类是：守护线程（后台线程）         其中具有代表性的就是：垃圾回收线程（守护线程）。      守护线程的特点：         一般守护线程是一个死循环，所有的用户线程只要结束，         守护线程自动结束。          注意：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="20.多线程3">
+<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/basic/20.%E5%A4%9A%E7%BA%BF%E7%A8%8B3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1、线程这块还有那些内容呢？列举一下 1.1、守护线程      java语言中线程分为两大类：         一类是：用户线程         一类是：守护线程（后台线程）         其中具有代表性的就是：垃圾回收线程（守护线程）。      守护线程的特点：         一般守护线程是一个死循环，所有的用户线程只要结束，         守护线程自动结束。          注意：">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
+<meta property="article:modified_time" content="2022-06-24T10:26:10.521Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="basic">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>20.多线程3 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xiechaoxin.github.io","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong> </strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">20.多线程3</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-06-17 17:59" pubdate>
+          June 17, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.3k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          20 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">20.多线程3</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="1、线程这块还有那些内容呢？"><a href="#1、线程这块还有那些内容呢？" class="headerlink" title="1、线程这块还有那些内容呢？"></a>1、线程这块还有那些内容呢？</h1><p>列举一下</p>
+<pre><code class="hljs">1.1、守护线程
+
+    java语言中线程分为两大类：
+        一类是：用户线程
+        一类是：守护线程（后台线程）
+        其中具有代表性的就是：垃圾回收线程（守护线程）。
+
+    守护线程的特点：
+        一般守护线程是一个死循环，所有的用户线程只要结束，
+        守护线程自动结束。
+    
+    注意：主线程main方法是一个用户线程。
+
+    守护线程用在什么地方呢？
+        每天00:00的时候系统数据自动备份。
+        这个需要使用到定时器，并且我们可以将定时器设置为守护线程。
+        一直在那里看着，没到00:00的时候就备份一次。所有的用户线程
+        如果结束了，守护线程自动退出，没有必要进行数据备份了。
+
+1.2、定时器
+    定时器的作用：
+        间隔特定的时间，执行特定的程序。
+
+        每周要进行银行账户的总账操作。
+        每天要进行数据的备份操作。
+
+        在实际的开发中，每隔多久执行一段特定的程序，这种需求是很常见的，
+        那么在java中其实可以采用多种方式实现：
+            
+            可以使用sleep方法，睡眠，设置睡眠时间，没到这个时间点醒来，执行
+            任务。这种方式是最原始的定时器。（比较low）
+
+            在java的类库中已经写好了一个定时器：java.util.Timer，可以直接拿来用。
+            不过，这种方式在目前的开发中也很少用，因为现在有很多高级框架都是支持
+            定时任务的。
+
+            在实际的开发中，目前使用较多的是Spring框架中提供的SpringTask框架，
+            这个框架只要进行简单的配置，就可以完成定时器的任务。
+
+
+1.3、实现线程的第三种方式：实现Callable接口。（JDK8新特性。）
+    这种方式实现的线程可以获取线程的返回值。
+    之前讲解的那两种方式是无法获取线程返回值的，因为run方法返回void。
+
+    思考：
+        系统委派一个线程去执行一个任务，该线程执行完任务之后，可能
+        会有一个执行结果，我们怎么能拿到这个执行结果呢？
+            使用第三种方式：实现Callable接口方式。
+
+
+1.4、关于Object类中的wait和notify方法。（生产者和消费者模式！）
+
+    第一：wait和notify方法不是线程对象的方法，是java中任何一个java对象
+    都有的方法，因为这两个方式是Object类中自带的。
+        wait方法和notify方法不是通过线程对象调用，
+        不是这样的：t.wait()，也不是这样的：t.notify()..不对。
+    
+    第二：wait()方法作用？
+        Object o = new Object();
+        o.wait();
+
+        表示：
+            让正在o对象上活动的线程进入等待状态，无期限等待，
+            直到被唤醒为止。
+            o.wait();方法的调用，会让“当前线程（正在o对象上
+            活动的线程）”进入等待状态。
+
+    第三：notify()方法作用？
+        Object o = new Object();
+        o.notify();
+
+        表示：
+            唤醒正在o对象上等待的线程。
+        
+        还有一个notifyAll()方法：
+            这个方法是唤醒o对象上处于等待的所有线程。
+</code></pre>
+<h1 id="2、反射机制"><a href="#2、反射机制" class="headerlink" title="2、反射机制"></a>2、反射机制</h1><p>​	</p>
+<pre><code class="hljs">2.1、反射机制有什么用？
+    通过java语言中的反射机制可以操作字节码文件。
+    优点类似于黑客。（可以读和修改字节码文件。）
+    通过反射机制可以操作代码片段。（class文件。）
+
+2.2、反射机制的相关类在哪个包下？
+    java.lang.reflect.*;
+
+2.3、反射机制相关的重要的类有哪些？
+
+    java.lang.Class：代表整个字节码，代表一个类型，代表整个类。
+
+    java.lang.reflect.Method：代表字节码中的方法字节码。代表类中的方法。
+
+    java.lang.reflect.Constructor：代表字节码中的构造方法字节码。代表类中的构造方法
+
+    java.lang.reflect.Field：代表字节码中的属性字节码。代表类中的成员变量（静态变量+实例变量）。
+
+    java.lang.Class：
+        public class User&#123;
+            // Field
+            int no;
+
+            // Constructor
+            public User()&#123;
+            
+            &#125;
+            public User(int no)&#123;
+                this.no = no;
+            &#125;
+
+            // Method
+            public void setNo(int no)&#123;
+                this.no = no;
+            &#125;
+            public int getNo()&#123;
+                return no;
+            &#125;
+        &#125;
+</code></pre>
+<h2 id="3、关于JDK中自带的类加载器"><a href="#3、关于JDK中自带的类加载器" class="headerlink" title="3、关于JDK中自带的类加载器"></a>3、关于JDK中自带的类加载器</h2><pre><code class="hljs">3.1、什么是类加载器？
+    专门负责加载类的命令/工具。
+    ClassLoader
+
+3.2、JDK中自带了3个类加载器
+    启动类加载器:rt.jar
+    扩展类加载器:ext/*.jar
+    应用类加载器:classpath
+
+3.3、假设有这样一段代码：
+    String s = &quot;abc&quot;;
+    
+    代码在开始执行之前，会将所需要类全部加载到JVM当中。
+    通过类加载器加载，看到以上代码类加载器会找String.class
+    文件，找到就加载，那么是怎么进行加载的呢？
+
+        首先通过“启动类加载器”加载。
+            注意：启动类加载器专门加载：C:\Program Files\Java\jdk1.8.0_101\jre\lib\rt.jar
+            rt.jar中都是JDK最核心的类库。
+        
+        如果通过“启动类加载器”加载不到的时候，
+        会通过&quot;扩展类加载器&quot;加载。
+            注意：扩展类加载器专门加载：C:\Program Files\Java\jdk1.8.0_101\jre\lib\ext\*.jar
+
+        如果“扩展类加载器”没有加载到，那么
+        会通过“应用类加载器”加载。
+            注意：应用类加载器专门加载：classpath中的类。
+
+3.4、java中为了保证类加载的安全，使用了双亲委派机制。
+    优先从启动类加载器中加载，这个称为“父”
+    “父”无法加载到，再从扩展类加载器中加载，
+    这个称为“母”。双亲委派。如果都加载不到，
+    才会考虑从应用类加载器中加载。直到加载
+    到为止。
+</code></pre>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Java/basic/" class="category-chain-item">basic</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Java/">#Java</a>
+      
+        <a href="/tags/basic/">#basic</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>20.多线程3</div>
+      <div>https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/basic/20.多线程3/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 17, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/Java/basic/19.%E5%A4%9A%E7%BA%BF%E7%A8%8B2/" title="19.多线程2">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">19.多线程2</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/Java/basic/21.%E5%8F%8D%E5%B0%84/" title="21.反射">
+                        <span class="hidden-mobile">21.反射</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

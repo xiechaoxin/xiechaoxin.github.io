@@ -1,0 +1,734 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="title:  Atomic 原子类总结category: Javatag:  Java并发   Atomic 原子类介绍Atomic 翻译成中文是原子的意思。在化学上，我们知道原子是构成一般物质的最小单位，在化学反应中是不可分割的。在我们这里 Atomic 是指一个操作是不可中断的。即使是在多个线程一起执行的时候，一个操作一旦开始，就不会被其他线程干扰。 所以，所谓原子类说简单点就是具有原子&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="atomic原子类总结">
+<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/concurrent/atomic%E5%8E%9F%E5%AD%90%E7%B1%BB%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="title:  Atomic 原子类总结category: Javatag:  Java并发   Atomic 原子类介绍Atomic 翻译成中文是原子的意思。在化学上，我们知道原子是构成一般物质的最小单位，在化学反应中是不可分割的。在我们这里 Atomic 是指一个操作是不可中断的。即使是在多个线程一起执行的时候，一个操作一旦开始，就不会被其他线程干扰。 所以，所谓原子类说简单点就是具有原子&amp;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xiechaoxin.github.io/atomic%E5%8E%9F%E5%AD%90%E7%B1%BB%E6%80%BB%E7%BB%93/JUC%E5%8E%9F%E5%AD%90%E7%B1%BB%E6%A6%82%E8%A7%88-20220527110303262.png">
+<meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
+<meta property="article:modified_time" content="2022-06-24T10:26:10.549Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="concurrent">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/atomic%E5%8E%9F%E5%AD%90%E7%B1%BB%E6%80%BB%E7%BB%93/JUC%E5%8E%9F%E5%AD%90%E7%B1%BB%E6%A6%82%E8%A7%88-20220527110303262.png">
+  
+  
+  
+  <title>atomic原子类总结 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xiechaoxin.github.io","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong> </strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">atomic原子类总结</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-06-17 17:59" pubdate>
+          June 17, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          15k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          123 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">atomic原子类总结</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <hr>
+<p>title:  Atomic 原子类总结<br>category: Java<br>tag:</p>
+<ul>
+<li>Java并发</li>
+</ul>
+<hr>
+<h2 id="Atomic-原子类介绍"><a href="#Atomic-原子类介绍" class="headerlink" title="Atomic 原子类介绍"></a>Atomic 原子类介绍</h2><p>Atomic 翻译成中文是原子的意思。在化学上，我们知道原子是构成一般物质的最小单位，在化学反应中是不可分割的。在我们这里 Atomic 是指一个操作是不可中断的。即使是在多个线程一起执行的时候，一个操作一旦开始，就不会被其他线程干扰。</p>
+<p>所以，所谓原子类说简单点就是具有原子&#x2F;原子操作特征的类。</p>
+<p>并发包 <code>java.util.concurrent</code> 的原子类都存放在<code>java.util.concurrent.atomic</code>下,如下图所示。</p>
+<p><img src="/atomic%E5%8E%9F%E5%AD%90%E7%B1%BB%E6%80%BB%E7%BB%93/JUC%E5%8E%9F%E5%AD%90%E7%B1%BB%E6%A6%82%E8%A7%88-20220527110303262.png" srcset="/img/loading.gif" lazyload alt="JUC原子类概览"></p>
+<p>根据操作的数据类型，可以将 JUC 包中的原子类分为 4 类</p>
+<p><strong>基本类型</strong></p>
+<p>使用原子的方式更新基本类型</p>
+<ul>
+<li>AtomicInteger：整型原子类</li>
+<li>AtomicLong：长整型原子类</li>
+<li>AtomicBoolean ：布尔型原子类</li>
+</ul>
+<p><strong>数组类型</strong></p>
+<p>使用原子的方式更新数组里的某个元素</p>
+<ul>
+<li>AtomicIntegerArray：整型数组原子类</li>
+<li>AtomicLongArray：长整型数组原子类</li>
+<li>AtomicReferenceArray ：引用类型数组原子类</li>
+</ul>
+<p><strong>引用类型</strong></p>
+<ul>
+<li>AtomicReference：引用类型原子类</li>
+<li>AtomicMarkableReference：原子更新带有标记的引用类型。该类将 boolean 标记与引用关联起来，<del>也可以解决使用 CAS 进行原子更新时可能出现的 ABA 问题。</del></li>
+<li>AtomicStampedReference ：原子更新带有版本号的引用类型。该类将整数值与引用关联起来，可用于解决原子的更新数据和数据的版本号，可以解决使用 CAS 进行原子更新时可能出现的 ABA 问题。</li>
+</ul>
+<p><strong>对象的属性修改类型</strong></p>
+<ul>
+<li>AtomicIntegerFieldUpdater:原子更新整型字段的更新器</li>
+<li>AtomicLongFieldUpdater：原子更新长整型字段的更新器</li>
+<li>AtomicReferenceFieldUpdater：原子更新引用类型里的字段</li>
+</ul>
+<blockquote>
+<p><strong>🐛 修正（参见：<a target="_blank" rel="noopener" href="https://github.com/Snailclimb/JavaGuide/issues/626">issue#626</a>）</strong> : <code>AtomicMarkableReference</code> 不能解决 ABA 问题。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs java">    <span class="hljs-comment">/**</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">AtomicMarkableReference是将一个boolean值作是否有更改的标记，本质就是它的版本号只有两个，true和false，</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">修改的时候在这两个版本号之间来回切换，这样做并不能解决ABA的问题，只是会降低ABA问题发生的几率而已</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"><span class="hljs-doctag">@author</span> : mazh</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"><span class="hljs-doctag">@Date</span> : 2020/1/17 14:41</span><br><span class="hljs-comment">*/</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SolveABAByAtomicMarkableReference</span> &#123;<br><br>       <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">AtomicMarkableReference</span> <span class="hljs-variable">atomicMarkableReference</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">AtomicMarkableReference</span>(<span class="hljs-number">100</span>, <span class="hljs-literal">false</span>);<br><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br><br>            <span class="hljs-type">Thread</span> <span class="hljs-variable">refT1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(() -&gt; &#123;<br>                <span class="hljs-keyword">try</span> &#123;<br>                    TimeUnit.SECONDS.sleep(<span class="hljs-number">1</span>);<br>                &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>                    e.printStackTrace();<br>                &#125;<br>                atomicMarkableReference.compareAndSet(<span class="hljs-number">100</span>, <span class="hljs-number">101</span>, atomicMarkableReference.isMarked(), !atomicMarkableReference.isMarked());<br>                atomicMarkableReference.compareAndSet(<span class="hljs-number">101</span>, <span class="hljs-number">100</span>, atomicMarkableReference.isMarked(), !atomicMarkableReference.isMarked());<br>            &#125;);<br><br>            <span class="hljs-type">Thread</span> <span class="hljs-variable">refT2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(() -&gt; &#123;<br>                <span class="hljs-type">boolean</span> <span class="hljs-variable">marked</span> <span class="hljs-operator">=</span> atomicMarkableReference.isMarked();<br>                <span class="hljs-keyword">try</span> &#123;<br>                    TimeUnit.SECONDS.sleep(<span class="hljs-number">2</span>);<br>                &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>                    e.printStackTrace();<br>                &#125;<br>                <span class="hljs-type">boolean</span> <span class="hljs-variable">c3</span> <span class="hljs-operator">=</span> atomicMarkableReference.compareAndSet(<span class="hljs-number">100</span>, <span class="hljs-number">101</span>, marked, !marked);<br>                System.out.println(c3); <span class="hljs-comment">// 返回true,实际应该返回false</span><br>            &#125;);<br><br>            refT1.start();<br>            refT2.start();<br>        &#125;<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>CAS ABA 问题</strong></p>
+<ul>
+<li>描述: 第一个线程取到了变量 x 的值 A，然后巴拉巴拉干别的事，总之就是只拿到了变量 x 的值 A。这段时间内第二个线程也取到了变量 x 的值 A，然后把变量 x 的值改为 B，然后巴拉巴拉干别的事，最后又把变量 x 的值变为 A （相当于还原了）。在这之后第一个线程终于进行了变量 x 的操作，但是此时变量 x 的值还是 A，所以 compareAndSet 操作是成功。</li>
+<li>例子描述(可能不太合适，但好理解): 年初，现金为零，然后通过正常劳动赚了三百万，之后正常消费了（比如买房子）三百万。年末，虽然现金零收入（可能变成其他形式了），但是赚了钱是事实，还是得交税的！</li>
+<li>代码例子（以<code>AtomicInteger</code>为例）</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.concurrent.atomic.AtomicInteger;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AtomicIntegerDefectDemo</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        defectOfABA();<br>    &#125;<br><br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">defectOfABA</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">final</span> <span class="hljs-type">AtomicInteger</span> <span class="hljs-variable">atomicInteger</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">AtomicInteger</span>(<span class="hljs-number">1</span>);<br><br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">coreThread</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(<br>                () -&gt; &#123;<br>                    <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">currentValue</span> <span class="hljs-operator">=</span> atomicInteger.get();<br>                    System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot; ------ currentValue=&quot;</span> + currentValue);<br><br>                    <span class="hljs-comment">// 这段目的：模拟处理其他业务花费的时间</span><br>                    <span class="hljs-keyword">try</span> &#123;<br>                        Thread.sleep(<span class="hljs-number">300</span>);<br>                    &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>                        e.printStackTrace();<br>                    &#125;<br><br>                    <span class="hljs-type">boolean</span> <span class="hljs-variable">casResult</span> <span class="hljs-operator">=</span> atomicInteger.compareAndSet(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>);<br>                    System.out.println(Thread.currentThread().getName()<br>                            + <span class="hljs-string">&quot; ------ currentValue=&quot;</span> + currentValue<br>                            + <span class="hljs-string">&quot;, finalValue=&quot;</span> + atomicInteger.get()<br>                            + <span class="hljs-string">&quot;, compareAndSet Result=&quot;</span> + casResult);<br>                &#125;<br>        );<br>        coreThread.start();<br><br>        <span class="hljs-comment">// 这段目的：为了让 coreThread 线程先跑起来</span><br>        <span class="hljs-keyword">try</span> &#123;<br>            Thread.sleep(<span class="hljs-number">100</span>);<br>        &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br><br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">amateurThread</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(<br>                () -&gt; &#123;<br>                    <span class="hljs-type">int</span> <span class="hljs-variable">currentValue</span> <span class="hljs-operator">=</span> atomicInteger.get();<br>                    <span class="hljs-type">boolean</span> <span class="hljs-variable">casResult</span> <span class="hljs-operator">=</span> atomicInteger.compareAndSet(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>);<br>                    System.out.println(Thread.currentThread().getName()<br>                            + <span class="hljs-string">&quot; ------ currentValue=&quot;</span> + currentValue<br>                            + <span class="hljs-string">&quot;, finalValue=&quot;</span> + atomicInteger.get()<br>                            + <span class="hljs-string">&quot;, compareAndSet Result=&quot;</span> + casResult);<br><br>                    currentValue = atomicInteger.get();<br>                    casResult = atomicInteger.compareAndSet(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>);<br>                    System.out.println(Thread.currentThread().getName()<br>                            + <span class="hljs-string">&quot; ------ currentValue=&quot;</span> + currentValue<br>                            + <span class="hljs-string">&quot;, finalValue=&quot;</span> + atomicInteger.get()<br>                            + <span class="hljs-string">&quot;, compareAndSet Result=&quot;</span> + casResult);<br>                &#125;<br>        );<br>        amateurThread.start();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>输出内容如下：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs routeros">Thread-0 ------ <span class="hljs-attribute">currentValue</span>=1<br>Thread-1 ------ <span class="hljs-attribute">currentValue</span>=1, <span class="hljs-attribute">finalValue</span>=2, compareAndSet <span class="hljs-attribute">Result</span>=<span class="hljs-literal">true</span><br>Thread-1 ------ <span class="hljs-attribute">currentValue</span>=2, <span class="hljs-attribute">finalValue</span>=1, compareAndSet <span class="hljs-attribute">Result</span>=<span class="hljs-literal">true</span><br>Thread-0 ------ <span class="hljs-attribute">currentValue</span>=1, <span class="hljs-attribute">finalValue</span>=2, compareAndSet <span class="hljs-attribute">Result</span>=<span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+
+<p>下面我们来详细介绍一下这些原子类。</p>
+<h2 id="基本类型原子类"><a href="#基本类型原子类" class="headerlink" title="基本类型原子类"></a>基本类型原子类</h2><h3 id="基本类型原子类介绍"><a href="#基本类型原子类介绍" class="headerlink" title="基本类型原子类介绍"></a>基本类型原子类介绍</h3><p>使用原子的方式更新基本类型</p>
+<ul>
+<li>AtomicInteger：整型原子类</li>
+<li>AtomicLong：长整型原子类</li>
+<li>AtomicBoolean ：布尔型原子类</li>
+</ul>
+<p>上面三个类提供的方法几乎相同，所以我们这里以 AtomicInteger 为例子来介绍。</p>
+<p><strong>AtomicInteger 类常用方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-title function_">get</span><span class="hljs-params">()</span> <span class="hljs-comment">//获取当前的值</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getAndSet</span><span class="hljs-params">(<span class="hljs-type">int</span> newValue)</span><span class="hljs-comment">//获取当前的值，并设置新的值</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getAndIncrement</span><span class="hljs-params">()</span><span class="hljs-comment">//获取当前的值，并自增</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getAndDecrement</span><span class="hljs-params">()</span> <span class="hljs-comment">//获取当前的值，并自减</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getAndAdd</span><span class="hljs-params">(<span class="hljs-type">int</span> delta)</span> <span class="hljs-comment">//获取当前的值，并加上预期的值</span><br><span class="hljs-type">boolean</span> <span class="hljs-title function_">compareAndSet</span><span class="hljs-params">(<span class="hljs-type">int</span> expect, <span class="hljs-type">int</span> update)</span> <span class="hljs-comment">//如果输入的数值等于预期值，则以原子方式将该值设置为输入值（update）</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">lazySet</span><span class="hljs-params">(<span class="hljs-type">int</span> newValue)</span><span class="hljs-comment">//最终设置为newValue,使用 lazySet 设置之后可能导致其他线程在之后的一小段时间内还是可以读到旧的值。</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="AtomicInteger-常见方法使用"><a href="#AtomicInteger-常见方法使用" class="headerlink" title="AtomicInteger 常见方法使用"></a>AtomicInteger 常见方法使用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.concurrent.atomic.AtomicInteger;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AtomicIntegerTest</span> &#123;<br><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>		<span class="hljs-comment">// TODO Auto-generated method stub</span><br>		<span class="hljs-type">int</span> <span class="hljs-variable">temvalue</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>		<span class="hljs-type">AtomicInteger</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">AtomicInteger</span>(<span class="hljs-number">0</span>);<br>		temvalue = i.getAndSet(<span class="hljs-number">3</span>);<br>		System.out.println(<span class="hljs-string">&quot;temvalue:&quot;</span> + temvalue + <span class="hljs-string">&quot;;  i:&quot;</span> + i);<span class="hljs-comment">//temvalue:0;  i:3</span><br>		temvalue = i.getAndIncrement();<br>		System.out.println(<span class="hljs-string">&quot;temvalue:&quot;</span> + temvalue + <span class="hljs-string">&quot;;  i:&quot;</span> + i);<span class="hljs-comment">//temvalue:3;  i:4</span><br>		temvalue = i.getAndAdd(<span class="hljs-number">5</span>);<br>		System.out.println(<span class="hljs-string">&quot;temvalue:&quot;</span> + temvalue + <span class="hljs-string">&quot;;  i:&quot;</span> + i);<span class="hljs-comment">//temvalue:4;  i:9</span><br>	&#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="基本数据类型原子类的优势"><a href="#基本数据类型原子类的优势" class="headerlink" title="基本数据类型原子类的优势"></a>基本数据类型原子类的优势</h3><p>通过一个简单例子带大家看一下基本数据类型原子类的优势</p>
+<p><strong>① 多线程环境不使用原子类保证线程安全（基本数据类型）</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span> &#123;<br>        <span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> <span class="hljs-type">int</span> <span class="hljs-variable">count</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-comment">//若要线程安全执行执行count++，需要加锁</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">increment</span><span class="hljs-params">()</span> &#123;<br>                  count++;<br>        &#125;<br><br>        <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getCount</span><span class="hljs-params">()</span> &#123;<br>                  <span class="hljs-keyword">return</span> count;<br>        &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>② 多线程环境使用原子类保证线程安全（基本数据类型）</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Test2</span> &#123;<br>        <span class="hljs-keyword">private</span> <span class="hljs-type">AtomicInteger</span> <span class="hljs-variable">count</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">AtomicInteger</span>();<br><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">increment</span><span class="hljs-params">()</span> &#123;<br>                  count.incrementAndGet();<br>        &#125;<br>      <span class="hljs-comment">//使用AtomicInteger之后，不需要加锁，也可以实现线程安全。</span><br>       <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getCount</span><span class="hljs-params">()</span> &#123;<br>                <span class="hljs-keyword">return</span> count.get();<br>        &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="AtomicInteger-线程安全原理简单分析"><a href="#AtomicInteger-线程安全原理简单分析" class="headerlink" title="AtomicInteger 线程安全原理简单分析"></a>AtomicInteger 线程安全原理简单分析</h3><p>AtomicInteger 类的部分源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// setup to use Unsafe.compareAndSwapInt for updates（更新操作时提供“比较并替换”的作用）</span><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">Unsafe</span> <span class="hljs-variable">unsafe</span> <span class="hljs-operator">=</span> Unsafe.getUnsafe();<br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> valueOffset;<br><br><span class="hljs-keyword">static</span> &#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        valueOffset = unsafe.objectFieldOffset<br>            (AtomicInteger.class.getDeclaredField(<span class="hljs-string">&quot;value&quot;</span>));<br>    &#125; <span class="hljs-keyword">catch</span> (Exception ex) &#123; <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(ex); &#125;<br>&#125;<br><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> <span class="hljs-type">int</span> value;<br></code></pre></td></tr></table></figure>
+
+<p>AtomicInteger 类主要利用 CAS (compare and swap) + volatile 和 native 方法来保证原子操作，从而避免 synchronized 的高开销，执行效率大为提升。</p>
+<p>CAS 的原理是拿期望的值和原本的一个值作比较，如果相同则更新成新的值。UnSafe 类的 objectFieldOffset() 方法是一个本地方法，这个方法是用来拿到“原来的值”的内存地址。另外 value 是一个 volatile 变量，在内存中可见，因此 JVM 可以保证任何时刻任何线程总能拿到该变量的最新值。</p>
+<h2 id="数组类型原子类"><a href="#数组类型原子类" class="headerlink" title="数组类型原子类"></a>数组类型原子类</h2><h3 id="数组类型原子类介绍"><a href="#数组类型原子类介绍" class="headerlink" title="数组类型原子类介绍"></a>数组类型原子类介绍</h3><p>使用原子的方式更新数组里的某个元素</p>
+<ul>
+<li>AtomicIntegerArray：整形数组原子类</li>
+<li>AtomicLongArray：长整形数组原子类</li>
+<li>AtomicReferenceArray ：引用类型数组原子类</li>
+</ul>
+<p>上面三个类提供的方法几乎相同，所以我们这里以 AtomicIntegerArray 为例子来介绍。</p>
+<p><strong>AtomicIntegerArray 类常用方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-title function_">get</span><span class="hljs-params">(<span class="hljs-type">int</span> i)</span> <span class="hljs-comment">//获取 index=i 位置元素的值</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getAndSet</span><span class="hljs-params">(<span class="hljs-type">int</span> i, <span class="hljs-type">int</span> newValue)</span><span class="hljs-comment">//返回 index=i 位置的当前的值，并将其设置为新值：newValue</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getAndIncrement</span><span class="hljs-params">(<span class="hljs-type">int</span> i)</span><span class="hljs-comment">//获取 index=i 位置元素的值，并让该位置的元素自增</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getAndDecrement</span><span class="hljs-params">(<span class="hljs-type">int</span> i)</span> <span class="hljs-comment">//获取 index=i 位置元素的值，并让该位置的元素自减</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getAndAdd</span><span class="hljs-params">(<span class="hljs-type">int</span> i, <span class="hljs-type">int</span> delta)</span> <span class="hljs-comment">//获取 index=i 位置元素的值，并加上预期的值</span><br><span class="hljs-type">boolean</span> <span class="hljs-title function_">compareAndSet</span><span class="hljs-params">(<span class="hljs-type">int</span> i, <span class="hljs-type">int</span> expect, <span class="hljs-type">int</span> update)</span> <span class="hljs-comment">//如果输入的数值等于预期值，则以原子方式将 index=i 位置的元素值设置为输入值（update）</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">lazySet</span><span class="hljs-params">(<span class="hljs-type">int</span> i, <span class="hljs-type">int</span> newValue)</span><span class="hljs-comment">//最终 将index=i 位置的元素设置为newValue,使用 lazySet 设置之后可能导致其他线程在之后的一小段时间内还是可以读到旧的值。</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="AtomicIntegerArray-常见方法使用"><a href="#AtomicIntegerArray-常见方法使用" class="headerlink" title="AtomicIntegerArray 常见方法使用"></a>AtomicIntegerArray 常见方法使用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-keyword">import</span> java.util.concurrent.atomic.AtomicIntegerArray;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AtomicIntegerArrayTest</span> &#123;<br><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>		<span class="hljs-comment">// TODO Auto-generated method stub</span><br>		<span class="hljs-type">int</span> <span class="hljs-variable">temvalue</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>		<span class="hljs-type">int</span>[] nums = &#123; <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> &#125;;<br>		<span class="hljs-type">AtomicIntegerArray</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">AtomicIntegerArray</span>(nums);<br>		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; j &lt; nums.length; j++) &#123;<br>			System.out.println(i.get(j));<br>		&#125;<br>		temvalue = i.getAndSet(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>);<br>		System.out.println(<span class="hljs-string">&quot;temvalue:&quot;</span> + temvalue + <span class="hljs-string">&quot;;  i:&quot;</span> + i);<br>		temvalue = i.getAndIncrement(<span class="hljs-number">0</span>);<br>		System.out.println(<span class="hljs-string">&quot;temvalue:&quot;</span> + temvalue + <span class="hljs-string">&quot;;  i:&quot;</span> + i);<br>		temvalue = i.getAndAdd(<span class="hljs-number">0</span>, <span class="hljs-number">5</span>);<br>		System.out.println(<span class="hljs-string">&quot;temvalue:&quot;</span> + temvalue + <span class="hljs-string">&quot;;  i:&quot;</span> + i);<br>	&#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="引用类型原子类"><a href="#引用类型原子类" class="headerlink" title="引用类型原子类"></a>引用类型原子类</h2><h3 id="引用类型原子类介绍"><a href="#引用类型原子类介绍" class="headerlink" title="引用类型原子类介绍"></a>引用类型原子类介绍</h3><p>基本类型原子类只能更新一个变量，如果需要原子更新多个变量，需要使用 引用类型原子类。</p>
+<ul>
+<li>AtomicReference：引用类型原子类</li>
+<li>AtomicStampedReference：原子更新带有版本号的引用类型。该类将整数值与引用关联起来，可用于解决原子的更新数据和数据的版本号，可以解决使用 CAS 进行原子更新时可能出现的 ABA 问题。</li>
+<li>AtomicMarkableReference ：原子更新带有标记的引用类型。该类将 boolean 标记与引用关联起来，<del>也可以解决使用 CAS 进行原子更新时可能出现的 ABA 问题。</del></li>
+</ul>
+<p>上面三个类提供的方法几乎相同，所以我们这里以 AtomicReference 为例子来介绍。</p>
+<h3 id="AtomicReference-类使用示例"><a href="#AtomicReference-类使用示例" class="headerlink" title="AtomicReference 类使用示例"></a>AtomicReference 类使用示例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.concurrent.atomic.AtomicReference;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AtomicReferenceTest</span> &#123;<br><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>		AtomicReference&lt;Person&gt; ar = <span class="hljs-keyword">new</span> <span class="hljs-title class_">AtomicReference</span>&lt;Person&gt;();<br>		<span class="hljs-type">Person</span> <span class="hljs-variable">person</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">&quot;SnailClimb&quot;</span>, <span class="hljs-number">22</span>);<br>		ar.set(person);<br>		<span class="hljs-type">Person</span> <span class="hljs-variable">updatePerson</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">&quot;Daisy&quot;</span>, <span class="hljs-number">20</span>);<br>		ar.compareAndSet(person, updatePerson);<br><br>		System.out.println(ar.get().getName());<br>		System.out.println(ar.get().getAge());<br>	&#125;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span> &#123;<br>	<span class="hljs-keyword">private</span> String name;<br>	<span class="hljs-keyword">private</span> <span class="hljs-type">int</span> age;<br><br>	<span class="hljs-keyword">public</span> <span class="hljs-title function_">Person</span><span class="hljs-params">(String name, <span class="hljs-type">int</span> age)</span> &#123;<br>		<span class="hljs-built_in">super</span>();<br>		<span class="hljs-built_in">this</span>.name = name;<br>		<span class="hljs-built_in">this</span>.age = age;<br>	&#125;<br><br>	<span class="hljs-keyword">public</span> String <span class="hljs-title function_">getName</span><span class="hljs-params">()</span> &#123;<br>		<span class="hljs-keyword">return</span> name;<br>	&#125;<br><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setName</span><span class="hljs-params">(String name)</span> &#123;<br>		<span class="hljs-built_in">this</span>.name = name;<br>	&#125;<br><br>	<span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getAge</span><span class="hljs-params">()</span> &#123;<br>		<span class="hljs-keyword">return</span> age;<br>	&#125;<br><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setAge</span><span class="hljs-params">(<span class="hljs-type">int</span> age)</span> &#123;<br>		<span class="hljs-built_in">this</span>.age = age;<br>	&#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>上述代码首先创建了一个 Person 对象，然后把 Person 对象设置进 AtomicReference 对象中，然后调用 compareAndSet 方法，该方法就是通过 CAS 操作设置 ar。如果 ar 的值为 person 的话，则将其设置为 updatePerson。实现原理与 AtomicInteger 类中的 compareAndSet 方法相同。运行上面的代码后的输出结果如下：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">Daisy</span><br><span class="hljs-number">20</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="AtomicStampedReference-类使用示例"><a href="#AtomicStampedReference-类使用示例" class="headerlink" title="AtomicStampedReference 类使用示例"></a>AtomicStampedReference 类使用示例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.concurrent.atomic.AtomicStampedReference;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AtomicStampedReferenceDemo</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">// 实例化、取当前值和 stamp 值</span><br>        <span class="hljs-keyword">final</span> <span class="hljs-type">Integer</span> <span class="hljs-variable">initialRef</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>, initialStamp = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">final</span> AtomicStampedReference&lt;Integer&gt; asr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">AtomicStampedReference</span>&lt;&gt;(initialRef, initialStamp);<br>        System.out.println(<span class="hljs-string">&quot;currentValue=&quot;</span> + asr.getReference() + <span class="hljs-string">&quot;, currentStamp=&quot;</span> + asr.getStamp());<br><br>        <span class="hljs-comment">// compare and set</span><br>        <span class="hljs-keyword">final</span> <span class="hljs-type">Integer</span> <span class="hljs-variable">newReference</span> <span class="hljs-operator">=</span> <span class="hljs-number">666</span>, newStamp = <span class="hljs-number">999</span>;<br>        <span class="hljs-keyword">final</span> <span class="hljs-type">boolean</span> <span class="hljs-variable">casResult</span> <span class="hljs-operator">=</span> asr.compareAndSet(initialRef, newReference, initialStamp, newStamp);<br>        System.out.println(<span class="hljs-string">&quot;currentValue=&quot;</span> + asr.getReference()<br>                + <span class="hljs-string">&quot;, currentStamp=&quot;</span> + asr.getStamp()<br>                + <span class="hljs-string">&quot;, casResult=&quot;</span> + casResult);<br><br>        <span class="hljs-comment">// 获取当前的值和当前的 stamp 值</span><br>        <span class="hljs-type">int</span>[] arr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">1</span>];<br>        <span class="hljs-keyword">final</span> <span class="hljs-type">Integer</span> <span class="hljs-variable">currentValue</span> <span class="hljs-operator">=</span> asr.get(arr);<br>        <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">currentStamp</span> <span class="hljs-operator">=</span> arr[<span class="hljs-number">0</span>];<br>        System.out.println(<span class="hljs-string">&quot;currentValue=&quot;</span> + currentValue + <span class="hljs-string">&quot;, currentStamp=&quot;</span> + currentStamp);<br><br>        <span class="hljs-comment">// 单独设置 stamp 值</span><br>        <span class="hljs-keyword">final</span> <span class="hljs-type">boolean</span> <span class="hljs-variable">attemptStampResult</span> <span class="hljs-operator">=</span> asr.attemptStamp(newReference, <span class="hljs-number">88</span>);<br>        System.out.println(<span class="hljs-string">&quot;currentValue=&quot;</span> + asr.getReference()<br>                + <span class="hljs-string">&quot;, currentStamp=&quot;</span> + asr.getStamp()<br>                + <span class="hljs-string">&quot;, attemptStampResult=&quot;</span> + attemptStampResult);<br><br>        <span class="hljs-comment">// 重新设置当前值和 stamp 值</span><br>        asr.set(initialRef, initialStamp);<br>        System.out.println(<span class="hljs-string">&quot;currentValue=&quot;</span> + asr.getReference() + <span class="hljs-string">&quot;, currentStamp=&quot;</span> + asr.getStamp());<br><br>        <span class="hljs-comment">// [不推荐使用，除非搞清楚注释的意思了] weak compare and set</span><br>        <span class="hljs-comment">// 困惑！weakCompareAndSet 这个方法最终还是调用 compareAndSet 方法。[版本: jdk-8u191]</span><br>        <span class="hljs-comment">// 但是注释上写着 &quot;May fail spuriously and does not provide ordering guarantees,</span><br>        <span class="hljs-comment">// so is only rarely an appropriate alternative to compareAndSet.&quot;</span><br>        <span class="hljs-comment">// todo 感觉有可能是 jvm 通过方法名在 native 方法里面做了转发</span><br>        <span class="hljs-keyword">final</span> <span class="hljs-type">boolean</span> <span class="hljs-variable">wCasResult</span> <span class="hljs-operator">=</span> asr.weakCompareAndSet(initialRef, newReference, initialStamp, newStamp);<br>        System.out.println(<span class="hljs-string">&quot;currentValue=&quot;</span> + asr.getReference()<br>                + <span class="hljs-string">&quot;, currentStamp=&quot;</span> + asr.getStamp()<br>                + <span class="hljs-string">&quot;, wCasResult=&quot;</span> + wCasResult);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>输出结果如下：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-attribute">currentValue</span>=0, <span class="hljs-attribute">currentStamp</span>=0<br><span class="hljs-attribute">currentValue</span>=666, <span class="hljs-attribute">currentStamp</span>=999, <span class="hljs-attribute">casResult</span>=<span class="hljs-literal">true</span><br><span class="hljs-attribute">currentValue</span>=666, <span class="hljs-attribute">currentStamp</span>=999<br><span class="hljs-attribute">currentValue</span>=666, <span class="hljs-attribute">currentStamp</span>=88, <span class="hljs-attribute">attemptStampResult</span>=<span class="hljs-literal">true</span><br><span class="hljs-attribute">currentValue</span>=0, <span class="hljs-attribute">currentStamp</span>=0<br><span class="hljs-attribute">currentValue</span>=666, <span class="hljs-attribute">currentStamp</span>=999, <span class="hljs-attribute">wCasResult</span>=<span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="AtomicMarkableReference-类使用示例"><a href="#AtomicMarkableReference-类使用示例" class="headerlink" title="AtomicMarkableReference 类使用示例"></a>AtomicMarkableReference 类使用示例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.concurrent.atomic.AtomicMarkableReference;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AtomicMarkableReferenceDemo</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">// 实例化、取当前值和 mark 值</span><br>        <span class="hljs-keyword">final</span> <span class="hljs-type">Boolean</span> <span class="hljs-variable">initialRef</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>, initialMark = <span class="hljs-literal">false</span>;<br>        <span class="hljs-keyword">final</span> AtomicMarkableReference&lt;Boolean&gt; amr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">AtomicMarkableReference</span>&lt;&gt;(initialRef, initialMark);<br>        System.out.println(<span class="hljs-string">&quot;currentValue=&quot;</span> + amr.getReference() + <span class="hljs-string">&quot;, currentMark=&quot;</span> + amr.isMarked());<br><br>        <span class="hljs-comment">// compare and set</span><br>        <span class="hljs-keyword">final</span> <span class="hljs-type">Boolean</span> <span class="hljs-variable">newReference1</span> <span class="hljs-operator">=</span> <span class="hljs-literal">true</span>, newMark1 = <span class="hljs-literal">true</span>;<br>        <span class="hljs-keyword">final</span> <span class="hljs-type">boolean</span> <span class="hljs-variable">casResult</span> <span class="hljs-operator">=</span> amr.compareAndSet(initialRef, newReference1, initialMark, newMark1);<br>        System.out.println(<span class="hljs-string">&quot;currentValue=&quot;</span> + amr.getReference()<br>                + <span class="hljs-string">&quot;, currentMark=&quot;</span> + amr.isMarked()<br>                + <span class="hljs-string">&quot;, casResult=&quot;</span> + casResult);<br><br>        <span class="hljs-comment">// 获取当前的值和当前的 mark 值</span><br>        <span class="hljs-type">boolean</span>[] arr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">boolean</span>[<span class="hljs-number">1</span>];<br>        <span class="hljs-keyword">final</span> <span class="hljs-type">Boolean</span> <span class="hljs-variable">currentValue</span> <span class="hljs-operator">=</span> amr.get(arr);<br>        <span class="hljs-keyword">final</span> <span class="hljs-type">boolean</span> <span class="hljs-variable">currentMark</span> <span class="hljs-operator">=</span> arr[<span class="hljs-number">0</span>];<br>        System.out.println(<span class="hljs-string">&quot;currentValue=&quot;</span> + currentValue + <span class="hljs-string">&quot;, currentMark=&quot;</span> + currentMark);<br><br>        <span class="hljs-comment">// 单独设置 mark 值</span><br>        <span class="hljs-keyword">final</span> <span class="hljs-type">boolean</span> <span class="hljs-variable">attemptMarkResult</span> <span class="hljs-operator">=</span> amr.attemptMark(newReference1, <span class="hljs-literal">false</span>);<br>        System.out.println(<span class="hljs-string">&quot;currentValue=&quot;</span> + amr.getReference()<br>                + <span class="hljs-string">&quot;, currentMark=&quot;</span> + amr.isMarked()<br>                + <span class="hljs-string">&quot;, attemptMarkResult=&quot;</span> + attemptMarkResult);<br><br>        <span class="hljs-comment">// 重新设置当前值和 mark 值</span><br>        amr.set(initialRef, initialMark);<br>        System.out.println(<span class="hljs-string">&quot;currentValue=&quot;</span> + amr.getReference() + <span class="hljs-string">&quot;, currentMark=&quot;</span> + amr.isMarked());<br><br>        <span class="hljs-comment">// [不推荐使用，除非搞清楚注释的意思了] weak compare and set</span><br>        <span class="hljs-comment">// 困惑！weakCompareAndSet 这个方法最终还是调用 compareAndSet 方法。[版本: jdk-8u191]</span><br>        <span class="hljs-comment">// 但是注释上写着 &quot;May fail spuriously and does not provide ordering guarantees,</span><br>        <span class="hljs-comment">// so is only rarely an appropriate alternative to compareAndSet.&quot;</span><br>        <span class="hljs-comment">// todo 感觉有可能是 jvm 通过方法名在 native 方法里面做了转发</span><br>        <span class="hljs-keyword">final</span> <span class="hljs-type">boolean</span> <span class="hljs-variable">wCasResult</span> <span class="hljs-operator">=</span> amr.weakCompareAndSet(initialRef, newReference1, initialMark, newMark1);<br>        System.out.println(<span class="hljs-string">&quot;currentValue=&quot;</span> + amr.getReference()<br>                + <span class="hljs-string">&quot;, currentMark=&quot;</span> + amr.isMarked()<br>                + <span class="hljs-string">&quot;, wCasResult=&quot;</span> + wCasResult);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>输出结果如下：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-attribute">currentValue</span>=<span class="hljs-literal">null</span>, <span class="hljs-attribute">currentMark</span>=<span class="hljs-literal">false</span><br><span class="hljs-attribute">currentValue</span>=<span class="hljs-literal">true</span>, <span class="hljs-attribute">currentMark</span>=<span class="hljs-literal">true</span>, <span class="hljs-attribute">casResult</span>=<span class="hljs-literal">true</span><br><span class="hljs-attribute">currentValue</span>=<span class="hljs-literal">true</span>, <span class="hljs-attribute">currentMark</span>=<span class="hljs-literal">true</span><br><span class="hljs-attribute">currentValue</span>=<span class="hljs-literal">true</span>, <span class="hljs-attribute">currentMark</span>=<span class="hljs-literal">false</span>, <span class="hljs-attribute">attemptMarkResult</span>=<span class="hljs-literal">true</span><br><span class="hljs-attribute">currentValue</span>=<span class="hljs-literal">null</span>, <span class="hljs-attribute">currentMark</span>=<span class="hljs-literal">false</span><br><span class="hljs-attribute">currentValue</span>=<span class="hljs-literal">true</span>, <span class="hljs-attribute">currentMark</span>=<span class="hljs-literal">true</span>, <span class="hljs-attribute">wCasResult</span>=<span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="对象的属性修改类型原子类"><a href="#对象的属性修改类型原子类" class="headerlink" title="对象的属性修改类型原子类"></a>对象的属性修改类型原子类</h2><h3 id="对象的属性修改类型原子类介绍"><a href="#对象的属性修改类型原子类介绍" class="headerlink" title="对象的属性修改类型原子类介绍"></a>对象的属性修改类型原子类介绍</h3><p>如果需要原子更新某个类里的某个字段时，需要用到对象的属性修改类型原子类。</p>
+<ul>
+<li>AtomicIntegerFieldUpdater:原子更新整形字段的更新器</li>
+<li>AtomicLongFieldUpdater：原子更新长整形字段的更新器</li>
+<li>AtomicReferenceFieldUpdater ：原子更新引用类型里的字段的更新器</li>
+</ul>
+<p>要想原子地更新对象的属性需要两步。第一步，因为对象的属性修改类型原子类都是抽象类，所以每次使用都必须使用静态方法 newUpdater()创建一个更新器，并且需要设置想要更新的类和属性。第二步，更新的对象属性必须使用 public volatile 修饰符。</p>
+<p>上面三个类提供的方法几乎相同，所以我们这里以 <code>AtomicIntegerFieldUpdater</code>为例子来介绍。</p>
+<h3 id="AtomicIntegerFieldUpdater-类使用示例"><a href="#AtomicIntegerFieldUpdater-类使用示例" class="headerlink" title="AtomicIntegerFieldUpdater 类使用示例"></a>AtomicIntegerFieldUpdater 类使用示例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.concurrent.atomic.AtomicIntegerFieldUpdater;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AtomicIntegerFieldUpdaterTest</span> &#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>		AtomicIntegerFieldUpdater&lt;User&gt; a = AtomicIntegerFieldUpdater.newUpdater(User.class, <span class="hljs-string">&quot;age&quot;</span>);<br><br>		<span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-string">&quot;Java&quot;</span>, <span class="hljs-number">22</span>);<br>		System.out.println(a.getAndIncrement(user));<span class="hljs-comment">// 22</span><br>		System.out.println(a.get(user));<span class="hljs-comment">// 23</span><br>	&#125;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">User</span> &#123;<br>	<span class="hljs-keyword">private</span> String name;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">volatile</span> <span class="hljs-type">int</span> age;<br><br>	<span class="hljs-keyword">public</span> <span class="hljs-title function_">User</span><span class="hljs-params">(String name, <span class="hljs-type">int</span> age)</span> &#123;<br>		<span class="hljs-built_in">super</span>();<br>		<span class="hljs-built_in">this</span>.name = name;<br>		<span class="hljs-built_in">this</span>.age = age;<br>	&#125;<br><br>	<span class="hljs-keyword">public</span> String <span class="hljs-title function_">getName</span><span class="hljs-params">()</span> &#123;<br>		<span class="hljs-keyword">return</span> name;<br>	&#125;<br><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setName</span><span class="hljs-params">(String name)</span> &#123;<br>		<span class="hljs-built_in">this</span>.name = name;<br>	&#125;<br><br>	<span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getAge</span><span class="hljs-params">()</span> &#123;<br>		<span class="hljs-keyword">return</span> age;<br>	&#125;<br><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setAge</span><span class="hljs-params">(<span class="hljs-type">int</span> age)</span> &#123;<br>		<span class="hljs-built_in">this</span>.age = age;<br>	&#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>输出结果：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs">22<br>23<br></code></pre></td></tr></table></figure>
+
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li>《Java 并发编程的艺术》</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Java/concurrent/" class="category-chain-item">concurrent</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Java/">#Java</a>
+      
+        <a href="/tags/concurrent/">#concurrent</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>atomic原子类总结</div>
+      <div>https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/Java/concurrent/atomic原子类总结/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 17, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/Java/concurrent/aqs%E5%8E%9F%E7%90%86%E4%BB%A5%E5%8F%8Aaqs%E5%90%8C%E6%AD%A5%E7%BB%84%E4%BB%B6%E6%80%BB%E7%BB%93/" title="aqs原理以及aqs同步组件总结">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">aqs原理以及aqs同步组件总结</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/Java/concurrent/completablefuture-intro/" title="completablefuture-intro">
+                        <span class="hidden-mobile">completablefuture-intro</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

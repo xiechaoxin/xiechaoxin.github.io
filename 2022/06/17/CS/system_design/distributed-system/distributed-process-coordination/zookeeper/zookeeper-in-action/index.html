@@ -1,0 +1,729 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="ZooKeeper 实战1. 前言这篇文章简单给演示一下 ZooKeeper 常见命令的使用以及 ZooKeeper Java客户端 Curator 的基本使用。介绍到的内容都是最基本的操作，能满足日常工作的基本需要。 如果文章有任何需要改善和完善的地方，欢迎在评论区指出，共同进步！ 2. ZooKeeper 安装和使用2.1. 使用Docker 安装 zookeepera.使用 Docker 下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zookeeper-in-action">
+<meta property="og:url" content="https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/system_design/distributed-system/distributed-process-coordination/zookeeper/zookeeper-in-action/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="ZooKeeper 实战1. 前言这篇文章简单给演示一下 ZooKeeper 常见命令的使用以及 ZooKeeper Java客户端 Curator 的基本使用。介绍到的内容都是最基本的操作，能满足日常工作的基本需要。 如果文章有任何需要改善和完善的地方，欢迎在评论区指出，共同进步！ 2. ZooKeeper 安装和使用2.1. 使用Docker 安装 zookeepera.使用 Docker 下">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xiechaoxin.github.io/zookeeper-in-action/%E8%BF%9E%E6%8E%A5ZooKeeper%E6%9C%8D%E5%8A%A1.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/zookeeper-in-action/curator.png">
+<meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
+<meta property="article:modified_time" content="2022-06-24T10:26:11.817Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="system_design">
+<meta property="article:tag" content="distributed-system">
+<meta property="article:tag" content="distributed-process-coordination">
+<meta property="article:tag" content="zookeeper">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/zookeeper-in-action/%E8%BF%9E%E6%8E%A5ZooKeeper%E6%9C%8D%E5%8A%A1.png">
+  
+  
+  
+  <title>zookeeper-in-action - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xiechaoxin.github.io","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong> </strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">zookeeper-in-action</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-06-17 17:59" pubdate>
+          June 17, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.4k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          45 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">zookeeper-in-action</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="ZooKeeper-实战"><a href="#ZooKeeper-实战" class="headerlink" title="ZooKeeper 实战"></a>ZooKeeper 实战</h1><h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h2><p>这篇文章简单给演示一下 ZooKeeper 常见命令的使用以及 ZooKeeper Java客户端 Curator 的基本使用。介绍到的内容都是最基本的操作，能满足日常工作的基本需要。</p>
+<p>如果文章有任何需要改善和完善的地方，欢迎在评论区指出，共同进步！</p>
+<h2 id="2-ZooKeeper-安装和使用"><a href="#2-ZooKeeper-安装和使用" class="headerlink" title="2. ZooKeeper 安装和使用"></a>2. ZooKeeper 安装和使用</h2><h3 id="2-1-使用Docker-安装-zookeeper"><a href="#2-1-使用Docker-安装-zookeeper" class="headerlink" title="2.1. 使用Docker 安装 zookeeper"></a>2.1. 使用Docker 安装 zookeeper</h3><p><strong>a.使用 Docker 下载 ZooKeeper</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker pull zookeeper:3.5.8<br></code></pre></td></tr></table></figure>
+
+<p><strong>b.运行 ZooKeeper</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker run -d --name zookeeper -p 2181:2181 zookeeper:3.5.8<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-2-连接-ZooKeeper-服务"><a href="#2-2-连接-ZooKeeper-服务" class="headerlink" title="2.2. 连接 ZooKeeper 服务"></a>2.2. 连接 ZooKeeper 服务</h3><p><strong>a.进入ZooKeeper容器中</strong></p>
+<p>先使用 <code>docker ps</code> 查看 ZooKeeper 的 ContainerID，然后使用 <code>docker exec -it ContainerID /bin/bash</code> 命令进入容器中。</p>
+<p><strong>b.先进入 bin 目录,然后通过  <code>./zkCli.sh -server 127.0.0.1:2181</code>命令连接ZooKeeper 服务</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">root@eaf70fc620cb:/apache-zookeeper-3.5.8-bin<span class="hljs-comment"># cd bin</span><br></code></pre></td></tr></table></figure>
+
+<p>如果你看到控制台成功打印出如下信息的话，说明你已经成功连接 ZooKeeper 服务。</p>
+<p><img src="/zookeeper-in-action/%E8%BF%9E%E6%8E%A5ZooKeeper%E6%9C%8D%E5%8A%A1.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="2-3-常用命令演示"><a href="#2-3-常用命令演示" class="headerlink" title="2.3. 常用命令演示"></a>2.3. 常用命令演示</h3><h4 id="2-3-1-查看常用命令-help-命令"><a href="#2-3-1-查看常用命令-help-命令" class="headerlink" title="2.3.1. 查看常用命令(help 命令)"></a>2.3.1. 查看常用命令(help 命令)</h4><p>通过 <code>help</code> 命令查看 ZooKeeper 常用命令</p>
+<h4 id="2-3-2-创建节点-create-命令"><a href="#2-3-2-创建节点-create-命令" class="headerlink" title="2.3.2. 创建节点(create 命令)"></a>2.3.2. 创建节点(create 命令)</h4><p>通过 <code>create</code> 命令在根目录创建了 node1 节点，与它关联的字符串是”node1”</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">[zk: 127.0.0.1:2181(CONNECTED) 34] create /node1 “node1”<br></code></pre></td></tr></table></figure>
+
+<p>通过 <code>create</code> 命令在根目录创建了 node1 节点，与它关联的内容是数字 123</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">[zk: 127.0.0.1:2181(CONNECTED) 1] create /node1/node1.1 123<br>Created /node1/node1.1<br></code></pre></td></tr></table></figure>
+
+<h4 id="2-3-3-更新节点数据内容-set-命令"><a href="#2-3-3-更新节点数据内容-set-命令" class="headerlink" title="2.3.3. 更新节点数据内容(set 命令)"></a>2.3.3. 更新节点数据内容(set 命令)</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">[zk: 127.0.0.1:2181(CONNECTED) 11] set /node1 &quot;set node1&quot;<br></code></pre></td></tr></table></figure>
+
+<h4 id="2-3-4-获取节点的数据-get-命令"><a href="#2-3-4-获取节点的数据-get-命令" class="headerlink" title="2.3.4. 获取节点的数据(get 命令)"></a>2.3.4. 获取节点的数据(get 命令)</h4><p><code>get</code> 命令可以获取指定节点的数据内容和节点的状态,可以看出我们通过 <code>set</code> 命令已经将节点数据内容改为 “set node1”。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs shell">set node1<br>cZxid = 0x47<br>ctime = Sun Jan 20 10:22:59 CST 2019<br>mZxid = 0x4b<br>mtime = Sun Jan 20 10:41:10 CST 2019<br>pZxid = 0x4a<br>cversion = 1<br>dataVersion = 1<br>aclVersion = 0<br>ephemeralOwner = 0x0<br>dataLength = 9<br>numChildren = 1<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="2-3-5-查看某个目录下的子节点-ls-命令"><a href="#2-3-5-查看某个目录下的子节点-ls-命令" class="headerlink" title="2.3.5. 查看某个目录下的子节点(ls 命令)"></a>2.3.5. 查看某个目录下的子节点(ls 命令)</h4><p>通过 <code>ls</code> 命令查看根目录下的节点</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">[zk: 127.0.0.1:2181(CONNECTED) 37] ls /<br>[dubbo, ZooKeeper, node1]<br></code></pre></td></tr></table></figure>
+
+<p>通过 <code>ls</code> 命令查看 node1 目录下的节点</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">[zk: 127.0.0.1:2181(CONNECTED) 5] ls /node1<br>[node1.1]<br></code></pre></td></tr></table></figure>
+
+<p>ZooKeeper 中的 ls 命令和 linux 命令中的 ls 类似， 这个命令将列出绝对路径 path 下的所有子节点信息（列出 1 级，并不递归）</p>
+<h4 id="2-3-6-查看节点状态-stat-命令"><a href="#2-3-6-查看节点状态-stat-命令" class="headerlink" title="2.3.6. 查看节点状态(stat 命令)"></a>2.3.6. 查看节点状态(stat 命令)</h4><p>通过 <code>stat</code> 命令查看节点状态</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs shell">[zk: 127.0.0.1:2181(CONNECTED) 10] stat /node1<br>cZxid = 0x47<br>ctime = Sun Jan 20 10:22:59 CST 2019<br>mZxid = 0x47<br>mtime = Sun Jan 20 10:22:59 CST 2019<br>pZxid = 0x4a<br>cversion = 1<br>dataVersion = 0<br>aclVersion = 0<br>ephemeralOwner = 0x0<br>dataLength = 11<br>numChildren = 1<br></code></pre></td></tr></table></figure>
+
+<p>上面显示的一些信息比如 cversion、aclVersion、numChildren 等等，我在上面 “znode(数据节点)的结构” 这部分已经介绍到。</p>
+<h4 id="2-3-7-查看节点信息和状态-ls2-命令"><a href="#2-3-7-查看节点信息和状态-ls2-命令" class="headerlink" title="2.3.7. 查看节点信息和状态(ls2 命令)"></a>2.3.7. 查看节点信息和状态(ls2 命令)</h4><p><code>ls2</code> 命令更像是  <code>ls</code> 命令和 <code>stat</code> 命令的结合。 <code>ls2</code> 命令返回的信息包括 2 部分：</p>
+<ol>
+<li>子节点列表 </li>
+<li>当前节点的 stat 信息。</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs shell">[zk: 127.0.0.1:2181(CONNECTED) 7] ls2 /node1<br>[node1.1]<br>cZxid = 0x47<br>ctime = Sun Jan 20 10:22:59 CST 2019<br>mZxid = 0x47<br>mtime = Sun Jan 20 10:22:59 CST 2019<br>pZxid = 0x4a<br>cversion = 1<br>dataVersion = 0<br>aclVersion = 0<br>ephemeralOwner = 0x0<br>dataLength = 11<br>numChildren = 1<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="2-3-8-删除节点-delete-命令"><a href="#2-3-8-删除节点-delete-命令" class="headerlink" title="2.3.8. 删除节点(delete 命令)"></a>2.3.8. 删除节点(delete 命令)</h4><p>这个命令很简单，但是需要注意的一点是如果你要删除某一个节点，那么这个节点必须无子节点才行。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">[zk: 127.0.0.1:2181(CONNECTED) 3] delete /node1/node1.1<br></code></pre></td></tr></table></figure>
+
+<p>在后面我会介绍到 Java 客户端 API 的使用以及开源 ZooKeeper 客户端 ZkClient 和 Curator 的使用。</p>
+<h2 id="3-ZooKeeper-Java客户端-Curator简单使用"><a href="#3-ZooKeeper-Java客户端-Curator简单使用" class="headerlink" title="3. ZooKeeper Java客户端 Curator简单使用"></a>3. ZooKeeper Java客户端 Curator简单使用</h2><p>Curator 是Netflix公司开源的一套 ZooKeeper Java客户端框架，相比于 Zookeeper 自带的客户端 zookeeper 来说，Curator 的封装更加完善，各种 API 都可以比较方便地使用。</p>
+<p><img src="/zookeeper-in-action/curator.png" srcset="/img/loading.gif" lazyload></p>
+<p>下面我们就来简单地演示一下 Curator 的使用吧！</p>
+<p>Curator4.0+版本对ZooKeeper 3.5.x支持比较好。开始之前，请先将下面的依赖添加进你的项目。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.curator<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>curator-framework<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>4.2.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.curator<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>curator-recipes<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>4.2.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="3-1-连接-ZooKeeper-客户端"><a href="#3-1-连接-ZooKeeper-客户端" class="headerlink" title="3.1. 连接 ZooKeeper 客户端"></a>3.1. 连接 ZooKeeper 客户端</h3><p>通过 <code>CuratorFrameworkFactory</code> 创建 <code>CuratorFramework</code> 对象，然后再调用  <code>CuratorFramework</code> 对象的 <code>start()</code> 方法即可！</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">BASE_SLEEP_TIME</span> <span class="hljs-operator">=</span> <span class="hljs-number">1000</span>;<br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">MAX_RETRIES</span> <span class="hljs-operator">=</span> <span class="hljs-number">3</span>;<br><br><span class="hljs-comment">// Retry strategy. Retry 3 times, and will increase the sleep time between retries.</span><br><span class="hljs-type">RetryPolicy</span> <span class="hljs-variable">retryPolicy</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ExponentialBackoffRetry</span>(BASE_SLEEP_TIME, MAX_RETRIES);<br><span class="hljs-type">CuratorFramework</span> <span class="hljs-variable">zkClient</span> <span class="hljs-operator">=</span> CuratorFrameworkFactory.builder()<br>    <span class="hljs-comment">// the server to connect to (can be a server list)</span><br>    .connectString(<span class="hljs-string">&quot;127.0.0.1:2181&quot;</span>)<br>    .retryPolicy(retryPolicy)<br>    .build();<br>zkClient.start();<br></code></pre></td></tr></table></figure>
+
+<p>对于一些基本参数的说明：</p>
+<ul>
+<li><code>baseSleepTimeMs</code>：重试之间等待的初始时间</li>
+<li><code>maxRetries</code> ：最大重试次数</li>
+<li><code>connectString</code> ：要连接的服务器列表</li>
+<li><code>retryPolicy</code> ：重试策略</li>
+</ul>
+<h3 id="3-2-数据节点的增删改查"><a href="#3-2-数据节点的增删改查" class="headerlink" title="3.2. 数据节点的增删改查"></a>3.2. 数据节点的增删改查</h3><h4 id="3-2-1-创建节点"><a href="#3-2-1-创建节点" class="headerlink" title="3.2.1. 创建节点"></a>3.2.1. 创建节点</h4><p>我们在 <a href="./zookeeper-intro.md">ZooKeeper常见概念解读</a> 中介绍到，我们通常是将 znode 分为 4 大类：</p>
+<ul>
+<li><strong>持久（PERSISTENT）节点</strong> ：一旦创建就一直存在即使 ZooKeeper 集群宕机，直到将其删除。</li>
+<li><strong>临时（EPHEMERAL）节点</strong> ：临时节点的生命周期是与 <strong>客户端会话（session）</strong> 绑定的，<strong>会话消失则节点消失</strong> 。并且，临时节点 <strong>只能做叶子节点</strong> ，不能创建子节点。</li>
+<li><strong>持久顺序（PERSISTENT_SEQUENTIAL）节点</strong> ：除了具有持久（PERSISTENT）节点的特性之外， 子节点的名称还具有顺序性。比如 <code>/node1/app0000000001</code> 、<code>/node1/app0000000002</code> 。</li>
+<li><strong>临时顺序（EPHEMERAL_SEQUENTIAL）节点</strong> ：除了具备临时（EPHEMERAL）节点的特性之外，子节点的名称还具有顺序性。</li>
+</ul>
+<p>你在使用的ZooKeeper 的时候，会发现  <code>CreateMode</code> 类中实际有 7种 znode 类型 ，但是用的最多的还是上面介绍的 4 种。</p>
+<p><strong>a.创建持久化节点</strong></p>
+<p>你可以通过下面两种方式创建持久化的节点。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//注意:下面的代码会报错，下文说了具体原因</span><br>zkClient.create().forPath(<span class="hljs-string">&quot;/node1/00001&quot;</span>);<br>zkClient.create().withMode(CreateMode.PERSISTENT).forPath(<span class="hljs-string">&quot;/node1/00002&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>但是，你运行上面的代码会报错，这是因为的父节点<code>node1</code>还未创建。</p>
+<p>你可以先创建父节点 <code>node1</code> ，然后再执行上面的代码就不会报错了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">zkClient.create().forPath(<span class="hljs-string">&quot;/node1&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>更推荐的方式是通过下面这行代码， <strong><code>creatingParentsIfNeeded()</code> 可以保证父节点不存在的时候自动创建父节点，这是非常有用的。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">zkClient.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath(<span class="hljs-string">&quot;/node1/00001&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p><strong>b.创建临时节点</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">zkClient.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL).forPath(<span class="hljs-string">&quot;/node1/00001&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p><strong>c.创建节点并指定数据内容</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">zkClient.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL).forPath(<span class="hljs-string">&quot;/node1/00001&quot;</span>,<span class="hljs-string">&quot;java&quot;</span>.getBytes());<br>zkClient.getData().forPath(<span class="hljs-string">&quot;/node1/00001&quot;</span>);<span class="hljs-comment">//获取节点的数据内容，获取到的是 byte数组</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>d.检测节点是否创建成功</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">zkClient.checkExists().forPath(<span class="hljs-string">&quot;/node1/00001&quot;</span>);<span class="hljs-comment">//不为null的话，说明节点创建成功</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="3-2-2-删除节点"><a href="#3-2-2-删除节点" class="headerlink" title="3.2.2. 删除节点"></a>3.2.2. 删除节点</h4><p><strong>a.删除一个子节点</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">zkClient.delete().forPath(<span class="hljs-string">&quot;/node1/00001&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p><strong>b.删除一个节点以及其下的所有子节点</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">zkClient.delete().deletingChildrenIfNeeded().forPath(<span class="hljs-string">&quot;/node1&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<h4 id="3-2-3-获取-x2F-更新节点数据内容"><a href="#3-2-3-获取-x2F-更新节点数据内容" class="headerlink" title="3.2.3. 获取&#x2F;更新节点数据内容"></a>3.2.3. 获取&#x2F;更新节点数据内容</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">zkClient.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL).forPath(<span class="hljs-string">&quot;/node1/00001&quot;</span>,<span class="hljs-string">&quot;java&quot;</span>.getBytes());<br>zkClient.getData().forPath(<span class="hljs-string">&quot;/node1/00001&quot;</span>);<span class="hljs-comment">//获取节点的数据内容</span><br>zkClient.setData().forPath(<span class="hljs-string">&quot;/node1/00001&quot;</span>,<span class="hljs-string">&quot;c++&quot;</span>.getBytes());<span class="hljs-comment">//更新节点数据内容</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="3-2-4-获取某个节点的所有子节点路径"><a href="#3-2-4-获取某个节点的所有子节点路径" class="headerlink" title="3.2.4. 获取某个节点的所有子节点路径"></a>3.2.4. 获取某个节点的所有子节点路径</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">List&lt;String&gt; childrenPaths = zkClient.getChildren().forPath(<span class="hljs-string">&quot;/node1&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/system-design/" class="category-chain-item">system_design</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/system-design/distributed-system/" class="category-chain-item">distributed-system</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/system-design/distributed-system/distributed-process-coordination/" class="category-chain-item">distributed-process-coordination</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/system-design/distributed-system/distributed-process-coordination/zookeeper/" class="category-chain-item">zookeeper</a>
+  
+  
+
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/system-design/">#system_design</a>
+      
+        <a href="/tags/distributed-system/">#distributed-system</a>
+      
+        <a href="/tags/distributed-process-coordination/">#distributed-process-coordination</a>
+      
+        <a href="/tags/zookeeper/">#zookeeper</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>zookeeper-in-action</div>
+      <div>https://xiechaoxin.github.io/xiechaoxin.github.io/2022/06/17/CS/system_design/distributed-system/distributed-process-coordination/zookeeper/zookeeper-in-action/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 17, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/Java/frame_work/spring/spring5/spring-transaction/" title="spring-transaction">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">spring-transaction</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/06/17/CS/system_design/distributed-system/distributed-process-coordination/zookeeper/zookeeper-intro/" title="zookeeper-intro">
+                        <span class="hidden-mobile">zookeeper-intro</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
