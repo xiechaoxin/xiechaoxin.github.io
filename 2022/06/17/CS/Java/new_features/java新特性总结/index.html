@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../../../../../../img/fluid.png">
+  <link rel="icon" href="../../../../../../../img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,19 +23,19 @@
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="一文带你看遍 JDK9~15 的重要新特性！Java 8 新特性见这里：Java8 新特性最佳指南 。 你可以在 Archived OpenJDK General-Availability Releases 上下载自己需要的 JDK 版本！ 官方的新特性说明文档地址： https:&#x2F;&#x2F;openjdk.java.net&#x2F;projects&#x2F;jdk&#x2F; 。 Guide ：别人家的特性都用了几年了，我 Ja">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//module-structure.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//image-20210816083417616.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//image-20210816104614414.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//image-20210816154125579.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//20210603202746605.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//image-20210820153955587.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/new_features/java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/module-structure.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/new_features/java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/image-20210816083417616.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/new_features/java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/image-20210816104614414.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/new_features/java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/image-20210816154125579.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/new_features/java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/20210603202746605.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/new_features/java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/image-20210820153955587.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T11:16:58.821Z">
+<meta property="article:modified_time" content="2022-06-24T11:32:26.981Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="new_features">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/.io//module-structure.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/new_features/java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/module-structure.png">
   
   
   
@@ -63,12 +63,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="../../../../../../../css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="../../../../../../../css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="../../../../../../../css/highlight-dark.css" />
   
 
 
@@ -84,8 +84,8 @@
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="../../../../../../../js/utils.js" ></script>
+  <script  src="../../../../../../../js/color-schema.js" ></script>
   
 
 
@@ -102,7 +102,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="../../../../../../../index.html">
       <strong> </strong>
     </a>
 
@@ -121,7 +121,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="../../../../../../../index.html">
                 <i class="iconfont icon-home-fill"></i>
                 Home
               </a>
@@ -133,7 +133,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="../../../../../../../archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 Archives
               </a>
@@ -145,7 +145,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="../../../../../../../categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
               </a>
@@ -157,7 +157,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="../../../../../../../tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 Tags
               </a>
@@ -169,7 +169,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="../../../../../../../about/">
                 <i class="iconfont icon-user-fill"></i>
                 About
               </a>
@@ -198,7 +198,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('../../../../../../../img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -290,7 +290,7 @@
 <p>什么是模块系统？官方的定义是：A uniquely named, reusable group of related packages, as well as resources (such as images and XML files) and a module descriptor.</p>
 <p>简单来说，你可以将一个模块看作是一组唯一命名、可重用的包、资源和模块描述文件（module-info.java）。</p>
 <p>任意一个 jar 文件，只要加上一个 模块描述文件（module-info.java），就可以升级为一个模块。</p>
-<p><img src="/.io//module-structure.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/new_features/java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/module-structure.png" srcset="/img/loading.gif" lazyload></p>
 <p>在引入了模块系统之后，JDK 被重新组织成 94 个模块。Java 应用可以通过新增的 jlink 工具，创建出只包含所依赖的 JDK 模块的自定义运行时镜像。这样可以极大的减少 Java 运行时环境的大小。</p>
 <p>我们可以通过 exports 关键词精准控制哪些类可以对外开放使用，哪些类只能内部使用。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">module</span> my.<span class="hljs-keyword">module</span> &#123;<br>    <span class="hljs-comment">//exports 公开指定包的所有公共成员</span><br>    <span class="hljs-keyword">exports</span> com.my.<span class="hljs-keyword">package</span>.name;<br>&#125;<br><br><span class="hljs-keyword">module</span> my.<span class="hljs-keyword">module</span> &#123;<br>     <span class="hljs-comment">//exports…to 限制访问的成员范围</span><br>    export com.my.<span class="hljs-keyword">package</span>.name to com.specific.<span class="hljs-keyword">package</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -303,7 +303,7 @@
 </ul>
 <h3 id="Jshell"><a href="#Jshell" class="headerlink" title="Jshell"></a>Jshell</h3><p>jshell 是 Java 9 新增的一个实用工具。为 Java 提供了类似于 Python 的实时命令行交互工具。</p>
 <p>在 Jshell 中可以直接输入表达式并查看其执行结果。</p>
-<p><img src="/.io//image-20210816083417616.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/new_features/java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/image-20210816083417616.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="集合增强"><a href="#集合增强" class="headerlink" title="集合增强"></a>集合增强</h3><p>增加 了 <code>List.of()</code>、<code>Set.of()</code>、<code>Map.of()</code> 和 <code>Map.ofEntries()</code>等工厂方法来创建不可变集合（这部分内容有点参考 Guava 的味道）</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">List.of(<span class="hljs-string">&quot;Java&quot;</span>, <span class="hljs-string">&quot;C++&quot;</span>);<br>Set.of(<span class="hljs-string">&quot;Java&quot;</span>, <span class="hljs-string">&quot;C++&quot;</span>);<br>Map.of(<span class="hljs-string">&quot;Java&quot;</span>, <span class="hljs-number">1</span>, <span class="hljs-string">&quot;C++&quot;</span>, <span class="hljs-number">2</span>);<br></code></pre></td></tr></table></figure>
 
@@ -342,7 +342,7 @@
 <h3 id="进程-API"><a href="#进程-API" class="headerlink" title="进程 API"></a>进程 API</h3><p>Java 9 增加了 <code>ProcessHandle</code> 接口，可以对原生进程进行管理，尤其适合于管理长时间运行的进程。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">System.out.println(ProcessHandle.current().pid());<br>System.out.println(ProcessHandle.current().info());<br></code></pre></td></tr></table></figure>
 
-<p><img src="/.io//image-20210816104614414.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/new_features/java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/image-20210816104614414.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="平台日志-API-和服务"><a href="#平台日志-API-和服务" class="headerlink" title="平台日志 API 和服务"></a>平台日志 API 和服务</h3><p>Java 9 允许为 JDK 和应用配置同样的日志实现。新增了 <code>System.LoggerFinder</code> 用来管理 JDK 使 用的日志记录器实现。JVM 在运行时只有一个系统范围的 <code>LoggerFinder</code> 实例。</p>
 <p>我们可以通过添加自己的 <code>System.LoggerFinder</code> 实现来让 JDK 和应用使用 SLF4J 等其他日志记录框架。</p>
 <h3 id="反应式流-（-Reactive-Streams-）"><a href="#反应式流-（-Reactive-Streams-）" class="headerlink" title="反应式流 （ Reactive Streams ）"></a>反应式流 （ Reactive Streams ）</h3><p>在 Java9 中的 <code>java.util.concurrent.Flow</code> 类中新增了反应式流规范的核心接口 。</p>
@@ -381,7 +381,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">static</span> &lt;E&gt; List&lt;E&gt; <span class="hljs-title function_">copyOf</span><span class="hljs-params">(Collection&lt;? extends E&gt; coll)</span> &#123;<br>    <span class="hljs-keyword">return</span> ImmutableCollections.listCopy(coll);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>使用 <code>copyOf()</code> 创建的集合为不可变集合，不能进行添加、删除、替换、 排序等操作，不然会报 <code>java.lang.UnsupportedOperationException</code> 异常。 IDEA 也会有相应的提示。</p>
-<p><img src="/.io//image-20210816154125579.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/new_features/java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/image-20210816154125579.png" srcset="/img/loading.gif" lazyload></p>
 <p><code>java.util.stream.Collectors</code> 中新增了静态方法，用于将流中的元素收集为不可变的集合。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">var</span> <span class="hljs-variable">list</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>list.stream().collect(Collectors.toUnmodifiableList());<br>list.stream().collect(Collectors.toUnmodifiableSet());<br></code></pre></td></tr></table></figure>
 
@@ -399,7 +399,7 @@
 <li>……</li>
 </ul>
 <h2 id="Java11"><a href="#Java11" class="headerlink" title="Java11"></a>Java11</h2><p>Java11 于 2018 年 9 月 25 日正式发布，这是很重要的一个版本！Java 11 和 2017 年 9 月份发布的 Java 9 以及 2018 年 3 月份发布的 Java 10 相比，其最大的区别就是：在长期支持(Long-Term-Support)方面，<strong>Oracle 表示会对 Java 11 提供大力支持，这一支持将会持续至 2026 年 9 月。这是据 Java 8 以后支持的首个长期版本。</strong></p>
-<p><img src="/.io//20210603202746605.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/new_features/java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/20210603202746605.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><p>Java 11 增加了一系列的字符串处理方法，如以下所示。</p>
 <p><em>Guide：说白点就是多了层封装，JDK 开发组的人没少看市面上常见的工具类框架啊!</em></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//判断字符串是否为空</span><br><span class="hljs-string">&quot; &quot;</span>.isBlank();<span class="hljs-comment">//true</span><br><span class="hljs-comment">//去除字符串首尾空格</span><br><span class="hljs-string">&quot; Java &quot;</span>.strip();<span class="hljs-comment">// &quot;Java&quot;</span><br><span class="hljs-comment">//去除字符串首部空格</span><br><span class="hljs-string">&quot; Java &quot;</span>.stripLeading();   <span class="hljs-comment">// &quot;Java &quot;</span><br><span class="hljs-comment">//去除字符串尾部空格</span><br><span class="hljs-string">&quot; Java &quot;</span>.stripTrailing();  <span class="hljs-comment">// &quot; Java&quot;</span><br><span class="hljs-comment">//重复字符串多少次</span><br><span class="hljs-string">&quot;Java&quot;</span>.repeat(<span class="hljs-number">3</span>);             <span class="hljs-comment">// &quot;JavaJavaJava&quot;</span><br><br><span class="hljs-comment">//返回由行终止符分隔的字符串集合。</span><br><span class="hljs-string">&quot;A\nB\nC&quot;</span>.lines().count();    <span class="hljs-comment">// 3</span><br><span class="hljs-string">&quot;A\nB\nC&quot;</span>.lines().collect(Collectors.toList());<br></code></pre></td></tr></table></figure>
@@ -597,7 +597,7 @@
 <p>另外，任何扩展密封类的类本身都必须声明为 <code>sealed</code>、<code>non-sealed</code> 或 <code>final</code>。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Employee</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Person</span> &#123;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">non-sealed</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Manager</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Person</span> &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p><img src="/.io//image-20210820153955587.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/new_features/java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/image-20210820153955587.png" srcset="/img/loading.gif" lazyload></p>
 <p>如果允许扩展的子类和封闭类在同一个源代码文件里，封闭类可以不使用 permits 语句，Java 编译器将检索源文件，在编译期为封闭类添加上许可的子类。</p>
 <h4 id="instanceof-模式匹配-1"><a href="#instanceof-模式匹配-1" class="headerlink" title="instanceof 模式匹配"></a>instanceof 模式匹配</h4><p>Java 15 并没有对此特性进行调整，继续预览特性，主要用于接受更多的使用反馈。</p>
 <p>在未来的 Java 版本中，Java 的目标是继续完善 <code>instanceof</code> 模式匹配新特性。</p>
@@ -649,12 +649,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  <a href="../../../../../../../categories/Java/" class="category-chain-item">Java</a>
   
   
     <span>></span>
     
-  <a href="/categories/Java/new-features/" class="category-chain-item">new_features</a>
+  <a href="../../../../../../../categories/Java/new-features/" class="category-chain-item">new_features</a>
   
   
 
@@ -671,9 +671,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Java/">#Java</a>
+        <a href="../../../../../../../tags/Java/">#Java</a>
       
-        <a href="/tags/new-features/">#new_features</a>
+        <a href="../../../../../../../tags/new-features/">#new_features</a>
       
     </div>
   
@@ -728,7 +728,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/17/CS/Java/new_features/java8-tutorial-translate/" title="java8-tutorial-translate">
+                      <a href="../java8-tutorial-translate/" title="java8-tutorial-translate">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">java8-tutorial-translate</span>
                         <span class="visible-mobile">Previous</span>
@@ -738,8 +738,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/17/CS/Java/jvm/class-file-structure/" title="class-file-structure">
-                        <span class="hidden-mobile">class-file-structure</span>
+                      <a href="../../performance/jad/" title="jad">
+                        <span class="hidden-mobile">jad</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -861,15 +861,15 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="../../../../../../../js/events.js" ></script>
+<script  src="../../../../../../../js/plugins.js" ></script>
 
 
 
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="../../../../../../../js/img-lazyload.js" ></script>
   
 
 
@@ -941,7 +941,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="../../../../../../../js/local-search.js" ></script>
 
 
 
@@ -949,7 +949,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="../../../../../../../js/boot.js" ></script>
 
 
   

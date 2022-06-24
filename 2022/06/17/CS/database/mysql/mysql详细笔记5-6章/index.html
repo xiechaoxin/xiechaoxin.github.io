@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../../../../../../img/fluid.png">
+  <link rel="icon" href="../../../../../../../img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,89 +23,89 @@
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="mysq详细笔记[toc]第5章 排序与分页&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; 5.1 排序数据5.1.1 排序规则  使用 order by 子句排序 ASC(ascend): 升序 DESC(descend) :降序   order by 子句在select预警的结尾.   5.1.2 单列排序    SELECT">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//e29a1d4d160942adb82c09dea6d36a73.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513202720027.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513202728599.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513203226462.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513203245677.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//04ad771fcec2426fa2c9f751278b1656.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16.jpeg">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513204202758.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513204211902.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513204240774.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513205221649.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513205240501.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513205610634.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513205745774.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513205835365.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513205845047.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//6f86c4868a9d4c20bc5ba75460566ccb.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513223312037.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513223843503.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513223838948.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_18,color_FFFFFF,t_70,g_se,x_16.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_18,color_FFFFFF,t_70,g_se,x_16-20220513223912659.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513223927070.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513230738229.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513230749303.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//08c49659f63b458392ad8ce7a055bd97.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//01bf91a97c6e463b810a2d7adc430078.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//361d1584fae046fc9fdf013110062368.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//8b76f7d24c6a4689bc0627143ca6e539.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//b2d0810e112845539144294e9817bd2b.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//bceb5080226a4cb9934a042f90b2e2f4.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//7f2824169dad4332b899615c9a64cdfa.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//618610f74f5f4331ba249d8031de19b0.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//eb150d95799c4f158362cda2a193197a.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//a2edbd532dc74f5cb01c8bb3bf767a93.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//8df87645a3fb463cb593aa3f4aef90d7.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//a3914ebab4ed4f2f9e8429780001940d.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//1ed6ceae98ab4dedbf2be4f87c32def4.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//ca86d89287be47fbbc0ccf542fb57a63.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//367b529c2c8540fe8e504595f8c9a326.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//88c5ce12d5644e94aba87aade1bbec8b.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//e3f169857d144b3896f9a8ed4c16a73e.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//be4878706dbd489895b4b97a505fbce2.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//77453bf238d04b628e295667ea2101bd.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//843b241a153347e4af6a543a75d5f201.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//b6a1b7646f7a4f689d56011cc0566e1b.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//e82ac2c574754169a6ccd6b6ed9d1994.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//737d3dfa22ca46aabe22118d4c76dc6b.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//ceabd8f6c1ff4d94aa677bd08bbc59a3.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//9efc898eed13430b8e76541211974baf.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//fdc0ab1da5894dc498cf1aaab903f361.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//ed35dd1ec14a4e01a1dee202f3c9e3a3.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//900b7a90db0940ac9833f168165a67e6.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//eb5239c0ab7b495982a8b6688eba7027.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//c7bdb33bf68b47bd984d0214884a4312.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-3240356.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//b0a32727980f4964badc1c2acd75bb20.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//0cacd611aeee41129e022d7dee5646ee.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//e6e53a54896c4cb7b6734369f2230622.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//72bc357a74604c76a750992b74519a45.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//573c9396b7694572886270af9d5d88d8.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//611ca03eee20413084b582eadde75aa7.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//90b532ad482047f894c3a99e5f9035d3.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//041fe748a5c2449eb44f06a104c2fddc.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//85a2986aed5e4c16ab294045b21877b1.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//92178882cd3040e3904289bcc1562749.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//f72ddc523ec24db78ecfae7fa2860758.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//3376496e1a9e4e629853646ba6ab2371.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//38001c9a4f724e09b661acb54ebbb836.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//149bcd03c4c74914a75b02f7cba35dd4.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//7f35906c0ca04cd9b450cc4fc63c8078.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//27a2424ee0bd4998895fdbfab5d5f7ae.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//15e49d139fd54125b9607dad465e0403.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//5cca5d9899094724addd192ff3fb74f9.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//94644cc54380410c9b208ab1e6a5ad3f.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//2a542413a53d4981bb913f3f5a3aea65.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/e29a1d4d160942adb82c09dea6d36a73.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513202720027.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513202728599.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513203226462.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513203245677.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/04ad771fcec2426fa2c9f751278b1656.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16.jpeg">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513204202758.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513204211902.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513204240774.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513205221649.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513205240501.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513205610634.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513205745774.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513205835365.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513205845047.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/6f86c4868a9d4c20bc5ba75460566ccb.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513223312037.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513223843503.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513223838948.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_18,color_FFFFFF,t_70,g_se,x_16.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_18,color_FFFFFF,t_70,g_se,x_16-20220513223912659.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513223927070.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513230738229.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513230749303.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/08c49659f63b458392ad8ce7a055bd97.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/01bf91a97c6e463b810a2d7adc430078.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/361d1584fae046fc9fdf013110062368.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/8b76f7d24c6a4689bc0627143ca6e539.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/b2d0810e112845539144294e9817bd2b.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/bceb5080226a4cb9934a042f90b2e2f4.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/7f2824169dad4332b899615c9a64cdfa.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/618610f74f5f4331ba249d8031de19b0.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/eb150d95799c4f158362cda2a193197a.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/a2edbd532dc74f5cb01c8bb3bf767a93.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/8df87645a3fb463cb593aa3f4aef90d7.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/a3914ebab4ed4f2f9e8429780001940d.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/1ed6ceae98ab4dedbf2be4f87c32def4.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/ca86d89287be47fbbc0ccf542fb57a63.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/367b529c2c8540fe8e504595f8c9a326.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/88c5ce12d5644e94aba87aade1bbec8b.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/e3f169857d144b3896f9a8ed4c16a73e.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/be4878706dbd489895b4b97a505fbce2.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/77453bf238d04b628e295667ea2101bd.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/843b241a153347e4af6a543a75d5f201.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/b6a1b7646f7a4f689d56011cc0566e1b.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/e82ac2c574754169a6ccd6b6ed9d1994.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/737d3dfa22ca46aabe22118d4c76dc6b.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/ceabd8f6c1ff4d94aa677bd08bbc59a3.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/9efc898eed13430b8e76541211974baf.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/fdc0ab1da5894dc498cf1aaab903f361.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/ed35dd1ec14a4e01a1dee202f3c9e3a3.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/900b7a90db0940ac9833f168165a67e6.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/eb5239c0ab7b495982a8b6688eba7027.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/c7bdb33bf68b47bd984d0214884a4312.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-3240356.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/b0a32727980f4964badc1c2acd75bb20.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/0cacd611aeee41129e022d7dee5646ee.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/e6e53a54896c4cb7b6734369f2230622.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/72bc357a74604c76a750992b74519a45.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/573c9396b7694572886270af9d5d88d8.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/611ca03eee20413084b582eadde75aa7.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/90b532ad482047f894c3a99e5f9035d3.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/041fe748a5c2449eb44f06a104c2fddc.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/85a2986aed5e4c16ab294045b21877b1.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/92178882cd3040e3904289bcc1562749.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/f72ddc523ec24db78ecfae7fa2860758.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/3376496e1a9e4e629853646ba6ab2371.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/38001c9a4f724e09b661acb54ebbb836.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/149bcd03c4c74914a75b02f7cba35dd4.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/7f35906c0ca04cd9b450cc4fc63c8078.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/27a2424ee0bd4998895fdbfab5d5f7ae.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/15e49d139fd54125b9607dad465e0403.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/5cca5d9899094724addd192ff3fb74f9.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/94644cc54380410c9b208ab1e6a5ad3f.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/2a542413a53d4981bb913f3f5a3aea65.png">
 <meta property="article:published_time" content="2022-06-17T17:59:12.000Z">
-<meta property="article:modified_time" content="2022-06-24T11:16:59.229Z">
+<meta property="article:modified_time" content="2022-06-24T11:32:27.441Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="database">
 <meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/.io//e29a1d4d160942adb82c09dea6d36a73.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/e29a1d4d160942adb82c09dea6d36a73.png">
   
   
   
@@ -133,12 +133,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="../../../../../../../css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="../../../../../../../css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="../../../../../../../css/highlight-dark.css" />
   
 
 
@@ -154,8 +154,8 @@
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="../../../../../../../js/utils.js" ></script>
+  <script  src="../../../../../../../js/color-schema.js" ></script>
   
 
 
@@ -172,7 +172,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="../../../../../../../index.html">
       <strong> </strong>
     </a>
 
@@ -191,7 +191,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="../../../../../../../index.html">
                 <i class="iconfont icon-home-fill"></i>
                 Home
               </a>
@@ -203,7 +203,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="../../../../../../../archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 Archives
               </a>
@@ -215,7 +215,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="../../../../../../../categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
               </a>
@@ -227,7 +227,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="../../../../../../../tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 Tags
               </a>
@@ -239,7 +239,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="../../../../../../../about/">
                 <i class="iconfont icon-user-fill"></i>
                 About
               </a>
@@ -268,7 +268,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('../../../../../../../img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -366,17 +366,17 @@
     FROM     employees
     ORDER BY hire_date ;
 </code></pre>
-<p><img src="/.io//e29a1d4d160942adb82c09dea6d36a73.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/e29a1d4d160942adb82c09dea6d36a73.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT   last_name, job_id, department_id, hire_date
 FROM     employees
 ORDER BY hire_date DESC ;
 </code></pre>
-<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513202720027.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513202720027.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <h3 id="5-1-3-多列排序"><a href="#5-1-3-多列排序" class="headerlink" title="5.1.3 多列排序"></a>5.1.3 多列排序</h3><pre><code class="hljs">SELECT last_name, department_id, salary
 FROM   employees
 ORDER BY department_id, salary DESC;
 </code></pre>
-<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513202728599.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513202728599.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <blockquote>
 <ul>
 <li>可以使用不在select列表中的列排序.</li>
@@ -460,12 +460,12 @@ WHERE rownum &lt; 10;
 <h1 id="第6章-多表查询"><a href="#第6章-多表查询" class="headerlink" title="第6章 多表查询"></a>第6章 多表查询</h1><blockquote>
 <p>多表查询，也称为关联查询，指两个或更多个表一起完成查询操作。<br>前提条件：这些一起查询的表之间是有关系的（一对一、一对多），它们之间一定是有关联字段，这个关联字段可能建立了外键，也可能没有建立外键。比如：员工表和部门表，这两个表依靠“部门编号”进行关联。</p>
 </blockquote>
-<h2 id="6-1-一个案例引发的多表连接"><a href="#6-1-一个案例引发的多表连接" class="headerlink" title="6.1 一个案例引发的多表连接"></a>6.1 一个案例引发的多表连接</h2><h3 id="6-1-1-案例说明"><a href="#6-1-1-案例说明" class="headerlink" title="6.1.1 案例说明"></a>6.1.1 案例说明</h3><p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513203226462.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>从多个表中获取数据:<br><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513203245677.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="6-1-一个案例引发的多表连接"><a href="#6-1-一个案例引发的多表连接" class="headerlink" title="6.1 一个案例引发的多表连接"></a>6.1 一个案例引发的多表连接</h2><h3 id="6-1-1-案例说明"><a href="#6-1-1-案例说明" class="headerlink" title="6.1.1 案例说明"></a>6.1.1 案例说明</h3><p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513203226462.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>从多个表中获取数据:<br><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513203245677.png" srcset="/img/loading.gif" lazyload></p>
 <pre><code class="hljs">#案例：查询员工的姓名及其部门名称
 SELECT last_name, department_name
 FROM employees, departments;
 </code></pre>
-<p><img src="/.io//04ad771fcec2426fa2c9f751278b1656.png" srcset="/img/loading.gif" lazyload><br>查询结果:</p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/04ad771fcec2426fa2c9f751278b1656.png" srcset="/img/loading.gif" lazyload><br>查询结果:</p>
 <pre><code class="hljs">+-----------+----------------------+
 | last_name | department_name      |
 +-----------+----------------------+
@@ -507,7 +507,7 @@ SELECT 107*27 FROM dual;
 <h3 id="6-1-2-笛卡尔积-交叉连接-的理解"><a href="#6-1-2-笛卡尔积-交叉连接-的理解" class="headerlink" title="6.1.2 笛卡尔积(交叉连接)的理解"></a>6.1.2 笛卡尔积(交叉连接)的理解</h3><blockquote>
 <p>笛卡尔乘积是一个数学运算。假设我有两个集合 X 和 Y，那么 X 和 Y 的笛卡尔积就是 X 和 Y 的所有可能组合，也就是第一个对象来自于 X，第二个对象来自于 Y 的所有可能。组合的个数即为两个集合中元素个数的乘积数。</p>
 </blockquote>
-<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16.jpeg" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16.jpeg" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <blockquote>
 <p>SQL92中，笛卡尔积也称为交叉连接，英文是 CROSS JOIN。在 SQL99 中也是使用 CROSS JOIN表示交叉连接。它的作用就是可以把任意表进行连接，即使这两张表不相关。在MySQL中如下情况会出现笛卡尔积：</p>
 </blockquote>
@@ -541,12 +541,12 @@ WHERE	table1.column1 = table2.column2;  #连接条件
 </li>
 </ul>
 <h2 id="6-2-多表查询分类讲解"><a href="#6-2-多表查询分类讲解" class="headerlink" title="6.2 多表查询分类讲解"></a>6.2 多表查询分类讲解</h2><h3 id="6-2-1-等值连接-vs-非等值连接"><a href="#6-2-1-等值连接-vs-非等值连接" class="headerlink" title="6.2.1 等值连接 vs 非等值连接"></a>6.2.1 等值连接 vs 非等值连接</h3><ul>
-<li><p><strong>等值连接</strong><br><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513204202758.png" srcset="/img/loading.gif" lazyload></p>
+<li><p><strong>等值连接</strong><br><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513204202758.png" srcset="/img/loading.gif" lazyload></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> employees.employee_id, employees.last_name, <br>      employees.department_id, departments.department_id,<br>      departments.location_id<br><span class="hljs-keyword">FROM</span>   employees, departments<br><span class="hljs-keyword">WHERE</span>  employees.department_id <span class="hljs-operator">=</span> departments.department_id;<br></code></pre></td></tr></table></figure></li>
 </ul>
-<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513204211902.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513204211902.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <ul>
-<li>** 拓展1：多个连接条件与 AND 操作符 **<br><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513204240774.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+<li>** 拓展1：多个连接条件与 AND 操作符 **<br><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513204240774.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
 <li><strong>拓展2：区分重复的列名</strong></li>
 </ul>
 <blockquote>
@@ -578,17 +578,17 @@ WHERE employees.department_id = departments.department_id;
 <p>阿里开发规范：<br>【强制】对于数据库中表记录的查询和变更，只要涉及多个表，都需要在列名前加表的别名（或 表名）进行限定。<br>说明：对多表进行查询记录、更新记录、删除记录时，如果对操作列没有限定表的别名（或表名），并且操作列在多个表中存在时，就会抛异常。<br>正例：select t1.name from table_first as t1 , table_second as t2 where t1.id&#x3D;t2.id;<br>反例：在某业务中，由于多表关联查询语句没有加表的别名（或表名）的限制，正常运行两年后，最近在 某个表中增加一个同名字段，在预发布环境做数据库变更后，线上查询语句出现出 1052 异常：Column ‘name’ in field list is ambiguous。</p>
 </blockquote>
 <ul>
-<li><strong>拓展4：连接多个表</strong><br><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513205221649.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+<li><strong>拓展4：连接多个表</strong><br><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513205221649.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
 </ul>
 <blockquote>
 <p>**总结：连接 n个表,至少需要n-1个连接条件。**比如，连接三个表，至少需要两个连接条件。</p>
 </blockquote>
 <ul>
-<li><p><strong>非等值连接</strong><br><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513205240501.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<li><p><strong>非等值连接</strong><br><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513205240501.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> e.last_name, e.salary, j.grade_level<br><span class="hljs-keyword">FROM</span>   employees e, job_grades j<br><span class="hljs-keyword">WHERE</span>  e.salary <span class="hljs-keyword">BETWEEN</span> j.lowest_sal <span class="hljs-keyword">AND</span> j.highest_sal;<br></code></pre></td></tr></table></figure></li>
 </ul>
-<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513205610634.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
-<h3 id="6-2-2-自连接-vs-非自连接"><a href="#6-2-2-自连接-vs-非自连接" class="headerlink" title="6.2.2 自连接 vs 非自连接"></a>6.2.2 自连接 vs 非自连接</h3><p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513205745774.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513205610634.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h3 id="6-2-2-自连接-vs-非自连接"><a href="#6-2-2-自连接-vs-非自连接" class="headerlink" title="6.2.2 自连接 vs 非自连接"></a>6.2.2 自连接 vs 非自连接</h3><p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513205745774.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <blockquote>
 <p>当table1和table2本质上是同一张表，只是用取别名的方式虚拟成两张表以代表不同的意义。然后两个表再进行内连接，外连接等查询。</p>
 </blockquote>
@@ -596,8 +596,8 @@ WHERE employees.department_id = departments.department_id;
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> CONCAT(worker.last_name ,<span class="hljs-string">&#x27; works for &#x27;</span> <br>       , manager.last_name)<br><span class="hljs-keyword">FROM</span>   employees worker, employees manager<br><span class="hljs-keyword">WHERE</span>  worker.manager_id <span class="hljs-operator">=</span> manager.employee_id ;<br></code></pre></td></tr></table></figure>
 
 
-<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513205835365.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
-<h3 id="6-2-3-内连接-vs-外连接"><a href="#6-2-3-内连接-vs-外连接" class="headerlink" title="6.2.3 内连接 vs 外连接"></a>6.2.3 内连接 vs 外连接</h3><p>除了查询满足条件的记录以外，外连接还可以查询某一方不满足条件的记录。<br><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513205845047.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513205835365.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h3 id="6-2-3-内连接-vs-外连接"><a href="#6-2-3-内连接-vs-外连接" class="headerlink" title="6.2.3 内连接 vs 外连接"></a>6.2.3 内连接 vs 外连接</h3><p>除了查询满足条件的记录以外，外连接还可以查询某一方不满足条件的记录。<br><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513205845047.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <blockquote>
 <ul>
 <li>内连接: 合并具有同一列的两个以上的表的行, <strong>结果集中不包含一个表与另一个表不匹配的行</strong></li>
@@ -666,11 +666,11 @@ WHERE employees.department_id(+) = departments.department_id;
 FROM   employees e JOIN departments d
 ON     (e.department_id = d.department_id);
 </code></pre>
-<p><img src="/.io//6f86c4868a9d4c20bc5ba75460566ccb.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>题目2：</p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/6f86c4868a9d4c20bc5ba75460566ccb.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>题目2：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> employee_id, city, department_name<br><span class="hljs-keyword">FROM</span>   employees e <br><span class="hljs-keyword">JOIN</span>   departments d<br><span class="hljs-keyword">ON</span>     d.department_id <span class="hljs-operator">=</span> e.department_id <br><span class="hljs-keyword">JOIN</span>   locations l<br><span class="hljs-keyword">ON</span>     d.location_id <span class="hljs-operator">=</span> l.location_id;<br></code></pre></td></tr></table></figure>
 
 
-<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513223312037.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513223312037.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <h3 id="6-3-3-外连接-OUTER-JOIN-的实现"><a href="#6-3-3-外连接-OUTER-JOIN-的实现" class="headerlink" title="6.3.3 外连接(OUTER JOIN)的实现"></a>6.3.3 外连接(OUTER JOIN)的实现</h3><h4 id="6-3-3-1-左外连接-LEFT-OUTER-JOIN"><a href="#6-3-3-1-左外连接-LEFT-OUTER-JOIN" class="headerlink" title="6.3.3.1 左外连接(LEFT OUTER JOIN)"></a>6.3.3.1 左外连接(LEFT OUTER JOIN)</h4><ul>
 <li><p>语法：</p>
 <p>#实现查询结果是A<br>SELECT 字段列表<br>FROM A表 LEFT JOIN B表<br>ON 关联条件<br>WHERE 等其他子句;</p>
@@ -679,7 +679,7 @@ ON     (e.department_id = d.department_id);
 <p>SELECT e.last_name, e.department_id, d.department_name<br>FROM   employees e<br>LEFT OUTER JOIN departments d<br>ON   (e.department_id &#x3D; d.department_id) ;</p>
 </li>
 </ul>
-<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513223843503.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513223843503.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <h4 id="6-3-3-2-右外连接-RIGHT-OUTER-JOIN"><a href="#6-3-3-2-右外连接-RIGHT-OUTER-JOIN" class="headerlink" title="6.3.3.2 右外连接(RIGHT OUTER JOIN)"></a>6.3.3.2 右外连接(RIGHT OUTER JOIN)</h4><ul>
 <li><p>语法：</p>
 <p>#实现查询结果是B<br>SELECT 字段列表<br>FROM A表 RIGHT JOIN B表<br>ON 关联条件<br>WHERE 等其他子句;</p>
@@ -688,7 +688,7 @@ ON     (e.department_id = d.department_id);
 <p>SELECT e.last_name, e.department_id, d.department_name<br>FROM   employees e<br>RIGHT OUTER JOIN departments d<br>ON    (e.department_id &#x3D; d.department_id) ;</p>
 </li>
 </ul>
-<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513223838948.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513223838948.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <blockquote>
 <p>需要注意的是，LEFT JOIN 和 RIGHT JOIN 只存在于 SQL99 及以后的标准中，在 SQL92 中不存在，只能用 (+) 表示。</p>
 </blockquote>
@@ -707,7 +707,7 @@ ON     (e.department_id = d.department_id);
 UNION [ALL]
 SELECT column,... FROM table2
 </code></pre>
-<p><strong>UNION操作符</strong><br><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_18,color_FFFFFF,t_70,g_se,x_16.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>UNION 操作符返回两个查询的结果集的并集，去除重复记录。<br><strong>UNION ALL操作符</strong><br><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_18,color_FFFFFF,t_70,g_se,x_16-20220513223912659.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>UNION ALL操作符返回两个查询的结果集的并集。对于两个结果集的重复部分，不去重。</p>
+<p><strong>UNION操作符</strong><br><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_18,color_FFFFFF,t_70,g_se,x_16.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>UNION 操作符返回两个查询的结果集的并集，去除重复记录。<br><strong>UNION ALL操作符</strong><br><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_18,color_FFFFFF,t_70,g_se,x_16-20220513223912659.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>UNION ALL操作符返回两个查询的结果集的并集。对于两个结果集的重复部分，不去重。</p>
 <blockquote>
 <p>注意：执行UNION ALL语句时所需要的资源比UNION语句少。如果明确知道合并数据后的结果数据不存在重复数据，或者不需要去除重复的数据，则尽量使用UNION ALL语句，以提高数据查询的效率。</p>
 </blockquote>
@@ -726,7 +726,7 @@ SELECT * FROM employees  WHERE department_id&gt;90;
 UNION ALL
 SELECT id,tname FROM t_usmale WHERE tGender=&#39;male&#39;;
 </code></pre>
-<h2 id="6-5-7种SQL-JOINS的实现"><a href="#6-5-7种SQL-JOINS的实现" class="headerlink" title="6.5 7种SQL JOINS的实现"></a>6.5 7种SQL JOINS的实现</h2><p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513223927070.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h2 id="6-5-7种SQL-JOINS的实现"><a href="#6-5-7种SQL-JOINS的实现" class="headerlink" title="6.5 7种SQL JOINS的实现"></a>6.5 7种SQL JOINS的实现</h2><p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513223927070.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <h3 id="6-5-1-sql实现"><a href="#6-5-1-sql实现" class="headerlink" title="6.5.1 sql实现"></a>6.5.1 sql实现</h3><pre><code class="hljs">#中图：内连接 A∩B
 SELECT employee_id,last_name,department_name
 FROM employees e JOIN departments d
@@ -898,7 +898,7 @@ AND employees.job_id = jobs.job_id;
 <h2 id="7-1-函数的理解"><a href="#7-1-函数的理解" class="headerlink" title="7.1 函数的理解"></a>7.1 函数的理解</h2><h3 id="7-1-1-什么是函数"><a href="#7-1-1-什么是函数" class="headerlink" title="7.1.1 什么是函数"></a>7.1.1 什么是函数</h3><blockquote>
 <p>函数在计算机语言的使用中贯穿始终，函数的作用是什么呢？它可以把我们经常使用的代码封装起来，需要的时候直接调用即可。这样既提高了代码效率，又提高了可维护性。在 SQL 中我们也可以使用函数对检索出来的数据进行函数操作。使用这些函数，可以极大地提高用户对数据库的管理效率。</p>
 </blockquote>
-<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513230738229.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513230738229.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <blockquote>
 <p>从函数定义的角度出发，我们可以将函数分成内置函数和自定义函数。在 SQL 语言中，同样也包括了内置函数和自定义函数。内置函数是系统内置的通用函数，而自定义函数是我们根据自己的需要编写的，本章及下一章讲解的是 SQL 的内置函数。</p>
 </blockquote>
@@ -911,7 +911,7 @@ AND employees.job_id = jobs.job_id;
 <li>MySQL提供的内置函数从实现的功能角度可以分为数值函数、字符串函数、日期和时间函数、流程控制函数、加密与解密函数、获取MySQL信息函数、聚合函数等。这里，我将这些丰富的内置函数再分为两类：单行函数、聚合函数（或分组函数）。</li>
 </ul>
 </blockquote>
-<p><strong>两种SQL函数</strong><br><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513230749303.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>单行函数</strong></p>
+<p><strong>两种SQL函数</strong><br><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220513230749303.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>单行函数</strong></p>
 <blockquote>
 <ul>
 <li>操作数据对象</li>
@@ -957,15 +957,15 @@ AND employees.job_id = jobs.job_id;
        CEILING(-43.23),FLOOR(32.32),FLOOR(-43.23),MOD(12,5)
 FROM DUAL;
 </code></pre>
-<p><img src="/.io//08c49659f63b458392ad8ce7a055bd97.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/08c49659f63b458392ad8ce7a055bd97.png" srcset="/img/loading.gif" lazyload></p>
 <pre><code class="hljs">SELECT RAND(),RAND(),RAND(10),RAND(10),RAND(-1),RAND(-1)
 FROM DUAL;
 </code></pre>
-<p><img src="/.io//01bf91a97c6e463b810a2d7adc430078.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/01bf91a97c6e463b810a2d7adc430078.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT ROUND(12.33),ROUND(12.343,2),ROUND(12.324,-1),TRUNCATE(12.66,1),TRUNCATE(12.66,-1)
 FROM DUAL;
 </code></pre>
-<p><img src="/.io//361d1584fae046fc9fdf013110062368.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/361d1584fae046fc9fdf013110062368.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <h3 id="7-2-2-角度与弧度互换函数"><a href="#7-2-2-角度与弧度互换函数" class="headerlink" title="7.2.2 角度与弧度互换函数"></a>7.2.2 角度与弧度互换函数</h3><p>函数</p>
 <p>用法</p>
 <p>RADIANS(x)</p>
@@ -975,7 +975,7 @@ FROM DUAL;
 <pre><code class="hljs">SELECT RADIANS(30),RADIANS(60),RADIANS(90),DEGREES(2*PI()),DEGREES(RADIANS(90))
 FROM DUAL;
 </code></pre>
-<p><img src="/.io//8b76f7d24c6a4689bc0627143ca6e539.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/8b76f7d24c6a4689bc0627143ca6e539.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <h3 id="7-2-3-三角函数"><a href="#7-2-3-三角函数" class="headerlink" title="7.2.3 三角函数"></a>7.2.3 三角函数</h3><p>函数</p>
 <p>用法</p>
 <p>SIN(x)</p>
@@ -1002,7 +1002,7 @@ FROM DUAL;
 <pre><code class="hljs">SELECT SIN(RADIANS(30)),DEGREES(ASIN(1)),TAN(RADIANS(45)),DEGREES(ATAN(1)),DEGREES(ATAN2(1,1))
 FROM DUAL;
 </code></pre>
-<p><img src="/.io//b2d0810e112845539144294e9817bd2b.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/b2d0810e112845539144294e9817bd2b.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <h3 id="7-2-4-三角函数"><a href="#7-2-4-三角函数" class="headerlink" title="7.2.4 三角函数"></a>7.2.4 三角函数</h3><p>函数</p>
 <p>用法</p>
 <p>POW(x,y)，</p>
@@ -1018,7 +1018,7 @@ FROM DUAL;
 <pre><code class="hljs">SELECT POW(2,5),POWER(2,4),EXP(2),LN(10),LOG10(10),LOG2(4)
 FROM DUAL;
 </code></pre>
-<p><img src="/.io//bceb5080226a4cb9934a042f90b2e2f4.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/bceb5080226a4cb9934a042f90b2e2f4.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <h3 id="7-2-5-进制间的转换"><a href="#7-2-5-进制间的转换" class="headerlink" title="7.2.5 进制间的转换"></a>7.2.5 进制间的转换</h3><p>函数</p>
 <p>用法</p>
 <p>BIN(x)</p>
@@ -1032,7 +1032,7 @@ FROM DUAL;
 <pre><code class="hljs">SELECT BIN(10),HEX(10),OCT(10),CONV(10,2,8)
 FROM DUAL;
 </code></pre>
-<p><img src="/.io//7f2824169dad4332b899615c9a64cdfa.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/7f2824169dad4332b899615c9a64cdfa.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <h2 id="7-3-字符串函数"><a href="#7-3-字符串函数" class="headerlink" title="7.3 字符串函数"></a>7.3 字符串函数</h2><p>函数</p>
 <p>用法</p>
 <p>ASCII(S)</p>
@@ -1099,10 +1099,10 @@ FROM DUAL;
 <pre><code class="hljs">SELECT FIELD(&#39;mm&#39;,&#39;hello&#39;,&#39;msm&#39;,&#39;amma&#39;),FIND_IN_SET(&#39;mm&#39;,&#39;hello,mm,amma&#39;)
 FROM DUAL;
 </code></pre>
-<p><img src="/.io//618610f74f5f4331ba249d8031de19b0.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/618610f74f5f4331ba249d8031de19b0.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT NULLIF(&#39;mysql&#39;,&#39;mysql&#39;),NULLIF(&#39;mysql&#39;, &#39;&#39;);
 </code></pre>
-<p><img src="/.io//eb150d95799c4f158362cda2a193197a.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/eb150d95799c4f158362cda2a193197a.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <h2 id="7-4-日期和时间函数"><a href="#7-4-日期和时间函数" class="headerlink" title="7.4 日期和时间函数"></a>7.4 日期和时间函数</h2><h3 id="7-4-1-获取日期、时间"><a href="#7-4-1-获取日期、时间" class="headerlink" title="7.4.1 获取日期、时间"></a>7.4.1 获取日期、时间</h3><p>函数</p>
 <p>用法</p>
 <p>CURDATE() ，CURRENT_DATE()</p>
@@ -1118,7 +1118,7 @@ FROM DUAL;
 <pre><code class="hljs">SELECT CURDATE(),CURTIME(),NOW(),SYSDATE()+0,UTC_DATE(),UTC_DATE()+0,UTC_TIME(),UTC_TIME()+0
 FROM DUAL;
 </code></pre>
-<p><img src="/.io//a2edbd532dc74f5cb01c8bb3bf767a93.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/a2edbd532dc74f5cb01c8bb3bf767a93.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <h3 id="7-4-2-日期与时间戳的转换"><a href="#7-4-2-日期与时间戳的转换" class="headerlink" title="7.4.2 日期与时间戳的转换"></a>7.4.2 日期与时间戳的转换</h3><p>函数</p>
 <p>用法</p>
 <p>UNIX_TIMESTAMP()</p>
@@ -1130,16 +1130,16 @@ FROM DUAL;
 <p><strong>举例</strong></p>
 <pre><code class="hljs">SELECT UNIX_TIMESTAMP(NOW());
 </code></pre>
-<p><img src="/.io//8df87645a3fb463cb593aa3f4aef90d7.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/8df87645a3fb463cb593aa3f4aef90d7.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT UNIX_TIMESTAMP(CURDATE());
 </code></pre>
-<p><img src="/.io//a3914ebab4ed4f2f9e8429780001940d.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/a3914ebab4ed4f2f9e8429780001940d.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT UNIX_TIMESTAMP(&#39;2011-11-11 11:11:11&#39;)
 </code></pre>
-<p><img src="/.io//1ed6ceae98ab4dedbf2be4f87c32def4.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/1ed6ceae98ab4dedbf2be4f87c32def4.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT FROM_UNIXTIME(1576380910);
 </code></pre>
-<p><img src="/.io//ca86d89287be47fbbc0ccf542fb57a63.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/ca86d89287be47fbbc0ccf542fb57a63.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <h3 id="7-4-3-获取月份、星期、星期数、天数等函数"><a href="#7-4-3-获取月份、星期、星期数、天数等函数" class="headerlink" title="7.4.3 获取月份、星期、星期数、天数等函数"></a>7.4.3 获取月份、星期、星期数、天数等函数</h3><p>函数</p>
 <p>用法</p>
 <p>YEAR(date) &#x2F; MONTH(date) &#x2F; DAY(date)</p>
@@ -1166,13 +1166,13 @@ FROM DUAL;
 HOUR(CURTIME()),MINUTE(NOW()),SECOND(SYSDATE())
 FROM DUAL;
 </code></pre>
-<p><img src="/.io//367b529c2c8540fe8e504595f8c9a326.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/367b529c2c8540fe8e504595f8c9a326.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT MONTHNAME(&#39;2021-10-26&#39;),DAYNAME(&#39;2021-10-26&#39;),WEEKDAY(&#39;2021-10-26&#39;),
 QUARTER(CURDATE()),WEEK(CURDATE()),DAYOFYEAR(NOW()),
 DAYOFMONTH(NOW()),DAYOFWEEK(NOW())
 FROM DUAL;
 </code></pre>
-<p><img src="/.io//88c5ce12d5644e94aba87aade1bbec8b.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/88c5ce12d5644e94aba87aade1bbec8b.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <h3 id="7-4-4-日期的操作函数"><a href="#7-4-4-日期的操作函数" class="headerlink" title="7.4.4 日期的操作函数"></a>7.4.4 日期的操作函数</h3><p>函数</p>
 <p>用法</p>
 <p>EXTRACT(type FROM date)</p>
@@ -1234,10 +1234,10 @@ FROM DUAL;
 <p>将 seconds 描述转化为包含小时、分钟和秒的时间</p>
 <pre><code class="hljs">SELECT TIME_TO_SEC(NOW());
 </code></pre>
-<p><img src="/.io//e3f169857d144b3896f9a8ed4c16a73e.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/e3f169857d144b3896f9a8ed4c16a73e.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT SEC_TO_TIME(71507);
 </code></pre>
-<p><img src="/.io//be4878706dbd489895b4b97a505fbce2.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/be4878706dbd489895b4b97a505fbce2.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <h3 id="7-4-6-计算日期和时间的函数"><a href="#7-4-6-计算日期和时间的函数" class="headerlink" title="7.4.6 计算日期和时间的函数"></a>7.4.6 计算日期和时间的函数</h3><p>第一组:</p>
 <p>函数</p>
 <p>用法</p>
@@ -1281,13 +1281,13 @@ FROM DUAL;
        DATE_ADD(NOW(), INTERVAL &#39;1_1&#39; YEAR_MONTH) AS col6 #需要单引号
 FROM DUAL;
 </code></pre>
-<p><img src="/.io//77453bf238d04b628e295667ea2101bd.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/77453bf238d04b628e295667ea2101bd.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT DATE_SUB(&#39;2022-2-26&#39;,INTERVAL 31 DAY) AS col1,
        SUBDATE(&#39;2022-2-26&#39;,INTERVAL 31 DAY) AS col2,
        DATE_SUB(&#39;2022-2-26 20:04:02&#39;,INTERVAL &#39;1 1&#39; DAY_HOUR) AS col3
 FROM DUAL;
 </code></pre>
-<p><img src="/.io//843b241a153347e4af6a543a75d5f201.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>第二组:</p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/843b241a153347e4af6a543a75d5f201.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>第二组:</p>
 <p>函数</p>
 <p>用法</p>
 <p>ADDTIME(time1,time2)</p>
@@ -1315,34 +1315,34 @@ FROM DUAL;
        LAST_DAY(NOW()),MAKEDATE(YEAR(NOW()),12),MAKETIME(10,21,23),PERIOD_ADD(20200101010101,10)
 FROM DUAL;
 </code></pre>
-<p><img src="/.io//b6a1b7646f7a4f689d56011cc0566e1b.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/b6a1b7646f7a4f689d56011cc0566e1b.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT ADDTIME(NOW(),50); #当期时间加50秒
 </code></pre>
-<p><img src="/.io//e82ac2c574754169a6ccd6b6ed9d1994.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/e82ac2c574754169a6ccd6b6ed9d1994.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT ADDTIME(NOW(),&#39;1:1:1&#39;); #当前时间加1小时1分钟1秒
 </code></pre>
-<p><img src="/.io//737d3dfa22ca46aabe22118d4c76dc6b.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/737d3dfa22ca46aabe22118d4c76dc6b.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT SUBTIME(NOW(),&#39;1:1:1&#39;); #当前时间减1小时1分钟1秒
 </code></pre>
-<p><img src="/.io//ceabd8f6c1ff4d94aa677bd08bbc59a3.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/ceabd8f6c1ff4d94aa677bd08bbc59a3.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT SUBTIME(NOW(), &#39;-1:-1:-1&#39;); 
 </code></pre>
-<p><img src="/.io//9efc898eed13430b8e76541211974baf.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/9efc898eed13430b8e76541211974baf.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT FROM_DAYS(366);
 </code></pre>
-<p><img src="/.io//fdc0ab1da5894dc498cf1aaab903f361.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/fdc0ab1da5894dc498cf1aaab903f361.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT MAKEDATE(2022,1);
 </code></pre>
-<p><img src="/.io//ed35dd1ec14a4e01a1dee202f3c9e3a3.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/ed35dd1ec14a4e01a1dee202f3c9e3a3.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT MAKETIME(1,1,1);
 </code></pre>
-<p><img src="/.io//900b7a90db0940ac9833f168165a67e6.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/900b7a90db0940ac9833f168165a67e6.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT PERIOD_ADD(20200101010101,1);
 </code></pre>
-<p><img src="/.io//eb5239c0ab7b495982a8b6688eba7027.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/eb5239c0ab7b495982a8b6688eba7027.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT TO_DAYS(NOW());
 </code></pre>
-<p><img src="/.io//c7bdb33bf68b47bd984d0214884a4312.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/c7bdb33bf68b47bd984d0214884a4312.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">#查询 7 天内的新增用户数有多少？
 SELECT COUNT(*) AS num FROM new_user WHERE TO_DAYS(NOW())-TO_DAYS(regist_time)&lt;=7
 </code></pre>
@@ -1412,31 +1412,31 @@ SELECT COUNT(*) AS num FROM new_user WHERE TO_DAYS(NOW())-TO_DAYS(regist_time)&l
 <p>%%</p>
 <p>表示%</p>
 <p>GET_FORMAT函数中date_type和format_type参数取值如下：</p>
-<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-3240356.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-3240356.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT DATE_FORMAT(NOW(), &#39;%H:%i:%s&#39;);
 </code></pre>
-<p><img src="/.io//b0a32727980f4964badc1c2acd75bb20.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/b0a32727980f4964badc1c2acd75bb20.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT STR_TO_DATE(&#39;09/01/2009&#39;,&#39;%m/%d/%Y&#39;)
 FROM DUAL;
 </code></pre>
-<p><img src="/.io//0cacd611aeee41129e022d7dee5646ee.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/0cacd611aeee41129e022d7dee5646ee.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT STR_TO_DATE(&#39;20140422154706&#39;,&#39;%Y%m%d%H%i%s&#39;)
 FROM DUAL;
 </code></pre>
-<p><img src="/.io//e6e53a54896c4cb7b6734369f2230622.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/e6e53a54896c4cb7b6734369f2230622.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT STR_TO_DATE(&#39;2014-04-22 15:47:06&#39;,&#39;%Y-%m-%d %H:%i:%s&#39;)
 FROM DUAL;
 </code></pre>
-<p><img src="/.io//72bc357a74604c76a750992b74519a45.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/72bc357a74604c76a750992b74519a45.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT GET_FORMAT(DATE, &#39;USA&#39;);
 </code></pre>
-<p><img src="/.io//573c9396b7694572886270af9d5d88d8.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/573c9396b7694572886270af9d5d88d8.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT DATE_FORMAT(NOW(),GET_FORMAT(DATE,&#39;USA&#39;)) FROM DUAL;
 </code></pre>
-<p><img src="/.io//611ca03eee20413084b582eadde75aa7.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/611ca03eee20413084b582eadde75aa7.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT STR_TO_DATE(&#39;2020-01-01 00:00:00&#39;,&#39;%Y-%m-%d&#39;);
 </code></pre>
-<p><img src="/.io//90b532ad482047f894c3a99e5f9035d3.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/90b532ad482047f894c3a99e5f9035d3.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <h2 id="7-5-流程控制函数"><a href="#7-5-流程控制函数" class="headerlink" title="7.5 流程控制函数"></a>7.5 流程控制函数</h2><blockquote>
 <p>流程处理函数可以根据不同的条件，执行不同的处理流程，可以在SQL语句中实现不同的条件选择。MySQL中的流程处理函数主要包括IF()、IFNULL()和CASE()函数。</p>
 </blockquote>
@@ -1452,10 +1452,10 @@ FROM DUAL;
 <p>相当于Java的switch…case…</p>
 <pre><code class="hljs">SELECT IF(1&gt;0,&#39;正确&#39;,&#39;错误&#39;)
 </code></pre>
-<p><img src="/.io//041fe748a5c2449eb44f06a104c2fddc.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/041fe748a5c2449eb44f06a104c2fddc.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT IFNULL(NULL,&#39;Hello Word&#39;);
 </code></pre>
-<p><img src="/.io//85a2986aed5e4c16ab294045b21877b1.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/85a2986aed5e4c16ab294045b21877b1.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT CASE WHEN 1 &gt; 0 THEN &#39;1&gt;0&#39;
             WHEN 2 &gt; 0 THEN &#39;2&gt;0&#39;
        ELSE &#39;3 &gt; 0&#39;
@@ -1545,16 +1545,16 @@ mysql&gt; SELECT DECODE(ENCODE(&#39;mysql&#39;,&#39;mysql&#39;),&#39;mysql&#39;)
 <p>返回字符串value的比较规则</p>
 <pre><code class="hljs"> SELECT DATABASE();
 </code></pre>
-<p><img src="/.io//92178882cd3040e3904289bcc1562749.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/92178882cd3040e3904289bcc1562749.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT USER(), CURRENT_USER(), SYSTEM_USER(),SESSION_USER();
 </code></pre>
-<p><img src="/.io//f72ddc523ec24db78ecfae7fa2860758.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/f72ddc523ec24db78ecfae7fa2860758.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT CHARSET(&#39;ABC&#39;);
 </code></pre>
-<p><img src="/.io//3376496e1a9e4e629853646ba6ab2371.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/3376496e1a9e4e629853646ba6ab2371.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT COLLATION(&#39;ABC&#39;);
 </code></pre>
-<p><img src="/.io//38001c9a4f724e09b661acb54ebbb836.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/38001c9a4f724e09b661acb54ebbb836.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <h2 id="7-8-其他函数"><a href="#7-8-其他函数" class="headerlink" title="7.8 其他函数"></a>7.8 其他函数</h2><blockquote>
 <p>MySQL中有些函数无法对其进行具体的分类，但是这些函数在MySQL的开发和运维过程中也是不容忽视的。</p>
 </blockquote>
@@ -1575,26 +1575,26 @@ mysql&gt; SELECT DECODE(ENCODE(&#39;mysql&#39;,&#39;mysql&#39;),&#39;mysql&#39;)
 <pre><code class="hljs"># 如果n的值小于或者等于0，则只保留整数部分
 SELECT FORMAT(123.123, 2), FORMAT(123.523, 0), FORMAT(123.123, -2);
 </code></pre>
-<p><img src="/.io//149bcd03c4c74914a75b02f7cba35dd4.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/149bcd03c4c74914a75b02f7cba35dd4.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT CONV(16, 10, 2), CONV(8888,10,16), CONV(NULL, 10, 2);
 </code></pre>
-<p><img src="/.io//7f35906c0ca04cd9b450cc4fc63c8078.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/7f35906c0ca04cd9b450cc4fc63c8078.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT INET_ATON(&#39;192.168.1.100&#39;);
 # 以“192.168.1.100”为例，计算方式为192乘以256的3次方，加上168乘以256的2次方，加上1乘以256，再加上100。
 </code></pre>
-<p><img src="/.io//27a2424ee0bd4998895fdbfab5d5f7ae.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/27a2424ee0bd4998895fdbfab5d5f7ae.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT INET_NTOA(3232235876);
 </code></pre>
-<p><img src="/.io//15e49d139fd54125b9607dad465e0403.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/15e49d139fd54125b9607dad465e0403.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT BENCHMARK(1, MD5(&#39;mysql&#39;));
 </code></pre>
-<p><img src="/.io//5cca5d9899094724addd192ff3fb74f9.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/5cca5d9899094724addd192ff3fb74f9.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT BENCHMARK(1000000, MD5(&#39;mysql&#39;)); 
 </code></pre>
-<p><img src="/.io//94644cc54380410c9b208ab1e6a5ad3f.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/94644cc54380410c9b208ab1e6a5ad3f.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <pre><code class="hljs">SELECT CHARSET(&#39;mysql&#39;), CHARSET(CONVERT(&#39;mysql&#39; USING &#39;utf8&#39;));
 </code></pre>
-<p><img src="/.io//2a542413a53d4981bb913f3f5a3aea65.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B05-6%E7%AB%A0/2a542413a53d4981bb913f3f5a3aea65.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <h2 id="7-9-练习sql"><a href="#7-9-练习sql" class="headerlink" title="7.9. 练习sql"></a>7.9. 练习sql</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br></pre></td><td class="code"><pre><code class="hljs sql">#第<span class="hljs-number">07</span>章_单行函数<br><br>#<span class="hljs-number">1.</span>数值函数<br>#基本的操作<br><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">ABS</span>(<span class="hljs-number">-123</span>),<span class="hljs-built_in">ABS</span>(<span class="hljs-number">32</span>),SIGN(<span class="hljs-number">-23</span>),SIGN(<span class="hljs-number">43</span>),PI(),<span class="hljs-built_in">CEIL</span>(<span class="hljs-number">32.32</span>),<span class="hljs-built_in">CEILING</span>(<span class="hljs-number">-43.23</span>),<span class="hljs-built_in">FLOOR</span>(<span class="hljs-number">32.32</span>),<br><span class="hljs-built_in">FLOOR</span>(<span class="hljs-number">-43.23</span>),<span class="hljs-built_in">MOD</span>(<span class="hljs-number">12</span>,<span class="hljs-number">5</span>),<span class="hljs-number">12</span> MOD <span class="hljs-number">5</span>,<span class="hljs-number">12</span> <span class="hljs-operator">%</span> <span class="hljs-number">5</span><br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#取随机数<br><span class="hljs-keyword">SELECT</span> RAND(),RAND(),RAND(<span class="hljs-number">10</span>),RAND(<span class="hljs-number">10</span>),RAND(<span class="hljs-number">-1</span>),RAND(<span class="hljs-number">-1</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#四舍五入，截断操作<br><span class="hljs-keyword">SELECT</span> ROUND(<span class="hljs-number">123.556</span>),ROUND(<span class="hljs-number">123.456</span>,<span class="hljs-number">0</span>),ROUND(<span class="hljs-number">123.456</span>,<span class="hljs-number">1</span>),ROUND(<span class="hljs-number">123.456</span>,<span class="hljs-number">2</span>),<br>ROUND(<span class="hljs-number">123.456</span>,<span class="hljs-number">-1</span>),ROUND(<span class="hljs-number">153.456</span>,<span class="hljs-number">-2</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">TRUNCATE</span>(<span class="hljs-number">123.456</span>,<span class="hljs-number">0</span>),<span class="hljs-keyword">TRUNCATE</span>(<span class="hljs-number">123.496</span>,<span class="hljs-number">1</span>),<span class="hljs-keyword">TRUNCATE</span>(<span class="hljs-number">129.45</span>,<span class="hljs-number">-1</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#单行函数可以嵌套<br><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">TRUNCATE</span>(ROUND(<span class="hljs-number">123.456</span>,<span class="hljs-number">2</span>),<span class="hljs-number">0</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#角度与弧度的互换<br><br><span class="hljs-keyword">SELECT</span> RADIANS(<span class="hljs-number">30</span>),RADIANS(<span class="hljs-number">45</span>),RADIANS(<span class="hljs-number">60</span>),RADIANS(<span class="hljs-number">90</span>),<br>DEGREES(<span class="hljs-number">2</span><span class="hljs-operator">*</span>PI()),DEGREES(RADIANS(<span class="hljs-number">60</span>))<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><br>#三角函数<br><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">SIN</span>(RADIANS(<span class="hljs-number">30</span>)),DEGREES(<span class="hljs-built_in">ASIN</span>(<span class="hljs-number">1</span>)),<span class="hljs-built_in">TAN</span>(RADIANS(<span class="hljs-number">45</span>)),DEGREES(<span class="hljs-built_in">ATAN</span>(<span class="hljs-number">1</span>))<br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#指数和对数<br><span class="hljs-keyword">SELECT</span> POW(<span class="hljs-number">2</span>,<span class="hljs-number">5</span>),<span class="hljs-built_in">POWER</span>(<span class="hljs-number">2</span>,<span class="hljs-number">4</span>),<span class="hljs-built_in">EXP</span>(<span class="hljs-number">2</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">LN</span>(<span class="hljs-built_in">EXP</span>(<span class="hljs-number">2</span>)),<span class="hljs-built_in">LOG</span>(<span class="hljs-built_in">EXP</span>(<span class="hljs-number">2</span>)),<span class="hljs-built_in">LOG10</span>(<span class="hljs-number">10</span>),LOG2(<span class="hljs-number">4</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#进制间的转换<br><span class="hljs-keyword">SELECT</span> BIN(<span class="hljs-number">10</span>),HEX(<span class="hljs-number">10</span>),OCT(<span class="hljs-number">10</span>),CONV(<span class="hljs-number">10</span>,<span class="hljs-number">10</span>,<span class="hljs-number">8</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><br>#<span class="hljs-number">2.</span> 字符串函数<br><br><span class="hljs-keyword">SELECT</span> ASCII(<span class="hljs-string">&#x27;Abcdfsf&#x27;</span>),<span class="hljs-keyword">CHAR_LENGTH</span>(<span class="hljs-string">&#x27;hello&#x27;</span>),<span class="hljs-keyword">CHAR_LENGTH</span>(<span class="hljs-string">&#x27;我们&#x27;</span>),<br>LENGTH(<span class="hljs-string">&#x27;hello&#x27;</span>),LENGTH(<span class="hljs-string">&#x27;我们&#x27;</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br># xxx worked <span class="hljs-keyword">for</span> yyy<br><span class="hljs-keyword">SELECT</span> CONCAT(emp.last_name,<span class="hljs-string">&#x27; worked for &#x27;</span>,mgr.last_name) &quot;details&quot;<br><span class="hljs-keyword">FROM</span> employees emp <span class="hljs-keyword">JOIN</span> employees mgr<br><span class="hljs-keyword">WHERE</span> emp.`manager_id` <span class="hljs-operator">=</span> mgr.employee_id;<br><br><span class="hljs-keyword">SELECT</span> CONCAT_WS(<span class="hljs-string">&#x27;-&#x27;</span>,<span class="hljs-string">&#x27;hello&#x27;</span>,<span class="hljs-string">&#x27;world&#x27;</span>,<span class="hljs-string">&#x27;hello&#x27;</span>,<span class="hljs-string">&#x27;beijing&#x27;</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br>#字符串的索引是从<span class="hljs-number">1</span>开始的！<br><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">INSERT</span>(<span class="hljs-string">&#x27;helloworld&#x27;</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-string">&#x27;aaaaa&#x27;</span>),REPLACE(<span class="hljs-string">&#x27;hello&#x27;</span>,<span class="hljs-string">&#x27;lol&#x27;</span>,<span class="hljs-string">&#x27;mmm&#x27;</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">UPPER</span>(<span class="hljs-string">&#x27;HelLo&#x27;</span>),<span class="hljs-built_in">LOWER</span>(<span class="hljs-string">&#x27;HelLo&#x27;</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><span class="hljs-keyword">SELECT</span> last_name,salary<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">WHERE</span> <span class="hljs-built_in">LOWER</span>(last_name) <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;King&#x27;</span>;<br><br><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">LEFT</span>(<span class="hljs-string">&#x27;hello&#x27;</span>,<span class="hljs-number">2</span>),<span class="hljs-keyword">RIGHT</span>(<span class="hljs-string">&#x27;hello&#x27;</span>,<span class="hljs-number">3</span>),<span class="hljs-keyword">RIGHT</span>(<span class="hljs-string">&#x27;hello&#x27;</span>,<span class="hljs-number">13</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br># LPAD:实现右对齐效果<br># RPAD:实现左对齐效果<br><span class="hljs-keyword">SELECT</span> employee_id,last_name,LPAD(salary,<span class="hljs-number">10</span>,<span class="hljs-string">&#x27; &#x27;</span>)<br><span class="hljs-keyword">FROM</span> employees;<br><br><span class="hljs-keyword">SELECT</span> CONCAT(<span class="hljs-string">&#x27;---&#x27;</span>,LTRIM(<span class="hljs-string">&#x27;    h  el  lo   &#x27;</span>),<span class="hljs-string">&#x27;***&#x27;</span>),<br><span class="hljs-built_in">TRIM</span>(<span class="hljs-string">&#x27;oo&#x27;</span> <span class="hljs-keyword">FROM</span> <span class="hljs-string">&#x27;ooheollo&#x27;</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><span class="hljs-keyword">SELECT</span> REPEAT(<span class="hljs-string">&#x27;hello&#x27;</span>,<span class="hljs-number">4</span>),LENGTH(SPACE(<span class="hljs-number">5</span>)),STRCMP(<span class="hljs-string">&#x27;abc&#x27;</span>,<span class="hljs-string">&#x27;abe&#x27;</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><br><span class="hljs-keyword">SELECT</span> SUBSTR(<span class="hljs-string">&#x27;hello&#x27;</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>),LOCATE(<span class="hljs-string">&#x27;lll&#x27;</span>,<span class="hljs-string">&#x27;hello&#x27;</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><span class="hljs-keyword">SELECT</span> ELT(<span class="hljs-number">2</span>,<span class="hljs-string">&#x27;a&#x27;</span>,<span class="hljs-string">&#x27;b&#x27;</span>,<span class="hljs-string">&#x27;c&#x27;</span>,<span class="hljs-string">&#x27;d&#x27;</span>),FIELD(<span class="hljs-string">&#x27;mm&#x27;</span>,<span class="hljs-string">&#x27;gg&#x27;</span>,<span class="hljs-string">&#x27;jj&#x27;</span>,<span class="hljs-string">&#x27;mm&#x27;</span>,<span class="hljs-string">&#x27;dd&#x27;</span>,<span class="hljs-string">&#x27;mm&#x27;</span>),<br>FIND_IN_SET(<span class="hljs-string">&#x27;mm&#x27;</span>,<span class="hljs-string">&#x27;gg,mm,jj,dd,mm,gg&#x27;</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><span class="hljs-keyword">SELECT</span> employee_id,<span class="hljs-built_in">NULLIF</span>(LENGTH(first_name),LENGTH(last_name)) &quot;compare&quot;<br><span class="hljs-keyword">FROM</span> employees;<br><br>#<span class="hljs-number">3.</span> 日期和时间函数<br><br>#<span class="hljs-number">3.1</span>  获取日期、时间<br><span class="hljs-keyword">SELECT</span> CURDATE(),<span class="hljs-built_in">CURRENT_DATE</span>(),CURTIME(),NOW(),SYSDATE(),<br>UTC_DATE(),UTC_TIME()<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><span class="hljs-keyword">SELECT</span> CURDATE(),CURDATE() <span class="hljs-operator">+</span> <span class="hljs-number">0</span>,CURTIME() <span class="hljs-operator">+</span> <span class="hljs-number">0</span>,NOW() <span class="hljs-operator">+</span> <span class="hljs-number">0</span><br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#<span class="hljs-number">3.2</span> 日期与时间戳的转换<br><span class="hljs-keyword">SELECT</span> UNIX_TIMESTAMP(),UNIX_TIMESTAMP(<span class="hljs-string">&#x27;2021-10-01 12:12:32&#x27;</span>),<br>FROM_UNIXTIME(<span class="hljs-number">1635173853</span>),FROM_UNIXTIME(<span class="hljs-number">1633061552</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#<span class="hljs-number">3.3</span> 获取月份、星期、星期数、天数等函数<br><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">YEAR</span>(CURDATE()),<span class="hljs-keyword">MONTH</span>(CURDATE()),<span class="hljs-keyword">DAY</span>(CURDATE()),<br><span class="hljs-keyword">HOUR</span>(CURTIME()),<span class="hljs-keyword">MINUTE</span>(NOW()),<span class="hljs-keyword">SECOND</span>(SYSDATE())<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><br><span class="hljs-keyword">SELECT</span> MONTHNAME(<span class="hljs-string">&#x27;2021-10-26&#x27;</span>),DAYNAME(<span class="hljs-string">&#x27;2021-10-26&#x27;</span>),WEEKDAY(<span class="hljs-string">&#x27;2021-10-26&#x27;</span>),<br>QUARTER(CURDATE()),WEEK(CURDATE()),DAYOFYEAR(NOW()),<br>DAYOFMONTH(NOW()),DAYOFWEEK(NOW())<br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#<span class="hljs-number">3.4</span> 日期的操作函数<br><br><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">EXTRACT</span>(<span class="hljs-keyword">SECOND</span> <span class="hljs-keyword">FROM</span> NOW()),<span class="hljs-built_in">EXTRACT</span>(<span class="hljs-keyword">DAY</span> <span class="hljs-keyword">FROM</span> NOW()),<br><span class="hljs-built_in">EXTRACT</span>(HOUR_MINUTE <span class="hljs-keyword">FROM</span> NOW()),<span class="hljs-built_in">EXTRACT</span>(QUARTER <span class="hljs-keyword">FROM</span> <span class="hljs-string">&#x27;2021-05-12&#x27;</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#<span class="hljs-number">3.5</span> 时间和秒钟转换的函数<br><span class="hljs-keyword">SELECT</span> TIME_TO_SEC(CURTIME()),<br>SEC_TO_TIME(<span class="hljs-number">83355</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#<span class="hljs-number">3.6</span> 计算日期和时间的函数<br><br><span class="hljs-keyword">SELECT</span> NOW(),DATE_ADD(NOW(),<span class="hljs-type">INTERVAL</span> <span class="hljs-number">1</span> <span class="hljs-keyword">YEAR</span>),<br>DATE_ADD(NOW(),<span class="hljs-type">INTERVAL</span> <span class="hljs-number">-1</span> <span class="hljs-keyword">YEAR</span>),<br>DATE_SUB(NOW(),<span class="hljs-type">INTERVAL</span> <span class="hljs-number">1</span> <span class="hljs-keyword">YEAR</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><br><span class="hljs-keyword">SELECT</span> DATE_ADD(NOW(), <span class="hljs-type">INTERVAL</span> <span class="hljs-number">1</span> <span class="hljs-keyword">DAY</span>) <span class="hljs-keyword">AS</span> col1,DATE_ADD(<span class="hljs-string">&#x27;2021-10-21 23:32:12&#x27;</span>,<span class="hljs-type">INTERVAL</span> <span class="hljs-number">1</span> <span class="hljs-keyword">SECOND</span>) <span class="hljs-keyword">AS</span> col2,<br>ADDDATE(<span class="hljs-string">&#x27;2021-10-21 23:32:12&#x27;</span>,<span class="hljs-type">INTERVAL</span> <span class="hljs-number">1</span> <span class="hljs-keyword">SECOND</span>) <span class="hljs-keyword">AS</span> col3,<br>DATE_ADD(<span class="hljs-string">&#x27;2021-10-21 23:32:12&#x27;</span>,<span class="hljs-type">INTERVAL</span> <span class="hljs-string">&#x27;1_1&#x27;</span> MINUTE_SECOND) <span class="hljs-keyword">AS</span> col4,<br>DATE_ADD(NOW(), <span class="hljs-type">INTERVAL</span> <span class="hljs-number">-1</span> <span class="hljs-keyword">YEAR</span>) <span class="hljs-keyword">AS</span> col5, #可以是负数<br>DATE_ADD(NOW(), <span class="hljs-type">INTERVAL</span> <span class="hljs-string">&#x27;1_1&#x27;</span> YEAR_MONTH) <span class="hljs-keyword">AS</span> col6 #需要单引号<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><br><span class="hljs-keyword">SELECT</span> ADDTIME(NOW(),<span class="hljs-number">20</span>),SUBTIME(NOW(),<span class="hljs-number">30</span>),SUBTIME(NOW(),<span class="hljs-string">&#x27;1:1:3&#x27;</span>),DATEDIFF(NOW(),<span class="hljs-string">&#x27;2021-10-01&#x27;</span>),<br>TIMEDIFF(NOW(),<span class="hljs-string">&#x27;2021-10-25 22:10:10&#x27;</span>),FROM_DAYS(<span class="hljs-number">366</span>),TO_DAYS(<span class="hljs-string">&#x27;0000-12-25&#x27;</span>),<br>LAST_DAY(NOW()),MAKEDATE(<span class="hljs-keyword">YEAR</span>(NOW()),<span class="hljs-number">32</span>),MAKETIME(<span class="hljs-number">10</span>,<span class="hljs-number">21</span>,<span class="hljs-number">23</span>),PERIOD_ADD(<span class="hljs-number">20200101010101</span>,<span class="hljs-number">10</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#<span class="hljs-number">3.7</span> 日期的格式化与解析<br># 格式化：日期 <span class="hljs-comment">---&gt; 字符串</span><br># 解析：  字符串 <span class="hljs-comment">----&gt; 日期</span><br><br>#此时我们谈的是日期的显式格式化和解析<br><br>#之前，我们接触过隐式的格式化或解析<br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span><br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">WHERE</span> hire_date <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;1993-01-13&#x27;</span>;<br><br>#格式化：<br><span class="hljs-keyword">SELECT</span> DATE_FORMAT(CURDATE(),<span class="hljs-string">&#x27;%Y-%M-%D&#x27;</span>),<br>DATE_FORMAT(NOW(),<span class="hljs-string">&#x27;%Y-%m-%d&#x27;</span>),TIME_FORMAT(CURTIME(),<span class="hljs-string">&#x27;%h:%i:%S&#x27;</span>),<br>DATE_FORMAT(NOW(),<span class="hljs-string">&#x27;%Y-%M-%D %h:%i:%S %W %w %T %r&#x27;</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#解析：格式化的逆过程<br><span class="hljs-keyword">SELECT</span> STR_TO_DATE(<span class="hljs-string">&#x27;2021-October-25th 11:37:30 Monday 1&#x27;</span>,<span class="hljs-string">&#x27;%Y-%M-%D %h:%i:%S %W %w&#x27;</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><span class="hljs-keyword">SELECT</span> GET_FORMAT(<span class="hljs-type">DATE</span>,<span class="hljs-string">&#x27;USA&#x27;</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><span class="hljs-keyword">SELECT</span> DATE_FORMAT(CURDATE(),GET_FORMAT(<span class="hljs-type">DATE</span>,<span class="hljs-string">&#x27;USA&#x27;</span>))<br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#<span class="hljs-number">4.</span>流程控制函数<br>#<span class="hljs-number">4.1</span> IF(<span class="hljs-keyword">VALUE</span>,VALUE1,VALUE2)<br><br><span class="hljs-keyword">SELECT</span> last_name,salary,IF(salary <span class="hljs-operator">&gt;=</span> <span class="hljs-number">6000</span>,<span class="hljs-string">&#x27;高工资&#x27;</span>,<span class="hljs-string">&#x27;低工资&#x27;</span>) &quot;details&quot;<br><span class="hljs-keyword">FROM</span> employees;<br><br><span class="hljs-keyword">SELECT</span> last_name,commission_pct,IF(commission_pct <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,commission_pct,<span class="hljs-number">0</span>) &quot;details&quot;,<br>salary <span class="hljs-operator">*</span> <span class="hljs-number">12</span> <span class="hljs-operator">*</span> (<span class="hljs-number">1</span> <span class="hljs-operator">+</span> IF(commission_pct <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,commission_pct,<span class="hljs-number">0</span>)) &quot;annual_sal&quot;<br><span class="hljs-keyword">FROM</span> employees;<br><br>#<span class="hljs-number">4.2</span> IFNULL(VALUE1,VALUE2):看做是IF(<span class="hljs-keyword">VALUE</span>,VALUE1,VALUE2)的特殊情况<br><span class="hljs-keyword">SELECT</span> last_name,commission_pct,IFNULL(commission_pct,<span class="hljs-number">0</span>) &quot;details&quot;<br><span class="hljs-keyword">FROM</span> employees;<br><br>#<span class="hljs-number">4.3</span> <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> ... <span class="hljs-keyword">THEN</span> ...<span class="hljs-keyword">WHEN</span> ... <span class="hljs-keyword">THEN</span> ... <span class="hljs-keyword">ELSE</span> ... <span class="hljs-keyword">END</span><br># 类似于java的if ... <span class="hljs-keyword">else</span> if ... <span class="hljs-keyword">else</span> if ... <span class="hljs-keyword">else</span><br><span class="hljs-keyword">SELECT</span> last_name,salary,<span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> salary <span class="hljs-operator">&gt;=</span> <span class="hljs-number">15000</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;白骨精&#x27;</span> <br>			     <span class="hljs-keyword">WHEN</span> salary <span class="hljs-operator">&gt;=</span> <span class="hljs-number">10000</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;潜力股&#x27;</span><br>			     <span class="hljs-keyword">WHEN</span> salary <span class="hljs-operator">&gt;=</span> <span class="hljs-number">8000</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;小屌丝&#x27;</span><br>			     <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&#x27;草根&#x27;</span> <span class="hljs-keyword">END</span> &quot;details&quot;,department_id<br><span class="hljs-keyword">FROM</span> employees;<br><br><span class="hljs-keyword">SELECT</span> last_name,salary,<span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> salary <span class="hljs-operator">&gt;=</span> <span class="hljs-number">15000</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;白骨精&#x27;</span> <br>			     <span class="hljs-keyword">WHEN</span> salary <span class="hljs-operator">&gt;=</span> <span class="hljs-number">10000</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;潜力股&#x27;</span><br>			     <span class="hljs-keyword">WHEN</span> salary <span class="hljs-operator">&gt;=</span> <span class="hljs-number">8000</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;小屌丝&#x27;</span><br>			     <span class="hljs-keyword">END</span> &quot;details&quot;<br><span class="hljs-keyword">FROM</span> employees;<br><br>#<span class="hljs-number">4.4</span> <span class="hljs-keyword">CASE</span> ... <span class="hljs-keyword">WHEN</span> ... <span class="hljs-keyword">THEN</span> ... <span class="hljs-keyword">WHEN</span> ... <span class="hljs-keyword">THEN</span> ... <span class="hljs-keyword">ELSE</span> ... <span class="hljs-keyword">END</span><br># 类似于java的swich ... case...<br><span class="hljs-comment">/*</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">练习1</span><br><span class="hljs-comment">查询部门号为 10,20, 30 的员工信息, </span><br><span class="hljs-comment">若部门号为 10, 则打印其工资的 1.1 倍, </span><br><span class="hljs-comment">20 号部门, 则打印其工资的 1.2 倍, </span><br><span class="hljs-comment">30 号部门,打印其工资的 1.3 倍数,</span><br><span class="hljs-comment">其他部门,打印其工资的 1.4 倍数</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">SELECT</span> employee_id,last_name,department_id,salary,<span class="hljs-keyword">CASE</span> department_id <span class="hljs-keyword">WHEN</span> <span class="hljs-number">10</span> <span class="hljs-keyword">THEN</span> salary <span class="hljs-operator">*</span> <span class="hljs-number">1.1</span><br>								     <span class="hljs-keyword">WHEN</span> <span class="hljs-number">20</span> <span class="hljs-keyword">THEN</span> salary <span class="hljs-operator">*</span> <span class="hljs-number">1.2</span><br>								     <span class="hljs-keyword">WHEN</span> <span class="hljs-number">30</span> <span class="hljs-keyword">THEN</span> salary <span class="hljs-operator">*</span> <span class="hljs-number">1.3</span><br>								     <span class="hljs-keyword">ELSE</span> salary <span class="hljs-operator">*</span> <span class="hljs-number">1.4</span> <span class="hljs-keyword">END</span> &quot;details&quot;<br><span class="hljs-keyword">FROM</span> employees;<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">练习2</span><br><span class="hljs-comment">查询部门号为 10,20, 30 的员工信息, </span><br><span class="hljs-comment">若部门号为 10, 则打印其工资的 1.1 倍, </span><br><span class="hljs-comment">20 号部门, 则打印其工资的 1.2 倍, </span><br><span class="hljs-comment">30 号部门打印其工资的 1.3 倍数</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">SELECT</span> employee_id,last_name,department_id,salary,<span class="hljs-keyword">CASE</span> department_id <span class="hljs-keyword">WHEN</span> <span class="hljs-number">10</span> <span class="hljs-keyword">THEN</span> salary <span class="hljs-operator">*</span> <span class="hljs-number">1.1</span><br>								     <span class="hljs-keyword">WHEN</span> <span class="hljs-number">20</span> <span class="hljs-keyword">THEN</span> salary <span class="hljs-operator">*</span> <span class="hljs-number">1.2</span><br>								     <span class="hljs-keyword">WHEN</span> <span class="hljs-number">30</span> <span class="hljs-keyword">THEN</span> salary <span class="hljs-operator">*</span> <span class="hljs-number">1.3</span><br>								     <span class="hljs-keyword">END</span> &quot;details&quot;<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">WHERE</span> department_id <span class="hljs-keyword">IN</span> (<span class="hljs-number">10</span>,<span class="hljs-number">20</span>,<span class="hljs-number">30</span>);<br><br>#<span class="hljs-number">5.</span> 加密与解密的函数<br># PASSWORD()在mysql8<span class="hljs-number">.0</span>中弃用。<br><span class="hljs-keyword">SELECT</span> MD5(<span class="hljs-string">&#x27;mysql&#x27;</span>),SHA(<span class="hljs-string">&#x27;mysql&#x27;</span>),MD5(MD5(<span class="hljs-string">&#x27;mysql&#x27;</span>))<br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#ENCODE()\DECODE() 在mysql8<span class="hljs-number">.0</span>中弃用。<br><span class="hljs-comment">/*</span><br><span class="hljs-comment">SELECT ENCODE(&#x27;atguigu&#x27;,&#x27;mysql&#x27;),DECODE(ENCODE(&#x27;atguigu&#x27;,&#x27;mysql&#x27;),&#x27;mysql&#x27;)</span><br><span class="hljs-comment">FROM DUAL;</span><br><span class="hljs-comment">*/</span><br><br>#<span class="hljs-number">6.</span> MySQL信息函数<br><br><span class="hljs-keyword">SELECT</span> VERSION(),CONNECTION_ID(),DATABASE(),SCHEMA(),<br><span class="hljs-keyword">USER</span>(),<span class="hljs-built_in">CURRENT_USER</span>(),CHARSET(<span class="hljs-string">&#x27;尚硅谷&#x27;</span>),<span class="hljs-keyword">COLLATION</span>(<span class="hljs-string">&#x27;尚硅谷&#x27;</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#<span class="hljs-number">7.</span> 其他函数<br>#如果n的值小于或者等于<span class="hljs-number">0</span>，则只保留整数部分<br><span class="hljs-keyword">SELECT</span> FORMAT(<span class="hljs-number">123.125</span>,<span class="hljs-number">2</span>),FORMAT(<span class="hljs-number">123.125</span>,<span class="hljs-number">0</span>),FORMAT(<span class="hljs-number">123.125</span>,<span class="hljs-number">-2</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><span class="hljs-keyword">SELECT</span> CONV(<span class="hljs-number">16</span>, <span class="hljs-number">10</span>, <span class="hljs-number">2</span>), CONV(<span class="hljs-number">8888</span>,<span class="hljs-number">10</span>,<span class="hljs-number">16</span>), CONV(<span class="hljs-keyword">NULL</span>, <span class="hljs-number">10</span>, <span class="hljs-number">2</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br>#以“<span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.100</span>”为例，计算方式为<span class="hljs-number">192</span>乘以<span class="hljs-number">256</span>的<span class="hljs-number">3</span>次方，加上<span class="hljs-number">168</span>乘以<span class="hljs-number">256</span>的<span class="hljs-number">2</span>次方，加上<span class="hljs-number">1</span>乘以<span class="hljs-number">256</span>，再加上<span class="hljs-number">100</span>。<br><span class="hljs-keyword">SELECT</span> INET_ATON(<span class="hljs-string">&#x27;192.168.1.100&#x27;</span>),INET_NTOA(<span class="hljs-number">3232235876</span>)<br><span class="hljs-keyword">FROM</span> DUAL;<br><br>#BENCHMARK()用于测试表达式的执行效率<br><span class="hljs-keyword">SELECT</span> BENCHMARK(<span class="hljs-number">100000</span>,MD5(<span class="hljs-string">&#x27;mysql&#x27;</span>))<br><span class="hljs-keyword">FROM</span> DUAL;<br># <span class="hljs-keyword">CONVERT</span>():可以实现字符集的转换<br><span class="hljs-keyword">SELECT</span> CHARSET(<span class="hljs-string">&#x27;atguigu&#x27;</span>),CHARSET(<span class="hljs-keyword">CONVERT</span>(<span class="hljs-string">&#x27;atguigu&#x27;</span> <span class="hljs-keyword">USING</span> <span class="hljs-string">&#x27;gbk&#x27;</span>))<br><span class="hljs-keyword">FROM</span> DUAL;<br><br><br><br></code></pre></td></tr></table></figure>
 
 <pre><code class="sql">
@@ -1617,12 +1617,12 @@ SELECT FORMAT(123.123, 2), FORMAT(123.523, 0), FORMAT(123.123, -2);
     
       <span class="category-chain">
         
-  <a href="/categories/database/" class="category-chain-item">database</a>
+  <a href="../../../../../../../categories/database/" class="category-chain-item">database</a>
   
   
     <span>></span>
     
-  <a href="/categories/database/mysql/" class="category-chain-item">mysql</a>
+  <a href="../../../../../../../categories/database/mysql/" class="category-chain-item">mysql</a>
   
   
 
@@ -1639,9 +1639,9 @@ SELECT FORMAT(123.123, 2), FORMAT(123.523, 0), FORMAT(123.123, -2);
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/database/">#database</a>
+        <a href="../../../../../../../tags/database/">#database</a>
       
-        <a href="/tags/mysql/">#mysql</a>
+        <a href="../../../../../../../tags/mysql/">#mysql</a>
       
     </div>
   
@@ -1696,7 +1696,7 @@ SELECT FORMAT(123.123, 2), FORMAT(123.523, 0), FORMAT(123.123, -2);
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B03-4%E7%AB%A0/" title="mysql详细笔记3-4章">
+                      <a href="../mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B03-4%E7%AB%A0/" title="mysql详细笔记3-4章">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">mysql详细笔记3-4章</span>
                         <span class="visible-mobile">Previous</span>
@@ -1706,7 +1706,7 @@ SELECT FORMAT(123.123, 2), FORMAT(123.523, 0), FORMAT(123.123, -2);
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/" title="mysql详细笔记7-8章">
+                      <a href="../mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B07-8%E7%AB%A0/" title="mysql详细笔记7-8章">
                         <span class="hidden-mobile">mysql详细笔记7-8章</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -1829,15 +1829,15 @@ SELECT FORMAT(123.123, 2), FORMAT(123.523, 0), FORMAT(123.123, -2);
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="../../../../../../../js/events.js" ></script>
+<script  src="../../../../../../../js/plugins.js" ></script>
 
 
 
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="../../../../../../../js/img-lazyload.js" ></script>
   
 
 
@@ -1909,7 +1909,7 @@ SELECT FORMAT(123.123, 2), FORMAT(123.523, 0), FORMAT(123.123, -2);
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="../../../../../../../js/local-search.js" ></script>
 
 
 
@@ -1917,7 +1917,7 @@ SELECT FORMAT(123.123, 2), FORMAT(123.523, 0), FORMAT(123.123, -2);
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="../../../../../../../js/boot.js" ></script>
 
 
   

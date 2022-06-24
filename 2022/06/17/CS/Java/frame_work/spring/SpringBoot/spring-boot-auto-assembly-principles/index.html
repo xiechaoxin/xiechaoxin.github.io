@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../../../../../../../../img/fluid.png">
+  <link rel="icon" href="../../../../../../../../../img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,29 +23,29 @@
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="title:  Spring Boot 自动装配原理category: 框架tag:  SpringBoot    本文已经收录进  Github 95k+ Star 的Java项目JavaGuide 。JavaGuide项目地址 : https:&#x2F;&#x2F;github.com&#x2F;Snailclimb&#x2F;JavaGuide 。 作者：Miki-byte-1024 &amp; Snailclimb  每次问">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//bcc73490afbe4c6ba62acde6a94ffdfd~tplv-k3u1fbpfcp-watermark.image">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//3c1200712655443ca4b38500d615bb70~tplv-k3u1fbpfcp-watermark.image">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//77aa6a3727ea4392870f5cccd09844ab~tplv-k3u1fbpfcp-watermark.image">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//3d6ec93bbda1453aa08c52b49516c05a~tplv-k3u1fbpfcp-zoom-1.image">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//58c51920efea4757aa1ec29c6d5f9e36~tplv-k3u1fbpfcp-watermark.image">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//94d6e1a060ac41db97043e1758789026~tplv-k3u1fbpfcp-watermark.image">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//68fa66aeee474b0385f94d23bcfe1745~tplv-k3u1fbpfcp-watermark.image">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//267f8231ae2e48d982154140af6437b0~tplv-k3u1fbpfcp-watermark.image">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//1ff0ebe7844f40289eb60213af72c5a6~tplv-k3u1fbpfcp-watermark.image">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//5e14254276604f87b261e5a80a354cc0~tplv-k3u1fbpfcp-watermark.image">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//1843f1d12c5649fba85fd7b4e4a59e39~tplv-k3u1fbpfcp-watermark.image">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//97b738321f1542ea8140484d6aaf0728~tplv-k3u1fbpfcp-watermark.image">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//edcdd8595a024aba85b6bb20d0e3fed4~tplv-k3u1fbpfcp-watermark.image">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//9a265eea4de742a6bbdbbaa75f437307~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/SpringBoot/spring-boot-auto-assembly-principles/bcc73490afbe4c6ba62acde6a94ffdfd~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/SpringBoot/spring-boot-auto-assembly-principles/3c1200712655443ca4b38500d615bb70~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/SpringBoot/spring-boot-auto-assembly-principles/77aa6a3727ea4392870f5cccd09844ab~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/SpringBoot/spring-boot-auto-assembly-principles/3d6ec93bbda1453aa08c52b49516c05a~tplv-k3u1fbpfcp-zoom-1.image">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/SpringBoot/spring-boot-auto-assembly-principles/58c51920efea4757aa1ec29c6d5f9e36~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/SpringBoot/spring-boot-auto-assembly-principles/94d6e1a060ac41db97043e1758789026~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/SpringBoot/spring-boot-auto-assembly-principles/68fa66aeee474b0385f94d23bcfe1745~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/SpringBoot/spring-boot-auto-assembly-principles/267f8231ae2e48d982154140af6437b0~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/SpringBoot/spring-boot-auto-assembly-principles/1ff0ebe7844f40289eb60213af72c5a6~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/SpringBoot/spring-boot-auto-assembly-principles/5e14254276604f87b261e5a80a354cc0~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/SpringBoot/spring-boot-auto-assembly-principles/1843f1d12c5649fba85fd7b4e4a59e39~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/SpringBoot/spring-boot-auto-assembly-principles/97b738321f1542ea8140484d6aaf0728~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/SpringBoot/spring-boot-auto-assembly-principles/edcdd8595a024aba85b6bb20d0e3fed4~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/SpringBoot/spring-boot-auto-assembly-principles/9a265eea4de742a6bbdbbaa75f437307~tplv-k3u1fbpfcp-watermark.image">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T11:16:58.745Z">
+<meta property="article:modified_time" content="2022-06-24T11:32:26.897Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="frame_work">
 <meta property="article:tag" content="spring">
 <meta property="article:tag" content="SpringBoot">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/.io//bcc73490afbe4c6ba62acde6a94ffdfd~tplv-k3u1fbpfcp-watermark.image">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/SpringBoot/spring-boot-auto-assembly-principles/bcc73490afbe4c6ba62acde6a94ffdfd~tplv-k3u1fbpfcp-watermark.image">
   
   
   
@@ -73,12 +73,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="../../../../../../../../../css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="../../../../../../../../../css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="../../../../../../../../../css/highlight-dark.css" />
   
 
 
@@ -94,8 +94,8 @@
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="../../../../../../../../../js/utils.js" ></script>
+  <script  src="../../../../../../../../../js/color-schema.js" ></script>
   
 
 
@@ -112,7 +112,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="../../../../../../../../../index.html">
       <strong> </strong>
     </a>
 
@@ -131,7 +131,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="../../../../../../../../../index.html">
                 <i class="iconfont icon-home-fill"></i>
                 Home
               </a>
@@ -143,7 +143,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="../../../../../../../../../archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 Archives
               </a>
@@ -155,7 +155,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="../../../../../../../../../categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
               </a>
@@ -167,7 +167,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="../../../../../../../../../tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 Tags
               </a>
@@ -179,7 +179,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="../../../../../../../../../about/">
                 <i class="iconfont icon-user-fill"></i>
                 About
               </a>
@@ -208,7 +208,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('../../../../../../../../../img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -340,7 +340,7 @@
 <li><p><code>@Configuration</code>：允许在上下文中注册额外的 bean 或导入其他配置类</p>
 </li>
 <li><p><code>@ComponentScan</code>： 扫描被<code>@Component</code> (<code>@Service</code>,<code>@Controller</code>)注解的 bean，注解默认会扫描启动类所在的包下所有的类 ，可以自定义不扫描某些 bean。如下图所示，容器中将排除<code>TypeExcludeFilter</code>和<code>AutoConfigurationExcludeFilter</code>。</p>
-<p><img src="/.io//bcc73490afbe4c6ba62acde6a94ffdfd~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/frame_work/spring/SpringBoot/spring-boot-auto-assembly-principles/bcc73490afbe4c6ba62acde6a94ffdfd~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ul>
 <p><code>@EnableAutoConfiguration</code> 是实现自动装配的重要注解，我们以这个注解入手。</p>
@@ -356,31 +356,31 @@
 
 <p>这里我们需要重点关注一下<code>getAutoConfigurationEntry()</code>方法，这个方法主要负责加载自动配置类的。</p>
 <p>该方法调用链如下：</p>
-<p><img src="/.io//3c1200712655443ca4b38500d615bb70~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/frame_work/spring/SpringBoot/spring-boot-auto-assembly-principles/3c1200712655443ca4b38500d615bb70~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload></p>
 <p>现在我们结合<code>getAutoConfigurationEntry()</code>的源码来详细分析一下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">AutoConfigurationEntry</span> <span class="hljs-variable">EMPTY_ENTRY</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">AutoConfigurationEntry</span>();<br><br>AutoConfigurationEntry <span class="hljs-title function_">getAutoConfigurationEntry</span><span class="hljs-params">(AutoConfigurationMetadata autoConfigurationMetadata, AnnotationMetadata annotationMetadata)</span> &#123;<br>        <span class="hljs-comment">//&lt;1&gt;.</span><br>        <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">this</span>.isEnabled(annotationMetadata)) &#123;<br>            <span class="hljs-keyword">return</span> EMPTY_ENTRY;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-comment">//&lt;2&gt;.</span><br>            <span class="hljs-type">AnnotationAttributes</span> <span class="hljs-variable">attributes</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">this</span>.getAttributes(annotationMetadata);<br>            <span class="hljs-comment">//&lt;3&gt;.</span><br>            List&lt;String&gt; configurations = <span class="hljs-built_in">this</span>.getCandidateConfigurations(annotationMetadata, attributes);<br>            <span class="hljs-comment">//&lt;4&gt;.</span><br>            configurations = <span class="hljs-built_in">this</span>.removeDuplicates(configurations);<br>            Set&lt;String&gt; exclusions = <span class="hljs-built_in">this</span>.getExclusions(annotationMetadata, attributes);<br>            <span class="hljs-built_in">this</span>.checkExcludedClasses(configurations, exclusions);<br>            configurations.removeAll(exclusions);<br>            configurations = <span class="hljs-built_in">this</span>.filter(configurations, autoConfigurationMetadata);<br>            <span class="hljs-built_in">this</span>.fireAutoConfigurationImportEvents(configurations, exclusions);<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">AutoConfigurationImportSelector</span>.AutoConfigurationEntry(configurations, exclusions);<br>        &#125;<br>    &#125;<br></code></pre></td></tr></table></figure>
 
 <p><strong>第 1 步</strong>:</p>
 <p>判断自动装配开关是否打开。默认<code>spring.boot.enableautoconfiguration=true</code>，可在 <code>application.properties</code> 或 <code>application.yml</code> 中设置</p>
-<p><img src="/.io//77aa6a3727ea4392870f5cccd09844ab~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/frame_work/spring/SpringBoot/spring-boot-auto-assembly-principles/77aa6a3727ea4392870f5cccd09844ab~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload></p>
 <p><strong>第 2 步</strong> ：</p>
 <p>用于获取<code>EnableAutoConfiguration</code>注解中的 <code>exclude</code> 和 <code>excludeName</code>。</p>
-<p><img src="/.io//3d6ec93bbda1453aa08c52b49516c05a~tplv-k3u1fbpfcp-zoom-1.image" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/frame_work/spring/SpringBoot/spring-boot-auto-assembly-principles/3d6ec93bbda1453aa08c52b49516c05a~tplv-k3u1fbpfcp-zoom-1.image" srcset="/img/loading.gif" lazyload></p>
 <p><strong>第 3 步</strong></p>
 <p>获取需要自动装配的所有配置类，读取<code>META-INF/spring.factories</code></p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">spring-boot<span class="hljs-regexp">/spring-boot-project/</span>spring-boot-autoconfigure<span class="hljs-regexp">/src/m</span>ain<span class="hljs-regexp">/resources/</span>META-INF/spring.factories<br></code></pre></td></tr></table></figure>
 
-<p><img src="/.io//58c51920efea4757aa1ec29c6d5f9e36~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/frame_work/spring/SpringBoot/spring-boot-auto-assembly-principles/58c51920efea4757aa1ec29c6d5f9e36~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload></p>
 <p>从下图可以看到这个文件的配置内容都被我们读取到了。<code>XXXAutoConfiguration</code>的作用就是按需加载组件。</p>
-<p><img src="/.io//94d6e1a060ac41db97043e1758789026~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/frame_work/spring/SpringBoot/spring-boot-auto-assembly-principles/94d6e1a060ac41db97043e1758789026~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload></p>
 <p>不光是这个依赖下的<code>META-INF/spring.factories</code>被读取到，所有 Spring Boot Starter 下的<code>META-INF/spring.factories</code>都会被读取到。</p>
 <p>所以，你可以清楚滴看到， druid 数据库连接池的 Spring Boot Starter 就创建了<code>META-INF/spring.factories</code>文件。</p>
 <p>如果，我们自己要创建一个 Spring Boot Starter，这一步是必不可少的。</p>
-<p><img src="/.io//68fa66aeee474b0385f94d23bcfe1745~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/frame_work/spring/SpringBoot/spring-boot-auto-assembly-principles/68fa66aeee474b0385f94d23bcfe1745~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload></p>
 <p><strong>第 4 步</strong> ：</p>
 <p>到这里可能面试官会问你:“<code>spring.factories</code>中这么多配置，每次启动都要全部加载么？”。</p>
 <p>很明显，这是不现实的。我们 debug 到后面你会发现，<code>configurations</code> 的值变小了。</p>
-<p><img src="/.io//267f8231ae2e48d982154140af6437b0~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/frame_work/spring/SpringBoot/spring-boot-auto-assembly-principles/267f8231ae2e48d982154140af6437b0~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload></p>
 <p>因为，这一步有经历了一遍筛选，<code>@ConditionalOnXXX</code> 中的所有条件都满足，该类才会生效。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-comment">// 检查相关的类：RabbitTemplate 和 Channel是否存在</span><br><span class="hljs-comment">// 存在才会加载</span><br><span class="hljs-meta">@ConditionalOnClass(&#123; RabbitTemplate.class, Channel.class &#125;)</span><br><span class="hljs-meta">@EnableConfigurationProperties(RabbitProperties.class)</span><br><span class="hljs-meta">@Import(RabbitAnnotationDrivenConfiguration.class)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">RabbitAutoConfiguration</span> &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -401,17 +401,17 @@
 </ul>
 <h2 id="如何实现一个-Starter"><a href="#如何实现一个-Starter" class="headerlink" title="如何实现一个 Starter"></a>如何实现一个 Starter</h2><p>光说不练假把式，现在就来撸一个 starter，实现自定义线程池</p>
 <p>第一步，创建<code>threadpool-spring-boot-starter</code>工程</p>
-<p><img src="/.io//1ff0ebe7844f40289eb60213af72c5a6~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/frame_work/spring/SpringBoot/spring-boot-auto-assembly-principles/1ff0ebe7844f40289eb60213af72c5a6~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload></p>
 <p>第二步，引入 Spring Boot 相关依赖</p>
-<p><img src="/.io//5e14254276604f87b261e5a80a354cc0~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/frame_work/spring/SpringBoot/spring-boot-auto-assembly-principles/5e14254276604f87b261e5a80a354cc0~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload></p>
 <p>第三步，创建<code>ThreadPoolAutoConfiguration</code></p>
-<p><img src="/.io//1843f1d12c5649fba85fd7b4e4a59e39~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/frame_work/spring/SpringBoot/spring-boot-auto-assembly-principles/1843f1d12c5649fba85fd7b4e4a59e39~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload></p>
 <p>第四步，在<code>threadpool-spring-boot-starter</code>工程的 resources 包下创建<code>META-INF/spring.factories</code>文件</p>
-<p><img src="/.io//97b738321f1542ea8140484d6aaf0728~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/frame_work/spring/SpringBoot/spring-boot-auto-assembly-principles/97b738321f1542ea8140484d6aaf0728~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload></p>
 <p>最后新建工程引入<code>threadpool-spring-boot-starter</code></p>
-<p><img src="/.io//edcdd8595a024aba85b6bb20d0e3fed4~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/frame_work/spring/SpringBoot/spring-boot-auto-assembly-principles/edcdd8595a024aba85b6bb20d0e3fed4~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload></p>
 <p>测试通过！！！</p>
-<p><img src="/.io//9a265eea4de742a6bbdbbaa75f437307~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/frame_work/spring/SpringBoot/spring-boot-auto-assembly-principles/9a265eea4de742a6bbdbbaa75f437307~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Spring Boot 通过<code>@EnableAutoConfiguration</code>开启自动装配，通过 SpringFactoriesLoader 最终加载<code>META-INF/spring.factories</code>中的自动配置类实现自动装配，自动配置类其实就是通过<code>@Conditional</code>按需加载的配置类，想要其生效必须引入<code>spring-boot-starter-xxx</code>包实现起步依赖</p>
 
                 
@@ -431,22 +431,22 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  <a href="../../../../../../../../../categories/Java/" class="category-chain-item">Java</a>
   
   
     <span>></span>
     
-  <a href="/categories/Java/frame-work/" class="category-chain-item">frame_work</a>
+  <a href="../../../../../../../../../categories/Java/frame-work/" class="category-chain-item">frame_work</a>
   
   
     <span>></span>
     
-  <a href="/categories/Java/frame-work/spring/" class="category-chain-item">spring</a>
+  <a href="../../../../../../../../../categories/Java/frame-work/spring/" class="category-chain-item">spring</a>
   
   
     <span>></span>
     
-  <a href="/categories/Java/frame-work/spring/SpringBoot/" class="category-chain-item">SpringBoot</a>
+  <a href="../../../../../../../../../categories/Java/frame-work/spring/SpringBoot/" class="category-chain-item">SpringBoot</a>
   
   
 
@@ -467,13 +467,13 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Java/">#Java</a>
+        <a href="../../../../../../../../../tags/Java/">#Java</a>
       
-        <a href="/tags/frame-work/">#frame_work</a>
+        <a href="../../../../../../../../../tags/frame-work/">#frame_work</a>
       
-        <a href="/tags/spring/">#spring</a>
+        <a href="../../../../../../../../../tags/spring/">#spring</a>
       
-        <a href="/tags/SpringBoot/">#SpringBoot</a>
+        <a href="../../../../../../../../../tags/SpringBoot/">#SpringBoot</a>
       
     </div>
   
@@ -528,7 +528,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/17/CS/Java/frame_work/spring/SpringBoot/SpringBoot%E7%AC%94%E8%AE%B0/" title="SpringBoot笔记">
+                      <a href="../SpringBoot%E7%AC%94%E8%AE%B0/" title="SpringBoot笔记">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">SpringBoot笔记</span>
                         <span class="visible-mobile">Previous</span>
@@ -538,7 +538,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/17/CS/Java/frame_work/spring/SpringBoot/springcloud-intro/" title="springcloud-intro">
+                      <a href="../springcloud-intro/" title="springcloud-intro">
                         <span class="hidden-mobile">springcloud-intro</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -661,15 +661,15 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="../../../../../../../../../js/events.js" ></script>
+<script  src="../../../../../../../../../js/plugins.js" ></script>
 
 
 
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="../../../../../../../../../js/img-lazyload.js" ></script>
   
 
 
@@ -741,7 +741,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="../../../../../../../../../js/local-search.js" ></script>
 
 
 
@@ -749,7 +749,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="../../../../../../../../../js/boot.js" ></script>
 
 
   

@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../../../../../../img/fluid.png">
+  <link rel="icon" href="../../../../../../../img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,15 +23,15 @@
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="title:  CompletableFuture入门category: Javatag:  Java并发   自己在项目中使用 CompletableFuture 比较多，看到很多开源框架中也大量使用到了 CompletableFuture 。 因此，专门写一篇文章来介绍这个 Java 8 才被引入的一个非常有用的用于异步编程的类。 简单介绍CompletableFuture 同时实现了 Fu">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//image-20210902092441434.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//image-20210902093026059.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/concurrent/completablefuture-intro/image-20210902092441434.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/concurrent/completablefuture-intro/image-20210902093026059.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T11:16:58.673Z">
+<meta property="article:modified_time" content="2022-06-24T11:32:26.813Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="concurrent">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/.io//image-20210902092441434.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/concurrent/completablefuture-intro/image-20210902092441434.png">
   
   
   
@@ -59,12 +59,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="../../../../../../../css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="../../../../../../../css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="../../../../../../../css/highlight-dark.css" />
   
 
 
@@ -80,8 +80,8 @@
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="../../../../../../../js/utils.js" ></script>
+  <script  src="../../../../../../../js/color-schema.js" ></script>
   
 
 
@@ -98,7 +98,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="../../../../../../../index.html">
       <strong> </strong>
     </a>
 
@@ -117,7 +117,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="../../../../../../../index.html">
                 <i class="iconfont icon-home-fill"></i>
                 Home
               </a>
@@ -129,7 +129,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="../../../../../../../archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 Archives
               </a>
@@ -141,7 +141,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="../../../../../../../categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
               </a>
@@ -153,7 +153,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="../../../../../../../tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 Tags
               </a>
@@ -165,7 +165,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="../../../../../../../about/">
                 <i class="iconfont icon-user-fill"></i>
                 About
               </a>
@@ -194,7 +194,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('../../../../../../../img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -289,7 +289,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CompletableFuture</span>&lt;T&gt; <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Future</span>&lt;T&gt;, CompletionStage&lt;T&gt; &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><code>CompletableFuture</code> 除了提供了更为好用和强大的 <code>Future</code> 特性之外，还提供了函数式编程的能力。</p>
-<p><img src="/.io//image-20210902092441434.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/concurrent/completablefuture-intro/image-20210902092441434.png" srcset="/img/loading.gif" lazyload></p>
 <p><code>Future</code> 接口有 5 个方法：</p>
 <ul>
 <li><code>boolean cancel(boolean mayInterruptIfRunning)</code> ：尝试取消执行任务。</li>
@@ -298,7 +298,7 @@
 <li><code>get()</code> ：等待任务执行完成并获取运算结果。</li>
 <li><code>get(long timeout, TimeUnit unit)</code> ：多了一个超时时间。</li>
 </ul>
-<p><img src="/.io//image-20210902093026059.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/concurrent/completablefuture-intro/image-20210902093026059.png" srcset="/img/loading.gif" lazyload></p>
 <p><code>CompletionStage&lt;T&gt;</code> 接口中的方法比较多，<code>CompletableFuture</code> 的函数式能力就是这个接口赋予的。从这个接口的方法参数你就可以发现其大量使用了 Java8 引入的函数式编程。</p>
 <p>由于方法众多，所以这里不能一一讲解，下文中我会介绍大部分常见方法的使用。</p>
 <h2 id="常见操作"><a href="#常见操作" class="headerlink" title="常见操作"></a>常见操作</h2><h3 id="创建-CompletableFuture"><a href="#创建-CompletableFuture" class="headerlink" title="创建 CompletableFuture"></a>创建 CompletableFuture</h3><p>常见的创建 <code>CompletableFuture</code> 对象的方法如下：</p>
@@ -451,12 +451,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  <a href="../../../../../../../categories/Java/" class="category-chain-item">Java</a>
   
   
     <span>></span>
     
-  <a href="/categories/Java/concurrent/" class="category-chain-item">concurrent</a>
+  <a href="../../../../../../../categories/Java/concurrent/" class="category-chain-item">concurrent</a>
   
   
 
@@ -473,9 +473,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Java/">#Java</a>
+        <a href="../../../../../../../tags/Java/">#Java</a>
       
-        <a href="/tags/concurrent/">#concurrent</a>
+        <a href="../../../../../../../tags/concurrent/">#concurrent</a>
       
     </div>
   
@@ -530,7 +530,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/17/CS/Java/concurrent/atomic%E5%8E%9F%E5%AD%90%E7%B1%BB%E6%80%BB%E7%BB%93/" title="atomic原子类总结">
+                      <a href="../atomic%E5%8E%9F%E5%AD%90%E7%B1%BB%E6%80%BB%E7%BB%93/" title="atomic原子类总结">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">atomic原子类总结</span>
                         <span class="visible-mobile">Previous</span>
@@ -540,7 +540,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/17/CS/Java/concurrent/java%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/" title="java并发基础常见面试题总结">
+                      <a href="../java%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/" title="java并发基础常见面试题总结">
                         <span class="hidden-mobile">java并发基础常见面试题总结</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -663,15 +663,15 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="../../../../../../../js/events.js" ></script>
+<script  src="../../../../../../../js/plugins.js" ></script>
 
 
 
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="../../../../../../../js/img-lazyload.js" ></script>
   
 
 
@@ -743,7 +743,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="../../../../../../../js/local-search.js" ></script>
 
 
 
@@ -751,7 +751,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="../../../../../../../js/boot.js" ></script>
 
 
   

@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../../../../../../img/fluid.png">
+  <link rel="icon" href="../../../../../../../img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,16 +23,16 @@
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="category: Javatag:  Java基础   为什么 Java 中只有值传递？开始之前，我们先来搞懂下面这两个概念：  形参&amp;实参 值传递&amp;引用传递  形参&amp;实参方法的定义可能会用到 参数（有参的方法），参数在程序语言中分为：  实参（实际参数） ：用于传递给函数&#x2F;方法的参数，必须有确定的值。 形参（形式参数） ：用于定义函数&#x2F;方法，接收实">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//java-value-passing-01.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//java-value-passing-02.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//java-value-passing-03.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/blog_cut/why-there-only-value-passing-in-java/java-value-passing-01.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/blog_cut/why-there-only-value-passing-in-java/java-value-passing-02.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/blog_cut/why-there-only-value-passing-in-java/java-value-passing-03.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T11:16:58.669Z">
+<meta property="article:modified_time" content="2022-06-24T11:32:26.805Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="blog_cut">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/.io//java-value-passing-01.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/blog_cut/why-there-only-value-passing-in-java/java-value-passing-01.png">
   
   
   
@@ -60,12 +60,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="../../../../../../../css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="../../../../../../../css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="../../../../../../../css/highlight-dark.css" />
   
 
 
@@ -81,8 +81,8 @@
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="../../../../../../../js/utils.js" ></script>
+  <script  src="../../../../../../../js/color-schema.js" ></script>
   
 
 
@@ -99,7 +99,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="../../../../../../../index.html">
       <strong> </strong>
     </a>
 
@@ -118,7 +118,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="../../../../../../../index.html">
                 <i class="iconfont icon-home-fill"></i>
                 Home
               </a>
@@ -130,7 +130,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="../../../../../../../archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 Archives
               </a>
@@ -142,7 +142,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="../../../../../../../categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
               </a>
@@ -154,7 +154,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="../../../../../../../tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 Tags
               </a>
@@ -166,7 +166,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="../../../../../../../about/">
                 <i class="iconfont icon-user-fill"></i>
                 About
               </a>
@@ -195,7 +195,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('../../../../../../../img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -311,7 +311,7 @@
 
 <p>解析：</p>
 <p>在 <code>swap()</code>  方法中，<code>a</code>、<code>b</code> 的值进行交换，并不会影响到 <code>num1</code>、<code>num2</code>。因为，<code>a</code>、<code>b</code> 的值，只是从 <code>num1</code>、<code>num2</code> 的复制过来的。也就是说，a、b 相当于 <code>num1</code>、<code>num2</code> 的副本，副本的内容无论怎么修改，都不会影响到原件本身。</p>
-<p><img src="/.io//java-value-passing-01.png" srcset="/img/loading.gif" lazyload alt="java-value-passing-01"></p>
+<p><img src="/2022/06/17/CS/Java/blog_cut/why-there-only-value-passing-in-java/java-value-passing-01.png" srcset="/img/loading.gif" lazyload alt="java-value-passing-01"></p>
 <p>通过上面例子，我们已经知道了一个方法不能修改一个基本数据类型的参数，而对象引用作为参数就不一样，请看案例2。</p>
 <h3 id="案例2：传递引用类型参数1"><a href="#案例2：传递引用类型参数1" class="headerlink" title="案例2：传递引用类型参数1"></a>案例2：传递引用类型参数1</h3><p>代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>     <span class="hljs-type">int</span>[] arr = &#123; <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span> &#125;;<br>     System.out.println(arr[<span class="hljs-number">0</span>]);<br>     change(arr);<br>     System.out.println(arr[<span class="hljs-number">0</span>]);<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">change</span><span class="hljs-params">(<span class="hljs-type">int</span>[] array)</span> &#123;<br>     <span class="hljs-comment">// 将数组的第一个元素变为0</span><br>     array[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -320,7 +320,7 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs">1<br>0<br></code></pre></td></tr></table></figure>
 
 <p>解析：</p>
-<p><img src="/.io//java-value-passing-02.png" srcset="/img/loading.gif" lazyload alt="java-value-passing-02"></p>
+<p><img src="/2022/06/17/CS/Java/blog_cut/why-there-only-value-passing-in-java/java-value-passing-02.png" srcset="/img/loading.gif" lazyload alt="java-value-passing-02"></p>
 <p>看了这个案例很多人肯定觉得 Java 对引用类型的参数采用的是引用传递。</p>
 <p>实际上，并不是的，这里传递的还是值，不过，这个值是实参的地址罢了！</p>
 <p>也就是说 <code>change</code> 方法的参数拷贝的是  <code>arr</code> （实参）的地址，因此，它和 <code>arr</code> 指向的是同一个数组对象。这也就说明了为什么方法内部对形参的修改会影响到实参。</p>
@@ -333,7 +333,7 @@
 <p>解析：</p>
 <p>怎么回事？？？两个引用类型的形参互换并没有影响实参啊！</p>
 <p><code>swap</code> 方法的参数 <code>person1</code> 和 <code>person2</code> 只是拷贝的实参 <code>xiaoZhang</code> 和 <code>xiaoLi</code> 的地址。因此， <code>person1</code> 和 <code>person2</code> 的互换只是拷贝的两个地址的互换罢了，并不会影响到实参 <code>xiaoZhang</code> 和 <code>xiaoLi</code> 。</p>
-<p><img src="/.io//java-value-passing-03.png" srcset="/img/loading.gif" lazyload alt="java-value-passing-03"></p>
+<p><img src="/2022/06/17/CS/Java/blog_cut/why-there-only-value-passing-in-java/java-value-passing-03.png" srcset="/img/loading.gif" lazyload alt="java-value-passing-03"></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Java 中将实参传递给方法（或函数）的方式是 <strong>值传递</strong> ：</p>
 <ul>
 <li>如果参数是基本类型的话，很简单，传递的就是基本类型的字面量值的拷贝，会创建副本。</li>
@@ -361,12 +361,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  <a href="../../../../../../../categories/Java/" class="category-chain-item">Java</a>
   
   
     <span>></span>
     
-  <a href="/categories/Java/blog-cut/" class="category-chain-item">blog_cut</a>
+  <a href="../../../../../../../categories/Java/blog-cut/" class="category-chain-item">blog_cut</a>
   
   
 
@@ -383,9 +383,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Java/">#Java</a>
+        <a href="../../../../../../../tags/Java/">#Java</a>
       
-        <a href="/tags/blog-cut/">#blog_cut</a>
+        <a href="../../../../../../../tags/blog-cut/">#blog_cut</a>
       
     </div>
   
@@ -440,7 +440,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/17/CS/Java/blog_cut/java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/" title="java基础知识总结">
+                      <a href="../java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/" title="java基础知识总结">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">java基础知识总结</span>
                         <span class="visible-mobile">Previous</span>
@@ -450,7 +450,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/17/CS/Java/blog_cut/%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6%E8%AF%A6%E8%A7%A3/" title="反射机制详解">
+                      <a href="../%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6%E8%AF%A6%E8%A7%A3/" title="反射机制详解">
                         <span class="hidden-mobile">反射机制详解</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -573,15 +573,15 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="../../../../../../../js/events.js" ></script>
+<script  src="../../../../../../../js/plugins.js" ></script>
 
 
 
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="../../../../../../../js/img-lazyload.js" ></script>
   
 
 
@@ -653,7 +653,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="../../../../../../../js/local-search.js" ></script>
 
 
 
@@ -661,7 +661,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="../../../../../../../js/boot.js" ></script>
 
 
   

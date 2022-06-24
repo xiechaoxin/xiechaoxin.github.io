@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../../../../../../img/fluid.png">
+  <link rel="icon" href="../../../../../../../img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,18 +23,18 @@
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="Java 命名之道我还记得我刚工作那一段时间， 项目 Code Review 的时候，我经常因为变量命名不规范而被 “diss”! 究其原因还是自己那会经验不足，而且，大学那会写项目的时候不太注意这些问题，想着只要把功能实现出来就行了。 但是，工作中就不一样，为了代码的可读性、可维护性，项目组对于代码质量的要求还是很高的！ 前段时间，项目组新来的一个实习生也经常在 Code Review 因为变量">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//marting-naming.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//20210629104844645.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//dubbo-naming.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//Codelf.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//vscode-codelf.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/basis/%E5%91%BD%E5%90%8D%E4%B9%8B%E9%81%93/marting-naming.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/basis/%E5%91%BD%E5%90%8D%E4%B9%8B%E9%81%93/20210629104844645.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/basis/%E5%91%BD%E5%90%8D%E4%B9%8B%E9%81%93/dubbo-naming.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/basis/%E5%91%BD%E5%90%8D%E4%B9%8B%E9%81%93/Codelf.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/basis/%E5%91%BD%E5%90%8D%E4%B9%8B%E9%81%93/vscode-codelf.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T11:16:59.845Z">
+<meta property="article:modified_time" content="2022-06-24T11:32:28.137Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="system_design">
 <meta property="article:tag" content="basis">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/.io//marting-naming.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/basis/%E5%91%BD%E5%90%8D%E4%B9%8B%E9%81%93/marting-naming.png">
   
   
   
@@ -62,12 +62,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="../../../../../../../css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="../../../../../../../css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="../../../../../../../css/highlight-dark.css" />
   
 
 
@@ -83,8 +83,8 @@
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="../../../../../../../js/utils.js" ></script>
+  <script  src="../../../../../../../js/color-schema.js" ></script>
   
 
 
@@ -101,7 +101,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="../../../../../../../index.html">
       <strong> </strong>
     </a>
 
@@ -120,7 +120,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="../../../../../../../index.html">
                 <i class="iconfont icon-home-fill"></i>
                 Home
               </a>
@@ -132,7 +132,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="../../../../../../../archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 Archives
               </a>
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="../../../../../../../categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="../../../../../../../tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 Tags
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="../../../../../../../about/">
                 <i class="iconfont icon-user-fill"></i>
                 About
               </a>
@@ -197,7 +197,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('../../../../../../../img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -288,9 +288,9 @@
 <p>确实，编程过程中，有太多太多让我们头疼的事情了，比如命名、维护其他人的代码、写测试、与其他人沟通交流等等。</p>
 <p>据说之前在 Quora 网站，由接近 5000 名程序员票选出来的最难的事情就是“命名”。</p>
 <p>大名鼎鼎的《重构》的作者老马（Martin Fowler）曾经在<a target="_blank" rel="noopener" href="https://martinfowler.com/bliki/TwoHardThings.html">TwoHardThings</a>这篇文章中提到过CS 领域有两大最难的事情：一是 <strong>缓存失效</strong> ，一是 <strong>程序命名</strong> 。</p>
-<p><img src="/.io//marting-naming.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/system_design/basis/%E5%91%BD%E5%90%8D%E4%B9%8B%E9%81%93/marting-naming.png" srcset="/img/loading.gif" lazyload></p>
 <p>这个句话实际上也是老马引用别人的，类似的表达还有很多。比如分布式系统领域有两大最难的事情：一是 <strong>保证消息顺序</strong> ，一是 <strong>严格一次传递</strong> 。</p>
-<p><img src="/.io//20210629104844645.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/system_design/basis/%E5%91%BD%E5%90%8D%E4%B9%8B%E9%81%93/20210629104844645.png" srcset="/img/loading.gif" lazyload></p>
 <p>今天咱们就单独拎出 “<strong>命名</strong>” 来聊聊！</p>
 <p>这篇文章配合我之前发的 <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247486449&idx=1&sn=c3b502529ff991c7180281bcc22877af&chksm=cea2443af9d5cd2c1c87049ed15ccf6f88275419c7dbe542406166a703b27d0f3ecf2af901f8&token=999884676&lang=zh_CN#rd">《编码 5 分钟，命名 2 小时？史上最全的 Java 命名规范参考！》</a> 这篇文章阅读效果更佳哦！</p>
 <h2 id="为什么需要重视命名？"><a href="#为什么需要重视命名？" class="headerlink" title="为什么需要重视命名？"></a>为什么需要重视命名？</h2><p>咱们需要先搞懂为什么要重视编程中的命名这一行为，它对于我们的编码工作有着什么意义。</p>
@@ -336,7 +336,7 @@
 
 <h3 id="串式命名法（kebab-case）"><a href="#串式命名法（kebab-case）" class="headerlink" title="串式命名法（kebab-case）"></a>串式命名法（kebab-case）</h3><p>在串式命名法中，各个单词之间通过连接符“-”连接，比如<code>dubbo-registry</code>。</p>
 <p>建议项目文件夹名称使用串式命名法（kebab-case），比如 dubbo 项目的各个模块的命名是下面这样的。</p>
-<p><img src="/.io//dubbo-naming.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/system_design/basis/%E5%91%BD%E5%90%8D%E4%B9%8B%E9%81%93/dubbo-naming.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="常见命名规范"><a href="#常见命名规范" class="headerlink" title="常见命名规范"></a>常见命名规范</h2><h3 id="Java-语言基本命名规范"><a href="#Java-语言基本命名规范" class="headerlink" title="Java 语言基本命名规范"></a>Java 语言基本命名规范</h3><p><strong>1、类名需要使用大驼峰命名法（UpperCamelCase）风格。方法名、参数名、成员变量、局部变量需要使用小驼峰命名法（lowerCamelCase）。</strong></p>
 <p><strong>2、测试方法名、常量、枚举名称需要使用蛇形命名法（snake_case）</strong>，比如<code>should_get_200_status_code_when_request_is_valid</code>、<code>CLIENT_CONNECT_SERVER_FAILURE</code>。并且，<strong>测试方法名称要求全部小写，常量以及枚举名称需要全部大写。</strong></p>
 <p><strong>3、项目文件夹名称使用串式命名法（kebab-case），比如<code>dubbo-registry</code>。</strong></p>
@@ -366,9 +366,9 @@
 <h2 id="Codelf-变量命名神器"><a href="#Codelf-变量命名神器" class="headerlink" title="Codelf:变量命名神器?"></a>Codelf:变量命名神器?</h2><p>这是一个由国人开发的网站，网上有很多人称其为变量命名神器， 我在实际使用了几天之后感觉没那么好用。小伙伴们可以自行体验一下，然后再给出自己的判断。</p>
 <p>Codelf 提供了在线网站版本，网址：<a target="_blank" rel="noopener" href="https://unbug.github.io/codelf/">https://unbug.github.io/codelf/</a>，具体使用情况如下：</p>
 <p>我选择了 Java 编程语言，然后搜索了“序列化”这个关键词，然后它就返回了很多关于序列化的命名。</p>
-<p><img src="/.io//Codelf.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/system_design/basis/%E5%91%BD%E5%90%8D%E4%B9%8B%E9%81%93/Codelf.png" srcset="/img/loading.gif" lazyload></p>
 <p>并且，Codelf 还提供了 VS code 插件，看这个评价，看来大家还是很喜欢这款命名工具的。</p>
-<p><img src="/.io//vscode-codelf.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/system_design/basis/%E5%91%BD%E5%90%8D%E4%B9%8B%E9%81%93/vscode-codelf.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="相关阅读推荐"><a href="#相关阅读推荐" class="headerlink" title="相关阅读推荐"></a>相关阅读推荐</h2><ol>
 <li>《阿里巴巴 Java 开发手册》</li>
 <li>《Clean Code》</li>
@@ -398,12 +398,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/system-design/" class="category-chain-item">system_design</a>
+  <a href="../../../../../../../categories/system-design/" class="category-chain-item">system_design</a>
   
   
     <span>></span>
     
-  <a href="/categories/system-design/basis/" class="category-chain-item">basis</a>
+  <a href="../../../../../../../categories/system-design/basis/" class="category-chain-item">basis</a>
   
   
 
@@ -420,9 +420,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/system-design/">#system_design</a>
+        <a href="../../../../../../../tags/system-design/">#system_design</a>
       
-        <a href="/tags/basis/">#basis</a>
+        <a href="../../../../../../../tags/basis/">#basis</a>
       
     </div>
   
@@ -477,7 +477,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/17/CS/system_design/basis/RESTfulAPI/" title="RESTfulAPI">
+                      <a href="../RESTfulAPI/" title="RESTfulAPI">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">RESTfulAPI</span>
                         <span class="visible-mobile">Previous</span>
@@ -487,7 +487,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/17/CS/system_design/distributed-system/api-gateway/" title="api-gateway">
+                      <a href="../../distributed-system/api-gateway/" title="api-gateway">
                         <span class="hidden-mobile">api-gateway</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -610,15 +610,15 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="../../../../../../../js/events.js" ></script>
+<script  src="../../../../../../../js/plugins.js" ></script>
 
 
 
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="../../../../../../../js/img-lazyload.js" ></script>
   
 
 
@@ -690,7 +690,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="../../../../../../../js/local-search.js" ></script>
 
 
 
@@ -698,7 +698,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="../../../../../../../js/boot.js" ></script>
 
 
   

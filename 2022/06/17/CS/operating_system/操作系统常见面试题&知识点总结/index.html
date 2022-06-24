@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../../../../../img/fluid.png">
+  <link rel="icon" href="../../../../../../img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,17 +23,17 @@
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="title: 操作系统常见面试题总结category: 计算机基础tag:  操作系统   大家好，我是 Guide 哥！ 很多读者抱怨计算操作系统的知识点比较繁杂，自己也没有多少耐心去看，但是面试的时候又经常会遇到。所以，我带着我整理好的操作系统的常见问题来啦！这篇文章总结了一些我觉得比较重要的操作系统相关的问题比如进程管理、内存管理、虚拟内存等等。 文章形式通过大部分比较喜欢的面试官和求职者">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//ceeb653ely1gd8wj5evc4j20i00n0dh0.jpg">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//Kernel_Layout-20220527140638960.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//up-cd8ac705f6f004c01e0a1312f1599430ba5.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//d38202593012b457debbcd74994c6292.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//2b27dac8cc647f8aac989da2d1166db2.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/operating_system/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98&%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/ceeb653ely1gd8wj5evc4j20i00n0dh0.jpg">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/operating_system/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98&%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/Kernel_Layout-20220527140638960.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/operating_system/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98&%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/up-cd8ac705f6f004c01e0a1312f1599430ba5.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/operating_system/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98&%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/d38202593012b457debbcd74994c6292.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/operating_system/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98&%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/2b27dac8cc647f8aac989da2d1166db2.png">
 <meta property="article:published_time" content="2022-06-17T17:59:12.000Z">
-<meta property="article:modified_time" content="2022-06-24T11:16:59.845Z">
+<meta property="article:modified_time" content="2022-06-24T11:32:28.133Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="operating_system">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/.io//ceeb653ely1gd8wj5evc4j20i00n0dh0.jpg">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/2022/06/17/CS/operating_system/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98&%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/ceeb653ely1gd8wj5evc4j20i00n0dh0.jpg">
   
   
   
@@ -61,12 +61,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="../../../../../../css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="../../../../../../css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="../../../../../../css/highlight-dark.css" />
   
 
 
@@ -82,8 +82,8 @@
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="../../../../../../js/utils.js" ></script>
+  <script  src="../../../../../../js/color-schema.js" ></script>
   
 
 
@@ -100,7 +100,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="../../../../../../index.html">
       <strong> </strong>
     </a>
 
@@ -119,7 +119,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="../../../../../../index.html">
                 <i class="iconfont icon-home-fill"></i>
                 Home
               </a>
@@ -131,7 +131,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="../../../../../../archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 Archives
               </a>
@@ -143,7 +143,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="../../../../../../categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
               </a>
@@ -155,7 +155,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="../../../../../../tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 Tags
               </a>
@@ -167,7 +167,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="../../../../../../about/">
                 <i class="iconfont icon-user-fill"></i>
                 About
               </a>
@@ -196,7 +196,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('../../../../../../img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -297,7 +297,7 @@
 <p><strong>简单来说，学习操作系统能够提高自己思考的深度以及对技术的理解力，并且，操作系统方面的知识也是面试必备。</strong></p>
 <p>关于如何学习操作系统，可以看这篇回答：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/270998611/answer/1640198217">https://www.zhihu.com/question/270998611/answer/1640198217</a>。</p>
 <h2 id="一-操作系统基础"><a href="#一-操作系统基础" class="headerlink" title="一 操作系统基础"></a>一 操作系统基础</h2><p>面试官顶着蓬松的假发向我走来，只见他一手拿着厚重的 Thinkpad ，一手提着他那淡黄的长裙。</p>
-<p><img src="/.io//ceeb653ely1gd8wj5evc4j20i00n0dh0.jpg" srcset="/img/loading.gif" lazyload height="300"></p>
+<p><img src="/2022/06/17/CS/operating_system/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98&%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/ceeb653ely1gd8wj5evc4j20i00n0dh0.jpg" srcset="/img/loading.gif" lazyload height="300"></p>
 <h3 id="1-1-什么是操作系统？"><a href="#1-1-什么是操作系统？" class="headerlink" title="1.1 什么是操作系统？"></a>1.1 什么是操作系统？</h3><p>👨‍💻<strong>面试官</strong> ： 先来个简单问题吧！<strong>什么是操作系统？</strong></p>
 <p>🙋 <strong>我</strong> ：我通过以下四点向您介绍一下什么是操作系统吧！</p>
 <ol>
@@ -306,7 +306,7 @@
 <li><strong>操作系统存在屏蔽了硬件层的复杂性。</strong> 操作系统就像是硬件使用的负责人，统筹着各种相关事项。</li>
 <li><strong>操作系统的内核（Kernel）是操作系统的核心部分，它负责系统的内存管理，硬件设备的管理，文件系统的管理以及应用程序的管理</strong>。 内核是连接应用程序和硬件的桥梁，决定着系统的性能和稳定性。</li>
 </ol>
-<p><img src="/.io//Kernel_Layout-20220527140638960.png" srcset="/img/loading.gif" lazyload alt="Kernel_Layout"></p>
+<p><img src="/2022/06/17/CS/operating_system/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98&%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/Kernel_Layout-20220527140638960.png" srcset="/img/loading.gif" lazyload alt="Kernel_Layout"></p>
 <h3 id="1-2-系统调用"><a href="#1-2-系统调用" class="headerlink" title="1.2 系统调用"></a>1.2 系统调用</h3><p>👨‍💻<strong>面试官</strong> ：<strong>什么是系统调用呢？</strong> 能不能详细介绍一下。</p>
 <p>🙋 <strong>我</strong> ：介绍系统调用之前，我们先来了解一下用户态和系统态。</p>
 <p>根据进程访问资源的特点，我们可以把进程在系统上的运行分为两个级别：</p>
@@ -330,7 +330,7 @@
 <blockquote>
 <p>如果你对 Java 内存区域 (运行时数据区) 这部分知识不太了解的话可以阅读一下这篇文章：<a target="_blank" rel="noopener" href="https://snailclimb.gitee.io/javaguide/#/docs/java/jvm/Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F">《可能是把 Java 内存区域讲的最清楚的一篇文章》</a></p>
 </blockquote>
-<p><img src="/.io//up-cd8ac705f6f004c01e0a1312f1599430ba5.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/operating_system/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98&%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/up-cd8ac705f6f004c01e0a1312f1599430ba5.png" srcset="/img/loading.gif" lazyload></p>
 <p>从上图可以看出：一个进程中可以有多个线程，多个线程共享进程的<strong>堆</strong>和<strong>方法区 (JDK1.8 之后的元空间)<strong>资源，但是每个线程有自己的</strong>程序计数器</strong>、<strong>虚拟机栈</strong> 和 <strong>本地方法栈</strong>。</p>
 <p><strong>总结：</strong> 线程是进程划分成的更小的运行单位,一个进程在其执行的过程中可以产生多个线程。线程和进程最大的不同在于基本上各进程是独立的，而各线程则不一定，因为同一进程中的线程极有可能会相互影响。线程执行开销小，但不利于资源的管理和保护；而进程正相反。</p>
 <h3 id="2-2-进程有哪几种状态"><a href="#2-2-进程有哪几种状态" class="headerlink" title="2.2 进程有哪几种状态?"></a>2.2 进程有哪几种状态?</h3><p>👨‍💻<strong>面试官</strong> ： 那你再说说<strong>进程有哪几种状态?</strong></p>
@@ -345,7 +345,7 @@
 <blockquote>
 <p>订正：下图中 running 状态被 interrupt 向 ready 状态转换的箭头方向反了。</p>
 </blockquote>
-<p><img src="/.io//d38202593012b457debbcd74994c6292.png" srcset="/img/loading.gif" lazyload alt="process-state"></p>
+<p><img src="/2022/06/17/CS/operating_system/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98&%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/d38202593012b457debbcd74994c6292.png" srcset="/img/loading.gif" lazyload alt="process-state"></p>
 <h3 id="2-3-进程间的通信方式"><a href="#2-3-进程间的通信方式" class="headerlink" title="2.3 进程间的通信方式"></a>2.3 进程间的通信方式</h3><p>👨‍💻<strong>面试官</strong> ：<strong>进程间的通信常见的的有哪几种方式呢?</strong></p>
 <p>🙋 <strong>我</strong> ：大概有 7 种常见的进程间的通信方式。</p>
 <blockquote>
@@ -443,7 +443,7 @@
 <p>这部分内容参考了 Microsoft 官网的介绍，地址：<a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows-hardware/drivers/gettingstarted/virtual-address-spaces?redirectedfrom=MSDN">https://docs.microsoft.com/zh-cn/windows-hardware/drivers/gettingstarted/virtual-address-spaces?redirectedfrom=MSDN</a></p>
 </blockquote>
 <p>现代处理器使用的是一种称为 <strong>虚拟寻址(Virtual Addressing)</strong> 的寻址方式。<strong>使用虚拟寻址，CPU 需要将虚拟地址翻译成物理地址，这样才能访问到真实的物理内存。</strong> 实际上完成虚拟地址转换为物理地址转换的硬件是 CPU 中含有一个被称为 <strong>内存管理单元（Memory Management Unit, MMU）</strong> 的硬件。如下图所示：</p>
-<p><img src="/.io//2b27dac8cc647f8aac989da2d1166db2.png" srcset="/img/loading.gif" lazyload alt="MMU_principle_updated"></p>
+<p><img src="/2022/06/17/CS/operating_system/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98&%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/2b27dac8cc647f8aac989da2d1166db2.png" srcset="/img/loading.gif" lazyload alt="MMU_principle_updated"></p>
 <p><strong>为什么要有虚拟地址空间呢？</strong></p>
 <p>先从没有虚拟地址空间的时候说起吧！没有虚拟地址空间的时候，<strong>程序都是直接访问和操作的都是物理内存</strong> 。但是这样有什么问题呢？</p>
 <ol>
@@ -547,7 +547,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/operating-system/" class="category-chain-item">operating_system</a>
+  <a href="../../../../../../categories/operating-system/" class="category-chain-item">operating_system</a>
   
   
 
@@ -562,7 +562,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/operating-system/">#operating_system</a>
+        <a href="../../../../../../tags/operating-system/">#operating_system</a>
       
     </div>
   
@@ -617,7 +617,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/17/CS/operating_system/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%B0%8F%E6%80%BB%E7%BB%93-%E7%8E%8B%E9%81%93/" title="操作系统小总结-王道">
+                      <a href="../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%B0%8F%E6%80%BB%E7%BB%93-%E7%8E%8B%E9%81%93/" title="操作系统小总结-王道">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">操作系统小总结-王道</span>
                         <span class="visible-mobile">Previous</span>
@@ -627,7 +627,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/17/CS/algorithms/data_structure/bloom-filter/" title="bloom-filter">
+                      <a href="../../algorithms/data_structure/bloom-filter/" title="bloom-filter">
                         <span class="hidden-mobile">bloom-filter</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -750,15 +750,15 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="../../../../../../js/events.js" ></script>
+<script  src="../../../../../../js/plugins.js" ></script>
 
 
 
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="../../../../../../js/img-lazyload.js" ></script>
   
 
 
@@ -830,7 +830,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="../../../../../../js/local-search.js" ></script>
 
 
 
@@ -838,7 +838,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="../../../../../../js/boot.js" ></script>
 
 
   

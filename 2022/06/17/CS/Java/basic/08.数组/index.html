@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../../../../../../img/fluid.png">
+  <link rel="icon" href="../../../../../../../img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,14 +23,14 @@
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="1.数组1.1什么是数组【理解】​	数组就是存储数据长度固定的容器，存储多个数据的数据类型要一致。  1.2数组定义格式【记忆】1.2.1第一种​	数据类型[] 数组名 ​	示例： 123int[] arr;        double[] arr;      char[] arr;  1.2.2第二种​	数据类型 数组名[] ​	示例： 123int arr[];double arr[];cha">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/basic/08/image-20211025214221358.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/basic/08.%E6%95%B0%E7%BB%84/image-20211025214221358.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T11:16:58.629Z">
+<meta property="article:modified_time" content="2022-06-24T11:32:26.765Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="basic">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/basic/08/image-20211025214221358.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/basic/08.%E6%95%B0%E7%BB%84/image-20211025214221358.png">
   
   
   
@@ -58,12 +58,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="../../../../../../../css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="../../../../../../../css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="../../../../../../../css/highlight-dark.css" />
   
 
 
@@ -79,8 +79,8 @@
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="../../../../../../../js/utils.js" ></script>
+  <script  src="../../../../../../../js/color-schema.js" ></script>
   
 
 
@@ -97,7 +97,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="../../../../../../../index.html">
       <strong> </strong>
     </a>
 
@@ -116,7 +116,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="../../../../../../../index.html">
                 <i class="iconfont icon-home-fill"></i>
                 Home
               </a>
@@ -128,7 +128,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="../../../../../../../archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 Archives
               </a>
@@ -140,7 +140,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="../../../../../../../categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
               </a>
@@ -152,7 +152,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="../../../../../../../tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 Tags
               </a>
@@ -164,7 +164,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="../../../../../../../about/">
                 <i class="iconfont icon-user-fill"></i>
                 About
               </a>
@@ -193,7 +193,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('../../../../../../../img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -410,7 +410,7 @@
 
 <h3 id="数组的创建和赋值"><a href="#数组的创建和赋值" class="headerlink" title="数组的创建和赋值"></a>数组的创建和赋值</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-number">1.</span>采用 <span class="hljs-keyword">new</span> 关键字直接创建<br>基本数据类型<br><span class="hljs-type">int</span>[][] data = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">2</span>][<span class="hljs-number">3</span>];<br>data[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;<br><br><span class="hljs-number">2.</span>从高维开始逐维创建<br>  <span class="hljs-comment">//从高维开始逐维创建 </span><br>  <span class="hljs-type">int</span>[][] data = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">2</span>][];<br>	data[<span class="hljs-number">0</span>] = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">2</span>];<br>	data[<span class="hljs-number">1</span>] = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">4</span>];<br><br><span class="hljs-number">3.</span>采用初始化语句块创建数组对象<br>  <span class="hljs-type">int</span>[][] data = &#123;&#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>&#125;,&#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>&#125;&#125;;<br><br><span class="hljs-comment">//这里还要掌握 for 和 while 嵌套遍历数组</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="内存结构"><a href="#内存结构" class="headerlink" title="内存结构"></a>内存结构</h3><p><img src="/2022/06/17/CS/Java/basic/08/image-20211025214221358.png" srcset="/img/loading.gif" lazyload alt="image-20211025214221358"></p>
+<h3 id="内存结构"><a href="#内存结构" class="headerlink" title="内存结构"></a>内存结构</h3><p><img src="/2022/06/17/CS/Java/basic/08.%E6%95%B0%E7%BB%84/image-20211025214221358.png" srcset="/img/loading.gif" lazyload alt="image-20211025214221358"></p>
 <h2 id="5-Arrays-工具类"><a href="#5-Arrays-工具类" class="headerlink" title="5. Arrays 工具类"></a>5. Arrays 工具类</h2><p>了解 jdk 中的 Array 工具类的使用</p>
 <ol>
 <li><p>sort</p>
@@ -444,12 +444,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  <a href="../../../../../../../categories/Java/" class="category-chain-item">Java</a>
   
   
     <span>></span>
     
-  <a href="/categories/Java/basic/" class="category-chain-item">basic</a>
+  <a href="../../../../../../../categories/Java/basic/" class="category-chain-item">basic</a>
   
   
 
@@ -466,9 +466,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Java/">#Java</a>
+        <a href="../../../../../../../tags/Java/">#Java</a>
       
-        <a href="/tags/basic/">#basic</a>
+        <a href="../../../../../../../tags/basic/">#basic</a>
       
     </div>
   
@@ -523,7 +523,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/17/CS/Java/basic/07.switch&amp;%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5/" title="07.switch&amp;循环语句">
+                      <a href="../07.switch&amp;%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5/" title="07.switch&amp;循环语句">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">07.switch&amp;循环语句</span>
                         <span class="visible-mobile">Previous</span>
@@ -533,7 +533,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/17/CS/Java/basic/09.%E6%96%B9%E6%B3%95/" title="09.方法">
+                      <a href="../09.%E6%96%B9%E6%B3%95/" title="09.方法">
                         <span class="hidden-mobile">09.方法</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -656,15 +656,15 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="../../../../../../../js/events.js" ></script>
+<script  src="../../../../../../../js/plugins.js" ></script>
 
 
 
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="../../../../../../../js/img-lazyload.js" ></script>
   
 
 
@@ -736,7 +736,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="../../../../../../../js/local-search.js" ></script>
 
 
 
@@ -744,7 +744,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="../../../../../../../js/boot.js" ></script>
 
 
   

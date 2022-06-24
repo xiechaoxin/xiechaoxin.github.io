@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../../../../../../img/fluid.png">
+  <link rel="icon" href="../../../../../../../img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,17 +23,17 @@
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="第17章 触发器 在实际开发中，我们经常会遇到这样的情况：有 2 个或者多个相互关联的表，如商品信息和库存信息分别存放在 2 个不同的数据表中，我们在添加一条新商品记录的时候，为了保证数据的完整性，必须同时在库存表中添加一条库存记录。   这样一来，我们就必须把这两个关联的操作步骤写到程序里面，而且要用事务包裹起来，确保这两个操作成为一个原子操作，要么全部执行，要么全部不执行。要是遇到特殊情况，可">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//53681338f68045dc83af0e7687f18d9b.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//6610ed771a8a466f8addb073485c5d25.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812881.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012816950.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B017-18%E7%AB%A0/53681338f68045dc83af0e7687f18d9b.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B017-18%E7%AB%A0/6610ed771a8a466f8addb073485c5d25.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B017-18%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812881.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B017-18%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012816950.png">
 <meta property="article:published_time" content="2022-06-17T17:59:12.000Z">
-<meta property="article:modified_time" content="2022-06-24T11:16:59.217Z">
+<meta property="article:modified_time" content="2022-06-24T11:32:27.421Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="database">
 <meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/.io//53681338f68045dc83af0e7687f18d9b.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B017-18%E7%AB%A0/53681338f68045dc83af0e7687f18d9b.png">
   
   
   
@@ -61,12 +61,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="../../../../../../../css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="../../../../../../../css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="../../../../../../../css/highlight-dark.css" />
   
 
 
@@ -82,8 +82,8 @@
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="../../../../../../../js/utils.js" ></script>
+  <script  src="../../../../../../../js/color-schema.js" ></script>
   
 
 
@@ -100,7 +100,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="../../../../../../../index.html">
       <strong> </strong>
     </a>
 
@@ -119,7 +119,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="../../../../../../../index.html">
                 <i class="iconfont icon-home-fill"></i>
                 Home
               </a>
@@ -131,7 +131,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="../../../../../../../archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 Archives
               </a>
@@ -143,7 +143,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="../../../../../../../categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
               </a>
@@ -155,7 +155,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="../../../../../../../tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 Tags
               </a>
@@ -167,7 +167,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="../../../../../../../about/">
                 <i class="iconfont icon-user-fill"></i>
                 About
               </a>
@@ -196,7 +196,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('../../../../../../../img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -409,7 +409,7 @@ DELIMITER ;
 <h3 id="17-3-2-删除触发器"><a href="#17-3-2-删除触发器" class="headerlink" title="17.3.2 删除触发器"></a>17.3.2 删除触发器</h3><p>触发器也是数据库对象，删除触发器也用DROP语句，语法格式如下：</p>
 <pre><code class="hljs">DROP TRIGGER  IF EXISTS 触发器名称;
 </code></pre>
-<h2 id="17-4-触发器的优缺点"><a href="#17-4-触发器的优缺点" class="headerlink" title="17.4 触发器的优缺点"></a>17.4 触发器的优缺点</h2><h3 id="17-4-1-优点"><a href="#17-4-1-优点" class="headerlink" title="17.4.1 优点"></a>17.4.1 优点</h3><p><strong>1、触发器可以确保数据的完整性</strong>。<br>假设我们用<code>进货单头表</code>（demo.importhead）来保存进货单的总体信息，包括进货单编号、供货商编号、仓库编号、总计进货数量、总计进货金额和验收日期。<br><img src="/.io//53681338f68045dc83af0e7687f18d9b.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>用<code>进货单明细表</code>（demo.importdetails）来保存进货商品的明细，包括进货单编号、商品编号、进货数量、进货价格和进货金额。<br><img src="/.io//6610ed771a8a466f8addb073485c5d25.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>每当我们录入、删除和修改一条进货单明细数据的时候，进货单明细表里的数据就会发生变动。这个时候，在进货单头表中的总计数量和总计金额就必须重新计算，否则，进货单头表中的总计数量和总计金额就不等于进货单明细表中数量合计和金额合计了，这就是数据不一致。</p>
+<h2 id="17-4-触发器的优缺点"><a href="#17-4-触发器的优缺点" class="headerlink" title="17.4 触发器的优缺点"></a>17.4 触发器的优缺点</h2><h3 id="17-4-1-优点"><a href="#17-4-1-优点" class="headerlink" title="17.4.1 优点"></a>17.4.1 优点</h3><p><strong>1、触发器可以确保数据的完整性</strong>。<br>假设我们用<code>进货单头表</code>（demo.importhead）来保存进货单的总体信息，包括进货单编号、供货商编号、仓库编号、总计进货数量、总计进货金额和验收日期。<br><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B017-18%E7%AB%A0/53681338f68045dc83af0e7687f18d9b.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>用<code>进货单明细表</code>（demo.importdetails）来保存进货商品的明细，包括进货单编号、商品编号、进货数量、进货价格和进货金额。<br><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B017-18%E7%AB%A0/6610ed771a8a466f8addb073485c5d25.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>每当我们录入、删除和修改一条进货单明细数据的时候，进货单明细表里的数据就会发生变动。这个时候，在进货单头表中的总计数量和总计金额就必须重新计算，否则，进货单头表中的总计数量和总计金额就不等于进货单明细表中数量合计和金额合计了，这就是数据不一致。</p>
 <blockquote>
 <p>为了解决这个问题，我们就可以使用触发器，<strong>规定每当进货单明细表有数据插入、修改和删除的操作时，自动触发 2 步操作：</strong></p>
 <ul>
@@ -518,7 +518,7 @@ SELECT * FROM cte_name;
 <blockquote>
 <p>MySQL 8开始支持窗口函数。在之前的版本中已存在的大部分<code>聚合函数</code>在MySQL 8中也可以作为窗口函数来使用。</p>
 </blockquote>
-<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812881.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>13.正则表达式支持</strong></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B017-18%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812881.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>13.正则表达式支持</strong></p>
 <blockquote>
 <p>MySQL在8.0.4以后的版本中采用支持Unicode的国际化组件库实现正则表达式操作，这种方式不仅能提供完全的Unicode支持，而且是多字节安全编码。MySQL增加了REGEXP_LIKE()、EGEXP_INSTR()、REGEXP_REPLACE()和 REGEXP_SUBSTR()等函数来提升性能。另外，regexp_stack_limit和regexp_time_limit 系统变量能够通过匹配引擎来控制资源消耗。</p>
 </blockquote>
@@ -690,7 +690,7 @@ GROUP BY city;
 <blockquote>
 <p>MySQL官方网站窗口函数的网址为:<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/window-function-descriptions.html#function_row-number">https://dev.mysql.com/doc/refman/8.0/en/window-function-descriptions.html#function_row-number</a></p>
 </blockquote>
-<p>窗口函数总体上可以分为序号函数、分布函数、前后函数、首尾函数和其他函数，如下表：<br><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012816950.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>窗口函数总体上可以分为序号函数、分布函数、前后函数、首尾函数和其他函数，如下表：<br><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B017-18%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012816950.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <h3 id="18-2-3-语法结构"><a href="#18-2-3-语法结构" class="headerlink" title="18.2.3 语法结构"></a>18.2.3 语法结构</h3><p>窗口函数的语法结构是：</p>
 <pre><code class="hljs">函数 OVER（[PARTITION BY 字段名 ORDER BY 字段名 ASC|DESC]）
 </code></pre>
@@ -1235,12 +1235,12 @@ SELECT employee_id,last_name FROM cte WHERE n &gt;= 3;
     
       <span class="category-chain">
         
-  <a href="/categories/database/" class="category-chain-item">database</a>
+  <a href="../../../../../../../categories/database/" class="category-chain-item">database</a>
   
   
     <span>></span>
     
-  <a href="/categories/database/mysql/" class="category-chain-item">mysql</a>
+  <a href="../../../../../../../categories/database/mysql/" class="category-chain-item">mysql</a>
   
   
 
@@ -1257,9 +1257,9 @@ SELECT employee_id,last_name FROM cte WHERE n &gt;= 3;
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/database/">#database</a>
+        <a href="../../../../../../../tags/database/">#database</a>
       
-        <a href="/tags/mysql/">#mysql</a>
+        <a href="../../../../../../../tags/mysql/">#mysql</a>
       
     </div>
   
@@ -1314,7 +1314,7 @@ SELECT employee_id,last_name FROM cte WHERE n &gt;= 3;
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B015-16%E7%AB%A0/" title="mysql详细笔记15-16章">
+                      <a href="../mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B015-16%E7%AB%A0/" title="mysql详细笔记15-16章">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">mysql详细笔记15-16章</span>
                         <span class="visible-mobile">Previous</span>
@@ -1324,7 +1324,7 @@ SELECT employee_id,last_name FROM cte WHERE n &gt;= 3;
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B03-4%E7%AB%A0/" title="mysql详细笔记3-4章">
+                      <a href="../mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B03-4%E7%AB%A0/" title="mysql详细笔记3-4章">
                         <span class="hidden-mobile">mysql详细笔记3-4章</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -1447,15 +1447,15 @@ SELECT employee_id,last_name FROM cte WHERE n &gt;= 3;
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="../../../../../../../js/events.js" ></script>
+<script  src="../../../../../../../js/plugins.js" ></script>
 
 
 
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="../../../../../../../js/img-lazyload.js" ></script>
   
 
 
@@ -1527,7 +1527,7 @@ SELECT employee_id,last_name FROM cte WHERE n &gt;= 3;
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="../../../../../../../js/local-search.js" ></script>
 
 
 
@@ -1535,7 +1535,7 @@ SELECT employee_id,last_name FROM cte WHERE n &gt;= 3;
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="../../../../../../../js/boot.js" ></script>
 
 
   

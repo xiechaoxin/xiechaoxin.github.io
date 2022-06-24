@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../../../../../../../img/fluid.png">
+  <link rel="icon" href="../../../../../../../../img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,18 +23,18 @@
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="CAP &amp; BASE理论经历过技术面试的小伙伴想必对这个两个概念已经再熟悉不过了！ Guide哥当年参加面试的时候，不夸张地说，只要问到分布式相关的内容，面试官几乎是必定会问这两个分布式相关的理论。 并且，这两个理论也可以说是小伙伴们学习分布式相关内容的基础了！ 因此，小伙伴们非常非常有必要将这理论搞懂，并且能够用自己的理解给别人讲出来。 这篇文章我会站在自己的角度对这两个概念进行解读！">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//cap.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//partition-tolerance.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//dubbo-architecture.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//format,png.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/distributed-system/%E7%90%86%E8%AE%BA&%E7%AE%97%E6%B3%95/cap&base%E7%90%86%E8%AE%BA/cap.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/distributed-system/%E7%90%86%E8%AE%BA&%E7%AE%97%E6%B3%95/cap&base%E7%90%86%E8%AE%BA/partition-tolerance.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/distributed-system/%E7%90%86%E8%AE%BA&%E7%AE%97%E6%B3%95/cap&base%E7%90%86%E8%AE%BA/dubbo-architecture.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/distributed-system/%E7%90%86%E8%AE%BA&%E7%AE%97%E6%B3%95/cap&base%E7%90%86%E8%AE%BA/format,png.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T11:16:59.873Z">
+<meta property="article:modified_time" content="2022-06-24T11:32:28.165Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="system_design">
 <meta property="article:tag" content="distributed-system">
 <meta property="article:tag" content="理论&amp;算法">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/.io//cap.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/distributed-system/%E7%90%86%E8%AE%BA&%E7%AE%97%E6%B3%95/cap&base%E7%90%86%E8%AE%BA/cap.png">
   
   
   
@@ -62,12 +62,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="../../../../../../../../css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="../../../../../../../../css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="../../../../../../../../css/highlight-dark.css" />
   
 
 
@@ -83,8 +83,8 @@
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="../../../../../../../../js/utils.js" ></script>
+  <script  src="../../../../../../../../js/color-schema.js" ></script>
   
 
 
@@ -101,7 +101,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="../../../../../../../../index.html">
       <strong> </strong>
     </a>
 
@@ -120,7 +120,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="../../../../../../../../index.html">
                 <i class="iconfont icon-home-fill"></i>
                 Home
               </a>
@@ -132,7 +132,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="../../../../../../../../archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 Archives
               </a>
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="../../../../../../../../categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="../../../../../../../../tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 Tags
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="../../../../../../../../about/">
                 <i class="iconfont icon-user-fill"></i>
                 About
               </a>
@@ -197,7 +197,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('../../../../../../../../img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -289,7 +289,7 @@
 <h2 id="CAP理论"><a href="#CAP理论" class="headerlink" title="CAP理论"></a>CAP理论</h2><p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/CAP%E5%AE%9A%E7%90%86">CAP 理论&#x2F;定理</a>起源于 2000年，由加州大学伯克利分校的Eric Brewer教授在分布式计算原理研讨会（PODC）上提出，因此 CAP定理又被称作 <strong>布鲁尔定理（Brewer’s theorem）</strong></p>
 <p>2年后，麻省理工学院的Seth Gilbert和Nancy Lynch 发表了布鲁尔猜想的证明，CAP理论正式成为分布式领域的定理。</p>
 <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p><strong>CAP</strong> 也就是 <strong>Consistency（一致性）</strong>、<strong>Availability（可用性）</strong>、<strong>Partition Tolerance（分区容错性）</strong> 这三个单词首字母组合。</p>
-<p><img src="/.io//cap.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/system_design/distributed-system/%E7%90%86%E8%AE%BA&%E7%AE%97%E6%B3%95/cap&base%E7%90%86%E8%AE%BA/cap.png" srcset="/img/loading.gif" lazyload></p>
 <p>CAP 理论的提出者布鲁尔在提出 CAP 猜想的时候，并没有详细定义 <strong>Consistency</strong>、<strong>Availability</strong>、<strong>Partition Tolerance</strong> 三个单词的明确定义。</p>
 <p>因此，对于 CAP 的民间解读有很多，一般比较被大家推荐的是下面 👇 这种版本的解读。</p>
 <p>在理论计算机科学中，CAP 定理（CAP theorem）指出对于一个分布式系统来说，当设计读写操作时，只能同时满足以下三点中的两个：</p>
@@ -302,7 +302,7 @@
 <blockquote>
 <p>分布式系统中，多个节点之前的网络本来是连通的，但是因为某些故障（比如部分节点网络出了问题）某些节点之间不连通了，整个网络就分成了几块区域，这就叫网络分区。</p>
 </blockquote>
-<p><img src="/.io//partition-tolerance.png" srcset="/img/loading.gif" lazyload alt="partition-tolerance"></p>
+<p><img src="/2022/06/17/CS/system_design/distributed-system/%E7%90%86%E8%AE%BA&%E7%AE%97%E6%B3%95/cap&base%E7%90%86%E8%AE%BA/partition-tolerance.png" srcset="/img/loading.gif" lazyload alt="partition-tolerance"></p>
 <h3 id="不是所谓的“3-选-2”"><a href="#不是所谓的“3-选-2”" class="headerlink" title="不是所谓的“3 选 2”"></a>不是所谓的“3 选 2”</h3><p>大部分人解释这一定律时，常常简单的表述为：“一致性、可用性、分区容忍性三者你只能同时达到其中两个，不可能同时达到”。实际上这是一个非常具有误导性质的说法，而且在 CAP 理论诞生 12 年之后，CAP 之父也在 2012 年重写了之前的论文。</p>
 <blockquote>
 <p><strong>当发生网络分区的时候，如果我们要继续服务，那么强一致性和可用性只能 2 选 1。也就是说当网络分区之后 P 是前提，决定了 P 之后才有 C 和 A 的选择。也就是说分区容错性（Partition tolerance）我们是必须要实现的。</strong></p>
@@ -315,7 +315,7 @@
 <h3 id="CAP-实际应用案例"><a href="#CAP-实际应用案例" class="headerlink" title="CAP 实际应用案例"></a>CAP 实际应用案例</h3><p>我这里以注册中心来探讨一下 CAP 的实际应用。考虑到很多小伙伴不知道注册中心是干嘛的，这里简单以 Dubbo 为例说一说。</p>
 <p>下图是 Dubbo 的架构图。<strong>注册中心 Registry 在其中扮演了什么角色呢？提供了什么服务呢？</strong></p>
 <p>注册中心负责服务地址的注册与查找，相当于目录服务，服务提供者和消费者只在启动时与注册中心交互，注册中心不转发请求，压力较小。</p>
-<p><img src="/.io//dubbo-architecture.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/system_design/distributed-system/%E7%90%86%E8%AE%BA&%E7%AE%97%E6%B3%95/cap&base%E7%90%86%E8%AE%BA/dubbo-architecture.png" srcset="/img/loading.gif" lazyload></p>
 <p>常见的可以作为注册中心的组件有：ZooKeeper、Eureka、Nacos…。</p>
 <ol>
 <li><strong>ZooKeeper 保证的是 CP。</strong> 任何时刻对 ZooKeeper 的读请求都能得到一致性的结果，但是， ZooKeeper 不保证每次请求的可用性比如在 Leader 选举过程中或者半数以上的机器不可用的时候服务就是不可用的。</li>
@@ -344,7 +344,7 @@
 <p>如果系统没有发生“分区”的话，节点间的网络连接通信正常的话，也就不存在 P 了。这个时候，我们就可以同时保证 C 和 A 了。因此，<strong>如果系统发生“分区”，我们要考虑选择 CP 还是 AP。如果系统没有发生“分区”的话，我们要思考如何保证 CA 。</strong></p>
 </blockquote>
 <p>因此，AP 方案只是在系统发生分区的时候放弃一致性，而不是永远放弃一致性。在分区故障恢复后，系统应该达到最终一致性。这一点其实就是 BASE 理论延伸的地方。</p>
-<h3 id="BASE-理论三要素"><a href="#BASE-理论三要素" class="headerlink" title="BASE 理论三要素"></a>BASE 理论三要素</h3><p><img src="/.io//format,png.png" srcset="/img/loading.gif" lazyload alt="BASE理论三要素"></p>
+<h3 id="BASE-理论三要素"><a href="#BASE-理论三要素" class="headerlink" title="BASE 理论三要素"></a>BASE 理论三要素</h3><p><img src="/2022/06/17/CS/system_design/distributed-system/%E7%90%86%E8%AE%BA&%E7%AE%97%E6%B3%95/cap&base%E7%90%86%E8%AE%BA/format,png.png" srcset="/img/loading.gif" lazyload alt="BASE理论三要素"></p>
 <h4 id="1-基本可用"><a href="#1-基本可用" class="headerlink" title="1. 基本可用"></a>1. 基本可用</h4><p>基本可用是指分布式系统在出现不可预知故障的时候，允许损失部分可用性。但是，这绝不等价于系统不可用。</p>
 <p><strong>什么叫允许损失部分可用性呢？</strong></p>
 <ul>
@@ -393,17 +393,17 @@
     
       <span class="category-chain">
         
-  <a href="/categories/system-design/" class="category-chain-item">system_design</a>
+  <a href="../../../../../../../../categories/system-design/" class="category-chain-item">system_design</a>
   
   
     <span>></span>
     
-  <a href="/categories/system-design/distributed-system/" class="category-chain-item">distributed-system</a>
+  <a href="../../../../../../../../categories/system-design/distributed-system/" class="category-chain-item">distributed-system</a>
   
   
     <span>></span>
     
-  <a href="/categories/system-design/distributed-system/%E7%90%86%E8%AE%BA-%E7%AE%97%E6%B3%95/" class="category-chain-item">理论&amp;算法</a>
+  <a href="../../../../../../../../categories/system-design/distributed-system/%E7%90%86%E8%AE%BA-%E7%AE%97%E6%B3%95/" class="category-chain-item">理论&amp;算法</a>
   
   
 
@@ -422,11 +422,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/system-design/">#system_design</a>
+        <a href="../../../../../../../../tags/system-design/">#system_design</a>
       
-        <a href="/tags/distributed-system/">#distributed-system</a>
+        <a href="../../../../../../../../tags/distributed-system/">#distributed-system</a>
       
-        <a href="/tags/%E7%90%86%E8%AE%BA-%E7%AE%97%E6%B3%95/">#理论&算法</a>
+        <a href="../../../../../../../../tags/%E7%90%86%E8%AE%BA-%E7%AE%97%E6%B3%95/">#理论&算法</a>
       
     </div>
   
@@ -481,7 +481,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/17/CS/system_design/distributed-system/rpc/why-use-rpc/" title="why-use-rpc">
+                      <a href="../../rpc/why-use-rpc/" title="why-use-rpc">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">why-use-rpc</span>
                         <span class="visible-mobile">Previous</span>
@@ -491,7 +491,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/17/CS/system_design/distributed-system/%E7%90%86%E8%AE%BA&amp;%E7%AE%97%E6%B3%95/paxos&amp;raft%E7%AE%97%E6%B3%95/" title="paxos&amp;raft算法">
+                      <a href="../paxos&amp;raft%E7%AE%97%E6%B3%95/" title="paxos&amp;raft算法">
                         <span class="hidden-mobile">paxos&amp;raft算法</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -614,15 +614,15 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="../../../../../../../../js/events.js" ></script>
+<script  src="../../../../../../../../js/plugins.js" ></script>
 
 
 
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="../../../../../../../../js/img-lazyload.js" ></script>
   
 
 
@@ -694,7 +694,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="../../../../../../../../js/local-search.js" ></script>
 
 
 
@@ -702,7 +702,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="../../../../../../../../js/boot.js" ></script>
 
 
   

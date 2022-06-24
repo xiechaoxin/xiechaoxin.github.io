@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../../../../../../img/fluid.png">
+  <link rel="icon" href="../../../../../../../img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,19 +23,19 @@
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="title:  拿来即用的Java线程池最佳实践category: Javatag:  Java并发   这篇文章篇幅虽短，但是绝对是干货。标题稍微有点夸张，嘿嘿，实际都是自己使用线程池的时候总结的一些个人感觉比较重要的点。 线程池知识回顾开始这篇文章之前还是简单介绍一嘴线程池，之前写的《新手也能看懂的线程池学习总结》这篇文章介绍的很详细了。 为什么要使用线程池？ 池化技术想必大家已经屡见不鲜了">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//1bc44c67-26ba-42ab-bcb8-4e29e6fd99b9.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//ddf22709-bff5-45b4-acb7-a3f2e6798608.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//5b9b814d-722a-4116-b066-43dc80fc1dc4.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%BD%93%E5%AF%BC%E8%87%B4%E6%AD%BB%E9%94%81.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//b6fd95a7-4c9d-4fc6-ad26-890adb3f6c4c.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//19a0255a-6ef3-4835-98d1-a839d1983332.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/concurrent/%E6%8B%BF%E6%9D%A5%E5%8D%B3%E7%94%A8%E7%9A%84java%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/1bc44c67-26ba-42ab-bcb8-4e29e6fd99b9.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/concurrent/%E6%8B%BF%E6%9D%A5%E5%8D%B3%E7%94%A8%E7%9A%84java%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/ddf22709-bff5-45b4-acb7-a3f2e6798608.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/concurrent/%E6%8B%BF%E6%9D%A5%E5%8D%B3%E7%94%A8%E7%9A%84java%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/5b9b814d-722a-4116-b066-43dc80fc1dc4.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/concurrent/%E6%8B%BF%E6%9D%A5%E5%8D%B3%E7%94%A8%E7%9A%84java%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%BD%93%E5%AF%BC%E8%87%B4%E6%AD%BB%E9%94%81.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/concurrent/%E6%8B%BF%E6%9D%A5%E5%8D%B3%E7%94%A8%E7%9A%84java%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/b6fd95a7-4c9d-4fc6-ad26-890adb3f6c4c.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/concurrent/%E6%8B%BF%E6%9D%A5%E5%8D%B3%E7%94%A8%E7%9A%84java%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/19a0255a-6ef3-4835-98d1-a839d1983332.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T11:16:58.685Z">
+<meta property="article:modified_time" content="2022-06-24T11:32:26.829Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="concurrent">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/.io//1bc44c67-26ba-42ab-bcb8-4e29e6fd99b9.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/concurrent/%E6%8B%BF%E6%9D%A5%E5%8D%B3%E7%94%A8%E7%9A%84java%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/1bc44c67-26ba-42ab-bcb8-4e29e6fd99b9.png">
   
   
   
@@ -63,12 +63,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="../../../../../../../css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="../../../../../../../css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="../../../../../../../css/highlight-dark.css" />
   
 
 
@@ -84,8 +84,8 @@
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="../../../../../../../js/utils.js" ></script>
+  <script  src="../../../../../../../js/color-schema.js" ></script>
   
 
 
@@ -102,7 +102,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="../../../../../../../index.html">
       <strong> </strong>
     </a>
 
@@ -121,7 +121,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="../../../../../../../index.html">
                 <i class="iconfont icon-home-fill"></i>
                 Home
               </a>
@@ -133,7 +133,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="../../../../../../../archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 Archives
               </a>
@@ -145,7 +145,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="../../../../../../../categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
               </a>
@@ -157,7 +157,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="../../../../../../../tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 Tags
               </a>
@@ -169,7 +169,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="../../../../../../../about/">
                 <i class="iconfont icon-user-fill"></i>
                 About
               </a>
@@ -198,7 +198,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('../../../../../../../img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -302,7 +302,7 @@
 <h3 id="线程池在实际项目的使用场景"><a href="#线程池在实际项目的使用场景" class="headerlink" title="线程池在实际项目的使用场景"></a>线程池在实际项目的使用场景</h3><p><strong>线程池一般用于执行多个不相关联的耗时任务，没有多线程的情况下，任务顺序执行，使用了线程池的话可让多个不相关联的任务同时执行。</strong></p>
 <p>假设我们要执行三个不相关的耗时任务，Guide 画图给大家展示了使用线程池前后的区别。</p>
 <p>注意：<strong>下面三个任务可能做的是同一件事情，也可能是不一样的事情。</strong> </p>
-<p><img src="/.io//1bc44c67-26ba-42ab-bcb8-4e29e6fd99b9.png" srcset="/img/loading.gif" lazyload alt="使用线程池前后对比"></p>
+<p><img src="/2022/06/17/CS/Java/concurrent/%E6%8B%BF%E6%9D%A5%E5%8D%B3%E7%94%A8%E7%9A%84java%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/1bc44c67-26ba-42ab-bcb8-4e29e6fd99b9.png" srcset="/img/loading.gif" lazyload alt="使用线程池前后对比"></p>
 <h3 id="如何使用线程池？"><a href="#如何使用线程池？" class="headerlink" title="如何使用线程池？"></a>如何使用线程池？</h3><p>一般是通过 <code>ThreadPoolExecutor</code> 的构造函数来创建线程池，然后提交任务给线程池执行就可以了。</p>
 <p> <code>ThreadPoolExecutor</code>构造函数如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 用给定的初始参数创建一个新的ThreadPoolExecutor。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-title function_">ThreadPoolExecutor</span><span class="hljs-params">(<span class="hljs-type">int</span> corePoolSize,//线程池的核心线程数量</span><br><span class="hljs-params">                          <span class="hljs-type">int</span> maximumPoolSize,//线程池的最大线程数</span><br><span class="hljs-params">                          <span class="hljs-type">long</span> keepAliveTime,//当线程数大于核心线程数时，多余的空闲线程存活的最长时间</span><br><span class="hljs-params">                          TimeUnit unit,//时间单位</span><br><span class="hljs-params">                          BlockingQueue&lt;Runnable&gt; workQueue,//任务队列，用来储存等待执行任务的队列</span><br><span class="hljs-params">                          ThreadFactory threadFactory,//线程工厂，用来创建线程，一般默认即可</span><br><span class="hljs-params">                          RejectedExecutionHandler handler//拒绝策略，当提交的任务过多而不能及时处理时，我们可以定制策略来处理任务</span><br><span class="hljs-params">                           )</span> &#123;<br>    <span class="hljs-keyword">if</span> (corePoolSize &lt; <span class="hljs-number">0</span> ||<br>        maximumPoolSize &lt;= <span class="hljs-number">0</span> ||<br>        maximumPoolSize &lt; corePoolSize ||<br>        keepAliveTime &lt; <span class="hljs-number">0</span>)<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IllegalArgumentException</span>();<br>    <span class="hljs-keyword">if</span> (workQueue == <span class="hljs-literal">null</span> || threadFactory == <span class="hljs-literal">null</span> || handler == <span class="hljs-literal">null</span>)<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">NullPointerException</span>();<br>    <span class="hljs-built_in">this</span>.corePoolSize = corePoolSize;<br>    <span class="hljs-built_in">this</span>.maximumPoolSize = maximumPoolSize;<br>    <span class="hljs-built_in">this</span>.workQueue = workQueue;<br>    <span class="hljs-built_in">this</span>.keepAliveTime = unit.toNanos(keepAliveTime);<br>    <span class="hljs-built_in">this</span>.threadFactory = threadFactory;<br>    <span class="hljs-built_in">this</span>.handler = handler;<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -331,17 +331,17 @@
 </ol>
 <h3 id="2-监测线程池运行状态"><a href="#2-监测线程池运行状态" class="headerlink" title="2.监测线程池运行状态"></a>2.监测线程池运行状态</h3><p>你可以通过一些手段来检测线程池的运行状态比如 SpringBoot 中的 Actuator 组件。</p>
 <p>除此之外，我们还可以利用 <code>ThreadPoolExecutor</code> 的相关 API做一个简陋的监控。从下图可以看出， <code>ThreadPoolExecutor</code>提供了获取线程池当前的线程数和活跃线程数、已经执行完成的任务数、正在排队中的任务数等等。</p>
-<p><img src="/.io//ddf22709-bff5-45b4-acb7-a3f2e6798608.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/concurrent/%E6%8B%BF%E6%9D%A5%E5%8D%B3%E7%94%A8%E7%9A%84java%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/ddf22709-bff5-45b4-acb7-a3f2e6798608.png" srcset="/img/loading.gif" lazyload></p>
 <p>下面是一个简单的 Demo。<code>printThreadPoolStatus()</code>会每隔一秒打印出线程池的线程数、活跃线程数、完成的任务数、以及队列中的任务数。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 打印线程池的状态</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> threadPool 线程池对象</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">printThreadPoolStatus</span><span class="hljs-params">(ThreadPoolExecutor threadPool)</span> &#123;<br>    <span class="hljs-type">ScheduledExecutorService</span> <span class="hljs-variable">scheduledExecutorService</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ScheduledThreadPoolExecutor</span>(<span class="hljs-number">1</span>, createThreadFactory(<span class="hljs-string">&quot;print-images/thread-pool-status&quot;</span>, <span class="hljs-literal">false</span>));<br>    scheduledExecutorService.scheduleAtFixedRate(() -&gt; &#123;<br>        log.info(<span class="hljs-string">&quot;=========================&quot;</span>);<br>        log.info(<span class="hljs-string">&quot;ThreadPool Size: [&#123;&#125;]&quot;</span>, threadPool.getPoolSize());<br>        log.info(<span class="hljs-string">&quot;Active Threads: &#123;&#125;&quot;</span>, threadPool.getActiveCount());<br>        log.info(<span class="hljs-string">&quot;Number of Tasks : &#123;&#125;&quot;</span>, threadPool.getCompletedTaskCount());<br>        log.info(<span class="hljs-string">&quot;Number of Tasks in Queue: &#123;&#125;&quot;</span>, threadPool.getQueue().size());<br>        log.info(<span class="hljs-string">&quot;=========================&quot;</span>);<br>    &#125;, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, TimeUnit.SECONDS);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="3-建议不同类别的业务用不同的线程池"><a href="#3-建议不同类别的业务用不同的线程池" class="headerlink" title="3.建议不同类别的业务用不同的线程池"></a>3.建议不同类别的业务用不同的线程池</h3><p>很多人在实际项目中都会有类似这样的问题：<strong>我的项目中多个业务需要用到线程池，是为每个线程池都定义一个还是说定义一个公共的线程池呢？</strong></p>
 <p>一般建议是不同的业务使用不同的线程池，配置线程池的时候根据当前业务的情况对当前线程池进行配置，因为不同的业务的并发以及对资源的使用情况都不同，重心优化系统性能瓶颈相关的业务。</p>
 <p><strong>我们再来看一个真实的事故案例！</strong> (本案例来源自：<a target="_blank" rel="noopener" href="https://club.perfma.com/article/646639">《线程池运用不当的一次线上事故》</a> ，很精彩的一个案例)</p>
-<p><img src="/.io//5b9b814d-722a-4116-b066-43dc80fc1dc4.png" srcset="/img/loading.gif" lazyload alt="案例代码概览"></p>
+<p><img src="/2022/06/17/CS/Java/concurrent/%E6%8B%BF%E6%9D%A5%E5%8D%B3%E7%94%A8%E7%9A%84java%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/5b9b814d-722a-4116-b066-43dc80fc1dc4.png" srcset="/img/loading.gif" lazyload alt="案例代码概览"></p>
 <p>上面的代码可能会存在死锁的情况，为什么呢？画个图给大家捋一捋。</p>
 <p>试想这样一种极端情况：假如我们线程池的核心线程数为 <strong>n</strong>，父任务（扣费任务）数量为 <strong>n</strong>，父任务下面有两个子任务（扣费任务下的子任务），其中一个已经执行完成，另外一个被放在了任务队列中。由于父任务把线程池核心线程资源用完，所以子任务因为无法获取到线程资源无法正常执行，一直被阻塞在队列中。父任务等待子任务执行完成，而子任务等待父任务释放线程池资源，这也就造成了 **”死锁”**。</p>
-<p><img src="/.io//%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%BD%93%E5%AF%BC%E8%87%B4%E6%AD%BB%E9%94%81.png" srcset="/img/loading.gif" lazyload alt="线程池使用不当导致死锁"></p>
+<p><img src="/2022/06/17/CS/Java/concurrent/%E6%8B%BF%E6%9D%A5%E5%8D%B3%E7%94%A8%E7%9A%84java%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%BD%93%E5%AF%BC%E8%87%B4%E6%AD%BB%E9%94%81.png" srcset="/img/loading.gif" lazyload alt="线程池使用不当导致死锁"></p>
 <p>解决方法也很简单，就是新增加一个用于执行子任务的线程池专门为其服务。</p>
 <h3 id="4-别忘记给线程池命名"><a href="#4-别忘记给线程池命名" class="headerlink" title="4.别忘记给线程池命名"></a>4.别忘记给线程池命名</h3><p>初始化线程池的时候需要显示命名（设置线程池名称前缀），有利于定位问题。</p>
 <p>默认情况下创建的线程名字类似 pool-1-thread-n 这样的，没有业务含义，不利于我们定位问题。</p>
@@ -381,11 +381,11 @@
 <p><strong>为什么是这三个参数？</strong></p>
 <p>我在这篇<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247485808&idx=1&sn=1013253533d73450cef673aee13267ab&chksm=cea246bbf9d5cfad1c21316340a0ef1609a7457fea4113a1f8d69e8c91e7d9cd6285f5ee1490&token=510053261&lang=zh_CN&scene=21#wechat_redirect">《新手也能看懂的线程池学习总结》</a> 中就说过这三个参数是 <code>ThreadPoolExecutor</code>  最重要的参数，它们基本决定了线程池对于任务的处理策略。</p>
 <p><strong>如何支持参数动态配置？</strong> 且看 <code>ThreadPoolExecutor</code> 提供的下面这些方法。</p>
-<p><img src="/.io//b6fd95a7-4c9d-4fc6-ad26-890adb3f6c4c.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/concurrent/%E6%8B%BF%E6%9D%A5%E5%8D%B3%E7%94%A8%E7%9A%84java%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/b6fd95a7-4c9d-4fc6-ad26-890adb3f6c4c.png" srcset="/img/loading.gif" lazyload></p>
 <p>格外需要注意的是<code>corePoolSize</code>，   程序运行期间的时候，我们调用 <code>setCorePoolSize（） </code>这个方法的话，线程池会首先判断当前工作线程数是否大于<code>corePoolSize</code>，如果大于的话就会回收工作线程。</p>
 <p>另外，你也看到了上面并没有动态指定队列长度的方法，美团的方式是自定义了一个叫做 <code>ResizableCapacityLinkedBlockIngQueue</code> 的队列（主要就是把<code>LinkedBlockingQueue</code>的capacity 字段的final关键字修饰给去掉了，让它变为可变的）。</p>
 <p>最终实现的可动态修改线程池参数效果如下。👏👏👏</p>
-<p><img src="/.io//19a0255a-6ef3-4835-98d1-a839d1983332.png" srcset="/img/loading.gif" lazyload alt="动态配置线程池参数最终效果"></p>
+<p><img src="/2022/06/17/CS/Java/concurrent/%E6%8B%BF%E6%9D%A5%E5%8D%B3%E7%94%A8%E7%9A%84java%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/19a0255a-6ef3-4835-98d1-a839d1983332.png" srcset="/img/loading.gif" lazyload alt="动态配置线程池参数最终效果"></p>
 <p>还没看够？推荐 why神的<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/9HLuPcoWmTqAeFKa1kj-_A">《如何设置线程池参数？美团给出了一个让面试官虎躯一震的回答。》</a>这篇文章，深度剖析，很不错哦！</p>
 
                 
@@ -405,12 +405,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  <a href="../../../../../../../categories/Java/" class="category-chain-item">Java</a>
   
   
     <span>></span>
     
-  <a href="/categories/Java/concurrent/" class="category-chain-item">concurrent</a>
+  <a href="../../../../../../../categories/Java/concurrent/" class="category-chain-item">concurrent</a>
   
   
 
@@ -427,9 +427,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Java/">#Java</a>
+        <a href="../../../../../../../tags/Java/">#Java</a>
       
-        <a href="/tags/concurrent/">#concurrent</a>
+        <a href="../../../../../../../tags/concurrent/">#concurrent</a>
       
     </div>
   
@@ -484,7 +484,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/17/CS/Java/concurrent/%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8%E6%80%BB%E7%BB%93/" title="并发容器总结">
+                      <a href="../%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8%E6%80%BB%E7%BB%93/" title="并发容器总结">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">并发容器总结</span>
                         <span class="visible-mobile">Previous</span>
@@ -494,8 +494,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/17/CS/Java/new_features/java8-common-new-features/" title="java8-common-new-features">
-                        <span class="hidden-mobile">java8-common-new-features</span>
+                      <a href="../../interview/JavaOOP%E9%9D%A2%E8%AF%95%E9%A2%98/" title="JavaOOP面试题">
+                        <span class="hidden-mobile">JavaOOP面试题</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -617,15 +617,15 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="../../../../../../../js/events.js" ></script>
+<script  src="../../../../../../../js/plugins.js" ></script>
 
 
 
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="../../../../../../../js/img-lazyload.js" ></script>
   
 
 
@@ -697,7 +697,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="../../../../../../../js/local-search.js" ></script>
 
 
 
@@ -705,7 +705,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="../../../../../../../js/boot.js" ></script>
 
 
   

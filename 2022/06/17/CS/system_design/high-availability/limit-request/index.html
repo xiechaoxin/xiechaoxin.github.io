@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../../../../../../img/fluid.png">
+  <link rel="icon" href="../../../../../../../img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,19 +23,19 @@
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="限流何为限流？为什么要限流？针对软件系统来说，限流就是对请求的速率进行限制，避免瞬时的大量请求击垮软件系统。毕竟，软件系统的处理能力是有限的。如果说超过了其处理能力的范围，软件系统可能直接就挂掉了。 限流可能会导致用户的请求无法被正确处理，不过，这往往也是权衡了软件系统的稳定性之后得到的最优解。 现实生活中，处处都有限流的实际应用，就比如排队买票是为了避免大量用户涌入购票而导致售票员无法处理。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//f9f17071fc4d489d85d2a234fb298df1.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//8ded7a2b90e1482093f92fff555b3615.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//ae4d3cd14efb8dc7046d691c90264715.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//75938d1010138ce66e38c6ed0392f103.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//eca0e5eaa35dac938c673fecf2ec9a93.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//e1e2a75f489e4854990dabe3b6cec522.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/high-availability/limit-request/f9f17071fc4d489d85d2a234fb298df1.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/high-availability/limit-request/8ded7a2b90e1482093f92fff555b3615.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/high-availability/limit-request/ae4d3cd14efb8dc7046d691c90264715.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/high-availability/limit-request/75938d1010138ce66e38c6ed0392f103.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/high-availability/limit-request/eca0e5eaa35dac938c673fecf2ec9a93.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/high-availability/limit-request/e1e2a75f489e4854990dabe3b6cec522.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T11:16:59.885Z">
+<meta property="article:modified_time" content="2022-06-24T11:32:28.181Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="system_design">
 <meta property="article:tag" content="high-availability">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/.io//f9f17071fc4d489d85d2a234fb298df1.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/high-availability/limit-request/f9f17071fc4d489d85d2a234fb298df1.png">
   
   
   
@@ -63,12 +63,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="../../../../../../../css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="../../../../../../../css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="../../../../../../../css/highlight-dark.css" />
   
 
 
@@ -84,8 +84,8 @@
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="../../../../../../../js/utils.js" ></script>
+  <script  src="../../../../../../../js/color-schema.js" ></script>
   
 
 
@@ -102,7 +102,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="../../../../../../../index.html">
       <strong> </strong>
     </a>
 
@@ -121,7 +121,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="../../../../../../../index.html">
                 <i class="iconfont icon-home-fill"></i>
                 Home
               </a>
@@ -133,7 +133,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="../../../../../../../archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 Archives
               </a>
@@ -145,7 +145,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="../../../../../../../categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
               </a>
@@ -157,7 +157,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="../../../../../../../tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 Tags
               </a>
@@ -169,7 +169,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="../../../../../../../about/">
                 <i class="iconfont icon-user-fill"></i>
                 About
               </a>
@@ -198,7 +198,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('../../../../../../../img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -284,7 +284,7 @@
                 <h1 id="限流"><a href="#限流" class="headerlink" title="限流"></a>限流</h1><h2 id="何为限流？为什么要限流？"><a href="#何为限流？为什么要限流？" class="headerlink" title="何为限流？为什么要限流？"></a>何为限流？为什么要限流？</h2><p>针对软件系统来说，限流就是对请求的速率进行限制，避免瞬时的大量请求击垮软件系统。毕竟，软件系统的处理能力是有限的。如果说超过了其处理能力的范围，软件系统可能直接就挂掉了。</p>
 <p>限流可能会导致用户的请求无法被正确处理，不过，这往往也是权衡了软件系统的稳定性之后得到的最优解。</p>
 <p>现实生活中，处处都有限流的实际应用，就比如排队买票是为了避免大量用户涌入购票而导致售票员无法处理。</p>
-<p><img src="/.io//f9f17071fc4d489d85d2a234fb298df1.png" srcset="/img/loading.gif" lazyload alt="排队示意图"></p>
+<p><img src="/2022/06/17/CS/system_design/high-availability/limit-request/f9f17071fc4d489d85d2a234fb298df1.png" srcset="/img/loading.gif" lazyload alt="排队示意图"></p>
 <h2 id="常见限流算法"><a href="#常见限流算法" class="headerlink" title="常见限流算法"></a>常见限流算法</h2><p>简单介绍 4 种非常好理解并且容易实现的限流算法！</p>
 <blockquote>
 <p>图片来源于 InfoQ 的一篇文章<a target="_blank" rel="noopener" href="https://www.infoq.cn/article/Qg2tX8fyw5Vt-f3HH673">《分布式服务限流实战，已经为你排好坑了》</a>。</p>
@@ -298,17 +298,17 @@
 </ul>
 <p><strong>这种限流算法无法保证限流速率，因而无法保证突然激增的流量。</strong></p>
 <p>就比如说我们限制某个接口 1 分钟只能访问 1000 次，该接口的 QPS 为 500，前 55s 这个接口 1 个请求没有接收，后 1s 突然接收了 1000 个请求。然后，在当前场景下，这 1000 个请求在 1s 内是没办法被处理的，系统直接就被瞬时的大量请求给击垮了。</p>
-<p><img src="/.io//8ded7a2b90e1482093f92fff555b3615.png" srcset="/img/loading.gif" lazyload alt="固定窗口计数器算法"></p>
+<p><img src="/2022/06/17/CS/system_design/high-availability/limit-request/8ded7a2b90e1482093f92fff555b3615.png" srcset="/img/loading.gif" lazyload alt="固定窗口计数器算法"></p>
 <h3 id="滑动窗口计数器算法"><a href="#滑动窗口计数器算法" class="headerlink" title="滑动窗口计数器算法"></a>滑动窗口计数器算法</h3><p><strong>滑动窗口计数器算法</strong> 算的上是固定窗口计数器算法的升级版。</p>
 <p>滑动窗口计数器算法相比于固定窗口计数器算法的优化在于：<strong>它把时间以一定比例分片</strong> 。</p>
 <p>例如我们的借口限流每分钟处理 60 个请求，我们可以把 1 分钟分为 60 个窗口。每隔 1 秒移动一次，每个窗口一秒只能处理 不大于 <code>60(请求数)/60（窗口数）</code> 的请求， 如果当前窗口的请求计数总和超过了限制的数量的话就不再处理其他请求。</p>
 <p>很显然， <strong>当滑动窗口的格子划分的越多，滑动窗口的滚动就越平滑，限流的统计就会越精确。</strong></p>
-<p><img src="/.io//ae4d3cd14efb8dc7046d691c90264715.png" srcset="/img/loading.gif" lazyload alt="滑动窗口计数器算法"></p>
+<p><img src="/2022/06/17/CS/system_design/high-availability/limit-request/ae4d3cd14efb8dc7046d691c90264715.png" srcset="/img/loading.gif" lazyload alt="滑动窗口计数器算法"></p>
 <h3 id="漏桶算法"><a href="#漏桶算法" class="headerlink" title="漏桶算法"></a>漏桶算法</h3><p>我们可以把发请求的动作比作成注水到桶中，我们处理请求的过程可以比喻为漏桶漏水。我们往桶中以任意速率流入水，以一定速率流出水。当水超过桶流量则丢弃，因为桶容量是不变的，保证了整体的速率。</p>
 <p>如果想要实现这个算法的话也很简单，准备一个队列用来保存请求，然后我们定期从队列中拿请求来执行就好了（和消息队列削峰&#x2F;限流的思想是一样的）。</p>
-<p><img src="/.io//75938d1010138ce66e38c6ed0392f103.png" srcset="/img/loading.gif" lazyload alt="漏桶算法"></p>
+<p><img src="/2022/06/17/CS/system_design/high-availability/limit-request/75938d1010138ce66e38c6ed0392f103.png" srcset="/img/loading.gif" lazyload alt="漏桶算法"></p>
 <h3 id="令牌桶算法"><a href="#令牌桶算法" class="headerlink" title="令牌桶算法"></a>令牌桶算法</h3><p>令牌桶算法也比较简单。和漏桶算法算法一样，我们的主角还是桶（这限流算法和桶过不去啊）。不过现在桶里装的是令牌了，请求在被处理之前需要拿到一个令牌，请求处理完毕之后将这个令牌丢弃（删除）。我们根据限流大小，按照一定的速率往桶里添加令牌。如果桶装满了，就不能继续往里面继续添加令牌了。</p>
-<p><img src="/.io//eca0e5eaa35dac938c673fecf2ec9a93.png" srcset="/img/loading.gif" lazyload alt="令牌桶算法"></p>
+<p><img src="/2022/06/17/CS/system_design/high-availability/limit-request/eca0e5eaa35dac938c673fecf2ec9a93.png" srcset="/img/loading.gif" lazyload alt="令牌桶算法"></p>
 <h2 id="单机限流"><a href="#单机限流" class="headerlink" title="单机限流"></a>单机限流</h2><p>单机限流可以直接使用 Google Guava 自带的限流工具类 <code>RateLimiter</code> 。 <code>RateLimiter</code> 基于令牌桶算法，可以应对突发流量。</p>
 <blockquote>
 <p>Guava 地址：<a target="_blank" rel="noopener" href="https://github.com/google/guava">https://github.com/google/guava</a></p>
@@ -355,7 +355,7 @@
 <blockquote>
 <p>ShenYu 地址: <a target="_blank" rel="noopener" href="https://github.com/apache/incubator-shenyu">https://github.com/apache/incubator-shenyu</a></p>
 </blockquote>
-<p><img src="/.io//e1e2a75f489e4854990dabe3b6cec522.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/system_design/high-availability/limit-request/e1e2a75f489e4854990dabe3b6cec522.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="相关阅读"><a href="#相关阅读" class="headerlink" title="相关阅读"></a>相关阅读</h2><ul>
 <li>服务治理之轻量级熔断框架 Resilience4j ：<a target="_blank" rel="noopener" href="https://xie.infoq.cn/article/14786e571c1a4143ad1ef8f19">https://xie.infoq.cn/article/14786e571c1a4143ad1ef8f19</a></li>
 <li>超详细的 Guava RateLimiter 限流原理解析：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1408819">https://cloud.tencent.com/developer/article/1408819</a></li>
@@ -379,12 +379,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/system-design/" class="category-chain-item">system_design</a>
+  <a href="../../../../../../../categories/system-design/" class="category-chain-item">system_design</a>
   
   
     <span>></span>
     
-  <a href="/categories/system-design/high-availability/" class="category-chain-item">high-availability</a>
+  <a href="../../../../../../../categories/system-design/high-availability/" class="category-chain-item">high-availability</a>
   
   
 
@@ -401,9 +401,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/system-design/">#system_design</a>
+        <a href="../../../../../../../tags/system-design/">#system_design</a>
       
-        <a href="/tags/high-availability/">#high-availability</a>
+        <a href="../../../../../../../tags/high-availability/">#high-availability</a>
       
     </div>
   
@@ -458,7 +458,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/17/CS/system_design/docker/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/" title="docker从入门到实战">
+                      <a href="../../docker/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/" title="docker从入门到实战">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">docker从入门到实战</span>
                         <span class="visible-mobile">Previous</span>
@@ -468,7 +468,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/17/CS/system_design/high-availability/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/" title="性能测试">
+                      <a href="../%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/" title="性能测试">
                         <span class="hidden-mobile">性能测试</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -591,15 +591,15 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="../../../../../../../js/events.js" ></script>
+<script  src="../../../../../../../js/plugins.js" ></script>
 
 
 
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="../../../../../../../js/img-lazyload.js" ></script>
   
 
 
@@ -671,7 +671,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="../../../../../../../js/local-search.js" ></script>
 
 
 
@@ -679,7 +679,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="../../../../../../../js/boot.js" ></script>
 
 
   

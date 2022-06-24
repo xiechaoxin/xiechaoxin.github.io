@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../../../../../../../../img/fluid.png">
+  <link rel="icon" href="../../../../../../../../../img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,18 +23,18 @@
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="SpringBoot第一章  JavaConfig 为什么要使用 Spring Boot 因为Spring， SpringMVC 需要使用的大量的配置文件 （xml文件） 还需要配置各种对象，把使用的对象放入到spring容器中才能使用对象 需要了解其他框架配置规则。  SpringBoot 就相当于 不需要配置文件的Spring+SpringMVC。 常用的框架和第三方库都已经配置好了。 拿来就">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//image-20210115152427829-2261280.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//image-20210115155556662-2261280.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//image-20210119150418295-2261280.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/SpringBoot/SpringBoot%E7%AC%94%E8%AE%B0/image-20210115152427829-2261280.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/SpringBoot/SpringBoot%E7%AC%94%E8%AE%B0/image-20210115155556662-2261280.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/SpringBoot/SpringBoot%E7%AC%94%E8%AE%B0/image-20210119150418295-2261280.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T11:16:58.745Z">
+<meta property="article:modified_time" content="2022-06-24T11:32:26.893Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="frame_work">
 <meta property="article:tag" content="spring">
 <meta property="article:tag" content="SpringBoot">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/.io//image-20210115152427829-2261280.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/SpringBoot/SpringBoot%E7%AC%94%E8%AE%B0/image-20210115152427829-2261280.png">
   
   
   
@@ -62,12 +62,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="../../../../../../../../../css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="../../../../../../../../../css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="../../../../../../../../../css/highlight-dark.css" />
   
 
 
@@ -83,8 +83,8 @@
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="../../../../../../../../../js/utils.js" ></script>
+  <script  src="../../../../../../../../../js/color-schema.js" ></script>
   
 
 
@@ -101,7 +101,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="../../../../../../../../../index.html">
       <strong> </strong>
     </a>
 
@@ -120,7 +120,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="../../../../../../../../../index.html">
                 <i class="iconfont icon-home-fill"></i>
                 Home
               </a>
@@ -132,7 +132,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="../../../../../../../../../archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 Archives
               </a>
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="../../../../../../../../../categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="../../../../../../../../../tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 Tags
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="../../../../../../../../../about/">
                 <i class="iconfont icon-user-fill"></i>
                 About
               </a>
@@ -197,7 +197,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('../../../../../../../../../img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -352,9 +352,9 @@
 </ul>
 <h2 id="2-2-创建Spring-Boot项目"><a href="#2-2-创建Spring-Boot项目" class="headerlink" title="2.2 创建Spring Boot项目"></a>2.2 创建Spring Boot项目</h2><h3 id="2-2-1-第一种方式，-使用Spring提供的初始化器，-就是向导创建SpringBoot应用"><a href="#2-2-1-第一种方式，-使用Spring提供的初始化器，-就是向导创建SpringBoot应用" class="headerlink" title="2.2.1 第一种方式， 使用Spring提供的初始化器， 就是向导创建SpringBoot应用"></a>2.2.1 第一种方式， 使用Spring提供的初始化器， 就是向导创建SpringBoot应用</h3><p>使用的地址： <a target="_blank" rel="noopener" href="https://start.spring.io/">https://start.spring.io</a></p>
 <p>SpringBoot项目的结构：</p>
-<p><img src="/.io//image-20210115152427829-2261280.png" srcset="/img/loading.gif" lazyload alt="image-20210115152427829"></p>
+<p><img src="/2022/06/17/CS/Java/frame_work/spring/SpringBoot/SpringBoot%E7%AC%94%E8%AE%B0/image-20210115152427829-2261280.png" srcset="/img/loading.gif" lazyload alt="image-20210115152427829"></p>
 <h3 id="2-2-1-使用国内的地址"><a href="#2-2-1-使用国内的地址" class="headerlink" title="2.2.1  使用国内的地址"></a>2.2.1  使用国内的地址</h3><p><a target="_blank" rel="noopener" href="https://start.springboot.io/">https://start.springboot.io</a></p>
-<p><img src="/.io//image-20210115155556662-2261280.png" srcset="/img/loading.gif" lazyload alt="image-20210115155556662"></p>
+<p><img src="/2022/06/17/CS/Java/frame_work/spring/SpringBoot/SpringBoot%E7%AC%94%E8%AE%B0/image-20210115155556662-2261280.png" srcset="/img/loading.gif" lazyload alt="image-20210115155556662"></p>
 <h2 id="2-3-注解的使用"><a href="#2-3-注解的使用" class="headerlink" title="2.3  注解的使用"></a>2.3  注解的使用</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@SpringBootApplication</span><br>符合注解：由<br><span class="hljs-meta">@SpringBootConfiguration</span><br><span class="hljs-meta">@EnableAutoConfiguration</span><br><span class="hljs-meta">@ComponentScan</span><br>    <br>    <br><span class="hljs-number">1.</span><span class="hljs-meta">@SpringBootConfiguration</span><br>    <br><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> SpringBootConfiguration &#123;<br>    <span class="hljs-meta">@AliasFor(</span><br><span class="hljs-meta">        annotation = Configuration.class</span><br><span class="hljs-meta">    )</span><br>    <span class="hljs-type">boolean</span> <span class="hljs-title function_">proxyBeanMethods</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> <span class="hljs-literal">true</span>;<br>&#125;<br><br>说明：使用了<span class="hljs-meta">@SpringBootConfiguration</span>注解标注的类，可以作为配置文件使用的，<br>    可以使用Bean声明对象，注入到容器<br><br></code></pre></td></tr></table></figure>
 
 <p>2.@EnableAutoConfiguration</p>
@@ -738,7 +738,7 @@
 
 <h2 id="7-5-练习"><a href="#7-5-练习" class="headerlink" title="7.5 练习"></a>7.5 练习</h2><p>使用的技术： SpringBoot ,Dubbo, Redis, MyBatis</p>
 <p>Student表：</p>
-<p><img src="/.io//image-20210119150418295-2261280.png" srcset="/img/loading.gif" lazyload alt="image-20210119150418295"></p>
+<p><img src="/2022/06/17/CS/Java/frame_work/spring/SpringBoot/SpringBoot%E7%AC%94%E8%AE%B0/image-20210119150418295-2261280.png" srcset="/img/loading.gif" lazyload alt="image-20210119150418295"></p>
 <p>CREATE TABLE <code>student</code> (<br>  <code>id</code> int(11) NOT NULL AUTO_INCREMENT,<br>  <code>name</code> varchar(255) COLLATE utf8_bin DEFAULT NULL,<br>  <code>phone</code> varchar(11) COLLATE utf8_bin DEFAULT NULL,<br>  <code>age</code> int(11) DEFAULT NULL,<br>  PRIMARY KEY (<code>id</code>)<br>) ENGINE&#x3D;InnoDB AUTO_INCREMENT&#x3D;6 DEFAULT CHARSET&#x3D;utf8 COLLATE&#x3D;utf8_bin;</p>
 <ol>
 <li>注册学生</li>
@@ -978,22 +978,22 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  <a href="../../../../../../../../../categories/Java/" class="category-chain-item">Java</a>
   
   
     <span>></span>
     
-  <a href="/categories/Java/frame-work/" class="category-chain-item">frame_work</a>
+  <a href="../../../../../../../../../categories/Java/frame-work/" class="category-chain-item">frame_work</a>
   
   
     <span>></span>
     
-  <a href="/categories/Java/frame-work/spring/" class="category-chain-item">spring</a>
+  <a href="../../../../../../../../../categories/Java/frame-work/spring/" class="category-chain-item">spring</a>
   
   
     <span>></span>
     
-  <a href="/categories/Java/frame-work/spring/SpringBoot/" class="category-chain-item">SpringBoot</a>
+  <a href="../../../../../../../../../categories/Java/frame-work/spring/SpringBoot/" class="category-chain-item">SpringBoot</a>
   
   
 
@@ -1014,13 +1014,13 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Java/">#Java</a>
+        <a href="../../../../../../../../../tags/Java/">#Java</a>
       
-        <a href="/tags/frame-work/">#frame_work</a>
+        <a href="../../../../../../../../../tags/frame-work/">#frame_work</a>
       
-        <a href="/tags/spring/">#spring</a>
+        <a href="../../../../../../../../../tags/spring/">#spring</a>
       
-        <a href="/tags/SpringBoot/">#SpringBoot</a>
+        <a href="../../../../../../../../../tags/SpringBoot/">#SpringBoot</a>
       
     </div>
   
@@ -1075,7 +1075,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/17/CS/CPP/heima/p_4_employee_system/%E8%AE%B2%E4%B9%89/%E8%81%8C%E5%B7%A5%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" title="职工管理系统">
+                      <a href="../../../../../CPP/heima/p_4_employee_system/%E8%AE%B2%E4%B9%89/%E8%81%8C%E5%B7%A5%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" title="职工管理系统">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">职工管理系统</span>
                         <span class="visible-mobile">Previous</span>
@@ -1085,7 +1085,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/17/CS/Java/frame_work/spring/SpringBoot/spring-boot-auto-assembly-principles/" title="spring-boot-auto-assembly-principles">
+                      <a href="../spring-boot-auto-assembly-principles/" title="spring-boot-auto-assembly-principles">
                         <span class="hidden-mobile">spring-boot-auto-assembly-principles</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -1208,15 +1208,15 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="../../../../../../../../../js/events.js" ></script>
+<script  src="../../../../../../../../../js/plugins.js" ></script>
 
 
 
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="../../../../../../../../../js/img-lazyload.js" ></script>
   
 
 
@@ -1288,7 +1288,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="../../../../../../../../../js/local-search.js" ></script>
 
 
 
@@ -1296,7 +1296,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="../../../../../../../../../js/boot.js" ></script>
 
 
   

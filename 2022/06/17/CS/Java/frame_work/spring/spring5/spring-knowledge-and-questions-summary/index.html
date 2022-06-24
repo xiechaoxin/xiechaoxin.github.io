@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../../../../../../../../img/fluid.png">
+  <link rel="icon" href="../../../../../../../../../img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,27 +23,27 @@
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="title:  Spring常见问题总结category: 框架tag:  Spring   这篇文章主要是想通过一些问题，加深大家对于 Spring 的理解，所以不会涉及太多的代码！ 下面的很多问题我自己在使用 Spring 的过程中也并没有注意，自己也是临时查阅了很多资料和书籍补上的。网上也有一些很多关于 Spring 常见问题&#x2F;面试题整理的文章，我感觉大部分都是互相 copy，而">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//38ef122122de4375abcd27c3de8f60b4.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//e0c60b4606711fc4a0b6faf03230247a.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//frc-365faceb5697f04f31399937c059c162.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//926dfc549b06d280a37397f9fd49bf9d.jpg">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//062b422bd7ac4d53afd28fb74b2bc94d.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//24bc2bad3ce28144d60d9e0a2edf6c7f.jpg">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//b5d264565657a5395c2781081a7483e1.jpg">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//image-20210809181452421.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//159b3d3e70dd45e6afa81bf06d09264e.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//mvc-mode1.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//mvc-model2.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//de6d2b213f112297298f3e223bf08f28.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/spring5/spring-knowledge-and-questions-summary/38ef122122de4375abcd27c3de8f60b4.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/spring5/spring-knowledge-and-questions-summary/e0c60b4606711fc4a0b6faf03230247a.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/spring5/spring-knowledge-and-questions-summary/frc-365faceb5697f04f31399937c059c162.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/spring5/spring-knowledge-and-questions-summary/926dfc549b06d280a37397f9fd49bf9d.jpg">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/spring5/spring-knowledge-and-questions-summary/062b422bd7ac4d53afd28fb74b2bc94d.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/spring5/spring-knowledge-and-questions-summary/24bc2bad3ce28144d60d9e0a2edf6c7f.jpg">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/spring5/spring-knowledge-and-questions-summary/b5d264565657a5395c2781081a7483e1.jpg">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/spring5/spring-knowledge-and-questions-summary/image-20210809181452421.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/spring5/spring-knowledge-and-questions-summary/159b3d3e70dd45e6afa81bf06d09264e.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/spring5/spring-knowledge-and-questions-summary/mvc-mode1.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/spring5/spring-knowledge-and-questions-summary/mvc-model2.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/spring5/spring-knowledge-and-questions-summary/de6d2b213f112297298f3e223bf08f28.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T11:16:58.789Z">
+<meta property="article:modified_time" content="2022-06-24T11:32:26.945Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="frame_work">
 <meta property="article:tag" content="spring">
 <meta property="article:tag" content="spring5">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/.io//38ef122122de4375abcd27c3de8f60b4.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/frame_work/spring/spring5/spring-knowledge-and-questions-summary/38ef122122de4375abcd27c3de8f60b4.png">
   
   
   
@@ -71,12 +71,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="../../../../../../../../../css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="../../../../../../../../../css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="../../../../../../../../../css/highlight-dark.css" />
   
 
 
@@ -92,8 +92,8 @@
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="../../../../../../../../../js/utils.js" ></script>
+  <script  src="../../../../../../../../../js/color-schema.js" ></script>
   
 
 
@@ -110,7 +110,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="../../../../../../../../../index.html">
       <strong> </strong>
     </a>
 
@@ -129,7 +129,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="../../../../../../../../../index.html">
                 <i class="iconfont icon-home-fill"></i>
                 Home
               </a>
@@ -141,7 +141,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="../../../../../../../../../archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 Archives
               </a>
@@ -153,7 +153,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="../../../../../../../../../categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
               </a>
@@ -165,7 +165,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="../../../../../../../../../tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 Tags
               </a>
@@ -177,7 +177,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="../../../../../../../../../about/">
                 <i class="iconfont icon-user-fill"></i>
                 About
               </a>
@@ -206,7 +206,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('../../../../../../../../../img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -304,7 +304,7 @@
 </blockquote>
 <p>我们一般说 Spring 框架指的都是 Spring Framework，它是很多模块的集合，使用这些模块可以很方便地协助我们进行开发。</p>
 <p>比如说 Spring 自带 IoC（Inverse of Control:控制反转） 和 AOP(Aspect-Oriented Programming:面向切面编程)、可以很方便地对数据库进行访问、可以很方便地集成第三方组件（电子邮件，任务，调度，缓存等等）、对单元测试支持比较好、支持 RESTful Java 应用程序的开发。</p>
-<p><img src="/.io//38ef122122de4375abcd27c3de8f60b4.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/frame_work/spring/spring5/spring-knowledge-and-questions-summary/38ef122122de4375abcd27c3de8f60b4.png" srcset="/img/loading.gif" lazyload></p>
 <p>Spring 最核心的思想就是不重新造轮子，开箱即用！</p>
 <p>Spring 提供的核心功能主要是 IoC 和 AOP。学习 Spring ，一定要把 IoC 和 AOP 的核心思想搞懂！</p>
 <ul>
@@ -312,7 +312,7 @@
 <li>Github 地址： <a target="_blank" rel="noopener" href="https://github.com/spring-projects/spring-framework">https://github.com/spring-projects/spring-framework</a></li>
 </ul>
 <h2 id="列举一些重要的-Spring-模块？"><a href="#列举一些重要的-Spring-模块？" class="headerlink" title="列举一些重要的 Spring 模块？"></a>列举一些重要的 Spring 模块？</h2><p>下图对应的是 Spring4.x 版本。目前最新的 5.x 版本中 Web 模块的 Portlet 组件已经被废弃掉，同时增加了用于异步响应式处理的 WebFlux 组件。</p>
-<p><img src="/.io//e0c60b4606711fc4a0b6faf03230247a.png" srcset="/img/loading.gif" lazyload alt="Spring主要模块"></p>
+<p><img src="/2022/06/17/CS/Java/frame_work/spring/spring5/spring-knowledge-and-questions-summary/e0c60b4606711fc4a0b6faf03230247a.png" srcset="/img/loading.gif" lazyload alt="Spring主要模块"></p>
 <p><strong>Spring Core</strong></p>
 <p>核心模块， Spring 其他所有的功能基本都需要依赖于该类库，主要提供 IoC 依赖注入功能的支持。</p>
 <p><strong>Spring Aspects</strong></p>
@@ -345,7 +345,7 @@
 <li><strong>控制</strong> ：指的是对象创建（实例化、管理）的权力</li>
 <li><strong>反转</strong> ：控制权交给外部环境（Spring 框架、IoC 容器）</li>
 </ul>
-<p><img src="/.io//frc-365faceb5697f04f31399937c059c162.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/frame_work/spring/spring5/spring-knowledge-and-questions-summary/frc-365faceb5697f04f31399937c059c162.png" srcset="/img/loading.gif" lazyload></p>
 <p>将对象之间的相互依赖关系交给 IoC 容器来管理，并由 IoC 容器完成对象的注入。这样可以很大程度上简化应用的开发，把应用从复杂的依赖关系中解放出来。 IoC 容器就像是一个工厂一样，当我们需要创建一个对象的时候，只需要配置好配置文件&#x2F;注解即可，完全不用考虑对象是如何被创建出来的。</p>
 <p>在实际项目中一个 Service 类可能依赖了很多其他的类，假如我们需要实例化这个 Service，你可能要每次都要搞清这个 Service 所有底层类的构造函数，这可能会把人逼疯。如果利用 IoC 的话，你只需要配置好，然后在需要的地方引用就行了，这大大增加了项目的可维护性且降低了开发难度。</p>
 <p>在 Spring 中， IoC 容器是 Spring 用来实现 IoC 的载体， IoC 容器实际上就是个 Map（key，value），Map 中存放的是各种对象。</p>
@@ -357,7 +357,7 @@
 </ul>
 <h3 id="谈谈自己对于-AOP-的了解"><a href="#谈谈自己对于-AOP-的了解" class="headerlink" title="谈谈自己对于 AOP 的了解"></a>谈谈自己对于 AOP 的了解</h3><p>AOP(Aspect-Oriented Programming:面向切面编程)能够将那些与业务无关，却为业务模块所共同调用的逻辑或责任（例如事务处理、日志管理、权限控制等）封装起来，便于减少系统的重复代码，降低模块间的耦合度，并有利于未来的可拓展性和可维护性。</p>
 <p>Spring AOP 就是基于动态代理的，如果要代理的对象，实现了某个接口，那么 Spring AOP 会使用 <strong>JDK Proxy</strong>，去创建代理对象，而对于没有实现接口的对象，就无法使用 JDK Proxy 去进行代理了，这时候 Spring AOP 会使用 <strong>Cglib</strong> 生成一个被代理对象的子类来作为代理，如下图所示：</p>
-<p><img src="/.io//926dfc549b06d280a37397f9fd49bf9d.jpg" srcset="/img/loading.gif" lazyload alt="SpringAOPProcess"></p>
+<p><img src="/2022/06/17/CS/Java/frame_work/spring/spring5/spring-knowledge-and-questions-summary/926dfc549b06d280a37397f9fd49bf9d.jpg" srcset="/img/loading.gif" lazyload alt="SpringAOPProcess"></p>
 <p>当然你也可以使用 <strong>AspectJ</strong> ！Spring AOP 已经集成了 AspectJ ，AspectJ 应该算的上是 Java 生态系统中最完整的 AOP 框架了。</p>
 <h3 id="Spring-AOP-和-AspectJ-AOP-有什么区别？"><a href="#Spring-AOP-和-AspectJ-AOP-有什么区别？" class="headerlink" title="Spring AOP 和 AspectJ AOP 有什么区别？"></a>Spring AOP 和 AspectJ AOP 有什么区别？</h3><p><strong>Spring AOP 属于运行时增强，而 AspectJ 是编译时增强。</strong> Spring AOP 基于代理(Proxying)，而 AspectJ 基于字节码操作(Bytecode Manipulation)。</p>
 <p>Spring AOP 已经集成了 AspectJ ，AspectJ 应该算的上是 Java 生态系统中最完整的 AOP 框架了。AspectJ 相比于 Spring AOP 功能更加强大，但是 Spring AOP 相对来说更简单，</p>
@@ -367,7 +367,7 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- Constructor-arg with &#x27;value&#x27; attribute --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;...&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;...&quot;</span>&gt;</span><br>   <span class="hljs-tag">&lt;<span class="hljs-name">constructor-arg</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;...&quot;</span>/&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>下图简单地展示了 IoC 容器如何使用配置元数据来管理对象。</p>
-<p><img src="/.io//062b422bd7ac4d53afd28fb74b2bc94d.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/frame_work/spring/spring5/spring-knowledge-and-questions-summary/062b422bd7ac4d53afd28fb74b2bc94d.png" srcset="/img/loading.gif" lazyload></p>
 <p><code>org.springframework.beans</code>和 <code>org.springframework.context</code> 这两个包是 IoC 实现的基础，如果想要研究 IoC 相关的源码的话，可以去看看</p>
 <h3 id="bean-的作用域有哪些"><a href="#bean-的作用域有哪些" class="headerlink" title="bean 的作用域有哪些?"></a>bean 的作用域有哪些?</h3><p>Spring 中 Bean 的作用域通常有下面几种：</p>
 <ul>
@@ -431,18 +431,18 @@
 <li>当要销毁 Bean 的时候，如果 Bean 在配置文件中的定义包含 destroy-method 属性，执行指定的方法。</li>
 </ul>
 <p>图示：</p>
-<p><img src="/.io//24bc2bad3ce28144d60d9e0a2edf6c7f.jpg" srcset="/img/loading.gif" lazyload alt="Spring Bean 生命周期"></p>
+<p><img src="/2022/06/17/CS/Java/frame_work/spring/spring5/spring-knowledge-and-questions-summary/24bc2bad3ce28144d60d9e0a2edf6c7f.jpg" srcset="/img/loading.gif" lazyload alt="Spring Bean 生命周期"></p>
 <p>与之比较类似的中文版本:</p>
-<p><img src="/.io//b5d264565657a5395c2781081a7483e1.jpg" srcset="/img/loading.gif" lazyload alt="Spring Bean 生命周期"></p>
+<p><img src="/2022/06/17/CS/Java/frame_work/spring/spring5/spring-knowledge-and-questions-summary/b5d264565657a5395c2781081a7483e1.jpg" srcset="/img/loading.gif" lazyload alt="Spring Bean 生命周期"></p>
 <h2 id="Spring-MVC"><a href="#Spring-MVC" class="headerlink" title="Spring MVC"></a>Spring MVC</h2><h3 id="说说自己对于-Spring-MVC-了解"><a href="#说说自己对于-Spring-MVC-了解" class="headerlink" title="说说自己对于 Spring MVC 了解?"></a>说说自己对于 Spring MVC 了解?</h3><p>MVC 是模型(Model)、视图(View)、控制器(Controller)的简写，其核心思想是通过将业务逻辑、数据、显示分离来组织代码。</p>
-<p><img src="/.io//image-20210809181452421.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/frame_work/spring/spring5/spring-knowledge-and-questions-summary/image-20210809181452421.png" srcset="/img/loading.gif" lazyload></p>
 <p>网上有很多人说 MVC 不是设计模式，只是软件设计规范，我个人更倾向于 MVC 同样是众多设计模式中的一种。**<a target="_blank" rel="noopener" href="https://github.com/iluwatar/java-design-patterns">java-design-patterns</a>** 项目中就有关于 MVC 的相关介绍。</p>
-<p><img src="/.io//159b3d3e70dd45e6afa81bf06d09264e.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/frame_work/spring/spring5/spring-knowledge-and-questions-summary/159b3d3e70dd45e6afa81bf06d09264e.png" srcset="/img/loading.gif" lazyload></p>
 <p>想要真正理解 Spring MVC，我们先来看看 Model 1 和 Model 2 这两个没有 Spring MVC 的时代。</p>
 <p><strong>Model 1 时代</strong></p>
 <p>很多学 Java 后端比较晚的朋友可能并没有接触过 Model 1 时代下的 JavaWeb 应用开发。在 Model1 模式下，整个 Web 应用几乎全部用 JSP 页面组成，只用少量的 JavaBean 来处理数据库连接、访问等操作。</p>
 <p>这个模式下 JSP 即是控制层（Controller）又是表现层（View）。显而易见，这种模式存在很多问题。比如控制逻辑和表现逻辑混杂在一起，导致代码重用率极低；再比如前端和后端相互依赖，难以进行测试维护并且开发效率极低。</p>
-<p><img src="/.io//mvc-mode1.png" srcset="/img/loading.gif" lazyload alt="mvc-mode1"></p>
+<p><img src="/2022/06/17/CS/Java/frame_work/spring/spring5/spring-knowledge-and-questions-summary/mvc-mode1.png" srcset="/img/loading.gif" lazyload alt="mvc-mode1"></p>
 <p><strong>Model 2 时代</strong></p>
 <p>学过 Servlet 并做过相关 Demo 的朋友应该了解“Java Bean(Model)+ JSP（View）+Servlet（Controller） ”这种开发模式，这就是早期的 JavaWeb MVC 开发模式。</p>
 <ul>
@@ -450,7 +450,7 @@
 <li>View：展示模型中的数据，只是用来展示。</li>
 <li>Controller：处理用户请求都发送给 ，返回数据给 JSP 并展示给用户。</li>
 </ul>
-<p><img src="/.io//mvc-model2.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/frame_work/spring/spring5/spring-knowledge-and-questions-summary/mvc-model2.png" srcset="/img/loading.gif" lazyload></p>
 <p>Model2 模式下还存在很多问题，Model2 的抽象和封装程度还远远不够，使用 Model2 进行开发时不可避免地会重复造轮子，这就大大降低了程序的可维护性和复用性。</p>
 <p>于是，很多 JavaWeb 开发相关的 MVC 框架应运而生比如 Struts2，但是 Struts2 比较笨重。</p>
 <p><strong>Spring MVC 时代</strong></p>
@@ -460,7 +460,7 @@
 <blockquote>
 <p>SpringMVC 工作原理的图解我没有自己画，直接图省事在网上找了一个非常清晰直观的，原出处不明。</p>
 </blockquote>
-<p><img src="/.io//de6d2b213f112297298f3e223bf08f28.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/frame_work/spring/spring5/spring-knowledge-and-questions-summary/de6d2b213f112297298f3e223bf08f28.png" srcset="/img/loading.gif" lazyload></p>
 <p><strong>流程说明（重要）：</strong></p>
 <ol>
 <li>客户端（浏览器）发送请求，直接请求到 <code>DispatcherServlet</code>。</li>
@@ -555,22 +555,22 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  <a href="../../../../../../../../../categories/Java/" class="category-chain-item">Java</a>
   
   
     <span>></span>
     
-  <a href="/categories/Java/frame-work/" class="category-chain-item">frame_work</a>
+  <a href="../../../../../../../../../categories/Java/frame-work/" class="category-chain-item">frame_work</a>
   
   
     <span>></span>
     
-  <a href="/categories/Java/frame-work/spring/" class="category-chain-item">spring</a>
+  <a href="../../../../../../../../../categories/Java/frame-work/spring/" class="category-chain-item">spring</a>
   
   
     <span>></span>
     
-  <a href="/categories/Java/frame-work/spring/spring5/" class="category-chain-item">spring5</a>
+  <a href="../../../../../../../../../categories/Java/frame-work/spring/spring5/" class="category-chain-item">spring5</a>
   
   
 
@@ -591,13 +591,13 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Java/">#Java</a>
+        <a href="../../../../../../../../../tags/Java/">#Java</a>
       
-        <a href="/tags/frame-work/">#frame_work</a>
+        <a href="../../../../../../../../../tags/frame-work/">#frame_work</a>
       
-        <a href="/tags/spring/">#spring</a>
+        <a href="../../../../../../../../../tags/spring/">#spring</a>
       
-        <a href="/tags/spring5/">#spring5</a>
+        <a href="../../../../../../../../../tags/spring5/">#spring5</a>
       
     </div>
   
@@ -652,7 +652,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/17/CS/Java/frame_work/spring/spring5/spring-design-patterns-summary/" title="spring-design-patterns-summary">
+                      <a href="../spring-design-patterns-summary/" title="spring-design-patterns-summary">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">spring-design-patterns-summary</span>
                         <span class="visible-mobile">Previous</span>
@@ -662,7 +662,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/17/CS/Java/frame_work/spring/spring5/spring-transaction/" title="spring-transaction">
+                      <a href="../spring-transaction/" title="spring-transaction">
                         <span class="hidden-mobile">spring-transaction</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -785,15 +785,15 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="../../../../../../../../../js/events.js" ></script>
+<script  src="../../../../../../../../../js/plugins.js" ></script>
 
 
 
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="../../../../../../../../../js/img-lazyload.js" ></script>
   
 
 
@@ -865,7 +865,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="../../../../../../../../../js/local-search.js" ></script>
 
 
 
@@ -873,7 +873,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="../../../../../../../../../js/boot.js" ></script>
 
 
   

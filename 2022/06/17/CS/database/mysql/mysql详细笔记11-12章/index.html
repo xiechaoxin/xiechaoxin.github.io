@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../../../../../../img/fluid.png">
+  <link rel="icon" href="../../../../../../../img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,24 +23,24 @@
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="第11章_数据处理之增删改11.1 插入数据11.1.1 实际问题  解决方式：使用 INSERT 语句向表中插入数据。  11.1.2 方式1：VALUES的方式添加 使用这种语法一次只能向表中插入一条数据。  情况1：为表的所有字段按默认顺序插入数据 INSERT INTO 表名 VALUES (value1,value2,....);   值列表中需要为表的每一个字段指定值，并且值的顺序必须">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012811895.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812084.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//105c428d3bb4404abad7ca54d991bf81.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012811919.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//ef1ebd205d7f43cd949777ee51781b21.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//7c9a90393fa44478bc85d45ded680f68.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812155.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812646.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//3905045083d2412d8da8e2e0bc128c20.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812237.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812544.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B011-12%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012811895.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B011-12%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812084.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B011-12%E7%AB%A0/105c428d3bb4404abad7ca54d991bf81.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B011-12%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012811919.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B011-12%E7%AB%A0/ef1ebd205d7f43cd949777ee51781b21.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B011-12%E7%AB%A0/7c9a90393fa44478bc85d45ded680f68.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B011-12%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812155.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B011-12%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812646.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B011-12%E7%AB%A0/3905045083d2412d8da8e2e0bc128c20.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B011-12%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812237.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B011-12%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812544.png">
 <meta property="article:published_time" content="2022-06-17T17:59:12.000Z">
-<meta property="article:modified_time" content="2022-06-24T11:16:59.205Z">
+<meta property="article:modified_time" content="2022-06-24T11:32:27.409Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="database">
 <meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012811895.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B011-12%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012811895.png">
   
   
   
@@ -68,12 +68,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="../../../../../../../css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="../../../../../../../css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="../../../../../../../css/highlight-dark.css" />
   
 
 
@@ -89,8 +89,8 @@
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="../../../../../../../js/utils.js" ></script>
+  <script  src="../../../../../../../js/color-schema.js" ></script>
   
 
 
@@ -107,7 +107,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="../../../../../../../index.html">
       <strong> </strong>
     </a>
 
@@ -126,7 +126,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="../../../../../../../index.html">
                 <i class="iconfont icon-home-fill"></i>
                 Home
               </a>
@@ -138,7 +138,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="../../../../../../../archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 Archives
               </a>
@@ -150,7 +150,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="../../../../../../../categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
               </a>
@@ -162,7 +162,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="../../../../../../../tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 Tags
               </a>
@@ -174,7 +174,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="../../../../../../../about/">
                 <i class="iconfont icon-user-fill"></i>
                 About
               </a>
@@ -203,7 +203,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('../../../../../../../img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -286,7 +286,7 @@
             
               <div class="markdown-body">
                 
-                <h1 id="第11章-数据处理之增删改"><a href="#第11章-数据处理之增删改" class="headerlink" title="第11章_数据处理之增删改"></a>第11章_数据处理之增删改</h1><h2 id="11-1-插入数据"><a href="#11-1-插入数据" class="headerlink" title="11.1 插入数据"></a>11.1 插入数据</h2><h3 id="11-1-1-实际问题"><a href="#11-1-1-实际问题" class="headerlink" title="11.1.1 实际问题"></a>11.1.1 实际问题</h3><p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012811895.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+                <h1 id="第11章-数据处理之增删改"><a href="#第11章-数据处理之增删改" class="headerlink" title="第11章_数据处理之增删改"></a>第11章_数据处理之增删改</h1><h2 id="11-1-插入数据"><a href="#11-1-插入数据" class="headerlink" title="11.1 插入数据"></a>11.1 插入数据</h2><h3 id="11-1-1-实际问题"><a href="#11-1-1-实际问题" class="headerlink" title="11.1.1 实际问题"></a>11.1.1 实际问题</h3><p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B011-12%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012811895.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <blockquote>
 <p>解决方式：使用 INSERT 语句向表中插入数据。</p>
 </blockquote>
@@ -388,7 +388,7 @@ SELECT employee_id, last_name, salary, commission_pct
 FROM   employees
 WHERE  job_id LIKE &#39;%REP%&#39;;
 </code></pre>
-<h2 id="11-2-更新数据"><a href="#11-2-更新数据" class="headerlink" title="11.2 更新数据"></a>11.2 更新数据</h2><p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812084.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h2 id="11-2-更新数据"><a href="#11-2-更新数据" class="headerlink" title="11.2 更新数据"></a>11.2 更新数据</h2><p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B011-12%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812084.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <ul>
 <li><p>使用 UPDATE 语句更新数据。语法如下：</p>
 <p>UPDATE table_name<br>SET column1&#x3D;value1, column2&#x3D;value2, … , column&#x3D;valuen<br>[WHERE condition]</p>
@@ -411,13 +411,13 @@ WHERE  job_id LIKE &#39;%REP%&#39;;
 <p>UPDATE employees<br>SET    department_id &#x3D; 55<br>WHERE  department_id &#x3D; 110;</p>
 </li>
 </ul>
-<p><img src="/.io//105c428d3bb4404abad7ca54d991bf81.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B011-12%E7%AB%A0/105c428d3bb4404abad7ca54d991bf81.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <blockquote>
 <p>说明：不存在 55 号部门</p>
 </blockquote>
-<h2 id="11-3-删除数据"><a href="#11-3-删除数据" class="headerlink" title="11.3 删除数据"></a>11.3 删除数据</h2><p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012811919.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h2 id="11-3-删除数据"><a href="#11-3-删除数据" class="headerlink" title="11.3 删除数据"></a>11.3 删除数据</h2><p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B011-12%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012811919.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <ul>
-<li><p>使用 DELETE 语句从表中删除数据<br><img src="/.io//ef1ebd205d7f43cd949777ee51781b21.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<li><p>使用 DELETE 语句从表中删除数据<br><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B011-12%E7%AB%A0/ef1ebd205d7f43cd949777ee51781b21.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <p>DELETE FROM table_name [WHERE <condition>];</condition></p>
 </li>
 </ul>
@@ -435,7 +435,7 @@ WHERE  job_id LIKE &#39;%REP%&#39;;
 <p>DELETE FROM departments WHERE department_id &#x3D; 60;</p>
 </li>
 </ul>
-<p><img src="/.io//7c9a90393fa44478bc85d45ded680f68.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B011-12%E7%AB%A0/7c9a90393fa44478bc85d45ded680f68.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <blockquote>
 <p>说明：You cannot delete a row that contains a primary key that is used as a foreign key in another table.</p>
 </blockquote>
@@ -618,7 +618,7 @@ mysql&gt; desc test_int3;
 <p>浮点数和定点数类型的特点是可以<code>处理小数</code>，你可以把整数看成小数的一个特例。因此，浮点数和定点数的使用场景，比整数大多了。 MySQL支持的浮点数类型，分别是 FLOAT、DOUBLE、REAL。</p>
 <ul>
 <li>FLOAT 表示单精度浮点数；</li>
-<li>DOUBLE 表示双精度浮点数；<br><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812155.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+<li>DOUBLE 表示双精度浮点数；<br><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B011-12%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812155.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
 <li>REAL默认就是 DOUBLE。如果你把 SQL 模式设定为启用“<code>REAL_AS_FLOAT</code>”，那 么，MySQL 就认为 REAL 是 FLOAT。如果要启用“REAL_AS_FLOAT”，可以通过以下 SQL 语句实现：SET sql_mode &#x3D; “REAL_AS_FLOAT”;</li>
 </ul>
 </blockquote>
@@ -1158,7 +1158,7 @@ mysql&gt; SELECT * FROM temp_time;
 <li>MySQL中，文本字符串总体上分为<code>CHAR</code>、<code>VARCHAR</code>、<code>TINYTEXT</code>、<code>TEXT</code>、<code>MEDIUMTEXT</code>、<code>LONGTEXT</code>、<code>ENUM</code>、<code>SET</code>等类型。</li>
 </ul>
 </blockquote>
-<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812646.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B011-12%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812646.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <h3 id="12-7-1-CHAR与VARCHAR类型"><a href="#12-7-1-CHAR与VARCHAR类型" class="headerlink" title="12.7.1 CHAR与VARCHAR类型"></a>12.7.1 CHAR与VARCHAR类型</h3><blockquote>
 <p>CHAR和VARCHAR类型都可以存储比较短的字符串。</p>
 </blockquote>
@@ -1540,7 +1540,7 @@ VALUES (&#39;&#123;&quot;name&quot;:&quot;songhk&quot;, &quot;age&quot;:18, &quo
 mysql&gt; SELECT *
     -&gt; FROM test_json;
 </code></pre>
-<p><img src="/.io//3905045083d2412d8da8e2e0bc128c20.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>当需要检索JSON类型的字段中数据的某个具体值时，可以使用“-&gt;”和“-&gt;&gt;”符号。</p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B011-12%E7%AB%A0/3905045083d2412d8da8e2e0bc128c20.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>当需要检索JSON类型的字段中数据的某个具体值时，可以使用“-&gt;”和“-&gt;&gt;”符号。</p>
 <pre><code class="hljs">mysql&gt; SELECT js -&gt; &#39;$.name&#39; AS NAME,js -&gt; &#39;$.age&#39; AS age ,js -&gt; &#39;$.address.province&#39; AS province, js -&gt; &#39;$.address.city&#39; AS city
     -&gt; FROM test_json;
 +----------+------+-----------+-----------+
@@ -1566,13 +1566,13 @@ mysql&gt; SELECT *
 </ul>
 </blockquote>
 <p>下面展示几种常见的几何图形元素：</p>
-<p><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812237.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B011-12%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812237.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <blockquote>
 <ul>
 <li>MultiPoint、MultiLineString、MultiPolygon、GeometryCollection 这4种类型都是集合类，是多个Point、LineString或Polygon组合而成。</li>
 </ul>
 </blockquote>
-<p>下面展示的是多个同类或异类几何图形元素的组合：<br><img src="/.io//watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812544.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>下面展示的是多个同类或异类几何图形元素的组合：<br><img src="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B011-12%E7%AB%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812544.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <h2 id="12-13-小结及选择建议"><a href="#12-13-小结及选择建议" class="headerlink" title="12.13 小结及选择建议"></a>12.13 小结及选择建议</h2><blockquote>
 <ul>
 <li>在定义数据类型时，如果确定是<code>整数</code>，就用 <code>INT</code>； 如果是<code>小数</code>，一定用定点数类型 <code>DECIMAL(M,D)</code>； 如果是日期与时间，就用 <code>DATETIME</code>。</li>
@@ -1609,12 +1609,12 @@ mysql&gt; SELECT *
     
       <span class="category-chain">
         
-  <a href="/categories/database/" class="category-chain-item">database</a>
+  <a href="../../../../../../../categories/database/" class="category-chain-item">database</a>
   
   
     <span>></span>
     
-  <a href="/categories/database/mysql/" class="category-chain-item">mysql</a>
+  <a href="../../../../../../../categories/database/mysql/" class="category-chain-item">mysql</a>
   
   
 
@@ -1631,9 +1631,9 @@ mysql&gt; SELECT *
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/database/">#database</a>
+        <a href="../../../../../../../tags/database/">#database</a>
       
-        <a href="/tags/mysql/">#mysql</a>
+        <a href="../../../../../../../tags/mysql/">#mysql</a>
       
     </div>
   
@@ -1688,7 +1688,7 @@ mysql&gt; SELECT *
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B01-2%E7%AB%A0/" title="mysql详细笔记1-2章">
+                      <a href="../mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B01-2%E7%AB%A0/" title="mysql详细笔记1-2章">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">mysql详细笔记1-2章</span>
                         <span class="visible-mobile">Previous</span>
@@ -1698,7 +1698,7 @@ mysql&gt; SELECT *
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/17/CS/database/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B013-14%E7%AB%A0/" title="mysql详细笔记13-14章">
+                      <a href="../mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B013-14%E7%AB%A0/" title="mysql详细笔记13-14章">
                         <span class="hidden-mobile">mysql详细笔记13-14章</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -1821,15 +1821,15 @@ mysql&gt; SELECT *
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="../../../../../../../js/events.js" ></script>
+<script  src="../../../../../../../js/plugins.js" ></script>
 
 
 
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="../../../../../../../js/img-lazyload.js" ></script>
   
 
 
@@ -1901,7 +1901,7 @@ mysql&gt; SELECT *
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="../../../../../../../js/local-search.js" ></script>
 
 
 
@@ -1909,7 +1909,7 @@ mysql&gt; SELECT *
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="../../../../../../../js/boot.js" ></script>
 
 
   

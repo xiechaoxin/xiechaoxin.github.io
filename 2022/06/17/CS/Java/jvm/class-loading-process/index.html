@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../../../../../../img/fluid.png">
+  <link rel="icon" href="../../../../../../../img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,18 +23,18 @@
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="category: Javatag:  JVM   类加载过程详解类的生命周期一个类的完整生命周期如下：  类加载过程Class 文件需要加载到虚拟机中之后才能运行和使用，那么虚拟机是如何加载这些 Class 文件呢？ 系统加载 Class 类型的文件主要三步：加载-&gt;连接-&gt;初始化。连接过程又可分为三步：验证-&gt;准备-&gt;解析。  详见：jvm规范5.4 。  加载类加载">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B-%E5%AE%8C%E5%96%84.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B-20220527113101452.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//20210607102244508.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//%E9%AA%8C%E8%AF%81%E9%98%B6%E6%AE%B5.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E9%9B%B6%E5%80%BC.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/jvm/class-loading-process/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B-%E5%AE%8C%E5%96%84.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/jvm/class-loading-process/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B-20220527113101452.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/jvm/class-loading-process/20210607102244508.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/jvm/class-loading-process/%E9%AA%8C%E8%AF%81%E9%98%B6%E6%AE%B5.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/jvm/class-loading-process/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E9%9B%B6%E5%80%BC.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T11:16:58.797Z">
+<meta property="article:modified_time" content="2022-06-24T11:32:26.953Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="jvm">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/.io//%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B-%E5%AE%8C%E5%96%84.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/jvm/class-loading-process/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B-%E5%AE%8C%E5%96%84.png">
   
   
   
@@ -62,12 +62,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="../../../../../../../css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="../../../../../../../css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="../../../../../../../css/highlight-dark.css" />
   
 
 
@@ -83,8 +83,8 @@
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="../../../../../../../js/utils.js" ></script>
+  <script  src="../../../../../../../js/color-schema.js" ></script>
   
 
 
@@ -101,7 +101,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="../../../../../../../index.html">
       <strong> </strong>
     </a>
 
@@ -120,7 +120,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="../../../../../../../index.html">
                 <i class="iconfont icon-home-fill"></i>
                 Home
               </a>
@@ -132,7 +132,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="../../../../../../../archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 Archives
               </a>
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="../../../../../../../categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="../../../../../../../tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 Tags
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="../../../../../../../about/">
                 <i class="iconfont icon-user-fill"></i>
                 About
               </a>
@@ -197,7 +197,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('../../../../../../../img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -287,12 +287,12 @@
 </ul>
 <hr>
 <h1 id="类加载过程详解"><a href="#类加载过程详解" class="headerlink" title="类加载过程详解"></a>类加载过程详解</h1><h2 id="类的生命周期"><a href="#类的生命周期" class="headerlink" title="类的生命周期"></a>类的生命周期</h2><p>一个类的完整生命周期如下：</p>
-<p><img src="/.io//%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B-%E5%AE%8C%E5%96%84.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/jvm/class-loading-process/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B-%E5%AE%8C%E5%96%84.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="类加载过程"><a href="#类加载过程" class="headerlink" title="类加载过程"></a>类加载过程</h2><p>Class 文件需要加载到虚拟机中之后才能运行和使用，那么虚拟机是如何加载这些 Class 文件呢？</p>
 <p>系统加载 Class 类型的文件主要三步：<strong>加载-&gt;连接-&gt;初始化</strong>。连接过程又可分为三步：<strong>验证-&gt;准备-&gt;解析</strong>。</p>
-<p><img src="/.io//%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B-20220527113101452.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/jvm/class-loading-process/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B-20220527113101452.png" srcset="/img/loading.gif" lazyload></p>
 <p>详见：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-5.html#jvms-5.4">jvm规范5.4</a> 。</p>
-<p><img src="/.io//20210607102244508.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/Java/jvm/class-loading-process/20210607102244508.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h3><p>类加载过程的第一步，主要完成下面 3 件事情：</p>
 <ol>
 <li>通过全类名获取定义此类的二进制字节流</li>
@@ -303,7 +303,7 @@
 <p><strong>一个非数组类的加载阶段（加载阶段获取类的二进制字节流的动作）是可控性最强的阶段，这一步我们可以去完成还可以自定义类加载器去控制字节流的获取方式（重写一个类加载器的 <code>loadClass()</code> 方法）。数组类型不通过类加载器创建，它由 Java 虚拟机直接创建。</strong></p>
 <p>类加载器、双亲委派模型也是非常重要的知识点，这部分内容会在后面的文章中单独介绍到。</p>
 <p>加载阶段和连接阶段的部分内容是交叉进行的，加载阶段尚未结束，连接阶段可能就已经开始了。</p>
-<h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><p><img src="/.io//%E9%AA%8C%E8%AF%81%E9%98%B6%E6%AE%B5.png" srcset="/img/loading.gif" lazyload alt="验证阶段示意图"></p>
+<h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><p><img src="/2022/06/17/CS/Java/jvm/class-loading-process/%E9%AA%8C%E8%AF%81%E9%98%B6%E6%AE%B5.png" srcset="/img/loading.gif" lazyload alt="验证阶段示意图"></p>
 <h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p><strong>准备阶段是正式为类变量分配内存并设置类变量初始值的阶段</strong>，这些内存都将在方法区中分配。对于该阶段有以下几点需要注意：</p>
 <ol>
 <li>这时候进行内存分配的仅包括类变量（ Class Variables ，即静态变量，被 <code>static</code> 关键字修饰的变量，只与类相关，因此被称为类变量），而不包括实例变量。实例变量会在对象实例化时随着对象一块分配在 Java 堆中。</li>
@@ -311,7 +311,7 @@
 <li>这里所设置的初始值”通常情况”下是数据类型默认的零值（如 0、0L、null、false 等），比如我们定义了<code>public static int value=111</code> ，那么 value 变量在准备阶段的初始值就是 0 而不是 111（初始化阶段才会赋值）。特殊情况：比如给 value 变量加上了 final 关键字<code>public static final int value=111</code> ，那么准备阶段 value 的值就被赋值为 111。</li>
 </ol>
 <p><strong>基本数据类型的零值</strong> ： (图片来自《深入理解 Java 虚拟机》第 3 版  7.33 )</p>
-<p><img src="/.io//%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E9%9B%B6%E5%80%BC.png" srcset="/img/loading.gif" lazyload alt="基本数据类型的零值"></p>
+<p><img src="/2022/06/17/CS/Java/jvm/class-loading-process/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E9%9B%B6%E5%80%BC.png" srcset="/img/loading.gif" lazyload alt="基本数据类型的零值"></p>
 <h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><p>解析阶段是虚拟机将常量池内的符号引用替换为直接引用的过程。解析动作主要针对类或接口、字段、类方法、接口方法、方法类型、方法句柄和调用限定符 7 类符号引用进行。</p>
 <p>符号引用就是一组符号来描述目标，可以是任何字面量。<strong>直接引用</strong>就是直接指向目标的指针、相对偏移量或一个间接定位到目标的句柄。在程序实际运行时，只有符号引用是不够的，举个例子：在程序执行方法时，系统需要明确知道这个方法所在的位置。Java 虚拟机为每个类都准备了一张方法表来存放类中所有的方法。当需要调用一个类的方法的时候，只要知道这个方法在方法表中的偏移量就可以直接调用该方法了。通过解析操作符号引用就可以直接转变为目标方法在类中方法表的位置，从而使得方法可以被调用。</p>
 <p>综上，解析阶段是虚拟机将常量池内的符号引用替换为直接引用的过程，也就是得到类或者字段、方法在内存中的指针或者偏移量。</p>
@@ -371,12 +371,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  <a href="../../../../../../../categories/Java/" class="category-chain-item">Java</a>
   
   
     <span>></span>
     
-  <a href="/categories/Java/jvm/" class="category-chain-item">jvm</a>
+  <a href="../../../../../../../categories/Java/jvm/" class="category-chain-item">jvm</a>
   
   
 
@@ -393,9 +393,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Java/">#Java</a>
+        <a href="../../../../../../../tags/Java/">#Java</a>
       
-        <a href="/tags/jvm/">#jvm</a>
+        <a href="../../../../../../../tags/jvm/">#jvm</a>
       
     </div>
   
@@ -450,7 +450,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/17/CS/Java/jvm/class-file-structure/" title="class-file-structure">
+                      <a href="../class-file-structure/" title="class-file-structure">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">class-file-structure</span>
                         <span class="visible-mobile">Previous</span>
@@ -460,7 +460,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/17/CS/Java/jvm/classloader/" title="classloader">
+                      <a href="../classloader/" title="classloader">
                         <span class="hidden-mobile">classloader</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -583,15 +583,15 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="../../../../../../../js/events.js" ></script>
+<script  src="../../../../../../../js/plugins.js" ></script>
 
 
 
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="../../../../../../../js/img-lazyload.js" ></script>
   
 
 
@@ -663,7 +663,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="../../../../../../../js/local-search.js" ></script>
 
 
 
@@ -671,7 +671,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="../../../../../../../js/boot.js" ></script>
 
 
   

@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../../../../../../img/fluid.png">
+  <link rel="icon" href="../../../../../../../img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,18 +23,18 @@
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="读写分离&amp;分库分表大家好呀！今天和小伙伴们聊聊读写分离以及分库分表。 相信很多小伙伴们对于这两个概念已经比较熟悉了，这篇文章全程都是大白话的形式，希望能够给你带来不一样的感受。 如果你之前不太了解这两个概念，那我建议你搞懂之后，可以把自己对于读写分离以及分库分表的理解讲给你的同事&#x2F;朋友听听。 原创不易，若有帮助，点赞&#x2F;分享就是对我最大的鼓励！ 个人能力有限。如果文章有任">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//9c624bc130d053860a5089cb9a53310a.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//461112716e30db118f4c784adc6e2ff7.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//78816271d3ab52424bfd5ad3086c1a0f.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//662ea3bda90061d0b40177e3a46fefc3.jpg">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//60649996bfc69acb1953063dddf0c2e6.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/high-performance/%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB&%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/9c624bc130d053860a5089cb9a53310a.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/high-performance/%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB&%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/461112716e30db118f4c784adc6e2ff7.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/high-performance/%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB&%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/78816271d3ab52424bfd5ad3086c1a0f.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/high-performance/%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB&%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/662ea3bda90061d0b40177e3a46fefc3.jpg">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/high-performance/%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB&%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/60649996bfc69acb1953063dddf0c2e6.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T11:16:59.897Z">
+<meta property="article:modified_time" content="2022-06-24T11:32:28.197Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="system_design">
 <meta property="article:tag" content="high-performance">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/.io//9c624bc130d053860a5089cb9a53310a.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/high-performance/%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB&%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/9c624bc130d053860a5089cb9a53310a.png">
   
   
   
@@ -62,12 +62,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="../../../../../../../css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="../../../../../../../css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="../../../../../../../css/highlight-dark.css" />
   
 
 
@@ -83,8 +83,8 @@
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="../../../../../../../js/utils.js" ></script>
+  <script  src="../../../../../../../js/color-schema.js" ></script>
   
 
 
@@ -101,7 +101,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="../../../../../../../index.html">
       <strong> </strong>
     </a>
 
@@ -120,7 +120,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="../../../../../../../index.html">
                 <i class="iconfont icon-home-fill"></i>
                 Home
               </a>
@@ -132,7 +132,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="../../../../../../../archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 Archives
               </a>
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="../../../../../../../categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="../../../../../../../tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 Tags
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="../../../../../../../about/">
                 <i class="iconfont icon-user-fill"></i>
                 About
               </a>
@@ -197,7 +197,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('../../../../../../../img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -287,7 +287,7 @@
 <p><em>个人能力有限。如果文章有任何需要补充&#x2F;完善&#x2F;修改的地方，欢迎在评论区指出，共同进步！</em></p>
 <h2 id="读写分离"><a href="#读写分离" class="headerlink" title="读写分离"></a>读写分离</h2><h3 id="何为读写分离？"><a href="#何为读写分离？" class="headerlink" title="何为读写分离？"></a>何为读写分离？</h3><p>见名思意，根据读写分离的名字，我们就可以知道：<strong>读写分离主要是为了将对数据库的读写操作分散到不同的数据库节点上。</strong> 这样的话，就能够小幅提升写性能，大幅提升读性能。</p>
 <p>我简单画了一张图来帮助不太清楚读写分离的小伙伴理解。</p>
-<p><img src="/.io//9c624bc130d053860a5089cb9a53310a.png" srcset="/img/loading.gif" lazyload alt="读写分离"></p>
+<p><img src="/2022/06/17/CS/system_design/high-performance/%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB&%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/9c624bc130d053860a5089cb9a53310a.png" srcset="/img/loading.gif" lazyload alt="读写分离"></p>
 <p>一般情况下，我们都会选择一主多从，也就是一台主数据库负责写，其他的从数据库负责读。主库和从库之间会进行数据同步，以保证从库中数据的准确性。这样的架构实现起来比较简单，并且也符合系统的写少读多的特点。</p>
 <h3 id="读写分离会带来什么问题？如何解决？"><a href="#读写分离会带来什么问题？如何解决？" class="headerlink" title="读写分离会带来什么问题？如何解决？"></a>读写分离会带来什么问题？如何解决？</h3><p>读写分离对于提升数据库的并发非常有效，但是，同时也会引来一个问题：主库和从库的数据存在延迟，比如你写完主库之后，主库的数据同步到从库是需要时间的，这个时间差就导致了主库和从库的数据不一致性问题。这也就是我们经常说的 <strong>主从同步延迟</strong> 。</p>
 <p>主从同步延迟问题的解决，没有特别好的一种方案（可能是我太菜了，欢迎评论区补充）。你可以根据自己的业务场景，参考一下下面几种解决办法。</p>
@@ -309,7 +309,7 @@
 </ol>
 <p>落实到项目本身的话，常用的方式有两种：</p>
 <p><strong>1.代理方式</strong></p>
-<p><img src="/.io//461112716e30db118f4c784adc6e2ff7.png" srcset="/img/loading.gif" lazyload alt="读写分离-代理层"></p>
+<p><img src="/2022/06/17/CS/system_design/high-performance/%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB&%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/461112716e30db118f4c784adc6e2ff7.png" srcset="/img/loading.gif" lazyload alt="读写分离-代理层"></p>
 <p>我们可以在应用和数据中间加了一个代理层。应用程序所有的数据请求都交给代理层处理，代理层负责分离读写请求，将它们路由到对应的数据库中。</p>
 <p>提供类似功能的中间件有 <strong>MySQL Router</strong>（官方）、<strong>Atlas</strong>（基于 MySQL Proxy）、<strong>Maxscale</strong>、<strong>MyCat</strong>。</p>
 <p><strong>2.组件方式</strong></p>
@@ -318,7 +318,7 @@
 <p>你可以在 shardingsphere 官方找到<a target="_blank" rel="noopener" href="https://shardingsphere.apache.org/document/legacy/3.x/document/cn/manual/sharding-jdbc/usage/read-write-splitting/">sharding-jdbc 关于读写分离的操作</a>。</p>
 <h3 id="主从复制原理了解么？"><a href="#主从复制原理了解么？" class="headerlink" title="主从复制原理了解么？"></a>主从复制原理了解么？</h3><p>MySQL binlog(binary log 即二进制日志文件) 主要记录了 MySQL 数据库中数据的所有变化(数据库执行的所有 DDL 和 DML 语句)。因此，我们根据主库的 MySQL binlog 日志就能够将主库的数据同步到从库中。</p>
 <p>更具体和详细的过程是这个样子的（图片来自于：<a target="_blank" rel="noopener" href="https://www.toptal.com/mysql/mysql-master-slave-replication-tutorial">《MySQL Master-Slave Replication on the Same Machine》</a>）：</p>
-<p><img src="/.io//78816271d3ab52424bfd5ad3086c1a0f.png" srcset="/img/loading.gif" lazyload alt="MySQL主从复制"></p>
+<p><img src="/2022/06/17/CS/system_design/high-performance/%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB&%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/78816271d3ab52424bfd5ad3086c1a0f.png" srcset="/img/loading.gif" lazyload alt="MySQL主从复制"></p>
 <ol>
 <li>主库将数据库中数据的变化写入到 binlog</li>
 <li>从库连接主库</li>
@@ -351,7 +351,7 @@
 <p>简单来说，水平拆分是对数据表行的拆分，把一张行比较多的表拆分为多张表。</p>
 <p>举个例子：我们可以将用户信息表拆分成多个用户信息表，这样就可以避免单一表数据量过大对性能造成影响。</p>
 <p><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/intro/100006601?code=i00Nq3pHUcUj04ZWy70NCRl/D2Lfj8GVzcGzZ3Wf5Ug=">《从零开始学架构》</a> 中的有一张图片对于垂直拆分和水平拆分的描述还挺直观的。</p>
-<p><img src="/.io//662ea3bda90061d0b40177e3a46fefc3.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/system_design/high-performance/%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB&%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/662ea3bda90061d0b40177e3a46fefc3.jpg" srcset="/img/loading.gif" lazyload></p>
 <h3 id="什么情况下需要分库分表？"><a href="#什么情况下需要分库分表？" class="headerlink" title="什么情况下需要分库分表？"></a>什么情况下需要分库分表？</h3><p>遇到下面几种场景可以考虑分库分表：</p>
 <ul>
 <li>单表的数据达到千万级别以上，数据库读写速度比较缓慢（分表）。</li>
@@ -368,7 +368,7 @@
 </ul>
 <p>另外，引入分库分表之后，一般需要 DBA 的参与，同时还需要更多的数据库服务器，这些都属于成本。</p>
 <h3 id="分库分表有没有什么比较推荐的方案？"><a href="#分库分表有没有什么比较推荐的方案？" class="headerlink" title="分库分表有没有什么比较推荐的方案？"></a>分库分表有没有什么比较推荐的方案？</h3><p>ShardingSphere 项目（包括 Sharding-JDBC、Sharding-Proxy 和 Sharding-Sidecar）是当当捐入 Apache 的，目前主要由京东数科的一些巨佬维护。</p>
-<p><img src="/.io//60649996bfc69acb1953063dddf0c2e6.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/system_design/high-performance/%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB&%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/60649996bfc69acb1953063dddf0c2e6.png" srcset="/img/loading.gif" lazyload></p>
 <p>ShardingSphere 绝对可以说是当前分库分表的首选！ShardingSphere 的功能完善，除了支持读写分离和分库分表，还提供分布式事务、数据库治理等功能。</p>
 <p>另外，ShardingSphere 的生态体系完善，社区活跃，文档完善，更新和发布比较频繁。</p>
 <p>艿艿之前写了一篇分库分表的实战文章，各位朋友可以看看：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/A2MYOFT7SP-7kGOon8qJaw">《芋道 Spring Boot 分库分表入门》</a> 。</p>
@@ -399,12 +399,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/system-design/" class="category-chain-item">system_design</a>
+  <a href="../../../../../../../categories/system-design/" class="category-chain-item">system_design</a>
   
   
     <span>></span>
     
-  <a href="/categories/system-design/high-performance/" class="category-chain-item">high-performance</a>
+  <a href="../../../../../../../categories/system-design/high-performance/" class="category-chain-item">high-performance</a>
   
   
 
@@ -421,9 +421,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/system-design/">#system_design</a>
+        <a href="../../../../../../../tags/system-design/">#system_design</a>
       
-        <a href="/tags/high-performance/">#high-performance</a>
+        <a href="../../../../../../../tags/high-performance/">#high-performance</a>
       
     </div>
   
@@ -478,7 +478,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/17/CS/system_design/high-availability/%E9%AB%98%E5%8F%AF%E7%94%A8%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" title="高可用系统设计">
+                      <a href="../../high-availability/%E9%AB%98%E5%8F%AF%E7%94%A8%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" title="高可用系统设计">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">高可用系统设计</span>
                         <span class="visible-mobile">Previous</span>
@@ -488,7 +488,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/17/CS/system_design/high-performance/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" title="负载均衡">
+                      <a href="../%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" title="负载均衡">
                         <span class="hidden-mobile">负载均衡</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -611,15 +611,15 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="../../../../../../../js/events.js" ></script>
+<script  src="../../../../../../../js/plugins.js" ></script>
 
 
 
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="../../../../../../../js/img-lazyload.js" ></script>
   
 
 
@@ -691,7 +691,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="../../../../../../../js/local-search.js" ></script>
 
 
 
@@ -699,7 +699,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="../../../../../../../js/boot.js" ></script>
 
 
   

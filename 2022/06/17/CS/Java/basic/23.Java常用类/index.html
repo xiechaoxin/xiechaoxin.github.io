@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../../../../../../img/fluid.png">
+  <link rel="icon" href="../../../../../../../img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,15 +23,15 @@
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="Java 常用类1. ObjectObject 类是所有 Java 类的根基类，如果在类的声明中未使用 extends 关键字指明其基类，则默认基类为 Object 类 &#x3D;&#x3D;与 equals 方法java中的数据类型，可分为两类：  基本数据类型，也称原始数据类型。byte,short,char,int,long,float,double,boolean 他们之间的比较，应用双">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/basic/23/image-20211026224034887.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/basic/23.Java%E5%B8%B8%E7%94%A8%E7%B1%BB/image-20211026224034887.png">
 <meta property="og:image" content="https://gitee.com/xcxhalo/picgo/raw/master/Img/image-20211028213734785.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T11:16:58.645Z">
+<meta property="article:modified_time" content="2022-06-24T11:32:26.781Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="basic">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/basic/23/image-20211026224034887.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/basic/23.Java%E5%B8%B8%E7%94%A8%E7%B1%BB/image-20211026224034887.png">
   
   
   
@@ -59,12 +59,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="../../../../../../../css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="../../../../../../../css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="../../../../../../../css/highlight-dark.css" />
   
 
 
@@ -80,8 +80,8 @@
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="../../../../../../../js/utils.js" ></script>
+  <script  src="../../../../../../../js/color-schema.js" ></script>
   
 
 
@@ -98,7 +98,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="../../../../../../../index.html">
       <strong> </strong>
     </a>
 
@@ -117,7 +117,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="../../../../../../../index.html">
                 <i class="iconfont icon-home-fill"></i>
                 Home
               </a>
@@ -129,7 +129,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="../../../../../../../archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 Archives
               </a>
@@ -141,7 +141,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="../../../../../../../categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
               </a>
@@ -153,7 +153,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="../../../../../../../tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 Tags
               </a>
@@ -165,7 +165,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="../../../../../../../about/">
                 <i class="iconfont icon-user-fill"></i>
                 About
               </a>
@@ -194,7 +194,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('../../../../../../../img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -307,7 +307,7 @@
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">s1</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;abc&quot;</span>;<br><br><span class="hljs-type">String</span> <span class="hljs-variable">s2</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;abc&quot;</span>;<br><br><span class="hljs-type">String</span> <span class="hljs-variable">s3</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-string">&quot;abc&quot;</span>);<br></code></pre></td></tr></table></figure>
 
-<p><img src="/2022/06/17/CS/Java/basic/23/image-20211026224034887.png" srcset="/img/loading.gif" lazyload alt="image-20211026224034887"></p>
+<p><img src="/2022/06/17/CS/Java/basic/23.Java%E5%B8%B8%E7%94%A8%E7%B1%BB/image-20211026224034887.png" srcset="/img/loading.gif" lazyload alt="image-20211026224034887"></p>
 <h4 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h4><h4 id="因为-String-是不可变对象，如果多个字符串进行拼接，将会形成多个对象，这样可能会造成内-存溢出，会给垃圾回收带来工作量"><a href="#因为-String-是不可变对象，如果多个字符串进行拼接，将会形成多个对象，这样可能会造成内-存溢出，会给垃圾回收带来工作量" class="headerlink" title="因为 String 是不可变对象，如果多个字符串进行拼接，将会形成多个对象，这样可能会造成内 存溢出，会给垃圾回收带来工作量"></a>因为 String 是不可变对象，如果多个字符串进行拼接，将会形成多个对象，这样可能会造成内 存溢出，会给垃圾回收带来工作量</h4><h4 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 正则表达式（独立的学科），主要可以用来做字符串处理，可以描述特定的字符模式，如：”a&#123;2&#125;” 表示由两个字符“a”构成的字符串，等同于普通字符串“aa”，如”\d”代表任意一个数字 0~9， \D 代表所有的非数字，\w 代表所有的英文字母，\W 代表所有的非英文字母。</span><br></code></pre></td></tr></table></figure>
 
 <h2 id="3-StringBuffer-amp-StringBuilder"><a href="#3-StringBuffer-amp-StringBuilder" class="headerlink" title="3. StringBuffer &amp; StringBuilder"></a>3. StringBuffer &amp; StringBuilder</h2><h4 id="StringBuffer"><a href="#StringBuffer" class="headerlink" title="StringBuffer"></a>StringBuffer</h4><p>StringBuffer 称为字符串缓冲区，它的工作原理是：预先申请一块内存，存放字符序列，如果 字符序列满了，会重新改变缓存区的大小，以容纳更多的字符序列。<strong>StringBuffer 是可变对象， 这个是 String 最大的不同</strong></p>
@@ -398,12 +398,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  <a href="../../../../../../../categories/Java/" class="category-chain-item">Java</a>
   
   
     <span>></span>
     
-  <a href="/categories/Java/basic/" class="category-chain-item">basic</a>
+  <a href="../../../../../../../categories/Java/basic/" class="category-chain-item">basic</a>
   
   
 
@@ -420,9 +420,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Java/">#Java</a>
+        <a href="../../../../../../../tags/Java/">#Java</a>
       
-        <a href="/tags/basic/">#basic</a>
+        <a href="../../../../../../../tags/basic/">#basic</a>
       
     </div>
   
@@ -477,7 +477,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/17/CS/Java/basic/22.Java_object_equal/" title="22.Java_object_equal">
+                      <a href="../22.Java_object_equal/" title="22.Java_object_equal">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">22.Java_object_equal</span>
                         <span class="visible-mobile">Previous</span>
@@ -487,7 +487,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/17/CS/Java/basic/24.%E5%BC%82%E5%B8%B8/" title="24.异常">
+                      <a href="../24.%E5%BC%82%E5%B8%B8/" title="24.异常">
                         <span class="hidden-mobile">24.异常</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -610,15 +610,15 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="../../../../../../../js/events.js" ></script>
+<script  src="../../../../../../../js/plugins.js" ></script>
 
 
 
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="../../../../../../../js/img-lazyload.js" ></script>
   
 
 
@@ -690,7 +690,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="../../../../../../../js/local-search.js" ></script>
 
 
 
@@ -698,7 +698,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="../../../../../../../js/boot.js" ></script>
 
 
   

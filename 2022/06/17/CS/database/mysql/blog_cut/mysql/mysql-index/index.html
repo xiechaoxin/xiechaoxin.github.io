@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../../../../../../../../img/fluid.png">
+  <link rel="icon" href="../../../../../../../../../img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,21 +23,21 @@
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="title: MySQL 索引详解category: 数据库tag:  MySQL   何为索引？有什么作用？索引是一种用于快速查询和检索数据的数据结构。常见的索引结构有: B 树， B+树和 Hash。 索引的作用就相当于目录的作用。打个比方: 我们在查字典的时候，如果没有目录，那我们就只能一页一页的去找我们需要查的那个字，速度很慢。如果有目录了，我们只需要先去目录里查找字的位置，然后直接翻到">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//20210513092328171.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//20210513092224836.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//20210420165409106.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//20210420165254215.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//20210420165311654.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//20210420165326946.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//20210420165341868.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/blog_cut/mysql/mysql-index/20210513092328171.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/blog_cut/mysql/mysql-index/20210513092224836.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/blog_cut/mysql/mysql-index/20210420165409106.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/blog_cut/mysql/mysql-index/20210420165254215.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/blog_cut/mysql/mysql-index/20210420165311654.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/blog_cut/mysql/mysql-index/20210420165326946.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/blog_cut/mysql/mysql-index/20210420165341868.png">
 <meta property="article:published_time" content="2022-06-17T17:59:12.000Z">
-<meta property="article:modified_time" content="2022-06-24T11:16:59.073Z">
+<meta property="article:modified_time" content="2022-06-24T11:32:27.257Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="blog_cut">
 <meta property="article:tag" content="database">
 <meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/.io//20210513092328171.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/2022/06/17/CS/database/mysql/blog_cut/mysql/mysql-index/20210513092328171.png">
   
   
   
@@ -65,12 +65,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="../../../../../../../../../css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="../../../../../../../../../css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="../../../../../../../../../css/highlight-dark.css" />
   
 
 
@@ -86,8 +86,8 @@
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="../../../../../../../../../js/utils.js" ></script>
+  <script  src="../../../../../../../../../js/color-schema.js" ></script>
   
 
 
@@ -104,7 +104,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="../../../../../../../../../index.html">
       <strong> </strong>
     </a>
 
@@ -123,7 +123,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="../../../../../../../../../index.html">
                 <i class="iconfont icon-home-fill"></i>
                 Home
               </a>
@@ -135,7 +135,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="../../../../../../../../../archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 Archives
               </a>
@@ -147,7 +147,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="../../../../../../../../../categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
               </a>
@@ -159,7 +159,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="../../../../../../../../../tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 Tags
               </a>
@@ -171,7 +171,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="../../../../../../../../../about/">
                 <i class="iconfont icon-user-fill"></i>
                 About
               </a>
@@ -200,7 +200,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('../../../../../../../../../img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -309,9 +309,9 @@
 
 
 
-<p><img src="/.io//20210513092328171.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/database/mysql/blog_cut/mysql/mysql-index/20210513092328171.png" srcset="/img/loading.gif" lazyload></p>
 <p>但是！哈希算法有个 <strong>Hash 冲突</strong> 问题，也就是说多个不同的  key 最后得到的 index 相同。通常情况下，我们常用的解决办法是 <strong>链地址法</strong>。链地址法就是将哈希冲突数据存放在链表中。就比如 JDK1.8 之前 <code>HashMap</code> 就是通过链地址法来解决哈希冲突的。不过，JDK1.8 以后<code>HashMap</code>为了减少链表过长的时候搜索时间过长引入了红黑树。</p>
-<p><img src="/.io//20210513092224836.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/database/mysql/blog_cut/mysql/mysql-index/20210513092224836.png" srcset="/img/loading.gif" lazyload></p>
 <p>为了减少 Hash 冲突的发生，一个好的哈希函数应该“均匀地”将数据分布在整个可能的哈希值集合中。</p>
 <p>既然哈希表这么快，<strong>为什么MySQL 没有使用其作为索引的数据结构呢？</strong></p>
 <p><strong>1.Hash 冲突问题</strong> ：我们上面也提到过Hash 冲突了，不过对于数据库来说这还不算最大的缺点。</p>
@@ -328,7 +328,7 @@
 <li>B 树的叶子节点都是独立的;B+树的叶子节点有一条引用链指向与它相邻的叶子节点。</li>
 <li>B 树的检索的过程相当于对范围内的每个节点的关键字做二分查找，可能还没有到达叶子节点，检索就结束了。而 B+树的检索效率就很稳定了，任何查找都是从根节点到叶子节点的过程，叶子节点的顺序检索很明显。</li>
 </ul>
-<p><img src="/.io//20210420165409106.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/database/mysql/blog_cut/mysql/mysql-index/20210420165409106.png" srcset="/img/loading.gif" lazyload></p>
 <p>在 MySQL 中，MyISAM 引擎和 InnoDB 引擎都是使用 B+Tree 作为索引结构，但是，两者的实现方式不太一样。（下面的内容整理自《Java 工程师修炼之道》）</p>
 <p>MyISAM 引擎中，B+Tree 叶节点的 data 域存放的是数据记录的地址。在索引检索的时候，首先按照 B+Tree 搜索算法搜索索引，如果指定的 Key 存在，则取出其 data 域的值，然后以 data 域的值为地址读取相应的数据记录。这被称为“非聚簇索引”。</p>
 <p>InnoDB 引擎中，其数据文件本身就是索引文件。相比 MyISAM，索引文件和数据文件是分离的，其表数据文件本身就是按 B+Tree 组织的一个索引结构，树的叶节点 data 域保存了完整的数据记录。这个索引的 key 是数据表的主键，因此 InnoDB 表数据文件本身就是主索引。这被称为“聚簇索引（或聚集索引）”，而其余的索引都作为辅助索引，辅助索引的 data 域存储相应记录主键的值而不是地址，这也是和 MyISAM 不同的地方。在根据主索引搜索时，直接找到 key 所在的节点即可取出数据；在根据辅助索引查找时，则需要先取出主键的值，在走一遍主索引。 因此，在设计表的时候，不建议使用过长的字段作为主键，也不建议使用非单调的字段作为主键，这样会造成主索引频繁分裂。</p>
@@ -344,7 +344,7 @@
 <li><strong>前缀索引(Prefix)</strong> ：前缀索引只适用于字符串类型的数据。前缀索引是对文本的前几个字符创建索引，相比普通索引建立的数据更小，<br>因为只取前几个字符。</li>
 <li><strong>全文索引(Full Text)</strong> ：全文索引主要是为了检索大文本数据中的关键字的信息，是目前搜索引擎数据库使用的一种技术。Mysql5.6 之前只有 MYISAM 引擎支持全文索引，5.6 之后 InnoDB 也支持了全文索引。</li>
 </ol>
-<p>二级索引:<br><img src="/.io//20210420165254215.png" srcset="/img/loading.gif" lazyload></p>
+<p>二级索引:<br><img src="/2022/06/17/CS/database/mysql/blog_cut/mysql/mysql-index/20210420165254215.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="聚集索引与非聚集索引"><a href="#聚集索引与非聚集索引" class="headerlink" title="聚集索引与非聚集索引"></a>聚集索引与非聚集索引</h2><h3 id="聚集索引"><a href="#聚集索引" class="headerlink" title="聚集索引"></a>聚集索引</h3><p><strong>聚集索引即索引结构和数据一起存放的索引。主键索引属于聚集索引。</strong></p>
 <p>在 Mysql 中，InnoDB 引擎的表的 <code>.ibd</code>文件就包含了该表的索引和数据，对于 InnoDB 引擎表来说，该表的索引(B+树)的每个非叶子节点存储索引，叶子节点存储索引和索引对应的数据。</p>
 <h4 id="聚集索引的优点"><a href="#聚集索引的优点" class="headerlink" title="聚集索引的优点"></a>聚集索引的优点</h4><p>聚集索引的查询速度非常的快，因为整个 B+树本身就是一颗多叉平衡树，叶子节点也都是有序的，定位到索引的节点，就相当于定位到了数据。</p>
@@ -364,9 +364,9 @@
 <li><strong>可能会二次查询(回表)</strong> :这应该是非聚集索引最大的缺点了。 当查到索引对应的指针或主键后，可能还需要根据指针或主键再到数据文件或表中查询。</li>
 </ol>
 <p>这是 MySQL 的表的文件截图:</p>
-<p><img src="/.io//20210420165311654.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/database/mysql/blog_cut/mysql/mysql-index/20210420165311654.png" srcset="/img/loading.gif" lazyload></p>
 <p>聚集索引和非聚集索引:</p>
-<p><img src="/.io//20210420165326946.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/database/mysql/blog_cut/mysql/mysql-index/20210420165326946.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="非聚集索引一定回表查询吗-覆盖索引"><a href="#非聚集索引一定回表查询吗-覆盖索引" class="headerlink" title="非聚集索引一定回表查询吗(覆盖索引)?"></a>非聚集索引一定回表查询吗(覆盖索引)?</h3><p><strong>非聚集索引不一定回表查询。</strong></p>
 <blockquote>
 <p>试想一种情况，用户准备使用 SQL 查询用户名，而用户名字段正好建立了索引。</p>
@@ -386,7 +386,7 @@
 <p>如主键索引，如果一条 SQL 需要查询主键，那么正好根据主键索引就可以查到主键。</p>
 <p>再如普通索引，如果一条 SQL 需要查询 name，name 字段正好有索引，<br>那么直接根据这个索引就可以查到数据，也无需回表。</p>
 </blockquote>
-<p>覆盖索引:<br><img src="/.io//20210420165341868.png" srcset="/img/loading.gif" lazyload></p>
+<p>覆盖索引:<br><img src="/2022/06/17/CS/database/mysql/blog_cut/mysql/mysql-index/20210420165341868.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="创建索引的注意事项"><a href="#创建索引的注意事项" class="headerlink" title="创建索引的注意事项"></a>创建索引的注意事项</h2><p><strong>1.选择合适的字段创建索引：</strong></p>
 <ul>
 <li><strong>不为 NULL 的字段</strong> ：索引字段的数据应该尽量不为 NULL，因为对于数据为 NULL 的字段，数据库较难优化。如果字段频繁被查询，但又避免不了为 NULL，建议使用 0,1,true,false 这样语义较为清晰的短值或短字符作为替代。</li>
@@ -442,22 +442,22 @@
     
       <span class="category-chain">
         
-  <a href="/categories/database/" class="category-chain-item">database</a>
+  <a href="../../../../../../../../../categories/database/" class="category-chain-item">database</a>
   
   
     <span>></span>
     
-  <a href="/categories/database/mysql/" class="category-chain-item">mysql</a>
+  <a href="../../../../../../../../../categories/database/mysql/" class="category-chain-item">mysql</a>
   
   
     <span>></span>
     
-  <a href="/categories/database/mysql/blog-cut/" class="category-chain-item">blog_cut</a>
+  <a href="../../../../../../../../../categories/database/mysql/blog-cut/" class="category-chain-item">blog_cut</a>
   
   
     <span>></span>
     
-  <a href="/categories/database/mysql/blog-cut/mysql/" class="category-chain-item">mysql</a>
+  <a href="../../../../../../../../../categories/database/mysql/blog-cut/mysql/" class="category-chain-item">mysql</a>
   
   
 
@@ -478,11 +478,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/blog-cut/">#blog_cut</a>
+        <a href="../../../../../../../../../tags/blog-cut/">#blog_cut</a>
       
-        <a href="/tags/database/">#database</a>
+        <a href="../../../../../../../../../tags/database/">#database</a>
       
-        <a href="/tags/mysql/">#mysql</a>
+        <a href="../../../../../../../../../tags/mysql/">#mysql</a>
       
     </div>
   
@@ -537,7 +537,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/17/CS/database/mysql/blog_cut/mysql/mysql-high-performance-optimization-specification-recommendations/" title="mysql-high-performance-optimization-specification-recommendations">
+                      <a href="../mysql-high-performance-optimization-specification-recommendations/" title="mysql-high-performance-optimization-specification-recommendations">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">mysql-high-performance-optimization-specification-recommendations</span>
                         <span class="visible-mobile">Previous</span>
@@ -547,7 +547,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/17/CS/database/mysql/blog_cut/mysql/mysql-logs/" title="mysql-logs">
+                      <a href="../mysql-logs/" title="mysql-logs">
                         <span class="hidden-mobile">mysql-logs</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -670,15 +670,15 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="../../../../../../../../../js/events.js" ></script>
+<script  src="../../../../../../../../../js/plugins.js" ></script>
 
 
 
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="../../../../../../../../../js/img-lazyload.js" ></script>
   
 
 
@@ -750,7 +750,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="../../../../../../../../../js/local-search.js" ></script>
 
 
 
@@ -758,7 +758,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="../../../../../../../../../js/boot.js" ></script>
 
 
   

@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../../../../../../img/fluid.png">
+  <link rel="icon" href="../../../../../../../img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,22 +23,22 @@
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="Docker 基本概念解读本文只是对 Docker 的概念做了较为详细的介绍，并不涉及一些像 Docker 环境的安装以及 Docker 的一些常见操作和命令。 一 认识容器Docker 是世界领先的软件容器平台，所以想要搞懂 Docker 的概念我们必须先从容器开始说起。 1.1 什么是容器?先来看看容器较为官方的解释一句话概括容器：容器就是将软件打包成标准化单元，以用于开发、交付和部署。  容">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//container.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//%E7%89%A9%E7%90%86%E6%9C%BA%E5%9B%BE%E8%A7%A3.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9B%BE%E8%A7%A3.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//image-20211110104003678.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//2e2b95eebf60b6d03f6c1476f4d7c697.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//4ef8691d67eb1eb53217099d0a691eb5.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//056c87751b9dd7b56f4264240fe96d00.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//docker%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//2419919953764fc690c929d3844f7011.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/docker/docker-intro/container.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/docker/docker-intro/%E7%89%A9%E7%90%86%E6%9C%BA%E5%9B%BE%E8%A7%A3.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/docker/docker-intro/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9B%BE%E8%A7%A3.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/docker/docker-intro/image-20211110104003678.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/docker/docker-intro/2e2b95eebf60b6d03f6c1476f4d7c697.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/docker/docker-intro/4ef8691d67eb1eb53217099d0a691eb5.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/docker/docker-intro/056c87751b9dd7b56f4264240fe96d00.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/docker/docker-intro/docker%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/docker/docker-intro/2419919953764fc690c929d3844f7011.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T11:16:59.873Z">
+<meta property="article:modified_time" content="2022-06-24T11:32:28.169Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="system_design">
 <meta property="article:tag" content="docker">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/.io//container.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/2022/06/17/CS/system_design/docker/docker-intro/container.png">
   
   
   
@@ -66,12 +66,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="../../../../../../../css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="../../../../../../../css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="../../../../../../../css/highlight-dark.css" />
   
 
 
@@ -87,8 +87,8 @@
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="../../../../../../../js/utils.js" ></script>
+  <script  src="../../../../../../../js/color-schema.js" ></script>
   
 
 
@@ -105,7 +105,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="../../../../../../../index.html">
       <strong> </strong>
     </a>
 
@@ -124,7 +124,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="../../../../../../../index.html">
                 <i class="iconfont icon-home-fill"></i>
                 Home
               </a>
@@ -136,7 +136,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="../../../../../../../archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 Archives
               </a>
@@ -148,7 +148,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="../../../../../../../categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
               </a>
@@ -160,7 +160,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="../../../../../../../tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 Tags
               </a>
@@ -172,7 +172,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="../../../../../../../about/">
                 <i class="iconfont icon-user-fill"></i>
                 About
               </a>
@@ -201,7 +201,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('../../../../../../../img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -293,14 +293,14 @@
 <li><strong>容器赋予了软件独立性</strong>，使其免受外在环境差异（例如，开发和预演环境的差异）的影响，从而有助于减少团队间在相同基础设施上运行不同软件时的冲突。</li>
 </ul>
 <h4 id="再来看看容器较为通俗的解释"><a href="#再来看看容器较为通俗的解释" class="headerlink" title="再来看看容器较为通俗的解释"></a>再来看看容器较为通俗的解释</h4><p><strong>如果需要通俗地描述容器的话，我觉得容器就是一个存放东西的地方，就像书包可以装各种文具、衣柜可以放各种衣服、鞋架可以放各种鞋子一样。我们现在所说的容器存放的东西可能更偏向于应用比如网站、程序甚至是系统环境。</strong></p>
-<p><img src="/.io//container.png" srcset="/img/loading.gif" lazyload alt="认识容器"></p>
+<p><img src="/2022/06/17/CS/system_design/docker/docker-intro/container.png" srcset="/img/loading.gif" lazyload alt="认识容器"></p>
 <h3 id="1-2-图解物理机-虚拟机与容器"><a href="#1-2-图解物理机-虚拟机与容器" class="headerlink" title="1.2 图解物理机,虚拟机与容器"></a>1.2 图解物理机,虚拟机与容器</h3><p>关于虚拟机与容器的对比在后面会详细介绍到，这里只是通过网上的图片加深大家对于物理机、虚拟机与容器这三者的理解(下面的图片来源于网络)。</p>
 <p><strong>物理机：</strong></p>
-<p><img src="/.io//%E7%89%A9%E7%90%86%E6%9C%BA%E5%9B%BE%E8%A7%A3.png" srcset="/img/loading.gif" lazyload alt="物理机"></p>
+<p><img src="/2022/06/17/CS/system_design/docker/docker-intro/%E7%89%A9%E7%90%86%E6%9C%BA%E5%9B%BE%E8%A7%A3.png" srcset="/img/loading.gif" lazyload alt="物理机"></p>
 <p><strong>虚拟机：</strong></p>
-<p><img src="/.io//%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9B%BE%E8%A7%A3.png" srcset="/img/loading.gif" lazyload alt="虚拟机"></p>
+<p><img src="/2022/06/17/CS/system_design/docker/docker-intro/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9B%BE%E8%A7%A3.png" srcset="/img/loading.gif" lazyload alt="虚拟机"></p>
 <p><strong>容器：</strong></p>
-<p><img src="/.io//image-20211110104003678.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/system_design/docker/docker-intro/image-20211110104003678.png" srcset="/img/loading.gif" lazyload></p>
 <p>通过上面这三张抽象图，我们可以大概通过类比概括出： <strong>容器虚拟化的是操作系统而不是硬件，容器之间是共享同一套操作系统资源的。虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统。因此容器的隔离级别会稍低一些。</strong></p>
 <hr>
 <p><strong>相信通过上面的解释大家对于容器这个既陌生又熟悉的概念有了一个初步的认识，下面我们就来谈谈 Docker 的一些概念。</strong></p>
@@ -333,8 +333,8 @@
 <h2 id="三-容器-VS-虚拟机"><a href="#三-容器-VS-虚拟机" class="headerlink" title="三 容器 VS 虚拟机"></a>三 容器 VS 虚拟机</h2><p><strong>每当说起容器，我们不得不将其与虚拟机做一个比较。就我而言，对于两者无所谓谁会取代谁，而是两者可以和谐共存。</strong></p>
 <p>简单来说： <strong>容器和虚拟机具有相似的资源隔离和分配优势，但功能有所不同，因为容器虚拟化的是操作系统，而不是硬件，因此容器更容易移植，效率也更高。</strong></p>
 <h3 id="3-1-两者对比图"><a href="#3-1-两者对比图" class="headerlink" title="3.1 两者对比图"></a>3.1 两者对比图</h3><p>传统虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统，在该系统上再运行所需应用进程；而容器内的应用进程直接运行于宿主的内核，容器内没有自己的内核，而且也没有进行硬件虚拟。因此容器要比传统虚拟机更为轻便。</p>
-<p><img src="/.io//2e2b95eebf60b6d03f6c1476f4d7c697.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="3-2-容器与虚拟机总结"><a href="#3-2-容器与虚拟机总结" class="headerlink" title="3.2 容器与虚拟机总结"></a>3.2 容器与虚拟机总结</h3><p><img src="/.io//4ef8691d67eb1eb53217099d0a691eb5.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/system_design/docker/docker-intro/2e2b95eebf60b6d03f6c1476f4d7c697.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="3-2-容器与虚拟机总结"><a href="#3-2-容器与虚拟机总结" class="headerlink" title="3.2 容器与虚拟机总结"></a>3.2 容器与虚拟机总结</h3><p><img src="/2022/06/17/CS/system_design/docker/docker-intro/4ef8691d67eb1eb53217099d0a691eb5.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li><p><strong>容器是一个应用层抽象，用于将代码和依赖资源打包在一起。</strong> <strong>多个容器可以在同一台机器上运行，共享操作系统内核，但各自作为独立的进程在用户空间中运行</strong> 。与虚拟机相比， <strong>容器占用的空间较少</strong>（容器镜像大小通常只有几十兆），<strong>瞬间就能完成启动</strong> 。</p>
 </li>
@@ -343,7 +343,7 @@
 </ul>
 <p>通过 Docker 官网，我们知道了这么多 Docker 的优势，但是大家也没有必要完全否定虚拟机技术，因为两者有不同的使用场景。<strong>虚拟机更擅长于彻底隔离整个运行环境</strong>。例如，云服务提供商通常采用虚拟机技术隔离不同的用户。而 <strong>Docker 通常用于隔离不同的应用</strong> ，例如前端，后端以及数据库。</p>
 <h3 id="3-3-容器与虚拟机两者是可以共存的"><a href="#3-3-容器与虚拟机两者是可以共存的" class="headerlink" title="3.3 容器与虚拟机两者是可以共存的"></a>3.3 容器与虚拟机两者是可以共存的</h3><p>就我而言，对于两者无所谓谁会取代谁，而是两者可以和谐共存。</p>
-<p><img src="/.io//056c87751b9dd7b56f4264240fe96d00.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/system_design/docker/docker-intro/056c87751b9dd7b56f4264240fe96d00.png" srcset="/img/loading.gif" lazyload></p>
 <hr>
 <h2 id="四-Docker-基本概念"><a href="#四-Docker-基本概念" class="headerlink" title="四 Docker 基本概念"></a>四 Docker 基本概念</h2><p><strong>Docker 中有非常重要的三个基本概念，理解了这三个概念，就理解了 Docker 的整个生命周期。</strong></p>
 <ul>
@@ -352,7 +352,7 @@
 <li><strong>仓库（Repository）</strong></li>
 </ul>
 <p>理解了这三个概念，就理解了 Docker 的整个生命周期</p>
-<p><img src="/.io//docker%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5.png" srcset="/img/loading.gif" lazyload alt="docker基本概念"></p>
+<p><img src="/2022/06/17/CS/system_design/docker/docker-intro/docker%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5.png" srcset="/img/loading.gif" lazyload alt="docker基本概念"></p>
 <h3 id="4-1-镜像-Image-一个特殊的文件系统"><a href="#4-1-镜像-Image-一个特殊的文件系统" class="headerlink" title="4.1 镜像(Image):一个特殊的文件系统"></a>4.1 镜像(Image):一个特殊的文件系统</h3><p><strong>操作系统分为内核和用户空间</strong>。对于 Linux 而言，内核启动后，会挂载 root 文件系统为其提供用户空间支持。而 Docker 镜像（Image），就相当于是一个 root 文件系统。</p>
 <p><strong>Docker 镜像是一个特殊的文件系统，除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等）。</strong> 镜像不包含任何动态数据，其内容在构建之后也不会被改变。</p>
 <p>Docker 设计时，就充分利用 <strong>Union FS</strong> 的技术，将其设计为<strong>分层存储的架构</strong> 。镜像实际是由多层文件系统联合组成。</p>
@@ -402,7 +402,7 @@
 
 <h2 id="六-Build-Ship-and-Run"><a href="#六-Build-Ship-and-Run" class="headerlink" title="六 Build Ship and Run"></a>六 Build Ship and Run</h2><p><strong>Docker 的概念以及常见命令基本上已经讲完，我们再来谈谈：Build, Ship, and Run。</strong></p>
 <p>如果你搜索 Docker 官网，会发现如下的字样：<strong>“Docker - Build, Ship, and Run Any App, Anywhere”</strong>。那么 Build, Ship, and Run 到底是在干什么呢？</p>
-<p><img src="/.io//2419919953764fc690c929d3844f7011.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/17/CS/system_design/docker/docker-intro/2419919953764fc690c929d3844f7011.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li><strong>Build（构建镜像）</strong> ： 镜像就像是集装箱包括文件以及运行环境等等资源。</li>
 <li><strong>Ship（运输镜像）</strong> ：主机和仓库间运输，这里的仓库就像是超级码头一样。</li>
@@ -458,12 +458,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/system-design/" class="category-chain-item">system_design</a>
+  <a href="../../../../../../../categories/system-design/" class="category-chain-item">system_design</a>
   
   
     <span>></span>
     
-  <a href="/categories/system-design/docker/" class="category-chain-item">docker</a>
+  <a href="../../../../../../../categories/system-design/docker/" class="category-chain-item">docker</a>
   
   
 
@@ -480,9 +480,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/system-design/">#system_design</a>
+        <a href="../../../../../../../tags/system-design/">#system_design</a>
       
-        <a href="/tags/docker/">#docker</a>
+        <a href="../../../../../../../tags/docker/">#docker</a>
       
     </div>
   
@@ -537,7 +537,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/17/CS/system_design/distributed-system/distributed-id/" title="distributed-id">
+                      <a href="../../distributed-system/distributed-id/" title="distributed-id">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">distributed-id</span>
                         <span class="visible-mobile">Previous</span>
@@ -547,7 +547,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/17/CS/system_design/docker/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/" title="docker从入门到实战">
+                      <a href="../docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/" title="docker从入门到实战">
                         <span class="hidden-mobile">docker从入门到实战</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -670,15 +670,15 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="../../../../../../../js/events.js" ></script>
+<script  src="../../../../../../../js/plugins.js" ></script>
 
 
 
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="../../../../../../../js/img-lazyload.js" ></script>
   
 
 
@@ -750,7 +750,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="../../../../../../../js/local-search.js" ></script>
 
 
 
@@ -758,7 +758,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="../../../../../../../js/boot.js" ></script>
 
 
   

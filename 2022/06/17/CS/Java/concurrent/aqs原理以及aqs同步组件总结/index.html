@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../../../../../../img/fluid.png">
+  <link rel="icon" href="../../../../../../../img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,15 +23,15 @@
 <meta property="og:site_name" content="Jerry&#39;s blog">
 <meta property="og:description" content="title:  AQS 原理以及 AQS 同步组件总结category: Javatag:  Java并发   开始之前，先来看几道常见的面试题！建议你带着这些问题来看这篇文章：  何为 AQS？AQS 原理了解吗？ CountDownLatch 和 CyclicBarrier 了解吗？两者的区别是什么？ 用过 Semaphore 吗？应用场景了解吗？ ……  AQS 简单介绍AQS 的全称为">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//AQS.png">
-<meta property="og:image" content="https://xiechaoxin.github.io/.io//CLH.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/concurrent/aqs%E5%8E%9F%E7%90%86%E4%BB%A5%E5%8F%8Aaqs%E5%90%8C%E6%AD%A5%E7%BB%84%E4%BB%B6%E6%80%BB%E7%BB%93/AQS.png">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/concurrent/aqs%E5%8E%9F%E7%90%86%E4%BB%A5%E5%8F%8Aaqs%E5%90%8C%E6%AD%A5%E7%BB%84%E4%BB%B6%E6%80%BB%E7%BB%93/CLH.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T11:16:58.673Z">
+<meta property="article:modified_time" content="2022-06-24T11:32:26.813Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="concurrent">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xiechaoxin.github.io/.io//AQS.png">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/concurrent/aqs%E5%8E%9F%E7%90%86%E4%BB%A5%E5%8F%8Aaqs%E5%90%8C%E6%AD%A5%E7%BB%84%E4%BB%B6%E6%80%BB%E7%BB%93/AQS.png">
   
   
   
@@ -59,12 +59,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="../../../../../../../css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="../../../../../../../css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="../../../../../../../css/highlight-dark.css" />
   
 
 
@@ -80,8 +80,8 @@
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="../../../../../../../js/utils.js" ></script>
+  <script  src="../../../../../../../js/color-schema.js" ></script>
   
 
 
@@ -98,7 +98,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="../../../../../../../index.html">
       <strong> </strong>
     </a>
 
@@ -117,7 +117,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="../../../../../../../index.html">
                 <i class="iconfont icon-home-fill"></i>
                 Home
               </a>
@@ -129,7 +129,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="../../../../../../../archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 Archives
               </a>
@@ -141,7 +141,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="../../../../../../../categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
               </a>
@@ -153,7 +153,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="../../../../../../../tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 Tags
               </a>
@@ -165,7 +165,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="../../../../../../../about/">
                 <i class="iconfont icon-user-fill"></i>
                 About
               </a>
@@ -194,7 +194,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('../../../../../../../img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -291,7 +291,7 @@
 <li>……</li>
 </ul>
 <h2 id="AQS-简单介绍"><a href="#AQS-简单介绍" class="headerlink" title="AQS 简单介绍"></a>AQS 简单介绍</h2><p>AQS 的全称为 <code>AbstractQueuedSynchronizer</code> ，翻译过来的意思就是抽象队列同步器。这个类在 <code>java.util.concurrent.locks</code> 包下面。</p>
-<p><img src="/.io//AQS.png" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
+<p><img src="/2022/06/17/CS/Java/concurrent/aqs%E5%8E%9F%E7%90%86%E4%BB%A5%E5%8F%8Aaqs%E5%90%8C%E6%AD%A5%E7%BB%84%E4%BB%B6%E6%80%BB%E7%BB%93/AQS.png" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
 <p>AQS 就是一个抽象类，主要用来构建锁和同步器。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AbstractQueuedSynchronizer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">AbstractOwnableSynchronizer</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">java</span>.io.Serializable &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -305,7 +305,7 @@
 <p>CLH(Craig,Landin,and Hagersten)队列是一个虚拟的双向队列（虚拟的双向队列即不存在队列实例，仅存在结点之间的关联关系）。AQS 是将每条请求共享资源的线程封装成一个 CLH 锁队列的一个结点（Node）来实现锁的分配。</p>
 </blockquote>
 <p>看个 AQS(<code>AbstractQueuedSynchronizer</code>)原理图：</p>
-<p><img src="/.io//CLH.png" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
+<p><img src="/2022/06/17/CS/Java/concurrent/aqs%E5%8E%9F%E7%90%86%E4%BB%A5%E5%8F%8Aaqs%E5%90%8C%E6%AD%A5%E7%BB%84%E4%BB%B6%E6%80%BB%E7%BB%93/CLH.png" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
 <p>AQS 使用一个 int 成员变量来表示同步状态，通过内置的 FIFO 队列来完成获取资源线程的排队工作。AQS 使用 CAS 对该同步状态进行原子操作实现对其值的修改。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> <span class="hljs-type">int</span> state;<span class="hljs-comment">//共享变量，使用volatile修饰保证线程可见性</span><br></code></pre></td></tr></table></figure>
 
@@ -463,12 +463,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  <a href="../../../../../../../categories/Java/" class="category-chain-item">Java</a>
   
   
     <span>></span>
     
-  <a href="/categories/Java/concurrent/" class="category-chain-item">concurrent</a>
+  <a href="../../../../../../../categories/Java/concurrent/" class="category-chain-item">concurrent</a>
   
   
 
@@ -485,9 +485,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Java/">#Java</a>
+        <a href="../../../../../../../tags/Java/">#Java</a>
       
-        <a href="/tags/concurrent/">#concurrent</a>
+        <a href="../../../../../../../tags/concurrent/">#concurrent</a>
       
     </div>
   
@@ -542,9 +542,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/17/CS/Java/interview/JavaOOP%E9%9D%A2%E8%AF%95%E9%A2%98/" title="JavaOOP面试题">
+                      <a href="../../collection/java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86&amp;%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/" title="java集合框架基础知识&amp;面试题总结">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">JavaOOP面试题</span>
+                        <span class="hidden-mobile">java集合框架基础知识&amp;面试题总结</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -552,7 +552,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/17/CS/Java/concurrent/atomic%E5%8E%9F%E5%AD%90%E7%B1%BB%E6%80%BB%E7%BB%93/" title="atomic原子类总结">
+                      <a href="../atomic%E5%8E%9F%E5%AD%90%E7%B1%BB%E6%80%BB%E7%BB%93/" title="atomic原子类总结">
                         <span class="hidden-mobile">atomic原子类总结</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -675,15 +675,15 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="../../../../../../../js/events.js" ></script>
+<script  src="../../../../../../../js/plugins.js" ></script>
 
 
 
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="../../../../../../../js/img-lazyload.js" ></script>
   
 
 
@@ -755,7 +755,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="../../../../../../../js/local-search.js" ></script>
 
 
 
@@ -763,7 +763,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="../../../../../../../js/boot.js" ></script>
 
 
   
