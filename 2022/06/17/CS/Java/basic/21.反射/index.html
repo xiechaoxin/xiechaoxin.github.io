@@ -16,15 +16,15 @@
   <meta name="author" content="Jerry Xie">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1、回顾反射机制1.1、什么是反射机制？反射机制有什么用？     反射机制：可以操作字节码文件     作用：可以让程序更加灵活。  1.2、反射机制相关的类在哪个包下？     java.lang.reflect.*;  1.3、反射机制相关的主要的类？     java.lang.Class     java.lang.reflect.Method;     java.lang.reflec">
+    <meta name="description" content="1、反射机制2.1、反射机制有什么用？     通过java语言中的反射机制可以操作字节码文件。     优点类似于黑客。（可以读和修改字节码文件。）     通过反射机制可以操作代码片段。（class文件。）  2.2、反射机制的相关类在哪个包下？     java.lang.reflect.*;  2.3、反射机制相关的重要的类有哪些？  java.lang.Class：代表整个字节码，代表一">
 <meta property="og:type" content="article">
 <meta property="og:title" content="21.反射">
 <meta property="og:url" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/basic/21.%E5%8F%8D%E5%B0%84/index.html">
 <meta property="og:site_name" content="Jerry&#39;s blog">
-<meta property="og:description" content="1、回顾反射机制1.1、什么是反射机制？反射机制有什么用？     反射机制：可以操作字节码文件     作用：可以让程序更加灵活。  1.2、反射机制相关的类在哪个包下？     java.lang.reflect.*;  1.3、反射机制相关的主要的类？     java.lang.Class     java.lang.reflect.Method;     java.lang.reflec">
+<meta property="og:description" content="1、反射机制2.1、反射机制有什么用？     通过java语言中的反射机制可以操作字节码文件。     优点类似于黑客。（可以读和修改字节码文件。）     通过反射机制可以操作代码片段。（class文件。）  2.2、反射机制的相关类在哪个包下？     java.lang.reflect.*;  2.3、反射机制相关的重要的类有哪些？  java.lang.Class：代表整个字节码，代表一">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T15:49:00.613Z">
+<meta property="article:modified_time" content="2022-06-26T14:15:15.689Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="basic">
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.1k words
+          4.3k words
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          27 mins
+          36 mins
         
       </span>
     
@@ -284,7 +284,47 @@
             
               <div class="markdown-body">
                 
-                <h2 id="1、回顾反射机制"><a href="#1、回顾反射机制" class="headerlink" title="1、回顾反射机制"></a>1、回顾反射机制</h2><pre><code class="hljs">1.1、什么是反射机制？反射机制有什么用？
+                <h2 id="1、反射机制"><a href="#1、反射机制" class="headerlink" title="1、反射机制"></a>1、反射机制</h2><pre><code class="hljs">2.1、反射机制有什么用？
+    通过java语言中的反射机制可以操作字节码文件。
+    优点类似于黑客。（可以读和修改字节码文件。）
+    通过反射机制可以操作代码片段。（class文件。）
+
+2.2、反射机制的相关类在哪个包下？
+    java.lang.reflect.*;
+
+2.3、反射机制相关的重要的类有哪些？
+
+java.lang.Class：代表整个字节码，代表一个类型，代表整个类。
+
+java.lang.reflect.Method：代表字节码中的方法字节码。代表类中的方法。
+
+java.lang.reflect.Constructor：代表字节码中的构造方法字节码。代表类中的构造方法
+
+java.lang.reflect.Field：代表字节码中的属性字节码。代表类中的成员变量（静态变量+实例变量）。
+
+java.lang.Class：
+        public class User&#123;
+            // Field
+            int no;
+
+// Constructor
+            public User()&#123;
+
+&#125;
+            public User(int no)&#123;
+                this.no = no;
+            &#125;
+
+// Method
+            public void setNo(int no)&#123;
+                this.no = no;
+            &#125;
+            public int getNo()&#123;
+                return no;
+            &#125;
+        &#125;
+</code></pre>
+<h2 id="2、回顾反射机制"><a href="#2、回顾反射机制" class="headerlink" title="2、回顾反射机制"></a>2、回顾反射机制</h2><pre><code class="hljs">1.1、什么是反射机制？反射机制有什么用？
     反射机制：可以操作字节码文件
     作用：可以让程序更加灵活。
 
@@ -298,7 +338,7 @@
     java.lang.reflect.Field;
 
 1.4、在java中获取Class的三种方式？
-    第一种：	 
+    第一种：
         Class c = Class.forName(&quot;完整类名&quot;);
     第二种：
         Class c = 对象.getClass();
@@ -308,13 +348,13 @@
 
 1.5、获取了Class之后，可以调用无参数构造方法来实例化对象
 
-    //c代表的就是日期Date类型
+//c代表的就是日期Date类型
     Class c = Class.forName(&quot;java.util.Date&quot;);
 
-    //实例化一个Date日期类型的对象
+//实例化一个Date日期类型的对象
     Object obj = c.newInstance();
 
-    一定要注意：
+一定要注意：
         newInstance()底层调用的是该类型的无参数构造方法。
         如果没有这个无参数构造方法会出现&quot;实例化&quot;异常。
 
@@ -325,83 +365,122 @@
 
 1.7、关于路径问题？
 
-    String path = Thread.currentThread().getContextClassLoader()
-                      .getResource(&quot;写相对路径，但是这个相对路径从src出发开始找&quot;).getPath();	
+String path = Thread.currentThread().getContextClassLoader()
+                      .getResource(&quot;写相对路径，但是这个相对路径从src出发开始找&quot;).getPath();
 
-    String path = Thread.currentThread().getContextClassLoader()
+String path = Thread.currentThread().getContextClassLoader()
                       .getResource(&quot;abc&quot;).getPath();	//必须保证src下有abc文件。
 
-    String path = Thread.currentThread().getContextClassLoader()
+String path = Thread.currentThread().getContextClassLoader()
                       .getResource(&quot;a/db&quot;).getPath();	//必须保证src下有a目录，a目录下有db文件。
-    
-    String path = Thread.currentThread().getContextClassLoader()
-                      .getResource(&quot;com/bjpowernode/test.properties&quot;).getPath();	
+
+String path = Thread.currentThread().getContextClassLoader()
+                      .getResource(&quot;com/bjpowernode/test.properties&quot;).getPath();
                       //必须保证src下有com目录，com目录下有bjpowernode目录。
                       //bjpowernode目录下有test.properties文件。
 
-    这种方式是为了获取一个文件的绝对路径。（通用方式，不会受到环境移植的影响。）
+这种方式是为了获取一个文件的绝对路径。（通用方式，不会受到环境移植的影响。）
     但是该文件要求放在类路径下，换句话说：也就是放到src下面。
     src下是类的根路径。
 
-    直接以流的形式返回：
+直接以流的形式返回：
     InputStream in = Thread.currentThread().getContextClassLoader()
                             .getResourceAsStream(&quot;com/bjpowernode/test.properties&quot;);
 
 1.8、IO + Properties，怎么快速绑定属性资源文件？
 
-    //要求：第一这个文件必须在类路径下
+//要求：第一这个文件必须在类路径下
     //第二这个文件必须是以.properties结尾。
     ResourceBundle bundle = ResourceBundle.getBundle(&quot;com/bjpowernode/test&quot;);
     String value = bundle.getString(key);
 </code></pre>
-<h2 id="2、反射机制的重点内容"><a href="#2、反射机制的重点内容" class="headerlink" title="2、反射机制的重点内容"></a>2、反射机制的重点内容</h2><p>​	2.1、通过反射机制访问对象的某个属性。<br>​	2.2、通过反射机制调用对象的某个方法。<br>​	2.3、通过反射机制调用某个构造方法实例化对象。<br>​	2.4、通过反射机制获取父类以及父类型接口。</p>
-<h2 id="3、注解"><a href="#3、注解" class="headerlink" title="3、注解"></a>3、注解</h2><pre><code class="hljs">3.1、注解，或者叫做注释类型，英文单词是：Annotation
+<h2 id="3、反射机制的重点内容"><a href="#3、反射机制的重点内容" class="headerlink" title="3、反射机制的重点内容"></a>3、反射机制的重点内容</h2><pre><code class="hljs">2.1、通过反射机制访问对象的某个属性。
+2.2、通过反射机制调用对象的某个方法。
+2.3、通过反射机制调用某个构造方法实例化对象。
+2.4、通过反射机制获取父类以及父类型接口。
+</code></pre>
+<h2 id="4、关于JDK中自带的类加载器"><a href="#4、关于JDK中自带的类加载器" class="headerlink" title="4、关于JDK中自带的类加载器"></a>4、关于JDK中自带的类加载器</h2><pre><code class="hljs">3.1、什么是类加载器？
+    专门负责加载类的命令/工具。
+    ClassLoader
+
+3.2、JDK中自带了3个类加载器
+    启动类加载器:rt.jar
+    扩展类加载器:ext/*.jar
+    应用类加载器:classpath
+
+3.3、假设有这样一段代码：
+    String s = &quot;abc&quot;;
+
+代码在开始执行之前，会将所需要类全部加载到JVM当中。
+    通过类加载器加载，看到以上代码类加载器会找String.class
+    文件，找到就加载，那么是怎么进行加载的呢？
+
+首先通过“启动类加载器”加载。
+            注意：启动类加载器专门加载：C:\Program Files\Java\jdk1.8.0_101\jre\lib\rt.jar
+            rt.jar中都是JDK最核心的类库。
+
+如果通过“启动类加载器”加载不到的时候，
+        会通过&quot;扩展类加载器&quot;加载。
+            注意：扩展类加载器专门加载：C:\Program Files\Java\jdk1.8.0_101\jre\lib\ext\*.jar
+
+如果“扩展类加载器”没有加载到，那么
+        会通过“应用类加载器”加载。
+            注意：应用类加载器专门加载：classpath中的类。
+
+3.4、java中为了保证类加载的安全，使用了双亲委派机制。
+    优先从启动类加载器中加载，这个称为“父”
+    “父”无法加载到，再从扩展类加载器中加载，
+    这个称为“母”。双亲委派。如果都加载不到，
+    才会考虑从应用类加载器中加载。直到加载
+    到为止。
+</code></pre>
+<h2 id="5、注解"><a href="#5、注解" class="headerlink" title="5、注解"></a>5、注解</h2><pre><code class="hljs">3.1、注解，或者叫做注释类型，英文单词是：Annotation
     疑问：注解到底是干啥的？？？？？？？？？
 
 3.2、注解Annotation是一种引用数据类型。编译之后也是生成xxx.class文件。
 
 3.3、怎么自定义注解呢？语法格式？
 
-     [修饰符列表] @interface 注解类型名&#123;
+[修饰符列表] @interface 注解类型名&#123;
 
-     &#125;
+&#125;
 
 3.4、注解怎么使用，用在什么地方？
 
-    第一：注解使用时的语法格式是：
+第一：注解使用时的语法格式是：
         @注解类型名
-    
-    第二：注解可以出现在类上、属性上、方法上、变量上等....
+
+第二：注解可以出现在类上、属性上、方法上、变量上等....
     注解还可以出现在注解类型上。
 
 3.5、JDK内置了哪些注解呢？
 
-    java.lang包下的注释类型：
+java.lang包下的注释类型：
 
-        掌握：
+掌握：
         Deprecated 用 @Deprecated 注释的程序元素，
-        不鼓励程序员使用这样的元素，通常是因为它很危险或存在更好的选择。 
+        不鼓励程序员使用这样的元素，通常是因为它很危险或存在更好的选择。
 
-        掌握：
-        Override 表示一个方法声明打算重写超类中的另一个方法声明。 
+掌握：
+        Override 表示一个方法声明打算重写超类中的另一个方法声明。
 
-        不用掌握：
+不用掌握：
         SuppressWarnings 指示应该在注释元素（以及包含在该注释元素中的
-        所有程序元素）中取消显示指定的编译器警告。 
+        所有程序元素）中取消显示指定的编译器警告。
 
 3.6、元注解
     什么是元注解？
         用来标注“注解类型”的“注解”，称为元注解。
 
-    常见的元注解有哪些？
+常见的元注解有哪些？
         Target
         Retention
-    
-    关于Target注解：
+
+关于Target注解：
         这是一个元注解，用来标注“注解类型”的“注解”
         这个Target注解用来标注“被标注的注解”可以出现在哪些位置上。
 
-        @Target(ElementType.METHOD)：表示“被标注的注解”只能出现在方法上。
+@Target(ElementType.METHOD)：表示“被标注的注解”只能出现在方法上。
         @Target(value=&#123;CONSTRUCTOR, FIELD, LOCAL_VARIABLE, METHOD, PACKAGE, MODULE, PARAMETER, TYPE&#125;)
             表示该注解可以出现在：
                 构造方法上
@@ -410,40 +489,39 @@
                 方法上
                 ....
                 类上...
-    
-    关于Retention注解：
+
+关于Retention注解：
         这是一个元注解，用来标注“注解类型”的“注解”
         这个Retention注解用来标注“被标注的注解”最终保存在哪里。
 
-        @Retention(RetentionPolicy.SOURCE)：表示该注解只被保留在java源文件中。
+@Retention(RetentionPolicy.SOURCE)：表示该注解只被保留在java源文件中。
         @Retention(RetentionPolicy.CLASS)：表示该注解被保存在class文件中。
         @Retention(RetentionPolicy.RUNTIME)：表示该注解被保存在class文件中，并且可以被反射机制所读取。
-    
+
 3.7、Retention的源代码
 
-        //元注解	
+//元注解
         public @interface Retention &#123;
             //属性
             RetentionPolicy value();
         &#125;
-        
-    RetentionPolicy的源代码：
+
+RetentionPolicy的源代码：
         public enum RetentionPolicy &#123;
              SOURCE,
              CLASS,
              RUNTIME
         &#125;
 
-        //@Retention(value=RetentionPolicy.RUNTIME)
+//@Retention(value=RetentionPolicy.RUNTIME)
         @Retention(RetentionPolicy.RUNTIME)
         public @interface MyAnnotation&#123;&#125;
 
 3.8、Target的源代码
 
-
 3.9、注解在开发中有什么用呢？
 
-    需求：
+需求：
         假设有这样一个注解，叫做：@Id
         这个注解只能出现在类上面，当这个类上有这个注解的时候，
         要求这个类中必须有一个int类型的id属性。如果没有这个属性

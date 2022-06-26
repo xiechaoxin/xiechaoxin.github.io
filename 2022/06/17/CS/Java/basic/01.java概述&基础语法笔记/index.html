@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/basic/01.java%E6%A6%82%E8%BF%B0&%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/image-20210923091721035.png">
 <meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/Java/basic/01.java%E6%A6%82%E8%BF%B0&%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/image-20210923100419575.png">
 <meta property="article:published_time" content="2022-06-17T17:59:13.000Z">
-<meta property="article:modified_time" content="2022-06-24T15:49:00.573Z">
+<meta property="article:modified_time" content="2022-06-26T14:15:15.649Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="basic">
@@ -296,7 +296,7 @@
 <p>计算机语言：人与计算机之间进行信息交流沟通的一种特殊语言</p>
 <p>Java语言是美国Sun公司（Stanford University Network）在1995年推出的计算机语言</p>
 <p>Java之父：詹姆斯·高斯林（James Gosling）</p>
-<p>2009年，Sun公司被甲骨文公司收购，所以我们现在访问oracle官网即可：<a target="_blank" rel="noopener" href="https://www.oracle.com/">https://www.oracle.com</a> </p>
+<p>2009年，Sun公司被甲骨文公司收购，所以我们现在访问oracle官网即可：<a target="_blank" rel="noopener" href="https://www.oracle.com/">https://www.oracle.com</a></p>
 <p>当前，我们课程使用的JDK版本：11.0</p>
 <h3 id="1-2-Java语言跨平台原理（理解）"><a href="#1-2-Java语言跨平台原理（理解）" class="headerlink" title="1.2 Java语言跨平台原理（理解）"></a>1.2 Java语言跨平台原理（理解）</h3><p>Java程序并非是直接运行的，Java编译器将Java源程序编译成与平台无关的字节码文件(class文件)，然后由Java虚拟机（JVM）对字节码文件解释执行。所以在不同的操作系统下，只需安装不同的Java虚拟机即可实现java程序的跨平台。</p>
 <p><img src="/2022/06/17/CS/Java/basic/01.java%E6%A6%82%E8%BF%B0&%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/image-20210923091350952.png" srcset="/img/loading.gif" lazyload alt="image-20210923091350952"></p>
@@ -436,7 +436,7 @@
 <p>多行注释。多行注释的格式是使用&#x2F;* 和 *&#x2F;将一段较长的注释括起来。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/*</span><br><span class="hljs-comment">这是多行注释文字</span><br><span class="hljs-comment">这是多行注释文字</span><br><span class="hljs-comment">这是多行注释文字</span><br><span class="hljs-comment">*/</span><br>注意：多行注释不能嵌套使用。<br></code></pre></td></tr></table></figure>
 
-<p>文档注释。文档注释以<code>/**</code>开始，以<code>*/</code>结束。</p>
+<p>文档注释。文档注释以 <code>/**</code>开始，以 <code>*/</code>结束。</p>
 <h4 id="4-2-字面量（应用）"><a href="#4-2-字面量（应用）" class="headerlink" title="4.2 字面量（应用）"></a>4.2 字面量（应用）</h4><p>作用：告诉程序员，数据在程序中的书写格式。</p>
 <table>
 <thead>
@@ -478,8 +478,6 @@
 </tr>
 </tbody></table>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        System.out.println(<span class="hljs-number">10</span>); <span class="hljs-comment">// 输出一个整数</span><br>        System.out.println(<span class="hljs-number">5.5</span>); <span class="hljs-comment">// 输出一个小数</span><br>        System.out.println(<span class="hljs-string">&#x27;a&#x27;</span>); <span class="hljs-comment">// 输出一个字符</span><br>        System.out.println(<span class="hljs-literal">true</span>); <span class="hljs-comment">// 输出boolean值true</span><br>        System.out.println(<span class="hljs-string">&quot;靓仔&quot;</span>); <span class="hljs-comment">// 输出字符串</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
 
 <h4 id="4-3-数据类型（记忆、应用）"><a href="#4-3-数据类型（记忆、应用）" class="headerlink" title="4.3 数据类型（记忆、应用）"></a>4.3 数据类型（记忆、应用）</h4><h5 id="3-4-1-计算机存储单元"><a href="#3-4-1-计算机存储单元" class="headerlink" title="3.4.1 计算机存储单元"></a>3.4.1 计算机存储单元</h5><p>l计算机底层都是一些数字电路(理解成开关)，用开表示0、关表示1，这些01的形式就是二进制。</p>
 <p>数据在计算机底层都是采用二进制存储的，l在计算机中认为一个开关表示的0|1称为1位（b），每8位称为一个字节（B）， 所以1B&#x3D;8b</p>
@@ -553,9 +551,12 @@
 </tr>
 </tbody></table>
 <p>说明：</p>
-<p>​	为什么是 2^7-1？ 这8位分为符号位（最高位）和数值位（剩余七位），符号位0表示正数，1表示负数。所以1 byte数值表示负的2的7次方 ~ 2的7次方-1(-128~127)</p>
-<p>​	e+38表示是乘以10的38次方，同样，e-45表示乘以10的负45次方。</p>
-<p>​	在java中整数默认是int类型，浮点数默认是double类型。</p>
+<pre><code class="hljs">为什么是 2^7-1？ 这8位分为符号位（最高位）和数值位（剩余七位），符号位0表示正数，1表示负数。所以1 byte数值表示负的2的7次方 ~ 2的7次方-1(-128~127)
+
+e+38表示是乘以10的38次方，同样，e-45表示乘以10的负45次方。
+
+在java中整数默认是int类型，浮点数默认是double类型。
+</code></pre>
 <h4 id="4-4-变量（应用）"><a href="#4-4-变量（应用）" class="headerlink" title="4.4 变量（应用）"></a>4.4 变量（应用）</h4><h5 id="3-5-1-变量的定义"><a href="#3-5-1-变量的定义" class="headerlink" title="3.5.1 变量的定义"></a>3.5.1 变量的定义</h5><p>变量：在程序运行过程中，其值可以发生改变的量。</p>
 <p>从本质上讲，变量是内存中的一小块区域，其值可以在一定范围内变化。</p>
 <p>变量的定义格式：</p>
@@ -575,7 +576,7 @@
 <li>定义float类型的变量时，需要在小数的后面加F（大小写均可，建议大写）。因为浮点数的默认类型是double， double的取值范围是大于float的，类型不兼容。</li>
 </ol>
 <h4 id="4-5-关键字、标志符"><a href="#4-5-关键字、标志符" class="headerlink" title="4.5 关键字、标志符"></a>4.5 关键字、标志符</h4><p><strong>关键字</strong></p>
-<p>Java自己保留的一些单词，作为特殊功能的，例如：public、class、byte、short、int、long、double… </p>
+<p>Java自己保留的一些单词，作为特殊功能的，例如：public、class、byte、short、int、long、double…</p>
 <p>我们不能用来作为类名或者是变量名称，否则报错。</p>
 <p>注意：关键字很多，不用刻意去记。</p>
 <table>
