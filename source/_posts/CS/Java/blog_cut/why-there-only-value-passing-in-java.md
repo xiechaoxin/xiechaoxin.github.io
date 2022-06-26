@@ -9,14 +9,6 @@ tags:
 date: 2022-06-17 17:59:13
 ---
 
----
-category: Java
-tag:
-  - Java基础
----
-
-
-
 # 为什么 Java 中只有值传递？
 
 开始之前，我们先来搞懂下面这两个概念：
@@ -155,7 +147,7 @@ public static void swap(Person person1, Person person2) {
 }
 ```
 
-输出: 
+输出:
 
 ```
 person1:小李
@@ -182,4 +174,4 @@ Java 中将实参传递给方法（或函数）的方式是 **值传递** ：
 ## 参考
 
 - 《Java 核心技术卷 Ⅰ》基础知识第十版第四章 4.5 小节
-- [Java 到底是值传递还是引用传递？ - Hollis的回答 - 知乎](https://www.zhihu.com/question/31203609/answer/576030121) 
+- [Java 到底是值传递还是引用传递？ - Hollis的回答 - 知乎](https://www.zhihu.com/question/31203609/answer/576030121)
