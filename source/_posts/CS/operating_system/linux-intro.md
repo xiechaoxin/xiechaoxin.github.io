@@ -6,7 +6,6 @@ tags:
   - operating_system
 date: 2022-06-17 17:59:12
 ---
-
 ---
 
 简单介绍一下 Java 程序员必知的 Linux 的一些概念以及常见命令。
@@ -264,10 +263,10 @@ Linux 命令大全：[http://man.linuxde.net/](http://man.linuxde.net/)
 Linux 中的打包文件一般是以.tar 结尾的，压缩的命令一般是以.gz 结尾的。而一般情况下打包和压缩是一起进行的，打包并压缩后的文件的后缀名一般.tar.gz。
 命令：`tar -zcvf 打包压缩后的文件名 要打包压缩的文件` ，其中：
 
-- z：调用 gzip 压缩命令进行压缩
-- c：打包文件
-- v：显示运行过程
-- f：指定文件名
+- z(zip)：调用 gzip 压缩命令进行压缩
+- c(compression)：打包文件
+- v(view)：显示运行过程
+- f(fileName)：指定文件名
 
 比如：假如 test 目录下有三个文件分别是：aaa.txt bbb.txt ccc.txt，如果我们要打包 test 目录并指定压缩后的压缩包名称为 test.tar.gz 可以使用命令：**`tar -zcvf test.tar.gz aaa.txt bbb.txt ccc.txt` 或 `tar -zcvf test.tar.gz /test/`**
 
