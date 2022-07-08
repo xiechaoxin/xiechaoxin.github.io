@@ -1,0 +1,678 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../../../../../../../img/fluid.png">
+  <link rel="icon" href="../../../../../../../../img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Jerry Xie">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="6.函数6.1 函数基础函数是一个命名了的代码块，通过调用函数执行相应的代码。可以有0个或多个参数，可以重载。 函数的调用：  用实参初始化函数对应的形参（类型、个数需要匹配） 主函数暂时中断，被调函数开始执行  局部对象 自动对象：生命周期从变量声明开始，到函数块末尾结束 局部静态对象：生命周期从变量声明开始，直到程序结束才销毁  函数声明 函数需要先声明，再定义 一般在头文件中声明函数  分离">
+<meta property="og:type" content="article">
+<meta property="og:title" content="6.函数">
+<meta property="og:url" content="https://xiechaoxin.github.io/2022/07/09/CS/CPP/C++%20primer/1-CPP%E5%9F%BA%E7%A1%80/6.%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:site_name" content="Jerry&#39;s blog">
+<meta property="og:description" content="6.函数6.1 函数基础函数是一个命名了的代码块，通过调用函数执行相应的代码。可以有0个或多个参数，可以重载。 函数的调用：  用实参初始化函数对应的形参（类型、个数需要匹配） 主函数暂时中断，被调函数开始执行  局部对象 自动对象：生命周期从变量声明开始，到函数块末尾结束 局部静态对象：生命周期从变量声明开始，直到程序结束才销毁  函数声明 函数需要先声明，再定义 一般在头文件中声明函数  分离">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-07-09T03:04:36.000Z">
+<meta property="article:modified_time" content="2022-07-08T22:36:23.119Z">
+<meta property="article:author" content="Jerry Xie">
+<meta property="article:tag" content="C++ primer">
+<meta property="article:tag" content="1-CPP基础">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>6.函数 - Jerry&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="../../../../../../../../css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="../../../../../../../../css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="../../../../../../../../css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xiechaoxin.github.io","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="../../../../../../../../js/utils.js" ></script>
+  <script  src="../../../../../../../../js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="../../../../../../../../index.html">
+      <strong> </strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../../../../../../../index.html">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../../../../../../../archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../../../../../../../categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../../../../../../../tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../../../../../../../about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('../../../../../../../../img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">6.函数</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-07-09 03:04" pubdate>
+          July 9, 2022 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.7k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">6.函数</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="6-函数"><a href="#6-函数" class="headerlink" title="6.函数"></a>6.函数</h1><h2 id="6-1-函数基础"><a href="#6-1-函数基础" class="headerlink" title="6.1 函数基础"></a>6.1 函数基础</h2><p>函数是一个命名了的代码块，通过调用函数执行相应的代码。可以有0个或多个参数，可以重载。</p>
+<p>函数的调用：</p>
+<ul>
+<li>用实参初始化函数对应的形参（类型、个数需要匹配）</li>
+<li>主函数暂时中断，被调函数开始执行</li>
+</ul>
+<h4 id="局部对象"><a href="#局部对象" class="headerlink" title="局部对象"></a>局部对象</h4><ul>
+<li>自动对象：生命周期从变量声明开始，到函数块末尾结束</li>
+<li>局部静态对象：生命周期从变量声明开始，直到程序结束才销毁</li>
+</ul>
+<h4 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h4><ul>
+<li>函数需要先声明，再定义</li>
+<li>一般在头文件中声明函数</li>
+</ul>
+<h4 id="分离式编译"><a href="#分离式编译" class="headerlink" title="分离式编译"></a>分离式编译</h4><p>编译和运行分开，可以在不同机器上进行</p>
+<h2 id="6-2-参数传递"><a href="#6-2-参数传递" class="headerlink" title="6.2 参数传递"></a>6.2 参数传递</h2><h3 id="传值参数"><a href="#传值参数" class="headerlink" title="传值参数"></a>传值参数</h3><h3 id="传引用参数"><a href="#传引用参数" class="headerlink" title="传引用参数"></a>传引用参数</h3><h4 id="使用引用避免深拷贝"><a href="#使用引用避免深拷贝" class="headerlink" title="使用引用避免深拷贝"></a>使用引用避免深拷贝</h4><h4 id="使用引用形参返回额外信息"><a href="#使用引用形参返回额外信息" class="headerlink" title="使用引用形参返回额外信息"></a>使用引用形参返回额外信息</h4><h3 id="const形参和实参"><a href="#const形参和实参" class="headerlink" title="const形参和实参"></a>const形参和实参</h3><ul>
+<li>形参的顶层const会被忽略掉<ul>
+<li>这个函数承诺不会修改参数，那么我传入const或者非const的参数都无所谓，所以顶层const会被忽略</li>
+</ul>
+</li>
+<li>指针或引用形参与const，底层const不允许忽略<ul>
+<li>这个函数需要参数是一个指针，通过指针修改对应地址的值，你给我指向常量(const)的指针，我不接受</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>如果函数无需改变引用形参的值，最好将其声明为常量引用。</p>
+</blockquote>
+<h3 id="数组形参"><a href="#数组形参" class="headerlink" title="数组形参"></a>数组形参</h3><p>C++允许将变量定义成数组的引用</p>
+<blockquote>
+<p>以数组作为形参的函数必须确保使用数组时不会越界</p>
+</blockquote>
+<h3 id="main：处理命令行选项"><a href="#main：处理命令行选项" class="headerlink" title="main：处理命令行选项"></a>main：处理命令行选项</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span> *argv[])</span></span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="含有可变形参的函数"><a href="#含有可变形参的函数" class="headerlink" title="含有可变形参的函数"></a>含有可变形参的函数</h3><p>含有可变形参的函数：参数个数不固定<br>如果所有的实参类型相同，可以传递一个名为initializer_list的标准库类型</p>
+<p>省略符形参：只能出现在形参的最后，仅用于C++访问某些特殊的C代码</p>
+<h2 id="6-3-返回类型和return-语句"><a href="#6-3-返回类型和return-语句" class="headerlink" title="6.3 返回类型和return 语句"></a>6.3 返回类型和return 语句</h2><h3 id="无返回值函数"><a href="#无返回值函数" class="headerlink" title="无返回值函数"></a>无返回值函数</h3><h3 id="有返回值函数"><a href="#有返回值函数" class="headerlink" title="有返回值函数"></a>有返回值函数</h3><blockquote>
+<p>不要返回局部对象的引用或指针</p>
+</blockquote>
+<h4 id="返回类类型的西数和调用运算符"><a href="#返回类类型的西数和调用运算符" class="headerlink" title="返回类类型的西数和调用运算符"></a>返回类类型的西数和调用运算符</h4><h4 id="引用返回左值"><a href="#引用返回左值" class="headerlink" title="引用返回左值"></a>引用返回左值</h4><p>如果返回类型是常量引用，则不可以给调用的结果赋值</p>
+<h4 id="列表初始化返回值"><a href="#列表初始化返回值" class="headerlink" title="列表初始化返回值"></a>列表初始化返回值</h4><h4 id="主函数main的返回值"><a href="#主函数main的返回值" class="headerlink" title="主函数main的返回值"></a>主函数main的返回值</h4><p>在必要的时候编译器会为main加上return 0；</p>
+<h4 id="递归：函数调用了自己"><a href="#递归：函数调用了自己" class="headerlink" title="递归：函数调用了自己"></a>递归：函数调用了自己</h4><p>main函数不能调用自己</p>
+<h3 id="返回数组指针"><a href="#返回数组指针" class="headerlink" title="返回数组指针"></a>返回数组指针</h3><p>数组不能拷贝，所以函数不能直接返回数组</p>
+<h2 id="6-4-函数重载"><a href="#6-4-函数重载" class="headerlink" title="6.4 函数重载"></a>6.4 函数重载</h2><p>函数名称相同但形参列表不同</p>
+<h3 id="重载与作用域"><a href="#重载与作用域" class="headerlink" title="重载与作用域"></a>重载与作用域</h3><ul>
+<li>定义重载函数</li>
+<li>const_ cast和重载</li>
+</ul>
+<p>一且在当前作用域中找到了所需的名字，编译器就会忽略掉外层作用域中的同名实体，内层优先级高于外层</p>
+<h2 id="6-5-特殊用途语言特性"><a href="#6-5-特殊用途语言特性" class="headerlink" title="6.5 特殊用途语言特性"></a>6.5 特殊用途语言特性</h2><h3 id="默认实参"><a href="#默认实参" class="headerlink" title="默认实参"></a>默认实参</h3><p>一旦某个形参被赋了默认值，它后面的所有形参都必须有默认值</p>
+<h3 id="内朕函数和constexpr函数"><a href="#内朕函数和constexpr函数" class="headerlink" title="内朕函数和constexpr函数"></a>内朕函数和constexpr函数</h3><h4 id="内联函数"><a href="#内联函数" class="headerlink" title="内联函数"></a>内联函数</h4><ul>
+<li>在每个调用点上“内联地”展开，避免函数调用的开销</li>
+<li>内联说明只是向编译器发出的一个请求，编译器可以选择忽略这个请求</li>
+<li>现在一般不写，因为这个是编译器决定的，写inline只是建议，不写编译器也可能做这样的优化</li>
+</ul>
+<h4 id="constexpr-函数"><a href="#constexpr-函数" class="headerlink" title="constexpr 函数"></a>constexpr 函数</h4><ul>
+<li>能用于常量表达式的函数：函数的返回类型以及所有的形参都是字面值类型</li>
+<li>函数体中必须有且只有一条return语句</li>
+<li>constexpr函数被隐式地指定为内联函数</li>
+<li>constexpr函数并不要求返回常量表达式</li>
+</ul>
+<h3 id="调试帮助"><a href="#调试帮助" class="headerlink" title="调试帮助"></a>调试帮助</h3><ul>
+<li>调试帮助：只在开发过程中使用的代码，发布时屏蔽掉</li>
+<li>assert预处理宏：cassert头文件中，用于断言测试</li>
+<li>用于检测“不能发生”的条件</li>
+<li>开发阶段使用，发布阶段需要去除</li>
+</ul>
+<h2 id="6-6-函数匹配"><a href="#6-6-函数匹配" class="headerlink" title="6.6 函数匹配"></a>6.6 函数匹配</h2><p>寻找最佳匹配、不能具有二义性</p>
+<p>编译器将实参类型到形参类型的转换划分成几个等级：</p>
+<ol>
+<li>精确匹配</li>
+<li>通过const转换实现的匹配</li>
+<li>通过类型提升实现的匹配</li>
+<li>通过算术类型转换实现的匹配（所有算术类型转换的级别都一样）</li>
+<li>通过类类型转换实现的匹配</li>
+</ol>
+<h2 id="6-7-函数指针"><a href="#6-7-函数指针" class="headerlink" title="6.7 函数指针"></a>6.7 函数指针</h2><p>指针指向的是函数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">bool</span> (*pf)(<span class="hljs-type">const</span> string &amp;,<span class="hljs-type">const</span> string &amp;)<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在指向不同函数类型的指针间不存在转换规则</p>
+</blockquote>
+<h4 id="重载函数的指针"><a href="#重载函数的指针" class="headerlink" title="重载函数的指针"></a>重载函数的指针</h4><p>函数本身作为一个类型（函数指针），必须精确匹配</p>
+<h4 id="函数指针形参"><a href="#函数指针形参" class="headerlink" title="函数指针形参"></a>函数指针形参</h4><p>不能定义函数类型的形参，但是形参可以是指向函数的指针</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">useBigger</span><span class="hljs-params">(<span class="hljs-type">const</span> string &amp;s1,<span class="hljs-type">bool</span> (*pf)(<span class="hljs-type">const</span> string &amp;,<span class="hljs-type">const</span> string &amp;))</span></span><br></code></pre></td></tr></table></figure>
+
+<h4 id="返回指向函数的指针"><a href="#返回指向函数的指针" class="headerlink" title="返回指向函数的指针"></a>返回指向函数的指针</h4><p>不能返回函数，但可以返回指向函数的指针（和函数类型的形参不一样，返回类型必须写成指针形式）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">int</span> (*<span class="hljs-built_in">f1</span>(<span class="hljs-type">int</span>))(<span class="hljs-type">int</span> *, <span class="hljs-type">int</span>);<br></code></pre></td></tr></table></figure>
+
+<p>常用auto和decltype用于函数指针类型</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="../../../../../../../../categories/CPP/" class="category-chain-item">CPP</a>
+  
+  
+    <span>></span>
+    
+  <a href="../../../../../../../../categories/CPP/C-primer/" class="category-chain-item">C++ primer</a>
+  
+  
+    <span>></span>
+    
+  <a href="../../../../../../../../categories/CPP/C-primer/1-CPP%E5%9F%BA%E7%A1%80/" class="category-chain-item">1-CPP基础</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="../../../../../../../../tags/C-primer/">#C++ primer</a>
+      
+        <a href="../../../../../../../../tags/1-CPP%E5%9F%BA%E7%A1%80/">#1-CPP基础</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="../5.%E8%AF%AD%E5%8F%A5/" title="5.语句">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">5.语句</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="../4.%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="4.表达式">
+                        <span class="hidden-mobile">4.表达式</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      <p>文章部分内容源自网络,仅做学习交流使用,请勿转载</p>
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="../../../../../../../../js/events.js" ></script>
+<script  src="../../../../../../../../js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="../../../../../../../../js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="../../../../../../../../js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="../../../../../../../../js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
