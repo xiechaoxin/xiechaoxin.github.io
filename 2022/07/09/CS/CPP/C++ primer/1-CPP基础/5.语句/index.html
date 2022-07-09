@@ -16,15 +16,15 @@
   <meta name="author" content="Jerry Xie">
   <meta name="keywords" content="">
   
-    <meta name="description" content="5.语句5.1 商单语句5.2 语句作用域5.3 条件语句 if switch  switch语句：如果表达式和某个case标签的值匹配成功，就会从该标签后的第一条语句开始执行，直到到达一条break或最尾部。 5.4 送代语句while语句传统的for语句范围for语句do while 语句5.5 跳转语句breakbreak语句:终止与其最近的while、do while、 for或switc">
+    <meta name="description" content="5.语句5.1 简单语句 表达式语句：一个表达式末尾加上分号，就变成了表达式语句。 空语句：只有一个单独的分号。 复合语句（块）：用花括号 &amp;#123;&amp;#125;包裹起来的语句和声明的序列。一个块就是一个作用域。  5.2 语句作用域5.3 条件语句if..else悬垂else（dangling else）：用来描述在嵌套的if else语句中，如果if比else多时如何处理的问题。C++使用的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="5.语句">
 <meta property="og:url" content="https://xiechaoxin.github.io/2022/07/09/CS/CPP/C++%20primer/1-CPP%E5%9F%BA%E7%A1%80/5.%E8%AF%AD%E5%8F%A5/index.html">
 <meta property="og:site_name" content="Jerry&#39;s blog">
-<meta property="og:description" content="5.语句5.1 商单语句5.2 语句作用域5.3 条件语句 if switch  switch语句：如果表达式和某个case标签的值匹配成功，就会从该标签后的第一条语句开始执行，直到到达一条break或最尾部。 5.4 送代语句while语句传统的for语句范围for语句do while 语句5.5 跳转语句breakbreak语句:终止与其最近的while、do while、 for或switc">
+<meta property="og:description" content="5.语句5.1 简单语句 表达式语句：一个表达式末尾加上分号，就变成了表达式语句。 空语句：只有一个单独的分号。 复合语句（块）：用花括号 &amp;#123;&amp;#125;包裹起来的语句和声明的序列。一个块就是一个作用域。  5.2 语句作用域5.3 条件语句if..else悬垂else（dangling else）：用来描述在嵌套的if else语句中，如果if比else多时如何处理的问题。C++使用的">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-07-09T03:04:36.000Z">
-<meta property="article:modified_time" content="2022-07-08T22:36:23.119Z">
+<meta property="article:modified_time" content="2022-07-09T21:37:58.402Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="C++ primer">
 <meta property="article:tag" content="1-CPP基础">
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          613 words
+          973 words
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          6 mins
+          9 mins
         
       </span>
     
@@ -284,24 +284,31 @@
             
               <div class="markdown-body">
                 
-                <h1 id="5-语句"><a href="#5-语句" class="headerlink" title="5.语句"></a>5.语句</h1><h2 id="5-1-商单语句"><a href="#5-1-商单语句" class="headerlink" title="5.1 商单语句"></a>5.1 商单语句</h2><h2 id="5-2-语句作用域"><a href="#5-2-语句作用域" class="headerlink" title="5.2 语句作用域"></a>5.2 语句作用域</h2><h2 id="5-3-条件语句"><a href="#5-3-条件语句" class="headerlink" title="5.3 条件语句"></a>5.3 条件语句</h2><ul>
-<li>if</li>
-<li>switch</li>
+                <h1 id="5-语句"><a href="#5-语句" class="headerlink" title="5.语句"></a>5.语句</h1><h2 id="5-1-简单语句"><a href="#5-1-简单语句" class="headerlink" title="5.1 简单语句"></a>5.1 简单语句</h2><ul>
+<li><strong>表达式语句</strong>：一个表达式末尾加上分号，就变成了表达式语句。</li>
+<li><strong>空语句</strong>：只有一个单独的分号。</li>
+<li><strong>复合语句（块）</strong>：用花括号 <code>&#123;&#125;</code>包裹起来的语句和声明的序列。一个块就是一个作用域。</li>
 </ul>
-<p>switch语句：如果表达式和某个case标签的值匹配成功，就会从该标签后的第一条语句开始执行，直到到达一条break或最尾部。</p>
-<h2 id="5-4-送代语句"><a href="#5-4-送代语句" class="headerlink" title="5.4 送代语句"></a>5.4 送代语句</h2><h4 id="while语句"><a href="#while语句" class="headerlink" title="while语句"></a>while语句</h4><h4 id="传统的for语句"><a href="#传统的for语句" class="headerlink" title="传统的for语句"></a>传统的for语句</h4><h4 id="范围for语句"><a href="#范围for语句" class="headerlink" title="范围for语句"></a>范围for语句</h4><h4 id="do-while-语句"><a href="#do-while-语句" class="headerlink" title="do while 语句"></a>do while 语句</h4><h2 id="5-5-跳转语句"><a href="#5-5-跳转语句" class="headerlink" title="5.5 跳转语句"></a>5.5 跳转语句</h2><h4 id="break"><a href="#break" class="headerlink" title="break"></a>break</h4><p>break语句:终止与其最近的while、do while、 for或switch语句</p>
+<h2 id="5-2-语句作用域"><a href="#5-2-语句作用域" class="headerlink" title="5.2 语句作用域"></a>5.2 语句作用域</h2><h2 id="5-3-条件语句"><a href="#5-3-条件语句" class="headerlink" title="5.3 条件语句"></a>5.3 条件语句</h2><h3 id="if-else"><a href="#if-else" class="headerlink" title="if..else"></a>if..else</h3><p><strong>悬垂else</strong>（dangling else）：用来描述在嵌套的<code>if else</code>语句中，如果<code>if</code>比<code>else</code>多时如何处理的问题。C++使用的方法是<code>else</code>匹配最近没有配对的<code>if</code>。</p>
+<h3 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h3><p>switch语句：如果表达式和某个case标签的值匹配成功，就会从该标签后的第一条语句开始执行，直到到达一条break或最尾部。</p>
+<h2 id="5-4-迭代语句"><a href="#5-4-迭代语句" class="headerlink" title="5.4 迭代语句"></a>5.4 迭代语句</h2><ul>
+<li><strong>while</strong>：当不确定到底要迭代多少次时，使用 <code>while</code>循环比较合适，比如读取输入的内容。</li>
+<li><strong>for</strong>： <code>for</code>语句可以省略掉 <code>init-statement</code>， <code>condition</code>和 <code>expression</code>的任何一个；<strong>甚至全部</strong>。</li>
+<li><strong>范围for</strong>： <code>for (declaration: expression) statement</code></li>
+</ul>
+<h2 id="5-5-跳转语句"><a href="#5-5-跳转语句" class="headerlink" title="5.5 跳转语句"></a>5.5 跳转语句</h2><h4 id="break"><a href="#break" class="headerlink" title="break"></a>break</h4><p>break语句:终止与其最近的while、do while、 for或switch语句</p>
 <h4 id="continue"><a href="#continue" class="headerlink" title="continue"></a>continue</h4><p>终止最近的循环中的当前迭代并立即开始下一次迭代</p>
 <h4 id="goto"><a href="#goto" class="headerlink" title="goto"></a>goto</h4><p>无条件跳转到同一函数内的另一条语句</p>
 <h2 id="5-6-TRY语句块和异常处理"><a href="#5-6-TRY语句块和异常处理" class="headerlink" title="5.6 TRY语句块和异常处理"></a>5.6 TRY语句块和异常处理</h2><p>运行时的反常行为。例如读取或写入数据时失去数据库连接</p>
-<h4 id="throw表达式"><a href="#throw表达式" class="headerlink" title="throw表达式"></a>throw表达式</h4><p>throw表达式：异常检测部分使用throw表达式来表示它遇到了无法解决的问题</p>
+<h4 id="throw表达式"><a href="#throw表达式" class="headerlink" title="throw表达式"></a>throw表达式</h4><p>throw表达式：异常检测部分使用 <code>throw</code>表达式来表示它遇到了无法处理的问题。我们说 <code>throw</code>引发 <code>raise</code>了异常。</p>
 <blockquote>
 <p>抛出一个异常，终止当前的函数，并把控制权交给处理异常的代码。</p>
 </blockquote>
 <blockquote>
 <p>runtimeerror是标准库异常类型的一种,定义在stdexcept头文件</p>
 </blockquote>
-<h4 id="try语句块"><a href="#try语句块" class="headerlink" title="try语句块"></a>try语句块</h4><p>try语句块：异常处理部分使用try语句块处理异常，可以有一个或多个catch</p>
-<h4 id="标准异常"><a href="#标准异常" class="headerlink" title="标准异常"></a>标准异常</h4><p>一套异常类：throw表达式和相关的catch子句之间传递异常的具体信息。<br>这些异常类分别定义在4个头文件中：</p>
+<h4 id="try语句块"><a href="#try语句块" class="headerlink" title="try语句块"></a>try语句块</h4><p>以 <code>try</code>关键词开始，以一个或多个 <code>catch</code>字句结束。 <code>try</code>语句块中的代码抛出的异常通常会被某个 <code>catch</code>捕获并处理。 <code>catch</code>子句也被称为<strong>异常处理代码</strong>。</p>
+<h4 id="标准异常（异常类）"><a href="#标准异常（异常类）" class="headerlink" title="标准异常（异常类）"></a>标准异常（异常类）</h4><p>一套异常类：用于在 <code>throw</code>表达式和相关的 <code>catch</code>子句之间传递异常的具体信息。<br>这些异常类分别定义在4个头文件中：</p>
 <ul>
 <li>exception头文件: 最通用的异常类exception，只报告异常的发生，不提供额外信息</li>
 <li>stdexcept头文件: 定义了几种常用的异常类</li>

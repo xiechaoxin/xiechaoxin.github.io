@@ -225,15 +225,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="2022/07/09/CS/CPP/C++%20primer/1-CPP%E5%9F%BA%E7%A1%80/7.%E7%B1%BB/" target="_self">
-          7.类
+        <a href="2022/07/10/CS/CPP/C++%20primer/3-%E7%B1%BB%E8%AE%BE%E8%AE%A1%E8%80%85%E7%9A%84%E5%B7%A5%E5%85%B7/13.%E6%8B%B7%E8%B4%9D%E6%8E%A7%E5%88%B6/" target="_self">
+          13.拷贝控制
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="2022/07/09/CS/CPP/C++%20primer/1-CPP%E5%9F%BA%E7%A1%80/7.%E7%B1%BB/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="2022/07/10/CS/CPP/C++%20primer/3-%E7%B1%BB%E8%AE%BE%E8%AE%A1%E8%80%85%E7%9A%84%E5%B7%A5%E5%85%B7/13.%E6%8B%B7%E8%B4%9D%E6%8E%A7%E5%88%B6/" target="_self">
         <div>
-          7.类7.1定义抽象数据类型类的基本思想是数据抽象（接口与实现分离）和封裝（把实现藏起来） 设计 Sales_data 类设计Sales_data类  一个isbn成员函数，用于返回对象的ISBN编号 一个combine成员函数，用户一个Sales_data对象加到另一个对象上 一个名为add的函数，指向两个Sales_data对象的加法 一个read函数，将数据从istream读入到Sales_
+          13. 拷贝控制拷贝控制操作（copy control）:  拷贝构造函数（copy constructor） 拷贝赋值运算符（copy-assignment operator） 移动构造函数（move constructor） 移动赋值函数（move-assignement operator） 析构函数（destructor）  13.1 拷贝、赋值和销毁拷贝构造函数 如果一个构造函数的第一个参
         </div>
       </a>
 
@@ -241,8 +241,316 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-07-09 05:50" pubdate>
-              2022-07-09
+            <time datetime="2022-07-10 05:34" pubdate>
+              2022-07-10
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="categories/CPP/" class="category-chain-item">CPP</a>
+  
+  
+    <span>></span>
+    
+  <a href="categories/CPP/C-primer/" class="category-chain-item">C++ primer</a>
+  
+  
+    <span>></span>
+    
+  <a href="categories/CPP/C-primer/2-CPP%E6%A0%87%E5%87%86%E5%BA%93/" class="category-chain-item">2-CPP标准库</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="tags/C-primer/">#C++ primer</a>
+            
+              <a href="tags/2-CPP%E6%A0%87%E5%87%86%E5%BA%93/">#2-CPP标准库</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="2022/07/10/CS/CPP/C++%20primer/3-%E7%B1%BB%E8%AE%BE%E8%AE%A1%E8%80%85%E7%9A%84%E5%B7%A5%E5%85%B7/14.%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E4%B8%8E%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" target="_self">
+          14.重载运算与类型转换
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="2022/07/10/CS/CPP/C++%20primer/3-%E7%B1%BB%E8%AE%BE%E8%AE%A1%E8%80%85%E7%9A%84%E5%B7%A5%E5%85%B7/14.%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E4%B8%8E%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" target="_self">
+        <div>
+          14. 重载运算与类型转换14.1 基本概念 重载运算符是具有特殊名字的函数：由关键字operator和其后要定义的运算符号共同组成。 当一个重载的运算符是成员函数时，this绑定到左侧运算对象。动态运算符符函数的参数数量比运算对象的数量少一个。 只能重载大多数的运算符，而不能发明新的运算符号。 重载运算符的优先级和结合律跟对应的内置运算符保持一致。 调用方式： data1 + data2; op
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-10 05:32" pubdate>
+              2022-07-10
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="categories/CPP/" class="category-chain-item">CPP</a>
+  
+  
+    <span>></span>
+    
+  <a href="categories/CPP/C-primer/" class="category-chain-item">C++ primer</a>
+  
+  
+    <span>></span>
+    
+  <a href="categories/CPP/C-primer/2-CPP%E6%A0%87%E5%87%86%E5%BA%93/" class="category-chain-item">2-CPP标准库</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="tags/C-primer/">#C++ primer</a>
+            
+              <a href="tags/2-CPP%E6%A0%87%E5%87%86%E5%BA%93/">#2-CPP标准库</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="2022/07/10/CS/CPP/C++%20primer/3-%E7%B1%BB%E8%AE%BE%E8%AE%A1%E8%80%85%E7%9A%84%E5%B7%A5%E5%85%B7/15.%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" target="_self">
+          15.面向对象程序设计
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="2022/07/10/CS/CPP/C++%20primer/3-%E7%B1%BB%E8%AE%BE%E8%AE%A1%E8%80%85%E7%9A%84%E5%B7%A5%E5%85%B7/15.%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" target="_self">
+        <div>
+          15. 面向对象程序设计15.1 OOP：概述 面向对象程序设计（object-oriented programming）的核心思想是数据抽象、继承和动态绑定。 继承（inheritance）： 通过继承联系在一起的类构成一种层次关系。 通常在层次关系的根部有一个基类（base class）。 其他类直接或者简介从基类继承而来，这些继承得到的类成为派生类（derived class）。 基类负责定
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-10 05:31" pubdate>
+              2022-07-10
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="categories/CPP/" class="category-chain-item">CPP</a>
+  
+  
+    <span>></span>
+    
+  <a href="categories/CPP/C-primer/" class="category-chain-item">C++ primer</a>
+  
+  
+    <span>></span>
+    
+  <a href="categories/CPP/C-primer/2-CPP%E6%A0%87%E5%87%86%E5%BA%93/" class="category-chain-item">2-CPP标准库</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="tags/C-primer/">#C++ primer</a>
+            
+              <a href="tags/2-CPP%E6%A0%87%E5%87%86%E5%BA%93/">#2-CPP标准库</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="2022/07/10/CS/CPP/C++%20primer/3-%E7%B1%BB%E8%AE%BE%E8%AE%A1%E8%80%85%E7%9A%84%E5%B7%A5%E5%85%B7/16.%E6%A8%A1%E6%9D%BF%E5%92%8C%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B/" target="_self">
+          16.模板和泛型编程
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="2022/07/10/CS/CPP/C++%20primer/3-%E7%B1%BB%E8%AE%BE%E8%AE%A1%E8%80%85%E7%9A%84%E5%B7%A5%E5%85%B7/16.%E6%A8%A1%E6%9D%BF%E5%92%8C%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B/" target="_self">
+        <div>
+          第十六章 模板和泛型编程 面向对象编程和泛型编程都能处理在编写程序时不知道类型的情况。 OOP能处理类型在程序运行之前都未知的情况； 泛型编程中，在编译时就可以获知类型。    16.1 定义模板 模板：模板是泛型编程的基础。一个模板就是一个创建类或函数的蓝图或者说公式。  函数模板 template &lt;typename T&gt; int compare(const T &amp;v1,
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-10 05:30" pubdate>
+              2022-07-10
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="categories/CPP/" class="category-chain-item">CPP</a>
+  
+  
+    <span>></span>
+    
+  <a href="categories/CPP/C-primer/" class="category-chain-item">C++ primer</a>
+  
+  
+    <span>></span>
+    
+  <a href="categories/CPP/C-primer/2-CPP%E6%A0%87%E5%87%86%E5%BA%93/" class="category-chain-item">2-CPP标准库</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="tags/C-primer/">#C++ primer</a>
+            
+              <a href="tags/2-CPP%E6%A0%87%E5%87%86%E5%BA%93/">#2-CPP标准库</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="2022/07/10/CS/CPP/C++%20primer/4-%E9%AB%98%E7%BA%A7%E4%B8%BB%E9%A2%98/19.%E7%89%B9%E6%AE%8A%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%8A%80%E6%9C%AF/" target="_self">
+          19.特殊工具与技术
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="2022/07/10/CS/CPP/C++%20primer/4-%E9%AB%98%E7%BA%A7%E4%B8%BB%E9%A2%98/19.%E7%89%B9%E6%AE%8A%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%8A%80%E6%9C%AF/" target="_self">
+        <div>
+          19. 特殊工具与技术19.1 控制内存分配重载new和delete new表达式的工作机理：  12string *sp &#x3D; new string(&quot;a value&quot;); &#x2F;&#x2F;分配并初始化一个string对象string *arr &#x3D; new string[10];   &#x2F;&#x2F; 分配10个默认初始化的string对象   上述代码实际执行了三步操作：  new表达式调用一个名为
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-10 05:28" pubdate>
+              2022-07-10
             </time>
           </div>
         
@@ -302,15 +610,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="2022/07/09/CS/CPP/C++%20primer/1-CPP%E5%9F%BA%E7%A1%80/5.%E8%AF%AD%E5%8F%A5/" target="_self">
-          5.语句
+        <a href="2022/07/10/CS/CPP/C++%20primer/4-%E9%AB%98%E7%BA%A7%E4%B8%BB%E9%A2%98/18.%E7%94%A8%E4%BA%8E%E5%A4%A7%E5%9E%8B%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%B7%A5%E5%85%B7/" target="_self">
+          18.用于大型程序的工具
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="2022/07/09/CS/CPP/C++%20primer/1-CPP%E5%9F%BA%E7%A1%80/5.%E8%AF%AD%E5%8F%A5/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="2022/07/10/CS/CPP/C++%20primer/4-%E9%AB%98%E7%BA%A7%E4%B8%BB%E9%A2%98/18.%E7%94%A8%E4%BA%8E%E5%A4%A7%E5%9E%8B%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%B7%A5%E5%85%B7/" target="_self">
         <div>
-          5.语句5.1 商单语句5.2 语句作用域5.3 条件语句 if switch  switch语句：如果表达式和某个case标签的值匹配成功，就会从该标签后的第一条语句开始执行，直到到达一条break或最尾部。 5.4 送代语句while语句传统的for语句范围for语句do while 语句5.5 跳转语句breakbreak语句:终止与其最近的while、do while、 for或switc
+          18. 用于大型程序的工具大规模应用程序的特殊要求包括：  在独立开发的子系统之间协同处理错误的能力。 使用各种库进行协同开发的能力。 对比较复杂的应用概念建模的能力。  18.1 异常处理异常处理（exception handling）机制允许程序中独立开发的部分能够在运行时就出现的问题进行通信并作出相应的处理。 抛出异常在C++语言中，我们通过抛出（throwing）一条表达式来引发（rais
         </div>
       </a>
 
@@ -318,8 +626,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-07-09 03:04" pubdate>
-              2022-07-09
+            <time datetime="2022-07-10 05:27" pubdate>
+              2022-07-10
             </time>
           </div>
         
@@ -344,7 +652,7 @@
   
     <span>></span>
     
-  <a href="categories/CPP/C-primer/1-CPP%E5%9F%BA%E7%A1%80/" class="category-chain-item">1-CPP基础</a>
+  <a href="categories/CPP/C-primer/2-CPP%E6%A0%87%E5%87%86%E5%BA%93/" class="category-chain-item">2-CPP标准库</a>
   
   
 
@@ -365,7 +673,7 @@
             
               <a href="tags/C-primer/">#C++ primer</a>
             
-              <a href="tags/1-CPP%E5%9F%BA%E7%A1%80/">#1-CPP基础</a>
+              <a href="tags/2-CPP%E6%A0%87%E5%87%86%E5%BA%93/">#2-CPP标准库</a>
             
           </div>
         
@@ -379,15 +687,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="2022/07/09/CS/CPP/C++%20primer/1-CPP%E5%9F%BA%E7%A1%80/6.%E5%87%BD%E6%95%B0/" target="_self">
-          6.函数
+        <a href="2022/07/10/CS/CPP/C++%20primer/4-%E9%AB%98%E7%BA%A7%E4%B8%BB%E9%A2%98/17.%E6%A0%87%E5%87%86%E5%BA%93%E7%89%B9%E6%AE%8A%E8%AE%BE%E6%96%BD/" target="_self">
+          17.标准库特殊设施
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="2022/07/09/CS/CPP/C++%20primer/1-CPP%E5%9F%BA%E7%A1%80/6.%E5%87%BD%E6%95%B0/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="2022/07/10/CS/CPP/C++%20primer/4-%E9%AB%98%E7%BA%A7%E4%B8%BB%E9%A2%98/17.%E6%A0%87%E5%87%86%E5%BA%93%E7%89%B9%E6%AE%8A%E8%AE%BE%E6%96%BD/" target="_self">
         <div>
-          6.函数6.1 函数基础函数是一个命名了的代码块，通过调用函数执行相应的代码。可以有0个或多个参数，可以重载。 函数的调用：  用实参初始化函数对应的形参（类型、个数需要匹配） 主函数暂时中断，被调函数开始执行  局部对象 自动对象：生命周期从变量声明开始，到函数块末尾结束 局部静态对象：生命周期从变量声明开始，直到程序结束才销毁  函数声明 函数需要先声明，再定义 一般在头文件中声明函数  分离
+          17. 标准库特殊设施17.1 tuple类型 tuple是类似pair的模板，每个成员类型都可以不同，但tuple可以有任意数量的成员。 但每个确定的tuple类型的成员数目是固定的。 我们可以将tuple看做一个“快速而随意”的数据结构。  tuple支持的操作：    操作 解释    tuple&lt;T1, T2, ..., Tn&gt; t; t是一个tuple，成员数为n，第i个成员
         </div>
       </a>
 
@@ -395,8 +703,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-07-09 03:04" pubdate>
-              2022-07-09
+            <time datetime="2022-07-10 05:25" pubdate>
+              2022-07-10
             </time>
           </div>
         
@@ -421,7 +729,7 @@
   
     <span>></span>
     
-  <a href="categories/CPP/C-primer/1-CPP%E5%9F%BA%E7%A1%80/" class="category-chain-item">1-CPP基础</a>
+  <a href="categories/CPP/C-primer/2-CPP%E6%A0%87%E5%87%86%E5%BA%93/" class="category-chain-item">2-CPP标准库</a>
   
   
 
@@ -442,7 +750,7 @@
             
               <a href="tags/C-primer/">#C++ primer</a>
             
-              <a href="tags/1-CPP%E5%9F%BA%E7%A1%80/">#1-CPP基础</a>
+              <a href="tags/2-CPP%E6%A0%87%E5%87%86%E5%BA%93/">#2-CPP标准库</a>
             
           </div>
         
@@ -456,15 +764,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="2022/07/09/CS/CPP/C++%20primer/1-CPP%E5%9F%BA%E7%A1%80/4.%E8%A1%A8%E8%BE%BE%E5%BC%8F/" target="_self">
-          4.表达式
+        <a href="2022/07/10/CS/CPP/C++%20primer/2-CPP%E6%A0%87%E5%87%86%E5%BA%93/12.%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98/" target="_self">
+          12.动态内存
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="2022/07/09/CS/CPP/C++%20primer/1-CPP%E5%9F%BA%E7%A1%80/4.%E8%A1%A8%E8%BE%BE%E5%BC%8F/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="2022/07/10/CS/CPP/C++%20primer/2-CPP%E6%A0%87%E5%87%86%E5%BA%93/12.%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98/" target="_self">
         <div>
-          4.表达式4.1 基础基本概念表达式 表达式由一个或多个运算对象(operand）组成，对表达式求值将得到一个结果。 字面值和变量是最简单的表达式。 把运算符和运算对象结合起来可以生产较复杂的表达式。  运算符 一元运算符：作用域一个运算对象的运算符，如取地址符（＆）和解引用符 二元运算符：作用手于两个运算对象的运算符，如相等（三）和乘法（*） 还有一个作用于三个运算对象的三元运算符  运算符重载
+          12 动态内存 对象的生命周期：  全局对象在程序启动时分配，结束时销毁。 局部对象在进入程序块时创建，离开块时销毁。 局部static对象在第一次使用前分配，在程序结束时销毁。 动态分配对象：只能显式地被释放。   对象的内存位置：  静态内存用来保存局部static对象、类static对象、定义在任何函数之外的变量。 栈内存用来保存定义在函数内的非static对象。 堆内存，又称自由空间，用来
         </div>
       </a>
 
@@ -472,8 +780,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-07-09 01:38" pubdate>
-              2022-07-09
+            <time datetime="2022-07-10 05:23" pubdate>
+              2022-07-10
             </time>
           </div>
         
@@ -498,7 +806,7 @@
   
     <span>></span>
     
-  <a href="categories/CPP/C-primer/1-CPP%E5%9F%BA%E7%A1%80/" class="category-chain-item">1-CPP基础</a>
+  <a href="categories/CPP/C-primer/2-CPP%E6%A0%87%E5%87%86%E5%BA%93/" class="category-chain-item">2-CPP标准库</a>
   
   
 
@@ -519,7 +827,7 @@
             
               <a href="tags/C-primer/">#C++ primer</a>
             
-              <a href="tags/1-CPP%E5%9F%BA%E7%A1%80/">#1-CPP基础</a>
+              <a href="tags/2-CPP%E6%A0%87%E5%87%86%E5%BA%93/">#2-CPP标准库</a>
             
           </div>
         
@@ -533,15 +841,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="2022/07/08/CS/CPP/C++%20primer/1-CPP%E5%9F%BA%E7%A1%80/3.%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84/" target="_self">
-          3.字符串、向量和数组
+        <a href="2022/07/10/CS/CPP/C++%20primer/2-CPP%E6%A0%87%E5%87%86%E5%BA%93/11.%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8/" target="_self">
+          11. 关联容器
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="2022/07/08/CS/CPP/C++%20primer/1-CPP%E5%9F%BA%E7%A1%80/3.%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="2022/07/10/CS/CPP/C++%20primer/2-CPP%E6%A0%87%E5%87%86%E5%BA%93/11.%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8/" target="_self">
         <div>
-          3.字符串、向量和数组3.1 命名空间的 using 声明域操作符 std 12345std::cout;using namespace std;cout&lt;&lt;&quot;hello&quot;&lt;&lt;endl;   头文件不应该包含using声明，因为会被拷贝到引用该头文件的文件中。这可能会造成不必要的麻烦。  3.2 标准库类型 string长度可变的字符序列，需要包含str
+          11. 关联容器 关联容器和顺序容器的不同：关联容器中的元素时按照关键字来保存和访问的。 关联容器支持通过关键字来高效地查找和读取元素，基本的关联容器类型是 map和 set。  关联容器类型：    容器类型 解释    按顺序存储    map 关键数组：保存关键字-值对   set 关键字即值，即只保存关键字的容器   multimap 支持同一个键多次出现的map   multiset 支
         </div>
       </a>
 
@@ -549,8 +857,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-07-08 20:39" pubdate>
-              2022-07-08
+            <time datetime="2022-07-10 05:22" pubdate>
+              2022-07-10
             </time>
           </div>
         
@@ -575,7 +883,7 @@
   
     <span>></span>
     
-  <a href="categories/CPP/C-primer/1-CPP%E5%9F%BA%E7%A1%80/" class="category-chain-item">1-CPP基础</a>
+  <a href="categories/CPP/C-primer/2-CPP%E6%A0%87%E5%87%86%E5%BA%93/" class="category-chain-item">2-CPP标准库</a>
   
   
 
@@ -596,7 +904,7 @@
             
               <a href="tags/C-primer/">#C++ primer</a>
             
-              <a href="tags/1-CPP%E5%9F%BA%E7%A1%80/">#1-CPP基础</a>
+              <a href="tags/2-CPP%E6%A0%87%E5%87%86%E5%BA%93/">#2-CPP标准库</a>
             
           </div>
         
@@ -610,15 +918,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="2022/07/08/CS/CPP/C++%20primer/1-CPP%E5%9F%BA%E7%A1%80/2.%E5%8F%98%E9%87%8F%E5%92%8C%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B/" target="_self">
-          2.变量和基本类型
+        <a href="2022/07/10/CS/CPP/C++%20primer/2-CPP%E6%A0%87%E5%87%86%E5%BA%93/10.%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95/" target="_self">
+          10. 泛型算法
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="2022/07/08/CS/CPP/C++%20primer/1-CPP%E5%9F%BA%E7%A1%80/2.%E5%8F%98%E9%87%8F%E5%92%8C%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="2022/07/10/CS/CPP/C++%20primer/2-CPP%E6%A0%87%E5%87%86%E5%BA%93/10.%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95/" target="_self">
         <div>
-          2.变量和基础类型2.1 基本内置类型 C++是一种静态数据类型语言，在编译时进行类型检查 C++定义了：算术类型、空类型  算术类型   类型 含义 最小尺寸(bit) 说明    bool 布尔类型 未定义 取值为真 (true）或假 (false)   char 字符 8位 1个 char 的大小和一个机器字节一样   wchat_t 宽字符 16位 用于扩展字符集，确保可以存放机器最大，扩
+          10. 泛型算法10.1 泛型算法 因为它们实现共同的操作，所以称之为“算法”；而“泛型”、指的是它们可以操作在多种容器类型上。 泛型算法本身不执行容器操作，只是单独依赖迭代器和迭代器操作实现。 头文件： #include &lt;algorithm&gt;或者 #include &lt;numeric&gt;(算数相关) 大多数算法是通过遍历两个迭代器标记的一段元素来实现其功能。 必要的编程假定
         </div>
       </a>
 
@@ -626,8 +934,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-07-08 02:07" pubdate>
-              2022-07-08
+            <time datetime="2022-07-10 05:21" pubdate>
+              2022-07-10
             </time>
           </div>
         
@@ -652,7 +960,7 @@
   
     <span>></span>
     
-  <a href="categories/CPP/C-primer/1-CPP%E5%9F%BA%E7%A1%80/" class="category-chain-item">1-CPP基础</a>
+  <a href="categories/CPP/C-primer/2-CPP%E6%A0%87%E5%87%86%E5%BA%93/" class="category-chain-item">2-CPP标准库</a>
   
   
 
@@ -673,267 +981,7 @@
             
               <a href="tags/C-primer/">#C++ primer</a>
             
-              <a href="tags/1-CPP%E5%9F%BA%E7%A1%80/">#1-CPP基础</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="2022/07/08/CS/CPP/C++%20primer/0-%E5%BC%80%E5%A7%8B/1.CPP%20Primer%20%E5%BC%80%E5%A7%8B/" target="_self">
-          1.CPP Primer 开始
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="2022/07/08/CS/CPP/C++%20primer/0-%E5%BC%80%E5%A7%8B/1.CPP%20Primer%20%E5%BC%80%E5%A7%8B/" target="_self">
-        <div>
-          开始1.1 编写一个简单的 C++程序 每个C++程序都包含一个或多个函数(function) 其中一个必须命名为main   一个函数的定义包括: 返回类型 (return type) 函数名（function name) 参数列表(parameter list, 允许为空） 函数体(function body)    1234int main()&amp;#123;  return 0;&amp;#125;
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-07-08 00:36" pubdate>
-              2022-07-08
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="categories/CPP/" class="category-chain-item">CPP</a>
-  
-  
-    <span>></span>
-    
-  <a href="categories/CPP/C-primer/" class="category-chain-item">C++ primer</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="tags/C-primer/">#C++ primer</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="2022/06/29/CS/design_patterns/%E9%87%8D%E5%AD%A6Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" target="_self">
-          重学Java设计模式
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="2022/06/29/CS/design_patterns/%E9%87%8D%E5%AD%A6Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" target="_self">
-        <div>
-          设计模式 设计模式禁忌：手里有锤子，看啥都是钉子；不能为了使用设计模式而使用设计模式，应该根据实际业务场景使用合适的设计模式，有时候业务不适合使用某个设计模式，宁可代码写规整就好，也不要硬套某个模式  1.设计模式准则1.1 单一职责每个类的功能应该是完成单一职责，不应该把多个不相关功能点放到同一个类中 反例 一个类中的方法用if else隔离复杂功能 123456789public void s
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-06-29 14:02" pubdate>
-              2022-06-29
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="categories/design-patterns/" class="category-chain-item">design_patterns</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="tags/design-patterns/">#design_patterns</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="2022/06/29/CS/Java/practice_demo_note/%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F/" target="_self">
-          聊天室demo
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="2022/06/29/CS/Java/practice_demo_note/%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F/" target="_self">
-        <div>
-          java 聊天室小项目源自：Java实现实时聊天互动程序_哔哩哔哩_bilibili 知识点JFrame，socket编程，监听事件 ClientChatMain12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-06-29 14:02" pubdate>
-              2022-06-29
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="categories/Java/" class="category-chain-item">Java</a>
-  
-  
-    <span>></span>
-    
-  <a href="categories/Java/practice-demo-note/" class="category-chain-item">practice_demo_note</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="tags/Java/">#Java</a>
-            
-              <a href="tags/practice-demo-note/">#practice_demo_note</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="2022/06/17/CS/algorithms/%E5%87%A0%E9%81%93%E5%B8%B8%E8%A7%81%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AE%97%E6%B3%95%E9%A2%98/" target="_self">
-          几道常见的字符串算法题
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="2022/06/17/CS/algorithms/%E5%87%A0%E9%81%93%E5%B8%B8%E8%A7%81%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AE%97%E6%B3%95%E9%A2%98/" target="_self">
-        <div>
-          几道常见的字符串算法题 授权转载！  本文作者：wwwxmu 原文地址:https:&#x2F;&#x2F;www.weiweiblog.cn&#x2F;13string&#x2F;   1. KMP 算法谈到字符串问题，不得不提的就是 KMP 算法，它是用来解决字符串查找的问题，可以在一个字符串（S）中查找一个子串（W）出现的位置。KMP 算法把字符匹配的时间复杂度缩小到 O(m+n) ,而空间复杂度也只有O(m)。因为“暴力搜索”的
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-06-17 17:59" pubdate>
-              2022-06-17
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="categories/algorithms/" class="category-chain-item">algorithms</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="tags/algorithms/">#algorithms</a>
+              <a href="tags/2-CPP%E6%A0%87%E5%87%86%E5%BA%93/">#2-CPP标准库</a>
             
           </div>
         
@@ -945,7 +993,7 @@
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="page/2/#board">2</a><a class="page-number" href="page/3/#board">3</a><span class="space">&hellip;</span><a class="page-number" href="page/29/#board">29</a><a class="extend next" rel="next" href="page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+      <span class="page-number current">1</span><a class="page-number" href="page/2/#board">2</a><a class="page-number" href="page/3/#board">3</a><span class="space">&hellip;</span><a class="page-number" href="page/30/#board">30</a><a class="extend next" rel="next" href="page/2/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 

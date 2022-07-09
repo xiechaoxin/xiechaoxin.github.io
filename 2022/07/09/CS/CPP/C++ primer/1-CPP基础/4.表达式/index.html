@@ -16,15 +16,15 @@
   <meta name="author" content="Jerry Xie">
   <meta name="keywords" content="">
   
-    <meta name="description" content="4.表达式4.1 基础基本概念表达式 表达式由一个或多个运算对象(operand）组成，对表达式求值将得到一个结果。 字面值和变量是最简单的表达式。 把运算符和运算对象结合起来可以生产较复杂的表达式。  运算符 一元运算符：作用域一个运算对象的运算符，如取地址符（＆）和解引用符 二元运算符：作用手于两个运算对象的运算符，如相等（三）和乘法（*） 还有一个作用于三个运算对象的三元运算符  运算符重载">
+    <meta name="description" content="4.表达式4.1 表达式基础-  左值和右值：   基本概念表达式 表达式由一个或多个运算对象(operand）组成，对表达式求值将得到一个结果。 字面值和变量是最简单的表达式。 把运算符和运算对象结合起来可以生产较复杂的表达式。  运算符 一元运算符：作用域一个运算对象的运算符，如取地址符（＆）和解引用符 二元运算符：作用手于两个运算对象的运算符，如相等（三）和乘法（*） 还有一个作用于三个运算">
 <meta property="og:type" content="article">
 <meta property="og:title" content="4.表达式">
 <meta property="og:url" content="https://xiechaoxin.github.io/2022/07/09/CS/CPP/C++%20primer/1-CPP%E5%9F%BA%E7%A1%80/4.%E8%A1%A8%E8%BE%BE%E5%BC%8F/index.html">
 <meta property="og:site_name" content="Jerry&#39;s blog">
-<meta property="og:description" content="4.表达式4.1 基础基本概念表达式 表达式由一个或多个运算对象(operand）组成，对表达式求值将得到一个结果。 字面值和变量是最简单的表达式。 把运算符和运算对象结合起来可以生产较复杂的表达式。  运算符 一元运算符：作用域一个运算对象的运算符，如取地址符（＆）和解引用符 二元运算符：作用手于两个运算对象的运算符，如相等（三）和乘法（*） 还有一个作用于三个运算对象的三元运算符  运算符重载">
+<meta property="og:description" content="4.表达式4.1 表达式基础-  左值和右值：   基本概念表达式 表达式由一个或多个运算对象(operand）组成，对表达式求值将得到一个结果。 字面值和变量是最简单的表达式。 把运算符和运算对象结合起来可以生产较复杂的表达式。  运算符 一元运算符：作用域一个运算对象的运算符，如取地址符（＆）和解引用符 二元运算符：作用手于两个运算对象的运算符，如相等（三）和乘法（*） 还有一个作用于三个运算">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-07-09T01:38:50.000Z">
-<meta property="article:modified_time" content="2022-07-08T22:36:23.119Z">
+<meta property="article:modified_time" content="2022-07-09T21:37:58.402Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="C++ primer">
 <meta property="article:tag" content="1-CPP基础">
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k words
+          3.6k words
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          14 mins
+          30 mins
         
       </span>
     
@@ -284,7 +284,11 @@
             
               <div class="markdown-body">
                 
-                <h1 id="4-表达式"><a href="#4-表达式" class="headerlink" title="4.表达式"></a>4.表达式</h1><h2 id="4-1-基础"><a href="#4-1-基础" class="headerlink" title="4.1 基础"></a>4.1 基础</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h4 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h4><ul>
+                <h1 id="4-表达式"><a href="#4-表达式" class="headerlink" title="4.表达式"></a>4.表达式</h1><h2 id="4-1-表达式基础"><a href="#4-1-表达式基础" class="headerlink" title="4.1 表达式基础"></a>4.1 表达式基础</h2><h2 id><a href="#" class="headerlink" title="- "></a>- </h2><ul>
+<li><strong>左值和右值</strong>：</li>
+<li></li>
+</ul>
+<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h4 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h4><ul>
 <li>表达式由一个或多个运算对象(operand）组成，对表达式求值将得到一个结果。</li>
 <li>字面值和变量是最简单的表达式。</li>
 <li>把运算符和运算对象结合起来可以生产较复杂的表达式。</li>
@@ -293,6 +297,9 @@
 <li>一元运算符：作用域一个运算对象的运算符，如取地址符（＆）和解引用符</li>
 <li>二元运算符：作用手于两个运算对象的运算符，如相等（三）和乘法（*）</li>
 <li>还有一个作用于三个运算对象的三元运算符</li>
+</ul>
+<h4 id="运算对象转换："><a href="#运算对象转换：" class="headerlink" title="运算对象转换："></a>运算对象转换：</h4><ul>
+<li>小整数类型会被提升为较大的整数类型</li>
 </ul>
 <h4 id="运算符重载"><a href="#运算符重载" class="headerlink" title="运算符重载"></a>运算符重载</h4><ul>
 <li>当运算符作用于类类型的运算对象时，用户可以自行定义其含义。<ul>
@@ -347,68 +354,62 @@
 </li>
 </ul>
 <p>这个靠常识吧<del>如果不清楚，建议加括号</del></p>
-<h3 id="求值顺序"><a href="#求值顺序" class="headerlink" title="求值顺序"></a>求值顺序</h3><p>待补充</p>
-<h2 id="4-2-算术运算符"><a href="#4-2-算术运算符" class="headerlink" title="4.2 算术运算符"></a>4.2 算术运算符</h2><ul>
-<li>运算符优先级</li>
+<h3 id="求值顺序"><a href="#求值顺序" class="headerlink" title="求值顺序"></a>求值顺序</h3><ul>
+<li><strong>求值顺序</strong>：<code>int i = f1() + f2()</code><ul>
+<li>先计算<code>f1() + f2()</code>,再计算<code>int i = f1() + f2()</code>。但是f1和f2的计算<strong>先后不确定</strong></li>
+<li>但是，如果f1、f2都对同一对象进行了修改，因为顺序不确定，所以会编译出错，显示未定义</li>
 </ul>
-<p>待补充</p>
-<h2 id="4-3-逻辑和关系运算符"><a href="#4-3-逻辑和关系运算符" class="headerlink" title="4.3 逻辑和关系运算符"></a>4.3 逻辑和关系运算符</h2><h2 id="4-4-赋值运算符"><a href="#4-4-赋值运算符" class="headerlink" title="4.4 赋值运算符"></a>4.4 赋值运算符</h2><ul>
+</li>
+</ul>
+<h2 id="4-2-算术运算符"><a href="#4-2-算术运算符" class="headerlink" title="4.2 算术运算符"></a>4.2 算术运算符</h2><ul>
+<li>运算符优先级，这个实践中感受，不用刻意记</li>
+<li><strong>溢出</strong>：当计算的结果超出该类型所能表示的范围时就会产生溢出。</li>
+<li><strong>bool类型不应该参与计算</strong></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">bool</span> b=<span class="hljs-literal">true</span>;<br><span class="hljs-type">bool</span> b2=-b;   <span class="hljs-comment">//仍然为true</span><br><span class="hljs-comment">//b为true，提升为对应int=1，-b=-1</span><br><span class="hljs-comment">//b2=-1≠0，所以b2仍未true</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>取余运算m%n，结果符号与m相同</li>
+</ul>
+<h2 id="4-3-逻辑和关系运算符"><a href="#4-3-逻辑和关系运算符" class="headerlink" title="4.3 逻辑和关系运算符"></a>4.3 逻辑和关系运算符</h2><ul>
+<li><strong>短路求值</strong>：逻辑与运算符和逻辑或运算符都是先求左侧运算对象的值再求右侧运算对象的值，当且仅当左侧运算对象无法确定表达式的结果时才会计算右侧运算对象的值。<strong>先左再右</strong></li>
+<li>小技巧，声明为引用类型可以避免对元素的拷贝，如下，如string特别大时可以节省大量时间。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp">vector&lt;string&gt; text;<br><span class="hljs-keyword">for</span>(<span class="hljs-type">const</span> <span class="hljs-keyword">auto</span> &amp;s: text)&#123;<br>  cout&lt;&lt;s;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-4-赋值运算符"><a href="#4-4-赋值运算符" class="headerlink" title="4.4 赋值运算符"></a>4.4 赋值运算符</h2><ul>
 <li>赋值运算满足右结合律</li>
-<li>赋值运算符优先级低</li>
+<li>赋值运算符优先级低，使用其当条件时应该加括号</li>
 </ul>
 <blockquote>
-<p>初始化不是赋值</p>
+<p>初始化不是赋值，赋值有<strong>替换</strong>的意思</p>
 </blockquote>
-<h2 id="4-5-递增和递减运算符"><a href="#4-5-递增和递减运算符" class="headerlink" title="4.5 递增和递减运算符"></a>4.5 递增和递减运算符</h2><h2 id="4-6-成员访问运算符"><a href="#4-6-成员访问运算符" class="headerlink" title="4.6 成员访问运算符"></a>4.6 成员访问运算符</h2><ul>
+<h2 id="4-5-递增和递减运算符"><a href="#4-5-递增和递减运算符" class="headerlink" title="4.5 递增和递减运算符"></a>4.5 递增和递减运算符</h2><ul>
+<li>前置版本<code>j = ++i</code>，先加一后赋值</li>
+<li>后置版本<code>j = i++</code>，先赋值后加一</li>
+</ul>
+<p><strong>优先使用前置</strong>版本，后置多一步储存原始值。（除非需要变化前的值）</p>
+<h3 id="混用解引用和递增运算符"><a href="#混用解引用和递增运算符" class="headerlink" title="混用解引用和递增运算符"></a>混用解引用和递增运算符</h3><p><code>*iter++</code>等价于<code>*(iter++)</code>，递增优先级较高</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">auto</span> iter = vi.<span class="hljs-built_in">begin</span>();<br><span class="hljs-keyword">while</span> (iter!=vi.<span class="hljs-built_in">end</span>()&amp;&amp;*iter&gt;=<span class="hljs-number">0</span>)<br>	cout&lt;&lt;*iter++&lt;&lt;endl;	<span class="hljs-comment">// 输出当前值，指针向前移1</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="4-6-成员访问运算符"><a href="#4-6-成员访问运算符" class="headerlink" title="4.6 成员访问运算符"></a>4.6 成员访问运算符</h2><ul>
 <li>点运算符和箭头运算符都可以访问成员</li>
 <li>ptr-&gt;mem等价于(*ptr).mem</li>
+<li>注意<code>.</code>运算符优先级大于<code>*</code>，所以记得加括号</li>
 </ul>
 <h2 id="4-7-条件运算符"><a href="#4-7-条件运算符" class="headerlink" title="4.7 条件运算符"></a>4.7 条件运算符</h2><ul>
-<li>三目运算符（右结合律）</li>
+<li><p>三目运算符（右结合律）</p>
+</li>
+<li><p>条件运算符（<code>?:</code>）允许我们把简单的<code>if-else</code>逻辑嵌入到单个表达式中去，按照如下形式：<code>cond? expr1: expr2</code></p>
+</li>
+<li><p>可以嵌套使用，<strong>右结合律</strong>，从右向左顺序组合</p>
+<ul>
+<li>&#96;&#96;&#96;c++<br>finalgrade &#x3D; (grade &gt; 90) ? “high pass”<br>: (grade &lt; 60) ? “fail” : “pass”;<br>&#x2F;&#x2F;等价于<br>finalgrade &#x3D; (grade &gt; 90) ? “high pass”<br>: （(grade &lt; 60) ? “fail” : “pass”）;<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs gherkin"><br><span class="hljs-symbol">*</span> 输出表达式使用条件运算符记得加括号，条件运算符优先级太低。<br><br><span class="hljs-comment">## 4.8 位运算符</span><br><br><span class="hljs-symbol">*</span> 作用于<span class="hljs-symbol">*</span><span class="hljs-symbol">*</span>整数类型<span class="hljs-symbol">*</span><span class="hljs-symbol">*</span>的运算对象，把运算对象看成是二进制位的集合<br><span class="hljs-symbol">*</span> 检查和设置二进制位<br><span class="hljs-symbol">*</span> 左结合律<br><br>|<span class="hljs-string"> 运算符 </span>|<span class="hljs-string"> 功能                         </span>|<span class="hljs-string">      </span>|<br>|<span class="hljs-string"> ------ </span>|<span class="hljs-string"> ---------------------------- </span>|<span class="hljs-string"> ---- </span>|<br>|<span class="hljs-string"> ~      </span>|<span class="hljs-string">                              </span>|<span class="hljs-string">      </span>|<br>|<span class="hljs-string"> &lt;&lt;     </span>|<span class="hljs-string"> 移出边界外的位就被舍弃掉了。 </span>|<span class="hljs-string">      </span>|<br>|<span class="hljs-string"> &gt;&gt;     </span>|<span class="hljs-string"> 移出边界外的位就被舍弃掉了。 </span>|<span class="hljs-string">      </span>|<br>|<span class="hljs-string"> &amp;      </span>|<span class="hljs-string">                              </span>|<span class="hljs-string">      </span>|<br>|<span class="hljs-string"> ^      </span>|<span class="hljs-string">                              </span>|<span class="hljs-string">      </span>|<br>|<span class="hljs-string"> \</span>|<span class="hljs-string">     </span>|<span class="hljs-string">                              </span>|<span class="hljs-string">      </span>|<br><br>应用<br><br>```c++<br>unsigned long quiz1 = 0;    // 每一位代表一个学生是否通过考试<br>1UL <span class="hljs-variable">&lt;&lt; 12;  // 代表第12个学生通过</span><br><span class="hljs-variable">quiz1 |= (1UL &lt;&lt; 12);   // 将第12个学生置为已通过</span><br><span class="hljs-variable">quiz1 &amp;= ~(1UL &lt;&lt; 12);  // 将第12个学生修改为未通过</span><br><span class="hljs-variable">bool stu12 = quiz1 &amp; (1UL &lt;&lt; 12);   // 判断第12个学生是否通过</span><br></code></pre></td></tr></table></figure></li>
 </ul>
-<h2 id="4-8-位运算符"><a href="#4-8-位运算符" class="headerlink" title="4.8 位运算符"></a>4.8 位运算符</h2><ul>
-<li>作用于整数类型的运算对象，把运算对象看成是二进制位的集合</li>
-<li>检查和设置二进制位</li>
+</li>
 </ul>
-<table>
-<thead>
-<tr>
-<th>运算符</th>
-<th>功能</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>~</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;&lt;</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>&gt;&gt;</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>&amp;</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>^</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>|</td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
 <blockquote>
 <p>如果运算对象是“小整形”、则它的值会被自动提升</p>
 </blockquote>
@@ -416,18 +417,44 @@
 <p>关于符号位如何处理没有明确的规定，所以强烈建议仅将位运算符用于处理无符号类型</p>
 </blockquote>
 <h2 id="4-9-sizeof运算符"><a href="#4-9-sizeof运算符" class="headerlink" title="4.9 sizeof运算符"></a>4.9 sizeof运算符</h2><ul>
-<li><p>返回所占的<strong>字节</strong>数</p>
+<li>返回一条表达式或一个类型名字所占的<strong>字节</strong>数</li>
+<li>返回的类型是 <code>size_t</code>的常量表达式。</li>
+<li>sizeof 一个字符串或一个向量只返回这些类型的固定部分的大小；它不返回对象元素使用的大小。</li>
+<li>两种形式：<ol>
+<li><code>sizeof (type)</code>，给出类型名</li>
+<li><code>sizeof expr</code>，给出表达式</li>
+</ol>
 </li>
-<li><p>sizeof 一个字符串或一个向量只返回这些类型的固定部分的大小；它不返回对象元素使用的大小。</p>
-</li>
+<li>可用sizeof返回数组的大小</li>
 </ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> ia[<span class="hljs-number">10</span>];<br><span class="hljs-comment">// sizeof(ia)返回整个数组所占空间的大小</span><br><span class="hljs-comment">// sizeof(ia)/sizeof(*ia)返回数组的大小</span><br><span class="hljs-keyword">constexpr</span> <span class="hljs-type">size_t</span> sz = <span class="hljs-built_in">sizeof</span>(ia)/<span class="hljs-built_in">sizeof</span>(*ia);<br><span class="hljs-type">int</span> arr[sz];<br></code></pre></td></tr></table></figure>
+
+
+
+
+
 <h2 id="4-10-逗号运算符"><a href="#4-10-逗号运算符" class="headerlink" title="4.10 逗号运算符"></a>4.10 逗号运算符</h2><ul>
 <li>含有两个运算对象，按照从左向右的顺序依次求值</li>
-<li>返回结果为右侧表达式的值</li>
+<li>返回结果为右侧表达式的值，左侧求值结果丢弃</li>
 </ul>
-<h2 id="4-11-类型转换"><a href="#4-11-类型转换" class="headerlink" title="4.11 类型转换"></a>4.11 类型转换</h2><h4 id="算数转换"><a href="#算数转换" class="headerlink" title="算数转换"></a>算数转换</h4><ul>
+<h2 id="4-11-类型转换"><a href="#4-11-类型转换" class="headerlink" title="4.11 类型转换"></a>4.11 类型转换</h2><h3 id="隐式类型转换"><a href="#隐式类型转换" class="headerlink" title="隐式类型转换"></a>隐式类型转换</h3><blockquote>
+<p>设计为尽可能避免损失精度，即转换为更精细类型。</p>
+</blockquote>
+<ul>
+<li>比 <code>int</code>类型小的整数值先提升为较大的整数类型。</li>
+<li>条件中，非布尔转换成布尔。</li>
+<li>初始化中，初始值转换成变量的类型。</li>
+<li>算术运算或者关系运算的运算对象有多种类型，要转换成同一种类型。</li>
+<li>函数调用时也会有转换。</li>
+</ul>
+<h4 id="算数转换"><a href="#算数转换" class="headerlink" title="算数转换"></a>算数转换</h4><ul>
 <li>隐式转换：无需程序员介入</li>
 <li>算术转换：理解算术转换，办法之一就是研究大量的例子</li>
+<li>整型提升<ul>
+<li>常见的char、bool、short能存在int就会转换成int，否则提升为<code>unsigned int</code></li>
+<li><code>wchar_t,char16_t,char32_t</code>提升为整型中<code>int,long,long long ……</code>最小的，且能容纳原类型所有可能值的类型。</li>
+</ul>
+</li>
 </ul>
 <h4 id="指针的转换"><a href="#指针的转换" class="headerlink" title="指针的转换"></a>指针的转换</h4><ul>
 <li>0或字面值nullptr能够转换成任意指针类型</li>
@@ -436,7 +463,20 @@
 </ul>
 <h4 id="其他隐式类型转换"><a href="#其他隐式类型转换" class="headerlink" title="其他隐式类型转换"></a>其他隐式类型转换</h4><p>数组转换成指针</p>
 <p>数值转换为bool</p>
-<h4 id="显式转换"><a href="#显式转换" class="headerlink" title="显式转换"></a>显式转换</h4><p>显式转换:强制转换 cast-namestype&gt; (expression)<br>cast-name是static_cast、 dynamic_cast、 const_cast和reinterpret_cast中的一种</p>
+<h3 id="显式类型转换（尽量避免）"><a href="#显式类型转换（尽量避免）" class="headerlink" title="显式类型转换（尽量避免）"></a>显式类型转换（尽量避免）</h3><ul>
+<li><p><strong>static_cast</strong>：任何明确定义的类型转换，只要不包含底层const，都可以使用。 <code>double slope = static_cast&lt;double&gt;(j);</code></p>
+</li>
+<li><p><strong>dynamic_cast</strong>：支持运行时类型识别。</p>
+</li>
+<li><p><strong>const_cast</strong>：只能改变运算对象的底层const，一般可用于去除const性质。 <code>const char *pc; char *p = const_cast&lt;char*&gt;(pc)</code></p>
+<blockquote>
+<p>只有其可以改变常量属性</p>
+</blockquote>
+</li>
+<li><p><strong>reinterpret_cast</strong>：通常为运算对象的位模式提供低层次上的重新解释。</p>
+</li>
+</ul>
+<h4 id="旧式强制类型转换"><a href="#旧式强制类型转换" class="headerlink" title="旧式强制类型转换"></a>旧式强制类型转换</h4><p><code>type expr</code></p>
 <h2 id="4-12-运算符优先级表"><a href="#4-12-运算符优先级表" class="headerlink" title="4.12 运算符优先级表"></a>4.12 运算符优先级表</h2><p>待补充表格</p>
 
                 

@@ -24,7 +24,7 @@
 <meta property="og:description" content="开始1.1 编写一个简单的 C++程序 每个C++程序都包含一个或多个函数(function) 其中一个必须命名为main   一个函数的定义包括: 返回类型 (return type) 函数名（function name) 参数列表(parameter list, 允许为空） 函数体(function body)    1234int main()&amp;#123;  return 0;&amp;#125;">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-07-08T00:36:13.000Z">
-<meta property="article:modified_time" content="2022-07-08T22:36:23.119Z">
+<meta property="article:modified_time" content="2022-07-09T21:37:58.402Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="C++ primer">
 <meta name="twitter:card" content="summary_large_image">
@@ -221,7 +221,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.8k words
+          6.6k words
         
       </span>
     
@@ -232,7 +232,7 @@
         
         
         
-          24 mins
+          55 mins
         
       </span>
     
@@ -306,24 +306,57 @@
 </li>
 <li>对源程序进行编译、链接，形成可执行文件</li>
 </ul>
-<h2 id="1-2-初识输入输出"><a href="#1-2-初识输入输出" class="headerlink" title="1.2 初识输入输出"></a>1.2 初识输入输出</h2><h3 id="iostream库包含两个基础类型istream和ostream"><a href="#iostream库包含两个基础类型istream和ostream" class="headerlink" title="iostream库包含两个基础类型istream和ostream"></a>iostream库包含两个基础类型istream和ostream</h3><ul>
+<h3 id="熟悉编译器"><a href="#熟悉编译器" class="headerlink" title="熟悉编译器"></a>熟悉编译器</h3><p>**g++**：</p>
+<ul>
+<li>编译：<code>g++ --std=c++11 ch01.cpp -o main</code></li>
+<li>运行：<code>./prog1</code></li>
+<li>查看运行状态：<code>echo $?</code></li>
+<li>编译多个文件:<code>g++ ch2.cpp Sales_item.cc -o main</code></li>
+</ul>
+<p>输入 <code>g++ --help</code>，查看编译器选项：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs stata">Usage: <span class="hljs-keyword">g</span>++ [options] <span class="hljs-keyword">file</span>...<br>Options:<br>  -pass-<span class="hljs-keyword">exit</span>-codes         <span class="hljs-keyword">Exit</span> with highest <span class="hljs-keyword">error</span> code from a phase<br>  --<span class="hljs-keyword">help</span>                   <span class="hljs-keyword">Display</span> this information<br>  --target-<span class="hljs-keyword">help</span>            <span class="hljs-keyword">Display</span> target specific command <span class="hljs-keyword">line</span> options<br>  --<span class="hljs-keyword">help</span>=&#123;common|optimizers|params|target|warnings|[^]&#123;joined|<span class="hljs-keyword">separate</span>|undocumented&#125;&#125;[,...]<br>                           <span class="hljs-keyword">Display</span> specific types of command <span class="hljs-keyword">line</span> options<br>  (<span class="hljs-keyword">Use</span> &#x27;-v --<span class="hljs-keyword">help</span>&#x27; to <span class="hljs-keyword">display</span> command <span class="hljs-keyword">line</span> options of sub-processes)<br>  --<span class="hljs-keyword">version</span>                <span class="hljs-keyword">Display</span> compiler <span class="hljs-keyword">version</span> information<br>  -dumpspecs               <span class="hljs-keyword">Display</span> all of the built <span class="hljs-keyword">in</span> spec strings<br>  -dumpversion             <span class="hljs-keyword">Display</span> the <span class="hljs-keyword">version</span> of the compiler<br>  -dumpmachine             <span class="hljs-keyword">Display</span> the compiler&#x27;s target processor<br>  -<span class="hljs-keyword">print</span>-<span class="hljs-keyword">search</span>-dirs       <span class="hljs-keyword">Display</span> the directories <span class="hljs-keyword">in</span> the compiler&#x27;s <span class="hljs-keyword">search</span> path<br>  -<span class="hljs-keyword">print</span>-libgcc-<span class="hljs-keyword">file</span>-name  <span class="hljs-keyword">Display</span> the name of the compiler&#x27;s companion library<br>  -<span class="hljs-keyword">print</span>-<span class="hljs-keyword">file</span>-name=&lt;lib&gt;   <span class="hljs-keyword">Display</span> the full path to library &lt;lib&gt;<br>  -<span class="hljs-keyword">print</span>-<span class="hljs-keyword">prog</span>-name=&lt;<span class="hljs-keyword">prog</span>&gt;  <span class="hljs-keyword">Display</span> the full path to compiler component &lt;<span class="hljs-keyword">prog</span>&gt;<br>  -<span class="hljs-keyword">print</span>-multiarch         <span class="hljs-keyword">Display</span> the target&#x27;s normalized GNU triplet, used <span class="hljs-keyword">as</span><br>                           a component <span class="hljs-keyword">in</span> the library path<br>  -<span class="hljs-keyword">print</span>-multi-directory   <span class="hljs-keyword">Display</span> the root directory <span class="hljs-keyword">for</span> versions of libgcc<br>  -<span class="hljs-keyword">print</span>-multi-lib         <span class="hljs-keyword">Display</span> the mapping between command <span class="hljs-keyword">line</span> options and<br>                           multiple library <span class="hljs-keyword">search</span> directories<br>  -<span class="hljs-keyword">print</span>-multi-os-directory <span class="hljs-keyword">Display</span> the relative path to OS libraries<br>  -<span class="hljs-keyword">print</span>-sysroot           <span class="hljs-keyword">Display</span> the target libraries directory<br>  -<span class="hljs-keyword">print</span>-sysroot-headers-suffix <span class="hljs-keyword">Display</span> the sysroot suffix used to find headers<br>  -Wa,&lt;options&gt;            Pass comma-separated &lt;options&gt; <span class="hljs-keyword">on</span> to the assembler<br>  -Wp,&lt;options&gt;            Pass comma-separated &lt;options&gt; <span class="hljs-keyword">on</span> to the preprocessor<br>  -Wl,&lt;options&gt;            Pass comma-separated &lt;options&gt; <span class="hljs-keyword">on</span> to the linker<br>  -Xassembler &lt;arg&gt;        Pass &lt;arg&gt; <span class="hljs-keyword">on</span> to the assembler<br>  -Xpreprocessor &lt;arg&gt;     Pass &lt;arg&gt; <span class="hljs-keyword">on</span> to the preprocessor<br>  -Xlinker &lt;arg&gt;           Pass &lt;arg&gt; <span class="hljs-keyword">on</span> to the linker<br>  -<span class="hljs-keyword">save</span>-temps              <span class="hljs-keyword">Do</span> not delete intermediate files<br>  -<span class="hljs-keyword">save</span>-temps=&lt;arg&gt;        <span class="hljs-keyword">Do</span> not delete intermediate files<br>  -<span class="hljs-keyword">no</span>-canonical-prefixes   <span class="hljs-keyword">Do</span> not canonicalize paths when building relative<br>                           prefixes to other gcc components<br>  -pipe                    <span class="hljs-keyword">Use</span> pipes rather than intermediate files<br>  -time                    Time the execution of each subprocess<br>  -specs=&lt;<span class="hljs-keyword">file</span>&gt;            Override built-<span class="hljs-keyword">in</span> specs with the contents of &lt;<span class="hljs-keyword">file</span>&gt;<br>  -std=&lt;standard&gt;          Assume that the <span class="hljs-keyword">input</span> sources are <span class="hljs-keyword">for</span> &lt;standard&gt;<br>  --sysroot=&lt;directory&gt;    <span class="hljs-keyword">Use</span> &lt;directory&gt; <span class="hljs-keyword">as</span> the root directory <span class="hljs-keyword">for</span> headers<br>                           and libraries<br>  -B &lt;directory&gt;           Add &lt;directory&gt; to the compiler&#x27;s <span class="hljs-keyword">search</span> paths<br>  -v                       <span class="hljs-keyword">Display</span> the programs invoked <span class="hljs-keyword">by</span> the compiler<br>  -###                     Like -v but options quoted and commands not executed<br>  -<span class="hljs-keyword">E</span>                       Preprocess only; <span class="hljs-keyword">do</span> not compile, assemble or link<br>  -S                       Compile only; <span class="hljs-keyword">do</span> not assemble or link<br>  -c                       Compile and assemble, but <span class="hljs-keyword">do</span> not link<br>  -o &lt;<span class="hljs-keyword">file</span>&gt;                Place the output into &lt;<span class="hljs-keyword">file</span>&gt;<br>  -pie                     Create a position independent executable<br>  -shared                  Create a shared library<br>  -x &lt;language&gt;            Specify the language of the following <span class="hljs-keyword">input</span> files<br>                           Permissible languages <span class="hljs-keyword">include</span>: c c++ assembler none<br>                           &#x27;none&#x27; <span class="hljs-keyword">means</span> revert to the default behavior of<br>                           guessing the language based <span class="hljs-keyword">on</span> the <span class="hljs-keyword">file</span>&#x27;s extension<br><br></code></pre></td></tr></table></figure>
+
+<p>输入 <code>g++ -v --help</code>可以看到更完整的指令。<br>例如还有些常用的：</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs delphi">-h FILENAME, -soname FILENAME: <span class="hljs-keyword">Set</span> internal <span class="hljs-keyword">name</span> <span class="hljs-keyword">of</span> shared <span class="hljs-keyword">library</span><br>-I <span class="hljs-keyword">PROGRAM</span>, --<span class="hljs-keyword">dynamic</span>-linker <span class="hljs-keyword">PROGRAM</span>: <span class="hljs-keyword">Set</span> <span class="hljs-keyword">PROGRAM</span> <span class="hljs-keyword">as</span> the <span class="hljs-keyword">dynamic</span> linker <span class="hljs-keyword">to</span> use<br>-l LIBNAME, --<span class="hljs-keyword">library</span> LIBNAME: Search <span class="hljs-keyword">for</span> <span class="hljs-keyword">library</span> LIBNAME<br>-L DIRECTORY, --<span class="hljs-keyword">library</span>-path DIRECTORY: Add DIRECTORY <span class="hljs-keyword">to</span> <span class="hljs-keyword">library</span> search path<br></code></pre></td></tr></table></figure>
+
+<p><strong>获得程序状态</strong>:</p>
+<ul>
+<li>windows: <code>echo %ERRORLEVEL%</code></li>
+<li>UNIX: <code>echo $?</code></li>
+</ul>
+<h2 id="1-2-初识输入输出"><a href="#1-2-初识输入输出" class="headerlink" title="1.2 初识输入输出"></a>1.2 初识输入输出</h2><h3 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h3><p>iostream库包含两个基础类型istream和ostream</p>
+<ul>
 <li>stream（流）：一个流就是一个字符序列，是从10设备流出或写入10设备的，流〞主要表达的是，随着时间的推移，字符是顺序生成或消耗的。</li>
 <li>istream： input stream，输入流</li>
 <li>ostream： output stream，输出流</li>
 </ul>
-<p>###标准库定义了4个io对象</p>
-<ul>
+<h3 id="标准库定义了4个io对象"><a href="#标准库定义了4个io对象" class="headerlink" title="标准库定义了4个io对象"></a>标准库定义了4个io对象</h3><ul>
 <li>cin: istream类型的对象，标准输入 (standard input)</li>
 <li>cout: ostream类型的对象，标准输出 (standard output)</li>
 <li>cerr: ostream类型的对象，标准错误(standard error)</li>
 <li>clog: ostream类型的对象，用来输出程序运行时的一般信息</li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    cout&lt;&lt;<span class="hljs-string">&quot;hello world&quot;</span>&lt;&lt;endl;<br>    <span class="hljs-type">int</span> i;<br>    cin&gt;&gt;i;<br>    cout&lt;&lt;i&lt;&lt;endl;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>#include &lt;iostream&gt;</code></li>
+<li><code>std::cout &lt;&lt; &quot;hello&quot;</code></li>
+<li><code>std::cin &gt;&gt; v1</code></li>
+</ul>
+<p>记住<code>&gt;&gt;</code>和<code>&lt;&lt;</code>返回的结果都是左操作数，也就是输入流和输出流本身。</p>
+<p><strong>endl</strong>：这是一个被称为<strong>操纵符</strong>（manipulator）的特殊值，效果是结束当前行，并将设备关联的缓冲区（buffer）中的内容刷到设备中。</p>
+<p>UNIX和Mac下键盘输入文件结束符：<code>ctrl+d</code>，Windows下：<code>ctrl+z</code></p>
+<p><strong>头文件</strong>：类的类型一般存储在头文件中，标准库的头文件使用<code>&lt;&gt;</code>，非标准库的头文件使用<code>&quot;&quot;</code>。申明写在<code>.h</code>文件，定义实现写在<code>.cpp</code>文件。</p>
+<p><strong>避免多次包含同一头文件</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> SALESITEM_H</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> SALESITEM_H</span><br><span class="hljs-comment">// Definition of Sales_itemclass and related functions goes here</span><br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br></code></pre></td></tr></table></figure>
+
+<p><strong>成员函数（类方法）</strong>：使用<code>.</code>调用。</p>
+<p><strong>命名空间（namespace）</strong>：使用作用域运算符<code>::</code>调用。</p>
 <h2 id="1-3-注释简介"><a href="#1-3-注释简介" class="headerlink" title="1.3 注释简介"></a>1.3 注释简介</h2><p>注释（comments）可以帮助读者理解程序。<br>C++中有两种注释：</p>
 <ul>
 <li>单行注释</li>
-<li>界定符对注释<ul>
-<li>不能嵌套</li>
+<li>多行注释<ul>
+<li>不能嵌套<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 单行注释</span><br><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * 多行注释格式</span><br><span class="hljs-comment"> * 每一行加一个*</span><br><span class="hljs-comment"> */</span><br></code></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
@@ -331,15 +364,18 @@
 <li>语句一般是顺序执行的</li>
 <li>但也提供多种不同的控制流语句</li>
 </ul>
-<h3 id="while语句"><a href="#while语句" class="headerlink" title="while语句"></a>while语句</h3><p>反复执行一段代码，直至给定条件为假为止。</p>
+<h3 id="while语句"><a href="#while语句" class="headerlink" title="while语句"></a>while语句</h3><p>反复执行一段代码，直至给定条件（condition）为假。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> sum = <span class="hljs-number">0</span>, val = <span class="hljs-number">1</span>;<br>    <span class="hljs-comment">// keep executing the while as long as val is less than or equal to 10</span><br>    <span class="hljs-keyword">while</span> (val &lt;= <span class="hljs-number">10</span>) &#123;<br>        sum += val;  <span class="hljs-comment">// assigns sum + val to sum</span><br>        ++val;       <span class="hljs-comment">// add 1 to val</span><br>    &#125;<br>    std::cout &lt;&lt; <span class="hljs-string">&quot;Sum of 1 to 10 inclusive is &quot;</span> <br>              &lt;&lt; sum &lt;&lt; std::endl;<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 <h3 id="for语句"><a href="#for语句" class="headerlink" title="for语句"></a>for语句</h3><ul>
 <li>在循环条件中检测变量，在循环体中递增变量的模式使用非常频繁<ul>
 <li>以至于c++专门定义了这样一种循环</li>
 </ul>
 </li>
-<li>for语句的出现就是为了筒化这一讨程<ul>
-<li>初始化语句、循环条件、循环体、表达式</li>
+<li>for语句的出现就是为了筒化这一流程<ul>
+<li>初始化语句（init-statement）</li>
+<li>循环条件（condition）</li>
+<li>循环体（body）</li>
+<li>表达式（expression）</li>
 </ul>
 </li>
 </ul>

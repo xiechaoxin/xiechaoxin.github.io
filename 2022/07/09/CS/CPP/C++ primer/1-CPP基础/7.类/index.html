@@ -16,19 +16,21 @@
   <meta name="author" content="Jerry Xie">
   <meta name="keywords" content="">
   
-    <meta name="description" content="7.类7.1定义抽象数据类型类的基本思想是数据抽象（接口与实现分离）和封裝（把实现藏起来） 设计 Sales_data 类设计Sales_data类  一个isbn成员函数，用于返回对象的ISBN编号 一个combine成员函数，用户一个Sales_data对象加到另一个对象上 一个名为add的函数，指向两个Sales_data对象的加法 一个read函数，将数据从istream读入到Sales_">
+    <meta name="description" content="7.类7.1定义抽象数据类型类的基本思想是  数据抽象（data abstraction）：接口与实现分离 数据抽象是一种依赖于接口（interface）和实现（implementation）分离的编程技术。   封装（encapsulation）：把实现对外隐藏起来  例子：设计Sales_data类  一个isbn成员函数，用于返回对象的ISBN编号 一个combine成员函数，用户一个Sal">
 <meta property="og:type" content="article">
 <meta property="og:title" content="7.类">
 <meta property="og:url" content="https://xiechaoxin.github.io/2022/07/09/CS/CPP/C++%20primer/1-CPP%E5%9F%BA%E7%A1%80/7.%E7%B1%BB/index.html">
 <meta property="og:site_name" content="Jerry&#39;s blog">
-<meta property="og:description" content="7.类7.1定义抽象数据类型类的基本思想是数据抽象（接口与实现分离）和封裝（把实现藏起来） 设计 Sales_data 类设计Sales_data类  一个isbn成员函数，用于返回对象的ISBN编号 一个combine成员函数，用户一个Sales_data对象加到另一个对象上 一个名为add的函数，指向两个Sales_data对象的加法 一个read函数，将数据从istream读入到Sales_">
+<meta property="og:description" content="7.类7.1定义抽象数据类型类的基本思想是  数据抽象（data abstraction）：接口与实现分离 数据抽象是一种依赖于接口（interface）和实现（implementation）分离的编程技术。   封装（encapsulation）：把实现对外隐藏起来  例子：设计Sales_data类  一个isbn成员函数，用于返回对象的ISBN编号 一个combine成员函数，用户一个Sal">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xiechaoxin.github.io/2022/07/09/CS/CPP/C++%20primer/1-CPP%E5%9F%BA%E7%A1%80/7.%E7%B1%BB/image-20220709064110192.png">
 <meta property="article:published_time" content="2022-07-09T05:50:12.000Z">
-<meta property="article:modified_time" content="2022-07-08T22:36:23.119Z">
+<meta property="article:modified_time" content="2022-07-09T21:37:58.402Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="C++ primer">
 <meta property="article:tag" content="1-CPP基础">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://xiechaoxin.github.io/2022/07/09/CS/CPP/C++%20primer/1-CPP%E5%9F%BA%E7%A1%80/7.%E7%B1%BB/image-20220709064110192.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -222,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.1k words
+          3.6k words
         
       </span>
     
@@ -233,7 +235,7 @@
         
         
         
-          35 mins
+          30 mins
         
       </span>
     
@@ -284,8 +286,15 @@
             
               <div class="markdown-body">
                 
-                <h1 id="7-类"><a href="#7-类" class="headerlink" title="7.类"></a>7.类</h1><h2 id="7-1定义抽象数据类型"><a href="#7-1定义抽象数据类型" class="headerlink" title="7.1定义抽象数据类型"></a>7.1定义抽象数据类型</h2><p>类的基本思想是数据抽象（接口与实现分离）和封裝（把实现藏起来）</p>
-<h3 id="设计-Sales-data-类"><a href="#设计-Sales-data-类" class="headerlink" title="设计 Sales_data 类"></a>设计 Sales_data 类</h3><p>设计Sales_data类</p>
+                <h1 id="7-类"><a href="#7-类" class="headerlink" title="7.类"></a>7.类</h1><h2 id="7-1定义抽象数据类型"><a href="#7-1定义抽象数据类型" class="headerlink" title="7.1定义抽象数据类型"></a>7.1定义抽象数据类型</h2><p>类的基本思想是</p>
+<ul>
+<li>数据抽象（data abstraction）：接口与实现分离<ul>
+<li>数据抽象是一种依赖于<strong>接口</strong>（interface）和<strong>实现</strong>（implementation）分离的编程技术。</li>
+</ul>
+</li>
+<li>封装（encapsulation）：把实现对外隐藏起来</li>
+</ul>
+<h3 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h3><p>设计Sales_data类</p>
 <ol>
 <li>一个isbn成员函数，用于返回对象的ISBN编号</li>
 <li>一个combine成员函数，用户一个Sales_data对象加到另一个对象上</li>
@@ -297,30 +306,52 @@
 <p>类的用户，即类的使用者，也是开发人员，包括类的开发人员本人。</p>
 <p>但设计类的接口时，需要假设类的用户对类的细节并不知情。</p>
 </blockquote>
-<ul>
-<li>成员函数的声明必须在类的内部，定义可以在类内部也可以在类外部</li>
-<li>常量成员函数：类的成员函数后面加 const，表明这个函数不会修改这个类对象的数据成员</li>
+<h3 id="成员-（Member）"><a href="#成员-（Member）" class="headerlink" title="成员 （Member）"></a>成员 （Member）</h3><ul>
+<li>必须在类的内部声明，不能在其他地方增加成员。</li>
+<li>成员可以是数据，函数，类型别名。</li>
 </ul>
+<h3 id="类的成员函数"><a href="#类的成员函数" class="headerlink" title="类的成员函数"></a>类的成员函数</h3><ul>
+<li><p>成员函数的<strong>声明</strong>必须在类的内部。</p>
+</li>
+<li><p>成员函数的<strong>定义</strong>既可以在类的内部也可以在外部。</p>
+</li>
+<li><p>使用点运算符 <code>.</code> 调用成员函数。</p>
+</li>
+<li><p>必须对任何<code>const</code>或引用类型成员以及没有默认构造函数的类类型的任何成员使用初始化式。</p>
+</li>
+<li><p><code>ConstRef::ConstRef(int ii): i(ii), ci(i), ri(ii) &#123; &#125;</code></p>
+</li>
+<li><p>默认实参： <code>Sales_item(const std::string &amp;book): isbn(book), units_sold(0), revenue(0.0) &#123; &#125;</code></p>
+</li>
+<li><p><code>*this</code>：</p>
 <ul>
-<li>常量指针:const int *PtrConst; —pci</li>
-<li>指针常量 int *const ConstPtr&#x3D;&amp;a;&#x2F;必明初始化—cpi</li>
-<li>常量指针和指针常量参考【2.变量和基本类型】</li>
+<li>每个成员函数都有一个额外的，隐含的形参<code>this</code>。</li>
+<li><code>this</code>总是指向当前对象，因此<code>this</code>是一个常量指针。</li>
+<li>形参表后面的<code>const</code>，改变了隐含的<code>this</code>形参的类型，如 <code>bool same_isbn(const Sales_item &amp;rhs) const</code>，这种函数称为“常量成员函数”（<code>this</code>指向的当前对象是常量）。</li>
+<li><code>return *this;</code>可以让成员函数连续调用。</li>
+<li>普通的非<code>const</code>成员函数：<code>this</code>是指向类类型的<code>const</code>指针（可以改变<code>this</code>所指向的值，不能改变<code>this</code>保存的地址）。</li>
+<li><code>const</code>成员函数：<code>this</code>是指向const类类型的<code>const</code>指针（既不能改变<code>this</code>所指向的值，也不能改变<code>this</code>保存的地址）。</li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> SALESITEM_H</span><br><span class="hljs-comment">// we&#x27;re here only if SALESITEM_H has not yet been defined </span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> SALESITEM_H</span><br><br><span class="hljs-comment">// Definition of Sales_item class and related functions goes here</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Sales_item</span> &#123;<br><span class="hljs-comment">// these declarations are explained section 7.2.1, p. 270 </span><br><span class="hljs-comment">// and in chapter 14, pages 557, 558, 561</span><br><span class="hljs-keyword">friend</span> std::istream&amp; <span class="hljs-keyword">operator</span>&gt;&gt;(std::istream&amp;, Sales_item&amp;);<br><span class="hljs-keyword">friend</span> std::ostream&amp; <span class="hljs-keyword">operator</span>&lt;&lt;(std::ostream&amp;, <span class="hljs-type">const</span> Sales_item&amp;);<br><span class="hljs-keyword">friend</span> <span class="hljs-type">bool</span> <span class="hljs-keyword">operator</span>&lt;(<span class="hljs-type">const</span> Sales_item&amp;, <span class="hljs-type">const</span> Sales_item&amp;);<br><span class="hljs-keyword">friend</span> <span class="hljs-type">bool</span> <br><span class="hljs-keyword">operator</span>==(<span class="hljs-type">const</span> Sales_item&amp;, <span class="hljs-type">const</span> Sales_item&amp;);<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">// constructors are explained in section 7.1.4, pages 262 - 265</span><br>    <span class="hljs-comment">// default constructor needed to initialize members of built-in type</span><br>    <span class="hljs-built_in">Sales_item</span>() = <span class="hljs-keyword">default</span>;<br>    <span class="hljs-built_in">Sales_item</span>(<span class="hljs-type">const</span> std::string &amp;book): <span class="hljs-built_in">bookNo</span>(book) &#123; &#125;<br>    <span class="hljs-built_in">Sales_item</span>(std::istream &amp;is) &#123; is &gt;&gt; *<span class="hljs-keyword">this</span>; &#125;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">// operations on Sales_item objects</span><br>    <span class="hljs-comment">// member binary operator: left-hand operand bound to implicit this pointer</span><br>    Sales_item&amp; <span class="hljs-keyword">operator</span>+=(<span class="hljs-type">const</span> Sales_item&amp;);<br>    <br>    <span class="hljs-comment">// operations on Sales_item objects</span><br>    <span class="hljs-function">std::string <span class="hljs-title">isbn</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>&#123; <span class="hljs-keyword">return</span> bookNo; &#125;<br>    <span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">avg_price</span><span class="hljs-params">()</span> <span class="hljs-type">const</span></span>;<br><span class="hljs-comment">// private members as before</span><br><span class="hljs-keyword">private</span>:<br>    std::string bookNo;      <span class="hljs-comment">// implicitly initialized to the empty string</span><br>    <span class="hljs-type">unsigned</span> units_sold = <span class="hljs-number">0</span>; <span class="hljs-comment">// explicitly initialized</span><br>    <span class="hljs-type">double</span> revenue = <span class="hljs-number">0.0</span>;<br>&#125;;<br><br><span class="hljs-comment">// used in chapter 10</span><br><span class="hljs-function"><span class="hljs-keyword">inline</span></span><br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">compareIsbn</span><span class="hljs-params">(<span class="hljs-type">const</span> Sales_item &amp;lhs, <span class="hljs-type">const</span> Sales_item &amp;rhs)</span> </span><br><span class="hljs-function"></span>&#123; <span class="hljs-keyword">return</span> lhs.<span class="hljs-built_in">isbn</span>() == rhs.<span class="hljs-built_in">isbn</span>(); &#125;<br><br><span class="hljs-comment">// nonmember binary operator: must declare a parameter for each operand</span><br>Sales_item <span class="hljs-keyword">operator</span>+(<span class="hljs-type">const</span> Sales_item&amp;, <span class="hljs-type">const</span> Sales_item&amp;);<br><br><span class="hljs-keyword">inline</span> <span class="hljs-type">bool</span> <br><span class="hljs-keyword">operator</span>==(<span class="hljs-type">const</span> Sales_item &amp;lhs, <span class="hljs-type">const</span> Sales_item &amp;rhs)<br>&#123;<br>    <span class="hljs-comment">// must be made a friend of Sales_item</span><br>    <span class="hljs-keyword">return</span> lhs.units_sold == rhs.units_sold &amp;&amp;<br>           lhs.revenue == rhs.revenue &amp;&amp;<br>           lhs.<span class="hljs-built_in">isbn</span>() == rhs.<span class="hljs-built_in">isbn</span>();<br>&#125;<br><br><span class="hljs-keyword">inline</span> <span class="hljs-type">bool</span> <br><span class="hljs-keyword">operator</span>!=(<span class="hljs-type">const</span> Sales_item &amp;lhs, <span class="hljs-type">const</span> Sales_item &amp;rhs)<br>&#123;<br>    <span class="hljs-keyword">return</span> !(lhs == rhs); <span class="hljs-comment">// != defined in terms of operator==</span><br>&#125;<br><br><span class="hljs-comment">// assumes that both objects refer to the same ISBN</span><br>Sales_item&amp; Sales_item::<span class="hljs-keyword">operator</span>+=(<span class="hljs-type">const</span> Sales_item&amp; rhs) <br>&#123;<br>    units_sold += rhs.units_sold; <br>    revenue += rhs.revenue; <br>    <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>&#125;<br><br><span class="hljs-comment">// assumes that both objects refer to the same ISBN</span><br>Sales_item <br><span class="hljs-keyword">operator</span>+(<span class="hljs-type">const</span> Sales_item&amp; lhs, <span class="hljs-type">const</span> Sales_item&amp; rhs) <br>&#123;<br>    <span class="hljs-function">Sales_item <span class="hljs-title">ret</span><span class="hljs-params">(lhs)</span></span>;  <span class="hljs-comment">// copy (|lhs|) into a local object that we&#x27;ll return</span><br>    ret += rhs;           <span class="hljs-comment">// add in the contents of (|rhs|) </span><br>    <span class="hljs-keyword">return</span> ret;           <span class="hljs-comment">// return (|ret|) by value</span><br>&#125;<br><br>std::istream&amp; <br><span class="hljs-keyword">operator</span>&gt;&gt;(std::istream&amp; in, Sales_item&amp; s)<br>&#123;<br>    <span class="hljs-type">double</span> price;<br>    in &gt;&gt; s.bookNo &gt;&gt; s.units_sold &gt;&gt; price;<br>    <span class="hljs-comment">// check that the inputs succeeded</span><br>    <span class="hljs-keyword">if</span> (in)<br>        s.revenue = s.units_sold * price;<br>    <span class="hljs-keyword">else</span> <br>        s = <span class="hljs-built_in">Sales_item</span>();  <span class="hljs-comment">// input failed: reset object to default state</span><br>    <span class="hljs-keyword">return</span> in;<br>&#125;<br><br>std::ostream&amp; <br><span class="hljs-keyword">operator</span>&lt;&lt;(std::ostream&amp; out, <span class="hljs-type">const</span> Sales_item&amp; s)<br>&#123;<br>    out &lt;&lt; s.<span class="hljs-built_in">isbn</span>() &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; s.units_sold &lt;&lt; <span class="hljs-string">&quot; &quot;</span><br>        &lt;&lt; s.revenue &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; s.<span class="hljs-built_in">avg_price</span>();<br>    <span class="hljs-keyword">return</span> out;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">Sales_item::avg_price</span><span class="hljs-params">()</span> <span class="hljs-type">const</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">if</span> (units_sold) <br>        <span class="hljs-keyword">return</span> revenue/units_sold; <br>    <span class="hljs-keyword">else</span> <br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br></code></pre></td></tr></table></figure>
-
-
-
-<h3 id="定义改进的-Sales-data-类"><a href="#定义改进的-Sales-data-类" class="headerlink" title="定义改进的 Sales_data 类"></a>定义改进的 Sales_data 类</h3><p>类作用域和成员函数</p>
+</li>
+<li><p>类作用域和成员函数</p>
 <ul>
 <li>成员体可以随意使用类中的其他成员而无需在意这些成员出现的次序。</li>
+<li>编译器分两步处理类：首先编译成员的声明，然后才轮到成员函数体。</li>
 </ul>
-<blockquote>
-<p>编译器分两步处理类：首先编译成员的声明，然后才轮到成员函数体。</p>
-</blockquote>
-<h3 id="定义类相关的非成员函数"><a href="#定义类相关的非成员函数" class="headerlink" title="定义类相关的非成员函数"></a>定义类相关的非成员函数</h3><ul>
+</li>
+</ul>
+<h3 id="非成员函数"><a href="#非成员函数" class="headerlink" title="非成员函数"></a>非成员函数</h3><ul>
+<li>和类相关的非成员函数，定义和声明都应该在类的外部。</li>
 <li>如果非成员函数是类接口的组成部分，则应该与类在同一个头文件中声明</li>
 </ul>
-<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><ul>
+<h3 id="类的构造函数"><a href="#类的构造函数" class="headerlink" title="类的构造函数"></a>类的构造函数</h3><ul>
+<li>类通过一个或者几个特殊的成员函数来控制其对象的初始化过程，这些函数叫做<strong>构造函数</strong>。</li>
+<li>构造函数是特殊的成员函数。</li>
+<li>构造函数放在类的<code>public</code>部分。</li>
+<li>与类同名的成员函数。</li>
+<li><code>Sales_item(): units_sold(0), revenue(0.0) &#123; &#125;</code></li>
+<li><code>=default</code>要求编译器合成默认的构造函数。(<code>C++11</code>)</li>
+<li>初始化列表：冒号和花括号之间的代码： <code>Sales_item(): units_sold(0), revenue(0.0) &#123; &#125;</code></li>
 <li>构造函数与类名同名，没有返回值，它的任务是初始化类对象的数据成员</li>
 <li>类可以包括多个构造函数，和重载函数差不多</li>
 <li>构造函数不能被声明为const的<ul>
@@ -331,23 +362,125 @@
 <ul>
 <li>只有当类没有声明任何构造函数，并且所有类类型的成员都有默认构造函数是，编译器才会自动地生成默认构造函数。</li>
 </ul>
-<h3 id="拷贝、赋值和析构"><a href="#拷贝、赋值和析构" class="headerlink" title="拷贝、赋值和析构"></a>拷贝、赋值和析构</h3><ul>
-<li>如果没有定义，编译器将会提供合成的默认版本</li>
-</ul>
-<blockquote>
-<p>管理动态内存的类通常不能依赖于编译器合成的版本。使用vector或string除外！</p>
-</blockquote>
-<h2 id="7-2-访问控制与封裝"><a href="#7-2-访问控制与封裝" class="headerlink" title="7.2 访问控制与封裝"></a>7.2 访问控制与封裝</h2><p>使用访问说明符加强类的封装性</p>
+<h2 id="7-2-访问控制与封装"><a href="#7-2-访问控制与封装" class="headerlink" title="7.2 访问控制与封装"></a>7.2 访问控制与封装</h2><p>使用访问说明符加强类的封装性</p>
 <ul>
-<li>public：类的接口，在整个程序内可以被访问。</li>
-<li>private：封装（即隐藏）类的实现细节。</li>
+<li><strong>访问说明符</strong>（access specifiers）：<ul>
+<li><code>public</code>：定义在 <code>public</code>后面的成员在整个程序内可以被访问； <code>public</code>成员定义类的接口。</li>
+<li><code>private</code>：定义在 <code>private</code>后面的成员可以被类的成员函数访问，但不能被使用该类的代码访问； <code>private</code>隐藏了类的实现细节。</li>
+</ul>
+</li>
+<li>使用 <code>class</code>或者 <code>struct</code>：都可以被用于定义一个类。唯一的却别在于默认访问权限。<ul>
+<li>使用 <code>class</code>：在第一个访问说明符之前的成员是 <code>priavte</code>的。</li>
+<li>使用 <code>struct</code>：在第一个访问说明符之前的成员是 <code>public</code>的。</li>
+</ul>
+</li>
+</ul>
+<h3 id="封装的益处"><a href="#封装的益处" class="headerlink" title="封装的益处"></a>封装的益处</h3><ul>
+<li>确保用户的代码不会无意间破坏封装对象的状态。</li>
+<li>被封装的类的具体实现细节可以随时改变，而无需调整用户级别的代码。</li>
+</ul>
+<h3 id="友元"><a href="#友元" class="headerlink" title="友元"></a>友元</h3><ul>
+<li>允许特定的<strong>非成员函数</strong>访问自己类的<strong>私有成员</strong>.</li>
+<li>友元的声明以关键字 <code>friend</code>开始。 <code>friend Sales_data add(const Sales_data&amp;, const Sales_data&amp;);</code>表示非成员函数<code>add</code>可以访问类的非公有成员。</li>
+<li>通常将友元声明成组地放在<strong>类定义的开始或者结尾</strong>。</li>
+<li>类之间的友元：<ul>
+<li>如果一个类指定了友元类，则友元类的成员函数可以访问此类包括非公有成员在内的所有成员。</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-3-类的其他特性"><a href="#7-3-类的其他特性" class="headerlink" title="7.3 类的其他特性"></a>7.3 类的其他特性</h2><ul>
+<li>成员函数作为内联函数 <code>inline</code>：<ul>
+<li>在类的内部，常有一些规模较小的函数适合于被声明成内联函数。</li>
+<li><strong>定义</strong>在类内部的函数是<strong>自动内联</strong>的。</li>
+<li>在类外部定义的成员函数，也可以在声明时显式地加上 <code>inline</code>。</li>
+</ul>
+</li>
+<li><strong>可变数据成员</strong> （mutable data member）：<ul>
+<li><code>mutable size_t access_ctr;</code></li>
+<li>永远不会是<code>const</code>，即使它是<code>const</code>对象的成员。</li>
+</ul>
+</li>
+<li><strong>类类型</strong>：<ul>
+<li>每个类定义了唯一的类型。</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-4-类的作用域"><a href="#7-4-类的作用域" class="headerlink" title="7.4 类的作用域"></a>7.4 类的作用域</h2><h4 id="名字查找与类的作用域"><a href="#名字查找与类的作用域" class="headerlink" title="名字查找与类的作用域"></a>名字查找与类的作用域</h4><ul>
+<li>一个类就是一个作用域</li>
+<li>每个类都会定义它自己的作用域。在类的作用域之外，普通的数据和函数成员只能由引用、对象、指针使用成员访问运算符来访问。</li>
+<li>函数的<strong>返回类型</strong>通常在函数名前面，因此当成员函数定义在类的外部时，返回类型中使用的名字都位于类的作用域之外。</li>
+<li>如果成员使用了外层作用域中的某个名字，而该名字代表一种<strong>类型</strong>，则类不能在之后重新定义该名字。</li>
+<li>类中的<strong>类型名定义</strong>都要放在一开始。</li>
+</ul>
+<p><img src="/2022/07/09/CS/CPP/C++%20primer/1-CPP%E5%9F%BA%E7%A1%80/7.%E7%B1%BB/image-20220709064110192.png" srcset="/img/loading.gif" lazyload alt="image-20220709064110192"></p>
+<h2 id="7-5-构造函数再探"><a href="#7-5-构造函数再探" class="headerlink" title="7.5 构造函数再探"></a>7.5 构造函数再探</h2><h3 id="构造函数初始值列表"><a href="#构造函数初始值列表" class="headerlink" title="构造函数初始值列表"></a>构造函数初始值列表</h3><ul>
+<li>类似<code>python</code>使用赋值的方式有时候不行，比如<code>const</code>或者引用类型的数据，只能初始化，不能赋值。（注意初始化和赋值的区别）</li>
+<li>最好让构造函数初始值的顺序和成员声明的顺序保持一致。</li>
+<li>如果一个构造函数为所有参数都提供了默认参数，那么它实际上也定义了默认的构造函数。</li>
+</ul>
+<h3 id="委托构造函数（delegating-constructor-C-11）"><a href="#委托构造函数（delegating-constructor-C-11）" class="headerlink" title="委托构造函数（delegating constructor, C++11）"></a>委托构造函数（delegating constructor, <code>C++11</code>）</h3><ul>
+<li>委托构造函数将自己的职责委托给了其他构造函数。</li>
+<li><code>Sale_data(): Sale_data(&quot;&quot;, 0, 0) &#123;&#125;</code></li>
+</ul>
+<h3 id="默认构造函数的作用"><a href="#默认构造函数的作用" class="headerlink" title="默认构造函数的作用"></a>默认构造函数的作用</h3><p>一个构造函数为所有参数都提供了默认实参，也就定义了默认构造函数</p>
+<h3 id="隐式的类类型转换"><a href="#隐式的类类型转换" class="headerlink" title="隐式的类类型转换"></a>隐式的类类型转换</h3><ul>
+<li>如果构造函数<strong>只接受一个实参</strong>，则它实际上定义了转换为此类类型的<strong>隐式转换机制</strong>。这种构造函数又叫<strong>转换构造函数</strong>（converting constructor）。</li>
+<li>编译器只会自动地执行<code>仅一步</code>类型转换。</li>
+<li>抑制构造函数定义的隐式转换：<ul>
+<li>将构造函数声明为<code>explicit</code>加以阻止。</li>
+<li><code>explicit</code>构造函数只能用于直接初始化，不能用于拷贝形式的初始化。</li>
+</ul>
+</li>
+</ul>
+<h3 id="聚合类"><a href="#聚合类" class="headerlink" title="聚合类"></a>聚合类</h3><ul>
+<li>满足以下所有条件：<ul>
+<li>所有成员都是<code>public</code>的。</li>
+<li>没有定义任何构造函数。</li>
+<li>没有类内初始值。</li>
+<li>没有基类，也没有<code>virtual</code>函数。</li>
+</ul>
+</li>
+<li>可以使用一个花括号括起来的成员初始值列表，初始值的顺序必须和声明的顺序一致。</li>
 </ul>
 <blockquote>
-<p>class和struct定义类唯一的区别就是默认的访问权限不同。</p>
+<p>如果成员是const、引用、或者属于某种未提供默认构造函数的类类型，必须通过构造函数初始列表提供初始值</p>
 </blockquote>
-<h3 id="友元"><a href="#友元" class="headerlink" title="友元"></a>友元</h3><p>友元：允许其他类或函数访问自己的非公有成员</p>
-<p>关键词：friend</p>
-<h2 id="7-3-类的其他特性"><a href="#7-3-类的其他特性" class="headerlink" title="7.3 类的其他特性"></a>7.3 类的其他特性</h2><h3 id="类成员再探"><a href="#类成员再探" class="headerlink" title="类成员再探"></a>类成员再探</h3><h3 id="返回-this的成员函数"><a href="#返回-this的成员函数" class="headerlink" title="返回*this的成员函数"></a>返回*this的成员函数</h3><h3 id="类类型"><a href="#类类型" class="headerlink" title="类类型"></a>类类型</h3><h3 id="友元再探"><a href="#友元再探" class="headerlink" title="友元再探"></a>友元再探</h3><h2 id="7-4-类的作用域"><a href="#7-4-类的作用域" class="headerlink" title="7.4 类的作用域"></a>7.4 类的作用域</h2><h2 id="7-5-构造函数再探"><a href="#7-5-构造函数再探" class="headerlink" title="7.5 构造函数再探"></a>7.5 构造函数再探</h2><h2 id="7-6-类的静态成员"><a href="#7-6-类的静态成员" class="headerlink" title="7.6 类的静态成员"></a>7.6 类的静态成员</h2>
+<h3 id="字面值常量类"><a href="#字面值常量类" class="headerlink" title="字面值常量类"></a>字面值常量类</h3><ul>
+<li><code>constexpr</code>函数的参数和返回值必须是字面值。</li>
+<li><strong>字面值类型</strong>：除了算术类型、引用和指针外，某些类也是字面值类型。</li>
+<li>数据成员都是字面值类型的聚合类是字面值常量类。</li>
+<li>如果不是聚合类，则必须满足下面所有条件：<ul>
+<li>数据成员都必须是字面值类型。</li>
+<li>类必须至少含有一个<code>constexpr</code>构造函数。</li>
+<li>如果一个数据成员含有类内部初始值，则内置类型成员的初始值必须是一条常量表达式；或者如果成员属于某种类类型，则初始值必须使用成员自己的<code>constexpr</code>构造函数。</li>
+<li>类必须使用析构函数的默认定义，该成员负责销毁类的对象。</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-6-类的静态成员"><a href="#7-6-类的静态成员" class="headerlink" title="7.6 类的静态成员"></a>7.6 类的静态成员</h2><ul>
+<li>非<code>static</code>数据成员存在于类类型的每个对象中。</li>
+<li><code>static</code>数据成员独立于该类的任意对象而存在。</li>
+<li>每个<code>static</code>数据成员是与类关联的对象，并不与该类的对象相关联。</li>
+<li>声明：<ul>
+<li>声明之前加上关键词<code>static</code>。</li>
+</ul>
+</li>
+<li>使用：<ul>
+<li>使用<strong>作用域运算符</strong><code>::</code>直接访问静态成员:<code>r = Account::rate();</code></li>
+<li>也可以使用对象访问：<code>r = ac.rate();</code></li>
+</ul>
+</li>
+<li>定义：<ul>
+<li>在类外部定义时不用加<code>static</code>。</li>
+</ul>
+</li>
+<li>初始化：<ul>
+<li>通常不在类的内部初始化，而是在定义时进行初始化，如 <code>double Account::interestRate = initRate();</code></li>
+<li>如果一定要在类内部定义，则要求必须是字面值常量类型的<code>constexpr</code>。</li>
+</ul>
+</li>
+</ul>
+
                 
               </div>
             
@@ -409,6 +542,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="../../../../../../10/CS/CPP/C++%20primer/2-CPP%E6%A0%87%E5%87%86%E5%BA%93/8.IO%E5%BA%93/" title="8. IO库">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">8. IO库</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
