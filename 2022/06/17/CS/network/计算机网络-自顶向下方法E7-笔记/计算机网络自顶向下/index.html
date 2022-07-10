@@ -319,7 +319,7 @@
 <meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/network/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E6%96%B9%E6%B3%95E7-%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B/da37acb2e4eec86903c99adee0f736a8.png">
 <meta property="og:image" content="https://xiechaoxin.github.io/2022/06/17/CS/network/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E6%96%B9%E6%B3%95E7-%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B/9d566df9192e3deb225f60a7edb9764f.png">
 <meta property="article:published_time" content="2022-06-17T17:59:12.000Z">
-<meta property="article:modified_time" content="2022-07-09T21:37:59.458Z">
+<meta property="article:modified_time" content="2022-07-10T23:51:46.112Z">
 <meta property="article:author" content="Jerry Xie">
 <meta property="article:tag" content="network">
 <meta property="article:tag" content="计算机网络-自顶向下方法E7-笔记">
@@ -1161,7 +1161,7 @@
 <h3 id="EMail-SMTP-RFC-2821-原理"><a href="#EMail-SMTP-RFC-2821-原理" class="headerlink" title="EMail: SMTP [RFC 2821] 原理"></a>EMail: SMTP [RFC 2821] 原理</h3><p> 使用TCP在客户端和服务器之间传送报文，端口号为25<br> 直接传输：从发送方服务器到接收方服务器<br> 传输的3个阶段 握手 传输报文 关闭<br> 命令&#x2F;响应交互<br>命令：ASCII文本<br>响应：状态码和状态信息<br> 报文必须为7位ASCII码 （规范传输内容）</p>
 <p>举例：Alice给Bob发送报文</p>
 <ol>
-<li>Alice使用用户代理撰写邮件并发送给 <a href="mailto:&#x62;&#x6f;&#98;&#64;&#115;&#x6f;&#109;&#101;&#115;&#99;&#x68;&#x6f;&#111;&#108;&#46;&#x65;&#100;&#117;">&#x62;&#x6f;&#98;&#64;&#115;&#x6f;&#109;&#101;&#115;&#99;&#x68;&#x6f;&#111;&#108;&#46;&#x65;&#100;&#117;</a><br><strong>2) Alice的用户代理将邮件发送到她的邮件服务器；邮件放在报文队列中</strong></li>
+<li>Alice使用用户代理撰写邮件并发送给 <a href="mailto:&#x62;&#111;&#x62;&#64;&#115;&#111;&#x6d;&#x65;&#x73;&#x63;&#x68;&#x6f;&#x6f;&#x6c;&#x2e;&#101;&#x64;&#117;">&#x62;&#111;&#x62;&#64;&#115;&#111;&#x6d;&#x65;&#x73;&#x63;&#x68;&#x6f;&#x6f;&#x6c;&#x2e;&#101;&#x64;&#117;</a><br><strong>2) Alice的用户代理将邮件发送到她的邮件服务器；邮件放在报文队列中</strong></li>
 <li>SMTP的客户端打开到Bob邮件服务器的TCP连接<br><strong>4) SMTP客户端通过TCP连接发送Alice的邮件</strong><br><strong>5) Bob的邮件服务器将邮件放到Bob的邮箱</strong></li>
 <li>Bob调用他的用户代理阅读邮件</li>
 </ol>
@@ -1189,7 +1189,7 @@
 <p><strong>IMAP</strong><br> IMAP服务器将每个报文 与一个文件夹联系起来<br> 允许用户用目录来组织 报文<br> 允许用户读取报文组件<br> IMAP在会话过程中保留 用户状态：<br> 目录名、报文ID与目录名 之间映射</p>
 <h2 id="2-5-DNS"><a href="#2-5-DNS" class="headerlink" title="2.5 DNS"></a>2.5 DNS</h2><p>DNS(Domain Name System)</p>
 <p>从域名到IP地址的转换（主要功能）</p>
-<h3 id="DNS的必要性"><a href="#DNS的必要性" class="headerlink" title="DNS的必要性"></a>DNS的必要性</h3><p>  IP地址标识主机、路由器<br>  <strong>但IP地址不好记忆，不便人类使用(没有意义)</strong><br>  <strong>人类一般倾向于使用一些有意义的字符串来标识 Internet上的设备</strong><br> <strong>例如：<a href="mailto:&#113;&#122;&#104;&#x65;&#110;&#x67;&#64;&#x75;&#x73;&#x74;&#99;&#x2e;&#x65;&#x64;&#x75;&#x2e;&#x63;&#x6e;">&#113;&#122;&#104;&#x65;&#110;&#x67;&#64;&#x75;&#x73;&#x74;&#99;&#x2e;&#x65;&#x64;&#x75;&#x2e;&#x63;&#x6e;</a></strong><br> <strong>所在的邮件服务器 <a target="_blank" rel="noopener" href="http://www.ustc.edu.cn/">www.ustc.edu.cn</a> 所在的web服务器</strong></p>
+<h3 id="DNS的必要性"><a href="#DNS的必要性" class="headerlink" title="DNS的必要性"></a>DNS的必要性</h3><p>  IP地址标识主机、路由器<br>  <strong>但IP地址不好记忆，不便人类使用(没有意义)</strong><br>  <strong>人类一般倾向于使用一些有意义的字符串来标识 Internet上的设备</strong><br> <strong>例如：<a href="mailto:&#113;&#122;&#104;&#x65;&#110;&#x67;&#64;&#x75;&#115;&#116;&#99;&#46;&#101;&#100;&#x75;&#x2e;&#x63;&#x6e;">&#113;&#122;&#104;&#x65;&#110;&#x67;&#64;&#x75;&#115;&#116;&#99;&#46;&#101;&#100;&#x75;&#x2e;&#x63;&#x6e;</a></strong><br> <strong>所在的邮件服务器 <a target="_blank" rel="noopener" href="http://www.ustc.edu.cn/">www.ustc.edu.cn</a> 所在的web服务器</strong></p>
 <p>  存在着“字符串”—IP地址的转换的必要性<br>  人类用户提供要访问机器的“字符串”名称<br>  由DNS负责转换成为二进制的网络地址</p>
 <p>DNS系统需要解决的问题</p>
 <p> 问题1：如何命名设备<br> 用有意义的字符串：好记，便于人类用使用<br> 解决一个平面命名的重名问题：层次化命名<br> 问题2：如何完成名字到IP地址的转换<br> 分布式的数据库维护和响应名字查询<br> 问题3：如何维护：增加或者删除一个域，需 要在域名系统中做哪些工作</p>
@@ -4255,9 +4255,9 @@ char **h_addr_list;	//IP地址
                   <article class="post-prev col-6">
                     
                     
-                      <a href="../m_README/" title="m_README">
+                      <a href="../../powerNode/01.%E4%BA%92%E8%81%94%E7%BD%91%E9%80%9A%E4%BF%A1%E6%B5%81%E7%A8%8B/" title="01.互联网通信流程">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">m_README</span>
+                        <span class="hidden-mobile">01.互联网通信流程</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
