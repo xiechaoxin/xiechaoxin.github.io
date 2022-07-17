@@ -25,7 +25,7 @@ date: 2022-07-17 11:06:53
 
 ### 异常的层次结构
 
-![image-20211029093104824](https://gitee.com/xcxhalo/picgo/raw/master/Img/image-20211029093104824.png)
+![image-20211029093104824](Java进阶-04-异常/image-20211029093104824.png)
 
 
 

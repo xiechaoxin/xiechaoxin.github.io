@@ -68,7 +68,7 @@ Student[] student = {
 
 ### 内存结构
 
-![image-20211025210844899](https://gitee.com/xcxhalo/picgo/raw/master/Img/image-20211025210844899.png)
+![image-20211025210844899](Java进阶-02-数组/image-20211025210844899.png)
 
 ## 2. 二维数组
 
@@ -102,7 +102,7 @@ data[0][0] = 1;
 
 ### 内存结构
 
-![image-20211025214221358](https://gitee.com/xcxhalo/picgo/raw/master/Img/image-20211025214221358.png)
+![image-20211025214221358](Java进阶-02-数组/image-20211025214221358.png)
 
 
 
@@ -274,16 +274,3 @@ System.out.println();
 将小数组中的数据拷贝到大数组，然后小数组对象被垃圾回收。
 
 ### 1.8、对数组中存储引用数据类型的情况，要会画它的内存结构图。
-
-
-
-
-
-
-
-
-
-
-
-
-

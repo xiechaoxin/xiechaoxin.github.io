@@ -23,11 +23,11 @@ date: 2022-07-17 11:06:53
 
 ### 集合继承结构图-Collection 
 
-![image-20211030085503664](https://gitee.com/xcxhalo/picgo/raw/master/Img/image-20211030085503664.png)
+![image-20211030085503664](Java进阶-05-集合/image-20211030085503664.png)
 
 ### 集合继承结构图-Map
 
-![image-20211030085549337](https://gitee.com/xcxhalo/picgo/raw/master/Img/image-20211030085549337.png)
+![image-20211030085549337](Java进阶-05-集合/image-20211030085549337.png)
 
 ### java 集合主要有三种重要的类型：
 

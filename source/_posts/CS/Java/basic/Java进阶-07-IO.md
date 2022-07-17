@@ -20,7 +20,7 @@ date: 2022-07-17 11:06:53
 
 ### InputStream 和 OutputStream 继承结构图：
 
-![image-20211031211301154](https://gitee.com/xcxhalo/picgo/raw/master/Img/image-20211031211301154.png)
+![image-20211031211301154](Java进阶-07-IO/image-20211031211301154.png)
 
 
 
@@ -28,19 +28,19 @@ date: 2022-07-17 11:06:53
 
 ### Reader 和 Writer 继承结构图：
 
-![image-20211031211923200](https://gitee.com/xcxhalo/picgo/raw/master/Img/image-20211031211923200.png)
+![image-20211031211923200](Java进阶-07-IO/image-20211031211923200.png)
 
 ### 概念
 
 文件通常是由一连串的字节或字符构成，组成文件的字节序列称为字节流，组成文件的字符 序列称为字符流。Java 中根据流的方向可以分为输入流和输出流。输入流是将文件或其它输入 设备的数据加载到内存的过程；输出流恰恰相反，是将内存中的数据保存到文件或其他输出设 备，详见下图：
 
-![image-20211031212356363](https://gitee.com/xcxhalo/picgo/raw/master/Img/image-20211031212356363.png)
+![image-20211031212356363](Java进阶-07-IO/image-20211031212356363.png)
 
 
 
 文件是由字符或字节构成，那么将文件加载到内存或再将文件输出到文件，需要有输入和输出 流的支持，那么在 Java 语言中又把输入和输出流分为了两个，字节输入和输出流，字符输入 和输出流，见下表：
 
-![image-20211031212612237](https://gitee.com/xcxhalo/picgo/raw/master/Img/image-20211031212612237.png)
+![image-20211031212612237](Java进阶-07-IO/image-20211031212612237.png)
 
 
 
@@ -48,7 +48,7 @@ date: 2022-07-17 11:06:53
 
 InputStream 是字节输入流，InputStream 是一个抽象类，所有继承了 InputStream 的类都是 字节输入流，主要了解以下子类即可：
 
-![image-20211031212823788](https://gitee.com/xcxhalo/picgo/raw/master/Img/image-20211031212823788.png)
+![image-20211031212823788](Java进阶-07-IO/image-20211031212823788.png)
 
 
 
@@ -149,8 +149,8 @@ public class FileInputStreamTest04 {
 
 #### FileInputStream类的其它常用方法：
 
-​    int available()：返回流当中剩余的没有读到的字节数量
-​    long skip(long n)：跳过几个字节不读。
+    int available()：返回流当中剩余的没有读到的字节数量
+    long skip(long n)：跳过几个字节不读。
 
 ```java
 fis = new FileInputStream("tempfile");
@@ -169,7 +169,7 @@ System.out.println(fis.read()); //100
 
 所有继承了 OutputStream 都是字节输出流
 
-![image-20211101143524887](https://gitee.com/xcxhalo/picgo/raw/master/Img/image-20211101143524887.png)
+![image-20211101143524887](Java进阶-07-IO/image-20211101143524887.png)
 
 
 
@@ -243,7 +243,7 @@ public class FileOutputStreamTest01 {
 
 ### 3. Reader(字符输入流)
 
-![image-20211031224051302](https://gitee.com/xcxhalo/picgo/raw/master/Img/image-20211031224051302.png)
+![image-20211031224051302](Java进阶-07-IO/image-20211031224051302.png)
 
 
 
@@ -309,7 +309,7 @@ public class FileReaderTest {
 
 ### 4. Writer(字符输出流)
 
-![image-20211031224326906](https://gitee.com/xcxhalo/picgo/raw/master/Img/image-20211031224326906.png)
+![image-20211031224326906](Java进阶-07-IO/image-20211031224326906.png)
 
 
 
@@ -792,7 +792,7 @@ public class PrintStreamTest {
 
 ### 序列化和反序列化
 
-![image-20211101205851644](https://gitee.com/xcxhalo/picgo/raw/master/Img/image-20211101205851644.png)
+![image-20211101205851644](Java进阶-07-IO/image-20211101205851644.png)
 
 
 
@@ -1222,7 +1222,3 @@ public class CopyAll {
 参见：
 
 java.util.zip.* 包下的 api
-
-
-
-

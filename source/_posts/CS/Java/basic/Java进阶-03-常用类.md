@@ -78,7 +78,7 @@ String s2 = "abc";
 String s3 = new String("abc");
 ```
 
-![image-20211026224034887](https://gitee.com/xcxhalo/picgo/raw/master/Img/image-20211026224034887.png)
+![image-20211026224034887](Java进阶-03-常用类/image-20211026224034887.png)
 
 #### string 常用方法
 
@@ -163,7 +163,7 @@ Integer i6 = Integer.valueOf(s);
 
 #### 类层次结构
 
-![image-20211028213734785](https://gitee.com/xcxhalo/picgo/raw/master/Img/image-20211028213734785.png)
+![image-20211028213734785](Java进阶-03-常用类/image-20211028213734785.png)
 
 #### 自动装箱和拆箱
 
@@ -231,4 +231,3 @@ Random r = new Random();
 ## 6. Enum
 
 为什么使用枚举
-

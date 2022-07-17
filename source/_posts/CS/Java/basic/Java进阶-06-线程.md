@@ -166,7 +166,7 @@ class MyRunnable implements Runnable {
 
 ### 线程的生命周期
 
-![image-20211102111022314](https://gitee.com/xcxhalo/picgo/raw/master/Img/image-20211102111022314.png)
+![image-20211102111022314](Java进阶-06-线程/image-20211102111022314.png)
 
 线程状态会经常在**就绪**和**运行**之间切换
 
@@ -289,7 +289,7 @@ class MyRunable4 implements Runnable {
 2. 数据共享
 
 3. 共享的数据有修改的行为
-![image-20211102130113564](https://gitee.com/xcxhalo/picgo/raw/master/Img/image-20211102130113564.png)
+![image-20211102130113564](Java进阶-06-线程/image-20211102130113564.png)
 
 
 
@@ -546,7 +546,7 @@ t1.setDaemon(true);
 
 #### 定时器的作用：
 
-​	间隔特定的时间，执行特定的程序。
+	间隔特定的时间，执行特定的程序。
 每周要进行银行账户的总账操作。
 每天要进行数据的备份操作。
 
@@ -568,9 +568,9 @@ t1.setDaemon(true);
 
 #### 实现线程的第三种方式：实现Callable接口。（JDK8新特性。）
 
-​		这种方式实现的线程可以获取线程的返回值。
-​		之前讲解的那两种方式是无法获取线程返回值的，因为run方法返回void。
-
+		这种方式实现的线程可以获取线程的返回值。
+		之前讲解的那两种方式是无法获取线程返回值的，因为run方法返回void。
+	
 		思考：
 			系统委派一个线程去执行一个任务，该线程执行完任务之后，可能
 			会有一个执行结果，我们怎么能拿到这个执行结果呢？
@@ -603,7 +603,7 @@ t1.setDaemon(true);
 		这个方法是唤醒o对象上处于等待的所有线程。
 
 
-![image-20211102161621344](https://gitee.com/xcxhalo/picgo/raw/master/Img/image-20211102161621344.png)
+![image-20211102161621344](Java进阶-06-线程/image-20211102161621344.png)
 
 
 
@@ -726,7 +726,7 @@ class Consumer implements Runnable {
 
 ```
 
-![image-20211102163515427](https://gitee.com/xcxhalo/picgo/raw/master/Img/image-20211102163515427.png)
+![image-20211102163515427](Java进阶-06-线程/image-20211102163515427.png)
 
 
 
@@ -734,6 +734,3 @@ class Consumer implements Runnable {
 
 
 ## 9. windows 的任务计划
-
-
-
