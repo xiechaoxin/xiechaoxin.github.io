@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>rpc - 标签 - xcx</title>
+        <link>https://xiechaoxin.github.io/tags/rpc/</link>
+        <description>rpc - 标签 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/tags/rpc/" rel="self" type="application/rss+xml" /><item>
+    <title>dubbo</title>
+    <link>https://xiechaoxin.github.io/posts/pro/distributed-system/rpc/dubbo/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/pro/distributed-system/rpc/dubbo/</guid>
+    <description><![CDATA[Dubbo知识点&amp;面试题总结 这篇文章是我根据官方文档以及自己平时的使用情况，对 Dubbo 所做的一个总结。欢迎补充！ 1 RPC基础 1.1 何为 RPC? RPC(Remote Procedure Call)]]></description>
+</item>
+<item>
+    <title>why-use-rpc</title>
+    <link>https://xiechaoxin.github.io/posts/pro/distributed-system/rpc/why-use-rpc/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/pro/distributed-system/rpc/why-use-rpc/</guid>
+    <description><![CDATA[服务之间的调用为啥不直接用 HTTP 而用 RPC？ 1 什么是 RPC?RPC原理是什么? 1.1 什么是 RPC？ RPC(Remote Procedure Call)—远程过程调用，它是一种通过网络从远]]></description>
+</item>
+</channel>
+</rss>

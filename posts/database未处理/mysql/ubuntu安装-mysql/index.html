@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title> - xcx</title><meta name="description" content=""><meta property="og:title" content="" />
+<meta property="og:description" content="当然可以，以下是在 Ubuntu 上安装 MySQL 的步骤： 更新包列表: 首先确保你的系统的包列表是最新的。 sudo apt update 安装 MySQL 服务器: 使用以下命令安装 MySQL 服务器。 sudo apt install mysql-server 运行" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/ubuntu%E5%AE%89%E8%A3%85-mysql/" /><meta property="article:section" content="posts" />
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="当然可以，以下是在 Ubuntu 上安装 MySQL 的步骤： 更新包列表: 首先确保你的系统的包列表是最新的。 sudo apt update 安装 MySQL 服务器: 使用以下命令安装 MySQL 服务器。 sudo apt install mysql-server 运行"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/ubuntu%E5%AE%89%E8%A3%85-mysql/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/language/python/1.started/1.start/" /><link rel="next" href="https://xiechaoxin.github.io/posts/chaos/%E9%94%AE%E7%9B%98diy/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/database%E6%9C%AA%E5%A4%84%E7%90%86\/mysql\/ubuntu%E5%AE%89%E8%A3%85-mysql\/"
+        },"genre": "posts","wordcount":  880 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/database%E6%9C%AA%E5%A4%84%E7%90%86\/mysql\/ubuntu%E5%AE%89%E8%A3%85-mysql\/","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX"></h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 880 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+                </div><div class="content" id="content"><p>当然可以，以下是在 Ubuntu 上安装 MySQL 的步骤：</p>
+<ol>
+<li>
+<p><strong>更新包列表</strong>:
+首先确保你的系统的包列表是最新的。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt update
+</span></span></code></pre></div></li>
+<li>
+<p><strong>安装 MySQL 服务器</strong>:
+使用以下命令安装 MySQL 服务器。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install mysql-server
+</span></span></code></pre></div></li>
+<li>
+<p><strong>运行安全安装脚本</strong>:
+这个脚本会帮助你增加 MySQL 安装的安全性。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo mysql_secure_installation
+</span></span></code></pre></div><p>你会被问到一系列的问题，例如：</p>
+<ul>
+<li>是否设置 root 密码。</li>
+<li>是否移除匿名用户。</li>
+<li>是否禁止 root 远程登录。</li>
+<li>是否删除 test 数据库和访问它的权限。</li>
+<li>是否重新加载权限表来生效更改。</li>
+</ul>
+<p>建议按照你的需要和安全考虑来回答这些问题。</p>
+</li>
+<li>
+<p><strong>检查 MySQL 服务状态</strong>:
+你可以使用以下命令来检查 MySQL 服务是否正在运行。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl status mysql
+</span></span></code></pre></div></li>
+<li>
+<p><strong>登录到 MySQL</strong>:
+使用以下命令登录到 MySQL 数据库。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo mysql -u root -p
+</span></span></code></pre></div><p>输入密码后，你应该可以看到 MySQL 提示符。</p>
+</li>
+<li>
+<p><strong>设置一个新的用户和密码</strong> (可选):
+如果你不想使用 root 用户进行日常操作，你可以创建一个新的用户。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;newuser&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;password&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">.</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;newuser&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">FLUSH</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div></li>
+<li>
+<p><strong>退出 MySQL</strong>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">exit</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div></li>
+</ol>
+<p>现在你应该已经成功地在 Ubuntu 上安装了 MySQL！如果你遇到任何问题或需要进一步的帮助，请告诉我。</p>
+<!-- raw HTML omitted -->
+<p>要从远程计算机连接到 MySQL 服务器，你需要进行以下设置：</p>
+<ol>
+<li>
+<p><strong>更改 MySQL 的绑定地址</strong>:</p>
+<p>默认情况下，MySQL 只允许来自本地计算机的连接。为了从远程计算机接受连接，你需要更改 MySQL 的绑定地址。</p>
+<p>打开 <code>my.cnf</code> 或 <code>mysqld.cnf</code> 文件，这取决于你的系统。通常，它可能位于以下目录之一：</p>
+<ul>
+<li><code>/etc/mysql/my.cnf</code></li>
+<li><code>/etc/mysql/mysql.conf.d/mysqld.cnf</code></li>
+<li><code>/etc/my.cnf</code></li>
+</ul>
+<p>使用文本编辑器打开它，如：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+</span></span></code></pre></div><p>找到以下行：</p>
+<pre tabindex="0"><code>bind-address = 127.0.0.1
+</code></pre><p>并将其更改为：</p>
+<pre tabindex="0"><code>bind-address = 0.0.0.0
+</code></pre><p>保存并关闭文件。</p>
+</li>
+<li>
+<p><strong>重启 MySQL 服务</strong>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl restart mysql
+</span></span></code></pre></div></li>
+<li>
+<p><strong>创建/修改用户允许远程连接</strong>:</p>
+<p>首先，登录到 MySQL：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo mysql -u root -p
+</span></span></code></pre></div><p>root 初始没有密码,直接 enter</p>
+<p>创建一个新用户或为现有用户授予权限，允许他们从任何主机远程连接：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;username&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;password&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;username&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">OPTION</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>如果你只想更改现有用户的权限，可以使用：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;existinguser&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">OPTION</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>最后，确保刷新权限：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">FLUSH</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>然后退出 MySQL。</p>
+</li>
+<li>
+<p><strong>更新防火墙规则</strong>:</p>
+<p>如果你的 Ubuntu 服务器启用了 <code>ufw</code> 防火墙，你需要允许 3306 端口（默认的 MySQL 端口）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo ufw allow 3306/tcp
+</span></span><span class="line"><span class="cl">sudo ufw reload
+</span></span></code></pre></div></li>
+<li>
+<p><strong>从远程计算机连接</strong>:</p>
+<p>使用 MySQL 客户端或任何支持 MySQL 的应用程序从另一台计算机连接到你的服务器：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mysql -h <span class="o">[</span>服务器IP地址<span class="o">]</span> -u username -p
+</span></span></code></pre></div></li>
+</ol>
+<p>这就是全部设置！现在你应该能够从远程计算机连接到你的 MySQL 服务器。但请注意，允许从任何位置的远程连接可能带来安全风险，所以始终确保你的 MySQL 用户密码强大，并定期备份你的数据库。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 0001-01-01</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/language/python/1.started/1.start/" class="prev" rel="prev" title=""><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/chaos/%E9%94%AE%E7%9B%98diy/" class="next" rel="next" title="">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

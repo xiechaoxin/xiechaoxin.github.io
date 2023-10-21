@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>5.语句 - xcx</title><meta name="description" content=""><meta property="og:title" content="5.语句" />
+<meta property="og:description" content="语句 1 简单语句 表达式语句：一个表达式末尾加上分号，就变成了表达式语句。 空语句：只有一个单独的分号。 复合语句(块)：用花括号 {}包裹起来的语句" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/1-cpp%E5%9F%BA%E7%A1%80/5.%E8%AF%AD%E5%8F%A5/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-09T03:04:36+00:00" />
+<meta property="article:modified_time" content="2022-07-09T03:04:36+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="5.语句"/>
+<meta name="twitter:description" content="语句 1 简单语句 表达式语句：一个表达式末尾加上分号，就变成了表达式语句。 空语句：只有一个单独的分号。 复合语句(块)：用花括号 {}包裹起来的语句"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/1-cpp%E5%9F%BA%E7%A1%80/5.%E8%AF%AD%E5%8F%A5/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/1-cpp%E5%9F%BA%E7%A1%80/6.%E5%87%BD%E6%95%B0/" /><link rel="next" href="https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/1-cpp%E5%9F%BA%E7%A1%80/7.%E7%B1%BB/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "5.语句",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/language\/cpp\/cpp-primer\/1-cpp%E5%9F%BA%E7%A1%80\/5.%E8%AF%AD%E5%8F%A5\/"
+        },"genre": "posts","keywords": "C\u002b\u002b primer, 1-CPP基础","wordcount":  2969 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/language\/cpp\/cpp-primer\/1-cpp%E5%9F%BA%E7%A1%80\/5.%E8%AF%AD%E5%8F%A5\/","datePublished": "2022-07-09T03:04:36+00:00","dateModified": "2022-07-09T03:04:36+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">5.语句</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/cpp/"><i class="far fa-folder fa-fw"></i>CPP</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-07-09">2022-07-09</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2969 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-简单语句">1 简单语句</a></li>
+    <li><a href="#2-语句作用域">2 语句作用域</a></li>
+    <li><a href="#3-条件语句">3 条件语句</a>
+      <ul>
+        <li><a href="#31-ifelse">3.1 if..else</a></li>
+        <li><a href="#32-switch">3.2 switch</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-迭代语句">4 迭代语句</a></li>
+    <li><a href="#5-跳转语句">5 跳转语句</a>
+      <ul>
+        <li><a href="#51-break">5.1 break</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-try-语句块和异常处理">6 TRY 语句块和异常处理</a>
+      <ul>
+        <li><a href="#61-throw-表达式">6.1 throw 表达式</a></li>
+      </ul>
+    </li>
+    <li><a href="#7-小结">7 小结</a></li>
+    <li><a href="#8-术语表">8 术语表</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="语句">语句</h1>
+<h2 id="1-简单语句">1 简单语句</h2>
+<ul>
+<li><strong>表达式语句</strong>：一个表达式末尾加上分号，就变成了表达式语句。</li>
+<li><strong>空语句</strong>：只有一个单独的分号。</li>
+<li><strong>复合语句(块)</strong>：用花括号 <code>{}</code>包裹起来的语句和声明的序列。一个块就是一个作用域。</li>
+</ul>
+<h2 id="2-语句作用域">2 语句作用域</h2>
+<p>定义在控制结构(if、switch、while、for)当中的变量只在相应语句的内部可见。</p>
+<h2 id="3-条件语句">3 条件语句</h2>
+<h3 id="31-ifelse">3.1 if..else</h3>
+<p><strong>悬垂 else</strong>(dangling else)：用来描述在嵌套的<code>if else</code>语句中，如果<code>if</code>比<code>else</code>多时如何处理的问题。C++使用的方法是<code>else</code>匹配最近没有配对的<code>if</code>。</p>
+<h3 id="32-switch">3.2 switch</h3>
+<p>switch 语句：如果表达式和某个 case 标签的值匹配成功，就会从该标签后的第一条语句开始执行，直到到达一条 break 或最尾部。</p>
+<h2 id="4-迭代语句">4 迭代语句</h2>
+<ul>
+<li><strong>while</strong>：当不确定到底要迭代多少次时，使用 <code>while</code>循环比较合适，比如读取输入的内容。</li>
+<li><strong>for</strong>： <code>for</code>语句可以省略掉 <code>init-statement</code>， <code>condition</code>和 <code>expression</code>的任何一个；<strong>甚至全部</strong>。</li>
+<li><strong>范围 for</strong>： <code>for (declaration: expression) statement</code></li>
+</ul>
+<h2 id="5-跳转语句">5 跳转语句</h2>
+<h3 id="51-break">5.1 break</h3>
+<p>break 语句:终止与其最近的 while、do while、 for 或 switch 语句</p>
+<h4 id="511-continue">5.1.1 continue</h4>
+<p>终止最近的循环中的当前迭代并立即开始下一次迭代</p>
+<h4 id="512-goto">5.1.2 goto</h4>
+<p>无条件跳转到同一函数内的另一条语句</p>
+<h2 id="6-try-语句块和异常处理">6 TRY 语句块和异常处理</h2>
+<p>运行时的反常行为。例如读取或写入数据时失去数据库连接，处理反常行为可能是设计所有系统最难的一部分。</p>
+<h3 id="61-throw-表达式">6.1 throw 表达式</h3>
+<p>throw 表达式：异常检测部分使用 <code>throw</code>表达式来表示它遇到了无法处理的问题。我们说 <code>throw</code>引发 <code>raise</code>了异常。</p>
+<blockquote>
+<p>抛出一个异常，<strong>终止当前的函数</strong>，并把控制权交给处理异常的代码。</p>
+</blockquote>
+<blockquote>
+<p>runtimeerror 是标准库异常类型的一种,定义在 stdexcept 头文件</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">include</span> <span class="o">&lt;</span><span class="n">stdexcept</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">!=</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	  <span class="c1">// 必须初始化 runtime_error 的对象，方式是给它提供一个 string 对象或者一个C凤格的字符串
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">throw</span> <span class="nf">runtime_error</span><span class="p">(</span><span class="s">&#34;has run time error&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h4 id="611-try-语句块">6.1.1 try 语句块</h4>
+<p>以 <code>try</code>关键词开始，以一个或多个 <code>catch</code>字句结束。 <code>try</code>语句块中的代码抛出的异常通常会被某个 <code>catch</code>捕获并处理。 <code>catch</code>子句也被称为<strong>异常处理代码</strong>。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">try</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/* code */</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">exception</span><span class="o">&amp;</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h4 id="612-标准异常异常类">6.1.2 标准异常(异常类)</h4>
+<p>一套异常类：用于在 <code>throw</code>表达式和相关的 <code>catch</code>子句之间传递异常的具体信息。
+这些异常类分别定义在 4 个头文件中：</p>
+<ul>
+<li>exception 头文件: 最通用的异常类 exception，只报告异常的发生，不提供额外信息</li>
+<li>stdexcept 头文件: 定义了几种常用的异常类</li>
+<li>new 头文件: bad_alloc 异常类</li>
+<li>type_info 头文件: bad_cast 异常类</li>
+</ul>
+<h2 id="7-小结">7 小结</h2>
+<p>C++语言仅提供了有限的语句类型，它们中的大多数会影响程序的控制流程：</p>
+<ul>
+<li>while、 for 和 do while 语句，执行迭代操作。</li>
+<li>if 和 switch 语句，提供条件分支结构。</li>
+<li>continue 语句，终止循环的当前一次选代。</li>
+<li>break 语句，退出循环或者 switch 语句。</li>
+<li>goto 语句，将控制权转移到一条带标签的语句。</li>
+<li>try 和 catch，将一段可能地出异常的语句序列括在花括号里构成 try 语句块。</li>
+<li>catch 子句负责处理代码抛出的异常。</li>
+<li>throw 表达式语句，存在于代码块中，将控制权转移到相关的 catch 子句。</li>
+<li>return 语句，终止函数的执行。我们将在第 6 章介绍 return 语句。</li>
+</ul>
+<p>除此之外还有表达式语句和声明语句，表达式语句用于求解表达式，关于变量的声明和定义在第 2 章已经介绍过了。</p>
+<h2 id="8-术语表">8 术语表</h2>
+<p><strong>块(block)：</strong> 包围在花括号内的由 0 条或多条语句组成的序列。块也是一条语句，所以只要是能使用语句的地方，就可以使用块。</p>
+<p>**break 语句(break statement)：**终止理他最近的循环或 switch 语句。控制权转移到循环或 switch 之后的第一条语句。</p>
+<p><strong>case 标签(case label)：</strong> 在 switch 语句中紧跟在 case 关键字之后的常量表达式(参见 2.4.4 节，第 58 页)。在同一个 switch 语句中任意两个 case 标签的值不能相同。</p>
+<p>**catch 子句(catch clause)：**由三部分组成：catch 关键字，括号里的异常声明以及一个语句块。catch 子句的代码赋值处理异常声明中定义的异常。</p>
+<p><strong>复合语句(compound statement)：</strong> 和块是同义词。</p>
+<p><strong>continue 语句(continue statement)：</strong> 终止离它最近的循环的当前迭代。控制权转移到 while 或 do wihle 语句的条件部分，或者范围 for 循环的下一次迭代，或者传统 for 循环头部的表达式。</p>
+<p><strong>悬垂 else(dangling else)：</strong> 是一个俗语，指的是如何处理嵌套 if 语句中 if 分钟多于 else 分支的情况。 C++语言规定，else 应该与前一个未匹配的 if 匹配在一起。使用花括号可以把位于内层的 if 语句隐藏起来，这样程序员就能更好地控制 else 该与那个 if 匹配。</p>
+<p><strong>default 标签(default label)：</strong> 是一种特殊的 case 标签，当 switch 表达式的值与所有 case 标签都无法匹配时，程序执行 default 标签下的内容。</p>
+<p><strong>do while 语句(do while statement)：</strong> 与 while 语句类似，区别是 do while 语句先执行循环体，在判断条件。循环体代码至少会执行一次。</p>
+<p><strong>异常类(exception class)：</strong> 是标准库定义的一组类，用于表示程序发生的错误。表 5.1(第 176 页)列出了不同用途的异常类。</p>
+<p><strong>异常声明(exception declaration)：</strong> 位于 catch 子句中的声明，指定了该 catch 子句能处理的异常类型。</p>
+<p><strong>异常处理代码(exception handler)：</strong> 程序某处引发异常后，用于处理该异常的另一处代码。和 catch 子句是同义词。</p>
+<p><strong>异常安全(exception safe)：</strong> 是一个术语，表示的含义是当抛出异常后，程序能执行正确的行为。</p>
+<p><strong>表达式语句(expression statement)：</strong> 即一条表达式后面跟上一个分号，令表达式执行求值的过程。</p>
+<p><strong>控制流(flow of control)：</strong> 程序的执行路径。</p>
+<p><strong>for 语句(for statement)：</strong> 提供迭代执行的迭代语句。常常用于遍历一个容器或重复计算若干次。</p>
+<p><strong>goto 语句(goto statement)：</strong> 令控制器无条件转移到同一个函数中一个指定的带标签语句。goto 语句容易造成程序的控制流混乱，应禁止使用。</p>
+<p><strong>if else 语句(if else statement)：</strong> 判断条件，根据其结果分别执行 if 分支或 else 分支的语句。</p>
+<p><strong>if 语句(if statement)：</strong> 判断条件，根据其结果有选择地执行语句。如果条件为真，执行 if 分支地代码；如果条件为假，控制权转移到 if 结构之后的第一条语句。</p>
+<p><strong>带标签语句(labeled statement)：</strong> 前面带有标签的语句。所谓标签是指一个标识符以及紧跟着的一个冒号。对于同一个标识符来说，用作标签的同数还能用于其他目的，互不干扰。</p>
+<p><strong>空语句(null statement)：</strong> 只含有一个分号的语句。</p>
+<p>**引发(raise)：**含义类似于 throw。在 C++语句中既可以说抛出异常，也可以说引发异常。</p>
+<p>**范围 for 语句(range for statement)：**在一个序列中进行迭代的语句。</p>
+<p><strong>switch 语句(switch statement)：</strong> 一种条件语句，首先求 switch 关键字后面表达式的值，如果某个 case 标签的值与表达式的值相等，程序直接跨过之前的代码从这个 case 标签开始执行，如果有 defalut 标签，从 default 标签继续执行；如果没有，结束 switch 语句。</p>
+<p><strong>terminate：</strong> 是一个标准库函数，当异常没有被捕捉到时调用。terminate 终止程序的执行。</p>
+<p><strong>throw 表达式(throw expression)：</strong> 一种中断当前执行路径的表达式。throw 表达式抛出一个异常并把控制权转移到能处理该异常的最近的 catch 子句。</p>
+<p><strong>try 语句块(try block)：</strong> 跟在 try 关键字后面的块，以及一个或多个 catch 子句。如果 try 语句块的代码引发异常并且其中一个 catch 子句匹配该异常类型，则异常被该 catch 子句处理。否则，异常将有外围 try 语句块处理，或者程序终止。</p>
+<p><strong>while 语句(while statement)：</strong> 只要指定的条件为真，就一直迭代执行目标语句，随着条件真值的不同，循环可能执行多次，也可能一次也不执行。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/c&#43;&#43;-primer/">C&#43;&#43; primer</a>
+                </span><span><a href="/tags/1-cpp%E5%9F%BA%E7%A1%80/">1-CPP基础</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-07-09</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/language/cpp/cpp-primer/1-cpp%E5%9F%BA%E7%A1%80/6.%E5%87%BD%E6%95%B0/" class="prev" rel="prev" title="6.函数"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/language/cpp/cpp-primer/1-cpp%E5%9F%BA%E7%A1%80/7.%E7%B1%BB/" class="next" rel="next" title="7.类">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

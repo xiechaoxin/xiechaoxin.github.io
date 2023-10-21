@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>C预处理器和C库 - xcx</title><meta name="description" content=""><meta property="og:title" content="C预处理器和C库" />
+<meta property="og:description" content="C 预处理器和 C 库 1 翻译程序工具 &mdash;-&gt; 编译器 在预处理之前，编译器会做一些翻译处理工作。 把源代码中出现的字符映射到源字符集。 定位每个反斜杠后面跟着换" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/language/c/c%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8%E5%92%8Cc%E5%BA%93/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-13T01:44:21+00:00" />
+<meta property="article:modified_time" content="2022-09-13T01:44:21+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="C预处理器和C库"/>
+<meta name="twitter:description" content="C 预处理器和 C 库 1 翻译程序工具 &mdash;-&gt; 编译器 在预处理之前，编译器会做一些翻译处理工作。 把源代码中出现的字符映射到源字符集。 定位每个反斜杠后面跟着换"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/language/c/c%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8%E5%92%8Cc%E5%BA%93/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/language/c/%E4%BD%8D%E6%93%8D%E4%BD%9C/" /><link rel="next" href="https://xiechaoxin.github.io/posts/language/c/%E6%9E%9A%E4%B8%BE/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "C预处理器和C库",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/language\/c\/c%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8%E5%92%8Cc%E5%BA%93\/"
+        },"genre": "posts","keywords": "C","wordcount":  4004 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/language\/c\/c%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8%E5%92%8Cc%E5%BA%93\/","datePublished": "2022-09-13T01:44:21+00:00","dateModified": "2022-09-13T01:44:21+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">C预处理器和C库</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/c/"><i class="far fa-folder fa-fw"></i>C</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-09-13">2022-09-13</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4004 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-翻译程序工具------编译器">1 翻译程序工具 &mdash;-&gt; 编译器</a>
+      <ul>
+        <li><a href="#11-明示常量define">1.1 明示常量：<code>define</code></a></li>
+        <li><a href="#12-在define中使用参数">1.2 在<code>define</code>中使用参数</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-预处理器粘合剂运算符">2 预处理器粘合剂：<code>运算符</code></a>
+      <ul>
+        <li><a href="#21-变参宏-和-__va_args__">2.1 变参宏：<code>...</code> 和 <code>__VA_ARGS__</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#3-宏和函数的选择">3 宏和函数的选择</a>
+      <ul>
+        <li><a href="#31-如何选择">3.1 如何选择？</a></li>
+        <li><a href="#32-文件包含include">3.2 文件包含：<code>include</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#4-使用头文件">4 使用头文件</a>
+      <ul>
+        <li><a href="#41-其他指令">4.1 其他指令</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-泛型选择">5 泛型选择</a>
+      <ul>
+        <li><a href="#51-内联函数c99和-_noreturn函数c11">5.1 <code>内联函数(C99)</code>和 <code>_Noreturn</code>函数(C11)</a></li>
+        <li><a href="#52-c-库">5.2 C 库</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="c-预处理器和-c-库">C 预处理器和 C 库</h1>
+<h2 id="1-翻译程序工具------编译器">1 翻译程序工具 &mdash;-&gt; 编译器</h2>
+<p>在预处理之前，编译器会做一些翻译处理工作。</p>
+<ul>
+<li>把源代码中出现的<code>字符</code>映射到<code>源字符集</code>。</li>
+<li>定位每个<code>反斜杠</code>后面跟着<code>换行符的实例</code>，并直接删除。
+<blockquote>
+<p>将物理行转换成逻辑行。</p>
+</blockquote>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">printf</span><span class="p">(</span><span class="err">“</span><span class="n">That</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">wond</span>\
+</span></span><span class="line"><span class="cl">        <span class="n">erful</span><span class="o">!</span><span class="err">\</span><span class="n">n</span><span class="s">&#34;)；</span>
+</span></span></code></pre></div><p>转成</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">printf</span><span class="p">(</span><span class="err">“</span><span class="n">That</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">wonderful</span><span class="o">!</span><span class="err">\</span><span class="n">n</span><span class="s">&#34;);</span>
+</span></span></code></pre></div><ul>
+<li>编译器把<code>文本</code>划分成<code>预处理记号序列</code>、<code>空白序列</code> 和 <code>注释序列</code>(记号是由空格、制表符或换行符分隔的项)。</li>
+</ul>
+<p>⚠️ 注意：编译器会用一个<code>空格字符</code>替换<code>每一条注释</code>。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="cm">/*这看起来不像是一个空格*/</span> <span class="n">fox</span><span class="p">;</span>
+</span></span></code></pre></div><p>将变成</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">fox</span><span class="p">;</span>
+</span></span></code></pre></div><h3 id="11-明示常量define">1.1 明示常量：<code>define</code></h3>
+<p><code>#define预处理器</code> 指令 和 <code>其他预处理器</code>指令一样，以 <code># </code>作为一行的开始。</p>
+<blockquote>
+<p>ANSI 和后来标准都允许 <code>#</code> 前面有<code>空格</code>或 <code>制表符</code>，也允许在 <code>#</code> 和指令的其余部分之间有空格。</p>
+</blockquote>
+<p>⚠️ 注意：指令长度仅限于一行(从#开始运行，到后面的第一个换行符为止)。</p>
+<h4 id="111-每行-define逻辑行的-3-部分">1.1.1 每行 <code>define(逻辑行)</code>的 3 部分</h4>
+<ul>
+<li>
+<p><code>#define</code>指令本身</p>
+</li>
+<li>
+<p>选定的缩写，也称为<code>宏</code>。</p>
+<blockquote>
+<p>宏代表值称为<code>类对象宏</code>。</p>
+<p>宏的名称中不允许有空格。遵循 C 变量的命名规则。</p>
+</blockquote>
+</li>
+<li>
+<p>替换列表或替换体。</p>
+<blockquote>
+<p>从宏替换文本的过程称为<code>宏展开</code>。</p>
+</blockquote>
+</li>
+</ul>
+<p>⚠️ 注意：可在<code>#define</code>行使用标准 C 注释。</p>
+<p>宏可以表示任何字符串，也可表示整个 C 表达式。</p>
+<p><del>预处理器不做计算，不对表达式求值</del> ，只替换字符序列。</p>
+<h3 id="12-在define中使用参数">1.2 在<code>define</code>中使用参数</h3>
+<p>用#define 创建类似函数的类函数宏,~<del>不是函数</del>。</p>
+<p>类函数宏定义的圆括号可以有一个或多个参数，随后参数出现在替换体中。
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./%e5%87%bd%e6%95%b0%e5%ae%8f%e5%ae%9a%e4%b9%89%e7%9a%84%e7%bb%84%e6%88%90.png"
+        data-srcset="./%e5%87%bd%e6%95%b0%e5%ae%8f%e5%ae%9a%e4%b9%89%e7%9a%84%e7%bb%84%e6%88%90.png, ./%e5%87%bd%e6%95%b0%e5%ae%8f%e5%ae%9a%e4%b9%89%e7%9a%84%e7%bb%84%e6%88%90.png 1.5x, ./%e5%87%bd%e6%95%b0%e5%ae%8f%e5%ae%9a%e4%b9%89%e7%9a%84%e7%bb%84%e6%88%90.png 2x"
+        data-sizes="auto"
+        alt="./函数宏定义的组成.png"
+        title="./函数宏定义的组成.png" /></p>
+<blockquote>
+<p>MEAN 是宏标识符</p>
+</blockquote>
+<p><strong>函数调用和宏调用的区别</strong></p>
+<ul>
+<li>函数调用：在<code>程序运行时</code>把参数的值传递给函数。</li>
+<li>宏调用<code>在编译之前</code>把参数记号传递给程序。</li>
+</ul>
+<p>⚠️ 注意：必要时使用足够多的圆括号来确保运算结合的正确顺序。</p>
+<p><del>不要在宏中使用递增或递减运算。</del></p>
+<h4 id="121-用宏参数创建字符串运算符">1.2.1 用宏参数创建字符串：<code>运算符</code></h4>
+<p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp"># define PSQR(X) printf(&#34;The square of X id %d .\n&#34;,((X)*(X)));
+</span></span></span></code></pre></div><blockquote>
+<p>双引号字符串中的 X 视为普通文本，而不是可被替换的记号。</p>
+</blockquote>
+<p>C 允许在字符串中包含宏参数。在类宏函数的替换体中，<code>#号</code>作为一个<code>预处理运算符</code>，可以把记号转化为<code>字符串</code>，这样的过程叫作<code>字符串化(stringizing)</code>。例如，双引号中想表示宏形参，则使用 <code>#X</code> 即可。</p>
+<h2 id="2-预处理器粘合剂运算符">2 预处理器粘合剂：<code>运算符</code></h2>
+<p>可用于<code>类函数宏</code>和<code>对象宏</code>的替换部分。把两个记号组合成一个新的标识符。</p>
+<h3 id="21-变参宏-和-__va_args__">2.1 变参宏：<code>...</code> 和 <code>__VA_ARGS__</code></h3>
+<p>通过把<code>宏参数列表</code>中最后的参数写成<code>省略号(即3个点...)</code>来实现这一功能。<code>预定义宏__VA_ARGS__</code>可用于替换部分中，表明省略号代表什么。</p>
+<p>格式：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp"># define PR(...) printf(__VA_ARGS__)
+</span></span></span></code></pre></div><p>C99/C11 对宏提供让用户自定义带可变参数的函数。由 <code>stdvar.h 头文件</code>提供。</p>
+<p>⚠️ 记住：省略号只能代替最后的宏参数。</p>
+<h2 id="3-宏和函数的选择">3 宏和函数的选择</h2>
+<h3 id="31-如何选择">3.1 如何选择？</h3>
+<ul>
+<li>使用宏比普通函数更复杂一些，稍有不慎会有副作用。(一些编译器规定宏只能定义成一行)</li>
+<li>需要注意时间和空间的制衡。
+<ul>
+<li>宏生成内联代码，在程序中生成语句。函数调用无论多少次，程序中只有一份函数语句的副本，节省了空间。</li>
+<li>程序的控制必须跳转到函数内，随后再返回主调函数，这比内联代码花费更多时间。</li>
+</ul>
+</li>
+<li>对于简单的函数，程序员通常使用宏</li>
+</ul>
+<h4 id="311-宏的注意点">3.1.1 宏的注意点</h4>
+<ul>
+<li>宏名不允许有空格，但替换字符中可以有空格。</li>
+<li>圆括号把宏的参数和整个替换体括起来，能确保被括起来的部分在表达式正确展开。</li>
+<li><code>大写字母表示宏函数的名称</code>(大写字母可以提醒程序员可能产生副作用)。例如：<code>MAX(X,Y)</code></li>
+<li>如果打算使用宏加快程序运行速度，首先要确定使用宏和使用参数是否会导致较大的差异。
+<blockquote>
+<p>在程序中使用一次的宏无法明显减少程序的运行时间，在嵌套循环中使用宏更有助于提高效率。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="32-文件包含include">3.2 文件包含：<code>include</code></h3>
+<p>预处理器在发现 <code>#include指令</code>时，会查看后面的文件名并把文件内容包含到当前文件中(替换<code>源文件</code>中的<code>#include指令</code>)，相当于被包含文件的全部内容输入到源文件#include 指令所在的位置。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp"># include&lt;stdio.h&gt;     </span><span class="c1">// 尖括号是标准系统文件中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp"># include &#34;mystuff.h&#34;  </span><span class="c1">// 双引号是自定义的头文件(一般是优先查找当前工作目录)
+</span></span></span></code></pre></div><p>ANSI C 不为文件提供统一的目录模型，不同计算机所用的系统不同。</p>
+<p>C 语言习惯用 <code>.h</code> 后缀表示头文件，一般是包含需要放在程序顶部的信息。</p>
+<blockquote>
+<p>头文件经常包含一些预处理器指令。</p>
+</blockquote>
+<p><code>#define指令、结构声明、typedef和函数原型</code> 是编译器在创建<code>可执行代码</code>时所需的信息，而<del>不是可执行代码</del>。</p>
+<p>用 <code>#ifndef</code> 和 <code>#define</code> 防止多重包含头文件。<code>可执行代码</code>通常是<code>源代码文件</code>中，而不是<code>头文件</code>中。</p>
+<h2 id="4-使用头文件">4 使用头文件</h2>
+<ul>
+<li>明示常量：<code>stdio.h</code> 中定义的<code>EOF、NULL和BUFSIZE</code>(标准 I/O 缓冲区大小)</li>
+<li>宏函数：<code>getc(stdin)</code>通常用<code>getchar()</code>定义，而<code>getc()</code>经常用于定义较复杂的宏，<code>头文件 ctype.h</code> 通常包含 <code>ctype</code>系列函数的宏定义。</li>
+<li>函数声明：<code>string.h 头文件</code>包含字符串函数系列的<code>函数声明</code>(函数声明都是函数原型形式)。</li>
+<li>结构模版定义：标准 I/O 函数使用<code>FILE结构</code>(结构包含了文件和与文件缓冲区相关的信息)。<code>FILE结构</code>在<code>头文件stdio.h</code>中</li>
+<li>类型定义：标准 I/O 函数使用<code>指向FILE的指针</code>作为参数。
+<blockquote>
+<p>stdio.h 用 <code>#define</code> 或 <code>typedef</code> 把<code>FILE</code>定义为<code>指向结构的指针</code>。</p>
+</blockquote>
+</li>
+</ul>
+<p><code>#include</code> 和 <code>#define 指令</code> 是最常用的两个 C 预处理器特性。</p>
+<h3 id="41-其他指令">4.1 其他指令</h3>
+<p>修改<code>#define</code>的值即可 <em>生成</em> 可移植性的代码。</p>
+<p><code>#undef指令</code> <em>取消</em> 之前的<code>#define</code>定义。</p>
+<p><code>#if、#ifdef、ifndef、#else、#elif 和 endif 指令</code> 用于指定什么情况下编写哪些代码。</p>
+<p><code>#line</code> 指令用于重置行和文件信息。</p>
+<p><code>#error</code> 指令用于给出错误信息。</p>
+<p><code>#pragma</code> 指令用于向编译器发出指令。</p>
+<h4 id="411-undef指令">4.1.1 <code>undef</code>指令</h4>
+<p><code>#undef</code>指令用于 “取消” 已定义的 <code>#define</code> 指令。</p>
+<p>处理器在识别标识符时，遵循与 C 相同的规则：标识符可以由 <code>大写字母、小写字母、数字 和 下划线字符</code>组成，且<del>首字符不能是数字</del>。</p>
+<p><code>#define宏</code>的作用域从它的文件中的<code>声明处开始</code>，直到用 <code>#undef 指令取消宏</code>为止，延伸至文件尾(以二者中先满足的条件作为宏作用域的结束)。</p>
+<p>⚠️ 注意：如果宏通过<code>头文件</code>引入，则<code>#define</code>在文件中的位置取决于<code>#include指令的位置</code>。</p>
+<h4 id="412-条件编译">4.1.2 条件编译</h4>
+<p>使用指令告诉编译器根据编译时的条件执行或忽略信息(或代码)块。</p>
+<ul>
+<li><code>#ifdef、#else 和 #endif指令</code>
+<ul>
+<li>ifdef 指令：预处理器已定义后面的标识符，则执行<code>#else</code> 或<code>endif指令</code>之前的所有指令并编译所有 C 代码。</li>
+<li>如果未定义标识符，且有<code>#else指令</code>，则执行<code>#else</code> 和 <code>#endif指令</code>直接的所有代码。</li>
+</ul>
+</li>
+</ul>
+<p><code>ifdef、#else</code> 与 C 的<code>if else</code>的区别：</p>
+<blockquote>
+<p>预处理器不识别用于标记块的花括号(<code>{}</code>),因此使用 <code>#else(如果需要)</code> 和 <code>#endif(必须存在)</code> 来标记指令块。且这些指令结构可以<code>嵌套</code>或<code>标记C语句块</code>。</p>
+</blockquote>
+<ul>
+<li><code>ifndef</code>指令
+与 ifdef 类似。只是逻辑相反。</li>
+</ul>
+<p><code>#ifndef指令</code>判断后面的标识符<code>是否是未定义</code>的，常用于<code>定义之前未定义</code>的常量。</p>
+<p><code>#ifndef指令</code>可以防止相同的宏被重复定义。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp"># ifndef SIZE
+</span></span></span><span class="line"><span class="cl"><span class="cp"># define SIZE = 77
+</span></span></span><span class="line"><span class="cl"><span class="cp"># endif
+</span></span></span></code></pre></div><p><code>#ifndef</code>指令通常用于防止多次包含一个文件。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp"># ifndef THINGS_H_
+</span></span></span><span class="line"><span class="cl"><span class="cp"># define THINGS_H_
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="cm">/*此处省略了头文件中的其他内容*/</span>
+</span></span><span class="line"><span class="cl"><span class="cp"># endef
+</span></span></span></code></pre></div><ul>
+<li><code>#if</code> 和 <code>elif</code>指令
+<code>#if</code>指令类似 C 中的 if。</li>
+</ul>
+<p><code>#if</code>后面跟<code>整型常量表达式</code>，如果表达式为<code>非零</code>，则表达式为<code>真</code>。</p>
+<p><strong>条件编译的好处</strong>：使得程序移植性强。</p>
+<h2 id="5-泛型选择">5 泛型选择</h2>
+<p>泛型编程：指没有特定类型，但指定一种类型，则可以转换成指定类型的代码。</p>
+<p>泛型选择表达式：根据表达式的类型选择一个值。<del>不是预处理器指令</del>。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">_Gerneric</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="kt">int</span> <span class="o">:</span><span class="mi">0</span><span class="p">,</span><span class="kt">float</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span><span class="kt">double</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span><span class="k">default</span><span class="o">:</span><span class="mi">3</span><span class="p">)</span>
+</span></span></code></pre></div><p><code>_Gerneric</code> 是 C11 关键字。后面的<code>圆括号内</code>包含有多个<code>逗号分隔</code>的项。 与 switch 语句类似。</p>
+<p>对于泛型选择表达式求值时，程序不会先对第一个项求值，只确定类型。</p>
+<blockquote>
+<p>只有匹配标签的类型后才会对表达式求值。</p>
+</blockquote>
+<h3 id="51-内联函数c99和-_noreturn函数c11">5.1 <code>内联函数(C99)</code>和 <code>_Noreturn</code>函数(C11)</h3>
+<h4 id="511-内联函数">5.1.1 内联函数</h4>
+<p>函数调用会有一定的开销，原因：函数的调用过程包括<code>建立调用、传递参数、跳转到函数代码并返回</code>。</p>
+<blockquote>
+<p>解决办法</p>
+<ol>
+<li>使用宏使代码内联，可避免开销。</li>
+<li>C99 中方法：内联函数。</li>
+</ol>
+</blockquote>
+<p>内部链接的函数可以成为内联函数。</p>
+<blockquote>
+<p>内联函数的定义与调用该函数的代码必须在同一个文件中。</p>
+</blockquote>
+<p>创建内联函数的方法：使用函数说明符<code>inline</code> 和存储类别说明符<code>static</code>。</p>
+<p><del>内联函数无法在调试器中显示</del></p>
+<p>如果是多个文件使用某个内联函数，则将内联函数定义放在头文件中，并在使用的文件中引入头文件即可。</p>
+<blockquote>
+<p>一般情况下，<del>不在头文件中放置可执行代码</del>，内联函数特例。</p>
+</blockquote>
+<h4 id="512-_noreturn函数">5.1.2 <code>_Noreturn</code>函数</h4>
+<p>C11 中新增函数说明符<code>_Noreturn</code> ，表明调用后函数不返回主调函数。</p>
+<p><code>exit()</code> 函数是 <code>_Noreturn</code> 函数的特例。<del><code>exit()</code> 不会返回主调函数</del>。</p>
+<p>⚠️ 注意：与<code>void类型</code>不同，<code>void函数</code>的类型在执行完毕后返回主调函数，但它<code>不提供返回值</code>。</p>
+<h3 id="52-c-库">5.2 C 库</h3>
+<h4 id="521-访问-c-库">5.2.1 访问 C 库</h4>
+<ul>
+<li>
+<p>自动访问</p>
+<p>在使用函数之前必须先声明函数的类型，通过包含合适的头文件即可。</p>
+</li>
+<li>
+<p>文件包含</p>
+<p>通过#include 来引入。</p>
+</li>
+<li>
+<p>库包含</p>
+<pre><code>通过编译时选项显式指定某些库。
+</code></pre>
+<blockquote>
+<p>与包含头文件不同，头文件提供函数声明或原型。</p>
+<p>库选项告知系统到哪里查找函数代码。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="522-数学库">5.2.2 数学库</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./ANSIC%e6%a0%87%e5%87%86%e7%9a%84%e4%b8%80%e4%ba%9b%e6%95%b0%e5%ad%a6%e5%87%bd%e6%95%b0.png"
+        data-srcset="./ANSIC%e6%a0%87%e5%87%86%e7%9a%84%e4%b8%80%e4%ba%9b%e6%95%b0%e5%ad%a6%e5%87%bd%e6%95%b0.png, ./ANSIC%e6%a0%87%e5%87%86%e7%9a%84%e4%b8%80%e4%ba%9b%e6%95%b0%e5%ad%a6%e5%87%bd%e6%95%b0.png 1.5x, ./ANSIC%e6%a0%87%e5%87%86%e7%9a%84%e4%b8%80%e4%ba%9b%e6%95%b0%e5%ad%a6%e5%87%bd%e6%95%b0.png 2x"
+        data-sizes="auto"
+        alt="./ANSIC标准的一些数学函数.png"
+        title="./ANSIC标准的一些数学函数.png" /></p>
+<h4 id="523-通用工具库">5.2.3 通用工具库</h4>
+<p>通用工具库包含各种函数，包括随机数生成器、查找和排序函数、转换函数和内存管理函数。</p>
+<blockquote>
+<p>这些函数均在 stdlib.h 头文件中</p>
+</blockquote>
+<ul>
+<li><code>exit()</code> 和 <code>atexit()</code> 函数
+<code>main()函数</code>返回系统时将自动调用 <code>exit()</code> 函数。</li>
+</ul>
+<p><strong><code>atexit()</code> 函数的用法</strong>
+使用<code>atexit()</code> 函数，只需把退出时要调用的<code>函数地址</code>传递给<code>atexit()</code> 即可。</p>
+<p><strong><code>exit()</code> 函数的用法</strong></p>
+<p><code>exit()</code> 执行完 <code>atexit()</code> 指定的函数后，会完成一些清理工作：<em>刷新所有输出流、关闭所有打开的流和关闭由标准<code>I/O函数 tmpfile()</code> 创建的临时文件</em>。</p>
+<ul>
+<li><code>qsort()</code> 函数</li>
+</ul>
+<p>快速排序算法(<code>qsort()函数</code>)：排序数组的数据对象。原型如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">qsort</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">base</span><span class="p">,</span><span class="n">size_t</span> <span class="n">nmemb</span><span class="p">,</span><span class="n">size_t</span> <span class="n">size</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">compare</span><span class="p">)(</span><span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="p">,</span><span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="p">));</span>
+</span></span></code></pre></div><blockquote>
+<p>第 1 个参数：值指向待排序数组首元素的指针。可引用任何类型的数组。</p>
+<p>第 2 个参数：待排序项的数量。</p>
+<p>第 3 个参数：数组中每个元素占用的空间大小。</p>
+<p>第 4 个参数：一个指向函数的指针(返回 int 类型的值且接受两个指向 const void 的指针作为参数)。</p>
+</blockquote>
+<h4 id="524-断言库">5.2.4 断言库</h4>
+<p><code>assert.h 头文件</code> 支持的断言库：用于<code>辅助调试程序</code>的小型库。由 <code>assert()宏</code>组成，接受一个整型表达式作为参数。</p>
+<p><code>assert()</code> 的参数是一个<code>条件表达式</code> 或 <code>逻辑表达式</code>。</p>
+<blockquote>
+<p>如果<code>assert()</code>中止程序，则首先会显示失败的测试、包含<code>测试的文件名和行号</code>。</p>
+</blockquote>
+<p>C11 中新增 <code>_Static_assert()</code> ：</p>
+<ul>
+<li>第 1 个参数：整型常量表达式</li>
+<li>第 2 个参数：一个字符串</li>
+</ul>
+<p>与 assert() 的区别</p>
+<ul>
+<li><code>assert()</code> 会导致 <em>正在运行的程序中止</em>。</li>
+<li><code>_Static_assert()</code> 可导致 <em>程序无法编译通过</em>。</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/c/">C</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-09-13</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/language/c/%E4%BD%8D%E6%93%8D%E4%BD%9C/" class="prev" rel="prev" title="位操作"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/language/c/%E6%9E%9A%E4%B8%BE/" class="next" rel="next" title="枚举">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

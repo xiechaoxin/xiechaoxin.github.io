@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>route-map&#34; - 标签 - xcx</title>
+        <link>https://xiechaoxin.github.io/tags/route-map/</link>
+        <description>route-map&#34; - 标签 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 29 Sep 2022 16:59:06 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/tags/route-map/" rel="self" type="application/rss+xml" /><item>
+    <title>Java学习路线</title>
+    <link>https://xiechaoxin.github.io/posts/common/route-map/java%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</link>
+    <pubDate>Thu, 29 Sep 2022 16:59:06 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/common/route-map/java%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</guid>
+    <description><![CDATA[Java 学习路线 1 大纲 2022 2 路线特点 2.1 最新，完整一条龙的大厂 Java 学习路线，从入门到入土 2.2 同时适用于想全面学习 / 快速求职的同学，可以根据符号来定制自己的]]></description>
+</item>
+<item>
+    <title>Python 学习路线</title>
+    <link>https://xiechaoxin.github.io/posts/common/route-map/python%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</link>
+    <pubDate>Thu, 29 Sep 2022 16:59:06 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/common/route-map/python%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</guid>
+    <description><![CDATA[Python 学习路线 2022 1 学习路线 学会基础，足够应付工作了。 1.1 基础 Python 安装 开发工具 PyCharm Sublime VS Code 变量 定义变量 关键字 命名规则 基本数据类型 类型转换 运算符和表达式 流程]]></description>
+</item>
+</channel>
+</rss>

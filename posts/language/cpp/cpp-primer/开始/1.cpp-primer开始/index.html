@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>1.CPP Primer 开始 - xcx</title><meta name="description" content=""><meta property="og:title" content="1.CPP Primer 开始" />
+<meta property="og:description" content="开始 1 C&#43;&#43;语言特性 C&#43;&#43;同时支持 4 种不同的编程风格：C 风格、基于对象、面向对象、泛型 C&#43;&#43;的抽象存在若干缺陷，缺少自动内存管理，缺少对象级" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/%E5%BC%80%E5%A7%8B/1.cpp-primer%E5%BC%80%E5%A7%8B/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-08T00:36:13+00:00" />
+<meta property="article:modified_time" content="2022-07-08T00:36:13+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="1.CPP Primer 开始"/>
+<meta name="twitter:description" content="开始 1 C&#43;&#43;语言特性 C&#43;&#43;同时支持 4 种不同的编程风格：C 风格、基于对象、面向对象、泛型 C&#43;&#43;的抽象存在若干缺陷，缺少自动内存管理，缺少对象级"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/%E5%BC%80%E5%A7%8B/1.cpp-primer%E5%BC%80%E5%A7%8B/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/design-patterns/%E9%87%8D%E5%AD%A6java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" /><link rel="next" href="https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/1-cpp%E5%9F%BA%E7%A1%80/2.%E5%8F%98%E9%87%8F%E5%92%8C%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "1.CPP Primer 开始",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/language\/cpp\/cpp-primer\/%E5%BC%80%E5%A7%8B\/1.cpp-primer%E5%BC%80%E5%A7%8B\/"
+        },"genre": "posts","keywords": "C\u002b\u002b primer","wordcount":  3313 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/language\/cpp\/cpp-primer\/%E5%BC%80%E5%A7%8B\/1.cpp-primer%E5%BC%80%E5%A7%8B\/","datePublished": "2022-07-08T00:36:13+00:00","dateModified": "2022-07-08T00:36:13+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">1.CPP Primer 开始</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/cpp/"><i class="far fa-folder fa-fw"></i>CPP</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-07-08">2022-07-08</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3313 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-c语言特性">1 C++语言特性</a></li>
+    <li><a href="#2-建议">2 建议</a></li>
+    <li><a href="#3-编写一个简单的-c程序">3 编写一个简单的 C++程序</a>
+      <ul>
+        <li><a href="#31-源文件命名约定">3.1 源文件命名约定</a></li>
+        <li><a href="#32-编译和运行程序">3.2 编译和运行程序</a></li>
+        <li><a href="#33-熟悉编译器">3.3 熟悉编译器</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-初识输入输出">4 初识输入输出</a>
+      <ul>
+        <li><a href="#41-io">4.1 IO</a></li>
+        <li><a href="#42-标准库定义了-4-个-io-对象">4.2 标准库定义了 4 个 io 对象</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-注释简介">5 注释简介</a></li>
+    <li><a href="#6-控制流">6 控制流</a>
+      <ul>
+        <li><a href="#61-程序执行流程">6.1 程序执行流程</a></li>
+        <li><a href="#62-while-语句">6.2 while 语句</a></li>
+      </ul>
+    </li>
+    <li><a href="#7-for-语句">7 for 语句</a></li>
+    <li><a href="#8-对用户输入的数组求和读取数最不定的输入数据">8 对用户输入的数组求和：读取数最不定的输入数据</a></li>
+    <li><a href="#9-if-语句">9 if 语句</a></li>
+    <li><a href="#10-类简介">10 类简介</a>
+      <ul>
+        <li><a href="#101-抽象和具体">10.1 抽象和具体</a></li>
+        <li><a href="#102-类的简介">10.2 类的简介</a></li>
+        <li><a href="#103-成员函数">10.3 成员函数</a></li>
+      </ul>
+    </li>
+    <li><a href="#11-书店程序">11 书店程序</a></li>
+    <li><a href="#12-术语表">12 术语表</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="开始">开始</h1>
+<h2 id="1-c语言特性">1 C++语言特性</h2>
+<p>C++同时支持 4 种不同的编程风格：C 风格、基于对象、面向对象、泛型</p>
+<p>C++的抽象存在若干缺陷，缺少自动内存管理，缺少对象级别的消息发送机制</p>
+<p>建议逐渐从 C++98 转换到 c++11，因为 11 增强了语言机制和标准库</p>
+<p>核心设计哲学 Zero Overhead</p>
+<p>我觉得 C++中最重要的语法特征应该就是类，C++语言主要的一个设计目标就是让程序员自定义的数据类型(类)像内置类型一样好用。</p>
+<h2 id="2-建议">2 建议</h2>
+<p>从一开始养成好的习惯，而不是获得很复杂的知识后再去忘掉坏习惯</p>
+<p>练习练习练习，edit-compile-debug，不断循环这个周期</p>
+<h2 id="3-编写一个简单的-c程序">3 编写一个简单的 C++程序</h2>
+<ul>
+<li>
+<p>引入标准库的头文件使用 &lt;&gt;</p>
+</li>
+<li>
+<p>引用非标准库的头文件使用 &quot; &quot;</p>
+</li>
+<li>
+<p>每个 C++程序都包含一个或多个函数(function)</p>
+<ul>
+<li>其中一个必须命名为 main</li>
+</ul>
+</li>
+<li>
+<p>一个函数的定义包括:</p>
+<ul>
+<li>返回类型 (return type)</li>
+<li>函数名(function name)</li>
+<li>参数列表(parameter list, 允许为空)</li>
+<li>函数体(function body)</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="31-源文件命名约定">3.1 源文件命名约定</h3>
+<p>.cc/.cxx/.cpp/.cp/.c</p>
+<h3 id="32-编译和运行程序">3.2 编译和运行程序</h3>
+<ul>
+<li>计算机不能直接理解和运行 C++源程序
+<ul>
+<li>需要把人类读写的字符的排列变为计算机能理解的比特的排列</li>
+</ul>
+</li>
+<li>对源程序进行编译、链接，形成可执行文件</li>
+</ul>
+<h3 id="33-熟悉编译器">3.3 熟悉编译器</h3>
+<p><strong>g++</strong>：</p>
+<ul>
+<li>编译：<code>g++ --std=c++11 ch01.cpp -o main</code></li>
+<li>运行：<code>./prog1</code></li>
+<li>查看运行状态：<code>echo $?</code></li>
+<li>编译多个文件:<code>g++ ch2.cpp Sales_item.cc -o main</code></li>
+</ul>
+<p>输入 <code>g++ --help</code>，查看编译器选项：</p>
+<pre tabindex="0"><code>Usage: g++ [options] file...
+Options:
+  -pass-exit-codes         Exit with highest error code from a phase
+  --help                   Display this information
+  --target-help            Display target specific command line options
+  --help={common|optimizers|params|target|warnings|[^]{joined|separate|undocumented}}[,...]
+                           Display specific types of command line options
+  (Use &#39;-v --help&#39; to display command line options of sub-processes)
+  --version                Display compiler version information
+  -dumpspecs               Display all of the built in spec strings
+  -dumpversion             Display the version of the compiler
+  -dumpmachine             Display the compiler&#39;s target processor
+  -print-search-dirs       Display the directories in the compiler&#39;s search path
+  -print-libgcc-file-name  Display the name of the compiler&#39;s companion library
+  -print-file-name=&lt;lib&gt;   Display the full path to library &lt;lib&gt;
+  -print-prog-name=&lt;prog&gt;  Display the full path to compiler component &lt;prog&gt;
+  -print-multiarch         Display the target&#39;s normalized GNU triplet, used as
+                           a component in the library path
+  -print-multi-directory   Display the root directory for versions of libgcc
+  -print-multi-lib         Display the mapping between command line options and
+                           multiple library search directories
+  -print-multi-os-directory Display the relative path to OS libraries
+  -print-sysroot           Display the target libraries directory
+  -print-sysroot-headers-suffix Display the sysroot suffix used to find headers
+  -Wa,&lt;options&gt;            Pass comma-separated &lt;options&gt; on to the assembler
+  -Wp,&lt;options&gt;            Pass comma-separated &lt;options&gt; on to the preprocessor
+  -Wl,&lt;options&gt;            Pass comma-separated &lt;options&gt; on to the linker
+  -Xassembler &lt;arg&gt;        Pass &lt;arg&gt; on to the assembler
+  -Xpreprocessor &lt;arg&gt;     Pass &lt;arg&gt; on to the preprocessor
+  -Xlinker &lt;arg&gt;           Pass &lt;arg&gt; on to the linker
+  -save-temps              Do not delete intermediate files
+  -save-temps=&lt;arg&gt;        Do not delete intermediate files
+  -no-canonical-prefixes   Do not canonicalize paths when building relative
+                           prefixes to other gcc components
+  -pipe                    Use pipes rather than intermediate files
+  -time                    Time the execution of each subprocess
+  -specs=&lt;file&gt;            Override built-in specs with the contents of &lt;file&gt;
+  -std=&lt;standard&gt;          Assume that the input sources are for &lt;standard&gt;
+  --sysroot=&lt;directory&gt;    Use &lt;directory&gt; as the root directory for headers
+                           and libraries
+  -B &lt;directory&gt;           Add &lt;directory&gt; to the compiler&#39;s search paths
+  -v                       Display the programs invoked by the compiler
+  -###                     Like -v but options quoted and commands not executed
+  -E                       Preprocess only; do not compile, assemble or link
+  -S                       Compile only; do not assemble or link
+  -c                       Compile and assemble, but do not link
+  -o &lt;file&gt;                Place the output into &lt;file&gt;
+  -pie                     Create a position independent executable
+  -shared                  Create a shared library
+  -x &lt;language&gt;            Specify the language of the following input files
+                           Permissible languages include: c c++ assembler none
+                           &#39;none&#39; means revert to the default behavior of
+                           guessing the language based on the file&#39;s extension
+</code></pre><p>输入 <code>g++ -v --help</code>可以看到更完整的指令。
+例如还有些常用的：</p>
+<pre tabindex="0"><code>-h FILENAME, -soname FILENAME: Set internal name of shared library
+-I PROGRAM, --dynamic-linker PROGRAM: Set PROGRAM as the dynamic linker to use
+-l LIBNAME, --library LIBNAME: Search for library LIBNAME
+-L DIRECTORY, --library-path DIRECTORY: Add DIRECTORY to library search path
+</code></pre><p><strong>获得程序状态</strong>:</p>
+<ul>
+<li>windows: <code>echo %ERRORLEVEL%</code></li>
+<li>UNIX: <code>echo $?</code></li>
+</ul>
+<h2 id="4-初识输入输出">4 初识输入输出</h2>
+<h3 id="41-io">4.1 IO</h3>
+<p>iostream 库包含两个基础类型 istream 和 ostream</p>
+<ul>
+<li>stream(流)：一个流就是一个字符序列，是从 IO 设备流出或写入 IO 设备的，&ldquo;stream&quot;主要表达的是，随着时间的推移，字符是顺序生成或消耗的。</li>
+<li>istream： input stream，输入流</li>
+<li>ostream： output stream，输出流</li>
+</ul>
+<h3 id="42-标准库定义了-4-个-io-对象">4.2 标准库定义了 4 个 io 对象</h3>
+<ul>
+<li>cin: istream 类型的对象，标准输入 (standard input)</li>
+<li>cout: ostream 类型的对象，标准输出 (standard output)</li>
+<li>cerr: ostream 类型的对象，标准错误(standard error)</li>
+<li>clog: ostream 类型的对象，用来输出程序运行时的一般信息</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp"># include &lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;hello world&#34;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><ul>
+<li><code>#include &lt;iostream&gt;</code></li>
+<li><code>std::cout &lt;&lt; &quot;hello&quot;</code></li>
+<li><code>std::cin &gt;&gt; v1</code></li>
+</ul>
+<p>记住<code>&gt;&gt;</code>和<code>&lt;&lt;</code>返回的结果都是左操作数，也就是输入流和输出流本身。</p>
+<p><strong>endl</strong>：这是一个被称为<strong>操纵符</strong>(manipulator)的特殊值，效果是结束当前行，并将设备关联的缓冲区(buffer)中的内容刷到设备中。</p>
+<p><strong>头文件</strong>：类的类型一般存储在头文件中，标准库的头文件使用<code>&lt;&gt;</code>，非标准库的头文件使用<code>&quot;&quot;</code>。申明写在<code>.h</code>文件，定义实现写在<code>.cpp</code>文件。</p>
+<p><strong>避免多次包含同一头文件</strong>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp"># ifndef SALESITEM_H
+</span></span></span><span class="line"><span class="cl"><span class="cp"># define SALESITEM_H
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1">// Definition of Sales_itemclass and related functions goes here
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp"># endif
+</span></span></span></code></pre></div><p><strong>成员函数(类方法)</strong>：使用<code>.</code>调用。</p>
+<p><strong>命名空间(namespace)</strong>：使用作用域运算符<code>::</code>调用。</p>
+<h2 id="5-注释简介">5 注释简介</h2>
+<p>注释(comments)可以帮助读者理解程序。
+C++中有两种注释：</p>
+<ul>
+<li>单行注释</li>
+<li>多行注释
+<ul>
+<li>不能嵌套</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// 单行注释
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 多行注释格式
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 每一行加一个*
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span></code></pre></div><h2 id="6-控制流">6 控制流</h2>
+<h3 id="61-程序执行流程">6.1 程序执行流程</h3>
+<ul>
+<li>语句一般是顺序执行的</li>
+<li>但也提供多种不同的控制流语句</li>
+</ul>
+<h3 id="62-while-语句">6.2 while 语句</h3>
+<p>反复执行一段代码，直至给定条件(condition)为假。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp"># include &lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// keep executing the while as long as val is less than or equal to 10
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">while</span> <span class="p">(</span><span class="n">val</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sum</span> <span class="o">+=</span> <span class="n">val</span><span class="p">;</span>  <span class="c1">// assigns sum + val to sum
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">++</span><span class="n">val</span><span class="p">;</span>       <span class="c1">// add 1 to val
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Sum of 1 to 10 inclusive is &#34;</span>
+</span></span><span class="line"><span class="cl">              <span class="o">&lt;&lt;</span> <span class="n">sum</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="7-for-语句">7 for 语句</h2>
+<ul>
+<li>在循环条件中检测变量，在循环体中递增变量的模式使用非常频繁
+<ul>
+<li>以至于 c++专门定义了这样一种循环</li>
+</ul>
+</li>
+<li>for 语句的出现就是为了筒化这一流程
+<ul>
+<li>初始化语句(init-statement)</li>
+<li>循环条件(condition)</li>
+<li>循环体(body)</li>
+<li>表达式(expression)</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp"># include &lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// sum values from 1 through 10 inclusive
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">val</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">;</span> <span class="o">++</span><span class="n">val</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sum</span> <span class="o">+=</span> <span class="n">val</span><span class="p">;</span>  <span class="c1">// equivalent to sum = sum + val
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Sum of 1 to 10 inclusive is &#34;</span>
+</span></span><span class="line"><span class="cl">              <span class="o">&lt;&lt;</span> <span class="n">sum</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="8-对用户输入的数组求和读取数最不定的输入数据">8 对用户输入的数组求和：读取数最不定的输入数据</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp"># include &lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// read until end-of-file, calculating a running total of all values read
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 当读取到 end of file ，istream 对象的状态会变为无效，处于无效的 istream
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 对象会使得条件变为假
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">while</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">value</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sum</span> <span class="o">+=</span> <span class="n">value</span><span class="p">;</span> <span class="c1">// equivalent to sum = sum + value
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Sum is: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">sum</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>UNIX 和 Mac 下键盘输入文件结束符：<code>ctrl+d</code>，Windows 下：<code>ctrl+z</code></p>
+<h2 id="9-if-语句">9 if 语句</h2>
+<p>我们可以利用计语句写一个程序，用来统计输入中每个值连续出现了几次</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp"># include &lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// currVal is the number we&#39;re counting; we&#39;ll read new values into val
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">currVal</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// read first number and ensure that we have data to process
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">currVal</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// store the count for the current value we&#39;re processing
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">while</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">val</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>                       <span class="c1">// read the remaining numbers
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="n">val</span> <span class="o">==</span> <span class="n">currVal</span><span class="p">)</span> <span class="c1">// if the values are the same
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="o">++</span><span class="n">cnt</span><span class="p">;</span>          <span class="c1">// add 1 to cnt
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="c1">// otherwise, print the count for the previous value
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">currVal</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; occurs &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">cnt</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; times&#34;</span>
+</span></span><span class="line"><span class="cl">                          <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">currVal</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span> <span class="c1">// remember the new value
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">cnt</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>       <span class="c1">// reset the counter
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="c1">// while loop ends here
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// remember to print the count for the last value in the file
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">currVal</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; occurs &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">cnt</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; times&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="c1">// outermost if statement ends here
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><blockquote>
+<p>再谈编译：C++是静态类型语言，编辑-编译-调试(edit-compile-debug)是一个周期，编译时，编译器会检测一些错误，常见的错误类型是<strong>语法错误</strong>，<strong>类型错误</strong>，<strong>声明错误</strong></p>
+</blockquote>
+<h2 id="10-类简介">10 类简介</h2>
+<h3 id="101-抽象和具体">10.1 抽象和具体</h3>
+<ul>
+<li>抽象
+<ul>
+<li>类</li>
+</ul>
+</li>
+<li>具体
+<ul>
+<li>类的实例</li>
+</ul>
+</li>
+</ul>
+<h3 id="102-类的简介">10.2 类的简介</h3>
+<ul>
+<li>
+<p>C++中我们通过类(class)来定义自己的数据结构。</p>
+<ul>
+<li>建议大型程序将类定义在头文件中</li>
+</ul>
+</li>
+<li>
+<p>一个类定义了一个类型，以及与其相关联的一组操作，其类型名就是类名。</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">i</span><span class="p">;</span>           <span class="c1">//基本数据类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Sale_item</span> <span class="n">item</span><span class="p">;</span>  <span class="c1">// 自定义类类型
+</span></span></span></code></pre></div><h3 id="103-成员函数">10.3 成员函数</h3>
+<p>成员函数是定义为类的一部分的函数，有时也被称为方法。</p>
+<blockquote>
+<p>如何指定使用 c++11 进行编译</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">g++ --std<span class="o">=</span>c++11 ch01.cpp -o main
+</span></span></code></pre></div><blockquote>
+<p>如何使用文件重定向</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">./main &lt; data/add_item
+</span></span></code></pre></div><h2 id="11-书店程序">11 书店程序</h2>
+<p>见<code>Cpp_Primer_Practice-master</code>。</p>
+<p>目前，主要的知识点是能够编译、运行简单的 c++ 程序，如何定义变量，如何进行输入输出，如何编写 if、for、while 语句。我们还介绍了类，对于别人定义的类，我们如何创建、使用其对象，后续我们将定义自己的类。</p>
+<h2 id="12-术语表">12 术语表</h2>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>解释</th>
+<th>备注、代码展示</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>参数(实参，argument)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>赋值(assignment)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>程序块(block)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>缓冲区(buffer)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>内置类型(built-in type)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cerr</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cin</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cout</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>clog</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>字符串字面值常量(character string literal)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>类(class)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>类类型(class type)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>注释(comment)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>条件(condition)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>花括号(curly brace)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>数据结构(data structure)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>编辑-编译-调试(edit-compile-debug)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>文件结束符(end-of-file)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>表达式(expression)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>for 语句(for statement)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>函数(function)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>函数体(function body)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>函数名(function name)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>头文件(header)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>if 语句(if statement)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>初始化(initialize)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>库类型(library type)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>操作符(manipulator)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>成员函数(member function)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>方法(method)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>命名空间(namespace)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>形参列表(parameter list)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>返回类型(return type)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>源文件(source file)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>标准错误(standard error)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>标准输入(standard input)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>标准库(standard libraly)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>标准输出(standard output)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>语句(statement)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>字符串常量(string literal)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>while 语句(while statement)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>()运算符(()operation)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>++运算符(++ operatior)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>+=运算符 (+= operator)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>.运算符 (. operator)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>::运算符 (:: operator)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>=运算符(= operator)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>–运算符 (–operator)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&laquo;运算符 (&laquo;operator)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>运算符 (–operator)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>==运算符 (==operator)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>!=运算符 (!=operator)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;=运算符 (&lt;=operator)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>=运算符 (&gt;=operator)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;运算符 (&lt;operator)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&gt;运算符 (&gt;operator)</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/c&#43;&#43;-primer/">C&#43;&#43; primer</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-07-08</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/design-patterns/%E9%87%8D%E5%AD%A6java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="prev" rel="prev" title="重学Java设计模式"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/language/cpp/cpp-primer/1-cpp%E5%9F%BA%E7%A1%80/2.%E5%8F%98%E9%87%8F%E5%92%8C%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B/" class="next" rel="next" title="2.变量和基本类型">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

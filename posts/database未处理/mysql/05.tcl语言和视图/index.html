@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>05.TCL语言和视图 - xcx</title><meta name="description" content=""><meta property="og:title" content="05.TCL语言和视图" />
+<meta property="og:description" content="TCL语言 Transaction control language 事务控制语言 1 事务 一个或一组sql语句组成一个执行单元，这个执行单元要么全部执行，要么全部不执行 1.1 存储引擎(表类型) 在 mysql 中的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/05.tcl%E8%AF%AD%E8%A8%80%E5%92%8C%E8%A7%86%E5%9B%BE/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-17T17:59:12+00:00" />
+<meta property="article:modified_time" content="2022-06-17T17:59:12+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="05.TCL语言和视图"/>
+<meta name="twitter:description" content="TCL语言 Transaction control language 事务控制语言 1 事务 一个或一组sql语句组成一个执行单元，这个执行单元要么全部执行，要么全部不执行 1.1 存储引擎(表类型) 在 mysql 中的"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/05.tcl%E8%AF%AD%E8%A8%80%E5%92%8C%E8%A7%86%E5%9B%BE/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/06.%E5%8F%98%E9%87%8F%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E5%87%BD%E6%95%B0/" /><link rel="next" href="https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/04.ddl%E8%AF%AD%E8%A8%80/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "05.TCL语言和视图",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/database%E6%9C%AA%E5%A4%84%E7%90%86\/mysql\/05.tcl%E8%AF%AD%E8%A8%80%E5%92%8C%E8%A7%86%E5%9B%BE\/"
+        },"genre": "posts","keywords": "database, mysql","wordcount":  1939 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/database%E6%9C%AA%E5%A4%84%E7%90%86\/mysql\/05.tcl%E8%AF%AD%E8%A8%80%E5%92%8C%E8%A7%86%E5%9B%BE\/","datePublished": "2022-06-17T17:59:12+00:00","dateModified": "2022-06-17T17:59:12+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">05.TCL语言和视图</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/database/"><i class="far fa-folder fa-fw"></i>database</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-17">2022-06-17</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1939 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-事务">1 事务</a>
+      <ul>
+        <li><a href="#11-存储引擎表类型">1.1 存储引擎(表类型)</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-数据库的隔离级别">2 数据库的隔离级别</a></li>
+    <li><a href="#3-视图">3 视图</a>
+      <ul>
+        <li><a href="#31-创建视图">3.1 创建视图</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-修改视图">4 修改视图</a></li>
+    <li><a href="#5-删除视图">5 删除视图</a>
+      <ul>
+        <li><a href="#51-查看视图">5.1 查看视图</a></li>
+        <li><a href="#52-视图的更新">5.2 视图的更新</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="tcl语言">TCL语言</h1>
+<p>Transaction control language 事务控制语言</p>
+<h2 id="1-事务">1 事务</h2>
+<p>一个或一组sql语句组成一个执行单元，这个执行单元要么全部执行，要么全部不执行</p>
+<h3 id="11-存储引擎表类型">1.1 存储引擎(表类型)</h3>
+<ul>
+<li>在 mysql 中的数据用各种不同的技术存储在文件(或内存)中</li>
+<li>在 mysql 中用的最多的存储引擎有：innodb, myisam, memory等</li>
+<li>innodb 支持事务，而myisam、memory 等不支持事务</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">show</span><span class="w"> </span><span class="n">engines</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><h4 id="111-事务的acid属性">1.1.1 事务的ACID属性</h4>
+<ol>
+<li>原子性(Atomicity)
+<ul>
+<li>事务是一个不可分割的工作单位，事务中的操作要么全都发生，要么都不发生</li>
+</ul>
+</li>
+<li>一致性(consisitency)
+<ul>
+<li>事务必须使数据库从一个一致性状态变换到另一个一致性状态</li>
+</ul>
+</li>
+<li>隔离性(isolation)
+<ul>
+<li>一个事务的执行不能被其他事务干扰，即一个事务内部的操作及使用的数据对并发的其他事务是隔离的，并发执行的各个事务之间不能互相干扰</li>
+</ul>
+</li>
+<li>持久性(Durability)
+<ul>
+<li>一个事务一旦被提交，它对数据库中数据的改变就是永久性的，接下来的其他操作和数据库故障不应该对其有任何影响</li>
+</ul>
+</li>
+</ol>
+<h4 id="112-事务的创建">1.1.2 事务的创建</h4>
+<ul>
+<li>隐式(自动)事务：没有明显的开启和结束的标记
+<ul>
+<li>insert, update, delete语句</li>
+</ul>
+</li>
+<li>显式事务：事务具有明显的开启和结束的标记
+<ul>
+<li>前提：必须先设置自动提交功能为禁用</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">show</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;autocommit&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="err">开启事务</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="n">autocommit</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">start</span><span class="w"> </span><span class="k">transaction</span><span class="p">;</span><span class="w"> </span><span class="o">#</span><span class="err">可选</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="err">编写事务中的</span><span class="n">sql</span><span class="err">语句</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="p">,</span><span class="w"> </span><span class="k">insert</span><span class="p">,</span><span class="w"> </span><span class="k">update</span><span class="p">,</span><span class="w"> </span><span class="k">delete</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="err">语句</span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="err">语句</span><span class="mi">2</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="err">结束事务</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">commit</span><span class="p">;</span><span class="w"> </span><span class="o">#</span><span class="err">提交事务</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">rollback</span><span class="p">;</span><span class="w"> </span><span class="o">#</span><span class="err">回滚事务</span><span class="w">
+</span></span></span></code></pre></div><p>delete 和 truncate 在事务中的区别</p>
+<ul>
+<li>truncate不支持回滚</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">#</span><span class="w"> </span><span class="k">delete</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="n">autocommit</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">start</span><span class="w"> </span><span class="k">transaction</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">delete</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">account</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">rollback</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="k">truncate</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="n">autocommit</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">start</span><span class="w"> </span><span class="k">transaction</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">truncate</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">account</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">rollback</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><h2 id="2-数据库的隔离级别">2 数据库的隔离级别</h2>
+<ul>
+<li>read uncommitted(读未提交): 出现脏读、幻读、不可重复读</li>
+<li>read committed(读已提交): 避免脏读</li>
+<li>repeatable read(可重复读): 避免脏读、不可重复读</li>
+<li>serializable(串行化): 避免脏读、幻读、不可重复读</li>
+</ul>
+<p>对于同时运行的多个事务，当这些事务访问数据库中相同的数据时，如果没有采取必要的隔离机制，就会导致各种并发问题：</p>
+<ul>
+<li>
+<p>脏读：一个事务读取了其他事务还没有提交的数据，读到的是其他事务“更新”的数据</p>
+<ul>
+<li>对于两个事务T1, T2.</li>
+<li>T1读取了已经被T2更新但还没有被提交的字段.</li>
+<li>之后, 若T2回滚, T1读取的内容就是临时且无效的.</li>
+</ul>
+</li>
+<li>
+<p>不可重复读：一个事务多次读取，结果不一样</p>
+<ul>
+<li>对于两个事务T1, T2.</li>
+<li>T1读取了一个字段，然后T2更新了该字段.</li>
+<li>之后, T1再次读取同一个字段, 值就不同了.</li>
+</ul>
+</li>
+<li>
+<p>幻读：一个事务读取了其他事务还没有提交的数据，读到的是其他事务“插入”的数据</p>
+<ul>
+<li>对于两个事务T1, T2.</li>
+<li>T1从一个表中读取了一个字段，然后T2在该表中插入了一些新的行</li>
+<li>之后, 如果T1再次读取同一个表, 就会多出几行.</li>
+</ul>
+</li>
+</ul>
+<p>Oracle支持的2种事务隔离级别：READ COMMITED(默认), SERIALIZABLE。</p>
+<p>Mysql支持4种事务隔离级别，Mysql默认的事务隔离级别为：REPEATABLE READ.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">#</span><span class="w"> </span><span class="err">查看隔离级别</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="o">@@</span><span class="n">tx_isolation</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="err">设置当前</span><span class="n">mySQL</span><span class="err">连接的隔离级别</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">session</span><span class="w"> </span><span class="k">transaction</span><span class="w"> </span><span class="k">isolation</span><span class="w"> </span><span class="k">level</span><span class="w"> </span><span class="k">read</span><span class="w"> </span><span class="k">uncommitted</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">session</span><span class="w"> </span><span class="k">transaction</span><span class="w"> </span><span class="k">isolation</span><span class="w"> </span><span class="k">level</span><span class="w"> </span><span class="k">read</span><span class="w"> </span><span class="k">committed</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">session</span><span class="w"> </span><span class="k">transaction</span><span class="w"> </span><span class="k">isolation</span><span class="w"> </span><span class="k">level</span><span class="w"> </span><span class="k">repeatable</span><span class="w"> </span><span class="k">read</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">session</span><span class="w"> </span><span class="k">transaction</span><span class="w"> </span><span class="k">isolation</span><span class="w"> </span><span class="k">level</span><span class="w"> </span><span class="k">serializable</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="err">设置数据库系统的全局的隔离级别</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="k">transaction</span><span class="w"> </span><span class="k">isolation</span><span class="w"> </span><span class="k">level</span><span class="w"> </span><span class="k">read</span><span class="w"> </span><span class="k">committed</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>回滚点</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">#</span><span class="w"> </span><span class="err">设置保存点</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">savepoint</span><span class="w"> </span><span class="err">节点名</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="n">autocommit</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">start</span><span class="w"> </span><span class="k">transaction</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">delete</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="mi">25</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">savepoint</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">delete</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="mi">28</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">rollback</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w">  </span><span class="o">#</span><span class="err">回滚到保存点</span><span class="w">
+</span></span></span></code></pre></div><h2 id="3-视图">3 视图</h2>
+<p>含义：虚拟表，和普通表一样使用</p>
+<p>mysql5.1出现的新特性，本身是一个虚拟表，它的数据来自于表，通过执行时动态生成</p>
+<p>视图的好处：</p>
+<ul>
+<li>重用sql语句</li>
+<li>简化复杂的sql操作</li>
+<li>保护数据，提高安全性</li>
+</ul>
+<h3 id="31-创建视图">3.1 创建视图</h3>
+<p>语法：<code>create view 视图名 as 查询语句;</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">use</span><span class="w"> </span><span class="n">myemployees</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="err">查询姓名中包含</span><span class="n">a</span><span class="err">字符的员工名、部门名和工种信息</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="err">创建</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">myv1</span><span class="w"> </span><span class="k">AS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">last_name</span><span class="p">,</span><span class="w"> </span><span class="n">department_name</span><span class="p">,</span><span class="w"> </span><span class="n">job_title</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FROM</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">employees</span><span class="w"> </span><span class="n">e</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">JOIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">departments</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">department_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">department_id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">JOIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">jobs</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">j</span><span class="p">.</span><span class="n">job_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">job_id</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="err">使用</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">myv1</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">last_name</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;%a%&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="err">查询各部门的平均工资级别</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="err">创建视图：查看每个部门的平均工资</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">myv2</span><span class="w"> </span><span class="k">AS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">AVG</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span><span class="w"> </span><span class="n">ag</span><span class="p">,</span><span class="w"> </span><span class="n">department_id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FROM</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">employees</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">department_id</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="err">使用</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">myv2</span><span class="p">.</span><span class="n">ag</span><span class="p">,</span><span class="w"> </span><span class="k">g</span><span class="p">.</span><span class="n">grade_level</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">myv2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">JOIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">job_grades</span><span class="w"> </span><span class="k">g</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">myv2</span><span class="p">.</span><span class="n">ag</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="k">g</span><span class="p">.</span><span class="n">lowest_sal</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">g</span><span class="p">.</span><span class="n">highest_sal</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="err">查询平均工资最低的部门信息</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">myv2</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">ag</span><span class="w"> </span><span class="k">limit</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="err">查询平均工资最低的部门名和工资</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">create</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">myv3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">as</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">myv2</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">ag</span><span class="w"> </span><span class="k">limit</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">ag</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">myv3</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">departments</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">department_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">department_id</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><h2 id="4-修改视图">4 修改视图</h2>
+<p>语法：</p>
+<ul>
+<li>方式一：<code>create or replace view 视图名 as 查询语句;</code></li>
+<li>方式二：<code>alter view 视图名 as 查询语句;</code></li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">#</span><span class="w"> </span><span class="err">方式一</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">myv3</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">myv3</span><span class="w"> </span><span class="k">AS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">AVG</span><span class="p">(</span><span class="n">salary</span><span class="p">),</span><span class="w"> </span><span class="n">job_id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FROM</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">employees</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">job_id</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="err">方式二</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">alter</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">myv3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">as</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">employees</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><h2 id="5-删除视图">5 删除视图</h2>
+<p>语法：<code>drop view 视图名,视图名,...</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">drop</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">myv1</span><span class="p">,</span><span class="n">myv2</span><span class="p">,</span><span class="n">myv3</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><h3 id="51-查看视图">5.1 查看视图</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">desc</span><span class="w"> </span><span class="n">myv2</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">show</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">myv2</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><h3 id="52-视图的更新">5.2 视图的更新</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">create</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">replace</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">myv1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">as</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="n">last_name</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">employees</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="err">插入</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">myv1</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;zhangfei&#39;</span><span class="p">,</span><span class="s1">&#39;zf@qq.com&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="err">修改</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">update</span><span class="w"> </span><span class="n">myv1</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">last_name</span><span class="o">=</span><span class="s1">&#39;zhangwuji&#39;</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">last_name</span><span class="o">=</span><span class="s1">&#39;zhangfei&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="err">删除</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">delete</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">myv1</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">last_name</span><span class="o">=</span><span class="s1">&#39;zhangwuji&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><ul>
+<li>具备以下特点的视图不允许更新</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">#</span><span class="w"> </span><span class="err">包含以下关键字的</span><span class="n">sql</span><span class="err">语句：分组函数、</span><span class="k">distinct</span><span class="err">、</span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="err">、</span><span class="k">having</span><span class="err">、</span><span class="n">union</span><span class="err">或者</span><span class="k">union</span><span class="w"> </span><span class="k">all</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">create</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">replace</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">myv1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">as</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">department_id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">employees</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">department_id</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">update</span><span class="w"> </span><span class="n">myv1</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">m</span><span class="o">=</span><span class="mi">9000</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">department_id</span><span class="o">=</span><span class="mi">10</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="err">常量视图</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">create</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">replace</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">myv2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">as</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="s1">&#39;john&#39;</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">update</span><span class="w"> </span><span class="n">myv2</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;luvy&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="n">select</span><span class="err">中包含子查询</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">create</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">replace</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">myv3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">as</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">employees</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;max_salary&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">update</span><span class="w"> </span><span class="n">myv3</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">max_salary</span><span class="o">=</span><span class="mi">100000</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="k">join</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">create</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">replace</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">myv4</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">as</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="n">last_name</span><span class="p">,</span><span class="w"> </span><span class="n">department_name</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">departments</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">department_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">department_id</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">update</span><span class="w"> </span><span class="n">myv4</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">last_name</span><span class="o">=</span><span class="s1">&#39;zhangfei&#39;</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">last_name</span><span class="o">=</span><span class="s1">&#39;Whalen&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">myv4</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;chenzhen&#39;</span><span class="p">,</span><span class="s1">&#39;xxx&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="err">一个不能更新的视图</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">create</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">replace</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">myv5</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">as</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">myv3</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">update</span><span class="w"> </span><span class="n">myv5</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">max_salary</span><span class="o">=</span><span class="mi">10000</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">department_id</span><span class="o">=</span><span class="mi">60</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="n">where</span><span class="err">子句中的子查询引用了</span><span class="n">from</span><span class="err">子句中的表</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">create</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">replace</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">myv6</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">as</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="n">last_name</span><span class="p">,</span><span class="n">email</span><span class="p">,</span><span class="n">salary</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">employee_id</span><span class="w"> </span><span class="k">in</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">select</span><span class="w"> </span><span class="n">manager_id</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">manager_id</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">update</span><span class="w"> </span><span class="n">myv6</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">salary</span><span class="o">=</span><span class="mi">10000</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">last_name</span><span class="o">=</span><span class="s1">&#39;K_ing&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div></div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/database/">database</a>
+                </span><span><a href="/tags/mysql/">mysql</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-06-17</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/06.%E5%8F%98%E9%87%8F%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E5%87%BD%E6%95%B0/" class="prev" rel="prev" title="06.变量&amp;存储过程&amp;函数"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/04.ddl%E8%AF%AD%E8%A8%80/" class="next" rel="next" title="04.DDL语言">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

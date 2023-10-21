@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>C 语言知识点大纲(参考《C primer plus》) - xcx</title><meta name="description" content=""><meta property="og:title" content="C 语言知识点大纲(参考《C primer plus》)" />
+<meta property="og:description" content="C 语言知识点大纲(参考《C primer plus》) 1 第1章 初识 C语言 1.1 C语言的起源 1.2 选择C语言的理由 设计特性 高效性 可移植性 强大而灵活 面向程序员 缺点 1.3 C" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/language/c/c-%E8%AF%AD%E8%A8%80%E7%9F%A5%E8%AF%86%E7%82%B9%E5%A4%A7%E7%BA%B2%E5%8F%82%E8%80%83c-primer-plus/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-13T04:02:47+00:00" />
+<meta property="article:modified_time" content="2022-09-13T04:02:47+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="C 语言知识点大纲(参考《C primer plus》)"/>
+<meta name="twitter:description" content="C 语言知识点大纲(参考《C primer plus》) 1 第1章 初识 C语言 1.1 C语言的起源 1.2 选择C语言的理由 设计特性 高效性 可移植性 强大而灵活 面向程序员 缺点 1.3 C"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/language/c/c-%E8%AF%AD%E8%A8%80%E7%9F%A5%E8%AF%86%E7%82%B9%E5%A4%A7%E7%BA%B2%E5%8F%82%E8%80%83c-primer-plus/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/language/c/%E6%9E%9A%E4%B8%BE/" /><link rel="next" href="https://xiechaoxin.github.io/posts/chaos/crlfcrlf/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "C 语言知识点大纲(参考《C primer plus》)",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/language\/c\/c-%E8%AF%AD%E8%A8%80%E7%9F%A5%E8%AF%86%E7%82%B9%E5%A4%A7%E7%BA%B2%E5%8F%82%E8%80%83c-primer-plus\/"
+        },"genre": "posts","keywords": "C","wordcount":  3670 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/language\/c\/c-%E8%AF%AD%E8%A8%80%E7%9F%A5%E8%AF%86%E7%82%B9%E5%A4%A7%E7%BA%B2%E5%8F%82%E8%80%83c-primer-plus\/","datePublished": "2022-09-13T04:02:47+00:00","dateModified": "2022-09-13T04:02:47+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">C 语言知识点大纲(参考《C primer plus》)</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/c/"><i class="far fa-folder fa-fw"></i>C</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-09-13">2022-09-13</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3670 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-第1章-初识-c语言">1 第1章 初识 C语言</a>
+      <ul>
+        <li><a href="#11-c语言的起源">1.1 C语言的起源</a></li>
+        <li><a href="#12-选择c语言的理由">1.2 选择C语言的理由</a></li>
+        <li><a href="#13-c语言的应用范围">1.3 C语言的应用范围</a></li>
+        <li><a href="#14-计算机能做什么">1.4 计算机能做什么</a></li>
+        <li><a href="#15-高级计算机语言和编译器">1.5 高级计算机语言和编译器</a></li>
+        <li><a href="#16-语言标准">1.6 语言标准</a></li>
+        <li><a href="#17-使用c语言的7个步骤">1.7 使用C语言的7个步骤</a></li>
+        <li><a href="#18-编程机制">1.8 编程机制</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-第2章-c语言概述">2 第2章 C语言概述</a>
+      <ul>
+        <li><a href="#21-简单的c程序示例">2.1 简单的C程序示例</a></li>
+        <li><a href="#22-提高程序可读性的技巧">2.2 提高程序可读性的技巧</a></li>
+        <li><a href="#23-进一步使用c">2.3 进一步使用C</a></li>
+        <li><a href="#24-多个函数">2.4 多个函数</a></li>
+        <li><a href="#25-调试程序">2.5 调试程序</a></li>
+        <li><a href="#26-关键字和保留标识符">2.6 关键字和保留标识符</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-第3章-数据和c">3 第3章 数据和C</a>
+      <ul>
+        <li><a href="#31-变量与常量数据">3.1 变量与常量数据</a></li>
+        <li><a href="#32-数据数据类型关键字">3.2 数据：数据类型关键字</a></li>
+        <li><a href="#33-c语言基本数据类型">3.3 C语言基本数据类型</a></li>
+        <li><a href="#34-使用数据类型">3.4 使用数据类型</a></li>
+        <li><a href="#35-参数和陷阱">3.5 参数和陷阱</a></li>
+        <li><a href="#36-转义序列示例">3.6 转义序列示例</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-第4章-字符串和格式化输入输出">4 第4章 字符串和格式化输入/输出</a>
+      <ul>
+        <li><a href="#41-字符串简介">4.1 字符串简介</a></li>
+        <li><a href="#42-常量和c预处理器">4.2 常量和C预处理器</a></li>
+        <li><a href="#43-printf和scanf">4.3 printf()和scanf()</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-第5章-运算符表达式和语句">5 第5章 运算符、表达式和语句</a>
+      <ul>
+        <li><a href="#51-循环简介">5.1 循环简介</a></li>
+        <li><a href="#52-基本运算符">5.2 基本运算符</a></li>
+        <li><a href="#53-其他运算符">5.3 其他运算符</a></li>
+        <li><a href="#54-表达式和语句">5.4 表达式和语句</a></li>
+        <li><a href="#55-类型转换">5.5 类型转换</a></li>
+        <li><a href="#56-带参数的函数">5.6 带参数的函数</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-第6章-c控制语句循环">6 第6章 C控制语句：循环</a>
+      <ul>
+        <li><a href="#61-再探while循环">6.1 再探while循环</a></li>
+        <li><a href="#62-while语句">6.2 while语句</a></li>
+        <li><a href="#63-用关系运算符和表达式比较大小">6.3 用关系运算符和表达式比较大小</a></li>
+        <li><a href="#64-不确定循环和计数循环">6.4 不确定循环和计数循环</a></li>
+        <li><a href="#65-for循环">6.5 for循环</a></li>
+        <li><a href="#66-其他赋值运算符-">6.6 其他赋值运算符：+=、-=、*=、/=、%=</a></li>
+        <li><a href="#67-逗号运算符">6.7 逗号运算符</a></li>
+        <li><a href="#68-出口条件循环do-while">6.8 出口条件循环：do while</a></li>
+        <li><a href="#69-如何选择循环">6.9 如何选择循环</a></li>
+        <li><a href="#610-嵌套循环">6.10 嵌套循环</a></li>
+        <li><a href="#611-数组简介">6.11 数组简介</a></li>
+        <li><a href="#612-使用函数返回值的循环示例">6.12 使用函数返回值的循环示例</a></li>
+      </ul>
+    </li>
+    <li><a href="#7-第7章-c控制语句分支和跳转">7 第7章 C控制语句：分支和跳转</a>
+      <ul>
+        <li><a href="#71-if语句">7.1 if语句</a></li>
+        <li><a href="#72-if-else语句">7.2 if else语句</a></li>
+        <li><a href="#73-逻辑运算符">7.3 逻辑运算符</a></li>
+        <li><a href="#74-一个统计单词的程序">7.4 一个统计单词的程序</a></li>
+        <li><a href="#75-条件运算符">7.5 条件运算符：?:</a></li>
+        <li><a href="#76-循环辅助continue和break">7.6 循环辅助：continue和break</a></li>
+        <li><a href="#77-多重选择switch和break">7.7 多重选择：switch和break</a></li>
+        <li><a href="#78-goto语句">7.8 goto语句</a></li>
+      </ul>
+    </li>
+    <li><a href="#8-第8章-字符输入输出和输入验证">8 第8章 字符输入/输出和输入验证</a>
+      <ul>
+        <li><a href="#81-单字符iogetchar和putchar">8.1 单字符I/O：getchar()和putchar()</a></li>
+        <li><a href="#82-缓冲区">8.2 缓冲区</a></li>
+        <li><a href="#83-结束键盘输入">8.3 结束键盘输入</a></li>
+        <li><a href="#84-重定向和文件">8.4 重定向和文件</a></li>
+        <li><a href="#85-创建更友好的用户界面">8.5 创建更友好的用户界面</a></li>
+        <li><a href="#86-输入验证">8.6 输入验证</a></li>
+        <li><a href="#87-混合字符和数值输入">8.7 混合字符和数值输入</a></li>
+      </ul>
+    </li>
+    <li><a href="#9-第9章-函数">9 第9章 函数</a>
+      <ul>
+        <li><a href="#91-初识函数">9.1 初识函数</a></li>
+        <li><a href="#92-ansi-c函数原型">9.2 ANSI C函数原型</a></li>
+        <li><a href="#93-递归">9.3 递归</a></li>
+        <li><a href="#94-编译多源代码文件的程序">9.4 编译多源代码文件的程序</a></li>
+        <li><a href="#95-查找地址运算符">9.5 查找地址：&amp;运算符</a></li>
+        <li><a href="#96-更改主调函数中的变量">9.6 更改主调函数中的变量</a></li>
+        <li><a href="#97-指针简介">9.7 指针简介</a></li>
+      </ul>
+    </li>
+    <li><a href="#10-第10章-数组和指针">10 第10章 数组和指针</a>
+      <ul>
+        <li><a href="#101-数组">10.1 数组</a></li>
+        <li><a href="#102-多维数组">10.2 多维数组</a></li>
+        <li><a href="#103-指针和数组">10.3 指针和数组</a></li>
+        <li><a href="#104-函数数组和指针">10.4 函数、数组和指针</a></li>
+        <li><a href="#105-指针操作">10.5 指针操作</a></li>
+        <li><a href="#106-保护数组中的数据">10.6 保护数组中的数据</a></li>
+        <li><a href="#107-指针和多维数组">10.7 指针和多维数组</a></li>
+        <li><a href="#108-变长数组vla">10.8 变长数组(VLA)</a></li>
+        <li><a href="#109-复合字面量">10.9 复合字面量</a></li>
+      </ul>
+    </li>
+    <li><a href="#11-第11章-字符串和字符串函数">11 第11章 字符串和字符串函数</a>
+      <ul>
+        <li><a href="#111-表示字符串和字符串io">11.1 表示字符串和字符串I/O</a></li>
+        <li><a href="#112-字符串输入">11.2 字符串输入</a></li>
+        <li><a href="#113-字符串输出">11.3 字符串输出</a></li>
+        <li><a href="#114-自定义输入输出函数">11.4 自定义输入/输出函数</a></li>
+        <li><a href="#115-字符串函数">11.5 字符串函数</a></li>
+        <li><a href="#116-字符串示例字符串排序">11.6 字符串示例：字符串排序</a></li>
+        <li><a href="#117-ctypeh字符函数和字符串">11.7 ctype.h字符函数和字符串</a></li>
+        <li><a href="#118-命令行参数">11.8 命令行参数</a></li>
+        <li><a href="#119-把字符串转换为数字">11.9 把字符串转换为数字</a></li>
+      </ul>
+    </li>
+    <li><a href="#12-第12章-存储类别链接和内存管理">12 第12章 存储类别、链接和内存管理</a>
+      <ul>
+        <li><a href="#121-存储类别">12.1 存储类别</a></li>
+        <li><a href="#122-随机数函数和静态变量">12.2 随机数函数和静态变量</a></li>
+        <li><a href="#123-实例掷骰子">12.3 实例：掷骰子</a></li>
+        <li><a href="#124-分配内存malloc和free">12.4 分配内存：malloc()和free()</a></li>
+        <li><a href="#125-ansi-c类型限定符">12.5 ANSI C类型限定符</a></li>
+      </ul>
+    </li>
+    <li><a href="#13-第13章-文件输入输出">13 第13章 文件输入/输出</a>
+      <ul>
+        <li><a href="#131-与文件进行通信">13.1 与文件进行通信</a></li>
+        <li><a href="#132-标准io">13.2 标准I/O</a></li>
+        <li><a href="#133-实例一个简单的文件压缩程序">13.3 实例：一个简单的文件压缩程序</a></li>
+        <li><a href="#134-文件iofprintffscanffgets和fputs">13.4 文件I/O：fprintf()、fscanf()、fgets()和fputs()</a></li>
+        <li><a href="#135-随机访问fseek和ftell">13.5 随机访问：fseek()和ftell()</a></li>
+        <li><a href="#136-标准io的机理">13.6 标准I/O的机理</a></li>
+        <li><a href="#137-其他标准io函数">13.7 其他标准I/O函数</a></li>
+      </ul>
+    </li>
+    <li><a href="#14-第14章-结构和其他数据形式">14 第14章 结构和其他数据形式</a>
+      <ul>
+        <li><a href="#141-建立结构声明">14.1 建立结构声明</a></li>
+        <li><a href="#142-定义结构变量">14.2 定义结构变量</a></li>
+        <li><a href="#143-结构数组">14.3 结构数组</a></li>
+        <li><a href="#144-嵌套结构">14.4 嵌套结构</a></li>
+        <li><a href="#145-指向结构的指针">14.5 指向结构的指针</a></li>
+        <li><a href="#146-向函数传递结构的信息">14.6 向函数传递结构的信息</a></li>
+        <li><a href="#147-把结构内容保存到文件中">14.7 把结构内容保存到文件中</a></li>
+        <li><a href="#148-链式结构">14.8 链式结构</a></li>
+        <li><a href="#149-联合简介">14.9 联合简介</a></li>
+        <li><a href="#1410-枚举类型">14.10 枚举类型</a></li>
+        <li><a href="#1411-typedef简介">14.11 typedef简介</a></li>
+        <li><a href="#1412-其他复杂的声明">14.12 其他复杂的声明</a></li>
+        <li><a href="#1413-函数和指针">14.13 函数和指针</a></li>
+      </ul>
+    </li>
+    <li><a href="#15-第15章-位操作">15 第15章 位操作</a>
+      <ul>
+        <li><a href="#151-二进制数位和字节">15.1 二进制数、位和字节</a></li>
+        <li><a href="#152-其他进制数">15.2 其他进制数</a></li>
+        <li><a href="#153-c按位运算符">15.3 C按位运算符</a></li>
+        <li><a href="#154-位字段">15.4 位字段</a></li>
+        <li><a href="#155-对齐特性c11">15.5 对齐特性(C11)</a></li>
+      </ul>
+    </li>
+    <li><a href="#16-第16章-c预处理器和c库">16 第16章 C预处理器和C库</a>
+      <ul>
+        <li><a href="#161-翻译程序的第一步">16.1 翻译程序的第一步</a></li>
+        <li><a href="#162-明示常量define">16.2 明示常量：define</a></li>
+        <li><a href="#163-在define中使用参数">16.3 在define中使用参数</a></li>
+        <li><a href="#164-宏和函数的选择">16.4 宏和函数的选择</a></li>
+        <li><a href="#165-文件包含include">16.5 文件包含：include</a></li>
+        <li><a href="#166-其他指令">16.6 其他指令</a></li>
+        <li><a href="#167-内联函数c99">16.7 内联函数(C99)</a></li>
+        <li><a href="#168-_noreturn函数c11">16.8 _Noreturn函数(C11)</a></li>
+        <li><a href="#169-c库">16.9 C库</a></li>
+        <li><a href="#1610-数学库">16.10 数学库</a></li>
+        <li><a href="#1611-通用工具库">16.11 通用工具库</a></li>
+        <li><a href="#1612-断言库">16.12 断言库</a></li>
+        <li><a href="#1613-stringh库中的memcpy和memmove">16.13 string.h库中的memcpy()和memmove()</a></li>
+        <li><a href="#1614-可变参数stdargh">16.14 可变参数：stdarg.h</a></li>
+      </ul>
+    </li>
+    <li><a href="#17-第17章-高级数据表示">17 第17章 高级数据表示</a>
+      <ul>
+        <li><a href="#171-研究数据表示">17.1 研究数据表示</a></li>
+        <li><a href="#172-从数组到链表">17.2 从数组到链表</a></li>
+        <li><a href="#173-抽象数据类型adt">17.3 抽象数据类型(ADT)</a></li>
+        <li><a href="#174-队列adt">17.4 队列ADT</a></li>
+        <li><a href="#175-用队列进行模拟">17.5 用队列进行模拟</a></li>
+        <li><a href="#176-链表和数组">17.6 链表和数组</a></li>
+        <li><a href="#177-二叉查找树">17.7 二叉查找树</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="c-语言知识点大纲参考c-primer-plus">C 语言知识点大纲(参考《C primer plus》)</h1>
+<h2 id="1-第1章-初识-c语言">1 第1章 初识 C语言</h2>
+<h3 id="11-c语言的起源">1.1 C语言的起源</h3>
+<h3 id="12-选择c语言的理由">1.2 选择C语言的理由</h3>
+<ul>
+<li>设计特性</li>
+<li>高效性</li>
+<li>可移植性</li>
+<li>强大而灵活</li>
+<li>面向程序员</li>
+<li>缺点</li>
+</ul>
+<h3 id="13-c语言的应用范围">1.3 C语言的应用范围</h3>
+<h3 id="14-计算机能做什么">1.4 计算机能做什么</h3>
+<h3 id="15-高级计算机语言和编译器">1.5 高级计算机语言和编译器</h3>
+<h3 id="16-语言标准">1.6 语言标准</h3>
+<ul>
+<li>第1个ANSI/ISO C标准</li>
+<li>C99标准</li>
+<li>C11标准</li>
+</ul>
+<h3 id="17-使用c语言的7个步骤">1.7 使用C语言的7个步骤</h3>
+<ul>
+<li>第1步：定义程序的目标</li>
+<li>第2步：设计程序 7</li>
+<li>第3步：编写代码</li>
+<li>第4步：编译</li>
+<li>第5步：运行程序</li>
+<li>第6步：测试和调试程序</li>
+<li>第7步：维护和修改代码</li>
+<li>说明</li>
+</ul>
+<h3 id="18-编程机制">1.8 编程机制</h3>
+<ul>
+<li>目标代码文件、可执行文件和库</li>
+<li>UNIX系统</li>
+<li>GNU编译器集合和 LLVM项目</li>
+<li>Linux系统</li>
+<li>PC的命令行编译器</li>
+<li>集成开发环境(Windows)</li>
+<li>Windows/Linux</li>
+<li>Macintosh中的C</li>
+</ul>
+<h2 id="2-第2章-c语言概述">2 第2章 C语言概述</h2>
+<h3 id="21-简单的c程序示例">2.1 简单的C程序示例</h3>
+<h3 id="22-提高程序可读性的技巧">2.2 提高程序可读性的技巧</h3>
+<h3 id="23-进一步使用c">2.3 进一步使用C</h3>
+<ul>
+<li>程序说明</li>
+<li>多条声明</li>
+<li>打印多个值</li>
+</ul>
+<h3 id="24-多个函数">2.4 多个函数</h3>
+<h3 id="25-调试程序">2.5 调试程序</h3>
+<ul>
+<li>语法错误</li>
+<li>语义错误</li>
+<li>程序状态</li>
+</ul>
+<h3 id="26-关键字和保留标识符">2.6 关键字和保留标识符</h3>
+<h2 id="3-第3章-数据和c">3 第3章 数据和C</h2>
+<h3 id="31-变量与常量数据">3.1 变量与常量数据</h3>
+<h3 id="32-数据数据类型关键字">3.2 数据：数据类型关键字</h3>
+<ul>
+<li>整数</li>
+<li>浮点数</li>
+</ul>
+<h3 id="33-c语言基本数据类型">3.3 C语言基本数据类型</h3>
+<ul>
+<li>int类型</li>
+<li>其他整数类型</li>
+<li>使用字符：char类型</li>
+<li>_Bool类型</li>
+<li>可移植类型： stdint.h和inttypes.h</li>
+<li>float、double和long double</li>
+<li>复数和虚数类型</li>
+<li>其他类型</li>
+<li>类型大小</li>
+</ul>
+<h3 id="34-使用数据类型">3.4 使用数据类型</h3>
+<h3 id="35-参数和陷阱">3.5 参数和陷阱</h3>
+<h3 id="36-转义序列示例">3.6 转义序列示例</h3>
+<ul>
+<li>程序运行情况</li>
+<li>刷新输出</li>
+</ul>
+<h2 id="4-第4章-字符串和格式化输入输出">4 第4章 字符串和格式化输入/输出</h2>
+<h3 id="41-字符串简介">4.1 字符串简介</h3>
+<ul>
+<li>char类型数组和null字符</li>
+<li>使用字符串</li>
+<li>strlen()函数</li>
+</ul>
+<h3 id="42-常量和c预处理器">4.2 常量和C预处理器</h3>
+<ul>
+<li>明示常量</li>
+<li>const限定符</li>
+</ul>
+<h3 id="43-printf和scanf">4.3 printf()和scanf()</h3>
+<ul>
+<li>printf()函数</li>
+<li>使用printf()</li>
+<li>printf()的转换说明修饰符</li>
+<li>转换说明的意义</li>
+<li>使用scanf()</li>
+<li>printf()和scanf()的修饰符</li>
+<li>printf() 的用法提</li>
+</ul>
+<h2 id="5-第5章-运算符表达式和语句">5 第5章 运算符、表达式和语句</h2>
+<h3 id="51-循环简介">5.1 循环简介</h3>
+<h3 id="52-基本运算符">5.2 基本运算符</h3>
+<ul>
+<li>赋值运算符：=</li>
+<li>加法运算符：+</li>
+<li>减法运算符：-</li>
+<li>符号运算符：-和+</li>
+<li>乘法运算符：*</li>
+<li>除法运算符：/</li>
+<li>运算符优先级</li>
+<li>优先级和求值顺序</li>
+</ul>
+<h3 id="53-其他运算符">5.3 其他运算符</h3>
+<ul>
+<li>sizeof运算符和size_t类型</li>
+<li>求模运算符：%</li>
+<li>递增运算符：++</li>
+<li>递减运算符：&ndash;</li>
+<li>优先级</li>
+</ul>
+<h3 id="54-表达式和语句">5.4 表达式和语句</h3>
+<ul>
+<li>表达式</li>
+<li>语句</li>
+<li>复合语句(块)</li>
+</ul>
+<h3 id="55-类型转换">5.5 类型转换</h3>
+<h3 id="56-带参数的函数">5.6 带参数的函数</h3>
+<h2 id="6-第6章-c控制语句循环">6 第6章 C控制语句：循环</h2>
+<h3 id="61-再探while循环">6.1 再探while循环</h3>
+<ul>
+<li>程序注释</li>
+<li>C风格读取循环</li>
+</ul>
+<h3 id="62-while语句">6.2 while语句</h3>
+<ul>
+<li>终止while循环</li>
+<li>何时终止循环</li>
+<li>while：入口条件循环</li>
+<li>语法要点</li>
+</ul>
+<h3 id="63-用关系运算符和表达式比较大小">6.3 用关系运算符和表达式比较大小</h3>
+<ul>
+<li>什么是真</li>
+<li>其他真值</li>
+<li>真值的问题</li>
+<li>新的_Bool类型</li>
+<li>优先级和关系运算</li>
+</ul>
+<h3 id="64-不确定循环和计数循环">6.4 不确定循环和计数循环</h3>
+<h3 id="65-for循环">6.5 for循环</h3>
+<h3 id="66-其他赋值运算符-">6.6 其他赋值运算符：+=、-=、*=、/=、%=</h3>
+<h3 id="67-逗号运算符">6.7 逗号运算符</h3>
+<h3 id="68-出口条件循环do-while">6.8 出口条件循环：do while</h3>
+<h3 id="69-如何选择循环">6.9 如何选择循环</h3>
+<h3 id="610-嵌套循环">6.10 嵌套循环</h3>
+<ul>
+<li>程序分析</li>
+<li>嵌套变式</li>
+</ul>
+<h3 id="611-数组简介">6.11 数组简介</h3>
+<h3 id="612-使用函数返回值的循环示例">6.12 使用函数返回值的循环示例</h3>
+<h2 id="7-第7章-c控制语句分支和跳转">7 第7章 C控制语句：分支和跳转</h2>
+<h3 id="71-if语句">7.1 if语句</h3>
+<h3 id="72-if-else语句">7.2 if else语句</h3>
+<ul>
+<li>ctype.h系列的字符函数</li>
+<li>多重选择else if</li>
+<li>else与if配对</li>
+<li>多层嵌套的if语句</li>
+</ul>
+<h3 id="73-逻辑运算符">7.3 逻辑运算符</h3>
+<ul>
+<li>优先级</li>
+<li>求值顺序</li>
+<li>范围</li>
+</ul>
+<h3 id="74-一个统计单词的程序">7.4 一个统计单词的程序</h3>
+<h3 id="75-条件运算符">7.5 条件运算符：?:</h3>
+<h3 id="76-循环辅助continue和break">7.6 循环辅助：continue和break</h3>
+<ul>
+<li>continue语句</li>
+<li>break语句</li>
+</ul>
+<h3 id="77-多重选择switch和break">7.7 多重选择：switch和break</h3>
+<ul>
+<li>switch语句</li>
+<li>只读每行的首字符</li>
+<li>多重标签</li>
+<li>switch和if els</li>
+</ul>
+<h3 id="78-goto语句">7.8 goto语句</h3>
+<h2 id="8-第8章-字符输入输出和输入验证">8 第8章 字符输入/输出和输入验证</h2>
+<h3 id="81-单字符iogetchar和putchar">8.1 单字符I/O：getchar()和putchar()</h3>
+<h3 id="82-缓冲区">8.2 缓冲区</h3>
+<h3 id="83-结束键盘输入">8.3 结束键盘输入</h3>
+<ul>
+<li>文件、流和键盘输入</li>
+<li>文件结尾</li>
+</ul>
+<h3 id="84-重定向和文件">8.4 重定向和文件</h3>
+<h3 id="85-创建更友好的用户界面">8.5 创建更友好的用户界面</h3>
+<ul>
+<li>使用缓冲输入</li>
+<li>混合数值和字符输入</li>
+</ul>
+<h3 id="86-输入验证">8.6 输入验证</h3>
+<ul>
+<li>分析程序</li>
+<li>输入流和数字</li>
+</ul>
+<h3 id="87-混合字符和数值输入">8.7 混合字符和数值输入</h3>
+<h2 id="9-第9章-函数">9 第9章 函数</h2>
+<h3 id="91-初识函数">9.1 初识函数</h3>
+<ul>
+<li>创建并使用简单函数</li>
+<li>分析程序</li>
+<li>函数参数</li>
+<li>定义带形式参数的函数</li>
+<li>声明带形式参数函数的原型</li>
+<li>调用带实际参数的函数</li>
+<li>黑盒视角</li>
+<li>使用return从函数中返回值</li>
+<li>函数类型</li>
+</ul>
+<h3 id="92-ansi-c函数原型">9.2 ANSI C函数原型</h3>
+<ul>
+<li>问题所在</li>
+<li>ANSI的解决方案</li>
+<li>无参数和未指定参数</li>
+<li>函数原型的优点</li>
+</ul>
+<h3 id="93-递归">9.3 递归</h3>
+<ul>
+<li>演示递归</li>
+<li>递归的基本原理</li>
+<li>尾递归</li>
+<li>递归和倒序计算</li>
+<li>递归的优缺点</li>
+</ul>
+<h3 id="94-编译多源代码文件的程序">9.4 编译多源代码文件的程序</h3>
+<ul>
+<li>UNIX</li>
+<li>Linux</li>
+<li>DOS命令行编译</li>
+<li>Windows和苹果的IDE编译器</li>
+<li>使用头文件</li>
+</ul>
+<h3 id="95-查找地址运算符">9.5 查找地址：&amp;运算符</h3>
+<h3 id="96-更改主调函数中的变量">9.6 更改主调函数中的变量</h3>
+<h3 id="97-指针简介">9.7 指针简介</h3>
+<ul>
+<li>间接运算符：*</li>
+<li>声明指针</li>
+<li>使用指针在函数间通信</li>
+</ul>
+<h2 id="10-第10章-数组和指针">10 第10章 数组和指针</h2>
+<h3 id="101-数组">10.1 数组</h3>
+<ul>
+<li>初始化数组</li>
+<li>指定初始化器</li>
+<li>给数组元素赋值</li>
+<li>数组边界</li>
+<li>指定数组的大小</li>
+</ul>
+<h3 id="102-多维数组">10.2 多维数组</h3>
+<ul>
+<li>初始化二维数组</li>
+<li>其他多维数组</li>
+</ul>
+<h3 id="103-指针和数组">10.3 指针和数组</h3>
+<h3 id="104-函数数组和指针">10.4 函数、数组和指针</h3>
+<ul>
+<li>使用指针形参</li>
+<li>指针表示法和数组表示法</li>
+</ul>
+<h3 id="105-指针操作">10.5 指针操作</h3>
+<h3 id="106-保护数组中的数据">10.6 保护数组中的数据</h3>
+<ul>
+<li>对形式参数使用const</li>
+<li>const的其他内容</li>
+</ul>
+<h3 id="107-指针和多维数组">10.7 指针和多维数组</h3>
+<ul>
+<li>指向多维数组的指针</li>
+<li>指针的兼容性</li>
+<li>函数和多维数组</li>
+</ul>
+<h3 id="108-变长数组vla">10.8 变长数组(VLA)</h3>
+<h3 id="109-复合字面量">10.9 复合字面量</h3>
+<h2 id="11-第11章-字符串和字符串函数">11 第11章 字符串和字符串函数</h2>
+<h3 id="111-表示字符串和字符串io">11.1 表示字符串和字符串I/O</h3>
+<ul>
+<li>在程序中定义字符串</li>
+<li>指针和字符串</li>
+</ul>
+<h3 id="112-字符串输入">11.2 字符串输入</h3>
+<ul>
+<li>分配空间</li>
+<li>不幸的gets()函数</li>
+<li>gets()的替代品</li>
+<li>scanf()函数</li>
+</ul>
+<h3 id="113-字符串输出">11.3 字符串输出</h3>
+<ul>
+<li>puts()函数</li>
+<li>fputs()函数</li>
+<li>printf()函数</li>
+</ul>
+<h3 id="114-自定义输入输出函数">11.4 自定义输入/输出函数</h3>
+<h3 id="115-字符串函数">11.5 字符串函数</h3>
+<ul>
+<li>strlen()函数</li>
+<li>strcat()函数</li>
+<li>strncat()函数</li>
+<li>strcmp()函数</li>
+<li>strcpy()和strncpy() 函数</li>
+<li>sprintf()函数</li>
+<li>其他字符串函数</li>
+</ul>
+<h3 id="116-字符串示例字符串排序">11.6 字符串示例：字符串排序</h3>
+<ul>
+<li>排序指针而非字符串</li>
+<li>选择排序算法</li>
+</ul>
+<h3 id="117-ctypeh字符函数和字符串">11.7 ctype.h字符函数和字符串</h3>
+<h3 id="118-命令行参数">11.8 命令行参数</h3>
+<ul>
+<li>集成环境中的命令行参数</li>
+<li>Macintosh中的命令行参数</li>
+</ul>
+<h3 id="119-把字符串转换为数字">11.9 把字符串转换为数字</h3>
+<h2 id="12-第12章-存储类别链接和内存管理">12 第12章 存储类别、链接和内存管理</h2>
+<h3 id="121-存储类别">12.1 存储类别</h3>
+<ul>
+<li>作用域</li>
+<li>链接</li>
+<li>存储期</li>
+<li>自动变量</li>
+<li>寄存器变量</li>
+<li>块作用域的静态变量</li>
+<li>外部链接的静态变量</li>
+<li>内部链接的静态变量</li>
+<li>多文件</li>
+<li>存储类别说明符</li>
+<li>存储类别和函数</li>
+<li>存储类别的选择</li>
+</ul>
+<h3 id="122-随机数函数和静态变量">12.2 随机数函数和静态变量</h3>
+<h3 id="123-实例掷骰子">12.3 实例：掷骰子</h3>
+<h3 id="124-分配内存malloc和free">12.4 分配内存：malloc()和free()</h3>
+<ul>
+<li>free()的重要性</li>
+<li>calloc()函数</li>
+<li>动态内存分配和变长数组</li>
+<li>存储类别和动态内存分配</li>
+</ul>
+<h3 id="125-ansi-c类型限定符">12.5 ANSI C类型限定符</h3>
+<ul>
+<li>const类型限定符</li>
+<li>volatile类型限定符</li>
+<li>restrict类型限定符</li>
+<li>_Atomic类型限定符( C11)</li>
+<li>旧关键字的新位置</li>
+</ul>
+<h2 id="13-第13章-文件输入输出">13 第13章 文件输入/输出</h2>
+<h3 id="131-与文件进行通信">13.1 与文件进行通信</h3>
+<ul>
+<li>文件是什么</li>
+<li>文本模式和二进制模式</li>
+<li>I/O的级别</li>
+<li>标准文件</li>
+</ul>
+<h3 id="132-标准io">13.2 标准I/O</h3>
+<ul>
+<li>检查命令行参数</li>
+<li>fopen()函数</li>
+<li>getc()和putc()函数</li>
+<li>文件结尾</li>
+<li>fclose()函数</li>
+<li>指向标准文件的指针</li>
+</ul>
+<h3 id="133-实例一个简单的文件压缩程序">13.3 实例：一个简单的文件压缩程序</h3>
+<h3 id="134-文件iofprintffscanffgets和fputs">13.4 文件I/O：fprintf()、fscanf()、fgets()和fputs()</h3>
+<ul>
+<li>fprintf()和fscanf() 函数</li>
+<li>fgets()和fputs()函数</li>
+</ul>
+<h3 id="135-随机访问fseek和ftell">13.5 随机访问：fseek()和ftell()</h3>
+<ul>
+<li>fseek()和ftell()的工作原理</li>
+<li>二进制模式和文本模式</li>
+<li>可移植性</li>
+<li>fgetpos()和fsetpos()函数</li>
+</ul>
+<h3 id="136-标准io的机理">13.6 标准I/O的机理</h3>
+<h3 id="137-其他标准io函数">13.7 其他标准I/O函数</h3>
+<ul>
+<li>int ungetc(int c, FILE *fp)函数</li>
+<li>int fflush()函数</li>
+<li>int setvbuf()函数</li>
+<li>二进制I/O：fread()和fwrite()</li>
+<li>size_t fwrite()函数</li>
+<li>size_t fread()函数</li>
+<li>int feof(FILE *fp)和int ferror(FILE *fp)函数</li>
+<li>一个程序示例</li>
+<li>用二进制I/O进行随机访问</li>
+</ul>
+<h2 id="14-第14章-结构和其他数据形式">14 第14章 结构和其他数据形式</h2>
+<h3 id="141-建立结构声明">14.1 建立结构声明</h3>
+<h3 id="142-定义结构变量">14.2 定义结构变量</h3>
+<ul>
+<li>初始化结构</li>
+<li>访问结构成员</li>
+<li>结构的初始化器</li>
+</ul>
+<h3 id="143-结构数组">14.3 结构数组</h3>
+<ul>
+<li>声明结构数组</li>
+<li>标识结构数组的成员</li>
+<li>程序讨论</li>
+</ul>
+<h3 id="144-嵌套结构">14.4 嵌套结构</h3>
+<h3 id="145-指向结构的指针">14.5 指向结构的指针</h3>
+<ul>
+<li>声明和初始化结构指针</li>
+<li>用指针访问成员</li>
+</ul>
+<h3 id="146-向函数传递结构的信息">14.6 向函数传递结构的信息</h3>
+<ul>
+<li>传递结构成员</li>
+<li>传递结构的地址</li>
+<li>传递结构</li>
+<li>其他结构特性</li>
+<li>结构和结构指针的选择</li>
+<li>结构中的字符数组和字符指针</li>
+<li>结构、指针和malloc()</li>
+<li>复合字面量和结构(C99)</li>
+<li>伸缩型数组成员(C99)</li>
+<li>匿名结构(C11)</li>
+<li>使用结构数组的函数</li>
+</ul>
+<h3 id="147-把结构内容保存到文件中">14.7 把结构内容保存到文件中</h3>
+<ul>
+<li>保存结构的程序示例</li>
+<li>程序要点</li>
+</ul>
+<h3 id="148-链式结构">14.8 链式结构</h3>
+<h3 id="149-联合简介">14.9 联合简介</h3>
+<ul>
+<li>使用联合</li>
+<li>匿名联合(C11)</li>
+</ul>
+<h3 id="1410-枚举类型">14.10 枚举类型</h3>
+<ul>
+<li>enum 常量</li>
+<li>默认值</li>
+<li>赋值</li>
+<li>enum 的用法</li>
+<li>共享名称空间</li>
+</ul>
+<h3 id="1411-typedef简介">14.11 typedef简介</h3>
+<h3 id="1412-其他复杂的声明">14.12 其他复杂的声明</h3>
+<h3 id="1413-函数和指针">14.13 函数和指针</h3>
+<h2 id="15-第15章-位操作">15 第15章 位操作</h2>
+<h3 id="151-二进制数位和字节">15.1 二进制数、位和字节</h3>
+<ul>
+<li>二进制整数</li>
+<li>有符号整数</li>
+<li>二进制浮点数</li>
+</ul>
+<h3 id="152-其他进制数">15.2 其他进制数</h3>
+<ul>
+<li>八进制</li>
+<li>十六进制</li>
+</ul>
+<h3 id="153-c按位运算符">15.3 C按位运算符</h3>
+<ul>
+<li>按位逻辑运算符</li>
+<li>用法：掩码</li>
+<li>用法：打开位(设置位)</li>
+<li>用法：关闭位(清空位)</li>
+<li>用法：切换位</li>
+<li>用法：检查位的值</li>
+<li>移位运算符</li>
+</ul>
+<h3 id="154-位字段">15.4 位字段</h3>
+<ul>
+<li>位字段示例</li>
+<li>位字段和按位运算符</li>
+</ul>
+<h3 id="155-对齐特性c11">15.5 对齐特性(C11)</h3>
+<h2 id="16-第16章-c预处理器和c库">16 第16章 C预处理器和C库</h2>
+<h3 id="161-翻译程序的第一步">16.1 翻译程序的第一步</h3>
+<h3 id="162-明示常量define">16.2 明示常量：define</h3>
+<ul>
+<li>记号</li>
+<li>重定义常量</li>
+</ul>
+<h3 id="163-在define中使用参数">16.3 在define中使用参数</h3>
+<ul>
+<li>用宏参数创建字符串：#运算符</li>
+<li>预处理器黏合剂：##运算符</li>
+<li>变参宏：&hellip;和_ <em>VA_ARGS</em> _</li>
+</ul>
+<h3 id="164-宏和函数的选择">16.4 宏和函数的选择</h3>
+<h3 id="165-文件包含include">16.5 文件包含：include</h3>
+<ul>
+<li>定义头文件</li>
+<li>使用头文件</li>
+</ul>
+<h3 id="166-其他指令">16.6 其他指令</h3>
+<ul>
+<li>#undef指令</li>
+<li>从C预处理器角度看已定义</li>
+<li>条件编译</li>
+<li>预定义宏</li>
+<li>#line和#error</li>
+<li>#pragma</li>
+<li>泛型选择(C11)</li>
+</ul>
+<h3 id="167-内联函数c99">16.7 内联函数(C99)</h3>
+<h3 id="168-_noreturn函数c11">16.8 _Noreturn函数(C11)</h3>
+<h3 id="169-c库">16.9 C库</h3>
+<ul>
+<li>访问C库</li>
+<li>使用库描述</li>
+</ul>
+<h3 id="1610-数学库">16.10 数学库</h3>
+<ul>
+<li>三角问题</li>
+<li>类型变体</li>
+<li>tgmath.h库(C99)</li>
+</ul>
+<h3 id="1611-通用工具库">16.11 通用工具库</h3>
+<ul>
+<li>exit()和atexit()函数</li>
+<li>qsort()函数</li>
+</ul>
+<h3 id="1612-断言库">16.12 断言库</h3>
+<ul>
+<li>assert的用法</li>
+<li>_Static_assert</li>
+</ul>
+<h3 id="1613-stringh库中的memcpy和memmove">16.13 string.h库中的memcpy()和memmove()</h3>
+<h3 id="1614-可变参数stdargh">16.14 可变参数：stdarg.h</h3>
+<h2 id="17-第17章-高级数据表示">17 第17章 高级数据表示</h2>
+<h3 id="171-研究数据表示">17.1 研究数据表示</h3>
+<h3 id="172-从数组到链表">17.2 从数组到链表</h3>
+<h3 id="173-抽象数据类型adt">17.3 抽象数据类型(ADT)</h3>
+<ul>
+<li>建立抽象</li>
+<li>建立接口</li>
+<li>使用接口</li>
+<li>实现接口</li>
+</ul>
+<h3 id="174-队列adt">17.4 队列ADT</h3>
+<ul>
+<li>定义队列抽象数据类型</li>
+<li>定义一个接口</li>
+<li>实现接口数据表示</li>
+<li>测试队列</li>
+</ul>
+<h3 id="175-用队列进行模拟">17.5 用队列进行模拟</h3>
+<h3 id="176-链表和数组">17.6 链表和数组</h3>
+<h3 id="177-二叉查找树">17.7 二叉查找树</h3>
+<ul>
+<li>二叉树ADT</li>
+<li>二叉查找树接口</li>
+<li>二叉树的实现</li>
+<li>使用二叉树</li>
+<li>树的思想</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/c/">C</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-09-13</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/language/c/%E6%9E%9A%E4%B8%BE/" class="prev" rel="prev" title="枚举"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/chaos/crlfcrlf/" class="next" rel="next" title="CRLF、CR、LF">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

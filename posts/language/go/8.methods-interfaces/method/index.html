@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>method - xcx</title><meta name="description" content=""><meta property="og:title" content="method" />
+<meta property="og:description" content="method Go 中的方法是一种特殊类型的函数，但存在一个简单的区别：你必须在函数名称之前加入一个额外的参数。 此额外参数称为“接收方”。 如你希望分组函数并" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/language/go/8.methods-interfaces/method/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-05-24T15:58:22+00:00" />
+<meta property="article:modified_time" content="2023-05-24T15:58:22+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="method"/>
+<meta name="twitter:description" content="method Go 中的方法是一种特殊类型的函数，但存在一个简单的区别：你必须在函数名称之前加入一个额外的参数。 此额外参数称为“接收方”。 如你希望分组函数并"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/language/go/8.methods-interfaces/method/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/language/go/5.map/map/" /><link rel="next" href="https://xiechaoxin.github.io/posts/language/go/8.methods-interfaces/interfaces/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "method",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/language\/go\/8.methods-interfaces\/method\/"
+        },"genre": "posts","wordcount":  2630 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/language\/go\/8.methods-interfaces\/method\/","datePublished": "2023-05-24T15:58:22+00:00","dateModified": "2023-05-24T15:58:22+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">method</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-05-24">2023-05-24</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2630 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-声明方法">1 声明方法</a></li>
+    <li><a href="#2-方法中的指针">2 方法中的指针</a></li>
+    <li><a href="#3-声明其他类型的方法">3 声明其他类型的方法</a></li>
+    <li><a href="#4-嵌入方法">4 嵌入方法</a></li>
+    <li><a href="#5-重载方法">5 重载方法</a></li>
+    <li><a href="#6-方法中的封装">6 方法中的封装</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="method">method</h1>
+<p>Go 中的方法是一种特殊类型的函数，但存在一个简单的区别：你必须在函数名称之前加入一个额外的参数。 此额外参数称为“接收方”。</p>
+<p>如你希望分组函数并将其绑定到自定义类型，则方法非常有用。 Go 中的这一方法类似于在其他编程语言中创建类，因为它允许你实现面向对象编程 (OOP) 模型中的某些功能，例如嵌入、重载和封装。</p>
+<p>如要了解方法在 Go 中的重要性，请先学习如何声明一个方法。</p>
+<h2 id="1-声明方法">1 声明方法</h2>
+<p>到目前为止，你仅将结构用作可在 Go 中创建的另一种自定义类型。 在此模块中你将了解到，通过添加方法你可以将行为添加到你所创建的结构中。</p>
+<p>声明方法的语法如下所示：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">variable</span> <span class="kd">type</span><span class="p">)</span> <span class="nf">MethodName</span><span class="p">(</span><span class="nx">parameters</span> <span class="o">...</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// method functionality
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><p>但是，在声明方法之前，必须先创建结构。 假设你想要创建一个几何包，并决定创建一个名为 <code>triangle</code> 的三角形结构作为此程序包的一个组成部分。 然后，你需要使用一种方法来计算此三角形的周长。 你可以在 Go 中将其表示为：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">triangle</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">size</span> <span class="kt">int</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="nx">triangle</span><span class="p">)</span> <span class="nf">perimeter</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">t</span><span class="p">.</span><span class="nx">size</span> <span class="o">*</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>结构看起来像普通结构，但 <code>perimeter()</code> 函数在函数名称之前有一个类型 <code>triangle</code> 的额外参数。 此接收方意味着，在使用结构时，你可以按如下方式调用函数：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">t</span> <span class="o">:=</span> <span class="nx">triangle</span><span class="p">{</span><span class="mi">3</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Perimeter:&#34;</span><span class="p">,</span> <span class="nx">t</span><span class="p">.</span><span class="nf">perimeter</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>如果尝试按平常的方式调用 <code>perimeter()</code> 函数，则此函数将无法正常工作，因为此函数的签名表明它需要接收方。 调用此方法的唯一方式是先声明一个结构，获取此方法的访问权限。 只要此方法属于不同的结构，你甚至可以为其指定相同的名称。 例如，你可以使用 <code>perimeter()</code> 函数声明一个 <code>square</code> 结构，具体如下所示：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">triangle</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">size</span> <span class="kt">int</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">square</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">size</span> <span class="kt">int</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="nx">triangle</span><span class="p">)</span> <span class="nf">perimeter</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">t</span><span class="p">.</span><span class="nx">size</span> <span class="o">*</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="nx">square</span><span class="p">)</span> <span class="nf">perimeter</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">s</span><span class="p">.</span><span class="nx">size</span> <span class="o">*</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">t</span> <span class="o">:=</span> <span class="nx">triangle</span><span class="p">{</span><span class="mi">3</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">s</span> <span class="o">:=</span> <span class="nx">square</span><span class="p">{</span><span class="mi">4</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Perimeter (triangle):&#34;</span><span class="p">,</span> <span class="nx">t</span><span class="p">.</span><span class="nf">perimeter</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Perimeter (square):&#34;</span><span class="p">,</span> <span class="nx">s</span><span class="p">.</span><span class="nf">perimeter</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>在运行前面的代码时，请注意避免任何错误，你将获得以下输出：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nf">Perimeter</span> <span class="p">(</span><span class="nx">triangle</span><span class="p">):</span> <span class="mi">9</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Perimeter</span> <span class="p">(</span><span class="nx">square</span><span class="p">):</span> <span class="mi">16</span>
+</span></span></code></pre></div><p>通过对 <code>perimeter()</code> 函数的两次调用，编译器将根据接收方类型来确定要调用的函数。 此行为有助于在各程序包之间保持函数的一致性和名称的简短，并避免将包名称作为前缀。 在下一个单元讲解接口时，我们将介绍此行为的重要性。</p>
+<h2 id="2-方法中的指针">2 方法中的指针</h2>
+<p>有时，方法需要更新变量。 或者，如果方法的参数太大，你可能希望避免复制它。 在遇到此类情况时，你需要使用指针传递变量的地址。 在之前的模块中，当我们在讨论指针时提到，每次在 Go 中调用函数时，Go 都会复制每个参数值以便使用。</p>
+<p>如果你需要更新方法中的接收方变量，也会执行相同的行为。 例如，假设你要创建一个新方法以使三角形的大小增加一倍。 你需要在接收方变量中使用指针，具体如下所示：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">triangle</span><span class="p">)</span> <span class="nf">doubleSize</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">t</span><span class="p">.</span><span class="nx">size</span> <span class="o">*=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>你可以证明此方法的有效性，具体如下所示：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">t</span> <span class="o">:=</span> <span class="nx">triangle</span><span class="p">{</span><span class="mi">3</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">t</span><span class="p">.</span><span class="nf">doubleSize</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Size:&#34;</span><span class="p">,</span> <span class="nx">t</span><span class="p">.</span><span class="nx">size</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Perimeter:&#34;</span><span class="p">,</span> <span class="nx">t</span><span class="p">.</span><span class="nf">perimeter</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>在运行前面的代码时，你将看到以下输出：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">Size</span><span class="p">:</span> <span class="mi">6</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Perimeter</span><span class="p">:</span> <span class="mi">18</span>
+</span></span></code></pre></div><p>如果方法仅可访问接收方的信息，则不需要在接收方变量中使用指针。 但是，依据 Go 的约定，如果结构的任何方法具有指针接收方，则此结构的所有方法都必须具有指针接收方。 即使此结构的某个方法不需要它也是如此。</p>
+<h2 id="3-声明其他类型的方法">3 声明其他类型的方法</h2>
+<p>方法的一个关键方面在于，需要为任何类型定义方法，而不只是针对自定义类型（如结构）进行定义。 但是，你不能通过属于其他包的类型来定义结构。 因此，不能在基本类型（如 <code>string</code>）上创建方法。</p>
+<p>尽管如此，你仍然可以利用一点技巧，基于基本类型创建自定义类型，然后将其用作基本类型。 例如，假设你要创建一个方法，以将字符串从小写字母转换为大写字母。 你可以按如下所示写入方法：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;strings&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">upperstring</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="nx">upperstring</span><span class="p">)</span> <span class="nf">Upper</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">ToUpper</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">s</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">s</span> <span class="o">:=</span> <span class="nf">upperstring</span><span class="p">(</span><span class="s">&#34;Learning Go!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nf">Upper</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>在运行前面的代码时，你将看到以下输出：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">Learning</span> <span class="nx">Go</span><span class="p">!</span>
+</span></span><span class="line"><span class="cl"><span class="nx">LEARNING</span> <span class="nx">GO</span><span class="p">!</span>
+</span></span></code></pre></div><p>请注意，你在使用新对象 <code>s</code> 时，可以在首次打印其值时将其作为字符串。 然后，你在调用 <code>Upper</code> 方法时，<code>s</code> 会打印出类型字符串的所有大写字母。</p>
+<h2 id="4-嵌入方法">4 嵌入方法</h2>
+<p>在之前的模块中，您已了解到可以在一个结构中使用属性，并将同一属性嵌入另一个结构中。 也就是说，可以重用来自一个结构的属性，以避免出现重复并保持代码库的一致性。 类似的观点也适用于方法。 即使接收方不同，也可以调用已嵌入结构的方法。</p>
+<p>例如，假设你想要创建一个带有逻辑的新三角形结构，以加入颜色。 此外，你还希望继续使用之前声明的三角形结构。 因此，彩色三角形结构将如下所示：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">coloredTriangle</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">triangle</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">color</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>然后，你可以初始化 <code>coloredTriangle</code> 结构，并从 <code>triangle</code> 结构调用 <code>perimeter()</code> 方法（甚至访问其字段），具体如下所示：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">t</span> <span class="o">:=</span> <span class="nx">coloredTriangle</span><span class="p">{</span><span class="nx">triangle</span><span class="p">{</span><span class="mi">3</span><span class="p">},</span> <span class="s">&#34;blue&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Size:&#34;</span><span class="p">,</span> <span class="nx">t</span><span class="p">.</span><span class="nx">size</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Perimeter&#34;</span><span class="p">,</span> <span class="nx">t</span><span class="p">.</span><span class="nf">perimeter</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>继续操作并在程序中加入上述更改，以了解嵌入的工作方式。 当使用类似于上一个方法的 <code>main()</code> 方法运行程序时，你将看到以下输出：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">Size</span><span class="p">:</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Perimeter</span> <span class="mi">9</span>
+</span></span></code></pre></div><p>如果你熟悉 Java 或 C++ 等 OOP 语言，则可能会认为 <code>triangle</code> 结构看起来像基类，而 <code>coloredTriangle</code> 是一个子类（如继承），但事实并不是如此。 实际上，Go 编译器会通过创建如下的包装器方法来推广 <code>perimeter()</code> 方法：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="nx">coloredTriangle</span><span class="p">)</span> <span class="nf">perimeter</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">t</span><span class="p">.</span><span class="nx">triangle</span><span class="p">.</span><span class="nf">perimeter</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>请注意，接收方是 <code>coloredTriangle</code>，它从三角形字段调用 <code>perimeter()</code> 方法。 好的一点在于，你不必再创建之前的方法。 你可以选择创建，但 Go 已在内部为你完成了此工作。 我们提供的上述示例仅供学习。</p>
+<h2 id="5-重载方法">5 重载方法</h2>
+<p>让我们回到之前讨论过的 <code>triangle</code> 示例。 如果要在 <code>coloredTriangle</code> 结构中更改 <code>perimeter()</code> 方法的实现，会发生什么情况？ 不能存在两个同名的函数。 但是，因为方法需要额外参数（接收方），所以，你可以使用一个同名的方法，只要此方法专门用于要使用的接收方即可。 利用这种区别就是重载方法的方式。</p>
+<p>换而言之，如你想要更改其行为，可以编写我们讨论过的包装器方法。 如果彩色三角形的周长是普通三角形的两倍，则代码将如下所示：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="nx">coloredTriangle</span><span class="p">)</span> <span class="nf">perimeter</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">t</span><span class="p">.</span><span class="nx">size</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>现在，无需更改之前编写的 <code>main()</code> 方法中的任何其他内容，具体将如下所示：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">t</span> <span class="o">:=</span> <span class="nx">coloredTriangle</span><span class="p">{</span><span class="nx">triangle</span><span class="p">{</span><span class="mi">3</span><span class="p">},</span> <span class="s">&#34;blue&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Size:&#34;</span><span class="p">,</span> <span class="nx">t</span><span class="p">.</span><span class="nx">size</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Perimeter&#34;</span><span class="p">,</span> <span class="nx">t</span><span class="p">.</span><span class="nf">perimeter</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>运行此方法时，你将得到不同输出：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">Size</span><span class="p">:</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Perimeter</span> <span class="mi">18</span>
+</span></span></code></pre></div><p>但是，如果你仍需要从 <code>triangle</code> 结构调用 <code>perimeter()</code> 方法，则可通过对其进行显示访问来执行此操作，如下所示：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">t</span> <span class="o">:=</span> <span class="nx">coloredTriangle</span><span class="p">{</span><span class="nx">triangle</span><span class="p">{</span><span class="mi">3</span><span class="p">},</span> <span class="s">&#34;blue&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Size:&#34;</span><span class="p">,</span> <span class="nx">t</span><span class="p">.</span><span class="nx">size</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Perimeter (colored)&#34;</span><span class="p">,</span> <span class="nx">t</span><span class="p">.</span><span class="nf">perimeter</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Perimeter (normal)&#34;</span><span class="p">,</span> <span class="nx">t</span><span class="p">.</span><span class="nx">triangle</span><span class="p">.</span><span class="nf">perimeter</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>运行此代码时，应会看到以下输出：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">Size</span><span class="p">:</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Perimeter</span> <span class="p">(</span><span class="nx">colored</span><span class="p">)</span> <span class="mi">18</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Perimeter</span> <span class="p">(</span><span class="nx">normal</span><span class="p">)</span> <span class="mi">9</span>
+</span></span></code></pre></div><p>你可能已经注意到，在 Go 中，你可以 <em>替代</em>方法，并在需要时仍访问 <em>原始</em> 方法。</p>
+<h2 id="6-方法中的封装">6 方法中的封装</h2>
+<p>“封装”表示对象的发送方（客户端）无法访问某个方法。 通常，在其他编程语言中，你会将 <code>private</code> 或 <code>public</code> 关键字放在方法名称之前。 在 Go 中，只需使用大写标识符，即可公开方法，使用非大写的标识符将方法设为私有方法。</p>
+<p>Go 中的封装仅在程序包之间有效。 换句话说，你只能隐藏来自其他程序包的实现详细信息，而不能隐藏程序包本身。</p>
+<p>如要进行尝试，请创建新程序包 <code>geometry</code> 并按如下方式将三角形结构移入其中：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">geometry</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Triangle</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">size</span> <span class="kt">int</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">Triangle</span><span class="p">)</span> <span class="nf">doubleSize</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">t</span><span class="p">.</span><span class="nx">size</span> <span class="o">*=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">Triangle</span><span class="p">)</span> <span class="nf">SetSize</span><span class="p">(</span><span class="nx">size</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">t</span><span class="p">.</span><span class="nx">size</span> <span class="p">=</span> <span class="nx">size</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">Triangle</span><span class="p">)</span> <span class="nf">Perimeter</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">t</span><span class="p">.</span><span class="nf">doubleSize</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">t</span><span class="p">.</span><span class="nx">size</span> <span class="o">*</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>你可以使用上述程序包，具体如下所示：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">t</span> <span class="o">:=</span> <span class="nx">geometry</span><span class="p">.</span><span class="nx">Triangle</span><span class="p">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">t</span><span class="p">.</span><span class="nf">SetSize</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Perimeter&#34;</span><span class="p">,</span> <span class="nx">t</span><span class="p">.</span><span class="nf">Perimeter</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>此时你应获得以下输出：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">Perimeter</span> <span class="mi">18</span>
+</span></span></code></pre></div><p>如要尝试从 <code>main()</code> 函数中调用 <code>size</code> 字段或 <code>doubleSize()</code> 方法，程序将死机，如下所示：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">t</span> <span class="o">:=</span> <span class="nx">geometry</span><span class="p">.</span><span class="nx">Triangle</span><span class="p">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">t</span><span class="p">.</span><span class="nf">SetSize</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Size&#34;</span><span class="p">,</span> <span class="nx">t</span><span class="p">.</span><span class="nx">size</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Perimeter&#34;</span><span class="p">,</span> <span class="nx">t</span><span class="p">.</span><span class="nf">Perimeter</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>在运行前面的代码时，你将看到以下错误：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">.</span><span class="o">/</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">23</span><span class="p">:</span> <span class="nx">t</span><span class="p">.</span><span class="nx">size</span> <span class="nf">undefined</span> <span class="p">(</span><span class="nx">cannot</span> <span class="nx">refer</span> <span class="nx">to</span> <span class="nx">unexported</span> <span class="nx">field</span> <span class="nx">or</span> <span class="nx">method</span> <span class="nx">size</span><span class="p">)</span>
+</span></span></code></pre></div></div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2023-05-24</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/language/go/5.map/map/" class="prev" rel="prev" title="map"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/language/go/8.methods-interfaces/interfaces/" class="next" rel="next" title="interfaces">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

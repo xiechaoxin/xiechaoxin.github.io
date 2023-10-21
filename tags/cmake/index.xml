@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>cmake - 标签 - xcx</title>
+        <link>https://xiechaoxin.github.io/tags/cmake/</link>
+        <description>cmake - 标签 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 29 Sep 2022 16:59:06 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/tags/cmake/" rel="self" type="application/rss+xml" /><item>
+    <title>cmake笔记</title>
+    <link>https://xiechaoxin.github.io/posts/tools/cmake/cmake%E7%AC%94%E8%AE%B0/</link>
+    <pubDate>Thu, 29 Sep 2022 16:59:06 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/tools/cmake/cmake%E7%AC%94%E8%AE%B0/</guid>
+    <description><![CDATA[CMake 说明 cmake 的定义是什么 ？&mdash;&ndash;高级编译配置工具 当多个人用不同的语言或者编译器开发一个项目，最终要输出一个可执行文件或者共]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>basis - 标签 - xcx</title>
+        <link>https://xiechaoxin.github.io/tags/basis/</link>
+        <description>basis - 标签 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/tags/basis/" rel="self" type="application/rss+xml" /><item>
+    <title>RESTfulAPI</title>
+    <link>https://xiechaoxin.github.io/posts/common/%E8%A7%84%E8%8C%83/restfulapi/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/common/%E8%A7%84%E8%8C%83/restfulapi/</guid>
+    <description><![CDATA[RestFul API 简明教程 这篇文章简单聊聊后端程序员必备的 RESTful API 相关的知识。 开始正式介绍 RESTful API 之前，我们需要首先搞清 ：API 到底是什么？ 1 何为 API？ API(Application Programming Interface) 翻]]></description>
+</item>
+<item>
+    <title>命名规范</title>
+    <link>https://xiechaoxin.github.io/posts/common/%E8%A7%84%E8%8C%83/%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/common/%E8%A7%84%E8%8C%83/%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/</guid>
+    <description><![CDATA[命名规范 1 文件命名规范 文件夹命名,最好用一个单词,如果必须多个单词,建议使用横线连接- 文件命名,最好使用一个单词,如果需要多个单词,建议使用]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,67 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>tools - 分类 - xcx</title>
+        <link>https://xiechaoxin.github.io/categories/tools/</link>
+        <description>tools - 分类 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 26 May 2023 09:10:46 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/categories/tools/" rel="self" type="application/rss+xml" /><item>
+    <title>vscode 远程开发</title>
+    <link>https://xiechaoxin.github.io/posts/tools/vscode/vscode%E8%BF%9C%E7%A8%8B%E5%BC%80%E5%8F%91/</link>
+    <pubDate>Fri, 26 May 2023 09:10:46 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/tools/vscode/vscode%E8%BF%9C%E7%A8%8B%E5%BC%80%E5%8F%91/</guid>
+    <description><![CDATA[https://www.cnblogs.com/NanoDragon/p/12899430.html]]></description>
+</item>
+<item>
+    <title>输入法rime</title>
+    <link>https://xiechaoxin.github.io/posts/chaos/%E8%BE%93%E5%85%A5%E6%B3%95rime/</link>
+    <pubDate>Fri, 26 May 2023 09:10:46 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/chaos/%E8%BE%93%E5%85%A5%E6%B3%95rime/</guid>
+    <description><![CDATA[建议配合图文进行操作： https://www.mintimate.cn/2023/03/18/rimeQuickInit oh-my-rime 配置（Mintimate 的配置）： https://github.com/Mintimate/oh-my-rime Rime/小狼毫/鼠须管是强大的开源输入法。它支持： 自定义词库，离开网络也不用]]></description>
+</item>
+<item>
+    <title>cmake笔记</title>
+    <link>https://xiechaoxin.github.io/posts/tools/cmake/cmake%E7%AC%94%E8%AE%B0/</link>
+    <pubDate>Thu, 29 Sep 2022 16:59:06 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/tools/cmake/cmake%E7%AC%94%E8%AE%B0/</guid>
+    <description><![CDATA[CMake 说明 cmake 的定义是什么 ？&mdash;&ndash;高级编译配置工具 当多个人用不同的语言或者编译器开发一个项目，最终要输出一个可执行文件或者共]]></description>
+</item>
+<item>
+    <title>vscode 系统热键</title>
+    <link>https://xiechaoxin.github.io/posts/tools/vscode/vscode-%E7%B3%BB%E7%BB%9F%E7%83%AD%E9%94%AE/</link>
+    <pubDate>Sat, 24 Sep 2022 17:45:46 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/tools/vscode/vscode-%E7%B3%BB%E7%BB%9F%E7%83%AD%E9%94%AE/</guid>
+    <description><![CDATA[vscode 系统热键 参考官网 快捷键速查表 (window) 快捷键速查表 (macos)]]></description>
+</item>
+<item>
+    <title>搭建博客网站</title>
+    <link>https://xiechaoxin.github.io/posts/tools/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/</link>
+    <pubDate>Sat, 06 Aug 2022 15:08:36 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/tools/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/</guid>
+    <description><![CDATA[搭建博客网站 折腾 Hugo | GitHub Pages | Github Actions 自动构建发布免费个人网站 - 腾讯云开发者社区-腾讯云 (tencent.com) ssh-keygen -t rsa -C &#34;email&#34; -f ~/.ssh/gitee_id_rsa_hugo_deploy echo theme **=** \&#34;hugo-geekdoc\&#34; &gt;&gt; config.toml 1 github actions name: auto-generate-gitbook on: #在main分支上进]]></description>
+</item>
+<item>
+    <title>docker安装MongoDB</title>
+    <link>https://xiechaoxin.github.io/posts/tools/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/docker%E5%AE%89%E8%A3%85mongodb/</link>
+    <pubDate>Sat, 16 Jul 2022 02:51:55 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/tools/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/docker%E5%AE%89%E8%A3%85mongodb/</guid>
+    <description><![CDATA[通过 docker 安装 MongoDB # 拉取镜像 docker pull mongo:4.0.3 # 创建容器 docker create --name mongodb-server -p 27017:27017 -v mongodb-data:/data/db mongo:4.0.3 --auth # 启动容器 docker start mongodb-server # 进入容器 docker exec -it mongodb-server /bin/bash # 进入admin数据库 mongo use admin # 添加管理员，其拥]]></description>
+</item>
+<item>
+    <title>docker安装mysql</title>
+    <link>https://xiechaoxin.github.io/posts/tools/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/docker%E5%AE%89%E8%A3%85mysql/</link>
+    <pubDate>Sat, 16 Jul 2022 02:51:55 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/tools/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/docker%E5%AE%89%E8%A3%85mysql/</guid>
+    <description><![CDATA[docker 安装 mysql docker pull mysql:8.0.20 docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:8.0.20 docker ps -a # 启动成功后，进入容器内部拷贝配置文件，到宿主主机。 # 拷贝容器的 /etc/mysql目录到 主机目录/]]></description>
+</item>
+<item>
+    <title>docker安装Redis</title>
+    <link>https://xiechaoxin.github.io/posts/tools/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/docker%E5%AE%89%E8%A3%85redis/</link>
+    <pubDate>Sat, 16 Jul 2022 02:51:55 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/tools/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/docker%E5%AE%89%E8%A3%85redis/</guid>
+    <description><![CDATA[docker 安装 Redis docker create --name redis-server -p 6399:6379 --restart=always -v redis-server-data:/data redis:5.0.2 --appendonly yes docker start redis-server # 进入容器进行测试 docker exec -it redis-server /bin/bash # 测试 root@0bd11c170b43:/data# redis-cli 127.0.0.1:6379&gt; set abc 123 OK 127.0.0.1:6379&gt; get abc &#34;123&#34; 127.0.0.1:6379&gt; del abc]]></description>
+</item>
+<item>
+    <title>chiner</title>
+    <link>https://xiechaoxin.github.io/posts/tools/database/chiner/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:12 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/tools/database/chiner/</guid>
+    <description><![CDATA[title: CHINER:干掉 PowerDesigner，这个国产数据库建模工具很强！ category: 数据库 tag: 开发工具 大家好，我是 Guide！ 今天给小伙伴们分享一个]]></description>
+</item>
+<item>
+    <title>DataGrip</title>
+    <link>https://xiechaoxin.github.io/posts/tools/database/datagrip/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:12 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/tools/database/datagrip/</guid>
+    <description><![CDATA[Atzuge | https://www.cnblogs.com/zuge/p/7397255.html DataGrip 是由 JetBrains 公司(就是那个出品 Intellij IDEA 的公司,JetBrains出品，必属精品)推出的数据库管理软件。如果你不爱折腾的话，这家公司出品的很多 IDE]]></description>
+</item>
+</channel>
+</rss>

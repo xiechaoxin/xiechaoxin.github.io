@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>cap&amp;base理论 - xcx</title><meta name="description" content=""><meta property="og:title" content="cap&amp;base理论" />
+<meta property="og:description" content="CAP &amp; BASE理论 经历过技术面试的小伙伴想必对这个两个概念已经再熟悉不过了！ Guide哥当年参加面试的时候，不夸张地说，只要问到分布式相关的内" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/pro/distributed-system/%E7%90%86%E8%AE%BA%E7%AE%97%E6%B3%95/capbase%E7%90%86%E8%AE%BA/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-17T17:59:13+00:00" />
+<meta property="article:modified_time" content="2022-06-17T17:59:13+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="cap&amp;base理论"/>
+<meta name="twitter:description" content="CAP &amp; BASE理论 经历过技术面试的小伙伴想必对这个两个概念已经再熟悉不过了！ Guide哥当年参加面试的时候，不夸张地说，只要问到分布式相关的内"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/pro/distributed-system/%E7%90%86%E8%AE%BA%E7%AE%97%E6%B3%95/capbase%E7%90%86%E8%AE%BA/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/pro/distributed-system/distributed-id/" /><link rel="next" href="https://xiechaoxin.github.io/posts/pro/security/basis-of-authority-certification/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "cap\u0026base理论",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/pro\/distributed-system\/%E7%90%86%E8%AE%BA%E7%AE%97%E6%B3%95\/capbase%E7%90%86%E8%AE%BA\/"
+        },"genre": "posts","keywords": "system_design, distributed-system, 理论\u0026算法","wordcount":  3583 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/pro\/distributed-system\/%E7%90%86%E8%AE%BA%E7%AE%97%E6%B3%95\/capbase%E7%90%86%E8%AE%BA\/","datePublished": "2022-06-17T17:59:13+00:00","dateModified": "2022-06-17T17:59:13+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">cap&amp;base理论</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/system_design/"><i class="far fa-folder fa-fw"></i>system_design</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-17">2022-06-17</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3583 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-cap理论">1 CAP理论</a>
+      <ul>
+        <li><a href="#11-简介">1.1 简介</a></li>
+        <li><a href="#12-不是所谓的3-选-2">1.2 不是所谓的“3 选 2”</a></li>
+        <li><a href="#13-cap-实际应用案例">1.3 CAP 实际应用案例</a></li>
+        <li><a href="#14-总结">1.4 总结</a></li>
+        <li><a href="#15-推荐阅读">1.5 推荐阅读</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-base-理论">2 BASE 理论</a>
+      <ul>
+        <li><a href="#21-简介">2.1 简介</a></li>
+        <li><a href="#22-base-理论的核心思想">2.2 BASE 理论的核心思想</a></li>
+        <li><a href="#23-base-理论三要素">2.3 BASE 理论三要素</a></li>
+        <li><a href="#24-总结">2.4 总结</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="cap--base理论">CAP &amp; BASE理论</h1>
+<p>经历过技术面试的小伙伴想必对这个两个概念已经再熟悉不过了！</p>
+<p>Guide哥当年参加面试的时候，不夸张地说，只要问到分布式相关的内容，面试官几乎是必定会问这两个分布式相关的理论。</p>
+<p>并且，这两个理论也可以说是小伙伴们学习分布式相关内容的基础了！</p>
+<p>因此，小伙伴们非常非常有必要将这理论搞懂，并且能够用自己的理解给别人讲出来。</p>
+<p>这篇文章我会站在自己的角度对这两个概念进行解读！</p>
+<p><em>个人能力有限。如果文章有任何需要改善和完善的地方，欢迎在评论区指出，共同进步！——爱你们的Guide哥</em></p>
+<h2 id="1-cap理论">1 CAP理论</h2>
+<p><a href="https://zh.wikipedia.org/wiki/CAP%E5%AE%9A%E7%90%86" target="_blank" rel="noopener noreffer">CAP 理论/定理</a>起源于 2000年，由加州大学伯克利分校的Eric Brewer教授在分布式计算原理研讨会(PODC)上提出，因此 CAP定理又被称作 <strong>布鲁尔定理(Brewer’s theorem)</strong></p>
+<p>2年后，麻省理工学院的Seth Gilbert和Nancy Lynch 发表了布鲁尔猜想的证明，CAP理论正式成为分布式领域的定理。</p>
+<h3 id="11-简介">1.1 简介</h3>
+<p><strong>CAP</strong> 也就是 <strong>Consistency(一致性)</strong>、<strong>Availability(可用性)</strong>、<strong>Partition Tolerance(分区容错性)</strong> 这三个单词首字母组合。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./cap.png"
+        data-srcset="./cap.png, ./cap.png 1.5x, ./cap.png 2x"
+        data-sizes="auto"
+        alt="./cap.png"
+        title="./cap.png" /></p>
+<p>CAP 理论的提出者布鲁尔在提出 CAP 猜想的时候，并没有详细定义 <strong>Consistency</strong>、<strong>Availability</strong>、<strong>Partition Tolerance</strong> 三个单词的明确定义。</p>
+<p>因此，对于 CAP 的民间解读有很多，一般比较被大家推荐的是下面 👇 这种版本的解读。</p>
+<p>在理论计算机科学中，CAP 定理(CAP theorem)指出对于一个分布式系统来说，当设计读写操作时，只能同时满足以下三点中的两个：</p>
+<ul>
+<li><strong>一致性(Consistency)</strong> : 所有节点访问同一份最新的数据副本</li>
+<li><strong>可用性(Availability)</strong>: 非故障的节点在合理的时间内返回合理的响应(不是错误或者超时的响应)。</li>
+<li><strong>分区容错性(Partition tolerance)</strong> : 分布式系统出现网络分区的时候，仍然能够对外提供服务。</li>
+</ul>
+<p><strong>什么是网络分区？</strong></p>
+<blockquote>
+<p>分布式系统中，多个节点之前的网络本来是连通的，但是因为某些故障(比如部分节点网络出了问题)某些节点之间不连通了，整个网络就分成了几块区域，这就叫网络分区。</p>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./partition-tolerance.png"
+        data-srcset="./partition-tolerance.png, ./partition-tolerance.png 1.5x, ./partition-tolerance.png 2x"
+        data-sizes="auto"
+        alt="./partition-tolerance.png"
+        title="partition-tolerance" /></p>
+<h3 id="12-不是所谓的3-选-2">1.2 不是所谓的“3 选 2”</h3>
+<p>大部分人解释这一定律时，常常简单的表述为：“一致性、可用性、分区容忍性三者你只能同时达到其中两个，不可能同时达到”。实际上这是一个非常具有误导性质的说法，而且在 CAP 理论诞生 12 年之后，CAP 之父也在 2012 年重写了之前的论文。</p>
+<blockquote>
+<p><strong>当发生网络分区的时候，如果我们要继续服务，那么强一致性和可用性只能 2 选 1。也就是说当网络分区之后 P 是前提，决定了 P 之后才有 C 和 A 的选择。也就是说分区容错性(Partition tolerance)我们是必须要实现的。</strong></p>
+<p>简而言之就是：CAP 理论中分区容错性 P 是一定要满足的，在此基础上，只能满足可用性 A 或者一致性 C。</p>
+</blockquote>
+<p>因此，<strong>分布式系统理论上不可能选择 CA 架构，只能选择 CP 或者 AP 架构。</strong> 比如  ZooKeeper、HBase 就是 CP 架构，Cassandra、Eureka 就是 AP 架构，Nacos 不仅支持 CP 架构也支持 AP 架构。</p>
+<p><strong>为啥不可能选择 CA 架构呢？</strong> 举个例子：若系统出现“分区”，系统中的某个节点在进行写操作。为了保证 C， 必须要禁止其他节点的读写操作，这就和 A 发生冲突了。如果为了保证 A，其他节点的读写操作正常的话，那就和 C 发生冲突了。</p>
+<p><strong>选择 CP 还是 AP 的关键在于当前的业务场景，没有定论，比如对于需要确保强一致性的场景如银行一般会选择保证 CP 。</strong></p>
+<p>另外，需要补充说明的一点是： <strong>如果网络分区正常的话(系统在绝大部分时候所处的状态)，也就说不需要保证 P 的时候，C 和 A 能够同时保证。</strong></p>
+<h3 id="13-cap-实际应用案例">1.3 CAP 实际应用案例</h3>
+<p>我这里以注册中心来探讨一下 CAP 的实际应用。考虑到很多小伙伴不知道注册中心是干嘛的，这里简单以 Dubbo 为例说一说。</p>
+<p>下图是 Dubbo 的架构图。<strong>注册中心 Registry 在其中扮演了什么角色呢？提供了什么服务呢？</strong></p>
+<p>注册中心负责服务地址的注册与查找，相当于目录服务，服务提供者和消费者只在启动时与注册中心交互，注册中心不转发请求，压力较小。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./dubbo-architecture.png"
+        data-srcset="./dubbo-architecture.png, ./dubbo-architecture.png 1.5x, ./dubbo-architecture.png 2x"
+        data-sizes="auto"
+        alt="./dubbo-architecture.png"
+        title="./dubbo-architecture.png" /></p>
+<p>常见的可以作为注册中心的组件有：ZooKeeper、Eureka、Nacos&hellip;。</p>
+<ol>
+<li><strong>ZooKeeper 保证的是 CP。</strong> 任何时刻对 ZooKeeper 的读请求都能得到一致性的结果，但是， ZooKeeper 不保证每次请求的可用性比如在 Leader 选举过程中或者半数以上的机器不可用的时候服务就是不可用的。</li>
+<li><strong>Eureka 保证的则是 AP。</strong> Eureka 在设计的时候就是优先保证 A (可用性)。在 Eureka 中不存在什么 Leader 节点，每个节点都是一样的、平等的。因此 Eureka 不会像 ZooKeeper 那样出现选举过程中或者半数以上的机器不可用的时候服务就是不可用的情况。 Eureka 保证即使大部分节点挂掉也不会影响正常提供服务，只要有一个节点是可用的就行了。只不过这个节点上的数据可能并不是最新的。</li>
+<li><strong>Nacos 不仅支持 CP 也支持 AP。</strong></li>
+</ol>
+<h3 id="14-总结">1.4 总结</h3>
+<p>在进行分布式系统设计和开发时，我们不应该仅仅局限在 CAP 问题上，还要关注系统的扩展性、可用性等等</p>
+<p>在系统发生“分区”的情况下，CAP 理论只能满足 CP 或者 AP。要注意的是，这里的前提是系统发生了“分区”</p>
+<p>如果系统没有发生“分区”的话，节点间的网络连接通信正常的话，也就不存在 P 了。这个时候，我们就可以同时保证 C 和 A 了。</p>
+<p>总结：<strong>如果系统发生“分区”，我们要考虑选择 CP 还是 AP。如果系统没有发生“分区”的话，我们要思考如何保证 CA 。</strong></p>
+<h3 id="15-推荐阅读">1.5 推荐阅读</h3>
+<ol>
+<li><a href="https://medium.com/@ravindraprasad/cap-theorem-simplified-28499a67eab4" target="_blank" rel="noopener noreffer">CAP 定理简化</a> (英文，有趣的案例)</li>
+<li><a href="https://juejin.im/post/6844903936718012430" target="_blank" rel="noopener noreffer">神一样的 CAP 理论被应用在何方</a> (中文，列举了很多实际的例子)</li>
+<li><a href="https://martin.kleppmann.com/2015/05/11/please-stop-calling-databases-cp-or-ap.html" target="_blank" rel="noopener noreffer">请停止呼叫数据库 CP 或 AP </a> (英文，带给你不一样的思考)</li>
+</ol>
+<h2 id="2-base-理论">2 BASE 理论</h2>
+<p><a href="https://dl.acm.org/doi/10.1145/1394127.1394128" target="_blank" rel="noopener noreffer">BASE 理论</a>起源于 2008 年， 由eBay的架构师Dan Pritchett在ACM上发表。</p>
+<h3 id="21-简介">2.1 简介</h3>
+<p><strong>BASE</strong> 是 <strong>Basically Available(基本可用)</strong> 、<strong>Soft-state(软状态)</strong> 和 <strong>Eventually Consistent(最终一致性)</strong> 三个短语的缩写。BASE 理论是对 CAP 中一致性 C 和可用性 A 权衡的结果，其来源于对大规模互联网系统分布式实践的总结，是基于 CAP 定理逐步演化而来的，它大大降低了我们对系统的要求。</p>
+<h3 id="22-base-理论的核心思想">2.2 BASE 理论的核心思想</h3>
+<p>即使无法做到强一致性，但每个应用都可以根据自身业务特点，采用适当的方式来使系统达到最终一致性。</p>
+<blockquote>
+<p>也就是牺牲数据的一致性来满足系统的高可用性，系统中一部分数据不可用或者不一致时，仍需要保持系统整体“主要可用”。</p>
+</blockquote>
+<p><strong>BASE 理论本质上是对 CAP 的延伸和补充，更具体地说，是对 CAP 中 AP 方案的一个补充。</strong></p>
+<p><strong>为什么这样说呢？</strong></p>
+<p>CAP 理论这节我们也说过了：</p>
+<blockquote>
+<p>如果系统没有发生“分区”的话，节点间的网络连接通信正常的话，也就不存在 P 了。这个时候，我们就可以同时保证 C 和 A 了。因此，<strong>如果系统发生“分区”，我们要考虑选择 CP 还是 AP。如果系统没有发生“分区”的话，我们要思考如何保证 CA 。</strong></p>
+</blockquote>
+<p>因此，AP 方案只是在系统发生分区的时候放弃一致性，而不是永远放弃一致性。在分区故障恢复后，系统应该达到最终一致性。这一点其实就是 BASE 理论延伸的地方。</p>
+<h3 id="23-base-理论三要素">2.3 BASE 理论三要素</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./format,png.png"
+        data-srcset="./format%2cpng.png, ./format%2cpng.png 1.5x, ./format%2cpng.png 2x"
+        data-sizes="auto"
+        alt="./format,png.png"
+        title="BASE理论三要素" /></p>
+<h4 id="231-基本可用">2.3.1 基本可用</h4>
+<p>基本可用是指分布式系统在出现不可预知故障的时候，允许损失部分可用性。但是，这绝不等价于系统不可用。</p>
+<p><strong>什么叫允许损失部分可用性呢？</strong></p>
+<ul>
+<li><strong>响应时间上的损失</strong>: 正常情况下，处理用户请求需要 0.5s 返回结果，但是由于系统出现故障，处理用户请求的时间变为 3 s。</li>
+<li><strong>系统功能上的损失</strong>：正常情况下，用户可以使用系统的全部功能，但是由于系统访问量突然剧增，系统的部分非核心功能无法使用。</li>
+</ul>
+<h4 id="232-软状态">2.3.2 软状态</h4>
+<p>软状态指允许系统中的数据存在中间状态(<strong>CAP 理论中的数据不一致</strong>)，并认为该中间状态的存在不会影响系统的整体可用性，即允许系统在不同节点的数据副本之间进行数据同步的过程存在延时。</p>
+<h4 id="233-最终一致性">2.3.3 最终一致性</h4>
+<p>最终一致性强调的是系统中所有的数据副本，在经过一段时间的同步后，最终能够达到一个一致的状态。因此，最终一致性的本质是需要系统保证最终数据能够达到一致，而不需要实时保证系统数据的强一致性。</p>
+<blockquote>
+<p>分布式一致性的 3 种级别：</p>
+<ol>
+<li>
+<p><strong>强一致性</strong> ：系统写入了什么，读出来的就是什么。</p>
+</li>
+<li>
+<p><strong>弱一致性</strong> ：不一定可以读取到最新写入的值，也不保证多少时间之后读取到的数据是最新的，只是会尽量保证某个时刻达到数据一致的状态。</p>
+</li>
+<li>
+<p><strong>最终一致性</strong> ：弱一致性的升级版，系统会保证在一定时间内达到数据一致的状态。</p>
+</li>
+</ol>
+<p><strong>业界比较推崇是最终一致性级别，但是某些对数据一致要求十分严格的场景比如银行转账还是要保证强一致性。</strong></p>
+</blockquote>
+<p>那实现最终一致性的具体方式是什么呢? <a href="http://gk.link/a/10rZM" target="_blank" rel="noopener noreffer">《分布式协议与算法实战》</a> 中是这样介绍：</p>
+<blockquote>
+<ul>
+<li><strong>读时修复</strong> : 在读取数据时，检测数据的不一致，进行修复。比如 Cassandra 的 Read Repair 实现，具体来说，在向 Cassandra 系统查询数据的时候，如果检测到不同节点 的副本数据不一致，系统就自动修复数据。</li>
+<li><strong>写时修复</strong> : 在写入数据，检测数据的不一致时，进行修复。比如 Cassandra 的 Hinted Handoff 实现。具体来说，Cassandra 集群的节点之间远程写数据的时候，如果写失败 就将数据缓存下来，然后定时重传，修复数据的不一致性。</li>
+<li><strong>异步修复</strong> : 这个是最常用的方式，通过定时对账检测副本数据的一致性，并修复。</li>
+</ul>
+</blockquote>
+<p>比较推荐 <strong>写时修复</strong>，这种方式对性能消耗比较低。</p>
+<h3 id="24-总结">2.4 总结</h3>
+<p><strong>ACID 是数据库事务完整性的理论，CAP 是分布式系统设计理论，BASE 是 CAP 理论中 AP 方案的延伸。</strong></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/system_design/">system_design</a>
+                </span><span><a href="/tags/distributed-system/">distributed-system</a>
+                </span><span><a href="/tags/%E7%90%86%E8%AE%BA%E7%AE%97%E6%B3%95/">理论&amp;算法</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-06-17</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/pro/distributed-system/distributed-id/" class="prev" rel="prev" title="distributed-id"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/pro/security/basis-of-authority-certification/" class="next" rel="next" title="basis-of-authority-certification">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

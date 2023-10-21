@@ -1,0 +1,61 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>OS - 标签 - xcx</title>
+        <link>https://xiechaoxin.github.io/tags/os/</link>
+        <description>OS - 标签 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 26 May 2023 09:10:46 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/tags/os/" rel="self" type="application/rss+xml" /><item>
+    <title>鸟哥linux</title>
+    <link>https://xiechaoxin.github.io/posts/os/%E9%B8%9F%E5%93%A5linux/</link>
+    <pubDate>Fri, 26 May 2023 09:10:46 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/os/%E9%B8%9F%E5%93%A5linux/</guid>
+    <description><![CDATA[第六章 linux 文件与目录管理 1 PATH echo $PATH 1.1 查看文件内容 cat 由第一行开始显示文件内容 tac 从最后一行开始显示，可以看出 tac 是 cat 的倒着写! nl 显示的时候，顺道输出行]]></description>
+</item>
+<item>
+    <title>linux-intro(后端程序员必备的 Linux 基础知识总结)</title>
+    <link>https://xiechaoxin.github.io/posts/os/linux-intro/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:12 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/os/linux-intro/</guid>
+    <description><![CDATA[简单介绍一下 Java 程序员必知的 Linux 的一些概念以及常见命令。 如果文章有任何需要改善和完善的地方，欢迎在评论区指出，共同进步！笔芯！ 从认识操作系统开始]]></description>
+</item>
+<item>
+    <title>linux命令</title>
+    <link>https://xiechaoxin.github.io/posts/os/linux/linux%E5%91%BD%E4%BB%A4/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:12 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/os/linux/linux%E5%91%BD%E4%BB%A4/</guid>
+    <description><![CDATA[文件处理命令 1 权限管理命令 2 文件搜索命令 3 帮助命令 3.1 man ​ 查看命令的帮助:这个命令是干啥用的，/选项 ​ 查看配置文件的格式： ​ ps：1命令的帮助]]></description>
+</item>
+<item>
+    <title>shell-intro(Shell 编程入门)</title>
+    <link>https://xiechaoxin.github.io/posts/os/shell-intro/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:12 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/os/shell-intro/</guid>
+    <description><![CDATA[Shell 编程入门 1 走进 Shell 编程的大门 1.1 为什么要学Shell？ 学一个东西，我们大部分情况都是往实用性方向着想。从工作角度来讲，学习 Shell 是为了提高我们自己]]></description>
+</item>
+<item>
+    <title>操作系统-王道</title>
+    <link>https://xiechaoxin.github.io/posts/os/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%8E%8B%E9%81%93/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:12 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/os/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%8E%8B%E9%81%93/</guid>
+    <description><![CDATA[操作系统 第一章 计算机系统概述 1 操作系统 1.1 操作系统的概念和功能 1.1.1 概念 操作系统(Operating System， OS)是指控制和管理整个计算机系]]></description>
+</item>
+<item>
+    <title>操作系统常见面试题&amp;知识点总结</title>
+    <link>https://xiechaoxin.github.io/posts/os/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:12 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/os/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/</guid>
+    <description><![CDATA[title: 操作系统常见面试题总结 category: 计算机基础 tag: 操作系统 大家好，我是 Guide 哥！ 很多读者抱怨计算操作系统的知识点比较繁杂，自己也没有多少耐心去看，但是面试的]]></description>
+</item>
+<item>
+    <title>操作系统小总结-王道</title>
+    <link>https://xiechaoxin.github.io/posts/os/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%B0%8F%E6%80%BB%E7%BB%93-%E7%8E%8B%E9%81%93/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:12 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/os/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%B0%8F%E6%80%BB%E7%BB%93-%E7%8E%8B%E9%81%93/</guid>
+    <description><![CDATA[操作系统小总结 目录 第一章 计算机系统概述 1.1操作系统 第二章 进程管理 2.1进程和线程 2.2调度 2.3互斥同步 2.4死锁 第三章 内存管理 3.1内存]]></description>
+</item>
+<item>
+    <title>图解操作系统</title>
+    <link>https://xiechaoxin.github.io/posts/os/%E5%9B%BE%E8%A7%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:12 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/os/%E5%9B%BE%E8%A7%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</guid>
+    <description><![CDATA[图解操作系统 第一章 作者介绍 大家好，我是小林，是《图解系统》的作者，本站的内容都是整理于我公众号里的图解文章。 还没关注的朋友，可以微信搜索「小]]></description>
+</item>
+<item>
+    <title>图解操作系统readme</title>
+    <link>https://xiechaoxin.github.io/posts/os/%E5%9B%BE%E8%A7%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9Freadme/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:12 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/os/%E5%9B%BE%E8%A7%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9Freadme/</guid>
+    <description><![CDATA[《图解系统》的目录结构 硬件结构 CPU 是如何执行程序的？ 磁盘比内存慢几万倍？ 如何写出让 CPU 跑得更快的代码？ CPU 缓存一致性 CPU 是如何执行任务的？ 什么是软中]]></description>
+</item>
+</channel>
+</rss>

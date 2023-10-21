@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>rocketmq-questions - xcx</title><meta name="description" content=""><meta property="og:title" content="rocketmq-questions" />
+<meta property="og:description" content="RocketMQ常见问题 本文来自读者 PR。 1 单机版消息中心 一个消息中心，最基本的需要支持多生产者、多消费者，例如下： class Scratch { public static void main(String[] args) { // 实际" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/pro/high-performance/message-queue/rocketmq-questions/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-17T17:59:13+00:00" />
+<meta property="article:modified_time" content="2022-06-17T17:59:13+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="rocketmq-questions"/>
+<meta name="twitter:description" content="RocketMQ常见问题 本文来自读者 PR。 1 单机版消息中心 一个消息中心，最基本的需要支持多生产者、多消费者，例如下： class Scratch { public static void main(String[] args) { // 实际"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/pro/high-performance/message-queue/rocketmq-questions/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/chaos/%E5%A4%A7%E4%BD%AC%E5%88%86%E4%BA%AB/interview/screen-candidates-for-packaging/" /><link rel="next" href="https://xiechaoxin.github.io/posts/pro/high-performance/message-queue/rocketmq-intro/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "rocketmq-questions",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/pro\/high-performance\/message-queue\/rocketmq-questions\/"
+        },"genre": "posts","keywords": "system_design, high-performance, message-queue","wordcount":  3321 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/pro\/high-performance\/message-queue\/rocketmq-questions\/","datePublished": "2022-06-17T17:59:13+00:00","dateModified": "2022-06-17T17:59:13+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">rocketmq-questions</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/system_design/"><i class="far fa-folder fa-fw"></i>system_design</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-17">2022-06-17</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3321 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-单机版消息中心">1 单机版消息中心</a></li>
+    <li><a href="#2-分布式消息中心">2 分布式消息中心</a>
+      <ul>
+        <li><a href="#21-问题与解决">2.1 问题与解决</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-参考">3 参考</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="rocketmq常见问题">RocketMQ常见问题</h1>
+<p>本文来自读者 <a href="https://github.com/Snailclimb/JavaGuide/pull/291" target="_blank" rel="noopener noreffer">PR</a>。</p>
+<h2 id="1-单机版消息中心">1 单机版消息中心</h2>
+<p>一个消息中心，最基本的需要支持多生产者、多消费者，例如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Scratch</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 实际中会有 nameserver 服务来找到 broker 具体位置以及 broker 主从信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Broker</span> <span class="n">broker</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Broker</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Producer</span> <span class="n">producer1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Producer</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">producer1</span><span class="o">.</span><span class="na">connectBroker</span><span class="o">(</span><span class="n">broker</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Producer</span> <span class="n">producer2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Producer</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">producer2</span><span class="o">.</span><span class="na">connectBroker</span><span class="o">(</span><span class="n">broker</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">Consumer</span> <span class="n">consumer1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Consumer</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">consumer1</span><span class="o">.</span><span class="na">connectBroker</span><span class="o">(</span><span class="n">broker</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Consumer</span> <span class="n">consumer2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Consumer</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">consumer2</span><span class="o">.</span><span class="na">connectBroker</span><span class="o">(</span><span class="n">broker</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">producer1</span><span class="o">.</span><span class="na">asyncSendMsg</span><span class="o">(</span><span class="s">&#34;producer1 send msg&#34;</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">producer2</span><span class="o">.</span><span class="na">asyncSendMsg</span><span class="o">(</span><span class="s">&#34;producer2 send msg&#34;</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;broker has msg:&#34;</span> <span class="o">+</span> <span class="n">broker</span><span class="o">.</span><span class="na">getAllMagByDisk</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;consumer1 consume msg：&#34;</span> <span class="o">+</span> <span class="n">consumer1</span><span class="o">.</span><span class="na">syncPullMsg</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;consumer2 consume msg：&#34;</span> <span class="o">+</span> <span class="n">consumer2</span><span class="o">.</span><span class="na">syncPullMsg</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Producer</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Broker</span> <span class="n">broker</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">connectBroker</span><span class="o">(</span><span class="n">Broker</span> <span class="n">broker</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">broker</span> <span class="o">=</span> <span class="n">broker</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">asyncSendMsg</span><span class="o">(</span><span class="n">String</span> <span class="n">msg</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">broker</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="o">(</span><span class="s">&#34;please connect broker first&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">new</span> <span class="n">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">broker</span><span class="o">.</span><span class="na">sendMsg</span><span class="o">(</span><span class="n">msg</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}).</span><span class="na">start</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Consumer</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Broker</span> <span class="n">broker</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">connectBroker</span><span class="o">(</span><span class="n">Broker</span> <span class="n">broker</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">broker</span> <span class="o">=</span> <span class="n">broker</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">syncPullMsg</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">broker</span><span class="o">.</span><span class="na">getMsg</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Broker</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 对应 RocketMQ 中 MessageQueue，默认情况下 1 个 Topic 包含 4 个 MessageQueue
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="n">LinkedBlockingQueue</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">messageQueue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedBlockingQueue</span><span class="o">(</span><span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 实际发送消息到 broker 服务器使用 Netty 发送
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendMsg</span><span class="o">(</span><span class="n">String</span> <span class="n">msg</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">messageQueue</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">msg</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 实际会同步或异步落盘，异步落盘使用的定时任务定时扫描落盘
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getMsg</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">messageQueue</span><span class="o">.</span><span class="na">take</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getAllMagByDisk</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">StringBuilder</span> <span class="n">sb</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">(</span><span class="s">&#34;\n&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">messageQueue</span><span class="o">.</span><span class="na">iterator</span><span class="o">().</span><span class="na">forEachRemaining</span><span class="o">((</span><span class="n">msg</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">msg</span> <span class="o">+</span> <span class="s">&#34;\n&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">});</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">sb</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>问题：</p>
+<ol>
+<li>没有实现真正执行消息存储落盘</li>
+<li>没有实现 NameServer 去作为注册中心，定位服务</li>
+<li>使用 LinkedBlockingQueue 作为消息队列，注意，参数是无限大，在真正 RocketMQ 也是如此是无限大，理论上不会出现对进来的数据进行抛弃，但是会有内存泄漏问题(阿里巴巴开发手册也因为这个问题，建议我们使用自制线程池)</li>
+<li>没有使用多个队列(即多个 LinkedBlockingQueue)，RocketMQ 的顺序消息是通过生产者和消费者同时使用同一个 MessageQueue 来实现，但是如果我们只有一个 MessageQueue，那我们天然就支持顺序消息</li>
+<li>没有使用 MappedByteBuffer 来实现文件映射从而使消息数据落盘非常的快(实际 RocketMQ 使用的是 FileChannel+DirectBuffer)</li>
+</ol>
+<h2 id="2-分布式消息中心">2 分布式消息中心</h2>
+<h3 id="21-问题与解决">2.1 问题与解决</h3>
+<h4 id="211-消息丢失的问题">2.1.1 消息丢失的问题</h4>
+<ol>
+<li>当你系统需要保证百分百消息不丢失，你可以使用生产者每发送一个消息，Broker 同步返回一个消息发送成功的反馈消息</li>
+<li>即每发送一个消息，同步落盘后才返回生产者消息发送成功，这样只要生产者得到了消息发送生成的返回，事后除了硬盘损坏，都可以保证不会消息丢失</li>
+<li>但是这同时引入了一个问题，同步落盘怎么才能快？</li>
+</ol>
+<h4 id="212-同步落盘怎么才能快">2.1.2 同步落盘怎么才能快</h4>
+<ol>
+<li>使用 FileChannel + DirectBuffer 池，使用堆外内存，加快内存拷贝</li>
+<li>使用数据和索引分离，当消息需要写入时，使用 commitlog 文件顺序写，当需要定位某个消息时，查询index 文件来定位，从而减少文件IO随机读写的性能损耗</li>
+</ol>
+<h4 id="213-消息堆积的问题">2.1.3 消息堆积的问题</h4>
+<ol>
+<li>后台定时任务每隔72小时，删除旧的没有使用过的消息信息</li>
+<li>根据不同的业务实现不同的丢弃任务，具体参考线程池的 AbortPolicy，例如FIFO/LRU等(RocketMQ没有此策略)</li>
+<li>消息定时转移，或者对某些重要的 TAG 型(支付型)消息真正落库</li>
+</ol>
+<h4 id="214-定时消息的实现">2.1.4 定时消息的实现</h4>
+<ol>
+<li>实际 RocketMQ 没有实现任意精度的定时消息，它只支持某些特定的时间精度的定时消息</li>
+<li>实现定时消息的原理是：创建特定时间精度的 MessageQueue，例如生产者需要定时1s之后被消费者消费，你只需要将此消息发送到特定的 Topic，例如：MessageQueue-1 表示这个 MessageQueue 里面的消息都会延迟一秒被消费，然后 Broker 会在 1s 后发送到消费者消费此消息，使用 newSingleThreadScheduledExecutor 实现</li>
+</ol>
+<h4 id="215-顺序消息的实现">2.1.5 顺序消息的实现</h4>
+<ol>
+<li>与定时消息同原理，生产者生产消息时指定特定的 MessageQueue ，消费者消费消息时，消费特定的 MessageQueue，其实单机版的消息中心在一个 MessageQueue 就天然支持了顺序消息</li>
+<li>注意：同一个 MessageQueue 保证里面的消息是顺序消费的前提是：消费者是串行的消费该 MessageQueue，因为就算 MessageQueue 是顺序的，但是当并行消费时，还是会有顺序问题，但是串行消费也同时引入了两个问题：</li>
+</ol>
+<blockquote>
+<ol>
+<li>引入锁来实现串行</li>
+<li>前一个消费阻塞时后面都会被阻塞</li>
+</ol>
+</blockquote>
+<h4 id="216-分布式消息的实现">2.1.6 分布式消息的实现</h4>
+<ol>
+<li>需要前置知识：2PC</li>
+<li>RocketMQ4.3 起支持，原理为2PC，即两阶段提交，prepared-&gt;commit/rollback</li>
+<li>生产者发送事务消息，假设该事务消息 Topic 为 Topic1-Trans，Broker 得到后首先更改该消息的 Topic 为 Topic1-Prepared，该 Topic1-Prepared 对消费者不可见。然后定时回调生产者的本地事务A执行状态，根据本地事务A执行状态，来是否将该消息修改为 Topic1-Commit 或 Topic1-Rollback，消费者就可以正常找到该事务消息或者不执行等</li>
+</ol>
+<blockquote>
+<p>注意，就算是事务消息最后回滚了也不会物理删除，只会逻辑删除该消息</p>
+</blockquote>
+<h4 id="217-消息的-push-实现">2.1.7 消息的 push 实现</h4>
+<ol>
+<li>注意，RocketMQ 已经说了自己会有低延迟问题，其中就包括这个消息的 push 延迟问题</li>
+<li>因为这并不是真正的将消息主动的推送到消费者，而是 Broker 定时任务每5s将消息推送到消费者</li>
+<li>pull模式需要我们手动调用consumer拉消息，而push模式则只需要我们提供一个listener即可实现对消息的监听，而实际上，RocketMQ的push模式是基于pull模式实现的，它没有实现真正的push。</li>
+<li>push方式里，consumer把轮询过程封装了，并注册MessageListener监听器，取到消息后，唤醒MessageListener的consumeMessage()来消费，对用户而言，感觉消息是被推送过来的。</li>
+</ol>
+<h4 id="218-消息重复发送的避免">2.1.8 消息重复发送的避免</h4>
+<ol>
+<li>RocketMQ 会出现消息重复发送的问题，因为在网络延迟的情况下，这种问题不可避免的发生，如果非要实现消息不可重复发送，那基本太难，因为网络环境无法预知，还会使程序复杂度加大，因此默认允许消息重复发送</li>
+<li>RocketMQ 让使用者在消费者端去解决该问题，即需要消费者端在消费消息时支持幂等性的去消费消息</li>
+<li>最简单的解决方案是每条消费记录有个消费状态字段，根据这个消费状态字段来判断是否消费或者使用一个集中式的表，来存储所有消息的消费状态，从而避免重复消费</li>
+<li>具体实现可以查询关于消息幂等消费的解决方案</li>
+</ol>
+<h4 id="219-广播消费与集群消费">2.1.9 广播消费与集群消费</h4>
+<ol>
+<li>消息消费区别：广播消费，订阅该 Topic 的消息者们都会消费<strong>每个</strong>消息。集群消费，订阅该 Topic 的消息者们只会有一个去消费<strong>某个</strong>消息</li>
+<li>消息落盘区别：具体表现在消息消费进度的保存上。广播消费，由于每个消费者都独立的去消费每个消息，因此每个消费者各自保存自己的消息消费进度。而集群消费下，订阅了某个 Topic，而旗下又有多个 MessageQueue，每个消费者都可能会去消费不同的 MessageQueue，因此总体的消费进度保存在 Broker 上集中的管理</li>
+</ol>
+<h4 id="2110-rocketmq-不使用-zookeeper-作为注册中心的原因以及自制的-nameserver-优缺点">2.1.10 RocketMQ 不使用 ZooKeeper 作为注册中心的原因，以及自制的 NameServer 优缺点？</h4>
+<ol>
+<li>ZooKeeper 作为支持顺序一致性的中间件，在某些情况下，它为了满足一致性，会丢失一定时间内的可用性，RocketMQ 需要注册中心只是为了发现组件地址，在某些情况下，RocketMQ 的注册中心可以出现数据不一致性，这同时也是 NameServer 的缺点，因为 NameServer 集群间互不通信，它们之间的注册信息可能会不一致</li>
+<li>另外，当有新的服务器加入时，NameServer 并不会立马通知到 Producer，而是由 Producer 定时去请求 NameServer 获取最新的 Broker/Consumer 信息(这种情况是通过 Producer 发送消息时，负载均衡解决)</li>
+</ol>
+<h4 id="2111-其它">2.1.11 其它</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./RocketMQ%e6%b5%81%e7%a8%8b.png"
+        data-srcset="./RocketMQ%e6%b5%81%e7%a8%8b.png, ./RocketMQ%e6%b5%81%e7%a8%8b.png 1.5x, ./RocketMQ%e6%b5%81%e7%a8%8b.png 2x"
+        data-sizes="auto"
+        alt="./RocketMQ流程.png"
+        title="./RocketMQ流程.png" /></p>
+<p>加分项咯</p>
+<ol>
+<li>包括组件通信间使用 Netty 的自定义协议</li>
+<li>消息重试负载均衡策略(具体参考 Dubbo 负载均衡策略)</li>
+<li>消息过滤器(Producer 发送消息到 Broker，Broker 存储消息信息，Consumer 消费时请求 Broker 端从磁盘文件查询消息文件时,在 Broker 端就使用过滤服务器进行过滤)</li>
+<li>Broker 同步双写和异步双写中 Master 和 Slave 的交互</li>
+<li>Broker 在 4.5.0 版本更新中引入了基于 Raft 协议的多副本选举，之前这是商业版才有的特性 <a href="http://rocketmq.apache.org/release_notes/release-notes-4.5.0/" target="_blank" rel="noopener noreffer">ISSUE-1046</a></li>
+</ol>
+<h2 id="3-参考">3 参考</h2>
+<ol>
+<li>《RocketMQ技术内幕》：https://blog.csdn.net/prestigeding/article/details/85233529</li>
+<li>关于 RocketMQ 对 MappedByteBuffer 的一点优化：https://lishoubo.github.io/2017/09/27/MappedByteBuffer%E7%9A%84%E4%B8%80%E7%82%B9%E4%BC%98%E5%8C%96/</li>
+<li>十分钟入门RocketMQ：https://developer.aliyun.com/article/66101</li>
+<li>分布式事务的种类以及 RocketMQ 支持的分布式消息：https://www.infoq.cn/article/2018/08/rocketmq-4.3-release</li>
+<li>滴滴出行基于RocketMQ构建企业级消息队列服务的实践：https://yq.aliyun.com/articles/664608</li>
+<li>基于《RocketMQ技术内幕》源码注释：https://github.com/LiWenGu/awesome-rocketmq</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/system_design/">system_design</a>
+                </span><span><a href="/tags/high-performance/">high-performance</a>
+                </span><span><a href="/tags/message-queue/">message-queue</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-06-17</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/chaos/%E5%A4%A7%E4%BD%AC%E5%88%86%E4%BA%AB/interview/screen-candidates-for-packaging/" class="prev" rel="prev" title="screen-candidates-for-packaging"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/pro/high-performance/message-queue/rocketmq-intro/" class="next" rel="next" title="rocketmq-intro">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

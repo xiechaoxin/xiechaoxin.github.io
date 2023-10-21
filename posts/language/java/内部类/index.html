@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>内部类 - xcx</title><meta name="description" content=""><meta property="og:title" content="内部类" />
+<meta property="og:description" content="什么是内部类 1 Java 一个类中可以嵌套另外一个类，语法格式如下： class OuterClass{// 外部类 // ... class NestedClass{// 嵌套类，或称为内部类 // ... } } 要访问内部类，可以通过创建外部类的对" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/language/java/%E5%86%85%E9%83%A8%E7%B1%BB/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-17T17:59:13+00:00" />
+<meta property="article:modified_time" content="2022-06-17T17:59:13+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="内部类"/>
+<meta name="twitter:description" content="什么是内部类 1 Java 一个类中可以嵌套另外一个类，语法格式如下： class OuterClass{// 外部类 // ... class NestedClass{// 嵌套类，或称为内部类 // ... } } 要访问内部类，可以通过创建外部类的对"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/language/java/%E5%86%85%E9%83%A8%E7%B1%BB/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/common/%E8%A7%84%E8%8C%83/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E6%9E%B6%E6%9E%84/" /><link rel="next" href="https://xiechaoxin.github.io/posts/common/%E8%A7%84%E8%8C%83/%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "内部类",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/language\/java\/%E5%86%85%E9%83%A8%E7%B1%BB\/"
+        },"genre": "posts","keywords": "Java, basic","wordcount":  1140 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/language\/java\/%E5%86%85%E9%83%A8%E7%B1%BB\/","datePublished": "2022-06-17T17:59:13+00:00","dateModified": "2022-06-17T17:59:13+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">内部类</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/java/"><i class="far fa-folder fa-fw"></i>JAVA</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-17">2022-06-17</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1140 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-java-一个类中可以嵌套另外一个类语法格式如下">1 Java 一个类中可以嵌套另外一个类，语法格式如下：</a></li>
+    <li><a href="#2-非静态内部类">2 非静态内部类</a></li>
+    <li><a href="#3-私有的内部类">3 私有的内部类</a></li>
+    <li><a href="#4-静态内部类">4 静态内部类</a>
+      <ul>
+        <li><a href="#41-注意">4.1 注意</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-从内部类访问外部类成员">5 从内部类访问外部类成员</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#6-什么是匿名类">6 什么是匿名类</a></li>
+    <li><a href="#7-匿名类继承一个父类">7 匿名类继承一个父类</a></li>
+    <li><a href="#8-匿名类实现一个接口">8 匿名类实现一个接口</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="什么是内部类">什么是内部类</h1>
+<h2 id="1-java-一个类中可以嵌套另外一个类语法格式如下">1 Java 一个类中可以嵌套另外一个类，语法格式如下：</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">OuterClass</span><span class="o">{</span><span class="c1">// 外部类
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">class</span> <span class="nc">NestedClass</span><span class="o">{</span><span class="c1">// 嵌套类，或称为内部类
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>要访问内部类，可以通过创建外部类的对象，然后创建内部类的对象来实现。</p>
+<p>嵌套类有两种类型：</p>
+<ul>
+<li>非静态内部类</li>
+<li>静态内部类</li>
+</ul>
+<h2 id="2-非静态内部类">2 非静态内部类</h2>
+<p>非静态内部类是一个类中嵌套着另外一个类。 它有访问外部类成员的权限， 通常被称为内部类。</p>
+<p>由于内部类嵌套在外部类中，因此必须首先实例化外部类，然后创建内部类的对象来实现</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">OuterClass</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">class</span> <span class="nc">InnerClass</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyMainClass</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">OuterClass</span> <span class="n">myOuter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OuterClass</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">OuterClass</span><span class="o">.</span><span class="na">InnerClass</span> <span class="n">myInner</span> <span class="o">=</span> <span class="n">myOuter</span><span class="o">.</span><span class="na">new</span> <span class="nf">InnerClass</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">myInner</span><span class="o">.</span><span class="na">y</span> <span class="o">+</span> <span class="n">myOuter</span><span class="o">.</span><span class="na">x</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h2 id="3-私有的内部类">3 私有的内部类</h2>
+<p>内部类可以使用 private 或 protected 来修饰，如果你不希望内部类被外部类访问可以使用 private 修饰符：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">OuterClass</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="kd">class</span> <span class="nc">InnerClass</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyMainClass</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">OuterClass</span> <span class="n">myOuter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OuterClass</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">OuterClass</span><span class="o">.</span><span class="na">InnerClass</span> <span class="n">myInner</span> <span class="o">=</span> <span class="n">myOuter</span><span class="o">.</span><span class="na">new</span> <span class="nf">InnerClass</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">myInner</span><span class="o">.</span><span class="na">y</span> <span class="o">+</span> <span class="n">myOuter</span><span class="o">.</span><span class="na">x</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>以上实例 InnerClass 设置为私有内部类，执行会报错：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">MyMainClass</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">12</span><span class="o">:</span> <span class="n">error</span><span class="o">:</span> <span class="n">OuterClass</span><span class="o">.</span><span class="na">InnerClass</span> <span class="n">has</span> <span class="kd">private</span> <span class="n">access</span> <span class="n">in</span> <span class="n">OuterClass</span>
+</span></span><span class="line"><span class="cl">    <span class="n">OuterClass</span><span class="o">.</span><span class="na">InnerClass</span> <span class="n">myInner</span> <span class="o">=</span> <span class="n">myOuter</span><span class="o">.</span><span class="na">new</span> <span class="nf">InnerClass</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">             <span class="o">^</span>
+</span></span></code></pre></div><h2 id="4-静态内部类">4 静态内部类</h2>
+<p>静态内部类可以使用 static 关键字定义，静态内部类我们不需要创建外部类来访问，可以直接访问它：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">OuterClass</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">static</span> <span class="kd">class</span> <span class="nc">InnerClass</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyMainClass</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">OuterClass</span><span class="o">.</span><span class="na">InnerClass</span> <span class="n">myInner</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OuterClass</span><span class="o">.</span><span class="na">InnerClass</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">myInner</span><span class="o">.</span><span class="na">y</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h3 id="41-注意">4.1 注意</h3>
+<p>静态内部类无法访问外部类的成员。</p>
+<h2 id="5-从内部类访问外部类成员">5 从内部类访问外部类成员</h2>
+<p>内部类一个高级的用法就是可以访问外部类的属性和方法：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">OuterClass</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">class</span> <span class="nc">InnerClass</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">myInnerMethod</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">x</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyMainClass</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">OuterClass</span> <span class="n">myOuter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OuterClass</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">OuterClass</span><span class="o">.</span><span class="na">InnerClass</span> <span class="n">myInner</span> <span class="o">=</span> <span class="n">myOuter</span><span class="o">.</span><span class="na">new</span> <span class="nf">InnerClass</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">myInner</span><span class="o">.</span><span class="na">myInnerMethod</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h1 id="匿名类">匿名类</h1>
+<h2 id="6-什么是匿名类">6 什么是匿名类</h2>
+<p>Java 中可以实现一个类中包含另外一个类，且不需要提供任何的类名直接实例化。</p>
+<p>主要是用于在我们需要的时候创建一个对象来执行特定的任务，可以使代码更加简洁。</p>
+<p>匿名类是不能有名字的类，它们不能被引用，只能在创建时用 <strong>new</strong> 语句来声明它们。</p>
+<p>匿名类语法格式：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">outerClass</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 定义一个匿名类
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">object1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Type</span><span class="o">(</span><span class="n">parameterList</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">         <span class="c1">// 匿名类代码
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">};</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>以上的代码创建了一个匿名类对象 object1，匿名类是表达式形式定义的，所以末尾以分号 <strong>;</strong> 来结束。</p>
+<p>匿名类通常继承一个父类或实现一个接口。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./nm-word-image-145.png"
+        data-srcset="./nm-word-image-145.png, ./nm-word-image-145.png 1.5x, ./nm-word-image-145.png 2x"
+        data-sizes="auto"
+        alt="./nm-word-image-145.png"
+        title="./nm-word-image-145.png" /></p>
+<h2 id="7-匿名类继承一个父类">7 匿名类继承一个父类</h2>
+<p>以下实例中，创建了 Polygon 类，该类只有一个方法 display()，AnonymousDemo 类继承了 Polygon 类并重写了 Polygon 类的 display() 方法:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Polygon</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">display</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;在 Polygon 类内部&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">   <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">AnonymousDemo</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">createClass</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="c1">// 创建的匿名类继承了 Polygon 类
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="n">Polygon</span> <span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Polygon</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">         <span class="kd">public</span> <span class="kt">void</span> <span class="nf">display</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;在匿名类内部。&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">         <span class="o">}</span>
+</span></span><span class="line"><span class="cl">      <span class="o">};</span>
+</span></span><span class="line"><span class="cl">      <span class="n">p1</span><span class="o">.</span><span class="na">display</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">   <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">       <span class="n">AnonymousDemo</span> <span class="n">an</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AnonymousDemo</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">       <span class="n">an</span><span class="o">.</span><span class="na">createClass</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">   <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>执行以上代码，匿名类的对象 p1 会被创建，该对象会调用匿名类的 display() 方法，输出结果为</p>
+<pre tabindex="0"><code>在匿名类内部。
+</code></pre><h2 id="8-匿名类实现一个接口">8 匿名类实现一个接口</h2>
+<p>以下实例创建的匿名类实现了 Polygon 接口：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">interface</span> <span class="nc">Polygon</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">display</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">AnonymousDemo</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">createClass</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="c1">// 匿名类实现一个接口
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="n">Polygon</span> <span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Polygon</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">         <span class="kd">public</span> <span class="kt">void</span> <span class="nf">display</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;在匿名类内部。&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">         <span class="o">}</span>
+</span></span><span class="line"><span class="cl">      <span class="o">};</span>
+</span></span><span class="line"><span class="cl">      <span class="n">p1</span><span class="o">.</span><span class="na">display</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">   <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">AnonymousDemo</span> <span class="n">an</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AnonymousDemo</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">      <span class="n">an</span><span class="o">.</span><span class="na">createClass</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">   <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>输出结果为：</p>
+<pre tabindex="0"><code>在匿名类内部。
+</code></pre></div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/java/">JAVA</a>
+                </span><span><a href="/tags/basic/">basic</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-06-17</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/common/%E8%A7%84%E8%8C%83/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E6%9E%B6%E6%9E%84/" class="prev" rel="prev" title="软件开发常用架构"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/common/%E8%A7%84%E8%8C%83/%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/" class="next" rel="next" title="命名规范">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

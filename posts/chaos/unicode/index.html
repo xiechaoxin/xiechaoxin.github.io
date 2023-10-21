@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Unicode - xcx</title><meta name="description" content=""><meta property="og:title" content="Unicode" />
+<meta property="og:description" content="Unicode 是一个标准，旨在为世界上的所有书写系统中的每个字符提供一个唯一的编号。它解决了多种编码方案混淆和冲突的问题，使得不同语言和脚本之间的文本处" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/chaos/unicode/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-09-23T17:45:57+00:00" />
+<meta property="article:modified_time" content="2023-09-23T17:45:57+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Unicode"/>
+<meta name="twitter:description" content="Unicode 是一个标准，旨在为世界上的所有书写系统中的每个字符提供一个唯一的编号。它解决了多种编码方案混淆和冲突的问题，使得不同语言和脚本之间的文本处"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/chaos/unicode/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/language/python/scope_namespace/" /><link rel="next" href="https://xiechaoxin.github.io/posts/chaos/bin-hex/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Unicode",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/chaos\/unicode\/"
+        },"genre": "posts","keywords": "chaos","wordcount":  730 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/chaos\/unicode\/","datePublished": "2023-09-23T17:45:57+00:00","dateModified": "2023-09-23T17:45:57+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">Unicode</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/chaos/"><i class="far fa-folder fa-fw"></i>chaos</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-09-23">2023-09-23</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 730 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+                </div><div class="content" id="content"><p>Unicode 是一个标准，旨在为世界上的所有书写系统中的每个字符提供一个唯一的编号。它解决了多种编码方案混淆和冲突的问题，使得不同语言和脚本之间的文本处理和数据交换变得简单和一致。</p>
+<p>以下是 Unicode 编码和索引的基础知识：</p>
+<ol>
+<li>
+<p><strong>码位（Code Points）</strong>:</p>
+<ul>
+<li>Unicode 使用“码位”来给每个字符分配一个唯一的编号。</li>
+<li>码位通常表示为 U+ 后跟四到六位十六进制数，例如 U+0041 是拉丁字母 A 的码位。</li>
+</ul>
+</li>
+<li>
+<p><strong>编码单元（Code Units）</strong>:</p>
+<ul>
+<li>为了在计算机中存储和处理，码位需要被转换为一种具体的编码形式。这种转换涉及到编码单元。</li>
+<li>UTF-32、UTF-16 和 UTF-8 是三种常用的 Unicode 转换格式（UTF）。</li>
+<li>在 UTF-32 中，每个码位都用一个 32 位的编码单元表示。</li>
+<li>在 UTF-16 中，大部分字符用一个 16 位的编码单元表示，但某些字符需要两个。</li>
+<li>在 UTF-8 中，编码单元是 8 位的字节，字符可能由 1 到 4 个字节表示。</li>
+</ul>
+</li>
+<li>
+<p><strong>字符集与编码方案</strong>:</p>
+<ul>
+<li>Unicode 字符集是字符与码位之间的映射，而编码方案（如 UTF-8、UTF-16）决定了码位如何存储和传输。</li>
+</ul>
+</li>
+<li>
+<p><strong>平面与块</strong>:</p>
+<ul>
+<li>Unicode 码位分为多个“平面”，每个平面包含 65,536 个码位。最常用的是基本多文种平面（BMP），其码位范围从 U+0000 到 U+FFFF。</li>
+<li>每个平面进一步划分为多个块，每个块包含一组相关的字符。例如，“拉丁文扩展-A”块和“西里尔文”块。</li>
+</ul>
+</li>
+<li>
+<p><strong>索引</strong>:</p>
+<ul>
+<li>Unicode 提供了各种目录和数据库，例如 Unicode Character Database (UCD)，使得开发者和研究者可以查找和索引字符属性、名称等信息。</li>
+</ul>
+</li>
+<li>
+<p><strong>归一化</strong>:</p>
+<ul>
+<li>由于有些字符可以用多种方式表示（如带重音的字符），Unicode 提供了归一化过程，以确保字符在处理和比较时具有一致性。</li>
+</ul>
+</li>
+<li>
+<p><strong>双向文本和特殊字符</strong>:</p>
+<ul>
+<li>Unicode 也考虑到了从右到左书写的语言（如阿拉伯语、希伯来语），并提供了处理这些语言的算法和特殊字符。</li>
+</ul>
+</li>
+</ol>
+<p>简而言之，Unicode 提供了一种系统的方法来标识、编码和处理世界上几乎所有的文本字符。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/chaos/">chaos</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2023-09-23</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/language/python/scope_namespace/" class="prev" rel="prev" title="scope_namespace"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/chaos/bin-hex/" class="next" rel="next" title="二进制-十六进制对照附录">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

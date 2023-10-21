@@ -1,0 +1,67 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>blog_cut - 标签 - xcx</title>
+        <link>https://xiechaoxin.github.io/tags/blog_cut/</link>
+        <description>blog_cut - 标签 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 17 Jun 2022 17:59:12 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/tags/blog_cut/" rel="self" type="application/rss+xml" /><item>
+    <title>InnoDB存储引擎对MVCC的实现</title>
+    <link>https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/blog_cut/mysql/innodb-implementation-of-mvcc/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:12 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/blog_cut/mysql/innodb-implementation-of-mvcc/</guid>
+    <description><![CDATA[一致性非锁定读和锁定读 1 一致性非锁定读 对于 一致性非锁定读(Consistent Nonlocking Reads) 的实现，通常做法是加一个版本号或者时间戳字段，在更新数据的]]></description>
+</item>
+<item>
+    <title>MySQL 高性能优化规范建议</title>
+    <link>https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/blog_cut/mysql/mysql-high-performance-optimization-specification-recommendations/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:12 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/blog_cut/mysql/mysql-high-performance-optimization-specification-recommendations/</guid>
+    <description><![CDATA[作者: 听风，原文地址: https://www.cnblogs.com/huchong/p/10219318.html。JavaGuide 已获]]></description>
+</item>
+<item>
+    <title>MySQL 索引详解</title>
+    <link>https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/blog_cut/mysql/mysql-index/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:12 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/blog_cut/mysql/mysql-index/</guid>
+    <description><![CDATA[何为索引？有什么作用？ 索引是一种用于快速查询和检索数据的数据结构。常见的索引结构有: B 树， B+树和 Hash。 索引的作用就相当于目录的作用。打]]></description>
+</item>
+<item>
+    <title>MySQL三大日志(binlog、redo log和undo log)详解</title>
+    <link>https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/blog_cut/mysql/mysql-logs/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:12 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/blog_cut/mysql/mysql-logs/</guid>
+    <description><![CDATA[本文来自公号程序猿阿星投稿，JavaGuide 对其做了补充完善。 前言 MySQL 日志 主要包括错误日志、查询日志、慢查询日志、事务日志、二进制日志几大类]]></description>
+</item>
+<item>
+    <title>mysql知识点&amp;面试题总结</title>
+    <link>https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/blog_cut/mysql/mysql%E7%9F%A5%E8%AF%86%E7%82%B9%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:12 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/blog_cut/mysql/mysql%E7%9F%A5%E8%AF%86%E7%82%B9%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/</guid>
+    <description><![CDATA[MySQL 基础 1 关系型数据库介绍 顾名思义，关系型数据库就是一种建立在关系模型的基础上的数据库。关系模型表明了数据库中所存储的数据之间的联系(一对一、]]></description>
+</item>
+<item>
+    <title>关于数据库中如何存储时间的一点思考</title>
+    <link>https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/blog_cut/mysql/some-thoughts-on-database-storage-time/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:12 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/blog_cut/mysql/some-thoughts-on-database-storage-time/</guid>
+    <description><![CDATA[我们平时开发中不可避免的就是要存储时间，比如我们要记录操作表中这条记录的时间、记录转账的交易时间、记录出发时间等等。你会发现时间这个东西与我]]></description>
+</item>
+<item>
+    <title>事务隔离级别(图文详解)</title>
+    <link>https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/blog_cut/mysql/transaction-isolation-level/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:12 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/blog_cut/mysql/transaction-isolation-level/</guid>
+    <description><![CDATA[本文由 SnailClimb 和 guang19 共同完成。 事务隔离级别(图文详解) 1 什么是事务? 事务是逻辑上的一组操作，要么都执行，要么都不执行。 事务最经典也经常被拿出来说例子]]></description>
+</item>
+<item>
+    <title>数据库基础知识</title>
+    <link>https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/blog_cut/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:12 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/blog_cut/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</guid>
+    <description><![CDATA[数据库知识基础，这部分内容一定要理解记忆。虽然这部分内容只是理论知识，但是非常重要，这是后面学习 MySQL 数据库的基础。PS: 这部分内容由于涉及太多]]></description>
+</item>
+<item>
+    <title>一千行 MySQL 学习笔记</title>
+    <link>https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/blog_cut/mysql/a-thousand-lines-of-mysql-study-notes/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:12 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/blog_cut/mysql/a-thousand-lines-of-mysql-study-notes/</guid>
+    <description><![CDATA[原文地址：https://shockerli.net/post/1000-line-mysql-note/ ，JavaGuide 对本文进行了简]]></description>
+</item>
+<item>
+    <title>一条 SQL 语句在 MySQL 中如何被执行的?</title>
+    <link>https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/blog_cut/mysql/how-sql-executed-in-mysql/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:12 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/blog_cut/mysql/how-sql-executed-in-mysql/</guid>
+    <description><![CDATA[本文来自木木匠投稿。 本篇文章会分析下一个 sql 语句在 MySQL 中的执行流程，包括 sql 的查询在 MySQL 内部会怎么流转，sql 语句的更新是怎么完成的。 在分析之前我会]]></description>
+</item>
+</channel>
+</rss>

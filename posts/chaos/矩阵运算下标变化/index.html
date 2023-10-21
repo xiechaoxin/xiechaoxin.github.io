@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>矩阵运算下标变化 - xcx</title><meta name="description" content=""><meta property="og:title" content="矩阵运算下标变化" />
+<meta property="og:description" content="矩阵运算下标变化 重点: 把下标当做偏移量 提升对数组和矩阵下标变化的敏感度是一个常见的学习难点，特别是在涉及多维数组或矩阵时。下面是一些建议，帮" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/chaos/%E7%9F%A9%E9%98%B5%E8%BF%90%E7%AE%97%E4%B8%8B%E6%A0%87%E5%8F%98%E5%8C%96/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-07-31T21:02:36+00:00" />
+<meta property="article:modified_time" content="2023-07-31T21:02:36+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="矩阵运算下标变化"/>
+<meta name="twitter:description" content="矩阵运算下标变化 重点: 把下标当做偏移量 提升对数组和矩阵下标变化的敏感度是一个常见的学习难点，特别是在涉及多维数组或矩阵时。下面是一些建议，帮"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/chaos/%E7%9F%A9%E9%98%B5%E8%BF%90%E7%AE%97%E4%B8%8B%E6%A0%87%E5%8F%98%E5%8C%96/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/design-patterns/gof%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/gof%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93/" /><link rel="next" href="https://xiechaoxin.github.io/posts/common/%E8%A7%84%E8%8C%83/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3%E7%BC%96%E5%86%99%E8%A7%84%E8%8C%83/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "矩阵运算下标变化",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/chaos\/%E7%9F%A9%E9%98%B5%E8%BF%90%E7%AE%97%E4%B8%8B%E6%A0%87%E5%8F%98%E5%8C%96\/"
+        },"genre": "posts","keywords": "chaos","wordcount":  651 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/chaos\/%E7%9F%A9%E9%98%B5%E8%BF%90%E7%AE%97%E4%B8%8B%E6%A0%87%E5%8F%98%E5%8C%96\/","datePublished": "2023-07-31T21:02:36+00:00","dateModified": "2023-07-31T21:02:36+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">矩阵运算下标变化</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-07-31">2023-07-31</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 651 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+                </div><div class="content" id="content"><h1 id="矩阵运算下标变化">矩阵运算下标变化</h1>
+<p>重点: 把下标当做偏移量
+提升对数组和矩阵下标变化的敏感度是一个常见的学习难点，特别是在涉及多维数组或矩阵时。下面是一些建议，帮助你提高这方面的技能：</p>
+<ol>
+<li>
+<p><strong>画图理解：</strong> 绘制图示是理解数组和矩阵下标变化的有效方法。尤其对于二维数组或矩阵，你可以画出具体的矩阵形状，并在上面标记索引变化。这有助于你更直观地理解索引的含义和变化。</p>
+</li>
+<li>
+<p><strong>手动模拟运算：</strong> 以具体的示例数据为基础，手动模拟运算过程。使用纸和笔进行迭代运算，逐步计算每个索引的变化。这样，你可以更清楚地跟踪索引的变化过程。</p>
+</li>
+<li>
+<p><strong>编写简单程序：</strong> 使用编程语言编写简单的程序，涉及数组或矩阵的索引变化。通过编程练习，你可以更深入地理解索引变化的规律，并观察不同操作对索引的影响。</p>
+</li>
+<li>
+<p><strong>阅读示例代码：</strong> 阅读他人编写的代码也是学习的有效方法。找一些和数组或矩阵操作相关的代码，并仔细研究其中的索引变化部分。理解他人的代码可以帮助你学习不同的技巧和思维方式。</p>
+</li>
+<li>
+<p><strong>使用调试工具：</strong> 在编程时，利用调试工具可以帮助你跟踪变量的值和索引的变化。通过单步调试和观察变量的值，你可以更直观地了解数组或矩阵的索引变化过程。</p>
+</li>
+<li>
+<p><strong>多练习：</strong> 数组和矩阵索引变化是一个需要不断练习的技能。多写一些涉及数组和矩阵操作的代码，进行实际操作，逐渐熟悉索引的变化规律。</p>
+</li>
+<li>
+<p><strong>了解常用操作：</strong> 学习和了解常用的数组和矩阵操作，如遍历、添加元素、删除元素、转置等。掌握这些常用操作可以帮助你更好地处理索引变化问题。</p>
+</li>
+</ol>
+<p>总的来说，提高对数组和矩阵下标变化的敏感度需要不断地学习、练习和理解。随着不断的积累和经验，你会逐渐变得更加熟练和敏感。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/chaos/">chaos</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2023-07-31</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/design-patterns/gof%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/gof%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93/" class="prev" rel="prev" title="GOF设计模式总结"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/common/%E8%A7%84%E8%8C%83/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3%E7%BC%96%E5%86%99%E8%A7%84%E8%8C%83/" class="next" rel="next" title="技术文档编写规范">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

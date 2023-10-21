@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>数组和指针 - xcx</title><meta name="description" content=""><meta property="og:title" content="数组和指针" />
+<meta property="og:description" content="数组和指针 1 数组的概述 1.1 声明数组 数组由 数据类型 相同的一系列元素组成。 需要使用数组时，通过声明数组告诉编译器数组中内含多少元素和这些元素的类型" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/language/c/%E6%95%B0%E7%BB%84%E5%92%8C%E6%8C%87%E9%92%88/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-12T02:37:54+00:00" />
+<meta property="article:modified_time" content="2022-09-12T02:37:54+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="数组和指针"/>
+<meta name="twitter:description" content="数组和指针 1 数组的概述 1.1 声明数组 数组由 数据类型 相同的一系列元素组成。 需要使用数组时，通过声明数组告诉编译器数组中内含多少元素和这些元素的类型"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/language/c/%E6%95%B0%E7%BB%84%E5%92%8C%E6%8C%87%E9%92%88/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/language/c/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0/" /><link rel="next" href="https://xiechaoxin.github.io/posts/language/c/%E5%AD%98%E5%82%A8%E7%B1%BB%E5%88%AB%E9%93%BE%E6%8E%A5%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "数组和指针",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/language\/c\/%E6%95%B0%E7%BB%84%E5%92%8C%E6%8C%87%E9%92%88\/"
+        },"genre": "posts","keywords": "C","wordcount":  3313 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/language\/c\/%E6%95%B0%E7%BB%84%E5%92%8C%E6%8C%87%E9%92%88\/","datePublished": "2022-09-12T02:37:54+00:00","dateModified": "2022-09-12T02:37:54+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">数组和指针</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/c/"><i class="far fa-folder fa-fw"></i>C</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-09-12">2022-09-12</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3313 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-数组的概述">1 数组的概述</a>
+      <ul>
+        <li><a href="#11-声明数组">1.1 声明数组</a></li>
+        <li><a href="#12-初始化数组">1.2 初始化数组</a></li>
+        <li><a href="#13-给数组元素赋值">1.3 给数组元素赋值</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-使用指定初始化器c99">2 使用指定初始化器(C99)</a></li>
+    <li><a href="#3-多维数组">3 多维数组</a>
+      <ul>
+        <li><a href="#31-初始化二维数组">3.1 初始化二维数组</a></li>
+        <li><a href="#32-声明二维数组">3.2 声明二维数组</a></li>
+        <li><a href="#33-其他多维数组">3.3 其他多维数组</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-数组和指针">4 数组和指针</a>
+      <ul>
+        <li><a href="#41-指针的兼容性">4.1 指针的兼容性</a></li>
+        <li><a href="#42-const-ptr">4.2 const ptr</a></li>
+        <li><a href="#43-数组指针和指针数组的概念理解">4.3 数组指针和指针数组的概念理解</a></li>
+        <li><a href="#44-指针和数组的区别">4.4 指针和数组的区别</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-函数数组和指针">5 函数、数组和指针</a></li>
+    <li><a href="#6-指针操作">6 指针操作</a></li>
+    <li><a href="#7-保护数组中的数据">7 保护数组中的数据</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#8-ccpp-关于-const-的区别">8 c/cpp 关于 const 的区别</a></li>
+    <li><a href="#9-变长数组vla">9 变长数组(VLA)</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="数组和指针">数组和指针</h1>
+<h2 id="1-数组的概述">1 数组的概述</h2>
+<h3 id="11-声明数组">1.1 声明数组</h3>
+<p>数组由 <code>数据类型</code> 相同的一系列元素组成。</p>
+<p>需要使用数组时，通过声明数组告诉编译器数组中内含多少元素和这些元素的类型。</p>
+<p>C 语言中,普通数组的维度是固定的,必须是常量,不能是变量;
+VLA(C99),可变数组可以使用变量声明数组;后续说</p>
+<p>普通变量可以使用的类型，数组元素都可以使用。</p>
+<p>数组声明示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">candy</span><span class="p">[</span><span class="mi">365</span><span class="p">];</span> <span class="cm">/*内含365个float类型元素的数组*/</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">code</span><span class="p">[</span><span class="mi">12</span><span class="p">];</span> <span class="cm">/*内含12个char类型元素的数组*/</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">states</span><span class="p">[</span><span class="mi">50</span><span class="p">];</span> <span class="cm">/*内含50个int类型元素的数组*/</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>下面的数组声明是等价的,声明 arr4 是一个内含 4 个 int 的数组</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">arr4</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span> <span class="c1">// C语言语法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="n">arr4</span><span class="p">;</span> <span class="c1">// 其它语言支持的语法
+</span></span></span></code></pre></div><p>只要有 <code>方括号([])</code> 就都是数组，方括号中的数字表明数组中的<code>元素个数</code>。</p>
+<p>如果要 <code>访问</code> 数组中的元素，通过使用数组 <code>下标数字(也称为索引)</code>表示数组中的各元素。</p>
+<p>数组的元素的编号从 <code>0</code> 开始。</p>
+<h4 id="111-数组和数组元素是两个概念">1.1.1 数组和数组元素是两个概念</h4>
+<p>数组可以看做是一个&quot;容器&quot;,容器本身的值是指针(数组的第一个元素的地址)</p>
+<p>数组容器中的元素,就是每一个具体的&quot;object&quot;,类型是固定的</p>
+<p>&ldquo;object&rdquo; : int,float,string,boolean,struct,array,object&hellip;</p>
+<h3 id="12-初始化数组">1.2 初始化数组</h3>
+<p>数组通常被用来储存程序需要的数据。</p>
+<p>只储存单个值的变量又叫做 <code> 标量变量(scalar variable)</code>。</p>
+<p>用以 <code>逗号</code> 分隔的 <code> 元素值列表(用花括号括起来)</code>来初始化数组，各元素值之间用 <code>逗号</code> 分隔。 在逗号和元素值之间可以使用空格。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">num</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">};</span>
+</span></span></code></pre></div><h3 id="13-给数组元素赋值">1.3 给数组元素赋值</h3>
+<p>声明数组之后，就可以借助数组 <code>下标(或索引)</code>给数组元素赋值。</p>
+<p><strong>注意点</strong>：在 C 语言中，不允许把数组作为一个单位赋值给另一个数组，除了初始化以外也不允许使用花括号列表的形式赋值。</p>
+<p>案例代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp"># define SIZE 5
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">oxen</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">};</span> <span class="c1">// 初始化没问题
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">yaks</span><span class="p">[</span><span class="n">SIZE</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">yaks</span> <span class="o">=</span> <span class="n">oxen</span><span class="p">;</span> <span class="c1">// 不允许这么赋值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">yaks</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span> <span class="o">=</span> <span class="n">oxen</span><span class="p">[</span><span class="n">SIZE</span><span class="p">];</span> <span class="c1">// 数组的下标越界
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">yaks</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">};</span> <span class="c1">// 不起作用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><h2 id="2-使用指定初始化器c99">2 使用指定初始化器(C99)</h2>
+<p>C99 的新特性：<code>指定初始化器(disignated initializer)</code>。</p>
+<pre tabindex="0"><code>int arr[6] = {0,0,0,0,0,0,2}; // 传统的语法
+</code></pre><blockquote>
+<p>C99 规定，可以初始化列表中使用带方括号的下标指明待初始化的元素。</p>
+</blockquote>
+<pre tabindex="0"><code>int arr[6] = {[5] = 2}; // 把arr[5] 初始化为2
+</code></pre><blockquote>
+<p>对于一般的初始化，在初始化一个元素后，末初始化的元素的都会被设置为 0 。</p>
+</blockquote>
+<p>⚠️ 注意：<strong><em><code>在使用数组时，要防止数组下标超出边界。必须确保下标是有效的值</code></em></strong>。</p>
+<h2 id="3-多维数组">3 多维数组</h2>
+<h3 id="31-初始化二维数组">3.1 初始化二维数组</h3>
+<p>初始化二维数组是建立在<code>初始化一维数组</code>的基础上。</p>
+<p>初始化一维数组的格式如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="err">数据类型</span> <span class="n">arr</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">val01</span><span class="p">,</span><span class="n">val02</span><span class="p">,</span><span class="n">val03</span><span class="p">,</span><span class="n">val04</span><span class="p">,</span><span class="n">val05</span><span class="p">};</span> <span class="c1">// val01、val02等表示数据类型的值。
+</span></span></span></code></pre></div><blockquote>
+<p>初始化时也可省略内部的花括号，只保留最外面的一对花括号。只要保证初始化的<code>数值个数</code>正确，初始化结果就不会出错。</p>
+</blockquote>
+<blockquote>
+<p>如果初始化的数值不够，按照先后顺序逐行初始化，直到用完所有的值。后面没有值初始化的元素被统一初始化为 0。</p>
+</blockquote>
+<p>初始化二维数组的两种方法：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./%e5%88%9d%e5%a7%8b%e5%8c%96%e4%ba%8c%e7%bb%b4%e6%95%b0%e7%bb%84%e7%9a%84%e4%b8%a4%e7%a7%8d%e6%96%b9%e5%bc%8f.png"
+        data-srcset="./%e5%88%9d%e5%a7%8b%e5%8c%96%e4%ba%8c%e7%bb%b4%e6%95%b0%e7%bb%84%e7%9a%84%e4%b8%a4%e7%a7%8d%e6%96%b9%e5%bc%8f.png, ./%e5%88%9d%e5%a7%8b%e5%8c%96%e4%ba%8c%e7%bb%b4%e6%95%b0%e7%bb%84%e7%9a%84%e4%b8%a4%e7%a7%8d%e6%96%b9%e5%bc%8f.png 1.5x, ./%e5%88%9d%e5%a7%8b%e5%8c%96%e4%ba%8c%e7%bb%b4%e6%95%b0%e7%bb%84%e7%9a%84%e4%b8%a4%e7%a7%8d%e6%96%b9%e5%bc%8f.png 2x"
+        data-sizes="auto"
+        alt="./初始化二维数组的两种方式.png"
+        title="./初始化二维数组的两种方式.png" /></p>
+<h3 id="32-声明二维数组">3.2 声明二维数组</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">type</span> <span class="kt">int</span> <span class="n">arr4</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span> <span class="c1">// arr4 是一个内含 4 个 int 的数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">typedef</span> <span class="n">arr4</span> <span class="n">arr3x4</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span> <span class="c1">// arr3x4 是一个内涵 3 个 arr4 的数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="p">(</span><span class="o">*</span> <span class="n">ptr</span><span class="p">)[</span><span class="mi">4</span><span class="p">];</span> <span class="c1">// ptr 是指向 int[4] 的指针
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 以上声明相当于 int[4] *ptr,也相当于 arr4 *ptr;
+</span></span></span></code></pre></div><p>二维数组作为形参时候,arr[][cols],第一个[]的值(行数)被省略,所以需要传一个 int rows 的参数</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">printArr</span><span class="p">(</span><span class="kt">int</span> <span class="n">arr</span><span class="p">[][</span><span class="mi">4</span><span class="p">],</span> <span class="kt">int</span> <span class="n">rows</span><span class="p">);</span>
+</span></span></code></pre></div><h3 id="33-其他多维数组">3.3 其他多维数组</h3>
+<p>声明一个三维数组：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span>  <span class="n">box</span><span class="p">[</span><span class="mi">10</span><span class="p">][</span><span class="mi">20</span><span class="p">][</span><span class="mi">30</span><span class="p">];</span> <span class="c1">// 10个二维数组(每个二维数组都是20行30列)
+</span></span></span></code></pre></div><p>对于多维数组的处理，使用<code>多重循环</code>控制来处理。</p>
+<h2 id="4-数组和指针">4 数组和指针</h2>
+<p>指针以<code>符号</code>形式使用地址。</p>
+<p><code>数组表示法</code>也是<code>变相使用指针</code>。</p>
+<ul>
+<li>指针的值是所指向对象的地址。地址的表示方式依赖于计算机内部的硬件。</li>
+<li>在指针前面使用运算符可以得到该指针所指向对象的值。</li>
+<li>指针加 1，指针的值递增它所指向<code>类型的大小</code>(以字节为单位)。</li>
+</ul>
+<h3 id="41-指针的兼容性">4.1 指针的兼容性</h3>
+<p>指针不允许类型转换，禁止以下操作 <code>int_ptr = (float)int_ptr</code></p>
+<p>赋值操作必须是相同类型的指针</p>
+<h3 id="42-const-ptr">4.2 const ptr</h3>
+<p>non const ptr 可以赋值给 const ptr，前提是只做一级解引用，二级解引用的结果是未定义的</p>
+<p>const ptr 赋值给 non const ptr，这个行为在 c 中未定义(warning)，cpp 不允许(error)</p>
+<h3 id="43-数组指针和指针数组的概念理解">4.3 数组指针和指针数组的概念理解</h3>
+<p>数组指针：数组是修饰词，指针是名词，本质上是指针，可以理解为数组的指针，如：int (* arr) [10] 就是一个数组指针，相当于</p>
+<p>arr [ ] [ 10 ]</p>
+<p>指针数组：指针是修饰词，数组是名词，本质上是数组，可以理解为存放指针( int _ )的数组，如：int_ arr[10]; 一个指针数组。</p>
+<h3 id="44-指针和数组的区别">4.4 指针和数组的区别</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">// 参数本质是指针,指针是指向 int[4],也就是二维数组,相当于 int[][4]
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 这里编译器会把第一个[]中的值给忽略,所以需要多传递一个 int rows 参数,这里涉及可变长数组,后续再讲
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">someFunction</span><span class="p">(</span><span class="kt">int</span> <span class="p">(</span><span class="o">*</span> <span class="n">ptr</span><span class="p">)[</span><span class="mi">4</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">someFunction</span><span class="p">(</span><span class="kt">int</span> <span class="p">[][</span><span class="mi">4</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">someFunction</span><span class="p">(</span><span class="kt">int</span> <span class="p">(</span><span class="o">*</span> <span class="n">ptr</span><span class="p">)[</span><span class="mi">4</span><span class="p">],</span> <span class="kt">int</span> <span class="n">rows</span><span class="p">)</span>
+</span></span></code></pre></div><p>指针和数组联系紧密,大多数时候数组形式和指针形式通用</p>
+<p>重要的区别是数组名是<strong>常量</strong>，而指针名是<strong>变量</strong></p>
+<p>这一点在字符串的使用中,体现尤为明显</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">pt1</span> <span class="o">=</span> <span class="s">&#34;Something is pointing at me.&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">char</span> <span class="n">ar1</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&#34;Something is pointing at me.&#34;</span><span class="p">;</span>
+</span></span></code></pre></div><p>以上声明的区别</p>
+<p>首先字符串常量在静态存储区中</p>
+<p>数组形式的声明是将字符串字面量,在程序运行期间拷贝到数组容器中(内存段中),这里特别要注意,拷贝后才解析数组首元素的地址赋值给 arr1,此时,arr1 是常量,可以 <code>arr1+1</code>,不能<code>++arr1</code></p>
+<p>指针形式的声明是将字符串字面量的首元素地址,在程序运行期间给到变量 pt1,这里注意,并没有发生拷贝字符串字面量的行为,并且 pt1 是变量,可以进行 <code>++pt1</code> 这样的递增操作;最重要的一点,静态存储区是不可变的,所以一般把指针声明为 const ptr,如果不是 const,则更改 *ptr 对应的值,会让指针指向别的地址,结果是未知的</p>
+<h2 id="5-函数数组和指针">5 函数、数组和指针</h2>
+<p>使用数组表示法处理数组的函数，也就是使用指针作为参数。</p>
+<p>数组名是数组首元素的地址。</p>
+<blockquote>
+<p>既可以用<code>指针</code>表示<code>数组名</code>，也可以使用<code>数组名</code>表示<code>指针</code>。</p>
+</blockquote>
+<h2 id="6-指针操作">6 指针操作</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp"># include&lt;stdio.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">urn</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">50</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="o">*</span><span class="n">ptr1</span><span class="p">,</span> <span class="o">*</span><span class="n">ptr2</span><span class="p">,</span> <span class="o">*</span><span class="n">ptr3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">ptr1</span> <span class="o">=</span> <span class="n">urn</span><span class="p">;</span> <span class="c1">// 指向数组的首个元素，也就是urn数组的首地址
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">ptr2</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">urn</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span><span class="c1">// 一个地址赋给指针，也就是urn数组的第三个元素(urn[2])的地址
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;指针的值 ；间接引用指针 ； 指针的地址：</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 解引用：*运算符给出指针指向地址上储存的值。注意：不要解引用未初始化的指针。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 取址：指针也有主机的地址和值。&amp;运算符给出指针本身的地址。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;ptr1 = %p ; *ptr1 = %d ; &amp;ptr1 = %p </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">ptr1</span><span class="p">,</span><span class="o">*</span><span class="n">ptr1</span><span class="p">,</span><span class="o">&amp;</span><span class="n">ptr1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 指针的加法：整数都会与指针所指向类型的大小(以字节为单位)相乘，然后结果与初始地址相加。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">ptr3</span> <span class="o">=</span> <span class="n">ptr1</span> <span class="o">+</span> <span class="mi">4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s"> 指针加上一个整数 ：</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;ptr1 + 4 = %p ; *(ptr1 + 4) = %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">ptr1</span><span class="o">+</span><span class="mi">4</span><span class="p">,</span><span class="o">*</span><span class="p">(</span><span class="n">ptr1</span><span class="o">+</span><span class="mi">4</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">ptr1</span><span class="o">++</span><span class="p">;</span> <span class="c1">// 递增指针：指向数组元素的指针可以让指针移动到数组的下一个元素。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s"> ptr1++的值是：</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;ptr1 = %p ; *ptr1 = %d ; &amp;pt1 = %p </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">ptr1</span><span class="p">,</span><span class="o">*</span><span class="n">ptr1</span><span class="p">,</span><span class="o">&amp;</span><span class="n">ptr1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">ptr2</span><span class="o">--</span><span class="p">;</span> <span class="c1">// 递减指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;--ptr2的值是：</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;ptr2 = %p ; *ptr2 = %d ; &amp;pt2 = %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">ptr2</span><span class="p">,</span><span class="o">*</span><span class="n">ptr2</span><span class="p">,</span><span class="o">&amp;</span><span class="n">ptr2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">--</span><span class="n">ptr1</span><span class="p">;</span> <span class="c1">// 恢复为初始值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">++</span><span class="n">ptr2</span><span class="p">;</span> <span class="c1">// 恢复为初始值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s"> 恢复为初始值的指针为：</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;ptr1 = %p ; ptr2 = %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">ptr1</span><span class="p">,</span><span class="n">ptr2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 一个指针减去另一个指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s"> 一个指针减去另一个指针：</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;ptr2 = %p ; ptr1 = %p ; ptr1 - ptr2 = %td </span><span class="se">\n</span><span class="s"> &#34;</span><span class="p">,</span><span class="n">ptr1</span><span class="p">,</span><span class="n">ptr2</span><span class="p">,</span><span class="n">ptr1</span> <span class="o">-</span><span class="n">ptr2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 一个指针减去一个整数：指针必须是第一个运算对象，整数是第二个运算对象。整数乘以指针指向类型的大小(以字节为单位)，然后初始地址减去乘积。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s"> 一个指针减去一个整数：</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;ptr3 = %p ; ptr3 - 2 = %p </span><span class="se">\n</span><span class="s"> &#34;</span><span class="p">,</span><span class="n">ptr3</span><span class="p">,</span><span class="n">ptr3</span><span class="o">-</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="7-保护数组中的数据">7 保护数组中的数据</h2>
+<p>地址传递往往会导致会出现一些问题，原始数据在传递过程中会被修改。</p>
+<h1 id="define-可以创建类似-const-功能的符号常量但由于安全性角度考虑优先推荐使用-const定义常量">define 可以创建类似 const 功能的符号常量，但由于安全性角度考虑，优先推荐使用 <code>const</code>定义常量。</h1>
+<p>指针 const 的指针不能用于改变值。</p>
+<p>对函数的形参使用 const 不仅能保护数据，还能让函数处理 const 数组。</p>
+<h2 id="8-ccpp-关于-const-的区别">8 c/cpp 关于 const 的区别</h2>
+<p>cpp 允许使用 const int 作为数组的长度，c 不允许</p>
+<p>cpp 对于 const ptr 赋值的校验很严格， <code>non const ptr = const ptr</code> ，这个行为在 c 中未定义(warning)，cpp 不允许(error)</p>
+<h2 id="9-变长数组vla">9 变长数组(VLA)</h2>
+<p>⚠️ 注意：变长数组不能改变大小</p>
+<blockquote>
+<p>变长数组中的“变” 不是指可以修改已创建数组的大小。一旦创建了变长数组，它的大小则保持不变。此处的“变” 指的是：在创建数组时，可以使用变量指定数组的维度。</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">rows</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">cols</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">double</span> <span class="n">arr4x5</span><span class="p">[</span><span class="n">rows</span><span class="p">][</span><span class="n">cols</span><span class="p">];</span>
+</span></span></code></pre></div><p>C99/C11 标准规定，可以省略原型中的形参名，可以使用<code>星号</code>来代替省略的<code>维度</code>。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">num2d</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span> <span class="p">,</span> <span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="o">*</span><span class="p">][</span><span class="o">*</span><span class="p">]);</span> <span class="c1">// arr是一个变长数组(VLA)，省略了维度形参名。
+</span></span></span></code></pre></div><p><code>变长数组名</code>实际上也是<code>指针</code>。</p>
+<p>变长数组必须是自动存储类型</p>
+<p>变长数组允许<code>动态内存分配</code>，说明可以在程序运行时<code>指定数组的大小</code>。</p>
+<p>tips: 常量和变量的区别,常量是编译时期就能确定值,变量需要等到运行时期才能确定值</p>
+<p>变长数组作为函数的参数时,注意参数顺序问题</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">vlaSum</span><span class="p">(</span><span class="kt">int</span> <span class="n">rows</span><span class="p">,</span> <span class="kt">int</span> <span class="n">cols</span><span class="p">,</span> <span class="kt">double</span> <span class="n">arr4x5</span><span class="p">[</span><span class="n">rows</span><span class="p">][</span><span class="n">cols</span><span class="p">]);</span> <span class="c1">// 正确
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">vlaSum</span><span class="p">(</span><span class="kt">double</span> <span class="n">arr4x5</span><span class="p">[</span><span class="n">rows</span><span class="p">][</span><span class="n">cols</span><span class="p">],</span> <span class="kt">int</span> <span class="n">rows</span><span class="p">,</span> <span class="kt">int</span> <span class="n">cols</span><span class="p">);</span> <span class="c1">// 错误
+</span></span></span></code></pre></div></div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/c/">C</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-09-12</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/language/c/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0/" class="prev" rel="prev" title="字符串和字符串函数"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/language/c/%E5%AD%98%E5%82%A8%E7%B1%BB%E5%88%AB%E9%93%BE%E6%8E%A5%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" class="next" rel="next" title="存储类别、链接和内存管理">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

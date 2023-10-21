@@ -1,0 +1,67 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Go - 分类 - xcx</title>
+        <link>https://xiechaoxin.github.io/categories/go/</link>
+        <description>Go - 分类 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 25 May 2023 10:31:59 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/categories/go/" rel="self" type="application/rss+xml" /><item>
+    <title>interfaces</title>
+    <link>https://xiechaoxin.github.io/posts/language/go/8.methods-interfaces/interfaces/</link>
+    <pubDate>Thu, 25 May 2023 10:31:59 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/go/8.methods-interfaces/interfaces/</guid>
+    <description><![CDATA[interfaces Go 中的接口是一种用于表示其他类型的行为的数据类型。 接口类似于对象应满足的蓝图或协定。 在你使用接口时，你的基本代码将变得更加灵活、适应性更强]]></description>
+</item>
+<item>
+    <title>map</title>
+    <link>https://xiechaoxin.github.io/posts/language/go/5.map/map/</link>
+    <pubDate>Wed, 24 May 2023 12:42:42 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/go/5.map/map/</guid>
+    <description><![CDATA[map 大体上来说，Go 中的映射是一个哈希表，是键值对的集合。 映射中所有的键都必须具有相同的类型，它们的值也是如此。 不过，可对键和值使用不同的类型]]></description>
+</item>
+<item>
+    <title>slice</title>
+    <link>https://xiechaoxin.github.io/posts/language/go/4.array-slice/slice/</link>
+    <pubDate>Wed, 24 May 2023 11:41:53 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/go/4.array-slice/slice/</guid>
+    <description><![CDATA[slice 1 了解切片 数组是切片和映射的基础 与数组一样，切片也是 Go 中的一种数据类型，它表示一系列类型相同的元素。 不过，与数组更重要的区别是切片的大小是]]></description>
+</item>
+<item>
+    <title>arr_alice</title>
+    <link>https://xiechaoxin.github.io/posts/language/go/4.array-slice/arr_alice/</link>
+    <pubDate>Wed, 24 May 2023 11:29:06 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/go/4.array-slice/arr_alice/</guid>
+    <description><![CDATA[arr_alice 1 array Go 中的数组是一种特定类型且长度固定的数据结构。 它们可具有零个或多个元素，你必须在声明或初始化它们时定义大小。 此外，它们一旦创建，就无法]]></description>
+</item>
+<item>
+    <title>use_defer_statement</title>
+    <link>https://xiechaoxin.github.io/posts/language/go/3.control-flow/use_defer_statement/</link>
+    <pubDate>Wed, 24 May 2023 00:43:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/go/3.control-flow/use_defer_statement/</guid>
+    <description><![CDATA[use_defer_statement 我们看看 Go 特有的一些控制流：defer、panic 和 recover。 Go 不支持异常。 它通过使用这三个函数的组合来处理运行时错误。 1 defer 函数 在 Go]]></description>
+</item>
+<item>
+    <title>forloop</title>
+    <link>https://xiechaoxin.github.io/posts/language/go/3.control-flow/forloop/</link>
+    <pubDate>Wed, 24 May 2023 00:26:59 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/go/3.control-flow/forloop/</guid>
+    <description><![CDATA[for Go 只使用一个循环构造，即 for 循环 1 基本 for 循环语法 sum := 0 for i := 1; i &lt;= 100; i++ { sum += i } 2 空的预处理语句和后处理语句 package main import ( &#34;fmt&#34; &#34;math/rand&#34; &#34;time&#34; ) func main() { var num int64 rand.Seed(time.Now().Unix()) for]]></description>
+</item>
+<item>
+    <title>ifelse</title>
+    <link>https://xiechaoxin.github.io/posts/language/go/3.control-flow/ifelses_switch/</link>
+    <pubDate>Wed, 24 May 2023 00:04:45 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/go/3.control-flow/ifelses_switch/</guid>
+    <description><![CDATA[control-flow 1 if 语句的语法 与其他编程语言不同的是，在 Go 中，你不需要在条件中使用括号。 else 子句可选。 但是，大括号仍然是必需的。 此外，为了减少行，Go 不支持]]></description>
+</item>
+<item>
+    <title>package</title>
+    <link>https://xiechaoxin.github.io/posts/language/go/2.variables-functions-packages/package/</link>
+    <pubDate>Tue, 23 May 2023 23:12:10 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/go/2.variables-functions-packages/package/</guid>
+    <description><![CDATA[package Go 包与其他编程语言中的库或模块类似。 你可以打包代码，并在其他位置重复使用它。 包的源代码可以分布在多个 .go 文件中。 1 main 包 你可能注意到，在 Go 中，]]></description>
+</item>
+<item>
+    <title>function</title>
+    <link>https://xiechaoxin.github.io/posts/language/go/2.variables-functions-packages/function/</link>
+    <pubDate>Tue, 23 May 2023 23:02:33 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/go/2.variables-functions-packages/function/</guid>
+    <description><![CDATA[function 1 main 函数 Go 中的所有可执行程序都具有main函数, 因为它是程序的起点 你的程序中只能有一个 main() 函数。 如果创建的是 Go 包，则无需编写 main() 函数 如要访问 Go]]></description>
+</item>
+<item>
+    <title>data_types</title>
+    <link>https://xiechaoxin.github.io/posts/language/go/2.variables-functions-packages/data_types/</link>
+    <pubDate>Tue, 23 May 2023 22:17:31 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/go/2.variables-functions-packages/data_types/</guid>
+    <description><![CDATA[数据类型 data types Go 有四类数据类型： 基本类型：数字、字符串和布尔值 聚合类型：数组和结构 引用类型：指针、切片、映射、函数和通道 接口类型：接口 1 整数数]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title> - xcx</title><meta name="description" content=""><meta property="og:title" content="" />
+<meta property="og:description" content="局部性原理 局部性原理（Principle of Locality）是计算机科学中一个重要的概念，它描述了在程序执行期间， 数据和指令往往会以某种模式" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/chaos/%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86/" /><meta property="article:section" content="posts" />
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="局部性原理 局部性原理（Principle of Locality）是计算机科学中一个重要的概念，它描述了在程序执行期间， 数据和指令往往会以某种模式"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/chaos/%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/chaos/%E6%B1%89%E5%AD%97/" /><link rel="next" href="https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/blog_cut/%E5%AD%97%E7%AC%A6%E9%9B%86/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/chaos\/%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86\/"
+        },"genre": "posts","wordcount":  716 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/chaos\/%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86\/","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX"></h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 716 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#局部性原理">局部性原理</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="局部性原理">局部性原理</h2>
+<p>局部性原理（Principle of Locality）是计算机科学中一个重要的概念，它描述了在程序执行期间，
+数据和指令往往会以某种模式集中在某些特定的区域进行访问，而不是均匀分布在整个存储空间中。局部性原理有两个主要方面：时间局部性和空间局部性。</p>
+<ol>
+<li><strong>时间局部性（Temporal Locality）：</strong>
+时间局部性指的是一个数据项在一段时间内可能被多次访问。这意味着在程序执行中，刚刚访问过的数据项在不久的将来可能会再次被访问。 例如，循环结刚刚访问过的数据项在不久的将来可能会再次被访问。
+例如，构中的变量在每次循环迭代中都会被使用，因此这些变量的数据在一段时间内被重复访问。</li>
+<li><strong>空间局部性（Spatial Locality）：</strong>
+空间局部性指的是一个数据项被访问后，与它相邻的数据项也很可能在不久的将来被访问。这意味着在程序执行中，一个数据项的邻近数据项在一段时间内也可能会被访问。例如，数组中相邻的元素通常在程序中被连续地访问，因此数组的空间局部性较高。</li>
+</ol>
+<p>局部性原理的存在为计算机系统的性能提供了重要的优化机会。由于程序在一段时间内对特定的数据和指令产生了高度的访问集中，因此可以采取一系列的优化策略，如缓存、预取（prefetching）和指令重排(reorder)
+，来充分利用这种局部性，从而提高系统的性能。</p>
+<p>举例来说，CPU 中的缓存系统利用时间局部性和空间局部性，将最近访问过的数据项和其邻近数据项缓存在高速缓存中。这样，当程序再次访问这些数据时，由于局部性原理，它们已经位于缓存中，从而避免了频繁访问主内存，提高了访问速度。</p>
+<p>总之，局部性原理是计算机体系结构和性能优化的重要基础，帮助我们更好地理解程序访问模式，从而设计出更高效的硬件和软件。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 0001-01-01</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/chaos/%E6%B1%89%E5%AD%97/" class="prev" rel="prev" title=""><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/blog_cut/%E5%AD%97%E7%AC%A6%E9%9B%86/" class="next" rel="next" title="字符集">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

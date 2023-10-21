@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>面向对象高级特性 - xcx</title><meta name="description" content=""><meta property="og:title" content="面向对象高级特性" />
+<meta property="og:description" content="面向对象高级特性 1 抽象 1.1 为什么会有抽象类 当子类中都有一个共同的方法，每一个子类都有不同的实现，在父类中又要体现所有子类的共同的特点，所以要体" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/language/java/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-14T02:17:04+00:00" />
+<meta property="article:modified_time" content="2022-09-14T02:17:04+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="面向对象高级特性"/>
+<meta name="twitter:description" content="面向对象高级特性 1 抽象 1.1 为什么会有抽象类 当子类中都有一个共同的方法，每一个子类都有不同的实现，在父类中又要体现所有子类的共同的特点，所以要体"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/language/java/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/language/java/%E6%95%B0%E7%BB%84/" /><link rel="next" href="https://xiechaoxin.github.io/posts/language/java/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "面向对象高级特性",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/language\/java\/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7\/"
+        },"genre": "posts","keywords": "JAVA","wordcount":  3278 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/language\/java\/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7\/","datePublished": "2022-09-14T02:17:04+00:00","dateModified": "2022-09-14T02:17:04+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">面向对象高级特性</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/java/"><i class="far fa-folder fa-fw"></i>JAVA</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-09-14">2022-09-14</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3278 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-抽象">1 抽象</a>
+      <ul>
+        <li><a href="#11-为什么会有抽象类">1.1 为什么会有抽象类</a></li>
+        <li><a href="#12-如何声明抽象类">1.2 如何声明抽象类</a></li>
+        <li><a href="#13-如何声明抽象方法">1.3 如何声明抽象方法</a></li>
+        <li><a href="#14-抽象类的特点">1.4 抽象类的特点</a></li>
+        <li><a href="#15-抽象类不能实例化为什么要有构造器呢">1.5 抽象类不能实例化，为什么要有构造器呢？</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-接口">2 接口</a>
+      <ul>
+        <li><a href="#21-接口即代表行为标准功能标准">2.1 接口即代表行为标准，功能标准</a></li>
+        <li><a href="#22-如何声明一个接口">2.2 如何声明一个接口？</a></li>
+        <li><a href="#23-如何实现接口">2.3 如何实现接口？</a></li>
+        <li><a href="#24-接口的特点">2.4 接口的特点</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-枚举">3 枚举</a>
+      <ul>
+        <li><a href="#31-枚举是指某个类型的对象是有限个在类型中一一创建并列举它的对象">3.1 枚举是指某个类型的对象是有限个，在类型中一一创建并列举它的对象</a></li>
+        <li><a href="#32-jdk15之前如何解决">3.2 JDK1.5之前，如何解决</a></li>
+        <li><a href="#33-jdk15之后如何解决">3.3 JDK1.5之后，如何解决</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-注解">4 注解</a>
+      <ul>
+        <li><a href="#41-概念">4.1 概念</a></li>
+        <li><a href="#42-四种">4.2 四种</a></li>
+        <li><a href="#43-注解的三个部分">4.3 注解的三个部分</a></li>
+        <li><a href="#44-注解的声明">4.4 注解的声明</a></li>
+        <li><a href="#45-元注解">4.5 元注解</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="面向对象高级特性">面向对象高级特性</h1>
+<h2 id="1-抽象">1 抽象</h2>
+<h3 id="11-为什么会有抽象类">1.1 为什么会有抽象类</h3>
+<ul>
+<li>当子类中都有一个共同的方法，每一个子类都有不同的实现，在父类中又要体现所有子类的共同的特点，所以要体现有这个方法，但是在父类中又无法给出具体的实现，那么这个时候就需要把这个方法声明为抽象的，而包含抽象方法的类，必须是抽象类</li>
+<li>某个父类仅仅是表示一个抽象的概念，不希望它被实例化，这个时候父类中可能没有抽象方法，但是我们也把它声明为抽象类</li>
+</ul>
+<h3 id="12-如何声明抽象类">1.2 如何声明抽象类</h3>
+<ul>
+<li>
+<p>语法格式</p>
+<ul>
+<li>[public/缺省] abstract class 类名{
+}</li>
+</ul>
+</li>
+</ul>
+<h3 id="13-如何声明抽象方法">1.3 如何声明抽象方法</h3>
+<ul>
+<li>
+<p>语法格式</p>
+<ul>
+<li>
+<p>[public/protected/缺省]  abstract   返回值类型   方法名([形参列表]);</p>
+<ul>
+<li>抽象方法是不能private,static,final修饰的</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="14-抽象类的特点">1.4 抽象类的特点</h3>
+<ul>
+<li>(1)抽象类不能实例化
+(2)抽象类可以包含抽象方法，也可以没有抽象方法。
+如果一个类有抽象方法，那么这个类必须是抽象类，
+如果一个抽象类没有抽象方法，那么它的用意是不想实例化，用它仅仅表示一个抽象的概念。
+(3)抽象类生来就是用来被继承的，那么子类在继承它的时候，必须重写(实现)抽象父类的抽象方法，
+否则该子类也得是抽象类。
+(4)抽象类的变量与子类的对象构成多态引用。
+(5)抽象类除了不能实例化，可以包含抽象方法，其他的和非抽象类是一样的，
+可以有成员变量(类变量、实例变量)、构造器、代码块(静态代码块和非静态代码块)
+方法(静态方法、非静态方法)</li>
+</ul>
+<h3 id="15-抽象类不能实例化为什么要有构造器呢">1.5 抽象类不能实例化，为什么要有构造器呢？</h3>
+<ul>
+<li>
+<p>子类在继承该类时，一定要调用它的构造器，为属性初始化。</p>
+<ul>
+<li>
+<p>因为构造器的作用有两点</p>
+<ul>
+<li>(1)和new一起创建对象</li>
+<li>(2)为属性初始化</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-接口">2 接口</h2>
+<h3 id="21-接口即代表行为标准功能标准">2.1 接口即代表行为标准，功能标准</h3>
+<h3 id="22-如何声明一个接口">2.2 如何声明一个接口？</h3>
+<ul>
+<li>
+<p>语法结构</p>
+<ul>
+<li>[public/缺省] interface 接口名{
+}</li>
+</ul>
+</li>
+</ul>
+<h3 id="23-如何实现接口">2.3 如何实现接口？</h3>
+<ul>
+<li>
+<p>语法结构</p>
+<ul>
+<li>[public/缺省] class 子类名 [extends 父类名] implements  接口名1，接口名2。。。{
+//要实现接口的所有抽象方法
+}</li>
+</ul>
+</li>
+</ul>
+<h3 id="24-接口的特点">2.4 接口的特点</h3>
+<ul>
+<li>
+<p>JDK1.7</p>
+<ul>
+<li>JDK1.7：
+(1)接口不能实例化
+(2)接口只能有全局静态的常量和公共的抽象方法
+(3)接口中不能有构造器，因为它没有属性需要初始化，又不能创建对象
+(4)接口生来用来被实现的，那么实现类(像子类)在实现它时，必须实现(和重写要求一样)接口的
+所有抽象方法，否则该实现类也得是抽象类
+(5)一个类可以同时实现多个接口
+(6)一个类还可以继承父类又实现接口，但是必须先继承后实现
+(7)接口与接口之间是继承关系，一个接口可以继承多个接口
+(8)接口与实现类的对象之间构成多态引用</li>
+</ul>
+</li>
+<li>
+<p>JDK1.8</p>
+<ul>
+<li>
+<p>其他的和JDK1.7一样，不一样的是：
+JDK1.8之后，接口中除了全局静态的常量和公共的抽象方法以外，可以有静态方法和默认方法</p>
+<ul>
+<li>
+<p>接口中的静态方法</p>
+<ul>
+<li>
+<p>当接口的所有实现类，对这个方法的实现是一样的，这个方法就设计在接口中，设计为静态方法</p>
+</li>
+<li>
+<p>如何调用</p>
+<ul>
+<li>接口名.方法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>接口中的默认方法</p>
+<ul>
+<li>
+<p>当接口的大多数实现类，对这个方法的实现是一样，那么这个方法的实现就可以在接口中提供默认实现，如果某个实现类觉得他不合适，只需要重写它即可</p>
+</li>
+<li>
+<p>如何调用</p>
+<ul>
+<li>
+<p>实现类外</p>
+<ul>
+<li>实现类对象.方法</li>
+</ul>
+</li>
+<li>
+<p>实现类中</p>
+<ul>
+<li>如果实现类要重写该默认方法，但是又想调用接口中的默认实现</li>
+<li>接口名.super.方法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>什么情况下需要重写</p>
+<ul>
+<li>
+<p>接口中的默认实现不适合该实现类</p>
+</li>
+<li>
+<p>必须重写</p>
+<ul>
+<li>一个类同时实现了多个接口，而多个接口中都相同的默认方法(方法名和形参列表都相同)，这个时候实现类必须做出选择，要重写，如果需要保留其中一个的话，通过接口名.super.方法，保留它的默认实现</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>类优先原则</p>
+<ul>
+<li>当一个类继承了父类，又实现了接口，而且父类中的某个方法与接口中的默认方法一样(方法名和形参列表)，默认保留的是父类中的方法实现</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-枚举">3 枚举</h2>
+<h3 id="31-枚举是指某个类型的对象是有限个在类型中一一创建并列举它的对象">3.1 枚举是指某个类型的对象是有限个，在类型中一一创建并列举它的对象</h3>
+<h3 id="32-jdk15之前如何解决">3.2 JDK1.5之前，如何解决</h3>
+<ul>
+<li>
+<p>(1)构造器私有化</p>
+</li>
+<li>
+<p>(2)通过常量的方式创建好所有对象</p>
+</li>
+<li>
+<p>示例</p>
+<p>class Week{</p>
+<p>public static final Week MONDAY = new Week();</p>
+<p>public static final Week TUESDAY = new Week();</p>
+<p>public static final Week WEDNESDAY = new Week();</p>
+<p>public static final Week THURSDAY = new Week();</p>
+<p>public static final Week FRIDAY = new Week();</p>
+<p>public static final Week SATURDAY = new Week();</p>
+<p>public static final Week SUNDAY = new Week();</p>
+<p>private Week(){</p>
+<p>}</p>
+<p>}</p>
+<p>Week w = Week.MONDAY;</p>
+</li>
+</ul>
+<h3 id="33-jdk15之后如何解决">3.3 JDK1.5之后，如何解决</h3>
+<ul>
+<li>
+<p>如何声明</p>
+<ul>
+<li>[修饰符] enum  枚举类型名{
+常量对象列表
+}</li>
+<li>[修饰符] enum  枚举类型名{
+常量对象列表;
+其他成员;
+}</li>
+</ul>
+</li>
+<li>
+<p>特点</p>
+<ul>
+<li>
+<p>(1)枚举类型中的构造器都是私有化</p>
+</li>
+<li>
+<p>(2)常量对象列表必须在首行，如果常量对象列表后面还有其他的代码，那么要用;结束</p>
+</li>
+<li>
+<p>(3)枚举类型不能继承别的类型，因为它默认继承java.lang.Enum</p>
+<ul>
+<li>
+<p>它有一些方法</p>
+<ul>
+<li>
+<p>name()</p>
+<ul>
+<li>返回常量对象名</li>
+</ul>
+</li>
+<li>
+<p>ordinal()</p>
+<ul>
+<li>返回常量对象的序号，从0开始</li>
+</ul>
+</li>
+<li>
+<p>实现了java.lang.Comparable接口，重写compareTo()，按照常量对象的顺序排序</p>
+<ul>
+<li>如果自己的枚举类中不适合，可以重写</li>
+</ul>
+</li>
+<li>
+<p>toString()</p>
+<ul>
+<li>
+<p>返回常量对象名</p>
+<ul>
+<li>可以重写</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>API中没有的方法</p>
+<ul>
+<li>
+<p>枚举类型名.values()</p>
+<ul>
+<li>返回枚举常量对象组成的数组</li>
+</ul>
+</li>
+<li>
+<p>枚举类型名.valueOf(常量对象的名称)</p>
+<ul>
+<li>返回某一个指定的对象</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(4)switch对枚举加入支持</p>
+<ul>
+<li>switch(枚举类型表达式){
+case 常量对象名1:
+语句;
+[break;]
+case 常量对象名2:
+语句;
+[break;]
+case 常量对象名3:
+语句;
+[break;]
+default:
+语句;
+[break;]
+}</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-注解">4 注解</h2>
+<h3 id="41-概念">4.1 概念</h3>
+<ul>
+<li>
+<p>代码级别的注释</p>
+</li>
+<li>
+<p>给代码读取的注释</p>
+<ul>
+<li>
+<p>不同普通的注释(给人看的)</p>
+<ul>
+<li>单行注释</li>
+<li>多行注释</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="42-四种">4.2 四种</h3>
+<ul>
+<li>
+<p>1、编译器的格式检查</p>
+<ul>
+<li>(1)@Override：告知编译器对该方法按照“重写”的要求进行格式检查</li>
+<li>(2)@SuppressWarnings：告知编译器抑制警告</li>
+<li>(3)@Deprecated：告知编译器某个元素是已过时，有人用了就弹出警告</li>
+</ul>
+</li>
+<li>
+<p>2、文档注释</p>
+<ul>
+<li>
+<p>(1)@version</p>
+<ul>
+<li>指定当前版本</li>
+</ul>
+</li>
+<li>
+<p>(2)@author</p>
+<ul>
+<li>指定作者</li>
+</ul>
+</li>
+<li>
+<p>(3)@since</p>
+<ul>
+<li>指定从哪个版本开始</li>
+</ul>
+</li>
+<li>
+<p>(4)@see</p>
+<ul>
+<li>另请参阅</li>
+</ul>
+</li>
+<li>
+<p>(5)param</p>
+<ul>
+<li>
+<p>指定当前方法的形参信息</p>
+</li>
+<li>
+<p>可以多个</p>
+</li>
+<li>
+<p>只有方法有形参才能标记</p>
+</li>
+<li>
+<p>格式：</p>
+<ul>
+<li>@param  形参名  形参类型   形参的描述信息</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(6)@return</p>
+<ul>
+<li>
+<p>指定当前方法的返回值信息</p>
+</li>
+<li>
+<p>一个方法只能有一个，如果方法是void，就不能标记@return</p>
+</li>
+<li>
+<p>格式</p>
+<ul>
+<li>@return  返回值的类型  返回值的描述</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(7)@exception</p>
+<ul>
+<li>
+<p>指定当前方法抛出异常的信息</p>
+</li>
+<li>
+<p>可以多个</p>
+</li>
+<li>
+<p>只有方法抛出异常才能标记</p>
+</li>
+<li>
+<p>格式</p>
+<ul>
+<li>@exception  异常类型  异常的描述</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>结合javadoc.exe</p>
+</li>
+</ul>
+</li>
+<li>
+<p>3、JUnit的单元测试</p>
+<ul>
+<li>
+<p>白盒测试，程序员自己的测试，在程序员知道当前的代码的功能的</p>
+</li>
+<li>
+<p>@Test</p>
+<ul>
+<li>加在方法上</li>
+<li>这个方法必须是公共的，无参，无返回值，不能是static</li>
+</ul>
+</li>
+<li>
+<p>@Before</p>
+<ul>
+<li>在@Test标记的方法之前运行</li>
+</ul>
+</li>
+<li>
+<p>@After</p>
+<ul>
+<li>在@Test标记的方法之后运行</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>4、各大框架等替代配置文件</p>
+</li>
+</ul>
+<h3 id="43-注解的三个部分">4.3 注解的三个部分</h3>
+<ul>
+<li>
+<p>1、声明</p>
+<ul>
+<li>一般都是别人声明好的</li>
+</ul>
+</li>
+<li>
+<p>2、使用</p>
+</li>
+<li>
+<p>3、读取</p>
+<ul>
+<li>例如：@Override等，由javac.exe</li>
+<li>例如：@author,@param等，由javadoc.exe</li>
+<li>例如：@Test等，由JUnit相关的类读取</li>
+<li>例如：@WebServlet等，由Tomcat读取</li>
+<li>&hellip;</li>
+<li>如果自己要读取，通过反射，而且只能读取@Retention(RetentionPolicy.RUNTIME)</li>
+</ul>
+</li>
+</ul>
+<h3 id="44-注解的声明">4.4 注解的声明</h3>
+<ul>
+<li>
+<p>(1)无参</p>
+<ul>
+<li>
+<p>声明格式</p>
+<ul>
+<li>@元注解
+[修饰符]  @interface  注解名{}</li>
+</ul>
+</li>
+<li>
+<p>使用格式</p>
+<ul>
+<li>@注解名</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(2)有参</p>
+<ul>
+<li>
+<p>声明格式</p>
+<ul>
+<li>
+<p>@元注解
+[修饰符]  @interface  注解名{
+配置参数
+}</p>
+<ul>
+<li>
+<p>配置参数</p>
+<ul>
+<li>
+<p>格式</p>
+<ul>
+<li>数据类型  参数名();</li>
+</ul>
+</li>
+<li>
+<p>一个注解可以有多个配置参数</p>
+</li>
+<li>
+<p>配置参数可以有默认值</p>
+<ul>
+<li>数据类型  参数名() default 默认值;</li>
+</ul>
+</li>
+<li>
+<p>配置参数的类型有要求</p>
+<ul>
+<li>类型只能是八种基本数据类型、String类型、Class类型、enum类型、Annotation类型、以上所有类型的数组</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>使用格式</p>
+<ul>
+<li>
+<p>@注解(参数赋值)</p>
+<ul>
+<li>
+<p>如果配置参数有默认值，那么可以在使用时不需要赋值</p>
+</li>
+<li>
+<p>如果配置参数只有一个，而且名称是value，那么可以在赋值时省略value=</p>
+</li>
+<li>
+<p>参数赋值的格式</p>
+<ul>
+<li>
+<p>参数名 = 参数值</p>
+</li>
+<li>
+<p>如果多个使用,分割</p>
+</li>
+<li>
+<p>如果配置参数的类型是数组类型</p>
+<ul>
+<li>如果只有一个元素，那么可以省略{}</li>
+<li>如果是多个元素，那么需要{}</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="45-元注解">4.5 元注解</h3>
+<ul>
+<li>
+<p>@Target</p>
+<ul>
+<li>
+<p>指定某个注解它的使用目标位置</p>
+</li>
+<li>
+<p>如何指定它</p>
+<ul>
+<li>
+<p>它配置参数的类型是一个枚举数组</p>
+<ul>
+<li>
+<p>ElementType枚举类型</p>
+<ul>
+<li>常量对象有：TYPE, FIELD,METHOD等</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>配置参数的名称是value</p>
+</li>
+<li>
+<p>如果只有一个</p>
+<ul>
+<li>@Target(ElementType.METHOD)</li>
+</ul>
+</li>
+<li>
+<p>如果是多个</p>
+<ul>
+<li>@Target({ElementType.METHOD,ElementType.FIELD,。。。。})</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>@Retention</p>
+<ul>
+<li>
+<p>指定某个注解的生命周期，可以保留到什么阶段</p>
+</li>
+<li>
+<p>如何指定它</p>
+<ul>
+<li>
+<p>它的配置参数的类型是一个枚举类型</p>
+<ul>
+<li>
+<p>RetentionPolicy类型</p>
+<ul>
+<li>
+<p>常量对象有三个</p>
+<ul>
+<li>SOURCE,CLASS,RUNTIME</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>配置参数的名称是value</p>
+</li>
+<li>
+<p>@Retention(RetentionPolicy.RUNTIME)</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>@Documented</p>
+<ul>
+<li>表示是否javadoc读取</li>
+</ul>
+</li>
+<li>
+<p>@Inherited</p>
+<ul>
+<li>是否被子类继承</li>
+</ul>
+</li>
+<li>
+<p>在java.lang.annotation包</p>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/java/">JAVA</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-09-14</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/language/java/%E6%95%B0%E7%BB%84/" class="prev" rel="prev" title="数组"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/language/java/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" class="next" rel="next" title="面向对象">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

@@ -1,0 +1,37 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>2-CPP标准库 - 标签 - xcx</title>
+        <link>https://xiechaoxin.github.io/tags/2-cpp%E6%A0%87%E5%87%86%E5%BA%93/</link>
+        <description>2-CPP标准库 - 标签 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 10 Jul 2022 05:23:44 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/tags/2-cpp%E6%A0%87%E5%87%86%E5%BA%93/" rel="self" type="application/rss+xml" /><item>
+    <title>12.动态内存</title>
+    <link>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/2-cpp%E6%A0%87%E5%87%86%E5%BA%93/12.%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98/</link>
+    <pubDate>Sun, 10 Jul 2022 05:23:44 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/2-cpp%E6%A0%87%E5%87%86%E5%BA%93/12.%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98/</guid>
+    <description><![CDATA[动态内存 对象的生命周期： 全局对象在程序启动时分配，结束时销毁。 局部对象在进入程序块时创建，离开块时销毁。 局部static对象在第一次使用前分]]></description>
+</item>
+<item>
+    <title>11. 关联容器</title>
+    <link>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/2-cpp%E6%A0%87%E5%87%86%E5%BA%93/11.%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8/</link>
+    <pubDate>Sun, 10 Jul 2022 05:22:29 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/2-cpp%E6%A0%87%E5%87%86%E5%BA%93/11.%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8/</guid>
+    <description><![CDATA[关联容器 关联容器和顺序容器的不同：关联容器中的元素时按照关键字来保存和访问的。 关联容器支持通过关键字来高效地查找和读取元素，基本的关联容器类]]></description>
+</item>
+<item>
+    <title>10. 泛型算法</title>
+    <link>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/2-cpp%E6%A0%87%E5%87%86%E5%BA%93/10.%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95/</link>
+    <pubDate>Sun, 10 Jul 2022 05:21:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/2-cpp%E6%A0%87%E5%87%86%E5%BA%93/10.%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95/</guid>
+    <description><![CDATA[泛型算法 1 泛型算法 因为它们实现共同的操作，所以称之为“算法”；而“泛型”、指的是它们可以操作在多种容器类型上。 泛型算法本身不执行容器操作，只]]></description>
+</item>
+<item>
+    <title>9.顺序容器</title>
+    <link>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/2-cpp%E6%A0%87%E5%87%86%E5%BA%93/9.%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8/</link>
+    <pubDate>Sun, 10 Jul 2022 05:16:26 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/2-cpp%E6%A0%87%E5%87%86%E5%BA%93/9.%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8/</guid>
+    <description><![CDATA[顺序容器 1 顺序容器概述 顺序容器(sequential container)：为程序员提供了控制元素存储和访问顺序的能力。这种顺序不依赖于元素的]]></description>
+</item>
+<item>
+    <title>8. IO库</title>
+    <link>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/2-cpp%E6%A0%87%E5%87%86%E5%BA%93/8.io%E5%BA%93/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/2-cpp%E6%A0%87%E5%87%86%E5%BA%93/8.io%E5%BA%93/</guid>
+    <description><![CDATA[IO 库 1 前面章节已经在用的 IO 库设施 istream：输入流类型，提供输入操作。 ostream：输出流类型，提供输出操作 cin：一个istream]]></description>
+</item>
+</channel>
+</rss>

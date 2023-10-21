@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>web - 标签 - xcx</title>
+        <link>https://xiechaoxin.github.io/tags/web/</link>
+        <description>web - 标签 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 26 May 2023 09:10:46 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/tags/web/" rel="self" type="application/rss+xml" /><item>
+    <title>readme</title>
+    <link>https://xiechaoxin.github.io/posts/web/readme/</link>
+    <pubDate>Fri, 26 May 2023 09:10:46 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/web/readme/</guid>
+    <description><![CDATA[参考 mdn web docs]]></description>
+</item>
+<item>
+    <title>HTTP响应代码</title>
+    <link>https://xiechaoxin.github.io/posts/web/front-end/extend/http%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB/</link>
+    <pubDate>Sun, 21 May 2023 23:22:44 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/web/front-end/extend/http%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB/</guid>
+    <description><![CDATA[HTTP：响应代码 HTTP — 一种应用级协议]]></description>
+</item>
+</channel>
+</rss>

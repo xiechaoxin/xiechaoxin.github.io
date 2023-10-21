@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>screw - xcx</title><meta name="description" content=""><meta property="og:title" content="screw" />
+<meta property="og:description" content="title: screw:一键生成数据库文档，堪称数据库界的Swagger category: 数据库 tag: 开发工具 在项目中，我们经常需要整理数据库表结构文档。 一般情况下，我们" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/tools/database/screw/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-17T17:59:12+00:00" />
+<meta property="article:modified_time" content="2022-06-17T17:59:12+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="screw"/>
+<meta name="twitter:description" content="title: screw:一键生成数据库文档，堪称数据库界的Swagger category: 数据库 tag: 开发工具 在项目中，我们经常需要整理数据库表结构文档。 一般情况下，我们"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/tools/database/screw/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/os/shell-intro/" /><link rel="next" href="https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/blog_cut/mysql/mysql%E7%9F%A5%E8%AF%86%E7%82%B9%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "screw",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/tools\/database\/screw\/"
+        },"genre": "posts","keywords": "tools, database","wordcount":  2143 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/tools\/database\/screw\/","datePublished": "2022-06-17T17:59:12+00:00","dateModified": "2022-06-17T17:59:12+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">screw</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/tools/"><i class="far fa-folder fa-fw"></i>tools</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-17">2022-06-17</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2143 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-基于-java-代码">1 基于 Java 代码</a>
+      <ul>
+        <li><a href="#11-引入依赖">1.1 引入依赖</a></li>
+        <li><a href="#12-基于-maven-插件">1.2 基于 Maven 插件</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><hr>
+<p>title: screw:一键生成数据库文档，堪称数据库界的Swagger
+category: 数据库
+tag:</p>
+<ul>
+<li>开发工具</li>
+</ul>
+<hr>
+<p>在项目中，我们经常需要整理数据库表结构文档。</p>
+<p>一般情况下，我们都是手动整理数据库表结构文档，当表结构有变动的时候，自己手动进行维护。</p>
+<p>数据库表少的时候还好，数据库表多了之后，手动整理和维护数据库表结构文档简直不要太麻烦，而且，还非常容易出错！</p>
+<p><strong>有没有什么好用的工具帮助我们自动生成数据库表结构文档呢？</strong></p>
+<p>当然有！Github 上就有一位朋友开源了一款数据库表结构文档自动生成工具—— <strong>screw</strong> 。</p>
+<p>项目地址： <a href="https://github.com/pingfangushi/screw" target="_blank" rel="noopener noreffer">https://github.com/pingfangushi/screw</a> 。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./cc9556dbe0494e449b7c913f3eb8fe9e.png"
+        data-srcset="./cc9556dbe0494e449b7c913f3eb8fe9e.png, ./cc9556dbe0494e449b7c913f3eb8fe9e.png 1.5x, ./cc9556dbe0494e449b7c913f3eb8fe9e.png 2x"
+        data-sizes="auto"
+        alt="./cc9556dbe0494e449b7c913f3eb8fe9e.png"
+        title="./cc9556dbe0494e449b7c913f3eb8fe9e.png" /></p>
+<p>screw 翻译过来的意思就是螺丝钉，作者希望这个工具能够像螺丝钉一样切实地帮助到我们的开发工作。</p>
+<p>目前的话，screw 已经支持市面上大部分常见的数据库比如 MySQL、MariaDB、Oracle、SqlServer、PostgreSQL、TiDB。</p>
+<p>另外，screw 使用起来也非常简单，根据官网提示，不用 10 分钟就能成功在本地使用起来！</p>
+<h1 id="快速入门">快速入门</h1>
+<p>为了验证 screw 自动生成数据库表结构文档的效果，我们首先创建一个简单的存放博客数据的数据库表。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">blog</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="w"> </span><span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;主键&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">`</span><span class="n">title</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;博客标题&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">`</span><span class="n">content</span><span class="o">`</span><span class="w"> </span><span class="n">longtext</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;博客内容&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">`</span><span class="n">description</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;博客简介&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">`</span><span class="n">cover</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;博客封面图片地址&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">`</span><span class="n">views</span><span class="o">`</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;博客阅读次数&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">`</span><span class="n">user_id</span><span class="o">`</span><span class="w"> </span><span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;发表博客的用户ID&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">`</span><span class="n">channel_id</span><span class="o">`</span><span class="w"> </span><span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;博客分类ID&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">`</span><span class="n">recommend</span><span class="o">`</span><span class="w"> </span><span class="nb">bit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">b</span><span class="s1">&#39;0&#39;</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;是否推荐&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">`</span><span class="n">top</span><span class="o">`</span><span class="w"> </span><span class="nb">bit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">b</span><span class="s1">&#39;0&#39;</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;是否置顶&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">`</span><span class="k">comment</span><span class="o">`</span><span class="w"> </span><span class="nb">bit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">b</span><span class="s1">&#39;1&#39;</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;是否开启评论&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">`</span><span class="n">created_at</span><span class="o">`</span><span class="w"> </span><span class="k">timestamp</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;创建时间&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">`</span><span class="n">updated_at</span><span class="o">`</span><span class="w"> </span><span class="k">timestamp</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;更新时间&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w"> </span><span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="o">=</span><span class="mi">16</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8mb4</span><span class="w"> </span><span class="k">COMMENT</span><span class="o">=</span><span class="s1">&#39;博客&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><h2 id="1-基于-java-代码">1 基于 Java 代码</h2>
+<h3 id="11-引入依赖">1.1 引入依赖</h3>
+<p>创建一个普通的 Maven 项目即可！然后引入 screw、HikariCP、MySQL 这 3 个依赖。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="c">&lt;!--screw--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>cn.smallbun.screw<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>screw-core<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>1.0.5<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- HikariCP --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>com.zaxxer<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>HikariCP<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>3.4.5<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!--MySQL--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>mysql<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>mysql-connector-java<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>8.0.20<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span></code></pre></div><p>你可以通过下面的地址在 mvnrepository 获取最新版本的 screw。</p>
+<blockquote>
+<p><a href="https://mvnrepository.com/artifact/cn.smallbun.screw/screw-core" target="_blank" rel="noopener noreffer">https://mvnrepository.com/artifact/cn.smallbun.screw/screw-core</a></p>
+</blockquote>
+<h4 id="111-编写代码">1.1.1 编写代码</h4>
+<p>生成数据库文档的代码的整个代码逻辑还是比较简单的，我们只需要经过下面 5 步即可：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 1.获取数据源
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">DataSource</span> <span class="n">dataSource</span> <span class="o">=</span> <span class="n">getDataSource</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 2.获取数据库文档生成配置(文件路径、文件类型)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">EngineConfig</span> <span class="n">engineConfig</span> <span class="o">=</span> <span class="n">getEngineConfig</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 3.获取数据库表的处理配置，可忽略
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">ProcessConfig</span> <span class="n">processConfig</span> <span class="o">=</span> <span class="n">getProcessConfig</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 4.Screw 完整配置
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Configuration</span> <span class="n">config</span> <span class="o">=</span> <span class="n">getScrewConfig</span><span class="o">(</span><span class="n">dataSource</span><span class="o">,</span> <span class="n">engineConfig</span><span class="o">,</span> <span class="n">processConfig</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 5.执行生成数据库文档
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">new</span> <span class="n">DocumentationExecute</span><span class="o">(</span><span class="n">config</span><span class="o">).</span><span class="na">execute</span><span class="o">();</span>
+</span></span></code></pre></div><p><strong>1、获取数据库源</strong></p>
+<p>对数据库以及数据库连接池进行相关配置。务必将数据库相关的配置修改成你自己的。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 获取数据库源
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="n">DataSource</span> <span class="nf">getDataSource</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//数据源
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">HikariConfig</span> <span class="n">hikariConfig</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HikariConfig</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">hikariConfig</span><span class="o">.</span><span class="na">setDriverClassName</span><span class="o">(</span><span class="s">&#34;com.mysql.cj.jdbc.Driver&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">hikariConfig</span><span class="o">.</span><span class="na">setJdbcUrl</span><span class="o">(</span><span class="s">&#34;jdbc:mysql://127.0.0.1:3306/javaguide-blog&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">hikariConfig</span><span class="o">.</span><span class="na">setUsername</span><span class="o">(</span><span class="s">&#34;root&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">hikariConfig</span><span class="o">.</span><span class="na">setPassword</span><span class="o">(</span><span class="s">&#34;123456&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//设置可以获取tables remarks信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">hikariConfig</span><span class="o">.</span><span class="na">addDataSourceProperty</span><span class="o">(</span><span class="s">&#34;useInformationSchema&#34;</span><span class="o">,</span> <span class="s">&#34;true&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">hikariConfig</span><span class="o">.</span><span class="na">setMinimumIdle</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">hikariConfig</span><span class="o">.</span><span class="na">setMaximumPoolSize</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="n">HikariDataSource</span><span class="o">(</span><span class="n">hikariConfig</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p><strong>2、获取文件生成配置</strong></p>
+<p>这一步会指定数据库文档生成的位置、文件类型以及文件名称。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 获取文件生成配置
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="n">EngineConfig</span> <span class="nf">getEngineConfig</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//生成配置
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="n">EngineConfig</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//生成文件路径
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="o">.</span><span class="na">fileOutputDir</span><span class="o">(</span><span class="s">&#34;/Users/guide/Documents/代码示例/screw-demo/doc&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//打开目录
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="o">.</span><span class="na">openOutputDir</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//文件类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="o">.</span><span class="na">fileType</span><span class="o">(</span><span class="n">EngineFileType</span><span class="o">.</span><span class="na">HTML</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//生成模板实现
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="o">.</span><span class="na">produceType</span><span class="o">(</span><span class="n">EngineTemplateType</span><span class="o">.</span><span class="na">freemarker</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//自定义文件名称
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="o">.</span><span class="na">fileName</span><span class="o">(</span><span class="s">&#34;数据库结构文档&#34;</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>如果不配置生成文件路径的话，默认也会存放在项目的 <code>doc</code> 目录下。</p>
+<p>另外，我们这里指定生成的文件格式为 HTML。除了 HTML 之外，screw 还支持 Word 、Markdown 这两种文件格式。</p>
+<p>不太建议生成 Word 格式,比较推荐 Markdown 格式。</p>
+<p><strong>3、获取数据库表的处理配置</strong></p>
+<p>这一步你可以指定只生成哪些表：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 获取数据库表的处理配置，可忽略
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="n">ProcessConfig</span> <span class="nf">getProcessConfig</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">ProcessConfig</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// 指定只生成 blog 表
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="o">.</span><span class="na">designatedTableName</span><span class="o">(</span><span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;(</span><span class="n">Collections</span><span class="o">.</span><span class="na">singletonList</span><span class="o">(</span><span class="s">&#34;blog&#34;</span><span class="o">)))</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>还可以指定忽略生成哪些表：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="n">ProcessConfig</span> <span class="nf">getProcessConfig</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">ignoreTableName</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ignoreTableName</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;test_user&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ignoreTableName</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;test_group&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">ignorePrefix</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ignorePrefix</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;test_&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">ignoreSuffix</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ignoreSuffix</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;_test&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">ProcessConfig</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//忽略表名
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="o">.</span><span class="na">ignoreTableName</span><span class="o">(</span><span class="n">ignoreTableName</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//忽略表前缀
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="o">.</span><span class="na">ignoreTablePrefix</span><span class="o">(</span><span class="n">ignorePrefix</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//忽略表后缀
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="o">.</span><span class="na">ignoreTableSuffix</span><span class="o">(</span><span class="n">ignoreSuffix</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>这一步也可以省略。如果不指定 <code>ProcessConfig</code> 的话，就会按照默认配置来！</p>
+<p><strong>4、生成 screw 完整配置</strong></p>
+<p>根据前面 3 步，生成 screw 完整配置。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="n">Configuration</span> <span class="nf">getScrewConfig</span><span class="o">(</span><span class="n">DataSource</span> <span class="n">dataSource</span><span class="o">,</span> <span class="n">EngineConfig</span> <span class="n">engineConfig</span><span class="o">,</span> <span class="n">ProcessConfig</span> <span class="n">processConfig</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">Configuration</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//版本
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="o">.</span><span class="na">version</span><span class="o">(</span><span class="s">&#34;1.0.0&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//描述
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="o">.</span><span class="na">description</span><span class="o">(</span><span class="s">&#34;数据库设计文档生成&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//数据源
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="o">.</span><span class="na">dataSource</span><span class="o">(</span><span class="n">dataSource</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//生成配置
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="o">.</span><span class="na">engineConfig</span><span class="o">(</span><span class="n">engineConfig</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//生成配置
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="o">.</span><span class="na">produceConfig</span><span class="o">(</span><span class="n">processConfig</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p><strong>5、执行生成数据库文档</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./ab2c9ee575304dcdb3c6c231c9eadd17.png"
+        data-srcset="./ab2c9ee575304dcdb3c6c231c9eadd17.png, ./ab2c9ee575304dcdb3c6c231c9eadd17.png 1.5x, ./ab2c9ee575304dcdb3c6c231c9eadd17.png 2x"
+        data-sizes="auto"
+        alt="./ab2c9ee575304dcdb3c6c231c9eadd17.png"
+        title="./ab2c9ee575304dcdb3c6c231c9eadd17.png" /></p>
+<p>下图就是生成的 HTML 格式的数据库设计文档。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./6ac5a73f27ed4314960fa7671c479525.png"
+        data-srcset="./6ac5a73f27ed4314960fa7671c479525.png, ./6ac5a73f27ed4314960fa7671c479525.png 1.5x, ./6ac5a73f27ed4314960fa7671c479525.png 2x"
+        data-sizes="auto"
+        alt="./6ac5a73f27ed4314960fa7671c479525.png"
+        title="./6ac5a73f27ed4314960fa7671c479525.png" /></p>
+<h3 id="12-基于-maven-插件">1.2 基于 Maven 插件</h3>
+<p>除了基于 Java 代码这种方式之外，你还可以通过 screw 提供的 Maven 插件来生成数据库文档。方法也非常简单！</p>
+<p><strong>1、配置 Maven 插件</strong></p>
+<p>务必将数据库相关的配置修改成你自己的。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;build&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;plugins&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;plugin&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;groupId&gt;</span>cn.smallbun.screw<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;artifactId&gt;</span>screw-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;version&gt;</span>1.0.5<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;dependencies&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="c">&lt;!-- HikariCP --&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;groupId&gt;</span>com.zaxxer<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;artifactId&gt;</span>HikariCP<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;version&gt;</span>3.4.5<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="c">&lt;!--mysql driver--&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;groupId&gt;</span>mysql<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;artifactId&gt;</span>mysql-connector-java<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;version&gt;</span>8.0.20<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/dependencies&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;configuration&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="c">&lt;!--username--&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;username&gt;</span>root<span class="nt">&lt;/username&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="c">&lt;!--password--&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;password&gt;</span>123456<span class="nt">&lt;/password&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="c">&lt;!--driver--&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;driverClassName&gt;</span>com.mysql.cj.jdbc.Driver<span class="nt">&lt;/driverClassName&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="c">&lt;!--jdbc url--&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;jdbcUrl&gt;</span>jdbc:mysql://127.0.0.1:3306/javaguide-blog<span class="nt">&lt;/jdbcUrl&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="c">&lt;!--生成文件类型--&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;fileType&gt;</span>MD<span class="nt">&lt;/fileType&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="c">&lt;!--打开文件输出目录--&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;openOutputDir&gt;</span>true<span class="nt">&lt;/openOutputDir&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="c">&lt;!--生成模板--&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;produceType&gt;</span>freemarker<span class="nt">&lt;/produceType&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="c">&lt;!--文档名称 为空时:将采用[数据库名称-描述-版本号]作为文档名称--&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;fileName&gt;</span>数据库结构文档<span class="nt">&lt;/fileName&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="c">&lt;!--描述--&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;description&gt;</span>数据库设计文档生成<span class="nt">&lt;/description&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="c">&lt;!--版本--&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;version&gt;</span>${project.version}<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="c">&lt;!--标题--&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;title&gt;</span>数据库文档<span class="nt">&lt;/title&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/configuration&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;executions&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;execution&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;phase&gt;</span>compile<span class="nt">&lt;/phase&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;goals&gt;</span>
+</span></span><span class="line"><span class="cl">                        <span class="nt">&lt;goal&gt;</span>run<span class="nt">&lt;/goal&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;/goals&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;/execution&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/executions&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/plugin&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/plugins&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/build&gt;</span>
+</span></span></code></pre></div><p><strong>2、手动执行生成数据库文档</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./9d711f5efba54b44b526cbf5e0173b3d.png"
+        data-srcset="./9d711f5efba54b44b526cbf5e0173b3d.png, ./9d711f5efba54b44b526cbf5e0173b3d.png 1.5x, ./9d711f5efba54b44b526cbf5e0173b3d.png 2x"
+        data-sizes="auto"
+        alt="./9d711f5efba54b44b526cbf5e0173b3d.png"
+        title="./9d711f5efba54b44b526cbf5e0173b3d.png" /></p>
+<p>我们这里指定生成的是 Markdown 格式。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./d9debd83fa644b9b8fbd44ac3340530a.png"
+        data-srcset="./d9debd83fa644b9b8fbd44ac3340530a.png, ./d9debd83fa644b9b8fbd44ac3340530a.png 1.5x, ./d9debd83fa644b9b8fbd44ac3340530a.png 2x"
+        data-sizes="auto"
+        alt="./d9debd83fa644b9b8fbd44ac3340530a.png"
+        title="./d9debd83fa644b9b8fbd44ac3340530a.png" /></p>
+<p>下图就是生成的 Markdown 格式的数据库设计文档，效果还是非常不错的！</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./654d93c2faae4a47bd4b8b8a4f5d8376.png"
+        data-srcset="./654d93c2faae4a47bd4b8b8a4f5d8376.png, ./654d93c2faae4a47bd4b8b8a4f5d8376.png 1.5x, ./654d93c2faae4a47bd4b8b8a4f5d8376.png 2x"
+        data-sizes="auto"
+        alt="./654d93c2faae4a47bd4b8b8a4f5d8376.png"
+        title="./654d93c2faae4a47bd4b8b8a4f5d8376.png" /></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/tools/">tools</a>
+                </span><span><a href="/tags/database/">database</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-06-17</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/os/shell-intro/" class="prev" rel="prev" title="shell-intro(Shell 编程入门)"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/blog_cut/mysql/mysql%E7%9F%A5%E8%AF%86%E7%82%B9%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/" class="next" rel="next" title="mysql知识点&amp;面试题总结">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

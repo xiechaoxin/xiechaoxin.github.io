@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>JavaSE  API - xcx</title><meta name="description" content=""><meta property="og:title" content="JavaSE  API" />
+<meta property="og:description" content="JavaSE API 1 java.lang.Object 1.1 它是所有类型的根父类 1.2 一个类如果没有显式声明它的父类，这个类的直接父类就是Object 1.3 理解 (1)Object类的所有方法，在所有" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/language/java/javase-api/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-14T02:17:04+00:00" />
+<meta property="article:modified_time" content="2022-09-14T02:17:04+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JavaSE  API"/>
+<meta name="twitter:description" content="JavaSE API 1 java.lang.Object 1.1 它是所有类型的根父类 1.2 一个类如果没有显式声明它的父类，这个类的直接父类就是Object 1.3 理解 (1)Object类的所有方法，在所有"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/language/java/javase-api/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/language/java/java%E5%9F%BA%E7%A1%80/" /><link rel="next" href="https://xiechaoxin.github.io/posts/language/java/io%E6%B5%81/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "JavaSE  API",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/language\/java\/javase-api\/"
+        },"genre": "posts","keywords": "JAVA","wordcount":  3214 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/language\/java\/javase-api\/","datePublished": "2022-09-14T02:17:04+00:00","dateModified": "2022-09-14T02:17:04+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">JavaSE  API</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/java/"><i class="far fa-folder fa-fw"></i>JAVA</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-09-14">2022-09-14</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3214 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-javalangobject">1 java.lang.Object</a>
+      <ul>
+        <li><a href="#11-它是所有类型的根父类">1.1 它是所有类型的根父类</a></li>
+        <li><a href="#12-一个类如果没有显式声明它的父类这个类的直接父类就是object">1.2 一个类如果没有显式声明它的父类，这个类的直接父类就是Object</a></li>
+        <li><a href="#13-理解">1.3 理解</a></li>
+        <li><a href="#14-方法">1.4 方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-包装类">2 包装类</a>
+      <ul>
+        <li><a href="#21-装箱与拆箱">2.1 装箱与拆箱</a></li>
+        <li><a href="#22-对应的关系">2.2 对应的关系</a></li>
+        <li><a href="#23-其他方法">2.3 其他方法</a></li>
+        <li><a href="#24-包装类对象的缓存问题常量对象">2.4 包装类对象的缓存问题(常量对象)</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-javalangstring">3 java.lang.String</a>
+      <ul>
+        <li><a href="#31-字符串类型的特点">3.1 字符串类型的特点</a></li>
+        <li><a href="#32-拼接和比较">3.2 拼接和比较</a></li>
+        <li><a href="#33-常用的方法">3.3 常用的方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-javalangstringbuffer和javalangstringbuilder">4 java.lang.StringBuffer和java.lang.StringBuilder</a>
+      <ul>
+        <li><a href="#41-stringbuffer是jdk10就有是线程安全的">4.1 StringBuffer是JDK1.0就有，是线程安全的</a></li>
+        <li><a href="#42-stringbuilder是jdk15引入是线程不安全">4.2 StringBuilder是JDK1.5引入，是线程不安全</a></li>
+        <li><a href="#43-和string的区别">4.3 和String的区别</a></li>
+        <li><a href="#44-常用的方法">4.4 常用的方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-jdk18之前日期时间">5 JDK1.8之前日期时间</a>
+      <ul>
+        <li><a href="#51-javautildate">5.1 java.util.Date</a></li>
+        <li><a href="#52-javalangsystem">5.2 java.lang.System</a></li>
+        <li><a href="#53-javautilcalendar">5.3 java.util.Calendar</a></li>
+        <li><a href="#54-javatextdateformat及其javatextsimpledateformat">5.4 java.text.DateFormat及其java.text.SimpleDateFormat</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-jdk18日期时间">6 JDK1.8日期时间</a>
+      <ul>
+        <li><a href="#61-相关的包">6.1 相关的包</a></li>
+        <li><a href="#62-本地日期时间">6.2 本地日期时间</a></li>
+        <li><a href="#63-日期时间格式化">6.3 日期时间格式化</a></li>
+        <li><a href="#64-日期的间隔">6.4 日期的间隔</a></li>
+        <li><a href="#65-时间的间隔">6.5 时间的间隔</a></li>
+      </ul>
+    </li>
+    <li><a href="#7-javalangmath">7 java.lang.Math</a></li>
+    <li><a href="#8-排序">8 排序</a>
+      <ul>
+        <li><a href="#81-javalangcomparable">8.1 java.lang.Comparable</a></li>
+        <li><a href="#82-javalangcomparator">8.2 java.lang.Comparator</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="javase--api">JavaSE  API</h1>
+<h2 id="1-javalangobject">1 java.lang.Object</h2>
+<h3 id="11-它是所有类型的根父类">1.1 它是所有类型的根父类</h3>
+<h3 id="12-一个类如果没有显式声明它的父类这个类的直接父类就是object">1.2 一个类如果没有显式声明它的父类，这个类的直接父类就是Object</h3>
+<h3 id="13-理解">1.3 理解</h3>
+<ul>
+<li>(1)Object类的所有方法，在所有对象中都有，包括数组对象</li>
+<li>(2)Object类的变量可以接受任意类型的对象
+Object类型的形参可以接受任意类型的对象作为实参
+Object[]类型的数组可以接受任意类型的对象作为它的元素</li>
+<li>(3)所有对象创建时，都会调用Object的无参构造</li>
+</ul>
+<h3 id="14-方法">1.4 方法</h3>
+<ul>
+<li>
+<p>(1)无参构造</p>
+<ul>
+<li>
+<p>Object()</p>
+<ul>
+<li>所有对象创建时，都会调用Object的无参构造</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(2)protected Object clone() throws CloneNotSupportedException</p>
+<ul>
+<li>如果子类要支持克隆，子类需要实现Cloneable接口，否则报CloneNotSupportedException</li>
+</ul>
+</li>
+<li>
+<p>(3)public boolean equals(Object obj)</p>
+<ul>
+<li>指示其他某个对象obj是否与此对象this“相等”。</li>
+<li>Object中的equals，等价于“==”比较，比较的是对象的地址</li>
+<li>如果子类需要比较的是属性的内容，那么一定要重写这个方法</li>
+</ul>
+</li>
+<li>
+<p>(4)public int hashCode()</p>
+<ul>
+<li>
+<p>在Object中默认这个方法返回的是 和“地址”相关的值</p>
+</li>
+<li>
+<p>如果重写了equals，那么必须重写hashCode方法，而且参与equals比较的属性，一定要参与hashCode的计算</p>
+</li>
+<li>
+<p>它俩的关系：</p>
+<ul>
+<li>两个对象的equals()返回true，两个对象的hashCode值？一定相等
+两个对象的hashCode值不相等，两个对象equals方法结果？一定不相等
+两个对象的hashCode值相等，两个对象equals方法结果？不一定相等</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(5)public final Class<!-- raw HTML omitted --> getClass()</p>
+<ul>
+<li>返回某个对象的运行时类型，而不是编译时类型</li>
+</ul>
+</li>
+<li>
+<p>(6)protected void finalize() throws Throwable</p>
+<ul>
+<li>当这个对象被垃圾回收机制回收之前调用，而且只会调用一次</li>
+</ul>
+</li>
+<li>
+<p>(7)public String toString()</p>
+<ul>
+<li>在Object中默认返回的是   这个对象的运行是类型@这个对象的hash值的十六进制表现形式</li>
+<li>子类完全可以重写</li>
+</ul>
+</li>
+<li>
+<p>(8)剩下的notify,notifyAll和wait在多线程中使用</p>
+</li>
+</ul>
+<h2 id="2-包装类">2 包装类</h2>
+<p>java.lang</p>
+<h3 id="21-装箱与拆箱">2.1 装箱与拆箱</h3>
+<ul>
+<li>
+<p>装箱</p>
+<ul>
+<li>
+<p>JDK1.5之前手动装箱</p>
+<ul>
+<li>Integer i = new Integer(整数);</li>
+</ul>
+</li>
+<li>
+<p>JDK1.5之后自动装箱</p>
+<ul>
+<li>Ineteger i = 整数;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>拆箱</p>
+<ul>
+<li>
+<p>JDK1.5之前手动拆箱</p>
+<ul>
+<li>Integer i = new Integer(整数);
+int num = i.intValue();</li>
+</ul>
+</li>
+<li>
+<p>JDK1.5之后自动拆箱</p>
+<ul>
+<li>Integer i = new Integer(整数);
+int num = i;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>原则：只能是对应的包装类和基本数据类型之间进行转换</p>
+</li>
+</ul>
+<h3 id="22-对应的关系">2.2 对应的关系</h3>
+<ul>
+<li>
+<p>byte</p>
+<ul>
+<li>Byte</li>
+</ul>
+</li>
+<li>
+<p>short</p>
+<ul>
+<li>Short</li>
+</ul>
+</li>
+<li>
+<p>int</p>
+<ul>
+<li>Integer</li>
+</ul>
+</li>
+<li>
+<p>long</p>
+<ul>
+<li>Long</li>
+</ul>
+</li>
+<li>
+<p>char</p>
+<ul>
+<li>Character</li>
+</ul>
+</li>
+<li>
+<p>float</p>
+<ul>
+<li>Float</li>
+</ul>
+</li>
+<li>
+<p>double</p>
+<ul>
+<li>Double</li>
+</ul>
+</li>
+<li>
+<p>boolean</p>
+<ul>
+<li>Boolean</li>
+</ul>
+</li>
+</ul>
+<h3 id="23-其他方法">2.3 其他方法</h3>
+<ul>
+<li>
+<p>字符串与基本数据类型的转换</p>
+<ul>
+<li>
+<p>public static int parseInt(String s)throws NumberFormatException</p>
+<ul>
+<li>如果包含字母等非数字字符，会报错</li>
+</ul>
+</li>
+<li>
+<p>public static int parseInt(String s, int radix)throws NumberFormatException</p>
+<ul>
+<li>可以包含字母，但是要在基数范围内</li>
+<li>例如基数radix是20，可以包含的范围是0-9,a,b,c,d,e,f,g,h,i,j</li>
+</ul>
+</li>
+<li>
+<p>public static Integer valueOf(String s)throws NumberFormatException</p>
+</li>
+<li>
+<p>public static Integer valueOf(String s,
+int radix)
+throws NumberFormatException</p>
+</li>
+</ul>
+</li>
+<li>
+<p>像Integer中</p>
+<ul>
+<li>
+<p>public static String toBinaryString(int i)</p>
+<ul>
+<li>二进制形式</li>
+</ul>
+</li>
+<li>
+<p>public static String toOctalString(int i)</p>
+<ul>
+<li>八进制形式</li>
+</ul>
+</li>
+<li>
+<p>public static String toHexString(int i)</p>
+<ul>
+<li>十六进制形式</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>像Character中</p>
+<ul>
+<li>
+<p>public static char toLowerCase(char ch)</p>
+<ul>
+<li>转小写</li>
+</ul>
+</li>
+<li>
+<p>public static char toUpperCase(char ch)</p>
+<ul>
+<li>转大写</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="24-包装类对象的缓存问题常量对象">2.4 包装类对象的缓存问题(常量对象)</h3>
+<ul>
+<li>
+<p>Byte,Short,Integer,Long</p>
+<ul>
+<li>-128~127</li>
+</ul>
+</li>
+<li>
+<p>Float,Double</p>
+<ul>
+<li>没有缓存</li>
+</ul>
+</li>
+<li>
+<p>Character</p>
+<ul>
+<li>0~127</li>
+</ul>
+</li>
+<li>
+<p>Boolean</p>
+<ul>
+<li>true</li>
+<li>false</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-javalangstring">3 java.lang.String</h2>
+<h3 id="31-字符串类型的特点">3.1 字符串类型的特点</h3>
+<ul>
+<li>
+<p>1、不能被继承</p>
+<ul>
+<li>因为String是final修饰的类</li>
+</ul>
+</li>
+<li>
+<p>2、字符串对象是常量对象，一旦创建就不能修改，一旦修改就是新对象</p>
+</li>
+<li>
+<p>3、因为字符串对象是常量对象，那么可以共享，字符串常量对象是在常量池中</p>
+<ul>
+<li>
+<p>常量池在哪里</p>
+<ul>
+<li>JDK1.6，方法区</li>
+<li>JDK1.7，堆</li>
+<li>JDK1.8，元空间</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>4、任何字符串字面量都是String的对象</p>
+</li>
+<li>
+<p>5、字符串底层使用字符数组存储</p>
+</li>
+<li>
+<p>6、字符数组是private final修饰符</p>
+</li>
+</ul>
+<h3 id="32-拼接和比较">3.2 拼接和比较</h3>
+<ul>
+<li>
+<p>1、创建对象的个数</p>
+<ul>
+<li>
+<p>String str1 = &ldquo;hello&rdquo;;
+String str2 = &ldquo;hello&rdquo;;</p>
+<ul>
+<li>一个，在常量池</li>
+</ul>
+</li>
+<li>
+<p>String str1 = new String(&ldquo;hello&rdquo;);
+String str2 = new String(&ldquo;hello&rdquo;);</p>
+<ul>
+<li>
+<p>三个</p>
+<ul>
+<li>一个在常量池</li>
+<li>两个在堆中</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>2、拼接和比较</p>
+<ul>
+<li>
+<p>原则：+两边都是常量，结果也是常量，+两边有一个是变量，结果就不是常量，在堆中，如果结果使用了intern()，那么是常量</p>
+<p>@Test</p>
+<p>public void test3(){</p>
+<pre><code>  String str1 = &quot;hello&quot;;
+
+  String str2 = &quot;java&quot;;
+
+  String str3 = &quot;hellojava&quot;;
+
+  String str4 = &quot;hello&quot; + &quot;java&quot;;//常量与常量拼接，还是常量
+
+  String str5 = &quot;hello&quot; + str2;//常量与变量拼接，结果在堆中
+
+  String str6 = str1 + str2;//变量与变量拼接，结果也在堆中
+
+
+
+  System.out.println(&quot;str3 == str4  &quot; + (str3 == str4));//true
+
+  System.out.println(&quot;str3 == str5  &quot; + (str3 == str5));//false
+
+  System.out.println(&quot;str3 == str6  &quot; + (str3 == str6));//false
+
+
+
+  final String str7 = &quot;hello&quot;;
+
+  final String str8 = &quot;java&quot;;
+
+  String str9 = str7 + str8;//常量与常量拼接
+
+  System.out.println(&quot;str3 == str9   &quot; + (str3 == str9));//true
+
+
+
+  String str10 = (str1 + str2).intern();//intern()的结果放常量池
+
+  System.out.println(str3 == str10);//true
+</code></pre>
+<p>}</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="33-常用的方法">3.3 常用的方法</h3>
+<ul>
+<li>
+<p>1、基本方法</p>
+<ul>
+<li>
+<p>(1)int length()</p>
+<ul>
+<li>返回字符串的长度，即字符的个数</li>
+</ul>
+</li>
+<li>
+<p>(2)字符串的比较</p>
+<ul>
+<li>
+<p>boolean  equals(String other)</p>
+<ul>
+<li>this和other进行内容比较</li>
+<li>对Object的equals进行重写</li>
+<li>严格区分大小写</li>
+</ul>
+</li>
+<li>
+<p>boolean equalsIgnoreCase(String anotherString)</p>
+<ul>
+<li>this和anotherString进行内容比较</li>
+<li>不区分大小写</li>
+</ul>
+</li>
+<li>
+<p>自然排序</p>
+<ul>
+<li>
+<p>public int compareTo(String anotherString)</p>
+<ul>
+<li>如果是ASCII范围内，按照ASCII值的顺序</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>定制排序</p>
+<ul>
+<li>
+<p>java.text.Collator</p>
+<pre><code>  String str3 = &quot;中国&quot;;//Z
+
+  String str4 = &quot;美国&quot;;//M
+
+
+
+  //如果想要按照字典顺序
+
+  //找定制排序，实现了java.util.Comparator接口，重写int compare(String s1,String s2)
+
+  //java.text.Collator
+
+  Collator c = Collator.getInstance();
+
+  int result = c.compare(str3, str4);
+
+  System.out.println(result);//中 &gt; 美
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(3)去掉前后空格</p>
+<ul>
+<li>String trim()</li>
+</ul>
+</li>
+<li>
+<p>(4)转大小写</p>
+<ul>
+<li>String toUpperCase()</li>
+<li>public String toLowerCase()</li>
+</ul>
+</li>
+<li>
+<p>(5)是否是空字符串</p>
+<ul>
+<li>
+<p>方式一</p>
+<ul>
+<li>&ldquo;&quot;.equals(字符串)</li>
+</ul>
+</li>
+<li>
+<p>方式二</p>
+<ul>
+<li>isEmpty()</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>2、和字节相关</p>
+<ul>
+<li>
+<p>编码：把字符串转成字节数组</p>
+<ul>
+<li>
+<p>byte[] getBytes()</p>
+<ul>
+<li>平台默认编码方式进行编码</li>
+</ul>
+</li>
+<li>
+<p>byte[] getBytes(字符编码方式)</p>
+<ul>
+<li>按照指定的编码方式</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>解码：把字节数组转成字符串</p>
+<ul>
+<li>new String(byte[])</li>
+<li>new String(byte[],int offset, int length)</li>
+<li>new String(byte[], 字符解码方式)</li>
+<li>&hellip;.</li>
+</ul>
+</li>
+<li>
+<p>乱码</p>
+<ul>
+<li>(1)编码方式与解码方式不一致</li>
+<li>(2)缺字节</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>3、和字符相关</p>
+<ul>
+<li>
+<p>把字符串转字符数组</p>
+<ul>
+<li>char[]  toCharArray()</li>
+</ul>
+</li>
+<li>
+<p>把字符数组转字符串</p>
+<ul>
+<li>new String(char[])</li>
+<li>new String(char[],int offset, int count	)</li>
+<li>&hellip;.</li>
+</ul>
+</li>
+<li>
+<p>取指定位置的字符</p>
+<ul>
+<li>char charAt(index)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>4、是否以xx开头和结尾</p>
+<ul>
+<li>boolean startsWith(xx)</li>
+<li>boolean endsWith(xx)</li>
+</ul>
+</li>
+<li>
+<p>5、字符串截取</p>
+<ul>
+<li>
+<p>String subString(int start)</p>
+<ul>
+<li>从[start,最后]</li>
+</ul>
+</li>
+<li>
+<p>String subString(int start, int end)</p>
+<ul>
+<li>从[start,end)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>6、拆分</p>
+<ul>
+<li>String[]  split(支持正则)</li>
+</ul>
+</li>
+<li>
+<p>7、查找</p>
+<ul>
+<li>
+<p>是否包含</p>
+<ul>
+<li>boolean contains(子串)</li>
+</ul>
+</li>
+<li>
+<p>查找索引位置</p>
+<ul>
+<li>
+<p>int indexOf(xxx)</p>
+<ul>
+<li>如果存在返回索引</li>
+<li>如果不存在返回-1</li>
+</ul>
+</li>
+<li>
+<p>int lastIndexOf(xx)</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>8、替换</p>
+<ul>
+<li>
+<p>String  replace(目标子串， 新子串)</p>
+</li>
+<li>
+<p>String  replaceAll(目标子串， 新子串)</p>
+<ul>
+<li>支持正则</li>
+</ul>
+</li>
+<li>
+<p>String  replaceFirst(目标子串， 新子串)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-javalangstringbuffer和javalangstringbuilder">4 java.lang.StringBuffer和java.lang.StringBuilder</h2>
+<h3 id="41-stringbuffer是jdk10就有是线程安全的">4.1 StringBuffer是JDK1.0就有，是线程安全的</h3>
+<h3 id="42-stringbuilder是jdk15引入是线程不安全">4.2 StringBuilder是JDK1.5引入，是线程不安全</h3>
+<h3 id="43-和string的区别">4.3 和String的区别</h3>
+<ul>
+<li>
+<p>(1)String对象是常量对象，是不能修改的，StringBuffer和StringBuilder是字符串缓冲区，可变字符序列，可以修改的</p>
+<ul>
+<li>String一旦涉及修改就产生新的String对象</li>
+<li>StringBuilder和StringBuffer不会产生新的StringBuilder和StringBufffer对象</li>
+</ul>
+</li>
+<li>
+<p>(2)赋值的方式</p>
+<ul>
+<li>只有String支持，String str  = &ldquo;xxx&rdquo;;</li>
+</ul>
+</li>
+<li>
+<p>(3)拼接</p>
+<ul>
+<li>
+<p>String支持+</p>
+<ul>
+<li>每一次拼接产生新对象，浪费空间和时间</li>
+</ul>
+</li>
+<li>
+<p>append</p>
+<ul>
+<li>不会产生新对象</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="44-常用的方法">4.4 常用的方法</h3>
+<ul>
+<li>
+<p>(1)拼接</p>
+<ul>
+<li>
+<p>append(xx)</p>
+</li>
+<li>
+<p>支持连写</p>
+<ul>
+<li>sBuilder.append(xx).append(yyy).append(zzz)&hellip;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(2)插入</p>
+<ul>
+<li>insert(index，xx)</li>
+</ul>
+</li>
+<li>
+<p>(3)删除</p>
+<ul>
+<li>delete(start, end)</li>
+</ul>
+</li>
+<li>
+<p>(4)替换</p>
+<ul>
+<li>setCharAt(index, char)</li>
+</ul>
+</li>
+<li>
+<p>(5)反转</p>
+<ul>
+<li>reverse()</li>
+</ul>
+</li>
+<li>
+<p>&hellip;.</p>
+</li>
+</ul>
+<h2 id="5-jdk18之前日期时间">5 JDK1.8之前日期时间</h2>
+<h3 id="51-javautildate">5.1 java.util.Date</h3>
+<ul>
+<li>
+<p>(1)两个构造器</p>
+<ul>
+<li>
+<p>new Date()</p>
+<ul>
+<li>获取当前系统日期时间</li>
+</ul>
+</li>
+<li>
+<p>new Date(long 毫秒)</p>
+<ul>
+<li>根据毫秒数获取日期时间对象</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(2)把某个日期时间对象转成毫秒数</p>
+<ul>
+<li>long  getTime()</li>
+</ul>
+</li>
+</ul>
+<h3 id="52-javalangsystem">5.2 java.lang.System</h3>
+<ul>
+<li>long System.currentTimeMillis()</li>
+</ul>
+<h3 id="53-javautilcalendar">5.3 java.util.Calendar</h3>
+<ul>
+<li>
+<p>(1)获取实例对象</p>
+<ul>
+<li>
+<p>Calendar.getInstance()</p>
+<ul>
+<li>获取平台默认</li>
+</ul>
+</li>
+<li>
+<p>Calendar.getInstance(时区，语言环境)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>(2)get(常量字段)</p>
+<ul>
+<li>YEAR</li>
+<li>MONTH</li>
+<li>&hellip;.</li>
+</ul>
+</li>
+</ul>
+<h3 id="54-javatextdateformat及其javatextsimpledateformat">5.4 java.text.DateFormat及其java.text.SimpleDateFormat</h3>
+<ul>
+<li>
+<p>(1)构造器</p>
+<ul>
+<li>SimpleDateFormat sf = new SimpleDateFormat(&ldquo;模式&rdquo;);</li>
+</ul>
+</li>
+<li>
+<p>(2)把日期转成字符串</p>
+<ul>
+<li>public final String format(Date date)</li>
+</ul>
+</li>
+<li>
+<p>(3)把字符串转成日期</p>
+<ul>
+<li>public Date parse(String source)</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-jdk18日期时间">6 JDK1.8日期时间</h2>
+<h3 id="61-相关的包">6.1 相关的包</h3>
+<h3 id="62-本地日期时间">6.2 本地日期时间</h3>
+<ul>
+<li>java.time.LocalDate</li>
+<li>java.time.LocalTme</li>
+<li>java.time.LocalDateTime</li>
+<li>对应旧版本java.util.Calendar</li>
+<li>方法列表</li>
+</ul>
+<h3 id="63-日期时间格式化">6.3 日期时间格式化</h3>
+<ul>
+<li>
+<p>java.time.format.DateTimeFormatter</p>
+<ul>
+<li>
+<p>format</p>
+<ul>
+<li>把日期时间对象转字符串</li>
+</ul>
+</li>
+<li>
+<p>parse</p>
+<ul>
+<li>把字符串转日期时间对象</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>三种形式获取DateTimeFormatter对象</p>
+<ul>
+<li>
+<p>标准格式的常量对象</p>
+<ul>
+<li>LocalDate date = LocalDate.now();
+System.out.println(date.format(DateTimeFormatter.ISO_DATE));</li>
+<li>DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE;
+String format = formatter.format(LocalDate.now());</li>
+</ul>
+</li>
+<li>
+<p>Style</p>
+<ul>
+<li>
+<p>DateTimeFormatter dt = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
+String string = dt.format(LocalDate.now());</p>
+<ul>
+<li>
+<p>FormatStyle.FULL</p>
+<ul>
+<li>日期</li>
+</ul>
+</li>
+<li>
+<p>FormatStyle.LONG</p>
+<ul>
+<li>日期时间</li>
+<li>日期</li>
+<li>时间</li>
+</ul>
+</li>
+<li>
+<p>FormatStyle.MEDIUM</p>
+<ul>
+<li>日期</li>
+<li>日期时间</li>
+<li>时间</li>
+</ul>
+</li>
+<li>
+<p>FormatStyle.SHORT</p>
+<ul>
+<li>日期</li>
+<li>日期时间</li>
+<li>时间</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>自定义格式</p>
+<ul>
+<li>DateTimeFormatter op = DateTimeFormatter.ofPattern(&ldquo;yyyy-MM-dd HH:mm:ss&rdquo;);
+System.out.println(op.format(LocalDateTime.now()));</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="64-日期的间隔">6.4 日期的间隔</h3>
+<ul>
+<li>Period</li>
+</ul>
+<h3 id="65-时间的间隔">6.5 时间的间隔</h3>
+<ul>
+<li>Duration</li>
+</ul>
+<h2 id="7-javalangmath">7 java.lang.Math</h2>
+<h2 id="8-排序">8 排序</h2>
+<h3 id="81-javalangcomparable">8.1 java.lang.Comparable</h3>
+<h3 id="82-javalangcomparator">8.2 java.lang.Comparator</h3>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/java/">JAVA</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-09-14</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/language/java/java%E5%9F%BA%E7%A1%80/" class="prev" rel="prev" title="Java基础"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/language/java/io%E6%B5%81/" class="next" rel="next" title="IO流">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

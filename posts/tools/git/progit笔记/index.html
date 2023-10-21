@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>ProGit笔记 - xcx</title><meta name="description" content=""><meta property="og:title" content="ProGit笔记" />
+<meta property="og:description" content="ProGit 笔记 1 版本控制 1.1 什么是版本控制 版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。 除了项目源代码，你可以对任何类" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/tools/git/progit%E7%AC%94%E8%AE%B0/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-17T17:59:13+00:00" />
+<meta property="article:modified_time" content="2022-06-17T17:59:13+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ProGit笔记"/>
+<meta name="twitter:description" content="ProGit 笔记 1 版本控制 1.1 什么是版本控制 版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。 除了项目源代码，你可以对任何类"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/tools/git/progit%E7%AC%94%E8%AE%B0/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/pro/high-performance/message-queue/rabbitmq-intro/" /><link rel="next" href="https://xiechaoxin.github.io/posts/pro/distributed-system/%E7%90%86%E8%AE%BA%E7%AE%97%E6%B3%95/paxosraft%E7%AE%97%E6%B3%95/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "ProGit笔记",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/tools\/git\/progit%E7%AC%94%E8%AE%B0\/"
+        },"genre": "posts","keywords": "common, git","wordcount":  4216 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/tools\/git\/progit%E7%AC%94%E8%AE%B0\/","datePublished": "2022-06-17T17:59:13+00:00","dateModified": "2022-06-17T17:59:13+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">ProGit笔记</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/common/"><i class="far fa-folder fa-fw"></i>common</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-17">2022-06-17</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4216 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-版本控制">1 版本控制</a>
+      <ul>
+        <li><a href="#11-什么是版本控制">1.1 什么是版本控制</a></li>
+        <li><a href="#12-为什么要版本控制">1.2 为什么要版本控制</a></li>
+        <li><a href="#13-本地版本控制系统">1.3 本地版本控制系统</a></li>
+        <li><a href="#14-集中化的版本控制系统">1.4 集中化的版本控制系统</a></li>
+        <li><a href="#15-分布式版本控制系统">1.5 分布式版本控制系统</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-认识-git">2 认识 Git</a>
+      <ul>
+        <li><a href="#21-git-简史">2.1 Git 简史</a></li>
+        <li><a href="#22-git-与其他版本管理系统的主要区别">2.2 Git 与其他版本管理系统的主要区别</a></li>
+        <li><a href="#23-git-的三种状态">2.3 Git 的三种状态</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-git-使用快速入门">3 Git 使用快速入门</a>
+      <ul>
+        <li><a href="#31-git-配置">3.1 Git 配置</a></li>
+        <li><a href="#32-获取-git-仓库">3.2 获取 Git 仓库</a></li>
+        <li><a href="#33-记录每次更新到仓库">3.3 记录每次更新到仓库</a></li>
+        <li><a href="#34-一个好的-git-提交消息">3.4 一个好的 Git 提交消息</a></li>
+        <li><a href="#35-推送改动到远程仓库">3.5 推送改动到远程仓库</a></li>
+        <li><a href="#36-远程仓库的移除与重命名">3.6 远程仓库的移除与重命名</a></li>
+        <li><a href="#37-查看提交历史">3.7 查看提交历史</a></li>
+        <li><a href="#38-撤销操作">3.8 撤销操作</a></li>
+        <li><a href="#39-分支">3.9 分支</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-推荐">4 推荐</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="progit-笔记">ProGit 笔记</h1>
+<h2 id="1-版本控制">1 版本控制</h2>
+<h3 id="11-什么是版本控制">1.1 什么是版本控制</h3>
+<p>版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。 除了项目源代码，你可以对任何类型的文件进行版本控制。</p>
+<h3 id="12-为什么要版本控制">1.2 为什么要版本控制</h3>
+<p>有了它你就可以将某个文件回溯到之前的状态，甚至将整个项目都回退到过去某个时间点的状态，你可以比较文件的变化细节，查出最后是谁修改了哪个地方，从而找出导致怪异问题出现的原因，又是谁在何时报告了某个功能缺陷等等。</p>
+<h3 id="13-本地版本控制系统">1.3 本地版本控制系统</h3>
+<p>许多人习惯用复制整个项目目录的方式来保存不同的版本，或许还会改名加上备份时间以示区别。 这么做唯一的好处就是简单，但是特别容易犯错。 有时候会混淆所在的工作目录，一不小心会写错文件或者覆盖意想外的文件。</p>
+<p>为了解决这个问题，人们很久以前就开发了许多种本地版本控制系统，大多都是采用某种简单的数据库来记录文件的历次更新差异。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./%e6%9c%ac%e5%9c%b0%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6%e7%b3%bb%e7%bb%9f.png"
+        data-srcset="./%e6%9c%ac%e5%9c%b0%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6%e7%b3%bb%e7%bb%9f.png, ./%e6%9c%ac%e5%9c%b0%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6%e7%b3%bb%e7%bb%9f.png 1.5x, ./%e6%9c%ac%e5%9c%b0%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6%e7%b3%bb%e7%bb%9f.png 2x"
+        data-sizes="auto"
+        alt="./本地版本控制系统.png"
+        title="本地版本控制系统" /></p>
+<h3 id="14-集中化的版本控制系统">1.4 集中化的版本控制系统</h3>
+<p>接下来人们又遇到一个问题，如何让在不同系统上的开发者协同工作？ 于是，集中化的版本控制系统(Centralized Version Control Systems，简称 CVCS)应运而生。</p>
+<p>集中化的版本控制系统都有一个单一的集中管理的服务器，保存所有文件的修订版本，而协同工作的人们都通过客户端连到这台服务器，取出最新的文件或者提交更新。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./%e9%9b%86%e4%b8%ad%e5%8c%96%e7%9a%84%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6%e7%b3%bb%e7%bb%9f.png"
+        data-srcset="./%e9%9b%86%e4%b8%ad%e5%8c%96%e7%9a%84%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6%e7%b3%bb%e7%bb%9f.png, ./%e9%9b%86%e4%b8%ad%e5%8c%96%e7%9a%84%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6%e7%b3%bb%e7%bb%9f.png 1.5x, ./%e9%9b%86%e4%b8%ad%e5%8c%96%e7%9a%84%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6%e7%b3%bb%e7%bb%9f.png 2x"
+        data-sizes="auto"
+        alt="./集中化的版本控制系统.png"
+        title="集中化的版本控制系统" /></p>
+<p>这么做虽然解决了本地版本控制系统无法让在不同系统上的开发者协同工作的诟病，但也还是存在下面的问题：</p>
+<ul>
+<li><strong>单点故障：</strong> 中央服务器宕机，则其他人无法使用；如果中心数据库磁盘损坏又没有进行备份，你将丢失所有数据。本地版本控制系统也存在类似问题，只要整个项目的历史记录被保存在单一位置，就有丢失所有历史更新记录的风险。</li>
+<li><strong>必须联网才能工作：</strong> 受网络状况、带宽影响。</li>
+</ul>
+<h3 id="15-分布式版本控制系统">1.5 分布式版本控制系统</h3>
+<p>于是分布式版本控制系统(Distributed Version Control System，简称 DVCS)面世了。 Git 就是一个典型的分布式版本控制系统。</p>
+<p>这类系统，客户端并不只提取最新版本的文件快照，而是把代码仓库完整地镜像下来。 这么一来，任何一处协同工作用的服务器发生故障，事后都可以用任何一个镜像出来的本地仓库恢复。 因为每一次的克隆操作，实际上都是一次对代码仓库的完整备份。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./%e5%88%86%e5%b8%83%e5%bc%8f%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6%e7%b3%bb%e7%bb%9f.png"
+        data-srcset="./%e5%88%86%e5%b8%83%e5%bc%8f%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6%e7%b3%bb%e7%bb%9f.png, ./%e5%88%86%e5%b8%83%e5%bc%8f%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6%e7%b3%bb%e7%bb%9f.png 1.5x, ./%e5%88%86%e5%b8%83%e5%bc%8f%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6%e7%b3%bb%e7%bb%9f.png 2x"
+        data-sizes="auto"
+        alt="./分布式版本控制系统.png"
+        title="分布式版本控制系统" /></p>
+<p>分布式版本控制系统可以不用联网就可以工作，因为每个人的电脑上都是完整的版本库，当你修改了某个文件后，你只需要将自己的修改推送给别人就可以了。但是，在实际使用分布式版本控制系统的时候，很少会直接进行推送修改，而是使用一台充当“中央服务器”的东西。这个服务器的作用仅仅是用来方便“交换”大家的修改，没有它大家也一样干活，只是交换修改不方便而已。</p>
+<p>分布式版本控制系统的优势不单是不必联网这么简单，后面我们还会看到 Git 极其强大的分支管理等功能。</p>
+<h2 id="2-认识-git">2 认识 Git</h2>
+<h3 id="21-git-简史">2.1 Git 简史</h3>
+<p>Linux 内核项目组当时使用分布式版本控制系统 BitKeeper 来管理和维护代码。但是，后来开发 BitKeeper 的商业公司同 Linux 内核开源社区的合作关系结束，他们收回了 Linux 内核社区免费使用 BitKeeper 的权力。 Linux 开源社区(特别是 Linux 的缔造者 Linus Torvalds)基于使用 BitKeeper 时的经验教训，开发出自己的版本系统，而且对新的版本控制系统做了很多改进。</p>
+<h3 id="22-git-与其他版本管理系统的主要区别">2.2 Git 与其他版本管理系统的主要区别</h3>
+<p>Git 在保存和对待各种信息的时候与其它版本控制系统有很大差异，尽管操作起来的命令形式非常相近，理解这些差异将有助于防止你使用中的困惑。</p>
+<p>下面我们主要说一个关于 Git 与其他版本管理系统的主要差别：<strong>对待数据的方式</strong>。</p>
+<p><strong>Git 采用的是直接记录快照的方式，而非差异比较。我后面会详细介绍这两种方式的差别。</strong></p>
+<p>大部分版本控制系统(CVS、Subversion、Perforce、Bazaar 等等)都是以文件变更列表的方式存储信息，这类系统<strong>将它们保存的信息看作是一组基本文件和每个文件随时间逐步累积的差异。</strong></p>
+<p>具体原理如下图所示，理解起来其实很简单，每当我们提交更新一个文件之后，系统都会记录这个文件做了哪些更新，以增量符号 Δ(Delta)表示。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./2019-3deltas.png"
+        data-srcset="./2019-3deltas.png, ./2019-3deltas.png 1.5x, ./2019-3deltas.png 2x"
+        data-sizes="auto"
+        alt="./2019-3deltas.png"
+        title="deltas" /></p>
+<p><strong>我们怎样才能得到一个文件的最终版本呢？</strong></p>
+<p>很简单，高中数学的基本知识，我们只需要将这些原文件和这些增加进行相加就行了。</p>
+<p><strong>这种方式有什么问题呢？</strong></p>
+<p>比如我们的增量特别特别多的话，如果我们要得到最终的文件是不是会耗费时间和性能。</p>
+<p>Git 不按照以上方式对待或保存数据。 反之，Git 更像是把数据看作是对小型文件系统的一组快照。 每次你提交更新，或在 Git 中保存项目状态时，它主要对当时的全部文件制作一个快照并保存这个快照的索引。 为了高效，如果文件没有修改，Git 不再重新存储该文件，而是只保留一个链接指向之前存储的文件。 Git 对待数据更像是一个 <strong>快照流</strong>。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./2019-3snapshots.png"
+        data-srcset="./2019-3snapshots.png, ./2019-3snapshots.png 1.5x, ./2019-3snapshots.png 2x"
+        data-sizes="auto"
+        alt="./2019-3snapshots.png"
+        title="3snapshots" /></p>
+<h3 id="23-git-的三种状态">2.3 Git 的三种状态</h3>
+<p>Git 有三种状态，你的文件可能处于其中之一：</p>
+<ol>
+<li><strong>已提交(committed)</strong>：数据已经安全的保存在本地数据库中。</li>
+<li><strong>已修改(modified)</strong>：已修改表示修改了文件，但还没保存到数据库中。</li>
+<li><strong>已暂存(staged)</strong>：表示对一个已修改文件的当前版本做了标记，使之包含在下次提交的快照中。</li>
+</ol>
+<p>由此引入 Git 项目的三个工作区域的概念：<strong>Git 仓库(.git directory)</strong>、<strong>工作目录(Working Directory)</strong> 以及 <strong>暂存区域(Staging Area)</strong> 。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./2019-3areas.png"
+        data-srcset="./2019-3areas.png, ./2019-3areas.png 1.5x, ./2019-3areas.png 2x"
+        data-sizes="auto"
+        alt="./2019-3areas.png"
+        title="3areas" />
+<strong>基本的 Git 工作流程如下：</strong></p>
+<ol>
+<li>在工作目录中修改文件。</li>
+<li>暂存文件，将文件的快照放入暂存区域。</li>
+<li>提交更新，找到暂存区域的文件，将快照永久性存储到 Git 仓库目录。</li>
+</ol>
+<h2 id="3-git-使用快速入门">3 Git 使用快速入门</h2>
+<h3 id="31-git-配置">3.1 Git 配置</h3>
+<h4 id="311-初次运行-git-前的配置">3.1.1 初次运行 Git 前的配置</h4>
+<p>Git 自带一个 git config 的工具来帮助设置控制 Git 外观和行为的配置变量。 这些变量存储在三个不同的位 置：</p>
+<ol>
+<li>
+<p>/etc/gitconfig 文件: 包含系统上每一个用户及他们仓库的通用配置。 如果在执行 git config 时带上 &ndash;system 选项，那么它就会读写该文件中的配置变量。 (由于它是系统配置文件，因此你需要管理员或
+超级用户权限来修改它。)</p>
+</li>
+<li>
+<p>~/.gitconfig 或 ~/.config/git/config 文件：只针对当前用户。 你可以传递 &ndash;global 选项让 Git 读写此文件，这会对你系统上 所有 的仓库生效。</p>
+</li>
+<li>
+<p>当前使用仓库的 Git 目录中的 config 文件(即 .git/config)：针对该仓库。 你可以传递 &ndash;local 选 项让 Git 强制读写此文件，虽然默认情况下用的就是它。。 (当然，你需要进入某个 Git
+仓库中才能让该选 项生效。)</p>
+</li>
+</ol>
+<p>每一个级别会覆盖上一级别的配置，所以 .git/config 的配置变量会覆盖 /etc/gitconfig 中的配置变量。</p>
+<h4 id="312-用户信息">3.1.2 用户信息</h4>
+<p>安装完 Git 之后，要做的第一件事就是设置你的用户名和邮件地址。 这一点很重要，因为每一个 Git 提交都会使 用这些信息，它们会写入到你的每一次提交中，不可更改：</p>
+<pre tabindex="0"><code>$ git config --global user.name &#34;John Doe&#34;
+$ git config --global user.email johndoe@example.com
+</code></pre><p>再次强调，如果使用了 &ndash;global 选项，那么该命令只需要运行一次，因为之后无论你在该系统上做任何事 情， Git 都会使用那些信息。 当你想针对特定项目使用不同的用户名称与邮件地址时，可以在那个项目目录下运 行没有 &ndash;global
+选项的命令来配置。</p>
+<p>很多 GUI 工具都会在第一次运行时帮助你配置这些信息。比如 sourcetree，推荐这个 Git GUI 工具</p>
+<h3 id="32-获取-git-仓库">3.2 获取 Git 仓库</h3>
+<p>有两种取得 Git 项目仓库的方法。</p>
+<ol>
+<li>在现有目录中初始化仓库: 进入项目目录运行 <code>git init</code> 命令,该命令将创建一个名为 <code>.git</code> 的子目录。</li>
+<li>从一个服务器克隆一个现有的 Git 仓库: <code>git clone [url]</code> 自定义本地仓库的名字: <code>git clone [url] directoryname</code></li>
+</ol>
+<h3 id="33-记录每次更新到仓库">3.3 记录每次更新到仓库</h3>
+<ol>
+<li><strong>检测当前文件状态</strong> : <code>git status</code></li>
+<li><strong>提出更改(把它们添加到暂存区</strong>)：<code>git add filename </code> (针对特定文件)、<code>git add *</code>(所有文件)、<code>git add *.txt</code>(支持通配符，所有 .txt 文件)</li>
+<li><strong>忽略文件</strong>：<code>.gitignore</code> 文件</li>
+<li><strong>提交更新:</strong> <code>git commit -m &quot;代码提交信息&quot;</code> (每次准备提交前，先用 <code>git status</code> 看下，是不是都已暂存起来了， 然后再运行提交命令 <code>git commit</code>)</li>
+<li><strong>跳过使用暂存区域更新的方式</strong> : <code>git commit -a -m &quot;代码提交信息&quot;</code>。 <code>git commit</code> 加上 <code>-a</code> 选项，Git 就会自动把所有已经跟踪过的文件暂存起来一并提交，从而跳过 <code>git add</code> 步骤。</li>
+<li><strong>移除文件</strong> ：<code>git rm filename</code> (从暂存区域移除，然后提交。)</li>
+<li><strong>对文件重命名</strong> ：<code>git mv README.md README</code>(这个命令相当于<code>mv README.md README</code>、<code>git rm README.md</code>、<code>git add README</code> 这三条命令的集合)</li>
+</ol>
+<h3 id="34-一个好的-git-提交消息">3.4 一个好的 Git 提交消息</h3>
+<p>一个好的 Git 提交消息如下：</p>
+<ul>
+<li>标题行：用这一行来描述和解释你的这次提交</li>
+<li>主体部分可以是很少的几行，来加入更多的细节来解释提交，最好是能给出一些相关的背景或者解释这个提交能修复和解决什么问题。</li>
+<li>主体部分当然也可以有几段，但是一定要注意换行和句子不要太长。因为这样在使用 &ldquo;git log&rdquo; 的时候会有缩进比较好看。</li>
+</ul>
+<p>提交的标题行描述应该尽量的清晰和尽量的一句话概括。这样就方便相关的 Git 日志查看工具显示和其他人的阅读。</p>
+<h3 id="35-推送改动到远程仓库">3.5 推送改动到远程仓库</h3>
+<ul>
+<li>
+<p>如果你还没有克隆现有仓库，并欲将你的仓库连接到某个远程服务器，你可以使用如下命令添加：<code>git remote add origin &lt;server&gt;</code> ,比如我们要让本地的一个仓库和 Github 上创建的一个仓库关联可以这样<code>git remote add origin https://github.com/Snailclimb/test.git</code></p>
+</li>
+<li>
+<p>将这些改动提交到远端仓库：<code>git push origin master</code> (可以把 <em>master</em> 换成你想要推送的任何分支)</p>
+<p>如此你就能够将你的改动推送到所添加的服务器上去了。</p>
+</li>
+</ul>
+<h3 id="36-远程仓库的移除与重命名">3.6 远程仓库的移除与重命名</h3>
+<ul>
+<li>将 test 重命名为 test1：<code>git remote rename test test1</code></li>
+<li>移除远程仓库 test1:<code>git remote rm test1</code></li>
+</ul>
+<h3 id="37-查看提交历史">3.7 查看提交历史</h3>
+<p>在提交了若干更新，又或者克隆了某个项目之后，你也许想回顾下提交历史。 完成这个任务最简单而又有效的工具是 <code>git log</code> 命令。<code>git log</code> 会按提交时间列出所有的更新，最近的更新排在最上面。</p>
+<p><strong>可以添加一些参数来查看自己希望看到的内容：</strong></p>
+<p>只看某个人的提交记录：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git log --author<span class="o">=</span>bob
+</span></span></code></pre></div><h3 id="38-撤销操作">3.8 撤销操作</h3>
+<p>有时候我们提交完了才发现漏掉了几个文件没有添加，或者提交信息写错了。 此时，可以运行带有 <code>--amend</code> 选项的提交命令尝试重新提交：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git commit --amend
+</span></span></code></pre></div><p>取消暂存的文件</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git reset filename
+</span></span></code></pre></div><p>撤消对文件的修改:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git checkout -- filename
+</span></span></code></pre></div><p>假如你想丢弃你在本地的所有改动与提交，可以到服务器上获取最新的版本历史，并将你本地主分支指向它：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git fetch origin
+</span></span><span class="line"><span class="cl">git reset --hard origin/master
+</span></span></code></pre></div><h3 id="39-分支">3.9 分支</h3>
+<p>分支是用来将特性开发绝缘开来的。在你创建仓库的时候，<em>master</em> 是“默认”的分支。在其他分支上进行开发，完成后再将它们合并到主分支上。</p>
+<p>我们通常在开发新功能、修复一个紧急 bug 等等时候会选择创建分支。单分支开发好还是多分支开发好，还是要看具体场景来说。</p>
+<p>创建一个名字叫做 test 的分支</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git branch <span class="nb">test</span>
+</span></span></code></pre></div><p>切换当前分支到 test(当你切换分支的时候，Git 会重置你的工作目录，使其看起来像回到了你在那个分支上最后一次提交的样子。 Git 会自动添加、删除、修改文件以确保此时你的工作目录和这个分支最后一次提交时的样子一模一样)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git checkout <span class="nb">test</span>
+</span></span></code></pre></div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./2019-3%e5%88%87%e6%8d%a2%e5%88%86%e6%94%af.png"
+        data-srcset="./2019-3%e5%88%87%e6%8d%a2%e5%88%86%e6%94%af.png, ./2019-3%e5%88%87%e6%8d%a2%e5%88%86%e6%94%af.png 1.5x, ./2019-3%e5%88%87%e6%8d%a2%e5%88%86%e6%94%af.png 2x"
+        data-sizes="auto"
+        alt="./2019-3切换分支.png"
+        title="切换分支" /></p>
+<p>你也可以直接这样创建分支并切换过去(上面两条命令的合写)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git checkout -b feature_x
+</span></span></code></pre></div><p>切换到主分支</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git checkout master
+</span></span></code></pre></div><p>合并分支(可能会有冲突)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"> git merge <span class="nb">test</span>
+</span></span></code></pre></div><p>把新建的分支删掉</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git branch -d feature_x
+</span></span></code></pre></div><p>将分支推送到远端仓库(推送成功后其他人可见)：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git push origin
+</span></span></code></pre></div><h2 id="4-推荐">4 推荐</h2>
+<p><strong>在线演示学习工具：</strong>
+<a href="https://oschina.gitee.io/learn-git-branching/" target="_blank" rel="noopener noreffer">Learn Git</a>
+该网站可以方便的演示基本的 git 操作，讲解每一个基本命令的作用和结果。</p>
+<p><strong>推荐阅读：</strong></p>
+<ul>
+<li><a href="https://rogerdudler.github.io/git-guide/index.zh.html" target="_blank" rel="noopener noreffer">Git - 简明指南</a></li>
+<li><a href="https://marklodato.github.io/visual-git-guide/index-zh-cn.html" target="_blank" rel="noopener noreffer">图解 Git</a></li>
+<li><a href="https://backlog.com/git-tutorial/cn/intro/intro1_1.html" target="_blank" rel="noopener noreffer">猴子都能懂得 Git 入门</a></li>
+<li><a href="https://git-scm.com/book/en/v2" target="_blank" rel="noopener noreffer">ProGit e-book</a></li>
+<li><a href="https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent" target="_blank" rel="noopener noreffer">Generating a new SSH key and adding it to the ssh-agent</a></li>
+<li><a href="https://github.com/torvalds/subsurface-for-dirk/blob/a48494d2fbed58c751e9b7e8fbff88582f9b2d02/README#L88" target="_blank" rel="noopener noreffer">一个好的 Git 提交消息，出自 Linus 之手</a></li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/common/">common</a>
+                </span><span><a href="/tags/git/">git</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-06-17</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/pro/high-performance/message-queue/rabbitmq-intro/" class="prev" rel="prev" title="rabbitmq-intro"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/pro/distributed-system/%E7%90%86%E8%AE%BA%E7%AE%97%E6%B3%95/paxosraft%E7%AE%97%E6%B3%95/" class="next" rel="next" title="paxos&amp;raft算法">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>scope_namespace - xcx</title><meta name="description" content=""><meta property="og:title" content="scope_namespace" />
+<meta property="og:description" content="Python中的作用域和命名空间是两个密切相关的概念。我们首先从命名空间开始，然后讨论作用域。 1. 命名空间 (Namespace): 命名空间是一个从名字到对象的映射。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/language/python/scope_namespace/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-09-23T01:26:26+00:00" />
+<meta property="article:modified_time" content="2023-09-23T01:26:26+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="scope_namespace"/>
+<meta name="twitter:description" content="Python中的作用域和命名空间是两个密切相关的概念。我们首先从命名空间开始，然后讨论作用域。 1. 命名空间 (Namespace): 命名空间是一个从名字到对象的映射。"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/language/python/scope_namespace/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/chaos/%E5%BC%82%E5%B8%B8%E4%BD%BF%E7%94%A8%E5%BB%BA%E8%AE%AE/" /><link rel="next" href="https://xiechaoxin.github.io/posts/chaos/unicode/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "scope_namespace",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/language\/python\/scope_namespace\/"
+        },"genre": "posts","keywords": "tags","wordcount":  594 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/language\/python\/scope_namespace\/","datePublished": "2023-09-23T01:26:26+00:00","dateModified": "2023-09-23T01:26:26+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">scope_namespace</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-09-23">2023-09-23</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 594 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-命名空间-namespace">1. 命名空间 (Namespace):</a></li>
+        <li><a href="#2-作用域-scope">2. 作用域 (Scope):</a></li>
+        <li><a href="#legb规则">LEGB规则:</a></li>
+        <li><a href="#示例">示例:</a></li>
+        <li><a href="#关键点">关键点:</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><p>Python中的作用域和命名空间是两个密切相关的概念。我们首先从命名空间开始，然后讨论作用域。</p>
+<h3 id="1-命名空间-namespace">1. 命名空间 (Namespace):</h3>
+<p>命名空间是一个从名字到对象的映射。大部分的命名空间都是在Python字典中实现的。常见的命名空间类型有以下几种：</p>
+<ul>
+<li><strong>局部命名空间</strong>：特定函数内部的命名空间。</li>
+<li><strong>全局命名空间</strong>：模块级别的命名空间。</li>
+<li><strong>内置命名空间</strong>：包含内置函数和异常名的命名空间。</li>
+</ul>
+<h3 id="2-作用域-scope">2. 作用域 (Scope):</h3>
+<p>作用域是一个Python程序文本区域，从这个区域可以直接访问命名空间内的名字。作用域的种类有：</p>
+<ul>
+<li><strong>局部作用域 (Local Scope)</strong>：在函数内部。</li>
+<li><strong>封闭作用域 (Enclosing Scope)</strong>：包围其他作用域的作用域。这是对于嵌套函数而言的。</li>
+<li><strong>全局作用域 (Global Scope)</strong>：在模块顶层。</li>
+<li><strong>内置作用域 (Built-in Scope)</strong>：包含所有内置名字的作用域。</li>
+</ul>
+<h3 id="legb规则">LEGB规则:</h3>
+<p>当在Python中引用一个名字时，Python会按照LEGB规则搜索这个名字：首先是局部作用域，然后是封闭作用域，接着是全局作用域，最后是内置作用域。</p>
+<h3 id="示例">示例:</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># 全局变量</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">outer_function</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># 封闭作用域变量</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">inner_function</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="n">z</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># 局部变量</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="n">inner_function</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">outer_function</span><span class="p">()</span>
+</span></span></code></pre></div><p>在上述代码中，<code>inner_function</code>可以访问所有三个变量：<code>x</code>、<code>y</code>和<code>z</code>，因为它遵循LEGB规则。</p>
+<h3 id="关键点">关键点:</h3>
+<ul>
+<li><code>global</code> 关键字可以用于在函数内部声明变量为全局变量。</li>
+<li><code>nonlocal</code> 关键字可以用于在嵌套函数中指示变量来自封闭作用域。</li>
+</ul>
+<p>这两个关键字都允许在更外层的作用域中修改变量。</p>
+<p>希望这可以帮助您理解Python的作用域和命名空间！</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/tags/">tags</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2023-09-23</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/chaos/%E5%BC%82%E5%B8%B8%E4%BD%BF%E7%94%A8%E5%BB%BA%E8%AE%AE/" class="prev" rel="prev" title="异常使用建议"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/chaos/unicode/" class="next" rel="next" title="Unicode">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

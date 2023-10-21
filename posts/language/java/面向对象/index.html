@@ -1,0 +1,1711 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>面向对象 - xcx</title><meta name="description" content=""><meta property="og:title" content="面向对象" />
+<meta property="og:description" content="面向对象 1 面向对象和面向过程的区别 1.1 都是编程思想 1.2 面向过程注重过程，步骤，怎么做 执行者 1.3 面向对象注重对象，谁来做 指挥者 2 面向对象学习 2.1 、类与" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/language/java/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-14T02:17:04+00:00" />
+<meta property="article:modified_time" content="2022-09-14T02:17:04+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="面向对象"/>
+<meta name="twitter:description" content="面向对象 1 面向对象和面向过程的区别 1.1 都是编程思想 1.2 面向过程注重过程，步骤，怎么做 执行者 1.3 面向对象注重对象，谁来做 指挥者 2 面向对象学习 2.1 、类与"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/language/java/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/language/java/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" /><link rel="next" href="https://xiechaoxin.github.io/posts/language/java/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5%E7%BB%93%E6%9E%84/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "面向对象",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/language\/java\/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1\/"
+        },"genre": "posts","keywords": "JAVA","wordcount":  6718 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/language\/java\/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1\/","datePublished": "2022-09-14T02:17:04+00:00","dateModified": "2022-09-14T02:17:04+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">面向对象</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/java/"><i class="far fa-folder fa-fw"></i>JAVA</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-09-14">2022-09-14</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6718 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 14 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-面向对象和面向过程的区别">1 面向对象和面向过程的区别</a>
+      <ul>
+        <li><a href="#11-都是编程思想">1.1 都是编程思想</a></li>
+        <li><a href="#12-面向过程注重过程步骤怎么做">1.2 面向过程注重过程，步骤，怎么做</a></li>
+        <li><a href="#13-面向对象注重对象谁来做">1.3 面向对象注重对象，谁来做</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-面向对象学习">2 面向对象学习</a>
+      <ul>
+        <li><a href="#21-类与对象">2.1 、类与对象</a></li>
+        <li><a href="#22-面向对象的三个基本特征和高级特性">2.2 、面向对象的三个基本特征和高级特性</a></li>
+        <li><a href="#23-相关的关键字和api">2.3 、相关的关键字和API</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-类与对象">3 、类与对象</a>
+      <ul>
+        <li><a href="#31-1类与对象的概念">3.1 (1)类与对象的概念</a></li>
+        <li><a href="#32-2类与对象的关系">3.2 (2)类与对象的关系</a></li>
+        <li><a href="#33-3类的设计成员">3.3 (3)类的设计，成员</a></li>
+        <li><a href="#34-4类的声明格式">3.4 (4)类的声明格式</a></li>
+        <li><a href="#35-5如何创建对象">3.5 (5)如何创建对象</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-面向对象的基本特征">4 、面向对象的基本特征</a>
+      <ul>
+        <li><a href="#41-封装">4.1 封装</a></li>
+        <li><a href="#42-继承">4.2 继承</a></li>
+        <li><a href="#43-多态">4.3 多态</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-关键字">5 、关键字</a>
+      <ul>
+        <li><a href="#51-class">5.1 class</a></li>
+        <li><a href="#52-new">5.2 new</a></li>
+        <li><a href="#53-this">5.3 this</a></li>
+        <li><a href="#54-super">5.4 super</a></li>
+        <li><a href="#55-权限修饰符">5.5 权限修饰符</a></li>
+        <li><a href="#56-static">5.6 static</a></li>
+        <li><a href="#57-final">5.7 final</a></li>
+        <li><a href="#58-native">5.8 native</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-包">6 、包</a>
+      <ul>
+        <li><a href="#61-包的作用">6.1 包的作用</a></li>
+        <li><a href="#62-如何声明包">6.2 如何声明包</a></li>
+        <li><a href="#63-如何使用其他包的类">6.3 如何使用其他包的类</a></li>
+      </ul>
+    </li>
+    <li><a href="#7-overload和override的区别">7 Overload和Override的区别</a>
+      <ul>
+        <li><a href="#71-overload方法的重载">7.1 Overload：方法的重载</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="面向对象">面向对象</h1>
+<h2 id="1-面向对象和面向过程的区别">1 面向对象和面向过程的区别</h2>
+<h3 id="11-都是编程思想">1.1 都是编程思想</h3>
+<h3 id="12-面向过程注重过程步骤怎么做">1.2 面向过程注重过程，步骤，怎么做</h3>
+<ul>
+<li>执行者</li>
+</ul>
+<h3 id="13-面向对象注重对象谁来做">1.3 面向对象注重对象，谁来做</h3>
+<ul>
+<li>指挥者</li>
+</ul>
+<h2 id="2-面向对象学习">2 面向对象学习</h2>
+<h3 id="21-类与对象">2.1 、类与对象</h3>
+<ul>
+<li>(1)类与对象的概念</li>
+<li>(2)类与对象的关系</li>
+<li>(3)如何设计类，类的成员</li>
+<li>(4)如何创建对象</li>
+</ul>
+<h3 id="22-面向对象的三个基本特征和高级特性">2.2 、面向对象的三个基本特征和高级特性</h3>
+<ul>
+<li>
+<p>基本特性</p>
+<ul>
+<li>封装</li>
+<li>继承</li>
+<li>多态</li>
+</ul>
+</li>
+<li>
+<p>高级特性</p>
+<ul>
+<li>枚举</li>
+<li>接口</li>
+<li>抽象</li>
+<li>泛型</li>
+<li>注解</li>
+<li>可变参数</li>
+<li>自动装箱与拆箱</li>
+<li>foreach</li>
+<li>Lambda表达式</li>
+<li>&hellip;..</li>
+</ul>
+</li>
+</ul>
+<h3 id="23-相关的关键字和api">2.3 、相关的关键字和API</h3>
+<ul>
+<li>
+<p>关键字</p>
+<ul>
+<li>
+<p>class</p>
+</li>
+<li>
+<p>new</p>
+</li>
+<li>
+<p>this</p>
+</li>
+<li>
+<p>权限修饰符</p>
+<ul>
+<li>public</li>
+<li>protected</li>
+<li>缺省</li>
+<li>private</li>
+</ul>
+</li>
+<li>
+<p>super</p>
+</li>
+<li>
+<p>&hellip;</p>
+</li>
+</ul>
+</li>
+<li>
+<p>API</p>
+<ul>
+<li>集合</li>
+<li>异常</li>
+<li>IO</li>
+<li>网络编程</li>
+<li>线程</li>
+<li>&hellip;.</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-类与对象">3 、类与对象</h2>
+<h3 id="31-1类与对象的概念">3.1 (1)类与对象的概念</h3>
+<ul>
+<li>类：对一类具有相同特征的事物的抽象描述</li>
+<li>对象：类的实例，是具体的个体</li>
+</ul>
+<h3 id="32-2类与对象的关系">3.2 (2)类与对象的关系</h3>
+<ul>
+<li>类是对象的设计图，创建的模板</li>
+<li>对象是类的实例，是一个具体的个体</li>
+</ul>
+<h3 id="33-3类的设计成员">3.3 (3)类的设计，成员</h3>
+<ul>
+<li>
+<p>(1)属性</p>
+<ul>
+<li>
+<p>属性的特点</p>
+<ul>
+<li>
+<p>(1)声明的位置</p>
+<ul>
+<li>在类中方法外</li>
+</ul>
+</li>
+<li>
+<p>(2)保存的位置</p>
+<ul>
+<li>
+<p>static</p>
+<ul>
+<li>在方法区</li>
+</ul>
+</li>
+<li>
+<p>非static</p>
+<ul>
+<li>在堆中</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(3)默认值</p>
+<ul>
+<li>byte,short,int,long是0，float,double是0.0，boolean是false，char是\u0000，引用数据类型都是null</li>
+</ul>
+</li>
+<li>
+<p>(4)作用域</p>
+<ul>
+<li>在整个类中</li>
+</ul>
+</li>
+<li>
+<p>(5)生命周期</p>
+<ul>
+<li>随着对象的创建而创建，到垃圾回收为止</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>属性声明格式</p>
+<ul>
+<li>
+<p>[修饰符]  数据类型  属性名 【=显式值】;</p>
+<ul>
+<li>
+<p>修饰符</p>
+<ul>
+<li>
+<p>private</p>
+<ul>
+<li>私有化</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(2)构造器</p>
+<ul>
+<li>
+<p>构造器的作用</p>
+<ul>
+<li>(1)和new一起创建对象</li>
+<li>(2)为属性赋值</li>
+</ul>
+</li>
+<li>
+<p>如何声明</p>
+<ul>
+<li>
+<p>无参</p>
+<ul>
+<li>[修饰符] 类名(){
+}</li>
+</ul>
+</li>
+<li>
+<p>有参</p>
+<ul>
+<li>[修饰符] 类名(形参列表){
+}</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>特点</p>
+<ul>
+<li>构造器的特点：
+(1)构造器名与类名必须相同
+(2)构造器没有返回值
+(3)构造器可以重载
+(4)如果一个类没有声明过构造器，编译器将默认添加一个无参构造
+如果这个类声明了构造器，编译器将不再自动添加无参构造</li>
+</ul>
+</li>
+<li>
+<p>如何调用</p>
+<ul>
+<li>
+<p>(1)和new一起</p>
+<ul>
+<li>new 构造器()
+new 构造器(实参列表)</li>
+</ul>
+</li>
+<li>
+<p>(2)在本类的其他构造器中或子类的构造器中</p>
+<ul>
+<li>在本类的其他构造器中：this()或this(实参列表)
+在子类的构造器中：super()或super(实参列表)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(3)方法</p>
+<ul>
+<li>无参无返回值</li>
+<li>有参无返回值</li>
+<li>无参有返回值</li>
+<li>有参有返回值</li>
+</ul>
+</li>
+<li>
+<p>(4)代码块</p>
+<ul>
+<li>
+<p>按位置分</p>
+<ul>
+<li>
+<p>在类中方法外</p>
+<ul>
+<li>
+<p>是否有static修饰</p>
+<ul>
+<li>
+<p>有static修饰的：静态代码块</p>
+<ul>
+<li>
+<p>语法结构</p>
+<ul>
+<li>class 类{
+static{
+静态代码块
+}
+}</li>
+</ul>
+</li>
+<li>
+<p>特点</p>
+<ul>
+<li>
+<p>随着类的加载并初始时而执行，而且一个类的静态代码块只执行一次</p>
+<ul>
+<li>而且父类的静态代码块优先于子类的静态代码块</li>
+<li>静态代码块肯定优先于构造块和构造器</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>作用</p>
+<ul>
+<li>为静态变量(类变量)初始化(赋值)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>没有static修饰的：非静态代码块，构造块</p>
+<ul>
+<li>
+<p>语法结构</p>
+<ul>
+<li>class 类{
+{
+静态代码块
+}
+}</li>
+</ul>
+</li>
+<li>
+<p>特点</p>
+<ul>
+<li>每次创建对象时调用，而且先于构造器调用</li>
+</ul>
+</li>
+<li>
+<p>作用</p>
+<ul>
+<li>为实例变量初始化(赋值)，一般是多个构造器中重复的代码提取到构造块</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>在方法中</p>
+<ul>
+<li>局部代码块(了解)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>相关的面试题</p>
+<ul>
+<li>
+<p>赋值和执行的顺序</p>
+<ul>
+<li>父类的静态代码块 &ndash; 》子类的静态代码块  &ndash;》父类的构造块&ndash;》父类的构造器 &ndash;》子类的构造块 &ndash;》子类的构造器</li>
+</ul>
+</li>
+<li>
+<p>关于static的重写问题</p>
+<ul>
+<li>
+<p>静态的方法和属性，没有编译时类型和运行时类型的区别，只有编译时类型，换句话说没有重写(覆盖)一说</p>
+<p>package com.atguigu.static_.buchong;</p>
+<p>/*</p>
+<ul>
+<li>
+<p>静态的方法：不存在编译时和运行时类型，只有编译时类型</p>
+</li>
+<li>
+<p>静态的属性：不存在编译时和运行时类型，只有编译时类型</p>
+</li>
+</ul>
+<p>*/</p>
+<p>public class Test {</p>
+<p>public static void main(String[] args) {</p>
+<pre><code>  SuperClass s = new SubClass();
+
+  s.test();//父类的方法
+
+  System.out.println(s.info);//尚硅谷
+</code></pre>
+<p>​</p>
+<pre><code>  SubClass sub = new SubClass();
+
+  sub.test();//子类的方法
+
+  System.out.println(sub.info);//atguigu
+</code></pre>
+<p>}</p>
+<p>}</p>
+<p>class SuperClass{</p>
+<p>static String info = &ldquo;尚硅谷&rdquo;;</p>
+<p>public static void test(){</p>
+<pre><code>  System.out.println(&quot;父类的方法&quot;);
+</code></pre>
+<p>}</p>
+<p>}</p>
+<p>class SubClass extends SuperClass{</p>
+<p>static String info = &ldquo;atguigu&rdquo;;</p>
+<p>public static void test(){</p>
+<pre><code>  System.out.println(&quot;子类的方法&quot;);
+</code></pre>
+<p>}</p>
+<p>}</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(5)内部类</p>
+<ul>
+<li>
+<p>什么情况下使用内部类</p>
+<ul>
+<li>(1)当一个事物的内部，还有一个部分需要一个完整的结构进行描述，而这个内部的完整的结构又只为外部事物提供服务，那么整个内部的完整结构最好使用内部类
+(2)内部类可以访问外部类的所有的成员，包括私有的</li>
+</ul>
+</li>
+<li>
+<p>形式</p>
+<ul>
+<li>
+<p>成员</p>
+<ul>
+<li>
+<p>静态内部类</p>
+<ul>
+<li>
+<p>格式</p>
+<ul>
+<li>[修饰符] class 外部类{
+[修饰符] static class 内部类{
+}
+}</li>
+</ul>
+</li>
+<li>
+<p>修饰符的问题</p>
+<ul>
+<li>
+<p>(1)权限修饰符</p>
+<ul>
+<li>4种</li>
+</ul>
+</li>
+<li>
+<p>(2)static</p>
+<ul>
+<li>必须得有</li>
+</ul>
+</li>
+<li>
+<p>(3)final(极少)</p>
+<ul>
+<li>
+<p>可以</p>
+<ul>
+<li>表示不能被继承</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(4)abstract(极少)</p>
+<ul>
+<li>
+<p>可以</p>
+<ul>
+<li>表示可以包含抽象方法，需要子类继承</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>静态内部类的成员</p>
+<ul>
+<li>所有都可以，包括静态的</li>
+</ul>
+</li>
+<li>
+<p>使用问题</p>
+<ul>
+<li>
+<p>(1)在静态内部类中使用外部类的成员</p>
+<ul>
+<li>只能使用外部类的静态成员</li>
+</ul>
+</li>
+<li>
+<p>(2)在外部类中使用静态内部类</p>
+<ul>
+<li>都可以</li>
+</ul>
+</li>
+<li>
+<p>(3)在外部类的外面，其他类中</p>
+<ul>
+<li>
+<p>(1)用静态内部类的静态成员</p>
+<ul>
+<li>外部类名.内部类名.静态成员</li>
+</ul>
+</li>
+<li>
+<p>(2)用静态内部类的非静态成员</p>
+<ul>
+<li>需要静态内部类的对象</li>
+<li>外部类名.内部类   变量 = new   外部类名.内部类();
+变量.成员&hellip;.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>非静态内部类，通常称为成员内部类</p>
+<ul>
+<li>
+<p>格式</p>
+<ul>
+<li>[修饰符] class 外部类{
+[修饰符] class 内部类{
+}
+}</li>
+</ul>
+</li>
+<li>
+<p>修饰符的问题</p>
+<ul>
+<li>
+<p>(1)权限修饰符</p>
+<ul>
+<li>4种</li>
+</ul>
+</li>
+<li>
+<p>(2)static</p>
+<ul>
+<li>没有</li>
+</ul>
+</li>
+<li>
+<p>(3)final(极少)</p>
+<ul>
+<li>
+<p>可以</p>
+<ul>
+<li>表示不能被继承</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(4)abstract(极少)</p>
+<ul>
+<li>
+<p>可以</p>
+<ul>
+<li>表示可以包含抽象方法，需要子类继承</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>非静态内部类的成员</p>
+<ul>
+<li>除了静态成员，其他都可以</li>
+</ul>
+</li>
+<li>
+<p>使用的问题</p>
+<ul>
+<li>
+<p>(1)在非静态成员内部类中使用外部类的成员</p>
+<ul>
+<li>都可以</li>
+</ul>
+</li>
+<li>
+<p>(2)在外部类中使用非静态成员内部类</p>
+<ul>
+<li>
+<p>在外部类的静态成员中不能使用非静态成员内部类</p>
+<ul>
+<li>
+<p>静态  (不能用) 非静态</p>
+<ul>
+<li>原因，静态的成员先加载，非静态只有创建对象才有</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(3)在外部类的外面使用非静态成员内部类</p>
+<ul>
+<li>
+<p>依赖于外部类的对象</p>
+</li>
+<li>
+<p>形式一</p>
+<ul>
+<li>
+<p>(1)先创建外部类的对象</p>
+<ul>
+<li>外部类  out = new  外部类();</li>
+</ul>
+</li>
+<li>
+<p>(2)通过外部类的对象创建内部类的对象</p>
+<ul>
+<li>外部类.内部类  in = out.new 内部类();</li>
+</ul>
+</li>
+<li>
+<p>(3)通过内部类对象调用它的成员</p>
+<ul>
+<li>in.成员</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>形式二</p>
+<ul>
+<li>
+<p>(1)在外部类中提供一个方法，用来返回内部类的对象</p>
+<ul>
+<li>class 外部类{
+class  内部类{
+}</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>public 内部类  getInnerInstance(){
+return new 内部类();
+}</p>
+</li>
+</ul>
+<p>}</p>
+<pre><code>						- (2)创建外部类的对象
+
+							- 外部类  out = new  外部类();
+
+						- (3)通过外部类的对象，获取内部类的对象
+
+							- 外部类.内部类  in = out.getInnerInstance();
+
+						- (4)通过内部类对象调用它的成员
+
+							- in.成员
+
+			- 面试题
+
+				- 如何继承非静态成员的内部类
+
+					- 示例
+
+					  class Outer{
+
+					  	class Inner{
+
+					  	}
+
+					  }
+
+					  class Other extends Outer.Inner{
+
+					  	Other(Outer out){
+
+					  		out.super();
+
+					  	}
+
+					  }
+
+	- 局部
+
+		- 有名字的局部内部类，通常称为局部内部类
+
+			- 格式
+
+				- [修饰符] class 外部类{
+[修饰符] 返回值类型  方法名([形参列表]){
+	[修饰符] class 内部类{
+	}
+}
+</code></pre>
+<p>}</p>
+<pre><code>			- 修饰符的问题
+
+				- (1)权限修饰符
+
+					- 都不行
+
+				- (2)static
+
+					- 没有
+
+				- (3)final(极少)
+
+					- 可以
+
+						- 表示不能被继承
+
+				- (4)abstract(极少)
+
+					- 可以
+
+						- 表示可以包含抽象方法，需要子类继承
+
+			- 有名字的局部内部类的成员
+
+				- 除了静态成员，其他都可以
+
+			- 使用
+
+				- (1)在内部类中使用外部类的成员
+
+					- 受所在方法的约束，如果所在方法是静态的，那么只能使用外部类的静态成员，如果所在方法是非静态的，那么都可以使用
+
+				- (2)在内部类中使用外部类的局部变量
+
+					- 必须是final修饰
+
+						- JDK1.8之前，必须显式声明
+						- JDK1.8之后，默认就是final修饰
+
+				- (3)在外部类中使用内部类
+
+					- 只能在声明它的方法中使用，而且在声明之后使用
+
+						- 和局部变量的作用域一样
+
+				- (4)在外部类的外面
+
+					- 不可以
+
+				- (5)在外部类的其他方法中
+
+					- 不可以
+
+		- 匿名内部类
+
+			- 格式
+
+				- new 父类/父接口(){
+方法
+</code></pre>
+<p>}</p>
+<pre><code>			- 修饰符
+
+				- 一个都没有
+
+			- 匿名内部类的成员
+
+				- 除了非静态的都可以，但是一般很少自定义方法等成员，它的成员都是重写父类的，父接口的方法
+
+			- 匿名内部类的特点
+
+				- (1)声明类和创建对象同时进行， 只有一个对象
+
+				  	public static void main(String[] args) {
+
+				  		//Object的一个子类对象
+
+				  		new Object(){
+
+				  			public void test(){
+
+				  				System.out.println(this.getClass());
+
+				  			}
+
+				  		}.test();
+</code></pre>
+<p>​</p>
+<pre><code>				  		//Object的另一个子类对象
+
+				  		new Object(){
+
+				  			public void test(){
+
+				  				System.out.println(this.getClass());
+
+				  			}
+
+				  		}.test();
+
+				  	}
+
+				- (2)子类一定会调用父类的构造器
+
+				  class MyClass{
+
+				  	private String info;
+
+				  	MyClass(String info){
+
+				  		this.info = info;
+
+				  	}
+
+				  }
+</code></pre>
+<p>​</p>
+<pre><code>				  		//创建一个MyClass的子类对象，使用匿名内部类
+
+				  		MyClass m = new MyClass(&quot;参数&quot;){
+</code></pre>
+<p>​</p>
+<pre><code>				  		};
+
+			- 匿名内部类的使用形式
+
+				- 形式一
+
+					- 匿名内部类的匿名对象直接调用方法
+
+					  		new Object(){
+
+					  			public void test(){
+
+					  				System.out.println(this.getClass());
+
+					  			}
+
+					  		}.test();
+
+				- 形式二
+
+					- 与父类或父接口构成多态引用
+
+					  class MyClass{
+
+					  	public void test(){
+
+					  		System.out.println(&quot;父类的测试方法&quot;);
+
+					  	}
+
+					  }
+</code></pre>
+<p>​</p>
+<pre><code>					  		MyClass m = new MyClass(){
+
+					  			public void test(){
+
+					  				System.out.println(&quot;重写&quot;);
+
+					  			}
+
+					  		};
+</code></pre>
+<p>​</p>
+<pre><code>					  		m.test();
+
+				- 形式三
+
+					- 匿名内部类的匿名对象作为实参
+
+					  		MyClass[] arr = new MyClass[5];
+
+					  		Arrays.sort(arr, new Comparator(){
+</code></pre>
+<p>​</p>
+<pre><code>					  			@Override
+
+					  			public int compare(Object o1, Object o2) {
+
+					  				return 0;
+
+					  			}
+</code></pre>
+<p>​</p>
+<pre><code>					  		});
+
+			- 使用其他要求
+
+				- (1)在内部类中使用外部类的成员
+
+					- 受所在方法的约束，如果所在方法是静态的，那么只能使用外部类的静态成员，如果所在方法是非静态的，那么都可以使用
+
+				- (2)在内部类中使用外部类的局部变量
+
+					- 必须是final修饰
+
+						- JDK1.8之前，必须显式声明
+						- JDK1.8之后，默认就是final修饰
+</code></pre>
+<h3 id="34-4类的声明格式">3.4 (4)类的声明格式</h3>
+<ul>
+<li>
+<p>格式</p>
+<ul>
+<li>[修饰符] class 类名{
+//属性列表
+//构造器列表
+//get/set方法
+//其他方法
+}</li>
+</ul>
+</li>
+</ul>
+<h3 id="35-5如何创建对象">3.5 (5)如何创建对象</h3>
+<ul>
+<li>
+<p>new 类名()</p>
+<ul>
+<li>用无参构造</li>
+</ul>
+</li>
+<li>
+<p>new 类名(实参列表)</p>
+<ul>
+<li>用有参构造</li>
+</ul>
+</li>
+<li>
+<p>匿名对象和有名对象</p>
+<ul>
+<li>
+<p>Student stu = new Student();</p>
+<ul>
+<li>stu对象名，也可以称为对象的引用</li>
+</ul>
+</li>
+<li>
+<p>匿名对象</p>
+<ul>
+<li>System.out.println(new Student());</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>对象的内存图</p>
+</li>
+</ul>
+<h2 id="4-面向对象的基本特征">4 、面向对象的基本特征</h2>
+<h3 id="41-封装">4.1 封装</h3>
+<ul>
+<li>
+<p>封装的作用</p>
+<ul>
+<li>
+<p>安全</p>
+</li>
+<li>
+<p>使用方便</p>
+<ul>
+<li>对于使用者屏蔽实现细节</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>概念</p>
+<ul>
+<li>
+<p>狭义</p>
+<ul>
+<li>
+<p>属性的封装</p>
+<ul>
+<li>(1)属性私有化：private</li>
+<li>(2)提供公共get/set方法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>广义</p>
+<ul>
+<li>方法</li>
+<li>类</li>
+<li>包</li>
+<li>组件</li>
+<li>系统</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="42-继承">4.2 继承</h3>
+<ul>
+<li>
+<p>什么情况下需要继承？继承的好处是什么？</p>
+<ul>
+<li>
+<p>为了代码重用</p>
+<ul>
+<li>(1)当有一个父类，如果再声明类时，发现这些类与已经存在的父类有很多相同特征，那么就可以通过继承的方式来简化代码</li>
+<li>(2)已经很多类，发现这些类有很多共同的特点，那么我们可以把这些共同的特点抽取到一个父类中，以便简化代码</li>
+</ul>
+</li>
+<li>
+<p>逻辑的角度</p>
+<ul>
+<li>表示is-a的关系</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>如何继承</p>
+<ul>
+<li>语法格式：
+[修饰符] class  子类名  extends  父类名{
+}</li>
+</ul>
+</li>
+<li>
+<p>继承后对几个成员的影响</p>
+<ul>
+<li>
+<p>属性</p>
+<ul>
+<li>
+<p>(1)子类继承父类时，一定会继承父类的所有的属性，包括私有的，但是由于私有的关键字private的原因，在子类中无法直接操作它，但是可以通过get/set方式操作它</p>
+</li>
+<li>
+<p>(2)当子类的属性与父类的属性重名时，而且父类的属性没有私有化，如果要访问父类的属性那么通过super.属性进行访问，如果子类中没有通过super.属性访问，那这个属性就表示是子类自己的</p>
+<ul>
+<li>
+<p>面试题</p>
+<p>package com.atguigu.review;</p>
+<p>public class Test {</p>
+<p>public static void main(String[] args) {</p>
+<pre><code>  Student stu = new Student();
+
+  System.out.println(stu.getInfo());//结果？  年龄：10
+
+  System.out.println(stu.getAge());//结果？20   如果子类重写，答案是10
+</code></pre>
+<p>}</p>
+<p>}</p>
+<p>class Person{</p>
+<p>int age = 20;</p>
+<p>public int getAge() {</p>
+<pre><code>  return age;
+</code></pre>
+<p>}</p>
+<p>public void setAge(int age) {</p>
+<pre><code>  this.age = age;
+</code></pre>
+<p>}</p>
+<p>​</p>
+<p>}</p>
+<p>class Student extends Person{</p>
+<p>int age = 10;</p>
+<p>/*public int getAge(){</p>
+<pre><code>  return age;
+</code></pre>
+<p>}*/</p>
+<p>public String getInfo(){</p>
+<pre><code>  return &quot;年龄：&quot; + age;
+</code></pre>
+<p>}</p>
+<p>}</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>方法</p>
+<ul>
+<li>(1)子类继承父类时，一定会继承父类的所有的方法，包括私有的，但是由于private，在子类中无法直接操作，但是可以间接操作</li>
+<li>(2)当父类的方法实现不适用于子类时，子类可以对父类的方法的进行重写</li>
+</ul>
+</li>
+<li>
+<p>构造器</p>
+<ul>
+<li>
+<p>(1)子类继承父类时，不会继承父类的构造器</p>
+</li>
+<li>
+<p>(2)子类继承父类时，一定会调用父类的构造器</p>
+<ul>
+<li>如果父类有无参构造，那么子类会默认去调用父类的无参构造
+如果父类没有无参构造，只有有参构造，那么子类必须在子类构造器中手动调用父类的有参构造</li>
+<li>调用父类的无参构造的语句：super();
+调用父类的有参构造的语句：super(实参列表);
+而且这两个语句必须在子类的构造器的首行。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>继承的原则</p>
+<ul>
+<li>
+<p>(1)单继承</p>
+<ul>
+<li>在Java中只支持单继承，也就是说一个类只能有一个直接父类     &ndash;》一个唯一的亲生父亲</li>
+</ul>
+</li>
+<li>
+<p>(2)多层继承</p>
+<ul>
+<li>
+<p>在Java中父类还可以有父类，而且在子类中会继承父类以及父类的父类的所有的属性与方法			&ndash;》代代相传</p>
+<ul>
+<li>子类对象在寻找一个方法、属性时，如果本类中找不到，会去直接父类中查找，如果直接父类中也找不到，在往上找，找到为止，一直追溯到java.lang.Object根父类中</li>
+<li>通过super.属性和方法时，先从直接父类中查找，如果没有，再往上找，直到找到为止，一直可以到java.lang.Object</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(3)一个类可以有很多个子类，子类还可以有子类</p>
+<ul>
+<li>子孙满堂</li>
+<li>开枝散叶</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="43-多态">4.3 多态</h3>
+<ul>
+<li>
+<p>多态的表现形式</p>
+<ul>
+<li>
+<p>(1)方法的重载：同一个类中，功能多种实现形式
+方法的重写：父子类中，功能的不同实现形式</p>
+</li>
+<li>
+<p>(2)对象的多态性</p>
+<ul>
+<li>
+<p>编译时类型与运行时的类型不一致，编译时看“左边”，运行时看“右边”，
+编译时从“父类”中寻找方法，运行时执行的是“子类”重写过的代码</p>
+</li>
+<li>
+<p>对象的多态性的前提：
+(1)继承
+(2)方法的重写
+(3)多态引用</p>
+<ul>
+<li>
+<p>多态引用</p>
+<ul>
+<li>Person p = new Student();</li>
+</ul>
+</li>
+<li>
+<p>本态引用</p>
+<ul>
+<li>Person p = new Person();</li>
+<li>Student s = new Student();</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>多态的应用</p>
+<ul>
+<li>(1)多态参数</li>
+<li>(2)多态数组</li>
+</ul>
+</li>
+<li>
+<p>类型的转换</p>
+<ul>
+<li>
+<p>向上转型</p>
+<ul>
+<li>子类的对象赋值给父类的变量</li>
+<li>自动完成</li>
+</ul>
+</li>
+<li>
+<p>向下转型</p>
+<ul>
+<li>
+<p>把父类的变量赋值给子类的变量</p>
+</li>
+<li>
+<p>强制类型转换</p>
+</li>
+<li>
+<p>如果想要向下转型成功</p>
+<ul>
+<li>父类的变量本身指向的就是该子类的对象</li>
+</ul>
+</li>
+<li>
+<p>如何避免ClassCastException</p>
+<ul>
+<li>
+<p>在向下转型之前，加判断</p>
+<ul>
+<li>if(变量  instanceof  子类类型){
+子类类型  temp = (子类类型)变量;
+}</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>什么情况下需要向下转型</p>
+<ul>
+<li>因为一个对一旦向上转型后，那么就无法访问该子类对象中特有的方法，只能访问父类有的方法</li>
+<li>如果需要通过该对象，访问子类的特有的方法等，那么就需要向下转型</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-关键字">5 、关键字</h2>
+<h3 id="51-class">5.1 class</h3>
+<ul>
+<li>声明类</li>
+</ul>
+<h3 id="52-new">5.2 new</h3>
+<ul>
+<li>创建实例，创建对象</li>
+<li>在堆中申请一块空间</li>
+<li>只要new就创建新的对象</li>
+<li>new后面一定是构造器</li>
+</ul>
+<h3 id="53-this">5.3 this</h3>
+<ul>
+<li>
+<p>当前对象</p>
+<ul>
+<li>(1)如果在构造器中，表示正在被创建的那个对象
+(2)如果在其他方法中，表示调用该方法的那个对象</li>
+</ul>
+</li>
+<li>
+<p>使用</p>
+<ul>
+<li>
+<p>(1)this.属性</p>
+<ul>
+<li>当成员变量(属性名)与局部变量(形参)重名时，使用this.属性进行区别</li>
+</ul>
+</li>
+<li>
+<p>(2)this.方法</p>
+<ul>
+<li>表示调用“当前类”的方法</li>
+<li>如果子类继承了父类，子类没有重写父类的方法，this.方法也可能是从父类继承的方法</li>
+<li>如果子类继承了父类，子类重写父类的方法，this.方法就代表子类重写过的代码</li>
+</ul>
+</li>
+<li>
+<p>(3)this()或this(实参列表)</p>
+<ul>
+<li>表示调用本类的其他构造器，而且必须在构造器的首行</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="54-super">5.4 super</h3>
+<ul>
+<li>
+<p>父类引用</p>
+</li>
+<li>
+<p>使用</p>
+<ul>
+<li>
+<p>(1)super.属性</p>
+<ul>
+<li>当子类的属性与父类的属性重名时，而且父类的属性没有私有化
+如果需要调用父类的属性，那么通过super.属性进行区别</li>
+</ul>
+</li>
+<li>
+<p>(2)super.方法</p>
+<ul>
+<li>当子类的方法重写了父类的方法时，
+如果需要调用父类的被重写的方法，那么通过super.方法进行调用</li>
+</ul>
+</li>
+<li>
+<p>(3)super()或super(实参列表)</p>
+<ul>
+<li>当子类需要调用父类的构造器时，通过super()或super(实参列表)进行调用</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>调用父类的无参构造的语句：super();
+调用父类的有参构造的语句：super(实参列表);
+而且这两个语句必须在子类的构造器的首行。</p>
+<h3 id="55-权限修饰符">5.5 权限修饰符</h3>
+<ul>
+<li>三个单词，四种形式：
+public；公共的，范围：任意位置，可以修饰类、成员
+protected：受保护的，范围：本包或子类中，可以修饰成员
+缺省：默认的，范围：本包，可以修饰类、成员
+private：私有的，范围：本类中，可以修饰成员</li>
+</ul>
+<h3 id="56-static">5.6 static</h3>
+<ul>
+<li>
+<p>静态的</p>
+</li>
+<li>
+<p>可以修饰成员</p>
+</li>
+<li>
+<p>(1)属性</p>
+<ul>
+<li>这个属性就称为类变量，它的值是所有对象共享的，存储在方法区
+它的get/set方法也是静态的</li>
+</ul>
+</li>
+<li>
+<p>(2)方法</p>
+<ul>
+<li>这个方法就称为类方法，调用它不需要创建对象，直接可以通过”类名.方法“调用</li>
+</ul>
+</li>
+<li>
+<p>(3)代码块</p>
+<ul>
+<li>用static修饰的代码块称为静态代码块。
+随着类的加载并初始时而执行，而且一个类的静态代码块只执行一次
+为静态变量赋值，如果静态变量有显式初始化和静态代码块初始化，它俩属于同级，谁在前谁先执行</li>
+</ul>
+</li>
+<li>
+<p>(4)内部类</p>
+</li>
+</ul>
+<h3 id="57-final">5.7 final</h3>
+<ul>
+<li>
+<p>最终的</p>
+</li>
+<li>
+<p>可以修饰</p>
+<ul>
+<li>
+<p>(1)类</p>
+<ul>
+<li>这个类不能被继承，俗称“太监类”</li>
+</ul>
+</li>
+<li>
+<p>(2)方法</p>
+<ul>
+<li>这个方法不能被重写，像“圣旨”</li>
+</ul>
+</li>
+<li>
+<p>(3)变量</p>
+<ul>
+<li>
+<p>成员变量</p>
+<ul>
+<li>
+<p>常量</p>
+<ul>
+<li>值不能被修改</li>
+</ul>
+</li>
+<li>
+<p>必须手动初始化</p>
+<ul>
+<li>
+<p>示例</p>
+<p>package com.atguigu.review;</p>
+<p>public class TestFinal {</p>
+<p>}</p>
+<p>class Human{</p>
+<p>//	private static final String country = &ldquo;中国&rdquo;;</p>
+<p>private static final String country;</p>
+<p>static{</p>
+<pre><code>  country = &quot;中国&quot;;
+</code></pre>
+<p>}</p>
+<p>}</p>
+<p>class Person{</p>
+<p>//	final String country = &ldquo;中国&rdquo;;</p>
+<p>private final String country;</p>
+<p>private String name;</p>
+<p>​</p>
+<p>/*	{</p>
+<pre><code>  country = &quot;中国&quot;;
+</code></pre>
+<p>}*/</p>
+<p>Person(){</p>
+<pre><code>  country = &quot;中国&quot;;
+</code></pre>
+<p>}</p>
+<p>public Person(String name) {</p>
+<pre><code>  super();
+
+  country = &quot;中国&quot;;
+
+  this.name = name;
+</code></pre>
+<p>}</p>
+<p>​</p>
+<p>}</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>局部变量</p>
+<ul>
+<li>
+<p>常量</p>
+<ul>
+<li>值不能被修改</li>
+</ul>
+</li>
+<li>
+<p>必须手动初始化</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="58-native">5.8 native</h3>
+<ul>
+<li>
+<p>原生的</p>
+</li>
+<li>
+<p>可以修饰</p>
+<ul>
+<li>
+<p>方法</p>
+<ul>
+<li>(1)表示这个方法的方法体是非Java语言实现</li>
+<li>(2)对于使用这个方法者来说，和普通的Java 方法一样使用</li>
+<li>(3)如果有需要，也可以进行重写</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-包">6 、包</h2>
+<h3 id="61-包的作用">6.1 包的作用</h3>
+<ul>
+<li>(1)避免类的重名
+(2)访问权限的控制
+(3)便于管理</li>
+</ul>
+<h3 id="62-如何声明包">6.2 如何声明包</h3>
+<ul>
+<li>
+<p>package 包;</p>
+</li>
+<li>
+<p>要求</p>
+<ul>
+<li>必须在源文件的首行，一个源文件只能有一句</li>
+<li>遵循命名规范，所有字母都小写，单词之间使用.，一般以公司的域名倒置</li>
+</ul>
+</li>
+</ul>
+<h3 id="63-如何使用其他包的类">6.3 如何使用其他包的类</h3>
+<ul>
+<li>
+<p>需要import 包.类名;</p>
+</li>
+<li>
+<p>要求</p>
+<ul>
+<li>在package和class声明之间，可以多句</li>
+<li>被使用的类必须是public 或 protected(父子类)</li>
+</ul>
+</li>
+<li>
+<p>形式</p>
+<ul>
+<li>
+<p>一一列举</p>
+<ul>
+<li>import java.util.Random;
+import java.util.Scanner;</li>
+</ul>
+</li>
+<li>
+<p>某个包的类</p>
+<ul>
+<li>import java.util.*;</li>
+</ul>
+</li>
+<li>
+<p>静态导入</p>
+<ul>
+<li>import static java.lang.Math.*;</li>
+<li>System.out.println(PI);
+System.out.println(sqrt(4));</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-overload和override的区别">7 Overload和Override的区别</h2>
+<h3 id="71-overload方法的重载">7.1 Overload：方法的重载</h3>
+<pre><code>在同一类，方法名称相同，形参列表不同的两个或多个方法称为重载。
+</code></pre>
+<p>Override：方法的重写
+在子类继承父类时，如果父类的方法实现不适用于子类，子类就可以对父类的方法进行重写，覆盖。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/java/">JAVA</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-09-14</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/language/java/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" class="prev" rel="prev" title="面向对象高级特性"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/language/java/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5%E7%BB%93%E6%9E%84/" class="next" rel="next" title="流程控制语句结构">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

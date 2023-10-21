@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>slice - xcx</title><meta name="description" content=""><meta property="og:title" content="slice" />
+<meta property="og:description" content="slice 1 了解切片 数组是切片和映射的基础 与数组一样，切片也是 Go 中的一种数据类型，它表示一系列类型相同的元素。 不过，与数组更重要的区别是切片的大小是" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/language/go/4.array-slice/slice/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-05-24T11:41:53+00:00" />
+<meta property="article:modified_time" content="2023-05-24T11:41:53+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="slice"/>
+<meta name="twitter:description" content="slice 1 了解切片 数组是切片和映射的基础 与数组一样，切片也是 Go 中的一种数据类型，它表示一系列类型相同的元素。 不过，与数组更重要的区别是切片的大小是"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/language/go/4.array-slice/slice/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/language/go/4.array-slice/arr_alice/" /><link rel="next" href="https://xiechaoxin.github.io/posts/language/go/5.map/map/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "slice",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/language\/go\/4.array-slice\/slice\/"
+        },"genre": "posts","keywords": "Go","wordcount":  1366 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/language\/go\/4.array-slice\/slice\/","datePublished": "2023-05-24T11:41:53+00:00","dateModified": "2023-05-24T11:41:53+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">slice</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/go/"><i class="far fa-folder fa-fw"></i>Go</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-05-24">2023-05-24</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1366 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-了解切片">1 了解切片</a></li>
+    <li><a href="#2-声明和初始化切片">2 声明和初始化切片</a></li>
+    <li><a href="#3-切片项">3 切片项</a></li>
+    <li><a href="#4-追加项">4 追加项</a></li>
+    <li><a href="#5-删除项">5 删除项</a></li>
+    <li><a href="#6-创建切片的副本">6 创建切片的副本</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="slice">slice</h1>
+<h2 id="1-了解切片">1 了解切片</h2>
+<p>数组是切片和映射的基础</p>
+<p>与数组一样，切片也是 Go 中的一种数据类型，它表示一系列类型相同的元素。 不过，与数组更重要的区别是切片的大小是动态的，不是固定的。</p>
+<p>切片是数组或另一个切片之上的数据结构。 我们将源数组或切片称为基础数组。 通过切片，可访问整个基础数组，也可仅访问部分元素。</p>
+<p>切片只有 3 个组件：</p>
+<p>指向基础数组中第一个可访问元素的指针。 此元素不一定是数组的第一个元素 array[0]。
+切片的长度。 切片中的元素数目。
+切片的容量。 切片开头与基础数组结束之间的元素数目。</p>
+<h2 id="2-声明和初始化切片">2 声明和初始化切片</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl">    <span class="nx">months</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;January&#34;</span><span class="p">,</span> <span class="s">&#34;February&#34;</span><span class="p">,</span> <span class="s">&#34;March&#34;</span><span class="p">,</span> <span class="s">&#34;April&#34;</span><span class="p">,</span> <span class="s">&#34;May&#34;</span><span class="p">,</span> <span class="s">&#34;June&#34;</span><span class="p">,</span> <span class="s">&#34;July&#34;</span><span class="p">,</span> <span class="s">&#34;August&#34;</span><span class="p">,</span> <span class="s">&#34;September&#34;</span><span class="p">,</span> <span class="s">&#34;October&#34;</span><span class="p">,</span> <span class="s">&#34;November&#34;</span><span class="p">,</span> <span class="s">&#34;December&#34;</span><span class="p">}</span>
+</span></span></code></pre></div><p>目前，切片与数组的区别不大。 可用相同的方式声明这两者。 若要从切片中获取信息，可使用内置函数 len() 和 cap()。 我们将继续使用这些函数来确认切片可具有来自基础数组的后续元素。</p>
+<h2 id="3-切片项">3 切片项</h2>
+<p>Go 支持切片运算符 s[i:p]，其中：</p>
+<ul>
+<li>s 表示数组。</li>
+<li>i 表示指向要添加到新切片的基础数组（或另一个切片）的第一个元素的指针。 变量 i 对应于数组 array[i] 中索引位置 i 处的元素。 请记住，此元素不一定是基础数组的第一个元素 array[0]。</li>
+<li>p 表示创建新切片时要使用的基础数组中的元素数目，也表示元素位置。 变量 p 对应于可用于新切片的基础数组中的最后一个元素。 可在位置 array[i+1] 找到基础数组中位置 p 处的元素。 请注意，此元素不一定是基础数组的最后一个元素 array[len(array)-1]。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl">    <span class="nx">months</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;January&#34;</span><span class="p">,</span> <span class="s">&#34;February&#34;</span><span class="p">,</span> <span class="s">&#34;March&#34;</span><span class="p">,</span> <span class="s">&#34;April&#34;</span><span class="p">,</span> <span class="s">&#34;May&#34;</span><span class="p">,</span> <span class="s">&#34;June&#34;</span><span class="p">,</span> <span class="s">&#34;July&#34;</span><span class="p">,</span> <span class="s">&#34;August&#34;</span><span class="p">,</span> <span class="s">&#34;September&#34;</span><span class="p">,</span> <span class="s">&#34;October&#34;</span><span class="p">,</span> <span class="s">&#34;November&#34;</span><span class="p">,</span> <span class="s">&#34;December&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">quarter1</span> <span class="o">:=</span> <span class="nx">months</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">quarter2</span> <span class="o">:=</span> <span class="nx">months</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">quarter3</span> <span class="o">:=</span> <span class="nx">months</span><span class="p">[</span><span class="mi">6</span><span class="p">:</span><span class="mi">9</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">quarter4</span> <span class="o">:=</span> <span class="nx">months</span><span class="p">[</span><span class="mi">9</span><span class="p">:</span><span class="mi">12</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">quarter1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">quarter1</span><span class="p">),</span> <span class="nb">cap</span><span class="p">(</span><span class="nx">quarter1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">quarter2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">quarter2</span><span class="p">),</span> <span class="nb">cap</span><span class="p">(</span><span class="nx">quarter2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">quarter3</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">quarter3</span><span class="p">),</span> <span class="nb">cap</span><span class="p">(</span><span class="nx">quarter3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">quarter4</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">quarter4</span><span class="p">),</span> <span class="nb">cap</span><span class="p">(</span><span class="nx">quarter4</span><span class="p">))</span>
+</span></span></code></pre></div><p>请注意，切片的长度不变，但容量不同。 我们来了解 quarter2 切片。 声明此切片时，你指出希望切片从位置编号 3 开始，最后一个元素位于位置编号 6。 切片长度为 3 个元素，但容量为 9，原因是基础数组有更多元素或位置可供使用，但对切片而言不可见。 例如，如果你尝试打印类似 fmt.Println(quarter2[3]) 的内容，会出现以下错误：panic: runtime error: index out of range [3] with length 3。</p>
+<h2 id="4-追加项">4 追加项</h2>
+<p>我们了解了切片的工作原理，还学习了它们与数组的相似性。 现在，让我们来了解它们与数组之间有何不同。 第一个区别是切片的大小不是固定的，而是动态的。 创建切片后，可向其添加更多元素，这样切片就会扩展。 稍后你将了解基础数组发生的情况。</p>
+<p>Go 提供了内置函数 append(slice, element)，便于你向切片添加元素。 将要修改的切片和要追加的元素作为值发送给该函数。 然后，append 函数会返回一个新的切片，将其存储在变量中。 对于要更改的切片，变量可能相同。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">numbers</span> <span class="p">[]</span><span class="kt">int</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">numbers</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">numbers</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%d\tcap=%d\t%v\n&#34;</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nb">cap</span><span class="p">(</span><span class="nx">numbers</span><span class="p">),</span> <span class="nx">numbers</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></div><h2 id="5-删除项">5 删除项</h2>
+<p>你可能想知道，删除元素会怎么样呢？ Go 没有内置函数用于从切片中删除元素。 可使用上述切片运算符 s[i:p] 来新建一个仅包含所需元素的切片。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl">    <span class="nx">letters</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;A&#34;</span><span class="p">,</span> <span class="s">&#34;B&#34;</span><span class="p">,</span> <span class="s">&#34;C&#34;</span><span class="p">,</span> <span class="s">&#34;D&#34;</span><span class="p">,</span> <span class="s">&#34;E&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">remove</span> <span class="o">:=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">remove</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">letters</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Before&#34;</span><span class="p">,</span> <span class="nx">letters</span><span class="p">,</span> <span class="s">&#34;Remove &#34;</span><span class="p">,</span> <span class="nx">letters</span><span class="p">[</span><span class="nx">remove</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nx">letters</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">letters</span><span class="p">[:</span><span class="nx">remove</span><span class="p">],</span> <span class="nx">letters</span><span class="p">[</span><span class="nx">remove</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span><span class="o">...</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;After&#34;</span><span class="p">,</span> <span class="nx">letters</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span></code></pre></div><h2 id="6-创建切片的副本">6 创建切片的副本</h2>
+<p>Go 具有内置函数 copy(dst, src []Type) 用于创建切片的副本。 你需要发送目标切片和源切片。 例如，你可如下例所示创建一个切片副本：</p>
+<p>为何要创建副本？ 更改切片中的元素时，基础数组将随之更改。 引用该基础数组的任何其他切片都会受到影响。 让我们在代码中看看此过程，然后创建一个切片副本来解决此问题。</p>
+<p>使用下述代码确认切片指向数组，而你在切片中所做的每个更改都会影响基础数组。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">letters</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;A&#34;</span><span class="p">,</span> <span class="s">&#34;B&#34;</span><span class="p">,</span> <span class="s">&#34;C&#34;</span><span class="p">,</span> <span class="s">&#34;D&#34;</span><span class="p">,</span> <span class="s">&#34;E&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Before&#34;</span><span class="p">,</span> <span class="nx">letters</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">slice1</span> <span class="o">:=</span> <span class="nx">letters</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">slice2</span> <span class="o">:=</span> <span class="nx">letters</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">slice1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">=</span> <span class="s">&#34;Z&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;After&#34;</span><span class="p">,</span> <span class="nx">letters</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Slice2&#34;</span><span class="p">,</span> <span class="nx">slice2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>若要解决此问题，你需要创建一个切片副本，它会在后台生成新的基础数组。 可以使用以下代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">letters</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;A&#34;</span><span class="p">,</span> <span class="s">&#34;B&#34;</span><span class="p">,</span> <span class="s">&#34;C&#34;</span><span class="p">,</span> <span class="s">&#34;D&#34;</span><span class="p">,</span> <span class="s">&#34;E&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Before&#34;</span><span class="p">,</span> <span class="nx">letters</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">slice1</span> <span class="o">:=</span> <span class="nx">letters</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">slice2</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">string</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">copy</span><span class="p">(</span><span class="nx">slice2</span><span class="p">,</span> <span class="nx">letters</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">slice1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">=</span> <span class="s">&#34;Z&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;After&#34;</span><span class="p">,</span> <span class="nx">letters</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Slice2&#34;</span><span class="p">,</span> <span class="nx">slice2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/go/">Go</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2023-05-24</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/language/go/4.array-slice/arr_alice/" class="prev" rel="prev" title="arr_alice"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/language/go/5.map/map/" class="next" rel="next" title="map">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

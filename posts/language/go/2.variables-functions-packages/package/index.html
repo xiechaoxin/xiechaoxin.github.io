@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>package - xcx</title><meta name="description" content=""><meta property="og:title" content="package" />
+<meta property="og:description" content="package Go 包与其他编程语言中的库或模块类似。 你可以打包代码，并在其他位置重复使用它。 包的源代码可以分布在多个 .go 文件中。 1 main 包 你可能注意到，在 Go 中，" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/language/go/2.variables-functions-packages/package/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-05-23T23:12:10+00:00" />
+<meta property="article:modified_time" content="2023-05-23T23:12:10+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="package"/>
+<meta name="twitter:description" content="package Go 包与其他编程语言中的库或模块类似。 你可以打包代码，并在其他位置重复使用它。 包的源代码可以分布在多个 .go 文件中。 1 main 包 你可能注意到，在 Go 中，"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/language/go/2.variables-functions-packages/package/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/language/go/2.variables-functions-packages/function/" /><link rel="next" href="https://xiechaoxin.github.io/posts/language/go/3.control-flow/ifelses_switch/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "package",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/language\/go\/2.variables-functions-packages\/package\/"
+        },"genre": "posts","keywords": "Go","wordcount":  1658 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/language\/go\/2.variables-functions-packages\/package\/","datePublished": "2023-05-23T23:12:10+00:00","dateModified": "2023-05-23T23:12:10+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">package</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/go/"><i class="far fa-folder fa-fw"></i>Go</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-05-23">2023-05-23</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1658 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-main-包">1 main 包</a></li>
+    <li><a href="#2-创建包">2 创建包</a></li>
+    <li><a href="#3-创建模块">3 创建模块</a></li>
+    <li><a href="#4-引用本地包模块">4 引用本地包（模块）</a></li>
+    <li><a href="#5-引用外部第三方包">5 引用外部（第三方）包</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="package">package</h1>
+<p>Go 包与其他编程语言中的库或模块类似。 你可以打包代码，并在其他位置重复使用它。
+包的源代码可以分布在多个 .go 文件中。</p>
+<h2 id="1-main-包">1 main 包</h2>
+<p>你可能注意到，在 Go 中，甚至最直接的程序都是包的一部分。 通常情况下，默认包是 main 包，即目前为止一直使用的包。 如果程序是 main 包的一部分，Go 会生成二进制文件。 运行该文件时，它将调用 main() 函数。</p>
+<p>换句话说，当你使用 main 包时，程序将生成独立的可执行文件。 但当程序非是 main 包的一部分时，Go 不会生成二进制文件。 它生成包存档文件（具有 .a 扩展名的文件）。</p>
+<p>在 Go 中，包名称需遵循约定。 包使用其导入路径的最后一部分作为名称。 例如，Go 标准库包含名为 math/cmplx 的包，该包提供用于处理复数的有用代码。 此包的导入路径为 math/cmplx，导入包的方式如下所示：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">import</span> <span class="s">&#34;math/cmplx&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 若要引用包中的对象，请使用包名称 cmplx，如下所示：
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">cmplx</span><span class="p">.</span><span class="nf">Inf</span><span class="p">()</span>
+</span></span></code></pre></div><h2 id="2-创建包">2 创建包</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">src/
+</span></span><span class="line"><span class="cl">  calculator/
+</span></span><span class="line"><span class="cl">    sum.go
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// 用包的名称初始化 sum.go 文件：
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kn">package</span> <span class="nx">calculator</span>
+</span></span></code></pre></div><p>你现在可以开始编写包的函数和变量。 不同于其他编程语言，Go 不会提供 public 或 private 关键字，以指示是否可以从包的内外部调用变量或函数。 但 Go 须遵循以下两个简单规则：</p>
+<p>如需将某些内容设为专用内容，请以小写字母开始。
+如需将某些内容设为公共内容，请以大写字母开始。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">calculator</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">logMessage</span> <span class="p">=</span> <span class="s">&#34;[LOG]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Version of the calculator
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">Version</span> <span class="p">=</span> <span class="s">&#34;1.0&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">internalSum</span><span class="p">(</span><span class="nx">number</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">number</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Sum two integer numbers
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">Sum</span><span class="p">(</span><span class="nx">number1</span><span class="p">,</span> <span class="nx">number2</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">number1</span> <span class="o">+</span> <span class="nx">number2</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># 若要确认一切正常，可在 calculator 目录中运行 go build 命令。 如果执行此操作，请注意系统不会生成可执行的二进制文件。</span>
+</span></span><span class="line"><span class="cl">go build
+</span></span></code></pre></div><h2 id="3-创建模块">3 创建模块</h2>
+<p>你已将计算器功能放入包中。 现在可以将包放到模块中。
+Go 模块通常包含可提供相关功能的包。
+包的模块还指定了 Go 运行你组合在一起的代码所需的上下文。 此上下文信息包括编写代码时所用的 Go 版本。</p>
+<pre tabindex="0"><code>└── 模块
+    ├── 包
+    ├── 包
+    ......
+</code></pre><p>此外，模块还有助于其他开发人员引用代码的特定版本，并更轻松地处理依赖项。 另一个优点是，我们的程序源代码无需严格存在于 $GOPATH/src 目录中。 如果释放该限制，则可以更方便地在其他项目中同时使用不同包版本。</p>
+<p>因此，若要为 calculator 包创建模块，请在根目录 ($GOPATH/src/calculator) 中运行以下命令：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">go mod init github.com/myuser/calculator
+</span></span></code></pre></div><p>运行此命令后，github.com/myuser/calculator 就会变成模块的名称。 在其他程序中，你将使用该名称进行引用。 命令还会创建一个名为 go.mod 的新文件。 最后，树目录现会如下列目录所示：</p>
+<pre tabindex="0"><code>src/
+  calculator/
+    go.mod
+    sum.go
+</code></pre><p>go.mod</p>
+<pre tabindex="0"><code>
+复制
+module github.com/myuser/calculator
+
+go 1.14
+</code></pre><p>若要在其他程序中引用 calculator 包，需要使用模块名称进行导入。 在这种情况下，其名称为 github.com/myuser/calculator。 现在，让我们看一下示例，了解如何使用此包。</p>
+<h2 id="4-引用本地包模块">4 引用本地包（模块）</h2>
+<p>现在，让我们先使用包。 我们将继续使用我们一直使用的示例应用程序。 这一次，我们将使用之前在 calculator 包中创建的函数，而不是 main 包中的 sum 函数。</p>
+<pre tabindex="0"><code>src/
+  calculator/
+    go.mod
+    sum.go
+  helloworld/
+    main.go
+</code></pre><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;github.com/myuser/calculator&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">total</span> <span class="o">:=</span> <span class="nx">calculator</span><span class="p">.</span><span class="nf">Sum</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">total</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Version: &#34;</span><span class="p">,</span> <span class="nx">calculator</span><span class="p">.</span><span class="nx">Version</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>请注意，import 语句使用所创建包的名称：calculator。 若要从该包调用 Sum 函数，你需要包含包名称，如 calculator.Sum 中一样。 最后，你现还可访问 Version 变量。 请按调用以下内容：calculator.Version。</p>
+<p>如果立即尝试运行程序，它将不起任何作用。 你需要告诉 Go，你会使用模块来引用其他包。 为此，请在 $GOPATH/src/helloworld 目录中运行以下命令：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">go mod init helloworld
+</span></span></code></pre></div><p>helloworld 是项目的名称。 此命令会创建一个新的 go.mod 文件，因此，树目录会如下所示：</p>
+<pre tabindex="0"><code>src/
+  calculator/
+    go.mod
+    sum.go
+  helloworld/
+    go.mod
+    main.go
+</code></pre><p>go.mod</p>
+<pre tabindex="0"><code>module helloworld
+
+go 1.14
+</code></pre><p>由于你引用的是该模块的本地副本，因此你需要通知 Go 不要使用远程位置。 因此，你需要手动修改 go.mod 文件，使其包含引用，如下所示：</p>
+<pre tabindex="0"><code>module helloworld
+
+go 1.14
+
+require github.com/myuser/calculator v0.0.0
+
+replace github.com/myuser/calculator =&gt; ../calculator
+</code></pre><p>replace 关键字指定使用本地目录，而不是模块的远程位置。 在这种情况下，由于 helloworld 和 calculator 程序在 $GOPATH/src 中，因此位置只能是 ../calculator。 如果模块源位于不同的位置，请在此处定义本地路径。</p>
+<h2 id="5-引用外部第三方包">5 引用外部（第三方）包</h2>
+<p>有时，程序需要引用其他开发人员编写的包。 你通常可以在 GitHub 上找到这些包。 不论你是要开发包（非 main 包）还是独立的程序（main 包），以下有关引用第三方包的说明均适用。</p>
+<p>让我们添加对 rsc.io/quote 包的引用：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;github.com/myuser/calculator&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;rsc.io/quote&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">total</span> <span class="o">:=</span> <span class="nx">calculator</span><span class="p">.</span><span class="nf">Sum</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">total</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Version: &#34;</span><span class="p">,</span> <span class="nx">calculator</span><span class="p">.</span><span class="nx">Version</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">quote</span><span class="p">.</span><span class="nf">Hello</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>go.mod</p>
+<pre tabindex="0"><code>module helloworld
+
+go 1.14
+
+require (
+    github.com/myuser/calculator v0.0.0
+    rsc.io/quote v1.5.2
+)
+
+replace github.com/myuser/calculator =&gt; ../calculator
+</code></pre><p>日后对第三方包的所有引用都需要包含在 go.mod 文件中。 运行或编译应用程序时，Go 将下载其所有依赖项。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/go/">Go</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2023-05-23</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/language/go/2.variables-functions-packages/function/" class="prev" rel="prev" title="function"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/language/go/3.control-flow/ifelses_switch/" class="next" rel="next" title="ifelse">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

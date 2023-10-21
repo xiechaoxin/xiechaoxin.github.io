@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>git - 分类 - xcx</title>
+        <link>https://xiechaoxin.github.io/categories/git/</link>
+        <description>git - 分类 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 26 May 2023 09:10:46 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/categories/git/" rel="self" type="application/rss+xml" /><item>
+    <title>gitattributes介绍</title>
+    <link>https://xiechaoxin.github.io/posts/tools/git/gitattributes%E4%BB%8B%E7%BB%8D/</link>
+    <pubDate>Fri, 26 May 2023 09:10:46 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/tools/git/gitattributes%E4%BB%8B%E7%BB%8D/</guid>
+    <description><![CDATA[https://blog.csdn.net/qq_35425070/article/details/106883833 # Set default behavior to automatically normalize line endings. * text=auto # Set default behavior for command prompt diff. # # This is need for earlier builds of msysgit that does not have it on by # default for csharp files. # Note: This is only used by command line # *.cs diff=csharp # Set the merge driver for project and solution files # # Merging from the command]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,43 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>1-CPP基础 - 标签 - xcx</title>
+        <link>https://xiechaoxin.github.io/tags/1-cpp%E5%9F%BA%E7%A1%80/</link>
+        <description>1-CPP基础 - 标签 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 09 Jul 2022 05:50:12 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/tags/1-cpp%E5%9F%BA%E7%A1%80/" rel="self" type="application/rss+xml" /><item>
+    <title>7.类</title>
+    <link>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/1-cpp%E5%9F%BA%E7%A1%80/7.%E7%B1%BB/</link>
+    <pubDate>Sat, 09 Jul 2022 05:50:12 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/1-cpp%E5%9F%BA%E7%A1%80/7.%E7%B1%BB/</guid>
+    <description><![CDATA[类 1 定义抽象数据类型 类的基本思想是 数据抽象(data abstraction)：接口与实现分离 数据抽象是一种依赖于接口(interface)和]]></description>
+</item>
+<item>
+    <title>5.语句</title>
+    <link>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/1-cpp%E5%9F%BA%E7%A1%80/5.%E8%AF%AD%E5%8F%A5/</link>
+    <pubDate>Sat, 09 Jul 2022 03:04:36 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/1-cpp%E5%9F%BA%E7%A1%80/5.%E8%AF%AD%E5%8F%A5/</guid>
+    <description><![CDATA[语句 1 简单语句 表达式语句：一个表达式末尾加上分号，就变成了表达式语句。 空语句：只有一个单独的分号。 复合语句(块)：用花括号 {}包裹起来的语句]]></description>
+</item>
+<item>
+    <title>6.函数</title>
+    <link>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/1-cpp%E5%9F%BA%E7%A1%80/6.%E5%87%BD%E6%95%B0/</link>
+    <pubDate>Sat, 09 Jul 2022 03:04:36 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/1-cpp%E5%9F%BA%E7%A1%80/6.%E5%87%BD%E6%95%B0/</guid>
+    <description><![CDATA[函数 函数对程序的结构化至关重要！！ 1 函数基础 函数是一个命名的代码块，通过调用函数执行相应的代码。可以有 0 个或多个参数，可以重载。 函数定义：包]]></description>
+</item>
+<item>
+    <title>4.表达式</title>
+    <link>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/1-cpp%E5%9F%BA%E7%A1%80/4.%E8%A1%A8%E8%BE%BE%E5%BC%8F/</link>
+    <pubDate>Sat, 09 Jul 2022 01:38:50 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/1-cpp%E5%9F%BA%E7%A1%80/4.%E8%A1%A8%E8%BE%BE%E5%BC%8F/</guid>
+    <description><![CDATA[表达式 1 表达式基础 1.1 基本概念 1.1.1 表达式 表达式由一个或多个运算对象(operand)组成，对表达式求值将得到一个结果。 字面值和变量是最简单的表达]]></description>
+</item>
+<item>
+    <title>3.字符串、向量和数组</title>
+    <link>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/1-cpp%E5%9F%BA%E7%A1%80/3.%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84/</link>
+    <pubDate>Fri, 08 Jul 2022 20:39:23 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/1-cpp%E5%9F%BA%E7%A1%80/3.%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84/</guid>
+    <description><![CDATA[字符串、向量和数组 string 和 vector 都是对 array 的某种抽象 1 命名空间的 using 声明 域操作符 std std::cout; using namespace std; cout&lt;&lt;&#34;hello&#34;&lt;&lt;endl; Tips: 头文件不应该包含 using 声明，因为会被拷贝到引用该头文件的文件中]]></description>
+</item>
+<item>
+    <title>2.变量和基本类型</title>
+    <link>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/1-cpp%E5%9F%BA%E7%A1%80/2.%E5%8F%98%E9%87%8F%E5%92%8C%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B/</link>
+    <pubDate>Fri, 08 Jul 2022 02:07:28 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/1-cpp%E5%9F%BA%E7%A1%80/2.%E5%8F%98%E9%87%8F%E5%92%8C%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B/</guid>
+    <description><![CDATA[变量和基础类型 1 基本内置类型 C++是一种静态数据类型语言，在编译时进行类型检查 C++定义了：算术类型(arithmetic)、空类型(voi]]></description>
+</item>
+</channel>
+</rss>

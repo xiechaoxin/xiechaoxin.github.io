@@ -1,0 +1,67 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>C - 标签 - xcx</title>
+        <link>https://xiechaoxin.github.io/tags/c/</link>
+        <description>C - 标签 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 05 Sep 2023 20:23:45 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/tags/c/" rel="self" type="application/rss+xml" /><item>
+    <title>c项目库文件管理</title>
+    <link>https://xiechaoxin.github.io/posts/chaos/c%E9%A1%B9%E7%9B%AE%E5%BA%93%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/</link>
+    <pubDate>Tue, 05 Sep 2023 20:23:45 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/chaos/c%E9%A1%B9%E7%9B%AE%E5%BA%93%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/</guid>
+    <description><![CDATA[是否将 C++ 库文件直接放入项目并使用 Git 管理具体情况具体分析。这里是一些考虑因素： 优点： 版本一致性：直接在项目中包含库确保每个开发者和CI/CD系]]></description>
+</item>
+<item>
+    <title>预处理_编译_汇编_链接</title>
+    <link>https://xiechaoxin.github.io/posts/language/c/%E9%A2%84%E5%A4%84%E7%90%86_%E7%BC%96%E8%AF%91_%E6%B1%87%E7%BC%96_%E9%93%BE%E6%8E%A5/</link>
+    <pubDate>Tue, 29 Aug 2023 17:38:35 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/c/%E9%A2%84%E5%A4%84%E7%90%86_%E7%BC%96%E8%AF%91_%E6%B1%87%E7%BC%96_%E9%93%BE%E6%8E%A5/</guid>
+    <description><![CDATA[预处理_编译_汇编_链接 1 预处理 gcc -E main.c -o main.i 2 编译 gcc -S main.i -o main.s 3 汇编 gcc -c main.s -o main.o 4 链接 gcc main.o -o main]]></description>
+</item>
+<item>
+    <title>how to read c declarations</title>
+    <link>https://xiechaoxin.github.io/posts/language/c/how_to_read_c_declarations/</link>
+    <pubDate>Mon, 02 Jan 2023 04:40:24 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/c/how_to_read_c_declarations/</guid>
+    <description><![CDATA[How To Read C Declarations 第一步，找到变量名，如果没有变量名，找到最里面的结构 第二步，向右看，读出你看到的东西，但是不要跳过括号 第三步，再向左看，读出你看到]]></description>
+</item>
+<item>
+    <title>静态库和动态库</title>
+    <link>https://xiechaoxin.github.io/posts/language/c/%E9%9D%99%E6%80%81%E5%BA%93%E5%92%8C%E5%8A%A8%E6%80%81%E5%BA%93/</link>
+    <pubDate>Sun, 13 Nov 2022 00:43:00 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/c/%E9%9D%99%E6%80%81%E5%BA%93%E5%92%8C%E5%8A%A8%E6%80%81%E5%BA%93/</guid>
+    <description><![CDATA[静态库 libXX.a ar -cr libtool1.a tool1.o 生成可执行文件 gcc -o mian main.c -l:libtool1.a 1 动态库 libXX.so gcc -shared -fpic -o libtool1.so tool1.c 重读可执行文件 /sbin/ldconfig 生成可执行文件(被依赖的库在后方出现,先子后父) gcc -I/usr/local/include -L/usr/local/lib -o &hellip;.. -lxx xcx@xcx:~/workspace/unix-environment-practise/test/testmake$]]></description>
+</item>
+<item>
+    <title>C 语言知识点大纲(参考《C primer plus》)</title>
+    <link>https://xiechaoxin.github.io/posts/language/c/c-%E8%AF%AD%E8%A8%80%E7%9F%A5%E8%AF%86%E7%82%B9%E5%A4%A7%E7%BA%B2%E5%8F%82%E8%80%83c-primer-plus/</link>
+    <pubDate>Tue, 13 Sep 2022 04:02:47 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/c/c-%E8%AF%AD%E8%A8%80%E7%9F%A5%E8%AF%86%E7%82%B9%E5%A4%A7%E7%BA%B2%E5%8F%82%E8%80%83c-primer-plus/</guid>
+    <description><![CDATA[C 语言知识点大纲(参考《C primer plus》) 1 第1章 初识 C语言 1.1 C语言的起源 1.2 选择C语言的理由 设计特性 高效性 可移植性 强大而灵活 面向程序员 缺点 1.3 C]]></description>
+</item>
+<item>
+    <title>枚举</title>
+    <link>https://xiechaoxin.github.io/posts/language/c/%E6%9E%9A%E4%B8%BE/</link>
+    <pubDate>Tue, 13 Sep 2022 03:48:18 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/c/%E6%9E%9A%E4%B8%BE/</guid>
+    <description><![CDATA[枚举 枚举类型一般用于表示一些预设好的整数常量，比如我们风扇有低、中、高三个档位，我们总是希望别人使用我们预设好的这三个档位，而不希望使用其他]]></description>
+</item>
+<item>
+    <title>C预处理器和C库</title>
+    <link>https://xiechaoxin.github.io/posts/language/c/c%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8%E5%92%8Cc%E5%BA%93/</link>
+    <pubDate>Tue, 13 Sep 2022 01:44:21 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/c/c%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8%E5%92%8Cc%E5%BA%93/</guid>
+    <description><![CDATA[C 预处理器和 C 库 1 翻译程序工具 &mdash;-&gt; 编译器 在预处理之前，编译器会做一些翻译处理工作。 把源代码中出现的字符映射到源字符集。 定位每个反斜杠后面跟着换]]></description>
+</item>
+<item>
+    <title>位操作</title>
+    <link>https://xiechaoxin.github.io/posts/language/c/%E4%BD%8D%E6%93%8D%E4%BD%9C/</link>
+    <pubDate>Mon, 12 Sep 2022 13:09:26 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/c/%E4%BD%8D%E6%93%8D%E4%BD%9C/</guid>
+    <description><![CDATA[位操作 0011 1100 二进制左侧是高位，右侧是低位 1 二进制数、位和字节 以数字10为基底表示的数字称为十进制数。 以数字2为基底表示的数字称为二进制数。 用二]]></description>
+</item>
+<item>
+    <title>结构和其他数据形式</title>
+    <link>https://xiechaoxin.github.io/posts/language/c/%E7%BB%93%E6%9E%84%E5%92%8C%E5%85%B6%E4%BB%96%E6%95%B0%E6%8D%AE%E5%BD%A2%E5%BC%8F/</link>
+    <pubDate>Mon, 12 Sep 2022 04:32:14 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/c/%E7%BB%93%E6%9E%84%E5%92%8C%E5%85%B6%E4%BB%96%E6%95%B0%E6%8D%AE%E5%BD%A2%E5%BC%8F/</guid>
+    <description><![CDATA[结构和其他数据形式 C 语言中，提供结构变量 可以提高表示数据的能力，创造新的形式。 1 示例问题：创建图书目录 打印图书目录，包括：书名、作者、价格。]]></description>
+</item>
+<item>
+    <title>C CPP语言运算符优先级</title>
+    <link>https://xiechaoxin.github.io/posts/language/c/c_cpp%E8%AF%AD%E8%A8%80%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7/</link>
+    <pubDate>Mon, 12 Sep 2022 02:40:28 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/c/c_cpp%E8%AF%AD%E8%A8%80%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7/</guid>
+    <description><![CDATA[C 语言运算符优先级 同一优先级的运算符，运算次序由结合方向所决定。 简单记就是：！ &gt; 算术运算符 &gt; 关系运算符 &gt; &amp;&amp; &gt; || &gt; 赋值运算符 运算符 功能 用法 结合]]></description>
+</item>
+</channel>
+</rss>

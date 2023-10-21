@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>使用适当的文档 - xcx</title><meta name="description" content=""><meta property="og:title" content="使用适当的文档" />
+<meta property="og:description" content="提升软件可维护性的途径一使用适当的文档 不断强化流程文档到重量级的流程文档，到精简流程和文档，到几乎没有什么明确的流程和文档格式。 适当的文档增" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/common/%E5%A6%82%E4%BD%95%E6%9B%B4%E5%A5%BD%E7%BB%B4%E6%8A%A4%E8%BD%AF%E4%BB%B6/2.%E4%BD%BF%E7%94%A8%E9%80%82%E5%BD%93%E7%9A%84%E6%96%87%E6%A1%A3/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-03-22T11:49:29+00:00" />
+<meta property="article:modified_time" content="2023-03-22T11:49:29+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用适当的文档"/>
+<meta name="twitter:description" content="提升软件可维护性的途径一使用适当的文档 不断强化流程文档到重量级的流程文档，到精简流程和文档，到几乎没有什么明确的流程和文档格式。 适当的文档增"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/common/%E5%A6%82%E4%BD%95%E6%9B%B4%E5%A5%BD%E7%BB%B4%E6%8A%A4%E8%BD%AF%E4%BB%B6/2.%E4%BD%BF%E7%94%A8%E9%80%82%E5%BD%93%E7%9A%84%E6%96%87%E6%A1%A3/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/language/c/how_to_read_c_declarations/" /><link rel="next" href="https://xiechaoxin.github.io/posts/common/%E5%A6%82%E4%BD%95%E6%9B%B4%E5%A5%BD%E7%BB%B4%E6%8A%A4%E8%BD%AF%E4%BB%B6/8.%E6%95%B4%E6%B4%81%E4%BB%A3%E7%A0%81/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "使用适当的文档",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/common\/%E5%A6%82%E4%BD%95%E6%9B%B4%E5%A5%BD%E7%BB%B4%E6%8A%A4%E8%BD%AF%E4%BB%B6\/2.%E4%BD%BF%E7%94%A8%E9%80%82%E5%BD%93%E7%9A%84%E6%96%87%E6%A1%A3\/"
+        },"genre": "posts","keywords": "可维护软件之道","wordcount":  1866 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/common\/%E5%A6%82%E4%BD%95%E6%9B%B4%E5%A5%BD%E7%BB%B4%E6%8A%A4%E8%BD%AF%E4%BB%B6\/2.%E4%BD%BF%E7%94%A8%E9%80%82%E5%BD%93%E7%9A%84%E6%96%87%E6%A1%A3\/","datePublished": "2023-03-22T11:49:29+00:00","dateModified": "2023-03-22T11:49:29+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">使用适当的文档</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/%E5%8F%AF%E7%BB%B4%E6%8A%A4%E8%BD%AF%E4%BB%B6%E4%B9%8B%E9%81%93/"><i class="far fa-folder fa-fw"></i>可维护软件之道</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-03-22">2023-03-22</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1866 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-文档类型">1 文档类型</a></li>
+    <li><a href="#2-文档使用的权衡">2 文档使用的权衡</a></li>
+    <li><a href="#3-图">3 图</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="提升软件可维护性的途径一使用适当的文档">提升软件可维护性的途径一使用适当的文档</h1>
+<ul>
+<li>不断强化流程文档到重量级的流程文档，到精简流程和文档，到几乎没有什么明确的流程和文档格式。</li>
+<li>适当的文档增强软件的可理解性，帮助理解代码，软件不仅包括代码，还包括相关文档</li>
+<li>文档的作用，记录信息，辅助沟通，帮助自己理清思路，帮助理解代码。</li>
+<li>文档包括，可行性研究报告，需求文档，概要设计文档，架构设计文档，详细设计，接口设计，用户手册/使用说明书</li>
+</ul>
+<h2 id="1-文档类型">1 文档类型</h2>
+<ul>
+<li>
+<p>需求文档</p>
+<ul>
+<li>
+<p>详尽记录每一条需求</p>
+</li>
+<li>
+<p>长期维护，时刻保持更新，是必须的文档</p>
+</li>
+<li>
+<p>使用者: 客户，市场人员，系统工程师，软件工程师，测试人员，维护人员。</p>
+</li>
+<li>
+<p>用户需求和系统需求</p>
+<ul>
+<li>用户需求，用户提出的最原始的需求，模糊，笼统。例如 ATM 机， 取钱，查询余额</li>
+<li>系统需求，对用户需求进行归纳总结，清晰话，具体话(需求分析)，包含用例分析，用户如何使用系统的。
+<ul>
+<li>例如取钱的步骤：1) 用户插入银行卡，2)ATM 机读取磁条信息，3)用户输入密码，4) AMT 机吐出钞票</li>
+</ul>
+</li>
+<li>需求分析，把用户需求转化为系统需求，获取和澄清用户需要， 是一个过程(需求迭代)，一个重要的内容是用例分析。
+<ul>
+<li>用例分析，包括用例图，用户使用系统的方法步骤</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>测试用例文档</p>
+<ul>
+<li>跟踪每一条需求，描述详细测试步骤，</li>
+<li>长期维护，时刻保持更新，必须的文档</li>
+<li>使用人员，系统工程师，软件工程师，测试人员，维护人员</li>
+</ul>
+</li>
+<li>
+<p>架构设计文档</p>
+<ul>
+<li>只放 high level/框架性的东西，以及核心业务逻辑， 稳定的东西，不深入细节，否则维护成本高，与实际实现适当同步，对于大型复杂系统几乎是必须的。</li>
+</ul>
+</li>
+<li>
+<p>概要设计文档</p>
+<ul>
+<li>围绕功能实现，描述系统有哪些模块以及模块之间的关系，有哪些核心的类，及其之间的关系(类图)；用顺序图描述事件流 (通过对象的交互完成系统功能)；得到的类图和顺序图有待进一步细化(在详细设计或编码时)。</li>
+<li>不深入细节，不必同步更新(实现有变化时，有架构设计文档时)，不必长期维护，中间产品，用完就丢弃；非必须(对于简单系统而言)，往往用于瀑布模型。</li>
+<li>使用者，软件工程师</li>
+</ul>
+</li>
+<li>
+<p>详细设计文档</p>
+<ul>
+<li>印度的详细设计文档。</li>
+<li>详细设计文档的维护</li>
+<li>不需要写，千万不要写详细设计(结对编程时)。</li>
+<li>详细设计和代码是一种重复，直接看代码，看 log。</li>
+<li>就系统里的重点，难点，复杂算法等写详细设计，类图，顺序图， 活动图，状态图，不需要描述每一个类，每一个方法。</li>
+<li>即便写了，也别花费力气去维护，用过就丢弃。</li>
+<li>往往用于瀑布模型</li>
+</ul>
+</li>
+<li>
+<p>必要/重要程度排序</p>
+<ul>
+<li>需求文档，测试用例和用户手册，长期维护，及时更新</li>
+<li>架构设计文档，长期维护，适当更新</li>
+<li>概要设计文档，可以不维护，不更新</li>
+<li>接口设计和详细设计，不维护，不更新</li>
+<li>可行性研宄报告，极少会写</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-文档使用的权衡">2 文档使用的权衡</h2>
+<ul>
+<li>
+<p>规范统一的文档模板，罗列出文档可能需要的方方面面，不仅给出标题，还有说明，特定领域的相应条目。推荐，但不强制。缺点，重复，难以发现差异</p>
+</li>
+<li>
+<p>混杂文档，可能包含需求，设计，代码，测试用例等所有相关的内容，格式不限，内容不限，草图，会议纪要/结论。缺点，可能会遗漏一些东西，但专业的开发人员和强有力的沟通能帮助我们不遗漏有用的东西。使用者，软件开发人员。</p>
+</li>
+<li>
+<p>文档格式</p>
+<ul>
+<li>内部使用的设计文档，实用主义，格式随意，在白板和纸上画的草图和文字描述可以拍下来直接插到文档。</li>
+<li>面向客户的用户手册，正式，规范，美观。</li>
+<li>软件的编码 高于 详尽的文档，</li>
+</ul>
+</li>
+<li>
+<p>文档多少</p>
+<ul>
+<li>瀑布模型，文档可以多一些，敏捷/增量/迭代模型，文档可以少一些；</li>
+<li>多站点开发文档需要多一些，单站点开发，文档可以少一些， •开源软件最好有较为完备的文档(架构设计文档/使用说明书)， •大型复杂系统，文档可以多一些，小型简单系统文档可以少一些 •强有力的沟通可以减少文档的使用</li>
+</ul>
+</li>
+<li>
+<p>增量和迭代，</p>
+<ul>
+<li>增量，每个增量是个小瀑布</li>
+<li>迭代，每个迭代周期里，需求，设计，编码和测试同步进行。</li>
+</ul>
+</li>
+<li>
+<p>尽量降低文档的维护成本，概要/详细设计文档不用维护</p>
+</li>
+<li>
+<p>有些文档可以不写，概要/详细/接口文档，(只对难点，重点的地方做设计)；</p>
+</li>
+<li>
+<p>唯一必须的文档是需求文档或测试用例(二选一)需求文档和测试用例是重复的。验收测试用例(需求文档)，单元测试用例(设计文档)</p>
+</li>
+<li>
+<p>只有需求文档，包含用例分析和会议纪要，对于小型系统可以工作。</p>
+</li>
+<li>
+<p>太多的文档增加软件的维护成本</p>
+</li>
+<li>
+<p>指导原则，实用主义，实事求是，具体问题具体分析</p>
+</li>
+</ul>
+<h2 id="3-图">3 图</h2>
+<ul>
+<li>图往往具有极强的表现力，一图顶千言，可以增加软件的可理解性， 广泛应用于各种文档，例如软硬件架构图</li>
+<li>功能，记录信息，沟通工具，帮助理清思路</li>
+<li>RUP + UML</li>
+<li>具体使用什么图，具体问题具体分析，UML 或普通的框图(架构图) 均可。</li>
+<li>不要深入细节，香则表现力急剧下降，图中元素 7+-2，天然适合表现 high level /概要性的信息，细节的东西用代码来表达。</li>
+<li>表现复杂问题需要分层，自顶向下逐层风解，硬件结构图。</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/%E5%8F%AF%E7%BB%B4%E6%8A%A4%E8%BD%AF%E4%BB%B6%E4%B9%8B%E9%81%93/">可维护软件之道</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2023-03-22</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/language/c/how_to_read_c_declarations/" class="prev" rel="prev" title="how to read c declarations"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/common/%E5%A6%82%E4%BD%95%E6%9B%B4%E5%A5%BD%E7%BB%B4%E6%8A%A4%E8%BD%AF%E4%BB%B6/8.%E6%95%B4%E6%B4%81%E4%BB%A3%E7%A0%81/" class="next" rel="next" title="整洁代码">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

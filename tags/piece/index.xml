@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>piece - 标签 - xcx</title>
+        <link>https://xiechaoxin.github.io/tags/piece/</link>
+        <description>piece - 标签 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 26 May 2023 09:10:46 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/tags/piece/" rel="self" type="application/rss+xml" /><item>
+    <title>浮点数计算精度问题</title>
+    <link>https://xiechaoxin.github.io/posts/chaos/%E6%B5%AE%E7%82%B9%E6%95%B0%E8%AE%A1%E7%AE%97%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/</link>
+    <pubDate>Fri, 26 May 2023 09:10:46 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/chaos/%E6%B5%AE%E7%82%B9%E6%95%B0%E8%AE%A1%E7%AE%97%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/</guid>
+    <description><![CDATA[int n; sqrt(n+1e-6); 1e-6 表示 1 乘以 10 的负 6 次方。 1e-6(也就是 0.000001)叫做 epslon，用来抵消浮点运算中因为误差造成的相等无法判断的情况。它通]]></description>
+</item>
+<item>
+    <title>输入法rime</title>
+    <link>https://xiechaoxin.github.io/posts/chaos/%E8%BE%93%E5%85%A5%E6%B3%95rime/</link>
+    <pubDate>Fri, 26 May 2023 09:10:46 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/chaos/%E8%BE%93%E5%85%A5%E6%B3%95rime/</guid>
+    <description><![CDATA[建议配合图文进行操作： https://www.mintimate.cn/2023/03/18/rimeQuickInit oh-my-rime 配置（Mintimate 的配置）： https://github.com/Mintimate/oh-my-rime Rime/小狼毫/鼠须管是强大的开源输入法。它支持： 自定义词库，离开网络也不用]]></description>
+</item>
+</channel>
+</rss>

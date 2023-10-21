@@ -1,0 +1,37 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>message-queue - 标签 - xcx</title>
+        <link>https://xiechaoxin.github.io/tags/message-queue/</link>
+        <description>message-queue - 标签 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/tags/message-queue/" rel="self" type="application/rss+xml" /><item>
+    <title>kafka知识点&amp;面试题总结</title>
+    <link>https://xiechaoxin.github.io/posts/pro/high-performance/message-queue/kafka%E7%9F%A5%E8%AF%86%E7%82%B9%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/pro/high-performance/message-queue/kafka%E7%9F%A5%E8%AF%86%E7%82%B9%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/</guid>
+    <description><![CDATA[Kafka知识点&amp;面试题总结 1 Kafka 是什么？主要应用场景有哪些？ Kafka 是一个分布式流式处理平台。这到底是什么意思呢？ 流平台具有三个关键功能：]]></description>
+</item>
+<item>
+    <title>message-queue</title>
+    <link>https://xiechaoxin.github.io/posts/pro/high-performance/message-queue/message-queue/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/pro/high-performance/message-queue/message-queue/</guid>
+    <description><![CDATA[消息队列知识点&amp;面试题总结 “RabbitMQ？”“Kafka？”“RocketMQ？”&hellip;在日常学习与开发过程中，我们常]]></description>
+</item>
+<item>
+    <title>rabbitmq-intro</title>
+    <link>https://xiechaoxin.github.io/posts/pro/high-performance/message-queue/rabbitmq-intro/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/pro/high-performance/message-queue/rabbitmq-intro/</guid>
+    <description><![CDATA[RabbitMQ 入门总结 1 一 RabbitMQ 介绍 这部分参考了 《RabbitMQ实战指南》这本书的第 1 章和第 2 章。 1.1 RabbitMQ 简介 RabbitMQ 是采用 Erlang 语言实现 AMQP(Advanced Message Queuing Protocol，高级消]]></description>
+</item>
+<item>
+    <title>rocketmq-intro</title>
+    <link>https://xiechaoxin.github.io/posts/pro/high-performance/message-queue/rocketmq-intro/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/pro/high-performance/message-queue/rocketmq-intro/</guid>
+    <description><![CDATA[RocketMQ入门总结 文章很长，点赞再看，养成好习惯😋😋😋 本文由 FrancisQ 老哥投稿！ 1 消息队列扫盲 消息队列顾名思义就是存放消息的队列，队列我就不解]]></description>
+</item>
+<item>
+    <title>rocketmq-questions</title>
+    <link>https://xiechaoxin.github.io/posts/pro/high-performance/message-queue/rocketmq-questions/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/pro/high-performance/message-queue/rocketmq-questions/</guid>
+    <description><![CDATA[RocketMQ常见问题 本文来自读者 PR。 1 单机版消息中心 一个消息中心，最基本的需要支持多生产者、多消费者，例如下： class Scratch { public static void main(String[] args) { // 实际]]></description>
+</item>
+</channel>
+</rss>

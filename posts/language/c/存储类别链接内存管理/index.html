@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>存储类别、链接和内存管理 - xcx</title><meta name="description" content=""><meta property="og:title" content="存储类别、链接和内存管理" />
+<meta property="og:description" content="存储类别、链接和内存管理 1 存储类别 C 语言提供多种不同的模型或者存储类别在内存中储存数据。 硬件角度 被储存的每个值都占用一定的物理内存(这一块的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/language/c/%E5%AD%98%E5%82%A8%E7%B1%BB%E5%88%AB%E9%93%BE%E6%8E%A5%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-12T02:39:31+00:00" />
+<meta property="article:modified_time" content="2022-09-12T02:39:31+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="存储类别、链接和内存管理"/>
+<meta name="twitter:description" content="存储类别、链接和内存管理 1 存储类别 C 语言提供多种不同的模型或者存储类别在内存中储存数据。 硬件角度 被储存的每个值都占用一定的物理内存(这一块的"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/language/c/%E5%AD%98%E5%82%A8%E7%B1%BB%E5%88%AB%E9%93%BE%E6%8E%A5%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/language/c/%E6%95%B0%E7%BB%84%E5%92%8C%E6%8C%87%E9%92%88/" /><link rel="next" href="https://xiechaoxin.github.io/posts/language/c/c_cpp%E8%AF%AD%E8%A8%80%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "存储类别、链接和内存管理",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/language\/c\/%E5%AD%98%E5%82%A8%E7%B1%BB%E5%88%AB%E9%93%BE%E6%8E%A5%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86\/"
+        },"genre": "posts","keywords": "C","wordcount":  4238 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/language\/c\/%E5%AD%98%E5%82%A8%E7%B1%BB%E5%88%AB%E9%93%BE%E6%8E%A5%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86\/","datePublished": "2022-09-12T02:39:31+00:00","dateModified": "2022-09-12T02:39:31+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">存储类别、链接和内存管理</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/language/"><i class="far fa-folder fa-fw"></i>language</a>&nbsp;<a href="/categories/c/"><i class="far fa-folder fa-fw"></i>C</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-09-12">2022-09-12</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4238 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-存储类别">1 存储类别</a>
+      <ul>
+        <li><a href="#11-作用域">1.1 作用域</a></li>
+        <li><a href="#12-链接">1.2 链接</a></li>
+        <li><a href="#13-存储期">1.3 存储期</a></li>
+        <li><a href="#14-自动变量">1.4 自动变量</a></li>
+        <li><a href="#15-寄存器变量">1.5 寄存器变量</a></li>
+        <li><a href="#16-块作用域的静态变量">1.6 块作用域的静态变量</a></li>
+        <li><a href="#17-外部链接的静态变量">1.7 外部链接的静态变量</a></li>
+        <li><a href="#18-内部链接的静态变量">1.8 内部链接的静态变量</a></li>
+        <li><a href="#19-存储类别说明符">1.9 存储类别说明符</a></li>
+        <li><a href="#110-存储类别和函数">1.10 存储类别和函数</a></li>
+        <li><a href="#111-存储类别的选择">1.11 存储类别的选择</a></li>
+        <li><a href="#112-总结五种存储类别">1.12 总结：五种存储类别</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-随机数函数和静态变量">2 随机数函数和静态变量</a></li>
+    <li><a href="#3-分配内存malloc-和-free">3 分配内存：<code>malloc()</code> 和 <code>free()</code></a>
+      <ul>
+        <li><a href="#31-malloc-函数">3.1 <code>malloc()</code> 函数</a></li>
+        <li><a href="#32-free-函数">3.2 <code>free()</code> 函数</a></li>
+        <li><a href="#33-calloc-函数">3.3 <code>calloc()</code> 函数</a></li>
+        <li><a href="#34-动态内存分配和变长数组">3.4 动态内存分配和变长数组</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-ansi-c-类型限定符">4 ANSI C 类型限定符</a>
+      <ul>
+        <li><a href="#41-在指针和形参声明中使用-const">4.1 在指针和形参声明中使用 const</a></li>
+        <li><a href="#42-对全局数据使用-const">4.2 对全局数据使用 const</a></li>
+        <li><a href="#43-volatile-类型限定符c90">4.3 volatile 类型限定符(C90)</a></li>
+        <li><a href="#44-restrict-关键字c99">4.4 restrict 关键字(C99)</a></li>
+        <li><a href="#45-_atomic-类型限定符c11">4.5 _Atomic 类型限定符(C11)</a></li>
+      </ul>
+    </li>
+    <li><a href="#小结">小结</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="存储类别链接和内存管理">存储类别、链接和内存管理</h1>
+<h2 id="1-存储类别">1 存储类别</h2>
+<p>C 语言提供多种不同的模型或者存储类别在内存中储存数据。</p>
+<p>硬件角度</p>
+<blockquote>
+<p>被储存的每个值都占用一定的物理内存(这一块的内存称为对象，需要区别 cpp 的对象)</p>
+<p>对象可储存一个或多个值。一个对象可能并未储存实际的值，但在储存适当的值时具有一定相应的大小。</p>
+</blockquote>
+<p>软件角度</p>
+<blockquote>
+<p>需要一种方法访问对象，可通过声明变量来进行。</p>
+</blockquote>
+<h3 id="11-作用域">1.1 作用域</h3>
+<p>作用域描述程序中可访问标识符区域。</p>
+<p><strong>块</strong>：一对花括号括起来的代码区域。</p>
+<p>C 变量的作用域有 <code>块作用域、函数作用域、函数原型作用域或文件作用域</code>。</p>
+<blockquote>
+<p><strong>块作用域(局部变量)</strong>：声明在语句块中的变量，在语句块中可见可用。常见的块语句：<code>for循环、while循环、do while循环和if语句</code>。</p>
+<p><strong>函数作用域</strong>：声明在函数体内，函数体内可用。仅用于 <code>goto语句</code> 的标签。</p>
+<p><strong>函数原型作用域</strong>：形参定义到原型声明结束，仅仅在函数原型的<code>括号() </code>里面可用。</p>
+<p><strong>文件作用域(全局变量)</strong>：变量定义在函数的外面，从定义到文件末尾可见。</p>
+</blockquote>
+<h3 id="12-链接">1.2 链接</h3>
+<p>C 语言中变量有 3 种链接属性：<strong><em>外部链接</em></strong>、<strong><em>内部链接</em></strong> 和 <strong><em>无链接</em></strong>。</p>
+<blockquote>
+<p>外部链接可在多文件程序中使用，内部链接只能在当前单元使用。</p>
+</blockquote>
+<p>无链接变量：块作用域、函数作用域、函数原型作用域</p>
+<p>文件作用域中的变量可以是外部链接或内部链接。</p>
+<p>存储类别说明符 static 可区分外部链接和内部链接。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span> <span class="c1">// 外部链接
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">static</span> <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span><span class="c1">// 内部链接
+</span></span></span></code></pre></div><h3 id="13-存储期">1.3 存储期</h3>
+<p>作用域和链接描述了标识符的可见性。</p>
+<p>存储期 描述了 标识符访问的对象的生存周期。</p>
+<p>C 语言中对象的 4 种存储期：<strong><em><code>静态存储期、线程存储期、自动存储期、动态分配存储期</code></em></strong>。</p>
+<blockquote>
+<p><strong>静态存储期</strong>:在程序执行期间会一直存在。文件作用域变量具有静态存储期。</p>
+<p><strong>线程存储期</strong>：用于并发程序设计，程序执行可分为多个线程。具有线程存储期的对象，从被声明时到线程结束一直存在。</p>
+<p><strong>自动存储期</strong>：自动把变量占用的内存视为一个可重复使用的工作区或暂存区。⚠️ 注意点：变长数组的存储期是从声明处到块的末尾。常见的情况：局部变量</p>
+</blockquote>
+<h3 id="14-自动变量">1.4 自动变量</h3>
+<p>声明在块或函数头中的任何变量都属于自动存储类别(默认情况)。</p>
+<p>可以使用 <code>关键字auto</code> 显式定义并使用自动变量。</p>
+<blockquote>
+<p>auto 是存储类别说明符，为了考虑 C/C++程序的兼容性问题，一般不建议使用。</p>
+</blockquote>
+<p><strong>没有花括号的块</strong></p>
+<blockquote>
+<p>不是所有的代码块的都有花括号的，例如 if 和 for 语句。</p>
+</blockquote>
+<p><strong>自动变量的初始化</strong></p>
+<blockquote>
+<p>自动变量不会初始化，除非使用显式初始化。</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span><span class="p">;</span> <span class="c1">//仅仅分配内存空间，值未知(不一定是默认值0，可能是非常量表达式初始化自动变量)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span> <span class="c1">//变量被初始化，分配了内存空间和初始值
+</span></span></span></code></pre></div><h3 id="15-寄存器变量">1.5 寄存器变量</h3>
+<p>变量通常是存储在计算机内存中。</p>
+<p>目的：加快访问和处理变量的速度(加快计算速度)。</p>
+<p>寄存器变量存储在寄存器中而非内存中，故无法获取寄存器变量的地址。</p>
+<blockquote>
+<p>使用存储器类别说明符 register 便可声明寄存器变量。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">macho</span><span class="p">(</span><span class="k">register</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+</span></span></code></pre></div><p>在函数头中使用 <code>关键字regsiter</code> ,便可请求形参是寄存器变量。</p>
+</blockquote>
+<h3 id="16-块作用域的静态变量">1.6 块作用域的静态变量</h3>
+<p>静态：变量在内存中<code>地址固定</code>，不是值不动。</p>
+<p>具有文件作用域的自动变量必须具有静态存储期。</p>
+<p>也称为<code>内部静态存储类别</code>(函数内部，而非内部链接)。</p>
+<h3 id="17-外部链接的静态变量">1.7 外部链接的静态变量</h3>
+<p>外部链接的静态变量具有文件作用域、外部链接和静态存储期。也称为 <code>外部存储类别</code>。</p>
+<p>变量称为外部变量(变量的定义性声明放在函数的外部)。</p>
+<blockquote>
+<p>为了说明外部变量，一般在函数中使用 <code>关键字 extern</code> 说明。</p>
+<p>如果代码文件使用的外部变量定义在另一个代码文件中，则必须使用 extern 在该文件中声明该变量。</p>
+</blockquote>
+<p>外部变量域自动变量类似，可被显式初始化。</p>
+<blockquote>
+<p>区别：外部变量如果未初始化，会被自动初始化为 0。</p>
+</blockquote>
+<p>⚠️ 注意：外部变量只能初始化一次，且必须在定义该变量时进行。</p>
+<h3 id="18-内部链接的静态变量">1.8 内部链接的静态变量</h3>
+<p>只能用于同一个文件中的函数。</p>
+<p>用存储类别说明符 <code>static</code> 定义变量具有静态存储期、文件作用域和内部链接。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">static</span> <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 静态变量，内部链接
+</span></span></span></code></pre></div><p>使用存储类别说明符 <code>extern</code> 在函数中重复声明任何具有文件作用域的变量。</p>
+<blockquote>
+<p>该类型的声明<code>不会改变其链接属性</code>。</p>
+</blockquote>
+<p>当 static 修饰全局变量时，会使变量的作用域限制在声明它的文件内。</p>
+<h3 id="19-存储类别说明符">1.9 存储类别说明符</h3>
+<p>C 语言中 6 个存储类别说明符关键字：</p>
+<ul>
+<li>auto
+<blockquote>
+<p>自动存储期，只能用于块作用域的变量声明中。</p>
+<p>主要为了明确表达要使用域外部变量同名的局部变量的意图。</p>
+</blockquote>
+</li>
+<li>register
+<blockquote>
+<p>用于块作用域的变量。归类为寄存器。</p>
+</blockquote>
+</li>
+<li>static
+<blockquote>
+<p>说明符创建的对象具有静态存储期，载入程序时创建对象，当程序结束时对象消失。</p>
+</blockquote>
+</li>
+<li>extern</li>
+<li>_Thread_local</li>
+<li>typedef</li>
+</ul>
+<h3 id="110-存储类别和函数">1.10 存储类别和函数</h3>
+<p>函数也分为<code>外部函数</code>或<code>静态函数</code>。</p>
+<blockquote>
+<ul>
+<li><code>外部函数</code>可被其他文件的函数访问</li>
+<li><code>静态函数</code>只能用于其定义所在的文件。</li>
+</ul>
+</blockquote>
+<p>一般使用 <code>extern关键字</code> 声明定义在其他文件中的函数。</p>
+<blockquote>
+<p>目的：表明在当前文件中使用的函数被定义在别处(该文件的外部)。</p>
+<p>除非使用 <code>static关键字</code>，否则一般函数声明都默认为 <code>extern</code>。</p>
+</blockquote>
+<h3 id="111-存储类别的选择">1.11 存储类别的选择</h3>
+<p>保护性程序设计的黄金法则：<code>“按需知道” 原则</code>。</p>
+<blockquote>
+<p>尽量在函数内部解决该函数的任务，只共享某些需要共享的变量。</p>
+</blockquote>
+<h3 id="112-总结五种存储类别">1.12 总结：五种存储类别</h3>
+<table>
+<thead>
+<tr>
+<th>存储类别</th>
+<th>存储期</th>
+<th>作用域</th>
+<th>链接</th>
+<th>声明方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>自动(auto)</td>
+<td>自动</td>
+<td>块</td>
+<td>无</td>
+<td>块内</td>
+</tr>
+<tr>
+<td>寄存器(register)</td>
+<td>自动</td>
+<td>块</td>
+<td>无</td>
+<td>块内，使用关键字 register</td>
+</tr>
+<tr>
+<td>静态外部链接</td>
+<td>静态</td>
+<td>文件</td>
+<td>外部</td>
+<td>所有函数外</td>
+</tr>
+<tr>
+<td>静态内部链接</td>
+<td>静态</td>
+<td>文件</td>
+<td>内部</td>
+<td>所有函数外，使用关键字 static</td>
+</tr>
+<tr>
+<td>静态无链接</td>
+<td>静态</td>
+<td>块</td>
+<td>无</td>
+<td>块内，使用关键字 static</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-随机数函数和静态变量">2 随机数函数和静态变量</h2>
+<p>内部链接的静态变量的函数：<code>随机数函数</code>。</p>
+<p>ANSI C 库提供 <code>rand()</code> 函数生成随机数。</p>
+<h2 id="3-分配内存malloc-和-free">3 分配内存：<code>malloc()</code> 和 <code>free()</code></h2>
+<p><code>malloc()</code> 和 <code>free()</code> 函数原型都在 <code>stdlib.h</code> 头文件中。</p>
+<h3 id="31-malloc-函数">3.1 <code>malloc()</code> 函数</h3>
+<p><code>malloc()</code>函数:可在程序运行时分配更多的内存。</p>
+<blockquote>
+<p>接受一个参数：<strong>所需的内存字节数</strong>。</p>
+<p>找到合适的空闲内存块，⚠️ 注意：内存是匿名(分配内存，但不会为其赋名)。</p>
+<p>返回动态分配内存块的首字节地址。</p>
+</blockquote>
+<p><code>malloc()</code>函数 可用于返回指向<code>数组</code>的指针、指向<code>结构</code>的指针等。</p>
+<p>声明一个指针，调用 malloc()，将其返回值赋给指针，使用指针访问数组的元素(指针是静态或自动)。</p>
+<p>👉<strong>Notes</strong>：<code>malloc()</code> 必须和 <code>free()</code> 函数配套使用。<strong><em>malloc 申请的内存块，必须要用 free() 去释放，否则会造成内存泄漏</em></strong>。</p>
+<blockquote>
+<p><code>free()</code> 函数的参数是 <code>malloc()</code>返回的<code>地址</code>。</p>
+</blockquote>
+<h3 id="32-free-函数">3.2 <code>free()</code> 函数</h3>
+<p>静态内存的数量在编译时固定，在程序运行期间不会改变。</p>
+<p>自动变量使用的内存数量在程序运行期间自动增加或减少。</p>
+<p>动态分配的内存数量只会增加，除非使用 <code>free()</code> 函数来释放。</p>
+<p><del>不能用<code>free() </code>释放通过其它方式分配的内存。</del></p>
+<p><code>free()</code> 函数位于程序的末尾，释放<code>malloc() </code>函数分配的内存(参数指向的内存块)。</p>
+<blockquote>
+<p>否则造成内存泄漏。</p>
+</blockquote>
+<h3 id="33-calloc-函数">3.3 <code>calloc()</code> 函数</h3>
+<p><code>calloc()</code> 函数 可进行内存分配。</p>
+<p>语法格式：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="o">*</span><span class="nf">calloc</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">nitems</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">size</span><span class="p">)</span>
+</span></span></code></pre></div><blockquote>
+<p>接受两个无符号整数作为参数(ANSI 规定是 size_t 类型)</p>
+<p>nitems &ndash; 所需的存储单元个数。</p>
+<p>size &ndash; 元素的大小(以字节为单位)</p>
+</blockquote>
+<p>calloc 的特性：把块中的所有位置都设置为 0(注意：在某些硬件系统中，不是所有的位都设置为 0 来表示浮点值 0)。</p>
+<p><code>free()</code> 函数 可用于释放 <code>calloc()</code> 分配的内存。</p>
+<h3 id="34-动态内存分配和变长数组">3.4 动态内存分配和变长数组</h3>
+<p>变长数组(VLA)：自动存储类型。</p>
+<blockquote>
+<p>程序在离开变长数组定义所在的块时，变长数组占用的内存空间会被释放。<del>不必使用 free()</del>。</p>
+</blockquote>
+<p>未使用的内存块分散在已使用的内存块之间。</p>
+<p>使用动态内存同时比使用栈内存慢。</p>
+<h2 id="4-ansi-c-类型限定符">4 ANSI C 类型限定符</h2>
+<blockquote>
+<p>const 关键字(C90 特性) ——————&gt; 恒常性</p>
+<p>volatile 关键字(C90 特性)——————&gt; 易变性</p>
+<p>restrict 关键字(C99 特性)——————&gt; 用于提高编译器优化</p>
+<p>_Atomic(C11 特性)——————&gt; 支持并发程序设计</p>
+</blockquote>
+<p>以 <code>const关键字</code> 声明的对象，其<del>值不能通过赋值或递增、递减来修改</del>。模式为<code>只读</code>。</p>
+<h3 id="41-在指针和形参声明中使用-const">4.1 在指针和形参声明中使用 const</h3>
+<ul>
+<li>const 放在*的左侧任意位置，限定<code>指针指向的数据</code>不能改变。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">const</span> <span class="n">floar</span> <span class="o">*</span><span class="n">pf</span><span class="p">;</span> <span class="c1">//pf指向的值不能被改变
+</span></span></span></code></pre></div><ul>
+<li>const 放在*的右侧，限定<code>指针本身</code>不能改变。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">float</span> <span class="o">*</span> <span class="k">const</span> <span class="n">pt</span><span class="p">;</span> <span class="c1">//pt本身的值不能改变
+</span></span></span></code></pre></div><h3 id="42-对全局数据使用-const">4.2 对全局数据使用 const</h3>
+<p>const 来对全局变量进行限制，避免更改数据。</p>
+<p>一般在文件间共享 const 数据，两个策略：</p>
+<ul>
+<li>遵循外部变量的常用规则(在一个文件中使用定义式声明，在其他文件中使用引用式声明(用 extern 关键字))。</li>
+<li>把 const 变量放在一个头文件中，然后在其他文件中包含该头文件。</li>
+</ul>
+<h3 id="43-volatile-类型限定符c90">4.3 volatile 类型限定符(C90)</h3>
+<p>告知计算机，代理(而不是变量所在的程序)可以改变该变量的值。</p>
+<p>被用于硬件地址以及其他程序或同时运行的线程中共享数据。</p>
+<blockquote>
+<p>volatile 变量对编译器的优化有帮助。</p>
+</blockquote>
+<h3 id="44-restrict-关键字c99">4.4 restrict 关键字(C99)</h3>
+<p>允许编译器优化某部分代码更好地支持计算。
+⚠️ 注意：<strong>只能用于指针</strong>。表明指针是访问数据对象的唯一且初始的方式。</p>
+<p>使用<code>restrict关键字</code>，编译器可以选择捷径优化计算。</p>
+<blockquote>
+<p>可用于函数形参中的指针。</p>
+</blockquote>
+<h3 id="45-_atomic-类型限定符c11">4.5 _Atomic 类型限定符(C11)</h3>
+<p>并发程序设计把程序执行分成可以同时执行的多个线程。</p>
+<p>可选的头文件：<code>stdatomic.h</code> 和 <code>threads.h</code>。</p>
+<p>通过各种宏函数来访问原子类型。</p>
+<p>当一个线程对一个原子类型的对象执行原子操作时，其他线程不能访问该对象。</p>
+<h2 id="小结">小结</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">extern</span> <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">f</span><span class="p">(</span><span class="kt">int</span> <span class="n">d</span><span class="p">,</span> <span class="k">register</span> <span class="kt">int</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">auto</span> <span class="kt">int</span> <span class="n">g</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">h</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">extern</span> <span class="kt">int</span> <span class="n">j</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">register</span> <span class="kt">int</span> <span class="n">k</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>下面是对给定代码中各个变量的存储周期、作用域和链接的说明，以Markdown格式呈现：</p>
+<table>
+<thead>
+<tr>
+<th>变量声明</th>
+<th>存储周期</th>
+<th>作用域</th>
+<th>链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>int a;</code></td>
+<td>静态存储期</td>
+<td>文件（全局）作用域</td>
+<td>外部链接（External）</td>
+</tr>
+<tr>
+<td><code>extern int b;</code></td>
+<td>静态存储期</td>
+<td>文件（全局）作用域</td>
+<td>外部链接（External）</td>
+</tr>
+<tr>
+<td><code>static int c;</code></td>
+<td>静态存储期</td>
+<td>文件（全局）作用域</td>
+<td>内部链接（Internal）</td>
+</tr>
+<tr>
+<td><code>int d;</code></td>
+<td>自动存储期</td>
+<td>函数 <code>f</code> 作用域</td>
+<td>无链接</td>
+</tr>
+<tr>
+<td><code>register int e;</code></td>
+<td>自动存储期</td>
+<td>函数 <code>f</code> 作用域</td>
+<td>无链接</td>
+</tr>
+<tr>
+<td><code>auto int g;</code></td>
+<td>自动存储期</td>
+<td>函数 <code>f</code> 作用域</td>
+<td>无链接</td>
+</tr>
+<tr>
+<td><code>int h;</code></td>
+<td>自动存储期</td>
+<td>函数 <code>f</code> 作用域</td>
+<td>无链接</td>
+</tr>
+<tr>
+<td><code>static int i;</code></td>
+<td>静态存储期</td>
+<td>文件（全局）作用域</td>
+<td>内部链接（Internal）</td>
+</tr>
+<tr>
+<td><code>extern int j;</code></td>
+<td>静态存储期</td>
+<td>文件（全局）作用域</td>
+<td>外部链接（External）</td>
+</tr>
+<tr>
+<td><code>register int k;</code></td>
+<td>自动存储期</td>
+<td>函数 <code>f</code> 作用域</td>
+<td>无链接</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>存储周期（Storage Duration）：</p>
+<ul>
+<li>静态存储期（Static Storage Duration）：<code>a</code>、<code>c</code>、<code>i</code> 具有静态存储期，它们的生命周期在整个程序运行期间，不会被销毁。</li>
+<li>自动存储期（Automatic Storage Duration）：<code>d</code>、<code>e</code>、<code>g</code>、<code>h</code>、<code>k</code> 具有自动存储期，它们的生命周期随着它们所在的函数的执行而创建和销毁。</li>
+<li>无法确定存储期：<code>b</code>、<code>j</code> 的存储周期无法确定，因为它们使用了 <code>extern</code> 关键字，可能在其他文件中定义。</li>
+</ul>
+</li>
+<li>
+<p>作用域（Scope）：</p>
+<ul>
+<li>文件（全局）作用域：<code>a</code>、<code>b</code>、<code>c</code>、<code>i</code>、<code>j</code> 具有文件作用域，可以在整个文件中访问。</li>
+<li>函数 <code>f</code> 作用域：<code>d</code>、<code>e</code>、<code>g</code>、<code>h</code>、<code>k</code> 具有函数 <code>f</code> 的作用域，只能在函数 <code>f</code> 内部访问。</li>
+</ul>
+</li>
+<li>
+<p>链接（Linkage）：</p>
+<ul>
+<li>外部链接（External Linkage）：<code>a</code>、<code>b</code>、<code>j</code> 具有外部链接，它们可以在不同的文件中共享。</li>
+<li>内部链接（Internal Linkage）：<code>c</code>、<code>i</code> 具有内部链接，它们只能在同一文件中共享，不会被其他文件访问。</li>
+</ul>
+</li>
+</ul>
+<p>需要注意的是，<code>register</code> 关键字用于向编译器建议将变量存储在寄存器中以提高访问速度，但它在C99标准中已被弃用，因此具体实现是否将变量存储在寄存器中取决于编译器。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/c/">C</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-09-12</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/language/c/%E6%95%B0%E7%BB%84%E5%92%8C%E6%8C%87%E9%92%88/" class="prev" rel="prev" title="数组和指针"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/language/c/c_cpp%E8%AF%AD%E8%A8%80%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7/" class="next" rel="next" title="C CPP语言运算符优先级">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

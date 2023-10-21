@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>IO流 - xcx</title><meta name="description" content=""><meta property="og:title" content="IO流" />
+<meta property="og:description" content="IO流 1 IO 1.1 I input 输入 1.2 O output 输出 2 IO流的分类 2.1 、按照IO流的数据流动方向分 输入流 输出流 2.2 、按照IO流的数据处理的最小单位分 字节流 字符流 2.3 、根" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/language/java/io%E6%B5%81/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-14T02:17:04+00:00" />
+<meta property="article:modified_time" content="2022-09-14T02:17:04+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="IO流"/>
+<meta name="twitter:description" content="IO流 1 IO 1.1 I input 输入 1.2 O output 输出 2 IO流的分类 2.1 、按照IO流的数据流动方向分 输入流 输出流 2.2 、按照IO流的数据处理的最小单位分 字节流 字符流 2.3 、根"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/language/java/io%E6%B5%81/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/language/java/javase-api/" /><link rel="next" href="https://xiechaoxin.github.io/posts/chaos/%E4%B8%8D%E5%90%8C%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E5%8F%98%E9%87%8F%E9%95%BF%E5%BA%A6/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "IO流",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/language\/java\/io%E6%B5%81\/"
+        },"genre": "posts","keywords": "JAVA","wordcount":  4169 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/language\/java\/io%E6%B5%81\/","datePublished": "2022-09-14T02:17:04+00:00","dateModified": "2022-09-14T02:17:04+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">IO流</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/java/"><i class="far fa-folder fa-fw"></i>JAVA</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-09-14">2022-09-14</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4169 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-io">1 IO</a>
+      <ul>
+        <li><a href="#11-i">1.1 I</a></li>
+        <li><a href="#12-o">1.2 O</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-io流的分类">2 IO流的分类</a>
+      <ul>
+        <li><a href="#21-按照io流的数据流动方向分">2.1 、按照IO流的数据流动方向分</a></li>
+        <li><a href="#22-按照io流的数据处理的最小单位分">2.2 、按照IO流的数据处理的最小单位分</a></li>
+        <li><a href="#23-根据io流的作用分">2.3 、根据IO流的作用分</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-io流的四个抽象基类超级父类">3 IO流的四个抽象基类，超级父类</a>
+      <ul>
+        <li><a href="#31-inputstream">3.1 InputStream</a></li>
+        <li><a href="#32-outputstream">3.2 OutputStream</a></li>
+        <li><a href="#33-reader">3.3 Reader</a></li>
+        <li><a href="#34-writer">3.4 Writer</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-和文件相关的io流">4 和文件相关的IO流</a>
+      <ul>
+        <li><a href="#41-类型">4.1 类型</a></li>
+        <li><a href="#42-读取">4.2 读取</a></li>
+        <li><a href="#43-保存">4.3 保存</a></li>
+        <li><a href="#44-复制">4.4 复制</a></li>
+        <li><a href="#45-file">4.5 File</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-处理流">5 处理流</a>
+      <ul>
+        <li><a href="#51-缓冲流">5.1 缓冲流</a></li>
+        <li><a href="#52-数据流">5.2 数据流</a></li>
+        <li><a href="#53-对象流">5.3 对象流</a></li>
+        <li><a href="#54-打印流">5.4 打印流</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-nio了解">6 NIO(了解)</a>
+      <ul>
+        <li><a href="#61-nio">6.1 NIO</a></li>
+        <li><a href="#62-nio和io的区别">6.2 NIO和IO的区别</a></li>
+        <li><a href="#63-和新的io的api相关的">6.3 和新的IO的API相关的</a></li>
+        <li><a href="#64-通道">6.4 通道</a></li>
+        <li><a href="#65-缓冲区">6.5 缓冲区</a></li>
+      </ul>
+    </li>
+    <li><a href="#7-length">7 length</a>
+      <ul>
+        <li><a href="#71-数组">7.1 数组</a></li>
+        <li><a href="#72-字符串的长度">7.2 字符串的长度</a></li>
+        <li><a href="#73-文件的长度">7.3 文件的长度</a></li>
+      </ul>
+    </li>
+    <li><a href="#8-orgapache工具包">8 org.apache工具包</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="io流">IO流</h1>
+<h2 id="1-io">1 IO</h2>
+<h3 id="11-i">1.1 I</h3>
+<ul>
+<li>input</li>
+<li>输入</li>
+</ul>
+<h3 id="12-o">1.2 O</h3>
+<ul>
+<li>output</li>
+<li>输出</li>
+</ul>
+<h2 id="2-io流的分类">2 IO流的分类</h2>
+<h3 id="21-按照io流的数据流动方向分">2.1 、按照IO流的数据流动方向分</h3>
+<ul>
+<li>输入流</li>
+<li>输出流</li>
+</ul>
+<h3 id="22-按照io流的数据处理的最小单位分">2.2 、按照IO流的数据处理的最小单位分</h3>
+<ul>
+<li>字节流</li>
+<li>字符流</li>
+</ul>
+<h3 id="23-根据io流的作用分">2.3 、根据IO流的作用分</h3>
+<ul>
+<li>
+<p>节点流</p>
+<ul>
+<li>
+<p>例如：文件IO流</p>
+<ul>
+<li>连接文件节点</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>处理流</p>
+<ul>
+<li>在节点流的基础上增加其他功能，例如缓冲，编码解码，序列化等</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-io流的四个抽象基类超级父类">3 IO流的四个抽象基类，超级父类</h2>
+<h3 id="31-inputstream">3.1 InputStream</h3>
+<ul>
+<li>字节输入流</li>
+</ul>
+<h3 id="32-outputstream">3.2 OutputStream</h3>
+<ul>
+<li>字节输出流</li>
+</ul>
+<h3 id="33-reader">3.3 Reader</h3>
+<ul>
+<li>字符输入流</li>
+</ul>
+<h3 id="34-writer">3.4 Writer</h3>
+<ul>
+<li>字符输出流</li>
+</ul>
+<h2 id="4-和文件相关的io流">4 和文件相关的IO流</h2>
+<h3 id="41-类型">4.1 类型</h3>
+<ul>
+<li>
+<p>FileInputStream</p>
+<ul>
+<li>文件字节输入流</li>
+<li>读取任意类型的文件</li>
+</ul>
+</li>
+<li>
+<p>FileOutputStream</p>
+<ul>
+<li>文件字节输出流</li>
+<li>写数据到任意类型的文件</li>
+</ul>
+</li>
+<li>
+<p>FileReader</p>
+<ul>
+<li>
+<p>文件字符输入流</p>
+</li>
+<li>
+<p>只能读取纯文本文件</p>
+<ul>
+<li>.java</li>
+<li>.txt</li>
+<li>.html</li>
+<li>.js</li>
+<li>.css</li>
+<li>&hellip;.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>FileWriter</p>
+<ul>
+<li>文件字符输出流</li>
+<li>只能把数据保存到纯文本文件中</li>
+</ul>
+</li>
+</ul>
+<h3 id="42-读取">4.2 读取</h3>
+<ul>
+<li>
+<p>(1)读取一个纯文本文件</p>
+<p>形式一：</p>
+<p>//(1)指定要读取的文件</p>
+<p>File file = new File(&ldquo;upload/exam.txt&rdquo;);</p>
+<p>//(2)创建文本文件的输入流</p>
+<p>FileReader fr = null;</p>
+<p>try{</p>
+<p>fr = new FileReader(file);</p>
+<p>//(3)在当前程序中创建一个字符数组，用来保存每一次读取的文本信息</p>
+<p>char[] data = new char[10];</p>
+<p>//(4)用来记录每一次读取的字符个数</p>
+<p>int len;</p>
+<p>//(5)用来拼接从文件读取的信息</p>
+<p>StringBuilder sb = new StringBuilder();</p>
+<p>//(6)循环读取</p>
+<p>while((len = fr.read(data))!=-1){</p>
+<pre><code>  sb.append(new String(data,0,len));
+</code></pre>
+<p>}</p>
+<p>System.out.println(sb);</p>
+<p>}catch(Exception e){</p>
+<p>//&hellip;.</p>
+<p>}finally{</p>
+<p>//(7)释放资源</p>
+<p>try{</p>
+<pre><code>  if(fr!=null){
+
+  	fr.close();
+
+  }
+</code></pre>
+<p>}catch(Exception e){</p>
+<p>}</p>
+<p>}</p>
+<p>形式二：</p>
+<p>File file = new File(&ldquo;upload/exam.txt&rdquo;);</p>
+<p>try(</p>
+<p>FileReader fr = new FileReader(file);</p>
+<p>){</p>
+<p>char[] data = new char[10];</p>
+<p>int len;</p>
+<p>StringBuilder sb = new StringBuilder();</p>
+<p>while((len = fr.read(data))!=-1){</p>
+<pre><code>  sb.append(new String(data,0,len));
+</code></pre>
+<p>}</p>
+<p>System.out.println(sb);</p>
+<p>}catch(Exception e){</p>
+<p>//&hellip;.</p>
+<p>}</p>
+</li>
+<li>
+<p>(2)读取任意类型的文件</p>
+<p>//(1)指定文件</p>
+<p>File file = new File(&quot;&hellip;..&quot;);</p>
+<p>//(2)创建字节输入流</p>
+<p>try(</p>
+<p>FileInputStream fis = new FileInputStream(file);</p>
+<p>){</p>
+<p>//(3)创建字节数组，用来存储每次读取的内容</p>
+<p>byte[] data = new byte[1024];</p>
+<p>//(4)用len记录每次读取的字节数</p>
+<p>int len;</p>
+<p>//(5)循环读取</p>
+<p>while( (len = fis.read(data)) !=-1){</p>
+<pre><code>  //......
+</code></pre>
+<p>}</p>
+<p>}catch(Exception e){</p>
+<p>//&hellip;</p>
+<p>}</p>
+</li>
+</ul>
+<h3 id="43-保存">4.3 保存</h3>
+<ul>
+<li>
+<p>(1)把数据保存到一个纯文本文件</p>
+<p>//(1)指定要保存的文件</p>
+<p>File file = new File(&quot;&hellip;.&quot;);</p>
+<p>try(</p>
+<p>FileWriter fw = new FileWriter(file);</p>
+<p>){</p>
+<p>String info = &ldquo;&hellip;..&rdquo;; //要写入到文件的数据内容</p>
+<p>fw.write(info);</p>
+<p>//或</p>
+<p>char[] data = new char[1024];</p>
+<p>//&hellip;把数据保存到data中</p>
+<p>fw.write(data，0，len);</p>
+<p>}catch(Exception e){</p>
+<p>//&hellip;.</p>
+<p>}</p>
+</li>
+<li>
+<p>(2)把数据保存到一个任意类型的文件</p>
+<p>//(1)指定要保存的文件</p>
+<p>File file = new File(&quot;&hellip;.&quot;);</p>
+<p>try(</p>
+<p>FileOutputSream fos  = new FileOutputSream(file);</p>
+<p>){</p>
+<p>byte[] data = &hellip;.; //用来存储要输出到文件的内容</p>
+<p>fos.write(data,0 ,len);</p>
+<p>}catch(Exception e){</p>
+<p>//&hellip;.</p>
+<p>}</p>
+</li>
+</ul>
+<h3 id="44-复制">4.4 复制</h3>
+<ul>
+<li>
+<p>一边读一边写</p>
+<ul>
+<li>
+<p>纯文本文件</p>
+<p>public static void main(String[] args) {</p>
+<pre><code>  //(1)创建源文件对象
+
+  File src = new File(&quot;1.txt&quot;);
+
+
+
+  //(2)创建目标文件对象
+
+  File dest = new File(&quot;2.txt&quot;);
+
+
+
+  //(3)创建输入流
+
+  FileReader fr = null;
+
+  //(4)创建输出流
+
+  FileWriter fw = null;
+
+
+
+  try {
+
+  	fr = new FileReader(src);
+</code></pre>
+<p>//			fw = new FileWriter(dest);//覆盖模式</p>
+<pre><code>  	fw = new FileWriter(dest,true);//追加模式
+
+
+
+  	//(5)一边读一边写
+
+  	//从fr读一些，就写入fw一些
+
+  	char[] data = new char[6];//1024
+
+  	while(true){
+
+  		int len = fr.read(data);
+
+  		if(len == -1){
+
+  			break;
+
+  		}
+
+  		fw.write(data,0,len);//本次读了几个字符，就写几个字符
+
+  	}
+
+  } catch (FileNotFoundException e) {
+
+  	e.printStackTrace();
+
+  } catch (IOException e) {
+
+  	e.printStackTrace();
+
+  } finally{
+
+  	try {
+
+  		if(fr!=null){
+
+  			fr.close();
+
+  		}
+
+  	} catch (IOException e) {
+
+  		e.printStackTrace();
+
+  	}
+
+
+
+  	try {
+
+  		if(fw!=null){
+
+  			fw.close();
+
+  		}
+
+  	} catch (IOException e) {
+
+  		e.printStackTrace();
+
+  	}
+
+  }
+</code></pre>
+<p>}</p>
+</li>
+<li>
+<p>任意类型文件</p>
+<p>public static void main(String[] args) {</p>
+<pre><code>  // (1)创建源文件对象
+
+  File src = new File(&quot;2.jpeg&quot;);// 完整的描述：路径+文件名+后缀名
+
+
+
+  // (2)创建目标文件对象
+
+  File dest = new File(&quot;3.jpg&quot;);
+
+
+
+  // (3)创建输入流
+
+  // (4)创建输出流
+
+
+
+  try (
+
+  		FileInputStream fis = new FileInputStream(src);
+
+  		FileOutputStream fos = new FileOutputStream(dest);
+
+  	) {
+
+
+
+  	byte[] data = new byte[10];
+
+
+
+  	int len;
+
+  	while ((len = fis.read(data)) != -1) {
+
+  		fos.write(data, 0, len);
+
+  	}
+
+
+
+  } catch (FileNotFoundException e) {
+
+  	e.printStackTrace();
+
+  } catch (IOException e) {
+
+  	e.printStackTrace();
+
+  }
+</code></pre>
+<p>}</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="45-file">4.5 File</h3>
+<ul>
+<li>
+<p>用来表示一个文件或者一个目录</p>
+<ul>
+<li>实际上是一个抽象的路径名</li>
+</ul>
+</li>
+<li>
+<p>获取文件或目录的一些信息</p>
+<ul>
+<li>
+<p>(1)获取文件的大小</p>
+<ul>
+<li>
+<p>long length()</p>
+</li>
+<li>
+<p>如果要获取目录的大小，必须编写递归</p>
+<p>public long getDirLength(File dir){</p>
+<pre><code>  if(dir.isFile()){//如果是文件，直接返回文件的大小
+
+  	return dir.length();
+
+  }else if(dir.isDirectory()){
+
+  	long sum = 0;
+
+  	File[] listFiles = dir.listFiles();
+
+  	for (File sub : listFiles) {
+</code></pre>
+<p>//				sum += 下一级的大小;</p>
+<pre><code>  		sum += getDirLength(sub);
+
+  	}
+
+  	return sum;
+
+  }
+
+  return 0;//既不是文件又不是文件夹，不存在
+</code></pre>
+<p>}</p>
+</li>
+<li>
+<p>如果文件不存在，返回0</p>
+</li>
+</ul>
+</li>
+<li>
+<p>(2)获取文件或目录的名称</p>
+<ul>
+<li>String getName()</li>
+</ul>
+</li>
+<li>
+<p>(3)获取文件或目录的路径</p>
+<ul>
+<li>String getPath()：获取路径
+String getAbsolutePath()：获取绝对路径
+String getCanonicalPath()：获取规范路径，例如：../   /</li>
+</ul>
+</li>
+<li>
+<p>(4)获取文件的后缀名</p>
+<ul>
+<li>String name = file.getName();//得到文件名   包含扩展名</li>
+<li>String ext = name.substring(name.lastIndexOf(&rsquo;.&rsquo;));</li>
+</ul>
+</li>
+<li>
+<p>(5)获取文件的最后修改时间</p>
+<ul>
+<li>
+<p>long  lastModified()</p>
+<ul>
+<li>毫秒数</li>
+</ul>
+</li>
+<li>
+<p>如果文件不存在，返回0</p>
+</li>
+</ul>
+</li>
+<li>
+<p>(6)获取上一级目录</p>
+<ul>
+<li>String getParent()</li>
+<li>File getParentFile()</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>判断</p>
+<ul>
+<li>
+<p>(1)是否是文件</p>
+<ul>
+<li>
+<p>isFile()</p>
+<ul>
+<li>仅当file代表的文件存在，并且是个文件，才返回true</li>
+</ul>
+</li>
+<li>
+<p>如果文件不存在，返回false</p>
+</li>
+</ul>
+</li>
+<li>
+<p>(2)是否是目录</p>
+<ul>
+<li>
+<p>isDirectory()</p>
+<ul>
+<li>仅当file对象代表的目录存在，并且是个文件夹目录，才返回true</li>
+</ul>
+</li>
+<li>
+<p>如果对应的不存在，返回false</p>
+</li>
+</ul>
+</li>
+<li>
+<p>(3)是否存在</p>
+<ul>
+<li>exists()</li>
+</ul>
+</li>
+<li>
+<p>(4)是否隐藏</p>
+<ul>
+<li>isHidden()</li>
+</ul>
+</li>
+<li>
+<p>(5)文件是否可读</p>
+<ul>
+<li>canRead()</li>
+</ul>
+</li>
+<li>
+<p>(6)文件是否可写</p>
+<ul>
+<li>canWrite()</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>操作</p>
+<ul>
+<li>
+<p>(1)创建文件</p>
+<ul>
+<li>createNewFile()</li>
+</ul>
+</li>
+<li>
+<p>(2)创建目录</p>
+<ul>
+<li>
+<p>mkdir()</p>
+<ul>
+<li>如果父目录不存在，那么创建失败</li>
+</ul>
+</li>
+<li>
+<p>mkdirs()</p>
+<ul>
+<li>如果父目录不存在，也一并创建</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(3)删除文件或目录</p>
+<ul>
+<li>
+<p>delete()</p>
+</li>
+<li>
+<p>只能删空目录</p>
+</li>
+<li>
+<p>如果要删除有内容的目录，需要使用递归</p>
+<p>public void delDir(File file){</p>
+<pre><code>  //如果是目录
+
+  if(file.isDirectory()){
+
+  	//(2)先获取下一级，并删除下一级
+
+  	//a：获取下一级
+
+  	File[] listFiles = file.listFiles();
+
+  	//b：遍历并删除下一级
+
+  	for (File sub : listFiles) {
+
+  		//这是一个重复的过程
+
+  		delDir(sub);//调用自己
+
+  	}
+
+  }
+
+
+
+  //删除自己
+
+  file.delete();
+</code></pre>
+<p>}</p>
+</li>
+</ul>
+</li>
+<li>
+<p>(4)重命名</p>
+<ul>
+<li>renameTo(File newFile)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>操作文件夹</p>
+<ul>
+<li>
+<p>获取它的下一级</p>
+<ul>
+<li>String[] list();</li>
+<li>File[] listFiles()</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-处理流">5 处理流</h2>
+<h3 id="51-缓冲流">5.1 缓冲流</h3>
+<ul>
+<li>
+<p>作用：增加缓冲区，提供效率</p>
+</li>
+<li>
+<p>类型</p>
+<ul>
+<li>
+<p>BufferedInputStream</p>
+<ul>
+<li>
+<p>包装InputStream</p>
+<ul>
+<li>例如：FileInputStream、DataInputStream、ObjectInputStream等</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>BufferedOutputStream</p>
+<ul>
+<li>
+<p>包装OutputStream</p>
+<ul>
+<li>例如：FileOutputStream、DataOutputStream、ObjectOutputStream等</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>BufferedReader</p>
+<ul>
+<li>
+<p>包装Reader</p>
+<ul>
+<li>例如：FileReader、InputStreamReader等</li>
+</ul>
+</li>
+<li>
+<p>String readLine()</p>
+<ul>
+<li>判断是否读完，使用 ==null</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>BufferedWriter</p>
+<ul>
+<li>
+<p>包装Writer</p>
+<ul>
+<li>例如：FileWriter，OutputStreamWriter等</li>
+</ul>
+</li>
+<li>
+<p>write(String) + newLine()</p>
+</li>
+</ul>
+</li>
+<li>
+<p>缓冲区的大小</p>
+<ul>
+<li>
+<p>字节流</p>
+<ul>
+<li>8192字节</li>
+</ul>
+</li>
+<li>
+<p>字符流</p>
+<ul>
+<li>8192字符</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="52-数据流">5.2 数据流</h3>
+<ul>
+<li>
+<p>作用：可以处理Java的基本数据类型+字符串(UTF-8修改版)</p>
+</li>
+<li>
+<p>类型</p>
+<ul>
+<li>
+<p>DataOutputStream</p>
+<ul>
+<li>
+<p>writeXxx()</p>
+<ul>
+<li>writeInt(int)</li>
+<li>writeDouble(double)</li>
+<li>writeChar(char)</li>
+<li>writeUTF(String)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>DataInputStream</p>
+<ul>
+<li>
+<p>readXxx()</p>
+<ul>
+<li>int readInt()</li>
+<li>double readDouble()</li>
+<li>char readChar()</li>
+<li>String readUTF()</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>注意：</p>
+<ul>
+<li>
+<p>(1)DataOutputStream写，用DataInputStream读取</p>
+</li>
+<li>
+<p>(2)写的顺序和读的顺序要一致</p>
+<ul>
+<li>写与读之间需要配置文件等形式进行沟通顺序和类型</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="53-对象流">5.3 对象流</h3>
+<ul>
+<li>
+<p>作用：可以处理Java对象等</p>
+</li>
+<li>
+<p>类型</p>
+<ul>
+<li>
+<p>ObjectOutputStream</p>
+<ul>
+<li>writeObject(Object)</li>
+<li>对象的序列化</li>
+</ul>
+</li>
+<li>
+<p>ObjectInputStream</p>
+<ul>
+<li>Object  readObject()</li>
+<li>对象的反序列化</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>注意</p>
+<ul>
+<li>
+<p>(1)凡是要序列化的对象，它的类型必须实现java.io.Serializable接口</p>
+<ul>
+<li>否则会报：NotSerializableExecption</li>
+</ul>
+</li>
+<li>
+<p>(2)如果属性涉及到其他的引用数据类型，那么这个类型也必须实现java.io.Serializable接口</p>
+</li>
+<li>
+<p>(3)如果某个属性不想要序列化，那么可以在属性之前加transient</p>
+<ul>
+<li>一旦加了这个关键字修饰，该属性的值会在序列化的过程中，被忽略</li>
+<li>一旦加了这个关键字修饰，该属性在反序列化的过程中，它的值就赋默认值</li>
+</ul>
+</li>
+<li>
+<p>(4)在实现java.io.Serializable接口时，最好加一个常量：序列化版本ID</p>
+<ul>
+<li>private static final long serialVersionUID = 1L;</li>
+</ul>
+</li>
+<li>
+<p>(5)静态的属性不能序列化</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="54-打印流">5.4 打印流</h3>
+<ul>
+<li>
+<p>作用：可以打印各种类型的数据，最终都是以字符的形式打印，如果是引用数据类型，就调用它的toString()</p>
+</li>
+<li>
+<p>类型</p>
+<ul>
+<li>
+<p>PrintStream</p>
+<ul>
+<li>
+<p>代表</p>
+<ul>
+<li>System.out</li>
+</ul>
+</li>
+<li>
+<p>方法</p>
+<ul>
+<li>print(xxx)</li>
+<li>println(xxx)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>PrintWriter</p>
+<ul>
+<li>
+<p>方法</p>
+<ul>
+<li>print(xxx)</li>
+<li>println(xxx)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-nio了解">6 NIO(了解)</h2>
+<h3 id="61-nio">6.1 NIO</h3>
+<ul>
+<li>
+<p>Non - Blocking IO</p>
+<ul>
+<li>非阻塞式IO</li>
+</ul>
+</li>
+</ul>
+<h3 id="62-nio和io的区别">6.2 NIO和IO的区别</h3>
+<ul>
+<li>
+<p>区别一</p>
+<ul>
+<li>
+<p>IO是面向流，是单向的，从某个流中要么只能读，要么只能写</p>
+<ul>
+<li>
+<p>例如：要读文件</p>
+<ul>
+<li>FileInputStream</li>
+<li>FileReader</li>
+</ul>
+</li>
+<li>
+<p>类型即决定可以进行的操作</p>
+</li>
+</ul>
+</li>
+<li>
+<p>NIO是面向通道+缓冲区，即可以是单向的，又可以是双向的</p>
+<ul>
+<li>
+<p>例如：ByteBuffer</p>
+<ul>
+<li>
+<p>put</p>
+<ul>
+<li>往里写</li>
+</ul>
+</li>
+<li>
+<p>get</p>
+<ul>
+<li>往外读</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>例如：FileChannel</p>
+<ul>
+<li>既可以指定为只读</li>
+<li>又可以指定为可读可写</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>区别二</p>
+<ul>
+<li>IO是阻塞式的，一旦某个线程在读，此时没有可读的数据，会一直等待</li>
+<li>NIO是非阻塞式</li>
+</ul>
+</li>
+<li>
+<p>区别三</p>
+<ul>
+<li>NIO可以使用选择器</li>
+</ul>
+</li>
+</ul>
+<h3 id="63-和新的io的api相关的">6.3 和新的IO的API相关的</h3>
+<ul>
+<li>
+<p>Path</p>
+<ul>
+<li>是一个接口</li>
+</ul>
+</li>
+<li>
+<p>Paths</p>
+<ul>
+<li>用来获取Path的对象</li>
+<li>Paths.get(URI)</li>
+<li>Paths.get(String first, String&hellip;  others)</li>
+</ul>
+</li>
+<li>
+<p>Files</p>
+<ul>
+<li>
+<p>工具类</p>
+<ul>
+<li>静态方法</li>
+</ul>
+</li>
+<li>
+<p>和Path用来替代原来的File</p>
+</li>
+<li>
+<p>方法</p>
+<ul>
+<li>
+<p>创建文件</p>
+<ul>
+<li>
+<p>createFile</p>
+<ul>
+<li>如果文件已存在，直接报异常</li>
+</ul>
+</li>
+<li>
+<p>和File类的createNewFile()区别</p>
+<ul>
+<li>如果文件已存在，不提示</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>创建目录</p>
+<ul>
+<li>
+<p>createDirectory</p>
+<ul>
+<li>替代原来的File的mkdir</li>
+<li>不同的是，如果目录已存在，就会报异常</li>
+</ul>
+</li>
+<li>
+<p>createDirectories</p>
+<ul>
+<li>替代原来的File的mkdirs</li>
+<li>不同的是，如果目录已存在，就会报异常</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>复制文件</p>
+<ul>
+<li>
+<p>copy</p>
+</li>
+<li>
+<p>区别</p>
+<ul>
+<li>如果目标文件不存在，直接创建</li>
+<li>如果目标文件已存在，要看是覆盖模式吗</li>
+<li>默认情况下，已存在，会报异常</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>读取文件</p>
+<ul>
+<li>
+<p>readAllLines(Path path)</p>
+<ul>
+<li>
+<p>读取文件，返回List<!-- raw HTML omitted --></p>
+</li>
+<li>
+<p>默认是StandardCharsets.UTF_8</p>
+</li>
+<li>
+<p>可以自己指定字符编码方式</p>
+<ul>
+<li>Charset.forName(字符集名称)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>&hellip;.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="64-通道">6.4 通道</h3>
+<ul>
+<li>
+<p>主要是四种类型</p>
+<ul>
+<li>
+<p>和文件读取和存储相关的</p>
+<ul>
+<li>FileChannel</li>
+</ul>
+</li>
+<li>
+<p>和TCP服务器端使用</p>
+<ul>
+<li>ServerSocketChannel</li>
+</ul>
+</li>
+<li>
+<p>和TCP的客户端使用</p>
+<ul>
+<li>SocketChannel</li>
+</ul>
+</li>
+<li>
+<p>和UDP的两端使用</p>
+<ul>
+<li>DatagramChannel</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>必须和缓冲区结合才能使用</p>
+</li>
+<li>
+<p>它的对象的创建</p>
+<ul>
+<li>
+<p>例如：</p>
+<ul>
+<li>FileChannel.open(xxx)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="65-缓冲区">6.5 缓冲区</h3>
+<ul>
+<li>
+<p>主要是7大类型</p>
+<ul>
+<li>
+<p>ByteBuffer</p>
+<ul>
+<li>MappedByteBuffer</li>
+</ul>
+</li>
+<li>
+<p>ShortBuffer</p>
+</li>
+<li>
+<p>IntBuffer</p>
+</li>
+<li>
+<p>LongBuffer</p>
+</li>
+<li>
+<p>FloatBuffer</p>
+</li>
+<li>
+<p>DoubleBuffer</p>
+</li>
+<li>
+<p>CharBuffer</p>
+</li>
+<li>
+<p>除了boolean</p>
+</li>
+</ul>
+</li>
+<li>
+<p>属性</p>
+<ul>
+<li>
+<p>(1)capacity：容量</p>
+<ul>
+<li>总大小，一旦创建就固定</li>
+</ul>
+</li>
+<li>
+<p>(2)limit：限制</p>
+<ul>
+<li>可读或可写的最大索引的位置</li>
+</ul>
+</li>
+<li>
+<p>(3)position：当前位置</p>
+<ul>
+<li>当前正在读或写的位置</li>
+</ul>
+</li>
+<li>
+<p>(4)mark：标记的位置</p>
+</li>
+<li>
+<p>0&lt;=mark&lt;=position&lt;=limit&lt;=capacity</p>
+</li>
+</ul>
+</li>
+<li>
+<p>方法</p>
+<ul>
+<li>
+<p>(1)put</p>
+<ul>
+<li>
+<p>往缓冲区写</p>
+</li>
+<li>
+<p>或者调用通道.read(xx)</p>
+<ul>
+<li>也相当于往缓冲区写</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(2)get</p>
+<ul>
+<li>
+<p>从缓冲区取</p>
+</li>
+<li>
+<p>或者调用通道.write(xx)</p>
+<ul>
+<li>也相当于从缓冲区取数据</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(3)flip()</p>
+<ul>
+<li>切换读写模式</li>
+</ul>
+</li>
+<li>
+<p>(4)clear()</p>
+<ul>
+<li>重新使用缓冲区</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>示例</p>
+<ul>
+<li>
+<p>(1)读文件</p>
+<p>@Test</p>
+<p>public void test() throws IOException{</p>
+<pre><code>  Path path = Paths.get(&quot;1.txt&quot;);
+
+  FileChannel fc = FileChannel.open(path, StandardOpenOption.READ);//打开通道
+
+  ByteBuffer bb = ByteBuffer.allocate(1024);
+
+  StringBuilder sb = new StringBuilder();
+
+
+
+  while(true){
+
+  	//把数据放到缓冲区
+
+  	int len = fc.read(bb);//把数据装到缓冲区    对于缓冲区来说是存储，相当于put
+
+  	if(len&lt;=0){
+
+  		break;
+
+  	}
+
+  	//切换
+
+  	bb.flip();
+
+
+
+  	//从缓冲区读取数据
+
+  	byte[] data = new byte[10];
+
+  	bb.get(data,0,bb.limit());
+
+  //	System.out.println(new String(data,0,bb.limit()));
+
+  	sb.append(new String(data,0,bb.limit()));
+
+
+
+  	bb.clear();
+
+  }
+
+
+
+  System.out.println(sb);
+</code></pre>
+<p>}</p>
+</li>
+<li>
+<p>(2)复制文件</p>
+<p>@Test</p>
+<p>public void testCopy()throws Exception{</p>
+<pre><code>  long start = System.currentTimeMillis();
+
+  FileChannel fc = FileChannel.open(Paths.get(&quot;software/ideaIU-Ultimate-2017.1.4.exe&quot;), StandardOpenOption.READ);
+
+  FileChannel to = FileChannel.open(Paths.get(&quot;2.exe&quot;), StandardOpenOption.WRITE,StandardOpenOption.CREATE_NEW);
+
+
+
+  ByteBuffer bb = ByteBuffer.allocate(10);//定义缓冲区大小
+
+
+
+  while(fc.read(bb)!=-1){//读取数据到缓冲区，即往缓冲区写  相当于put
+
+  	bb.flip();//修改limit为position  然后position为0       没有这个，就从position开始读到limit,limit=capacity，position为写完的位置
+
+
+
+  	to.write(bb);
+
+
+
+  	bb.clear();//limit变成capicity  position=0   没有这个，那么就会重复写第一次读取的内容，一会文件大小就很大，爆了
+
+  }
+
+
+
+  fc.close();
+
+  to.close();
+
+
+
+  long end = System.currentTimeMillis();
+
+  System.out.println(&quot;ByteBuffer:&quot;+ (end-start));
+</code></pre>
+<p>}</p>
+</li>
+<li>
+<p>(3)物理映射复制文件(速度超快)</p>
+<p>@Test</p>
+<p>public void test2()throws Exception{</p>
+<pre><code>  long start = System.currentTimeMillis();
+
+
+
+  FileChannel from = FileChannel.open(Paths.get(&quot;software/ideaIU-Ultimate-2017.1.4.exe&quot;), StandardOpenOption.READ);
+
+  FileChannel to = FileChannel.open(Paths.get(&quot;3.exe&quot;), StandardOpenOption.READ,StandardOpenOption.WRITE,StandardOpenOption.CREATE_NEW);//如果CREAD,如果文件已经存在不会报错，但是会从文件头开始写
+
+
+
+  MappedByteBuffer fbb = from.map(MapMode.READ_ONLY, 0, from.size());
+
+  MappedByteBuffer tbb = to.map(MapMode.READ_WRITE, 0, from.size());
+
+
+
+  tbb.put(fbb);
+
+
+
+  from.close();
+
+  to.close();
+
+
+
+  long end = System.currentTimeMillis();
+
+  System.out.println(&quot;ByteBuffer:&quot;+ (end-start));
+</code></pre>
+<p>}</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-length">7 length</h2>
+<h3 id="71-数组">7.1 数组</h3>
+<ul>
+<li>
+<p>数组的长度</p>
+<ul>
+<li>
+<p>int  len = arr.length;</p>
+<ul>
+<li>属性</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="72-字符串的长度">7.2 字符串的长度</h3>
+<ul>
+<li>int len = str.length();</li>
+</ul>
+<h3 id="73-文件的长度">7.3 文件的长度</h3>
+<ul>
+<li>long len = file.length();</li>
+</ul>
+<h2 id="8-orgapache工具包">8 org.apache工具包</h2>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/java/">JAVA</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-09-14</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/language/java/javase-api/" class="prev" rel="prev" title="JavaSE  API"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/chaos/%E4%B8%8D%E5%90%8C%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E5%8F%98%E9%87%8F%E9%95%BF%E5%BA%A6/" class="next" rel="next" title="windows和linux/ 32位和64位下的变量长度">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

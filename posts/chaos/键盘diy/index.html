@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title> - xcx</title><meta name="description" content=""><meta property="og:title" content="" />
+<meta property="og:description" content="GPT suggest 在设计PCB时，你需要考虑多个因素来确保键盘的功能和性能。以下是一些建议，可以帮助你在设计PCB时避免一些常见的陷阱，并确保获得一个高质" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/chaos/%E9%94%AE%E7%9B%98diy/" /><meta property="article:section" content="posts" />
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="GPT suggest 在设计PCB时，你需要考虑多个因素来确保键盘的功能和性能。以下是一些建议，可以帮助你在设计PCB时避免一些常见的陷阱，并确保获得一个高质"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/chaos/%E9%94%AE%E7%9B%98diy/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/ubuntu%E5%AE%89%E8%A3%85-mysql/" /><link rel="next" href="https://xiechaoxin.github.io/posts/chaos/%E6%B1%89%E5%AD%97/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/chaos\/%E9%94%AE%E7%9B%98diy\/"
+        },"genre": "posts","wordcount":  2090 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/chaos\/%E9%94%AE%E7%9B%98diy\/","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX"></h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2090 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#gpt-suggest">GPT suggest</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#1-键盘布局设计-keyboard-layout">1. <strong>键盘布局设计 (Keyboard Layout)</strong></a></li>
+    <li><a href="#2-键盘矩阵设计-keyboard-matrix-design">2. <strong>键盘矩阵设计 (Keyboard Matrix Design)</strong></a></li>
+    <li><a href="#3-pcb-设计-pcb-design">3. <strong>PCB 设计 (PCB Design)</strong></a></li>
+    <li><a href="#4-购买元器件-purchase-components">4. <strong>购买元器件 (Purchase Components)</strong></a></li>
+    <li><a href="#5-焊接组件-soldering-components">5. <strong>焊接组件 (Soldering Components)</strong></a></li>
+    <li><a href="#6-板和外壳设计-plate--case-design">6. <strong>板和外壳设计 (Plate &amp; Case Design)</strong></a></li>
+    <li><a href="#7-固件开发-qmk-firmware">7. <strong>固件开发 (QMK Firmware)</strong></a></li>
+    <li><a href="#8-组装和测试-assembly--testing">8. <strong>组装和测试 (Assembly &amp; Testing)</strong></a></li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-安装依赖">1. <strong>安装依赖</strong></a></li>
+        <li><a href="#2-克隆-qmk-仓库">2. <strong>克隆 QMK 仓库</strong></a></li>
+        <li><a href="#3-设置qmk环境">3. <strong>设置QMK环境</strong></a></li>
+        <li><a href="#4-编译固件">4. <strong>编译固件</strong></a></li>
+        <li><a href="#5-刷固件">5. <strong>刷固件</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="heading"></h1>
+<h2 id="gpt-suggest">GPT suggest</h2>
+<p>在设计PCB时，你需要考虑多个因素来确保键盘的功能和性能。以下是一些建议，可以帮助你在设计PCB时避免一些常见的陷阱，并确保获得一个高质量的结果：</p>
+<p>选择合适的MCU（微控制器）：确保所选的微控制器具有足够的I/O引脚来处理所有的键，并考虑将来可能的扩展。ATmega32U4是一个流行的选择，因为它与QMK固件兼容。</p>
+<p>矩阵布线：键盘通常使用一个行/列矩阵来检测键的按压。确保每一行和每一列的布线都尽可能直接，并避免不必要的交叉或接近。</p>
+<p>地平面：在PCB的一侧或内部层使用一个完整的地平面。这有助于减少噪音和干扰。</p>
+<p>稳定的电源：考虑使用电源滤波电容来确保MCU获得稳定的电源。</p>
+<p>焊盘设计：确保焊盘大小和形状适合你要使用的开关和组件。</p>
+<p>键盘固件：考虑到你将如何为键盘编写或修改固件。QMK是一个流行的开源键盘固件，支持许多MCU和特性。</p>
+<p>考虑热插拔功能：如果你希望用户能够轻松更换开关，考虑在设计中添加热插拔插座。</p>
+<p>连接器和端口：确定你想使用的连接器类型（例如USB-C或Micro-USB）并确保它在你的设计中有足够的空间。</p>
+<p>预留测试点：这将有助于你在制造后对PCB进行故障排除。</p>
+<p>考虑额外的功能：如RGB照明、音频输出、旋钮或其他功能。</p>
+<p>设计审查：在提交PCB进行生产之前，最好让其他有经验的人审查你的设计，以识别并纠正任何潜在的问题。</p>
+<p>原型制造：在大规模生产之前，建议先制作一个原型来测试键盘的功能和性能。</p>
+<h1 id="制作键盘大致步骤">制作键盘大致步骤</h1>
+<h2 id="1-键盘布局设计-keyboard-layout">1. <strong>键盘布局设计 (Keyboard Layout)</strong></h2>
+<pre><code>- 确定键位数量（例如60%、75%、TKL、全尺寸等）。
+- 选择特定的键位排列，例如ANSI、ISO等。
+- 考虑任何自定义按键或功能键的位置。
+</code></pre>
+<h2 id="2-键盘矩阵设计-keyboard-matrix-design">2. <strong>键盘矩阵设计 (Keyboard Matrix Design)</strong></h2>
+<pre><code>- 根据所选布局决定矩阵的行和列。
+- 确定哪些按键连接到哪个行和列。
+- 考虑使用的二极管类型和方向，以及是否需要额外的硬件如多路复用器。
+</code></pre>
+<h2 id="3-pcb-设计-pcb-design">3. <strong>PCB 设计 (PCB Design)</strong></h2>
+<pre><code>- 选择一个PCB设计软件，例如KiCad、Eagle等。
+- 根据键盘矩阵设计添加和布局开关、二极管、微控制器、连接器等组件。
+- 确保所有的电路连接都正确，进行电路的验证。
+- 考虑LED或RGB照明解决方案（如果需要）。
+- 生成制造文件，如Gerber文件，以便于PCB制造。
+</code></pre>
+<h2 id="4-购买元器件-purchase-components">4. <strong>购买元器件 (Purchase Components)</strong></h2>
+<pre><code>- 根据PCB设计列出所需的所有元器件，包括开关、二极管、微控制器、LEDs、连接器等。
+- 考虑元器件的供应商，如Digikey、Mouser、LCSC等，以及元器件的品牌和规格。
+- 下订单并等待元器件到货。
+</code></pre>
+<h2 id="5-焊接组件-soldering-components">5. <strong>焊接组件 (Soldering Components)</strong></h2>
+<pre><code>- 准备焊接工具，如焊台、焊锡、助焊剂、镊子等。
+- 开始按照PCB设计焊接元器件，从低矮的组件（如二极管）开始，再到高大的组件（如开关或连接器）。
+- 使用多米特或其他测试工具检查焊接点是否良好，并确保没有短路。
+</code></pre>
+<h2 id="6-板和外壳设计-plate--case-design">6. <strong>板和外壳设计 (Plate &amp; Case Design)</strong></h2>
+<pre><code>- 根据PCB和键盘布局设计定制金属或塑料板。
+- 考虑外壳的材料（例如塑料、木材、金属）和制造方法（例如3D打印、CNC机械加工）。
+- 设计外壳的底部、侧面、角度、脚垫等。
+- 确定连接和组装方法，例如螺丝、快速扣件等。
+</code></pre>
+<h2 id="7-固件开发-qmk-firmware">7. <strong>固件开发 (QMK Firmware)</strong></h2>
+<pre><code>- 选择一个固件平台，例如QMK、TMK等。
+- 配置键盘的键位映射、功能层和宏。
+- 为特定的微控制器编写或修改代码。
+- 使用工具或直接命令行编译固件。
+- 使用适当的方法（例如DFU、Bootloader）将固件烧录到微控制器上。
+- 测试键盘以确保所有键位和功能都正常工作。
+</code></pre>
+<h2 id="8-组装和测试-assembly--testing">8. <strong>组装和测试 (Assembly &amp; Testing)</strong></h2>
+<pre><code>- 将焊接好的PCB安装到板和外壳中。
+- 安装所有机械开关和按键帽。
+- 连接任何额外的组件，如USB线缆或电池（如果适用）。
+- 进行最终测试，确保所有按键、LED和其他功能都正常工作。
+</code></pre>
+<p>完成以上步骤后，您就可以享受自己制作的机械键盘了！</p>
+<h1 id="键盘布局">键盘布局</h1>
+<p>71 配列</p>
+<pre tabindex="0"><code>[&#34;Esc&#34;,&#34;!\n1&#34;,&#34;@\n2&#34;,&#34;#\n3&#34;,&#34;$\n4&#34;,&#34;%\n5&#34;,&#34;^\n6&#34;,&#34;&amp;\n7&#34;,&#34;*\n8&#34;,&#34;(\n9&#34;,&#34;)\n0&#34;,&#34;|\n\\&#34;,&#34;~\n`&#34;,{w:2},&#34;Delete&#34;,{x:0.5},&#34;Home&#34;],
+[{w:1.5},&#34;Tab&#34;,&#34;Q&#34;,&#34;W&#34;,&#34;E&#34;,&#34;R&#34;,&#34;T&#34;,&#34;Y&#34;,&#34;U&#34;,&#34;I&#34;,&#34;O&#34;,&#34;P&#34;,&#34;{\n[&#34;,&#34;}\n]&#34;,{w:1.5},&#34;Backspace&#34;,{x:0.5},&#34;End&#34;],
+[{w:1.75},&#34;Ctrl&#34;,&#34;A&#34;,&#34;S&#34;,&#34;D&#34;,&#34;F&#34;,&#34;G&#34;,&#34;H&#34;,&#34;J&#34;,&#34;K&#34;,&#34;L&#34;,&#34;:\n;&#34;,&#34;\&#34;\n&#39;&#34;,{w:2.25},&#34;Enter&#34;,{x:0.5},&#34;PgUp&#34;],
+[{w:2.25},&#34;Shift&#34;,&#34;Z&#34;,&#34;X&#34;,&#34;C&#34;,&#34;V&#34;,&#34;B&#34;,&#34;N&#34;,&#34;M&#34;,&#34;&lt;\n,&#34;,&#34;&gt;\n.&#34;,&#34;?\n/&#34;,{w:1.75},&#34;Shift&#34;,{x:1.5},&#34;PgDn&#34;],
+[{y:-0.75,x:14.25},&#34;↑&#34;],
+[{y:-0.25,w:1.25},&#34;Caps Lock&#34;,{w:1.25},&#34;Fn&#34;,{w:1.25},&#34;Win&#34;,{w:1.25},&#34;Alt&#34;,&#34;+\n=&#34;,&#34;_\n-&#34;,{w:2},&#34;Space&#34;,{w:1.25},&#34;Alt&#34;,{w:1.25},&#34;Win&#34;,{w:1.25},&#34;Ctrl&#34;],
+[{y:-0.75,x:13.25},&#34;←&#34;,&#34;↓&#34;,&#34;→&#34;]
+</code></pre><h1 id="mac-如何刷-qmk-固件">mac 如何刷 qmk 固件</h1>
+<p>给键盘刷QMK固件在macOS上的过程分为几个主要步骤。下面是一个简化的教程：</p>
+<h3 id="1-安装依赖">1. <strong>安装依赖</strong></h3>
+<p>首先，确保您已经安装了Homebrew，这是macOS的包管理器。如果尚未安装，请访问 <a href="https://brew.sh/" target="_blank" rel="noopener noreffer">Homebrew官方网站</a> 获取安装指令。</p>
+<p>使用Homebrew安装QMK依赖：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">brew tap qmk/qmk
+</span></span><span class="line"><span class="cl">brew install qmk
+</span></span></code></pre></div><h3 id="2-克隆-qmk-仓库">2. <strong>克隆 QMK 仓库</strong></h3>
+<p>在终端中，克隆QMK的GitHub仓库：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone https://github.com/qmk/qmk_firmware.git
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> qmk_firmware
+</span></span></code></pre></div><h3 id="3-设置qmk环境">3. <strong>设置QMK环境</strong></h3>
+<p>运行以下命令来安装其他必要的QMK依赖：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">util/qmk_install.sh
+</span></span></code></pre></div><h3 id="4-编译固件">4. <strong>编译固件</strong></h3>
+<p>首先，确定您的键盘型号。例如，如果您使用的是Planck键盘，您可以这样编译固件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">qmk compile -kb planck/rev4 -km default
+</span></span></code></pre></div><p>这会编译Planck rev4版键盘的默认键位图。</p>
+<h3 id="5-刷固件">5. <strong>刷固件</strong></h3>
+<p>确保您的键盘连接到计算机并处于刷机模式。对于多数键盘，这意味着您需要按住特定的按钮或组合键然后插入USB线缆，或者在已连接的情况下按住特定按钮重置键盘。</p>
+<p>然后，使用以下命令刷入固件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">qmk flash -kb planck/rev4 -km default
+</span></span></code></pre></div><p>请注意，某些键盘可能需要特定的刷机工具，确保按照键盘的说明文档操作。</p>
+<p>完成上述步骤后，您的键盘应该已经成功刷入了新的QMK固件。</p>
+<p><strong>提示</strong>：在进行任何固件刷入操作之前，始终建议备份原始固件和阅读相关文档，以确保操作的安全性。</p>
+<h1 id="参考网站">参考网站</h1>
+<p><a href="http://www.keyboard-layout-editor.com/#/gists/212aee449daf3dab0bff354a82995394" target="_blank" rel="noopener noreffer">keyboard-layout-editor</a>
+<a href="http://builder.swillkb.com/" target="_blank" rel="noopener noreffer">Plate &amp; Case Builder</a>
+<a href="https://sharecad.org/" target="_blank" rel="noopener noreffer">share CAD</a>
+<a href="https://config.qmk.fm/" target="_blank" rel="noopener noreffer">qmk config</a>
+<a href="https://kbfirmware.com/" target="_blank" rel="noopener noreffer">Keyboard Firmware Builder</a>
+<a href="https://lceda.cn/" target="_blank" rel="noopener noreffer">嘉立创EDA</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 0001-01-01</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/ubuntu%E5%AE%89%E8%A3%85-mysql/" class="prev" rel="prev" title=""><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/chaos/%E6%B1%89%E5%AD%97/" class="next" rel="next" title="">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

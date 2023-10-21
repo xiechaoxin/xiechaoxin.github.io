@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>集合 - xcx</title><meta name="description" content=""><meta property="og:title" content="集合" />
+<meta property="og:description" content="集合 1 概念 1.1 集合是一个容器 是一个用来装对象的容器 1.2 数据结构 1、物理结构 数组也是一个容器 缺点 (1)长度固定 (2)无法直接获取有效元素的个数 在实" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/language/java/%E9%9B%86%E5%90%88/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-14T02:17:04+00:00" />
+<meta property="article:modified_time" content="2022-09-14T02:17:04+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="集合"/>
+<meta name="twitter:description" content="集合 1 概念 1.1 集合是一个容器 是一个用来装对象的容器 1.2 数据结构 1、物理结构 数组也是一个容器 缺点 (1)长度固定 (2)无法直接获取有效元素的个数 在实"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/language/java/%E9%9B%86%E5%90%88/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/language/java/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5%E7%BB%93%E6%9E%84/" /><link rel="next" href="https://xiechaoxin.github.io/posts/language/java/%E6%96%B9%E6%B3%95/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "集合",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/language\/java\/%E9%9B%86%E5%90%88\/"
+        },"genre": "posts","keywords": "JAVA","wordcount":  4458 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/language\/java\/%E9%9B%86%E5%90%88\/","datePublished": "2022-09-14T02:17:04+00:00","dateModified": "2022-09-14T02:17:04+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">集合</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/java/"><i class="far fa-folder fa-fw"></i>JAVA</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-09-14">2022-09-14</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4458 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-概念">1 概念</a>
+      <ul>
+        <li><a href="#11-集合是一个容器">1.1 集合是一个容器</a></li>
+        <li><a href="#12-数据结构">1.2 数据结构</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-collection">2 Collection</a>
+      <ul>
+        <li><a href="#21-javautilcollection是一个接口是个根接口">2.1 java.util.Collection是一个接口，是个根接口</a></li>
+        <li><a href="#22-collection没有直接的实现类它有两个子接口">2.2 Collection没有直接的实现类，它有两个子接口</a></li>
+        <li><a href="#23-遍历">2.3 遍历</a></li>
+        <li><a href="#24-继承关系图">2.4 继承关系图</a></li>
+        <li><a href="#25-collection的常用方法">2.5 Collection的常用方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-map">3 Map</a>
+      <ul>
+        <li><a href="#31-map的特点">3.1 Map的特点</a></li>
+        <li><a href="#32-map的常用方法">3.2 Map的常用方法</a></li>
+        <li><a href="#33-map的常见实现类">3.3 Map的常见实现类</a></li>
+        <li><a href="#34-高频面试题hashmap的底层实现过程">3.4 高频面试题：HashMap的底层实现过程</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-集合框架图">4 集合框架图</a></li>
+    <li><a href="#5-集合工具类">5 集合工具类</a>
+      <ul>
+        <li><a href="#51-javautilcollections">5.1 java.util.Collections</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="集合">集合</h1>
+<h2 id="1-概念">1 概念</h2>
+<h3 id="11-集合是一个容器">1.1 集合是一个容器</h3>
+<ul>
+<li>是一个用来装对象的容器</li>
+</ul>
+<h3 id="12-数据结构">1.2 数据结构</h3>
+<ul>
+<li>
+<p>1、物理结构</p>
+<ul>
+<li>
+<p>数组也是一个容器</p>
+<ul>
+<li>
+<p>缺点</p>
+<ul>
+<li>(1)长度固定</li>
+<li>(2)无法直接获取有效元素的个数</li>
+</ul>
+</li>
+<li>
+<p>在实际开发中，基本数据类型一般用数组，引用数据类型一般用集合</p>
+</li>
+<li>
+<p>数组是依据“数组名+下标”来确定某个元素，数组名中存储的是数组的首地址</p>
+</li>
+</ul>
+</li>
+<li>
+<p>链表</p>
+<ul>
+<li>不仅仅存储数据，还有存储前/后元素的引用</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>2、逻辑结构</p>
+<ul>
+<li>
+<p>动态数组</p>
+<ul>
+<li>底层是数组，可以通过扩容的方式实现动态数组</li>
+</ul>
+</li>
+<li>
+<p>链表</p>
+<ul>
+<li>
+<p>结合Node</p>
+<ul>
+<li>
+<p>双向链表</p>
+<ul>
+<li>class Node{
+Node pre;
+Object data;
+Node next;
+}</li>
+</ul>
+</li>
+<li>
+<p>单向链表</p>
+<ul>
+<li>class Node{
+Object data;
+Node next;
+}</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>树</p>
+<ul>
+<li>
+<p>经典的代表</p>
+<ul>
+<li>
+<p>二叉树</p>
+<ul>
+<li>class Node{
+Node left;
+Object data;
+Node right;
+}</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>栈</p>
+<ul>
+<li>先进后出</li>
+<li>添加的顺序</li>
+<li>出栈的顺序</li>
+</ul>
+</li>
+<li>
+<p>队列</p>
+<ul>
+<li>先进先出</li>
+<li>添加的顺序</li>
+<li>出队列的顺序</li>
+</ul>
+</li>
+<li>
+<p>堆</p>
+</li>
+<li>
+<p>&hellip;.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-collection">2 Collection</h2>
+<h3 id="21-javautilcollection是一个接口是个根接口">2.1 java.util.Collection是一个接口，是个根接口</h3>
+<h3 id="22-collection没有直接的实现类它有两个子接口">2.2 Collection没有直接的实现类，它有两个子接口</h3>
+<ul>
+<li>
+<p>java.util.List</p>
+<p>请描述List的各种实现类的区别</p>
+<p>ArrayList：动态数组(JDK1.2)，每次扩容为原来的1.5倍，支持Iterator和foreach迭代，线程不安全的</p>
+<p>Vector：旧版的动态数组(JDK1.0)，默认每次扩容为原来的2倍，支持旧版Enumeration，还支持Iterator和foreach迭代，线程安全的</p>
+<p>LinkedList：双向链表，在添加和删除时 效率比较高，不需要移动大量的元素，只需要修改前后元素引用关系</p>
+<p>Stack：Stack是Vector的子类，具有后进先出的特点</p>
+<ul>
+<li>
+<p>有序的(添加顺序)，可重复的</p>
+<ul>
+<li>
+<p>java.util.Vector动态数组</p>
+<ul>
+<li>
+<p>JDK1.0就有，最早</p>
+</li>
+<li>
+<p>支持Enumeration迭代方式</p>
+<ul>
+<li>当然也支持Iterator，foreach</li>
+</ul>
+</li>
+<li>
+<p>线程安全的</p>
+</li>
+<li>
+<p>扩容算法</p>
+<ul>
+<li>
+<p>如果没有指定扩容参数，那么默认扩大为原来的2倍</p>
+<ul>
+<li>默认初始容量是10</li>
+</ul>
+</li>
+<li>
+<p>如果指定了扩容参数，那么就按照指定参数值进行扩容</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>java.util.ArrayList动态数组</p>
+<ul>
+<li>
+<p>相对Vector来说新一点</p>
+</li>
+<li>
+<p>只支持Iterator，foreach</p>
+</li>
+<li>
+<p>线程不安全的</p>
+</li>
+<li>
+<p>扩容算法</p>
+<ul>
+<li>扩大为原来的1.5倍</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>java.util.LinkedList双向链表</p>
+<ul>
+<li>
+<p>相对于动态数组来说的优势</p>
+<ul>
+<li>在插入和删除操作比较频繁时，链表的方式效率更高</li>
+</ul>
+</li>
+<li>
+<p>相对于动态数组来说的劣势</p>
+<ul>
+<li>如果根据索引信息来查找的话，每次都要现统计</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>java.util.Stack</p>
+<ul>
+<li>
+<p>是Vector的子类</p>
+</li>
+<li>
+<p>特征的方法</p>
+<ul>
+<li>
+<p>peek()</p>
+<ul>
+<li>查看栈顶的元素，但不移除</li>
+</ul>
+</li>
+<li>
+<p>pop()</p>
+<ul>
+<li>获取栈顶的元素，并移除</li>
+</ul>
+</li>
+<li>
+<p>push()</p>
+<ul>
+<li>压入栈，添加的位置在栈顶</li>
+</ul>
+</li>
+<li>
+<p>search(Object)</p>
+<ul>
+<li>返回位置，以 1 为基数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>逻辑结构</p>
+</li>
+<li>
+<p>底层</p>
+<ul>
+<li>数组</li>
+<li>每次添加到后面，栈顶是数组的后面[size-1]号元素，栈底是数组的[0]元素</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>列表，序列</p>
+</li>
+<li>
+<p>补充Collection的方法</p>
+<ul>
+<li>
+<p>和index相关的方法</p>
+<ul>
+<li>
+<p>(1)添加</p>
+<ul>
+<li>add(int index, E element)</li>
+<li>addAll(int index, Collection&lt;? extends E&gt; c)</li>
+</ul>
+</li>
+<li>
+<p>(2)删除</p>
+<ul>
+<li>remove(int index)</li>
+</ul>
+</li>
+<li>
+<p>(3)查找</p>
+<ul>
+<li>indexOf(Object o)</li>
+<li>lastIndexOf(Object o)</li>
+<li>get(int index)</li>
+</ul>
+</li>
+<li>
+<p>(4)替换</p>
+<ul>
+<li>set(int index, E element)</li>
+</ul>
+</li>
+<li>
+<p>(5)截取</p>
+<ul>
+<li>subList(int fromIndex, int toIndex)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>java.util.Set</p>
+<p>5、请描述Set的各种实现类的区别</p>
+<p>HashSet：无序的，不可重复的，依据元素的hashCode()和equals方法</p>
+<pre><code>  HashSet底层实现是HashMap，它的value是一个Object的常量对象
+</code></pre>
+<p>TreeSet：不保证添加顺序，但是会按照元素的“大小”顺序进行排列，不可重复，</p>
+<pre><code>  依据元素的自然排序Comparable(compareTo())或定制排序Comparator(compare())规则进行排序
+
+  TreeSet底层实现是TreeMap，它的value是一个Object的常量对象
+</code></pre>
+<p>LinkedHashSet：是HashSet的子类，除了有HashSet的特点，它还要在HashSet基础上维护元素的添加的顺序，所以在添加和删除时比HashSet慢一点</p>
+<pre><code>  LinkedHashSet的底层实现是LinkedHashMap，它的value是一个Object的常量对象
+</code></pre>
+<ul>
+<li>
+<p>无序的(添加顺序)，不可重复的</p>
+<ul>
+<li>
+<p>java.util.HashSet</p>
+<ul>
+<li>
+<p>无序，不可重复</p>
+</li>
+<li>
+<p>依赖于元素的hashCode和equals方法</p>
+</li>
+<li>
+<p>equals和hashCode</p>
+<ul>
+<li>hash值不同，这两个对象一定不同，可以不调用equals</li>
+<li>equals如果相同，hashCode一定相同</li>
+<li>hash值相同，这两个对象不一定相等，所以一定要调用equals方法进行确认</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>java.util.TreeSet</p>
+<ul>
+<li>
+<p>不按添加顺序，但是按照元素“大小”顺序存储，不可重复</p>
+</li>
+<li>
+<p>不可重复，依据元素是否“大小相等”</p>
+<ul>
+<li>调用元素的compareTo或定制比较器的compare</li>
+</ul>
+</li>
+<li>
+<p>添加到TreeSet的元素一定要支持可比较大小，可排序</p>
+<ul>
+<li>
+<p>自然排序</p>
+<ul>
+<li>要求元素类型本身要实现java.lang.Comparable接口，并重写int compareTo(Object)方法</li>
+</ul>
+</li>
+<li>
+<p>定制排序</p>
+<ul>
+<li>
+<p>要为TreeSet指定一个定制比较器对象</p>
+<ul>
+<li>TreeSet set = new TreeSet(定制比较器对象);</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>java.util.LinkedHashSet</p>
+<ul>
+<li>比较HashSet多了一个顺序维护，所以在添加和删除时，比HashSet效率低，遍历查找时效率高</li>
+<li>继承HashSet</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>底层实现</p>
+<ul>
+<li>
+<p>HashSet</p>
+<ul>
+<li>HashMap</li>
+</ul>
+</li>
+<li>
+<p>TreeSet</p>
+<ul>
+<li>TreeMap</li>
+</ul>
+</li>
+<li>
+<p>LinkedHashSet</p>
+<ul>
+<li>LinkedHashMap</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Set的元素其实也是一对，只不过它的value是共享同一个常量对象Object对象</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="23-遍历">2.3 遍历</h3>
+<ul>
+<li>
+<p>(1)直接foreach</p>
+<ul>
+<li>
+<p>语法结构</p>
+<ul>
+<li>for(集合的元素类型  element : 集合名){
+}</li>
+</ul>
+</li>
+<li>
+<p>在遍历时，效率高，但是不适用于遍历的同时对集合进行修改，特别是影响集合元素个数的操作</p>
+</li>
+</ul>
+</li>
+<li>
+<p>(2)Iterator迭代器</p>
+<ul>
+<li>
+<p>语法结构</p>
+<ul>
+<li>Iterator iter = 集合对象.iterator();</li>
+<li>while(iter.hasNext()){
+Object element = iter.next();
+//可以使用iter.remove()进行移除
+}</li>
+</ul>
+</li>
+<li>
+<p>Iterator是一个接口</p>
+<ul>
+<li>在每一类集合中，都有自己的实现类，通过内部类的形式来实现Iterator接口</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="24-继承关系图">2.4 继承关系图</h3>
+<h3 id="25-collection的常用方法">2.5 Collection的常用方法</h3>
+<ul>
+<li>
+<p>(1)添加</p>
+<ul>
+<li>
+<p>(1)add(Object obj)</p>
+<ul>
+<li>添加一个元素到集合中</li>
+</ul>
+</li>
+<li>
+<p>(2)addAll(Collection other)</p>
+<ul>
+<li>把other集合中的元素一一添加到当前集合中，一次添加多个</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(2)删除</p>
+<ul>
+<li>
+<p>remove(Object obj)</p>
+<ul>
+<li>删除一个元素</li>
+</ul>
+</li>
+<li>
+<p>removeAll(Collection other)</p>
+<ul>
+<li>
+<p>从当前集合中删除它俩的交集</p>
+<ul>
+<li>this -  this ∩ other</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(3)查找</p>
+<ul>
+<li>
+<p>contains(Object obj)</p>
+<ul>
+<li>在当前集合中查找一个元素</li>
+</ul>
+</li>
+<li>
+<p>containsAll(Collection c)</p>
+<ul>
+<li>判断c是否是当前集合的子集</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(4)其他</p>
+<ul>
+<li>
+<p>size()</p>
+<ul>
+<li>获取有效元素的个数</li>
+</ul>
+</li>
+<li>
+<p>retainsAll(Collection other)</p>
+<ul>
+<li>
+<p>把this ∩ other赋值给当前集合</p>
+<ul>
+<li>this =  this ∩ other</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(5)遍历</p>
+<ul>
+<li>Iterator iterator()</li>
+<li>Object[] toArray()</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-map">3 Map</h2>
+<h3 id="31-map的特点">3.1 Map的特点</h3>
+<ul>
+<li>Map的元素，即存储的映射关系(key,value)，其类型是Entry类型，它是Map的内部子接口，在各种Map的实现类中，都用内部类的方式来实现Entry接口</li>
+<li>Map的key不可重复，而且一旦添加到map中，key不建议修改，特别是参与hashCode和equals方法的属性，或参与compareTo或compare方法比较的属性</li>
+</ul>
+<h3 id="32-map的常用方法">3.2 Map的常用方法</h3>
+<ul>
+<li>
+<p>常用的方法</p>
+<ul>
+<li>
+<p>1、添加</p>
+<ul>
+<li>put(key,value)</li>
+<li>putAll(Map)</li>
+</ul>
+</li>
+<li>
+<p>2、有效键值对数</p>
+<ul>
+<li>size</li>
+</ul>
+</li>
+<li>
+<p>3、根据key获取value</p>
+<ul>
+<li>get(key)</li>
+</ul>
+</li>
+<li>
+<p>4、是否包含某个key/value</p>
+<ul>
+<li>containsKey()</li>
+<li>containsValue()</li>
+</ul>
+</li>
+<li>
+<p>5、删除</p>
+<ul>
+<li>remove(key)</li>
+</ul>
+</li>
+<li>
+<p>6、和迭代相关</p>
+<ul>
+<li>
+<p>遍历所有的key</p>
+<ul>
+<li>Set  keySet()</li>
+</ul>
+</li>
+<li>
+<p>遍历所有的value</p>
+<ul>
+<li>Collection values()</li>
+</ul>
+</li>
+<li>
+<p>遍历所有的映射关系</p>
+<ul>
+<li>Set  entrySet()</li>
+<li>Set的元素是Entry类型</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="33-map的常见实现类">3.3 Map的常见实现类</h3>
+<ul>
+<li>
+<p>Hashtable</p>
+<ul>
+<li>JDK1.0就有的，属于旧版HashMap，线程安全的</li>
+</ul>
+</li>
+<li>
+<p>HashMap</p>
+<ul>
+<li>它的key不可重复的，依据key的hashCode()和equals()方法，线程不安全的
+JDK1.7时底层实现是数组+链表
+JDK1.8时底层实现是数组+链表+红黑树</li>
+</ul>
+</li>
+<li>
+<p>TreeMap</p>
+<ul>
+<li>它的key不可重复的，按照key的“大小”顺序进行排列,
+依据key的自然排序Comparable(compareTo())或定制排序Comparator(compare())规则进行排序</li>
+</ul>
+</li>
+<li>
+<p>LinkedHashMap</p>
+<ul>
+<li>它是HashMap的子类，在HashMap的基础上同时要维护添加的顺序</li>
+</ul>
+</li>
+<li>
+<p>Properties</p>
+<ul>
+<li>Properties是Hashtable的子类，它的key和value的类型都是String类型</li>
+</ul>
+</li>
+</ul>
+<h3 id="34-高频面试题hashmap的底层实现过程">3.4 高频面试题：HashMap的底层实现过程</h3>
+<ul>
+<li>
+<p>JDK1.7时底层实现是数组+链表</p>
+<ul>
+<li>
+<pre><code>  当我们要添加一个新的映射关系时，
+</code></pre>
+(1)先取出key，算出它的hash值
+(2)如果数组是空的，会先建立一个长度为16的数组table
+(3)如果数组不为空，这个时候要判断数组的长度是否达到临界点(数组长度*0.75)，如果已经达到临界点，应该先对数组进行扩容，扩大为2倍
+一旦扩容，要重头开始(以前元素要重新排序位置，对新添加的映射关系也要重写计算key的hash值，和index)
+(4)会根据key的hash值与table数组的长度做一个“按位与&amp;”的运算，计算出要存储的下标index
+(5)先判断table[index]是否为空，如果为空，直接放进去，放进去之前会构建一个Entry类型对象
+(6)如果table[index]不是空的，那么调用key的equals方法与table[index]的key做比较，如果table[index]下面还有链表，
+可能需要与table[index]下面的链表的元素一一比较，直到遇到了equals为true或都不相同
+(7)如果有一个equals返回true，那么就把value给替换
+(8)如果equals都不相等，那么把当前映射关系构建的Entry对象，放在此链表的表头，把原来的对象作为我的next</li>
+</ul>
+</li>
+<li>
+<p>JDK1.8时底层实现是数组+链表+红黑树</p>
+<ul>
+<li>
+<pre><code>  当我们要添加一个新的映射关系时，
+</code></pre>
+(1)先取出key，算出它的hash值
+(2)如果数组是空的，会先建立一个长度为16的数组table
+(3)如果数组不为空，这个时候要判断数组的长度是否达到临界点(数组长度*0.75)，如果已经达到临界点，应该先对数组进行扩容，扩大为2倍
+一旦扩容，要重头开始(以前元素要重新排序位置，对新添加的映射关系也要重写计算key的hash值，和index)
+(4)会根据key的hash值与table数组的长度做一个“按位与&amp;”的运算，计算出要存储的下标index
+(5)先判断table[index]是否为空，如果为空，直接放进去，放进去之前会构建一个Entry类型对象
+(6)如果table[index]不是空的，那么调用key的equals方法与table[index]的key做比较，如果table[index]下面有树或者链表，
+可能需要与table[index]下面的链表或树的元素一一比较，直到遇到了equals为true或都不相同
+(7)如果有一个equals返回true，那么就把value给替换
+(8)如果都不相等，如果现在已经是树，就直接添加到该树的叶子节点上。
+(9)如果都不相等，如果现在不是树，而是链表，看当前链表的长度是否达到8个，如果没有达到8个，直接添加到链表的尾部
+(10)如果已经达到8个，此时要检查数组table的长度是否达到64，如果没有达到64，先扩容，一旦扩容，一切从头开始
+(11)如果达到64，把该链表变成一颗红黑树</li>
+<li>
+<pre><code>  什么时候树会变回链表？
+</code></pre>
+每次进行resize()，会检查树的叶子节点的总数是否&lt;6个，如果&lt;6个，会把这个红黑树变回链表</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-集合框架图">4 集合框架图</h2>
+<h2 id="5-集合工具类">5 集合工具类</h2>
+<h3 id="51-javautilcollections">5.1 java.util.Collections</h3>
+<ul>
+<li>
+<p>操作集合的各种静态方法</p>
+<ul>
+<li>
+<p>1、Collections.addAll(Collection, T&hellip; elements)</p>
+</li>
+<li>
+<p>2、binarySearch(List, T target)</p>
+<ul>
+<li>对List的元素类型有要求，必须支持可比较大小</li>
+</ul>
+</li>
+<li>
+<p>3、max/min(Collection)</p>
+<ul>
+<li>对Collection的元素类型有要求，必须支持可比较大小</li>
+</ul>
+</li>
+<li>
+<p>4、sort(List)</p>
+<ul>
+<li>元素必须实现Comparable</li>
+</ul>
+</li>
+<li>
+<p>5、sort(List,Comparator)</p>
+<ul>
+<li>按照指定比较器进行排序</li>
+</ul>
+</li>
+<li>
+<p>6、如果想要获得线程安全的集合对象</p>
+<ul>
+<li>synchronizedXXX(集合)</li>
+</ul>
+</li>
+<li>
+<p>7、。。。。</p>
+</li>
+</ul>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/java/">JAVA</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-09-14</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/language/java/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5%E7%BB%93%E6%9E%84/" class="prev" rel="prev" title="流程控制语句结构"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/language/java/%E6%96%B9%E6%B3%95/" class="next" rel="next" title="方法">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

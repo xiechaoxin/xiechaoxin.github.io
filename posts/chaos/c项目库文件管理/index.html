@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>c项目库文件管理 - xcx</title><meta name="description" content=""><meta property="og:title" content="c项目库文件管理" />
+<meta property="og:description" content="是否将 C&#43;&#43; 库文件直接放入项目并使用 Git 管理具体情况具体分析。这里是一些考虑因素： 优点： 版本一致性：直接在项目中包含库确保每个开发者和CI/CD系" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/chaos/c%E9%A1%B9%E7%9B%AE%E5%BA%93%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-09-05T20:23:45+00:00" />
+<meta property="article:modified_time" content="2023-09-05T20:23:45+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="c项目库文件管理"/>
+<meta name="twitter:description" content="是否将 C&#43;&#43; 库文件直接放入项目并使用 Git 管理具体情况具体分析。这里是一些考虑因素： 优点： 版本一致性：直接在项目中包含库确保每个开发者和CI/CD系"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/chaos/c%E9%A1%B9%E7%9B%AE%E5%BA%93%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/language/c/%E9%A2%84%E5%A4%84%E7%90%86_%E7%BC%96%E8%AF%91_%E6%B1%87%E7%BC%96_%E9%93%BE%E6%8E%A5/" /><link rel="next" href="https://xiechaoxin.github.io/posts/chaos/%E5%BC%82%E5%B8%B8%E4%BD%BF%E7%94%A8%E5%BB%BA%E8%AE%AE/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "c项目库文件管理",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/chaos\/c%E9%A1%B9%E7%9B%AE%E5%BA%93%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86\/"
+        },"genre": "posts","keywords": "C","wordcount":  607 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/chaos\/c%E9%A1%B9%E7%9B%AE%E5%BA%93%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86\/","datePublished": "2023-09-05T20:23:45+00:00","dateModified": "2023-09-05T20:23:45+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">c项目库文件管理</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-09-05">2023-09-05</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 607 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+                </div><div class="content" id="content"><p>是否将 C++ 库文件直接放入项目并使用 Git 管理具体情况具体分析。这里是一些考虑因素：</p>
+<p><strong>优点</strong>：</p>
+<ol>
+<li>
+<p><strong>版本一致性</strong>：直接在项目中包含库确保每个开发者和CI/CD系统使用相同版本的库，避免了&quot;在我的机器上可以运行&quot;的问题。</p>
+</li>
+<li>
+<p><strong>简化设置</strong>：新的开发者或构建系统不需要单独获取和配置库，这可以简化项目的设置。</p>
+</li>
+<li>
+<p><strong>离线工作</strong>：如果库文件已经在项目中，开发者不需要从外部源获取它们，这使得离线工作更容易。</p>
+</li>
+</ol>
+<p><strong>缺点</strong>：</p>
+<ol>
+<li>
+<p><strong>仓库大小</strong>：将大的库文件或二进制文件直接放入 Git 仓库会增加仓库的大小，这会导致克隆和拉取操作变慢。</p>
+</li>
+<li>
+<p><strong>更新问题</strong>：手动管理库的版本可能导致更新被忽略或延迟。</p>
+</li>
+<li>
+<p><strong>许可问题</strong>：直接包含第三方库可能会引入许可问题，确保你有权这样做，并且你的项目的许可与第三方库的许可兼容。</p>
+</li>
+</ol>
+<p><strong>替代方案</strong>：</p>
+<ol>
+<li>
+<p><strong>Git子模块</strong>：Git子模块允许你在一个Git仓库中包含另一个Git仓库的特定版本。这可以用来引用外部库的特定版本而不是将其全部内容复制到你的仓库。</p>
+</li>
+<li>
+<p><strong>包管理器</strong>：对于 C++，有一些包管理器如 <a href="https://conan.io/" target="_blank" rel="noopener noreffer">Conan</a> 和 <a href="https://github.com/microsoft/vcpkg" target="_blank" rel="noopener noreffer">vcpkg</a>。使用包管理器可以自动化依赖关系的获取和构建过程。</p>
+</li>
+<li>
+<p><strong>CMake FetchContent</strong>：如果你使用 CMake，FetchContent 模块允许你在构建时下载依赖。</p>
+</li>
+</ol>
+<p><strong>结论</strong>：</p>
+<p>如果库是小型的、不经常更新，且你希望确保版本一致性，直接将其包含在项目中可能是合理的。但如果库很大或经常更新，使用子模块或包管理器可能是更好的选择。</p>
+<p>最重要的是，确保你的选择满足项目的需求，并且团队成员都明白并接受</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/c/">C</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2023-09-05</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/language/c/%E9%A2%84%E5%A4%84%E7%90%86_%E7%BC%96%E8%AF%91_%E6%B1%87%E7%BC%96_%E9%93%BE%E6%8E%A5/" class="prev" rel="prev" title="预处理_编译_汇编_链接"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/chaos/%E5%BC%82%E5%B8%B8%E4%BD%BF%E7%94%A8%E5%BB%BA%E8%AE%AE/" class="next" rel="next" title="异常使用建议">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

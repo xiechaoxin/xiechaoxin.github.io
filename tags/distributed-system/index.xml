@@ -1,0 +1,61 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>distributed-system - 标签 - xcx</title>
+        <link>https://xiechaoxin.github.io/tags/distributed-system/</link>
+        <description>distributed-system - 标签 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/tags/distributed-system/" rel="self" type="application/rss+xml" /><item>
+    <title>api-gateway</title>
+    <link>https://xiechaoxin.github.io/posts/pro/distributed-system/api-gateway/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/pro/distributed-system/api-gateway/</guid>
+    <description><![CDATA[网关 1 何为网关？为什么要网关？ 微服务背景下，一个系统被拆分为多个服务，但是像安全认证，流量控制，日志，监控等功能是每个服务都需要的，没有网关]]></description>
+</item>
+<item>
+    <title>cap&amp;base理论</title>
+    <link>https://xiechaoxin.github.io/posts/pro/distributed-system/%E7%90%86%E8%AE%BA%E7%AE%97%E6%B3%95/capbase%E7%90%86%E8%AE%BA/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/pro/distributed-system/%E7%90%86%E8%AE%BA%E7%AE%97%E6%B3%95/capbase%E7%90%86%E8%AE%BA/</guid>
+    <description><![CDATA[CAP &amp; BASE理论 经历过技术面试的小伙伴想必对这个两个概念已经再熟悉不过了！ Guide哥当年参加面试的时候，不夸张地说，只要问到分布式相关的内]]></description>
+</item>
+<item>
+    <title>distributed-id</title>
+    <link>https://xiechaoxin.github.io/posts/pro/distributed-system/distributed-id/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/pro/distributed-system/distributed-id/</guid>
+    <description><![CDATA[分布式 ID 1 分布式 ID 介绍 1.1 何为 ID？ 日常开发中，我们需要对系统中的各种数据使用 ID 唯一表示，比如用户 ID 对应且仅对应一个人，商品 ID 对应且仅对应一件]]></description>
+</item>
+<item>
+    <title>dubbo</title>
+    <link>https://xiechaoxin.github.io/posts/pro/distributed-system/rpc/dubbo/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/pro/distributed-system/rpc/dubbo/</guid>
+    <description><![CDATA[Dubbo知识点&amp;面试题总结 这篇文章是我根据官方文档以及自己平时的使用情况，对 Dubbo 所做的一个总结。欢迎补充！ 1 RPC基础 1.1 何为 RPC? RPC(Remote Procedure Call)]]></description>
+</item>
+<item>
+    <title>paxos&amp;raft算法</title>
+    <link>https://xiechaoxin.github.io/posts/pro/distributed-system/%E7%90%86%E8%AE%BA%E7%AE%97%E6%B3%95/paxosraft%E7%AE%97%E6%B3%95/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/pro/distributed-system/%E7%90%86%E8%AE%BA%E7%AE%97%E6%B3%95/paxosraft%E7%AE%97%E6%B3%95/</guid>
+    <description><![CDATA[Paxos 算法和 Raft 算法 Paxos 算法诞生于 1990 年，这是一种解决分布式系统一致性的经典算法 。但是，由于 Paxos 算法非常难以理解和实现，不断有人尝试简化这一算法。到了2]]></description>
+</item>
+<item>
+    <title>why-use-rpc</title>
+    <link>https://xiechaoxin.github.io/posts/pro/distributed-system/rpc/why-use-rpc/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/pro/distributed-system/rpc/why-use-rpc/</guid>
+    <description><![CDATA[服务之间的调用为啥不直接用 HTTP 而用 RPC？ 1 什么是 RPC?RPC原理是什么? 1.1 什么是 RPC？ RPC(Remote Procedure Call)—远程过程调用，它是一种通过网络从远]]></description>
+</item>
+<item>
+    <title>zookeeper-in-action</title>
+    <link>https://xiechaoxin.github.io/posts/pro/distributed-system/distributed-process-coordination/zookeeper/zookeeper-in-action/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/pro/distributed-system/distributed-process-coordination/zookeeper/zookeeper-in-action/</guid>
+    <description><![CDATA[ZooKeeper 实战 1 前言 这篇文章简单给演示一下 ZooKeeper 常见命令的使用以及 ZooKeeper Java客户端 Curator 的基本使用。介绍到的内容都是最基本的操作，能满足日常工作的基本需要。]]></description>
+</item>
+<item>
+    <title>zookeeper-intro</title>
+    <link>https://xiechaoxin.github.io/posts/pro/distributed-system/distributed-process-coordination/zookeeper/zookeeper-intro/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/pro/distributed-system/distributed-process-coordination/zookeeper/zookeeper-intro/</guid>
+    <description><![CDATA[ZooKeeper 相关概念总结(入门) 1 前言 相信大家对 ZooKeeper 应该不算陌生。但是你真的了解 ZooKeeper 到底有啥用不？如果别人/面试官让你给他讲讲对于 ZooKeeper 的认识，你能回答到什么]]></description>
+</item>
+<item>
+    <title>zookeeper-plus</title>
+    <link>https://xiechaoxin.github.io/posts/pro/distributed-system/distributed-process-coordination/zookeeper/zookeeper-plus/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/pro/distributed-system/distributed-process-coordination/zookeeper/zookeeper-plus/</guid>
+    <description><![CDATA[ZooKeeper 相关概念总结(进阶) FrancisQ 投稿。 1 好久不见 离上一篇文章的发布也快一个月了，想想已经快一个月没写东西了，其中可能有期末考试、课程设计和驾照考试，]]></description>
+</item>
+</channel>
+</rss>

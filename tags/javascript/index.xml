@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>JavaScript - 标签 - xcx</title>
+        <link>https://xiechaoxin.github.io/tags/javascript/</link>
+        <description>JavaScript - 标签 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 23 May 2023 14:10:07 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/tags/javascript/" rel="self" type="application/rss+xml" /><item>
+    <title>mdn_web_docs</title>
+    <link>https://xiechaoxin.github.io/posts/web/front-end/js/mdn_web_docs/</link>
+    <pubDate>Tue, 23 May 2023 14:10:07 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/web/front-end/js/mdn_web_docs/</guid>
+    <description><![CDATA[mdn web docs ]]></description>
+</item>
+</channel>
+</rss>

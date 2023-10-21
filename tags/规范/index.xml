@@ -1,0 +1,25 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>规范 - 标签 - xcx</title>
+        <link>https://xiechaoxin.github.io/tags/%E8%A7%84%E8%8C%83/</link>
+        <description>规范 - 标签 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 28 Aug 2023 22:05:01 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/tags/%E8%A7%84%E8%8C%83/" rel="self" type="application/rss+xml" /><item>
+    <title>技术文档编写规范</title>
+    <link>https://xiechaoxin.github.io/posts/common/%E8%A7%84%E8%8C%83/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3%E7%BC%96%E5%86%99%E8%A7%84%E8%8C%83/</link>
+    <pubDate>Mon, 28 Aug 2023 22:05:01 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/common/%E8%A7%84%E8%8C%83/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3%E7%BC%96%E5%86%99%E8%A7%84%E8%8C%83/</guid>
+    <description><![CDATA[技术文档编写规范]]></description>
+</item>
+<item>
+    <title>代码可读性</title>
+    <link>https://xiechaoxin.github.io/posts/common/%E8%A7%84%E8%8C%83/%E4%BB%A3%E7%A0%81%E5%8F%AF%E8%AF%BB%E6%80%A7/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/common/%E8%A7%84%E8%8C%83/%E4%BB%A3%E7%A0%81%E5%8F%AF%E8%AF%BB%E6%80%A7/</guid>
+    <description><![CDATA[一、可读性的重要性 编程有很大一部分时间是在阅读代码，不仅要阅读自己的代码，而且要阅读别人的代码。因此，可读性良好的代码能够大大提高编程效率。]]></description>
+</item>
+<item>
+    <title>软件开发常用架构</title>
+    <link>https://xiechaoxin.github.io/posts/common/%E8%A7%84%E8%8C%83/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E6%9E%B6%E6%9E%84/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/common/%E8%A7%84%E8%8C%83/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E6%9E%B6%E6%9E%84/</guid>
+    <description><![CDATA[软件开发常用架构 1 三层架构包含的三层: 界面层(User Interface layer)、业务逻辑层(Business Logic Layer)、数据访问层(Data access layer) 1.1]]></description>
+</item>
+</channel>
+</rss>

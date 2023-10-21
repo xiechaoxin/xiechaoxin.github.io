@@ -1,0 +1,31 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>security - 标签 - xcx</title>
+        <link>https://xiechaoxin.github.io/tags/security/</link>
+        <description>security - 标签 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/tags/security/" rel="self" type="application/rss+xml" /><item>
+    <title>basis-of-authority-certification</title>
+    <link>https://xiechaoxin.github.io/posts/pro/security/basis-of-authority-certification/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/pro/security/basis-of-authority-certification/</guid>
+    <description><![CDATA[认证授权基础 1 认证 (Authentication) 和授权 (Authorization)的区别是什么？ 这是一个绝大多数人都会混淆的问题。首先先从读音上来认识这两个名词，很多]]></description>
+</item>
+<item>
+    <title>jwt优缺点分析以及常见问题解决方案</title>
+    <link>https://xiechaoxin.github.io/posts/pro/security/jwt%E4%BC%98%E7%BC%BA%E7%82%B9%E5%88%86%E6%9E%90%E4%BB%A5%E5%8F%8A%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/pro/security/jwt%E4%BC%98%E7%BC%BA%E7%82%B9%E5%88%86%E6%9E%90%E4%BB%A5%E5%8F%8A%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</guid>
+    <description><![CDATA[JWT 身份认证优缺点分析以及常见问题解决方案 之前分享了一个使用 Spring Security 实现 JWT 身份认证的 Demo，文章地址：适合初学者入门 Spring Security With JWT 的 Demo。 Demo 非常简]]></description>
+</item>
+<item>
+    <title>sso-intro</title>
+    <link>https://xiechaoxin.github.io/posts/pro/security/sso-intro/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/pro/security/sso-intro/</guid>
+    <description><![CDATA[SSO 单点登录 本文授权转载自 ： https://ken.io/note/sso-design-implement 作者：ken.io 相关推荐阅读：系统的讲解 - SSO单点登录 1 一、前言 1.1 、SSO说明 SSO英文全称Single Sign O]]></description>
+</item>
+<item>
+    <title>数据脱敏</title>
+    <link>https://xiechaoxin.github.io/posts/pro/security/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/pro/security/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F/</guid>
+    <description><![CDATA[数据脱敏 数据脱敏说的就是我们根据特定的规则对敏感信息数据进行变形，比如我们把手机号、身份证号某些位数使用 * 来代替。]]></description>
+</item>
+</channel>
+</rss>

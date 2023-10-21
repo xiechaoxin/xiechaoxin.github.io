@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>linux命令 - xcx</title><meta name="description" content=""><meta property="og:title" content="linux命令" />
+<meta property="og:description" content="文件处理命令 1 权限管理命令 2 文件搜索命令 3 帮助命令 3.1 man ​ 查看命令的帮助:这个命令是干啥用的，/选项 ​ 查看配置文件的格式： ​ ps：1命令的帮助" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/os/linux/linux%E5%91%BD%E4%BB%A4/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-17T17:59:12+00:00" />
+<meta property="article:modified_time" content="2022-06-17T17:59:12+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="linux命令"/>
+<meta name="twitter:description" content="文件处理命令 1 权限管理命令 2 文件搜索命令 3 帮助命令 3.1 man ​ 查看命令的帮助:这个命令是干啥用的，/选项 ​ 查看配置文件的格式： ​ ps：1命令的帮助"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/os/linux/linux%E5%91%BD%E4%BB%A4/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/blog_cut/mysql/mysql-high-performance-optimization-specification-recommendations/" /><link rel="next" href="https://xiechaoxin.github.io/posts/os/linux-intro/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "linux命令",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/os\/linux\/linux%E5%91%BD%E4%BB%A4\/"
+        },"genre": "posts","keywords": "OS, linux","wordcount":  6278 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/os\/linux\/linux%E5%91%BD%E4%BB%A4\/","datePublished": "2022-06-17T17:59:12+00:00","dateModified": "2022-06-17T17:59:12+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">linux命令</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/os/"><i class="far fa-folder fa-fw"></i>OS</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-17">2022-06-17</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6278 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 13 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-权限管理命令">1 权限管理命令</a></li>
+    <li><a href="#2-文件搜索命令">2 文件搜索命令</a></li>
+    <li><a href="#3-帮助命令">3 帮助命令</a>
+      <ul>
+        <li><a href="#31-man">3.1 man</a></li>
+        <li><a href="#32-whatis-命令">3.2 whatis 命令</a></li>
+        <li><a href="#33-apropos-配置文件">3.3 apropos 配置文件</a></li>
+        <li><a href="#34---help-基本所有的命令">3.4 &ndash;help 基本所有的命令</a></li>
+        <li><a href="#35-info-命令">3.5 info 命令</a></li>
+        <li><a href="#36-help-命令">3.6 help 命令</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-用户管理命令">4 用户管理命令</a>
+      <ul>
+        <li><a href="#41-useradd">4.1 useradd</a></li>
+        <li><a href="#42-passwd">4.2 passwd</a></li>
+        <li><a href="#43-who">4.3 who</a></li>
+        <li><a href="#44-w">4.4 w</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-压缩解压命令">5 压缩解压命令</a>
+      <ul>
+        <li><a href="#51-gzip-只能压缩文件不能压缩目录不保留源文件">5.1 gzip 只能压缩文件，不能压缩目录，不保留源文件</a></li>
+        <li><a href="#52-gunzip-解压">5.2 gunzip 解压</a></li>
+        <li><a href="#53-tar--c打包目录-v查看过程-f-指定文件名-z-压缩-通常zcf---cjfbzip2">5.3 tar -c打包目录，-v查看过程，-f 指定文件名，-z 压缩 通常zcf  -cjf(bzip2)</a></li>
+        <li><a href="#54-tar--x解包目录-v查看过程-f-指定文件名-z-压缩-通常zxf">5.4 tar -x解包目录，-v查看过程，-f 指定文件名，-z 压缩 通常zxf</a></li>
+        <li><a href="#55-zip-保留源文件--r-压缩目录">5.5 zip 保留源文件 -r 压缩目录</a></li>
+        <li><a href="#56-unzip">5.6 unzip</a></li>
+        <li><a href="#57-bzip2-能保存源文件--j">5.7 bzip2 能保存源文件 -j</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-网络命令">6 网络命令</a>
+      <ul>
+        <li><a href="#61-write--ctrld-保存-发送信息">6.1 write  Ctrl+D 保存 发送信息</a></li>
+        <li><a href="#62-wall-发送给所有人发送广播">6.2 wall 发送给所有人，发送广播📢</a></li>
+        <li><a href="#63-ping-测试网络通信--c-3">6.3 ping 测试网络通信 -c 3</a></li>
+        <li><a href="#64-ifconfig">6.4 ifconfig</a></li>
+        <li><a href="#65-mail">6.5 mail</a></li>
+        <li><a href="#66-last">6.6 last</a></li>
+        <li><a href="#67-lastlog">6.7 lastlog</a></li>
+        <li><a href="#68-traceroute">6.8 traceroute</a></li>
+        <li><a href="#69-netstat">6.9 netstat</a></li>
+        <li><a href="#610-setup">6.10 setup</a></li>
+        <li><a href="#611-mount">6.11 mount</a></li>
+      </ul>
+    </li>
+    <li><a href="#7-关机重启命令">7 关机重启命令</a>
+      <ul>
+        <li><a href="#71-shutdown只记这个">7.1 shutdown(只记这个)</a></li>
+        <li><a href="#72-halt">7.2 halt</a></li>
+        <li><a href="#73-poweroff绝对不用这玩意直接断电">7.3 poweroff(绝对不用，这玩意直接断电)</a></li>
+        <li><a href="#74-init-0">7.4 init 0</a></li>
+        <li><a href="#75-reboot-重启">7.5 reboot 重启</a></li>
+        <li><a href="#76-init-6-重启">7.6 init 6 重启</a></li>
+        <li><a href="#77-系统运行级别init">7.7 <strong>系统运行级别</strong>(init)</a></li>
+        <li><a href="#78-runlevel">7.8 runlevel</a></li>
+        <li><a href="#79-logout">7.9 logout</a></li>
+      </ul>
+    </li>
+    <li><a href="#8-vim">8 VIM</a></li>
+    <li><a href="#9-命令模式">9 命令模式</a></li>
+    <li><a href="#10-插入模式">10 插入模式</a></li>
+    <li><a href="#11-编辑模式">11 编辑模式</a></li>
+    <li><a href="#12-vim技巧">12 VIM技巧</a></li>
+    <li><a href="#13-软件包管理">13 软件包管理</a></li>
+    <li><a href="#14-软件包简介">14 软件包简介</a></li>
+    <li><a href="#15-rpm包管理-rpm命令管理">15 rpm包管理-rpm命令管理</a>
+      <ul>
+        <li><a href="#151-rpm">15.1 rpm</a></li>
+        <li><a href="#152-rpm包的校验">15.2 rpm包的校验</a></li>
+      </ul>
+    </li>
+    <li><a href="#16-rpm包管理-yum命令管理">16 rpm包管理-yum命令管理</a>
+      <ul>
+        <li><a href="#161-可以使用本地yum源">16.1 <strong>可以使用本地yum源</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#17-源码包管理">17 源码包管理</a>
+      <ul>
+        <li><a href="#171-源码包和rpm包的区别">17.1 源码包和rpm包的区别</a></li>
+        <li><a href="#172-源码包安装过程">17.2 源码包安装过程</a></li>
+        <li><a href="#173-如何选择源码包安装还是rpm包安装">17.3 如何选择源码包安装还是rpm包安装</a></li>
+      </ul>
+    </li>
+    <li><a href="#18-脚本安装包与软件包选择">18 脚本安装包与软件包选择</a></li>
+    <li><a href="#19-用户和用户组管理">19 用户和用户组管理</a>
+      <ul>
+        <li><a href="#191-用户配置文件">19.1 用户配置文件</a></li>
+      </ul>
+    </li>
+    <li><a href="#20-权限管理">20 权限管理</a>
+      <ul>
+        <li><a href="#201-acl权限">20.1 ACL权限</a></li>
+        <li><a href="#202-文件特殊权限">20.2 文件特殊权限</a></li>
+        <li><a href="#203-文件系统属性chattr权限这个比上面的uid安全">20.3 文件系统属性chattr权限(这个比上面的UID安全)</a></li>
+        <li><a href="#204-系统命令sudo权限">20.4 系统命令sudo权限</a></li>
+      </ul>
+    </li>
+    <li><a href="#21-文件系统管理">21 文件系统管理</a></li>
+    <li><a href="#22-回顾分区和文件系统">22 回顾分区和文件系统</a>
+      <ul>
+        <li><a href="#主分区">主分区</a></li>
+      </ul>
+    </li>
+    <li><a href="#23-文件系统常用命令">23 文件系统常用命令</a></li>
+    <li><a href="#24-fdisk-分区">24 fdisk 分区</a></li>
+    <li><a href="#25-etcfstab-文件修复">25 /etc/fstab 文件修复</a></li>
+    <li><a href="#26-分配swap分区">26 分配swap分区</a></li>
+    <li><a href="#27-shell">27 shell</a></li>
+    <li><a href="#28-shel概述">28 Shel概述</a></li>
+    <li><a href="#29-shel脚本的执行方式">29 Shel脚本的执行方式</a></li>
+    <li><a href="#30-bash的基本功能">30 Bash的基本功能</a>
+      <ul>
+        <li><a href="#历史命令和命令补全">历史命令和命令补全</a></li>
+        <li><a href="#别名和快捷键">别名和快捷键</a></li>
+        <li><a href="#输入输出重定向">输入输出重定向</a></li>
+        <li><a href="#301-输出重定向">30.1 输出重定向</a></li>
+        <li><a href="#多命令顺序执行和管道符">多命令顺序执行和管道符</a></li>
+        <li><a href="#通配符和其他特殊符号">通配符和其他特殊符号</a></li>
+      </ul>
+    </li>
+    <li><a href="#31-bash的变量">31 Bash的变量</a>
+      <ul>
+        <li><a href="#用户自定义变量">用户自定义变量</a></li>
+        <li><a href="#环境变量">环境变量</a></li>
+        <li><a href="#位置参数变量">位置参数变量</a></li>
+      </ul>
+    </li>
+    <li><a href="#32-bash的运算符">32 Bash的运算符</a></li>
+    <li><a href="#33-环境变量配置文件">33 环境变量配置文件</a></li>
+    <li><a href="#34-shell编程">34 shell编程</a></li>
+    <li><a href="#35-基础正则表达式">35 基础正则表达式</a>
+      <ul>
+        <li><a href="#正则和通配符的区别和应用场景">正则和通配符的区别和应用场景</a></li>
+      </ul>
+    </li>
+    <li><a href="#36-字符截取命令">36 字符截取命令</a></li>
+    <li><a href="#37-字符处理命令">37 字符处理命令</a></li>
+    <li><a href="#38-条件判断">38 条件判断</a></li>
+    <li><a href="#39-流程控制">39 流程控制</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="文件处理命令">文件处理命令</h1>
+<h2 id="1-权限管理命令">1 权限管理命令</h2>
+<h2 id="2-文件搜索命令">2 文件搜索命令</h2>
+<h2 id="3-帮助命令">3 帮助命令</h2>
+<h3 id="31-man">3.1 man</h3>
+<p>​	查看<strong>命令</strong>的帮助:这个命令是干啥用的，/选项</p>
+<p>​	查看<strong>配置文件</strong>的格式：</p>
+<p>​	ps：1命令的帮助，5配置文件的帮助 man 5 service</p>
+<h3 id="32-whatis-命令">3.2 whatis 命令</h3>
+<h3 id="33-apropos-配置文件">3.3 apropos 配置文件</h3>
+<h3 id="34---help-基本所有的命令">3.4 &ndash;help 基本所有的命令</h3>
+<h3 id="35-info-命令">3.5 info 命令</h3>
+<h3 id="36-help-命令">3.6 help 命令</h3>
+<h2 id="4-用户管理命令">4 用户管理命令</h2>
+<h3 id="41-useradd">4.1 useradd</h3>
+<h3 id="42-passwd">4.2 passwd</h3>
+<h3 id="43-who">4.3 who</h3>
+<h3 id="44-w">4.4 w</h3>
+<h2 id="5-压缩解压命令">5 压缩解压命令</h2>
+<p>.gz</p>
+<h3 id="51-gzip-只能压缩文件不能压缩目录不保留源文件">5.1 gzip 只能压缩文件，不能压缩目录，不保留源文件</h3>
+<h3 id="52-gunzip-解压">5.2 gunzip 解压</h3>
+<p>.tar.gz</p>
+<h3 id="53-tar--c打包目录-v查看过程-f-指定文件名-z-压缩-通常zcf---cjfbzip2">5.3 tar -c打包目录，-v查看过程，-f 指定文件名，-z 压缩 通常zcf  -cjf(bzip2)</h3>
+<h3 id="54-tar--x解包目录-v查看过程-f-指定文件名-z-压缩-通常zxf">5.4 tar -x解包目录，-v查看过程，-f 指定文件名，-z 压缩 通常zxf</h3>
+<h3 id="55-zip-保留源文件--r-压缩目录">5.5 zip 保留源文件 -r 压缩目录</h3>
+<h3 id="56-unzip">5.6 unzip</h3>
+<p>.bzip2</p>
+<h3 id="57-bzip2-能保存源文件--j">5.7 bzip2 能保存源文件 -j</h3>
+<h2 id="6-网络命令">6 网络命令</h2>
+<h3 id="61-write--ctrld-保存-发送信息">6.1 write  Ctrl+D 保存 发送信息</h3>
+<h3 id="62-wall-发送给所有人发送广播">6.2 wall 发送给所有人，发送广播📢</h3>
+<h3 id="63-ping-测试网络通信--c-3">6.3 ping 测试网络通信 -c 3</h3>
+<h3 id="64-ifconfig">6.4 ifconfig</h3>
+<p>​	ifconfig eth0 192.168.1.1 临时更改IP</p>
+<p>​	lo:回环网卡</p>
+<h3 id="65-mail">6.5 mail</h3>
+<p>​	mail root Ctrl+D</p>
+<h3 id="66-last">6.6 last</h3>
+<p>​	统计登录的用户的信息</p>
+<h3 id="67-lastlog">6.7 lastlog</h3>
+<p>​	查看用户的登录信息</p>
+<p>​	-u 特定用户</p>
+<h3 id="68-traceroute">6.8 traceroute</h3>
+<p>​	跟踪路由，查看访问了哪些IP</p>
+<h3 id="69-netstat">6.9 netstat</h3>
+<p>​	查询网络相关信息</p>
+<p>​	-t  TCP协议信息</p>
+<p>​	-u UDP协议</p>
+<p>​	-l 监听</p>
+<p>​	-r 路由</p>
+<p>​	-n IP地址</p>
+<p>​	发起端口随机，接受端口一般固定</p>
+<p>​	-tlun 本机监听的端口</p>
+<p>​	-an 所有的网络连接</p>
+<p>​	-rn 路由表</p>
+<h3 id="610-setup">6.10 setup</h3>
+<h3 id="611-mount">6.11 mount</h3>
+<p>​	挂载命令 mount 设备名称 挂载点路径</p>
+<p>​	umount 设备名称</p>
+<h2 id="7-关机重启命令">7 关机重启命令</h2>
+<h3 id="71-shutdown只记这个">7.1 shutdown(只记这个)</h3>
+<p>​	-h 20：30指定时间</p>
+<p>​	-c 取消上一个关机命令</p>
+<p>​	-r 重启</p>
+<h3 id="72-halt">7.2 halt</h3>
+<h3 id="73-poweroff绝对不用这玩意直接断电">7.3 poweroff(绝对不用，这玩意直接断电)</h3>
+<h3 id="74-init-0">7.4 init 0</h3>
+<h3 id="75-reboot-重启">7.5 reboot 重启</h3>
+<h3 id="76-init-6-重启">7.6 init 6 重启</h3>
+<h3 id="77-系统运行级别init">7.7 <strong>系统运行级别</strong>(init)</h3>
+<ul>
+<li>0关机
+1单用户
+2不完全多用户,不含NFS服务
+3完全多用户
+4未分配
+5图形界面
+6重启</li>
+</ul>
+<h3 id="78-runlevel">7.8 runlevel</h3>
+<p>​	查询运行级别</p>
+<h3 id="79-logout">7.9 logout</h3>
+<p>​	退出登录</p>
+<h2 id="8-vim">8 VIM</h2>
+<h2 id="9-命令模式">9 命令模式</h2>
+<p>vi/vim</p>
+<h2 id="10-插入模式">10 插入模式</h2>
+<p>-iao</p>
+<h2 id="11-编辑模式">11 编辑模式</h2>
+<p><strong>定位命令</strong></p>
+<p>gg 调到第一行</p>
+<p>G 最后一行</p>
+<p>：n到第N行</p>
+<p>：set nu 显示行号</p>
+<p>：set nonu 取消行号</p>
+<p><strong>删除命令</strong></p>
+<p>x 删除字符</p>
+<p>dd 删除行，剪切</p>
+<p>dG除光标所在行到文件末尾内容</p>
+<p>:n1,n2 d删除指定范围的行</p>
+<p><strong>复制</strong></p>
+<p>yy 复制 nyy 复制n行</p>
+<p>p 粘贴</p>
+<p><strong>替换</strong></p>
+<p>r 替换</p>
+<p>u 撤销</p>
+<p><strong>查找</strong></p>
+<p>/查找内容 n</p>
+<p>：替换范围%s(n1,n2) /old/new/g(不询问)</p>
+<p><strong>保存退出</strong></p>
+<p>：wq(快捷键ZZ)</p>
+<h2 id="12-vim技巧">12 VIM技巧</h2>
+<p>：r 文件名</p>
+<p>​	导入</p>
+<p>：!which ls</p>
+<p>​	不退出vim 执行其他命令</p>
+<p>两者结合</p>
+<p>：r !date</p>
+<p>：map Ctrl+v+p</p>
+<p>​	添加自定义快捷键</p>
+<p>：ab</p>
+<p>/home/username/.vimrc</p>
+<p>这里可以定义快捷键</p>
+<h2 id="13-软件包管理">13 软件包管理</h2>
+<h2 id="14-软件包简介">14 软件包简介</h2>
+<p>源码包</p>
+<p>​	脚本安装</p>
+<p>rpm包</p>
+<h2 id="15-rpm包管理-rpm命令管理">15 rpm包管理-rpm命令管理</h2>
+<h3 id="151-rpm">15.1 rpm</h3>
+<p>​	有依赖性，及其蛋疼</p>
+<p>rpm包中的文件</p>
+<p>rpm -q 包名</p>
+<p>rpm -qa | grep httpd</p>
+<p>rpm -qi baoming</p>
+<p>​	查看包的相关信息</p>
+<p>rpm -ql</p>
+<p>​	查询包的安装位置</p>
+<p>rpm -f 文件名</p>
+<p>​	根据文件名查找包</p>
+<p>rpm -p</p>
+<p>​	未安装包</p>
+<p>rpm -qR 包名</p>
+<p>​	查询包的依赖</p>
+<h3 id="152-rpm包的校验">15.2 rpm包的校验</h3>
+<p>rpm -V</p>
+<p>​	查询rpm包是否修改</p>
+<p>rpm 文件的提取</p>
+<p>​	rpm2cpio 包全名 | cpio -idv .这个包下的某个文件或命令</p>
+<p>​	适用场景：某个命令或配置文件被删除了，通过提取rpm包中的ls命令到当前目录下的/bin/</p>
+<p>​	rpmwcpio 包名 | cpio -idv ./bin/</p>
+<h2 id="16-rpm包管理-yum命令管理">16 rpm包管理-yum命令管理</h2>
+<p>设置IP 子网掩码 网关 DNS</p>
+<p>​	vi /etc/sysconfig/network-scripts/ifcfg-etho</p>
+<p>cd /etc/yum.repos.d/</p>
+<p>yum list</p>
+<p>yum search 关键字</p>
+<p>yum -y(yes) install 包名</p>
+<p>​	一定要加包名，不然会升级所有的包，包括linux内核</p>
+<p>yum -y remove 包名</p>
+<p>yum grouplist</p>
+<p>​	安装的功能组，方便，例如输入法组</p>
+<p>yum grouplist install 组名</p>
+<p>​	组名有空格，用“”</p>
+<h3 id="161-可以使用本地yum源">16.1 <strong>可以使用本地yum源</strong></h3>
+<p>挂载-&gt;cd /etc/yum.repos.d/ 修改光盘的yum源文件cd CentOS-Media.repo中的baseurl，enable改成1，改其他yum源文件名使其失效</p>
+<h2 id="17-源码包管理">17 源码包管理</h2>
+<h3 id="171-源码包和rpm包的区别">17.1 源码包和rpm包的区别</h3>
+<p>​	安装之前的区别</p>
+<p>​	安装之后的区别：安装位置的区别</p>
+<table>
+<thead>
+<tr>
+<th>RPM包默认安装路径</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/etc/</td>
+<td>配置文件安装目录</td>
+</tr>
+<tr>
+<td>/usr/bin/</td>
+<td>可执行的命令安装目录</td>
+</tr>
+<tr>
+<td>/usr/lib/</td>
+<td>程序所使用的函数库保存位置</td>
+</tr>
+<tr>
+<td>usr/share/doc/</td>
+<td>基本的软件使用手册保存位置</td>
+</tr>
+<tr>
+<td>/usr/ share/man/</td>
+<td>帮助文件保存位置</td>
+</tr>
+</tbody>
+</table>
+<p>源码包一般安装的指定位置一般是/usr/local/软件名</p>
+<p>RPM包安装的服务可以使用系统服务管
+理命令( service)来管理,例如RPM包安 装的 apache的启动方法是: /etc/re.d/init.d/httpdstart servicehttpdstart</p>
+<p>red hat</p>
+<p>​	服务管理命令</p>
+<p>​	service 服务名 start</p>
+<p>​	所以service不能管理源码包的安装</p>
+<h3 id="172-源码包安装过程">17.2 源码包安装过程</h3>
+<ol>
+<li>下载源码包</li>
+<li>解压</li>
+<li>进入解压缩目录</li>
+<li>INSTALL(不懂安装看这个文件)</li>
+<li>./configure 软件配置与检查     ./configure &ndash;prefix=/usr/local/软件名</li>
+<li>Makefile 把定义好的功能选项和检测系统环境的信息 都写入 Makefile文件,用于后续的编辑。(这一步ls看下有没有对应的文件)</li>
+<li>make 编译</li>
+<li>make install
+<ol>
+<li>如果报错，清楚编译的临时数据(make clear)</li>
+<li>没有报错就代表安装完了</li>
+</ol>
+</li>
+</ol>
+<h3 id="173-如何选择源码包安装还是rpm包安装">17.3 如何选择源码包安装还是rpm包安装</h3>
+<p>​	如果是自己计算机使用，不对外提供服务，一般使用rpm</p>
+<p>​	如果是访问量很大，需要一定的性能，一般使用源码包安装</p>
+<h2 id="18-脚本安装包与软件包选择">18 脚本安装包与软件包选择</h2>
+<p>一般是硬件驱动会使用脚本安装</p>
+<p>执行setup.sh</p>
+<p>win中一般是软件名.exe</p>
+<h2 id="19-用户和用户组管理">19 用户和用户组管理</h2>
+<h3 id="191-用户配置文件">19.1 用户配置文件</h3>
+<ol>
+<li>用户管理简介
+<ol>
+<li>信息存放的位置/etc/passwd  还有/etc/shadow</li>
+<li>/etc/passwd
+<ul>
+<li>root : x:0(UID):0(GID):root(备注):/root(家目录):/bin/bash(登录后的shell)</li>
+</ul>
+</li>
+<li>/etc/shadow
+<ul>
+<li>root(用户名):$1$SAk9lsX5$rJA28ba/V.6iGY5ZHl3IJ1(加密的密码):(密码最后一次修改时间戳):0(两次修改间隔):99999(密码有效期):7(密码到期警告时间):5(密码到期宽限天数):(账号失效时间):(保留暂时没有用)</li>
+<li>时间戳换算</li>
+</ul>
+</li>
+<li>/etc/group
+<ul>
+<li>roo​t​ (组名): x(组密码标识):0(GID):(组中附加用户)</li>
+</ul>
+</li>
+<li>gshadow
+<ul>
+<li>root:::</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="1911-用户管理相关文件">19.1.1 用户管理相关文件</h4>
+<ol>
+<li>家目录
+<ol>
+<li>普通用户/home/用户名</li>
+<li>超级用户/root</li>
+</ol>
+</li>
+</ol>
+<h4 id="1912-用户管理命令">19.1.2 用户管理命令</h4>
+<ol>
+<li>useradd
+<ul>
+<li>-u(UID)d(家目录)c(用户说明)g(初始组名)G(附加组名)s shell(指定用shell解析器，默认是bash)</li>
+<li><strong>vi /etc/default/useradd  缺省值配置文件</strong></li>
+<li><strong>vi /etc/login.defs 缺省值配置文件</strong></li>
+</ul>
+</li>
+<li>passwd
+<ul>
+<li>passwd 选项 用户名</li>
+<li>-S(査询用户密码的密码状态。仅root用户 可用)l(锁定用户)u()</li>
+<li>ps：管道符的作用是将第一个命令的输出作为第二个命令的输入</li>
+<li>echo&quot;123&quot; | passwd&ndash;stdin lamp  将123作为lamp的密码</li>
+</ul>
+</li>
+<li>usermod
+<ul>
+<li>-u(UID)c(用户说明)G(附加组名)L(锁定用户)U(解锁用户)</li>
+</ul>
+</li>
+<li>charge 选项 用户名
+<ul>
+<li>chage -d 0 用户名   使用户的修改密码时间是0，保证用户首次登录后必须修改密码</li>
+<li>其他的选项，了解就行，可以直接更改shadow</li>
+</ul>
+</li>
+<li>userdel -r 用户名  删除的同时删除家目录</li>
+<li>id 用户名</li>
+<li>su - root 这个- 的意思是将连带用户的环境变量一起切换</li>
+<li>su- root-c&quot;useradd user3 不切换用户，利用root的权限创建user3</li>
+</ol>
+<h4 id="1913-用户组管理命令">19.1.3 用户组管理命令</h4>
+<ol>
+<li>groupadd -g(组id) 组名</li>
+<li>groupmod -g(组id)n(组名)  组名</li>
+<li>groupdel 组名  需要先删除这个组的初始用户，才能删除这个组，附加用户不影响</li>
+<li>gpasswd -a(add)d(delete) user  group</li>
+</ol>
+<h2 id="20-权限管理">20 权限管理</h2>
+<h3 id="201-acl权限">20.1 ACL权限</h3>
+<ol>
+<li>ACL权限简介
+<ol>
+<li>解决一个用户添加角色，但是所有者，所属组，其他人 这三种角色不符合我的预期，不想给他这三种默认的角色，而是想win一样给用户一个权限</li>
+</ol>
+</li>
+<li>分区ACL权限是否开启
+<ol>
+<li>df -h</li>
+<li>dumpe2fs -h /dev/sda3</li>
+<li>vi /etc/fstab  查看硬盘挂载的配置文件</li>
+</ol>
+</li>
+<li>查看和设置ACL权限
+<ol>
+<li>getfacle 文件名</li>
+<li>setfacl - m(设定权限)x(删除权限)b(删除目录所有ACL权限)d(默认)k(删除默认)R(递归设定) u(用户)g(组) 文件名</li>
+<li>setfacl -m u: 用户名: rx(权限) /project/(文件名)</li>
+</ol>
+</li>
+<li>最大有效权限，mask，设置的权限要与mask的权限做and的比较</li>
+<li>默认ACL权限
+<ol>
+<li>setfacl - m d(默认) u:用户名：rx R(递归设定)  /文件		贴公告，新来的要遵守，老员工老油条依旧之前的ACL权限</li>
+</ol>
+</li>
+<li>递归的ACL权限
+<ol>
+<li>setfacl - m u:用户名：rx R(递归设定)  /文件</li>
+</ol>
+</li>
+</ol>
+<h3 id="202-文件特殊权限">20.2 文件特殊权限</h3>
+<ol>
+<li>SetUID(4)
+<ol>
+<li>只有可以执行的二进制程序才能设定SUD权限</li>
+<li>命令执行者要对该程序拥有x(执行)权限</li>
+<li><strong>命令执行者在执行该程序时获得该程序文件属 主的身份(在执行程序的过程中灵魂附体为文 件的属主)  举例：passwd命令</strong></li>
+<li>Setuid权限只在该程序执行过程中有效,也就 是说身份改变只在程序执行过程中有效</li>
+<li>setUID很危险，关键目录不能谨慎设置写的权限，例如根目录，/usr</li>
+<li>设定UID(4代表SUID)
+<ol>
+<li>chmod4755文件名</li>
+<li>chmod u+s文件名</li>
+</ol>
+</li>
+<li>取消SUID
+<ol>
+<li>chmod 755文件名</li>
+<li>chmod u-s文件名</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>SetGID(2)
+<ol>
+<li>SETGID针对文件的作用,基本和SUID一样  举例：mlocate</li>
+<li>SETGID针对目录的作用
+<ol>
+<li>普通用户必须对此目录拥有r和x权限,才 能进入此目录</li>
+<li>普通用户在此目录中的有效组会变成此目 录的属组</li>
+<li>若普通用户对此目录拥有w权限时,新建 的文件的默认属组是这个目录的属组</li>
+<li>chmod g+s 文件名</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Sticky BIT(1)
+<ol>
+<li>粘着位目前只对目录有效</li>
+<li>普通用户对该目录拥有w和x权限,即普通用户 可以在此目录拥有写入权限</li>
+<li>如果没有粘着位,因为普通用户拥有w权限, 所以可以删除此目录下所有文件,包括其他用 户建立的文件。一但赋予了粘着位,除了root可 以删除所有文件,普通用户就算拥有w权限, 也只能删除自己建立的文件,但是不能删除其 他用户建立的文件</li>
+<li>防止别的用户对文件所有者的文件进行误删除</li>
+<li>chmod 1775 目录名</li>
+<li>chmod o+t 目录名</li>
+<li>取消 chmod 777 目录名</li>
+<li>取消 chmod o-t 目录名</li>
+</ol>
+</li>
+</ol>
+<h3 id="203-文件系统属性chattr权限这个比上面的uid安全">20.3 文件系统属性chattr权限(这个比上面的UID安全)</h3>
+<ol>
+<li>简介
+<ul>
+<li>chattr -change file attributeskon a Linux file system</li>
+<li>对root也生效</li>
+</ul>
+</li>
+<li>chattr +_= 选项 文件或目录</li>
+<li>i 锁住文件，不允许删除改名；对目录，不允许建立和删除</li>
+<li>a 锁住文件内容，不允许修改，可以新增；对目录，不允许删除</li>
+<li>lasttr -a 文件名
+<ol>
+<li>查看文件系统属性</li>
+</ol>
+</li>
+</ol>
+<h3 id="204-系统命令sudo权限">20.4 系统命令sudo权限</h3>
+<ol>
+<li>简介
+<ol>
+<li>root把本来只能超级用户执行的命令赋予 普通用户执行。</li>
+<li>sudo的操作对象是系统命令</li>
+</ol>
+</li>
+<li>visudo
+<ol>
+<li>IP是被管理的计算机的IP
+<ul>
+<li>ALL=(ALL)	ALL
+ALL=/sbin/Shutdown-r now
+192.168.0.155/usr/bin/vim</li>
+<li>xiechaoxin ALL=/sbin/shutdown -r now</li>
+</ul>
+</li>
+<li>sudo /sbin/shutdown -r now</li>
+</ol>
+</li>
+</ol>
+<h2 id="21-文件系统管理">21 文件系统管理</h2>
+<h2 id="22-回顾分区和文件系统">22 回顾分区和文件系统</h2>
+<ol>
+<li>
+<h3 id="主分区">主分区</h3>
+<ol>
+<li>/dev/sda1</li>
+</ol>
+</li>
+<li>
+<p>逻辑分区</p>
+</li>
+<li>
+<p>格式化为了写入文件系统</p>
+<ul>
+<li>ext2:是ext文件系统的升级版本,Red
+Hat Linux7.2版本以前的系统默认都是ext2
+文件系统。1993年发布,最大支持16TB 的分区和最大2TB的文件( 1TB=1024GB=1024*1024KB)</li>
+</ul>
+</li>
+</ol>
+<h2 id="23-文件系统常用命令">23 文件系统常用命令</h2>
+<ol>
+<li>df 面向系统，包含系统进程占用的空间,查看剩余空间</li>
+<li>du 面向文件 统计目录大小 -sh   eg：du -sh /etc/  查看文件大小</li>
+<li>fsck 文件系统修复命令</li>
+<li>dumpe2fs</li>
+<li>挂载光盘
+<ol>
+<li>mkdir /mnt/cdrom</li>
+<li>mount  -t /dev/cdrom(sr0) /mnt/cdrom</li>
+</ol>
+</li>
+<li>挂载U盘
+<ol>
+<li>查询设备文件名
+<ol>
+<li>fdisk -l</li>
+</ol>
+</li>
+<li>mount-t vfat /dev/sdbi /mnt/usb/</li>
+<li>Linux默认是不支持NTFS文件系统的</li>
+</ol>
+</li>
+<li>支持NTFS
+<ol>
+<li>NTFS-3G插件</li>
+</ol>
+</li>
+</ol>
+<h2 id="24-fdisk-分区">24 fdisk 分区</h2>
+<ol>
+<li>分区过程
+<ol>
+<li>fdisk /dev/sdb
+<ol>
+<li>fdisk交互指令说明</li>
+<li>a设置可引导标记</li>
+<li>b「编辑bsd磁盘标签</li>
+<li>c设置DOS操作系统兼容标记</li>
+<li>d删除一个分区</li>
+<li>l显示己知的文件系统类型。82为 Linux swap分区,83为 Linux分区</li>
+<li>m显示帮助菜单</li>
+<li>n新建分区</li>
+<li>o建立空白DOS分区表</li>
+<li>p显示分区列表</li>
+<li>q不保存退出</li>
+<li>s新建空白SUN磁盘标签</li>
+<li>t改变一个分区的系统D</li>
+<li>u改变显示记录单位</li>
+<li>v验证分区表</li>
+<li>w保存退出</li>
+<li>x附加功能(仅专家)</li>
+</ol>
+</li>
+<li>partprobe
+<ol>
+<li>重新读取分区表信息</li>
+</ol>
+</li>
+<li>mkfs-t ext4/dev/sdb 1
+<ol>
+<li>格式化分区(打隔断)</li>
+<li>不能格式化扩展分区</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>分区自动挂载与fstab文件修复
+<ol>
+<li>vim /etc/fstab
+<ol>
+<li>自动挂载配置文件、</li>
+</ol>
+</li>
+<li>UUID=4b942e5d-819e-4cae-b4ea-d5624d6ca3d3 swap                    swap    defaults        0 0</li>
+<li>第一字段:分区设备文件名或UUID(硬盘通用唯一识别
+码)</li>
+<li>第二字段:挂载点 第三字段:文件系统名称</li>
+<li>第四字段:挂载参数</li>
+<li>第五字段:指定分区是否被dump备份,0代表不备份,1 代表每天备份,2代表不定期备份</li>
+<li>第六字段:指定分区是否被fsck检测,0代表不检测,其 他数字代表检测的优先级,那么当然1的优先级比2高</li>
+</ol>
+</li>
+</ol>
+<h2 id="25-etcfstab-文件修复">25 /etc/fstab 文件修复</h2>
+<ol>
+<li>mount-0 remount rw/
+<ol>
+<li>修复文件写错的，而导致进不去系统的问题</li>
+</ol>
+</li>
+</ol>
+<h2 id="26-分配swap分区">26 分配swap分区</h2>
+<h2 id="27-shell">27 shell</h2>
+<h2 id="28-shel概述">28 Shel概述</h2>
+<ol>
+<li>echo[选项] [输出内容]</li>
+<li>shell注释
+<ol>
+<li>#!/bin/bash</li>
+</ol>
+</li>
+</ol>
+<h2 id="29-shel脚本的执行方式">29 Shel脚本的执行方式</h2>
+<ol>
+<li>执行脚本
+<ol>
+<li>./hello.sh  (常用)</li>
+<li>bash hello.sh</li>
+</ol>
+</li>
+<li>dos2unix 文件名
+<ol>
+<li>将win下的脚本转换格式为</li>
+</ol>
+</li>
+</ol>
+<h2 id="30-bash的基本功能">30 Bash的基本功能</h2>
+<ol>
+<li>
+<h3 id="历史命令和命令补全">历史命令和命令补全</h3>
+<ol>
+<li>history
+<ol>
+<li>-c 清空历史命令</li>
+<li>-w把缓存中的历史命令写入历史命令保存文件 ~/bash history</li>
+</ol>
+</li>
+<li>!n 执行第n条命令，history中的命令</li>
+</ol>
+</li>
+<li>
+<h3 id="别名和快捷键">别名和快捷键</h3>
+<ol>
+<li>
+<p>alias 别名=&lsquo;原命令&rsquo;</p>
+</li>
+<li>
+<p>命令的执行顺序</p>
+<ol>
+<li>绝对路径</li>
+<li>别名</li>
+<li>执行bash的内部命令</li>
+<li>执行$PATH的环境变量命令</li>
+</ol>
+</li>
+<li>
+<p>vi /root/.bashrc</p>
+<ol>
+<li>让别名永久生效</li>
+</ol>
+</li>
+<li>
+<p>bash常用快捷键(Ctrl+)</p>
+<ol>
+<li>C 终止当前命令</li>
+<li>L清屏</li>
+<li>U删除或剪切光标钱的命令</li>
+<li>Y粘贴</li>
+<li>R历史搜索</li>
+<li>D退出终端</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<h3 id="输入输出重定向">输入输出重定向</h3>
+<ol>
+<li>
+<p>输入输出</p>
+</li>
+<li>
+<table>
+<thead>
+<tr>
+<th>设备</th>
+<th>设备文件名</th>
+<th>文件描述符</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>键盘</td>
+<td>/dev/stdin</td>
+<td>0</td>
+<td>标准输入</td>
+</tr>
+<tr>
+<td>显示器</td>
+<td>/dev/sdtout</td>
+<td>1</td>
+<td>标准输出</td>
+</tr>
+<tr>
+<td>显示器</td>
+<td>/dev/sdterr</td>
+<td>2</td>
+<td>标准错误输出</td>
+</tr>
+</tbody>
+</table>
+<p>重定向</p>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="301-输出重定向">30.1 输出重定向</h3>
+<pre><code>     把shell脚本命令输出结果放到文件中
+
+     - ls &gt; abc  (覆盖)
+     - date &gt;&gt; abc (追加)
+
+     保存报错信息使用
+
+     - ls 2&gt;&gt; abc
+
+     同事保存正确和错误的输出
+
+     - 命令 &amp;&gt;&gt; 文件
+     - 命令 &amp;&gt;&gt; /dev/null
+       - 把结果丢到垃圾箱
+
+     分开保存正确✅和错误❎的结果
+
+     - 命令 &gt;&gt;文件1  2&gt;&gt;文件2
+</code></pre>
+<h4 id="3011-输入重定向">30.1.1 输入重定向</h4>
+<pre><code>     wc 选项 文件名
+
+     ​	-c 统计字节数
+
+     ​	-w 统计字节数
+
+     ​	-l 统计字节数
+
+     命令&lt; 文件
+</code></pre>
+<ol start="4">
+<li>
+<h3 id="多命令顺序执行和管道符">多命令顺序执行和管道符</h3>
+<ol>
+<li>
+<table>
+<thead>
+<tr>
+<th>所命令执行符</th>
+<th>格式</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>；</td>
+<td>分别执行，各不影响</td>
+<td></td>
+</tr>
+<tr>
+<td>&amp;&amp;</td>
+<td>一条执行，另一条才执行</td>
+<td></td>
+</tr>
+<tr>
+<td>||</td>
+<td>前一条正确，后一条错误，或者相反</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>dd if输入文件 of输出文件 bs=字节数 count=个数</p>
+<p>​	主要用于磁盘复制</p>
+</li>
+<li>
+<p>管道符</p>
+<ol>
+<li>命令1的正确输出作为命令2的操作对象</li>
+<li>grep -i(不区分大小写)n(行号)v(反向查找) 文件</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<h3 id="通配符和其他特殊符号">通配符和其他特殊符号</h3>
+<ol>
+<li>
+<table>
+<thead>
+<tr>
+<th>通配符</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>？</td>
+<td>匹配一个字符</td>
+</tr>
+<tr>
+<td>*</td>
+<td>任意一个或多个字符</td>
+</tr>
+<tr>
+<td>[ ]</td>
+<td>匹配之中的一个字符</td>
+</tr>
+<tr>
+<td>[ - ]</td>
+<td>匹配之间范围的一个字符</td>
+</tr>
+<tr>
+<td>[ ^ ]</td>
+<td>逻辑非，匹配不是中括号中的一个字符</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>''</td>
+<td>符号中特殊符号无意义</td>
+</tr>
+<tr>
+<td>&quot;&quot;</td>
+<td>符号中特殊字符有意义</td>
+</tr>
+<tr>
+<td>``</td>
+<td>标记这里是为命令，先执行里面的命令</td>
+</tr>
+<tr>
+<td>$()</td>
+<td>和``一样，表明系统命令</td>
+</tr>
+<tr>
+<td>$</td>
+<td>用于调用变量的值,如需要调用变量name的值时,需要用 Sname 的方式得到变量的值</td>
+</tr>
+<tr>
+<td>\</td>
+<td>转义符</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="31-bash的变量">31 Bash的变量</h2>
+<ol>
+<li>
+<p>什么是变量</p>
+<ul>
+<li>值可以变得量</li>
+<li>变量名不能是数字开头</li>
+<li>变量默认类型是字符串类型</li>
+<li>建议环境变量是大写</li>
+</ul>
+</li>
+<li>
+<p>变量的分类</p>
+<ol>
+<li>
+<h3 id="用户自定义变量">用户自定义变量</h3>
+<ol>
+<li>变量名=变量值</li>
+<li>echo</li>
+<li>叠加：aa=${aa}789</li>
+<li>set 变量查看</li>
+<li>unset 变量删除</li>
+<li>局部变量</li>
+</ol>
+</li>
+<li>
+<h3 id="环境变量">环境变量</h3>
+<ol>
+<li>写入相应配置文件后，所有shell都会生效</li>
+<li>export 声明变量</li>
+<li>bash 子shell</li>
+<li>pstree 查看进程树</li>
+<li>env 查看变量</li>
+<li>set</li>
+<li>PATH=&quot;$PATH&quot;:/root</li>
+</ol>
+</li>
+<li>
+<h3 id="位置参数变量">位置参数变量</h3>
+<ol>
+<li>
+<table>
+<thead>
+<tr>
+<th>位置参数变量</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$n</td>
+<td>n是数字，$0代表命令本身，$n的意思是第n个参数</td>
+</tr>
+<tr>
+<td>$*</td>
+<td>代表命令的所有的参数，把所有参数看做一个整体，这个for循环只有一个值</td>
+</tr>
+<tr>
+<td>$@</td>
+<td>代表命令的所有的参数，把每个参数区别对待，这个可以for循环</td>
+</tr>
+<tr>
+<td>$#</td>
+<td>代表输入所有参数的个数</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+</li>
+<li>
+<p>预定义变量</p>
+<ol>
+<li>
+<table>
+<thead>
+<tr>
+<th>预定义变量</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$?</td>
+<td>最后一次执行命令的返回状态，0是上一个命令正确执行</td>
+</tr>
+<tr>
+<td>$$</td>
+<td>当前进程的进程号(PID)</td>
+</tr>
+<tr>
+<td>$!</td>
+<td>后台运行的最后一个进程的进程号(PID)</td>
+</tr>
+</tbody>
+</table>
+<p>把进程放后台(最小化)ls 文件名 &amp;</p>
+<p>​	符号&amp;的意图是把命令放入后台执行,工作管理我们在系统管理章会详细介绍</p>
+</li>
+</ol>
+</li>
+<li>
+<p>$PS1 预设符 [root@localhost ~]#</p>
+</li>
+<li>
+<p>接收键盘输入</p>
+<ol>
+<li>read 选项-p(提示信息)t(等待时间)n(接受指定的字符数)s(隐藏输入数据)  变量名</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="32-bash的运算符">32 Bash的运算符</h2>
+<ol>
+<li>
+<p>数值运算与运算符</p>
+<ol>
+<li>declare声明变量类型
+<ul>
+<li>declare[+/-] [选项]变量名
+<ul>
+<li>p(显示变量的声明类型)i(数值类型的运算)</li>
+</ul>
+</li>
+<li>expr (建议不用)</li>
+<li>let(建议不用)</li>
+<li>$((运算式))</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>变量测试与内容替换</p>
+<ol>
+<li>
+<table>
+<thead>
+<tr>
+<th>变量置换方式</th>
+<th>变量y没有设置变量</th>
+<th>y为空值变量</th>
+<th>y设置值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x={$y-新值}</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>![image-20210708213637158](/Users/xiechaoxin/Library/Application Support/typora-user-images/image-20210708213637158.png)</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="33-环境变量配置文件">33 环境变量配置文件</h2>
+<ol>
+<li>简介
+<ol>
+<li>/etc/profile</li>
+</ol>
+</li>
+<li>环境变量配置文件的作用
+<ol>
+<li>![image-20210708215015353](/Users/xiechaoxin/Library/Application Support/typora-user-images/image-20210708215015353.png)</li>
+</ol>
+</li>
+<li>其他配置文件
+<ol>
+<li>~/bash/history</li>
+<li>shell登录信息  vi /etc/issue</li>
+<li>登录前的欢迎信息和登录后的欢迎信息</li>
+</ol>
+</li>
+</ol>
+<h2 id="34-shell编程">34 shell编程</h2>
+<h2 id="35-基础正则表达式">35 基础正则表达式</h2>
+<ol>
+<li>
+<h3 id="正则和通配符的区别和应用场景">正则和通配符的区别和应用场景</h3>
+<ol>
+<li>正则是用来匹配文件中符合条件的字符串，正则是包含匹配</li>
+<li>通配符是用来匹配符合条件的文件名，通配符是完全匹配</li>
+</ol>
+</li>
+<li>
+<p>基础正则表达式</p>
+<ol>
+<li>
+<table>
+<thead>
+<tr>
+<th>元字符</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*</td>
+<td>前一个字符匹配0次或任意多次</td>
+</tr>
+<tr>
+<td>.</td>
+<td>匹配除了换行符外任意一个字符。</td>
+</tr>
+<tr>
+<td>^</td>
+<td>匹配行首。例如:^hell会匹配以hell开头的行。</td>
+</tr>
+<tr>
+<td>$</td>
+<td>匹配行尾。例如:hell&amp;会匹配以hell结尾的行。</td>
+</tr>
+<tr>
+<td>[ ]</td>
+<td>匹配中括号中指定的任意一个字符,只匹配一个字符。 例如:[ abel ]匹配任意一个元音字母,[0-9]匹配任意一位 数字,[a-z][0-9]匹配小写字和一位数字构成的两位字符。</td>
+</tr>
+<tr>
+<td>[ ^ ]</td>
+<td>匹配除中括号的字符以外的任意一个字符。例如:[^0-]匹配 任意一位非数字字符,[a-]表示任意一位非小写字母</td>
+</tr>
+<tr>
+<td>\</td>
+<td>转义符。用于取消讲特殊符号的含义取消。</td>
+</tr>
+<tr>
+<td>{ n}</td>
+<td>表示其前面的字符恰好出现n次。例如:[o-9]{4}匹配4位数<!-- raw HTML omitted -->字,[1I3-8]10-99}匹配手机号码。</td>
+</tr>
+<tr>
+<td>{n,}</td>
+<td>表示其前面的字符出现不小于n次。例如:[0-9]2,}表示两 位及以上的数字。</td>
+</tr>
+<tr>
+<td>{n,m}</td>
+<td>表示其前面的字符至少出现n次,最多出现m次。例如:[a z](68V}匹配6到8位的小写字母。</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="36-字符截取命令">36 字符截取命令</h2>
+<h2 id="37-字符处理命令">37 字符处理命令</h2>
+<h2 id="38-条件判断">38 条件判断</h2>
+<h2 id="39-流程控制">39 流程控制</h2>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/os/">OS</a>
+                </span><span><a href="/tags/linux/">linux</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-06-17</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/blog_cut/mysql/mysql-high-performance-optimization-specification-recommendations/" class="prev" rel="prev" title="MySQL 高性能优化规范建议"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/os/linux-intro/" class="next" rel="next" title="linux-intro(后端程序员必备的 Linux 基础知识总结)">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

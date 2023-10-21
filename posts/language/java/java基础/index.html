@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Java基础 - xcx</title><meta name="description" content=""><meta property="og:title" content="Java基础" />
+<meta property="og:description" content="Java 基础 1 Java 历史 1、诞生于 SUN(Stanford University Network) 2、Java 之父：詹姆斯.高斯林 3、2009 年 SUN 被 Oracle 甲骨文公司收购 4、于 1996 年发布 JDK1.0 正式版 比较有有代表性的几个版" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/language/java/java%E5%9F%BA%E7%A1%80/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-14T02:17:04+00:00" />
+<meta property="article:modified_time" content="2022-09-14T02:17:04+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java基础"/>
+<meta name="twitter:description" content="Java 基础 1 Java 历史 1、诞生于 SUN(Stanford University Network) 2、Java 之父：詹姆斯.高斯林 3、2009 年 SUN 被 Oracle 甲骨文公司收购 4、于 1996 年发布 JDK1.0 正式版 比较有有代表性的几个版"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/language/java/java%E5%9F%BA%E7%A1%80/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/language/java/java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" /><link rel="next" href="https://xiechaoxin.github.io/posts/language/java/javase-api/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Java基础",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/language\/java\/java%E5%9F%BA%E7%A1%80\/"
+        },"genre": "posts","keywords": "JAVA","wordcount":  1246 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/language\/java\/java%E5%9F%BA%E7%A1%80\/","datePublished": "2022-09-14T02:17:04+00:00","dateModified": "2022-09-14T02:17:04+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">Java基础</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/java/"><i class="far fa-folder fa-fw"></i>JAVA</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-09-14">2022-09-14</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1246 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-java-历史">1 Java 历史</a></li>
+    <li><a href="#2-java-的特点">2 Java 的特点</a>
+      <ul>
+        <li><a href="#21-面向对象">2.1 、面向对象</a></li>
+        <li><a href="#22-健壮性">2.2 、健壮性</a></li>
+        <li><a href="#23-跨平台">2.3 、跨平台</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-环境搭建">3 环境搭建</a>
+      <ul>
+        <li><a href="#31-jdkjrejvm">3.1 、JDK、JRE、JVM</a></li>
+        <li><a href="#32-环境变量的配置">3.2 、环境变量的配置</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-第一个-java-应用程序">4 第一个 Java 应用程序</a>
+      <ul>
+        <li><a href="#41-java-程序编写的步骤">4.1 、Java 程序编写的步骤</a></li>
+        <li><a href="#42-java-程序的入口">4.2 、Java 程序的入口</a></li>
+        <li><a href="#43-输出语句">4.3 、输出语句</a></li>
+        <li><a href="#44-相关的问题">4.4 、相关的问题</a></li>
+        <li><a href="#45-二进制">4.5 二进制</a></li>
+        <li><a href="#46-十进制">4.6 十进制</a></li>
+        <li><a href="#47-八进制">4.7 八进制</a></li>
+        <li><a href="#48-十六进制">4.8 十六进制</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="java-基础">Java 基础</h1>
+<h2 id="1-java-历史">1 Java 历史</h2>
+<p>1、诞生于 SUN(Stanford University Network)</p>
+<p>2、Java 之父：詹姆斯.高斯林</p>
+<p>3、2009 年 SUN 被 Oracle 甲骨文公司收购</p>
+<p>4、于 1996 年发布 JDK1.0 正式版</p>
+<p>比较有有代表性的几个版本：JDK1.2(引入了集合框架等)、JDK1.4(引入了 NIO)、JDK1.5(枚举、泛型、可变参数、foreach 循环、自动装箱拆箱。。。)、JDK1.7(switch 对字符串的支持，try&hellip;with&hellip;resource)、JDK1.8(接口、日期时间 API、Optional 类、Lambda 表达式和 StreamAPI)</p>
+<h2 id="2-java-的特点">2 Java 的特点</h2>
+<h3 id="21-面向对象">2.1 、面向对象</h3>
+<ul>
+<li>类与对象，类的成员</li>
+<li>三个基本特征：封装、继承、多态</li>
+<li>高级特性</li>
+<li>相关关键字</li>
+</ul>
+<h3 id="22-健壮性">2.2 、健壮性</h3>
+<ul>
+<li>内存自动分配，有垃圾回收机制自动进行回收</li>
+</ul>
+<h3 id="23-跨平台">2.3 、跨平台</h3>
+<ul>
+<li>Write Once ,Run Anywhere.</li>
+<li>原理：使用 JVM，不同的操作系统使用不同的 JVM，而 Java 程序编译成字节码，运行 JVM 上</li>
+</ul>
+<h2 id="3-环境搭建">3 环境搭建</h2>
+<h3 id="31-jdkjrejvm">3.1 、JDK、JRE、JVM</h3>
+<ul>
+<li>JDK：Java Development Kit，Java 的开发工具集，包含 JRE + 开发工具(javac.exe，java.exe，javadoc.exe，jar.exe)</li>
+<li>JRE：Java Runtime Enviroment，Java 运行环境，包括 JVM + 核心类库</li>
+<li>JVM：Java Virtual Machine，Java 的虚拟机</li>
+</ul>
+<h4 id="311-jdk-的安装目录介绍">3.1.1 JDK 的安装目录介绍</h4>
+<table>
+<thead>
+<tr>
+<th>目录名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bin</td>
+<td>该路径下存放了 JDK 的各种工具命令。javac 和 java 就放在这个目录。</td>
+</tr>
+<tr>
+<td>conf</td>
+<td>该路径下存放了 JDK 的相关配置文件。</td>
+</tr>
+<tr>
+<td>include</td>
+<td>该路径下存放了一些平台特定的头文件。</td>
+</tr>
+<tr>
+<td>jmods</td>
+<td>该路径下存放了 JDK 的各种模块。</td>
+</tr>
+<tr>
+<td>legal</td>
+<td>该路径下存放了 JDK 各模块的授权文档。</td>
+</tr>
+<tr>
+<td>lib</td>
+<td>该路径下存放了 JDK 工具的一些补充 JAR 包。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-环境变量的配置">3.2 、环境变量的配置</h3>
+<ul>
+<li>
+<p>path：windows 操作系统寻找命令工具的路径，在 path 中进行登记</p>
+<ul>
+<li>D:\ProgramFiles\Java\jdk1.8.0_141\bin;</li>
+</ul>
+</li>
+<li>
+<p>JAVA_HOME + path</p>
+<ul>
+<li>
+<p>JAVA_HOME</p>
+<ul>
+<li>D:\ProgramFiles\Java\jdk1.8.0_141</li>
+</ul>
+</li>
+<li>
+<p>path</p>
+<ul>
+<li>%JAVA_HOME%\bin;</li>
+</ul>
+</li>
+<li>
+<p>这两个变量要么同时在用户级环境变量，要么都在系统级环境变量</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-第一个-java-应用程序">4 第一个 Java 应用程序</h2>
+<h3 id="41-java-程序编写的步骤">4.1 、Java 程序编写的步骤</h3>
+<ul>
+<li>
+<p>(1)编辑，编写源代码，保存成“.java”结尾的源文件</p>
+<pre><code>-   源文件的构成
+
+	- 类{
+		方法{
+			语句;
+		}
+	}
+</code></pre>
+</li>
+<li>
+<p>(2)编译：把源文件编译成 1 个或多个的字节码文件</p>
+<ul>
+<li>
+<p>编译的工具：javac.exe</p>
+</li>
+<li>
+<p>编译的格式：</p>
+<ul>
+<li>
+<p>javac 源文件名.java</p>
+<ul>
+<li>源文件名.java 后缀名必须写</li>
+<li>源文件名不区分大小写</li>
+</ul>
+</li>
+<li>
+<p>javac -encoding 字符编码 源文件名.java</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(3)运行：运行字节码文件</p>
+<ul>
+<li>
+<p>运行工具：java.exer</p>
+</li>
+<li>
+<p>格式：</p>
+<ul>
+<li>
+<p>java 类名</p>
+<ul>
+<li>类名，不带后缀名</li>
+<li>类名是严格区分大小写</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="42-java-程序的入口">4.2 、Java 程序的入口</h3>
+<ul>
+<li>主方法</li>
+<li>public static void main(String[] args){
+}</li>
+</ul>
+<h3 id="43-输出语句">4.3 、输出语句</h3>
+<ul>
+<li>
+<p>System.out.print(xxx);</p>
+<ul>
+<li>如果原样输出的字符串，那么就加&quot;&quot;</li>
+<li>其他的变量或数值就不用加&quot;&quot;</li>
+</ul>
+</li>
+<li>
+<p>System.out.println(xxx);</p>
+</li>
+</ul>
+<h3 id="44-相关的问题">4.4 、相关的问题</h3>
+<ul>
+<li>
+<p>(1)主方法一定要在 public 的类中？</p>
+<ul>
+<li>不是</li>
+<li>绝大部分都在 public 的类中</li>
+</ul>
+</li>
+<li>
+<p>(2)一个源文件只能写一个 class</p>
+<ul>
+<li>不是</li>
+</ul>
+</li>
+<li>
+<p>(3)类名与源文件名是否必须一致</p>
+<ul>
+<li>不是</li>
+<li>但是当这个类是 public 时，那么就必须一致</li>
+</ul>
+</li>
+<li>
+<p>(4)一个源文件只能有一个 public 修饰的类</p>
+</li>
+</ul>
+<h3 id="45-二进制">4.5 二进制</h3>
+<ul>
+<li>
+<p>只有 0 和 1</p>
+</li>
+<li>
+<p>二进制转十进制</p>
+<ul>
+<li>从最右边开始依次是 2 的 0 次</li>
+</ul>
+</li>
+</ul>
+<h3 id="46-十进制">4.6 十进制</h3>
+<ul>
+<li>
+<p>0-9</p>
+</li>
+<li>
+<p>转二进制</p>
+<ul>
+<li>
+<p>整数部分</p>
+<ul>
+<li>除 2 取余，倒取</li>
+</ul>
+</li>
+<li>
+<p>小数部分</p>
+<ul>
+<li>乘 2 取整，顺</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="47-八进制">4.7 八进制</h3>
+<ul>
+<li>
+<p>0-7</p>
+</li>
+<li>
+<p>通过二进制</p>
+<ul>
+<li>三个二进制值代表一个八进制值</li>
+<li>从右边开始</li>
+</ul>
+</li>
+</ul>
+<h3 id="48-十六进制">4.8 十六进制</h3>
+<ul>
+<li>
+<p>0-9，A~F 大小写都可以</p>
+</li>
+<li>
+<p>通过二进制</p>
+<ul>
+<li>四个二进制值代表一个八进制值</li>
+<li>从右边开始</li>
+</ul>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/java/">JAVA</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-09-14</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/language/java/java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" class="prev" rel="prev" title="Java基础语法"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/language/java/javase-api/" class="next" rel="next" title="JavaSE  API">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

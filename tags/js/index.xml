@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>js - 标签 - xcx</title>
+        <link>https://xiechaoxin.github.io/tags/js/</link>
+        <description>js - 标签 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 30 May 2023 20:26:52 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/tags/js/" rel="self" type="application/rss+xml" /><item>
+    <title>js_good_blog</title>
+    <link>https://xiechaoxin.github.io/posts/web/front-end/js/js_good_blog/</link>
+    <pubDate>Tue, 30 May 2023 20:26:52 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/web/front-end/js/js_good_blog/</guid>
+    <description><![CDATA[js excellent docs 1 js mdn web docs 2 vue 2.1 vue3 ]]></description>
+</item>
+<item>
+    <title>js_start</title>
+    <link>https://xiechaoxin.github.io/posts/web/front-end/js/js_start/</link>
+    <pubDate>Sun, 21 May 2023 21:46:21 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/web/front-end/js/js_start/</guid>
+    <description><![CDATA[js 基础 1 变量（Variable） 变量 是存储值的容器。要声明一个变量，先输入关键字 let 或 var，然后输入合适的名称： let my_variable; 注意变量可以有不同的 数据]]></description>
+</item>
+</channel>
+</rss>

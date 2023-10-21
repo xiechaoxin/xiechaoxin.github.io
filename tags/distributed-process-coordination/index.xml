@@ -1,0 +1,25 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>distributed-process-coordination - 标签 - xcx</title>
+        <link>https://xiechaoxin.github.io/tags/distributed-process-coordination/</link>
+        <description>distributed-process-coordination - 标签 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/tags/distributed-process-coordination/" rel="self" type="application/rss+xml" /><item>
+    <title>zookeeper-in-action</title>
+    <link>https://xiechaoxin.github.io/posts/pro/distributed-system/distributed-process-coordination/zookeeper/zookeeper-in-action/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/pro/distributed-system/distributed-process-coordination/zookeeper/zookeeper-in-action/</guid>
+    <description><![CDATA[ZooKeeper 实战 1 前言 这篇文章简单给演示一下 ZooKeeper 常见命令的使用以及 ZooKeeper Java客户端 Curator 的基本使用。介绍到的内容都是最基本的操作，能满足日常工作的基本需要。]]></description>
+</item>
+<item>
+    <title>zookeeper-intro</title>
+    <link>https://xiechaoxin.github.io/posts/pro/distributed-system/distributed-process-coordination/zookeeper/zookeeper-intro/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/pro/distributed-system/distributed-process-coordination/zookeeper/zookeeper-intro/</guid>
+    <description><![CDATA[ZooKeeper 相关概念总结(入门) 1 前言 相信大家对 ZooKeeper 应该不算陌生。但是你真的了解 ZooKeeper 到底有啥用不？如果别人/面试官让你给他讲讲对于 ZooKeeper 的认识，你能回答到什么]]></description>
+</item>
+<item>
+    <title>zookeeper-plus</title>
+    <link>https://xiechaoxin.github.io/posts/pro/distributed-system/distributed-process-coordination/zookeeper/zookeeper-plus/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/pro/distributed-system/distributed-process-coordination/zookeeper/zookeeper-plus/</guid>
+    <description><![CDATA[ZooKeeper 相关概念总结(进阶) FrancisQ 投稿。 1 好久不见 离上一篇文章的发布也快一个月了，想想已经快一个月没写东西了，其中可能有期末考试、课程设计和驾照考试，]]></description>
+</item>
+</channel>
+</rss>

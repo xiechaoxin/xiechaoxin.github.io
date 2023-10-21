@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>interfaces - xcx</title><meta name="description" content=""><meta property="og:title" content="interfaces" />
+<meta property="og:description" content="interfaces Go 中的接口是一种用于表示其他类型的行为的数据类型。 接口类似于对象应满足的蓝图或协定。 在你使用接口时，你的基本代码将变得更加灵活、适应性更强" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/language/go/8.methods-interfaces/interfaces/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-05-25T10:31:59+00:00" />
+<meta property="article:modified_time" content="2023-05-25T10:31:59+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="interfaces"/>
+<meta name="twitter:description" content="interfaces Go 中的接口是一种用于表示其他类型的行为的数据类型。 接口类似于对象应满足的蓝图或协定。 在你使用接口时，你的基本代码将变得更加灵活、适应性更强"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/language/go/8.methods-interfaces/interfaces/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/language/go/8.methods-interfaces/method/" /><link rel="next" href="https://xiechaoxin.github.io/posts/chaos/%E8%BE%93%E5%85%A5%E6%B3%95rime/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "interfaces",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/language\/go\/8.methods-interfaces\/interfaces\/"
+        },"genre": "posts","keywords": "Go","wordcount":  2983 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/language\/go\/8.methods-interfaces\/interfaces\/","datePublished": "2023-05-25T10:31:59+00:00","dateModified": "2023-05-25T10:31:59+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">interfaces</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/go/"><i class="far fa-folder fa-fw"></i>Go</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-05-25">2023-05-25</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2983 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-声明接口">1 声明接口</a></li>
+    <li><a href="#2-实现接口">2 实现接口</a></li>
+    <li><a href="#3-实现字符串接口">3 实现字符串接口</a></li>
+    <li><a href="#4-扩展现有实现">4 扩展现有实现</a></li>
+    <li><a href="#5-编写自定义服务器-api">5 编写自定义服务器 API</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="interfaces">interfaces</h1>
+<p>Go 中的接口是一种用于表示其他类型的行为的数据类型。 接口类似于对象应满足的蓝图或协定。 在你使用接口时，你的基本代码将变得更加灵活、适应性更强，因为你编写的代码未绑定到特定的实现。 因此，你可以快速扩展程序的功能。 在本模块，你将了解相关原因。</p>
+<p>与其他编程语言中的接口不同，Go 中的接口是满足隐式实现的。 Go 不提供用于实现接口的关键字。 因此，如果你之前使用的是其他编程语言中的接口，但不熟悉 Go，那么此概念可能会造成混淆。</p>
+<p>在此模块中，我们将使用多个示例来探讨 Go 中的接口，并演示如何充分利用这些接口。</p>
+<h2 id="1-声明接口">1 声明接口</h2>
+<p>Go 中的接口类似于蓝图。 一种抽象类型，只包括具体类型必须拥有或实现的方法。</p>
+<p>假设你希望在几何包中创建一个接口来指示形状必须实现的方法。 你可以按如下所示定义接口：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Shape</span> <span class="kd">interface</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">Perimeter</span><span class="p">()</span> <span class="kt">float64</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">Area</span><span class="p">()</span> <span class="kt">float64</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><code>Shape</code> 接口表示你想要考虑 <code>Shape</code> 的任何类型都需要同时具有 <code>Perimeter()</code> 和 <code>Area()</code> 方法。 例如，在创建 <code>Square</code> 结构时，它必须实现两种方法，而不是仅实现一种。 另外，请注意接口不包含这些方法的实现细节（例如，用于计算某个形状的周长和面积）。 接口仅表示一种协定。 三角形、圆圈和正方形等形状有不同的计算面积和周长方式。</p>
+<h2 id="2-实现接口">2 实现接口</h2>
+<p>正如上文所讨论的内容，你没有用于实现接口的关键字。 当 Go 中的接口具有接口所需的所有方法时，则满足按类型的隐式实现。</p>
+<p>让我们创建一个 <code>Square</code> 结构，此结构具有 <code>Shape</code> 接口中的两个方法，具体如下方的示例代码所示：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Square</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">size</span> <span class="kt">float64</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="nx">Square</span><span class="p">)</span> <span class="nf">Area</span><span class="p">()</span> <span class="kt">float64</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">s</span><span class="p">.</span><span class="nx">size</span> <span class="o">*</span> <span class="nx">s</span><span class="p">.</span><span class="nx">size</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="nx">Square</span><span class="p">)</span> <span class="nf">Perimeter</span><span class="p">()</span> <span class="kt">float64</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">s</span><span class="p">.</span><span class="nx">size</span> <span class="o">*</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>请注意 <code>Square</code> 结构的方法签名与 <code>Shape</code> 接口的签名的匹配方式。 但是，另一个接口可能具有不同的名称，但方法相同。 Go 如何或何时知道某个具体类型正在实现哪个接口？ 在运行时，Go 会知道你何时使用了接口。</p>
+<p>如要演示如何使用接口，你可以编写以下代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">s</span> <span class="nx">Shape</span> <span class="p">=</span> <span class="nx">Square</span><span class="p">{</span><span class="mi">3</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%T\n&#34;</span><span class="p">,</span> <span class="nx">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Area: &#34;</span><span class="p">,</span> <span class="nx">s</span><span class="p">.</span><span class="nf">Area</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Perimeter:&#34;</span><span class="p">,</span> <span class="nx">s</span><span class="p">.</span><span class="nf">Perimeter</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>运行前面的代码时，你将看到以下输出：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">main</span><span class="p">.</span><span class="nx">Square</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Area</span><span class="p">:</span>  <span class="mi">9</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Perimeter</span><span class="p">:</span> <span class="mi">12</span>
+</span></span></code></pre></div><p>此时，无论你是否使用接口，都没有任何区别。 接下来，让我们创建另一种类型，如 <code>Circle</code>，然后探讨接口有用的原因。 以下是 <code>Circle</code> 结构的代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Circle</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">radius</span> <span class="kt">float64</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="nx">Circle</span><span class="p">)</span> <span class="nf">Area</span><span class="p">()</span> <span class="kt">float64</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">math</span><span class="p">.</span><span class="nx">Pi</span> <span class="o">*</span> <span class="nx">c</span><span class="p">.</span><span class="nx">radius</span> <span class="o">*</span> <span class="nx">c</span><span class="p">.</span><span class="nx">radius</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="nx">Circle</span><span class="p">)</span> <span class="nf">Perimeter</span><span class="p">()</span> <span class="kt">float64</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="nx">math</span><span class="p">.</span><span class="nx">Pi</span> <span class="o">*</span> <span class="nx">c</span><span class="p">.</span><span class="nx">radius</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>现在，让我们重构 <code>main()</code> 函数，并创建一个函数来打印其收到的对象类型，以及其面积和周长，具体如下所示：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">printInformation</span><span class="p">(</span><span class="nx">s</span> <span class="nx">Shape</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%T\n&#34;</span><span class="p">,</span> <span class="nx">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Area: &#34;</span><span class="p">,</span> <span class="nx">s</span><span class="p">.</span><span class="nf">Area</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Perimeter:&#34;</span><span class="p">,</span> <span class="nx">s</span><span class="p">.</span><span class="nf">Perimeter</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>请注意 <code>printInformation</code> 函数具有参数 <code>Shape</code>。 你可以将 <code>Square</code> 或 <code>Circle</code> 对象发送到此函数，尽管输出会有所不同，但仍可使用。 <code>main()</code> 函数此时将如下所示：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">s</span> <span class="nx">Shape</span> <span class="p">=</span> <span class="nx">Square</span><span class="p">{</span><span class="mi">3</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printInformation</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">c</span> <span class="o">:=</span> <span class="nx">Circle</span><span class="p">{</span><span class="mi">6</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printInformation</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>请注意，对于 <code>c</code> 对象，我们不能将其指定为 <code>Shape</code> 对象。 但是，<code>printInformation</code> 函数需要一个对象来实现 <code>Shape</code> 接口中定义的方法。</p>
+<p>在运行程序时，你将会看到以下输出：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">main</span><span class="p">.</span><span class="nx">Square</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Area</span><span class="p">:</span>  <span class="mi">9</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Perimeter</span><span class="p">:</span> <span class="mi">12</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">main</span><span class="p">.</span><span class="nx">Circle</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Area</span><span class="p">:</span>  <span class="mf">113.09733552923255</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Perimeter</span><span class="p">:</span> <span class="mf">37.69911184307752</span>
+</span></span></code></pre></div><p>请注意，此时你不会得到错误，输出会根据其收到的对象类型而变化。 你还可以看到输出中的对象类型不涉及 <code>Shape</code> 接口的任何内容。</p>
+<p>使用接口的优点在于，对于 <code>Shape</code>的每个新类型或实现，<code>printInformation</code> 函数都不需要更改。 正如我们之前所述，当你使用接口时，代码会变得更灵活、更容易扩展。</p>
+<h2 id="3-实现字符串接口">3 实现字符串接口</h2>
+<p>扩展现有功能的一个简单示例是使用 <code>Stringer</code>，它是具有 <code>String()</code> 方法的接口，具体如下所示：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Stringer</span> <span class="kd">interface</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">String</span><span class="p">()</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><code>fmt.Printf</code> 函数使用此接口来输出值，这意味着你可以编写自定义 <code>String()</code> 方法来打印自定义字符串，具体如下所示：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Person</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Name</span><span class="p">,</span> <span class="nx">Country</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">p</span> <span class="nx">Person</span><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;%v is from %v&#34;</span><span class="p">,</span> <span class="nx">p</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="nx">p</span><span class="p">.</span><span class="nx">Country</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">rs</span> <span class="o">:=</span> <span class="nx">Person</span><span class="p">{</span><span class="s">&#34;John Doe&#34;</span><span class="p">,</span> <span class="s">&#34;USA&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">ab</span> <span class="o">:=</span> <span class="nx">Person</span><span class="p">{</span><span class="s">&#34;Mark Collins&#34;</span><span class="p">,</span> <span class="s">&#34;United Kingdom&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%s\n%s\n&#34;</span><span class="p">,</span> <span class="nx">rs</span><span class="p">,</span> <span class="nx">ab</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>运行前面的代码时，你将看到以下输出：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">John</span> <span class="nx">Doe</span> <span class="nx">is</span> <span class="nx">from</span> <span class="nx">USA</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Mark</span> <span class="nx">Collins</span> <span class="nx">is</span> <span class="nx">from</span> <span class="nx">United</span> <span class="nx">Kingdom</span>
+</span></span></code></pre></div><p>如你所见，你已使用自定义类型（结构）来写入 <code>String()</code> 方法的自定义版本。 此方法是在 Go 中实现接口的一种常用方法，正如我们之前的讲解，你还会在许多程序中找到此方法的示例。</p>
+<h2 id="4-扩展现有实现">4 扩展现有实现</h2>
+<p>假设你具有以下代码，并且希望通过编写负责处理某些数据的 <code>Writer</code> 方法的自定义实现来扩展其功能。</p>
+<p>通过使用以下代码，你可以创建一个程序，此程序使用 GitHub API 从 Microsoft 获取三个存储库：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;io&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;net/http&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;os&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">resp</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;https://api.github.com/users/microsoft/repos?page=15&amp;per_page=5&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Error:&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">os</span><span class="p">.</span><span class="nf">Exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">io</span><span class="p">.</span><span class="nf">Copy</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stdout</span><span class="p">,</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>运行前面的代码时，你会收到类似于以下输出的内容（已缩短以便改善可读性）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">[{</span><span class="s">&#34;id&#34;</span><span class="p">:</span><span class="mi">276496384</span><span class="p">,</span><span class="s">&#34;node_id&#34;</span><span class="p">:</span><span class="s">&#34;MDEwOlJlcG9zaXRvcnkyNzY0OTYzODQ=&#34;</span><span class="p">,</span><span class="s">&#34;name&#34;</span><span class="p">:</span><span class="s">&#34;-Users-deepakdahiya-Desktop-juhibubash-test21zzzzzzzzzzz&#34;</span><span class="p">,</span><span class="s">&#34;full_name&#34;</span><span class="p">:</span><span class="s">&#34;microsoft/-Users-deepakdahiya-Desktop-juhibubash-test21zzzzzzzzzzz&#34;</span><span class="p">,</span><span class="s">&#34;private&#34;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="s">&#34;owner&#34;</span><span class="p">:{</span><span class="s">&#34;login&#34;</span><span class="p">:</span><span class="s">&#34;microsoft&#34;</span><span class="p">,</span><span class="s">&#34;id&#34;</span><span class="p">:</span><span class="mi">6154722</span><span class="p">,</span><span class="s">&#34;node_id&#34;</span><span class="p">:</span><span class="s">&#34;MDEyOk9yZ2FuaXphdGlvbjYxNTQ3MjI=&#34;</span><span class="p">,</span><span class="s">&#34;avatar_url&#34;</span><span class="p">:</span><span class="s">&#34;https://avatars2.githubusercontent.com/u/6154722?v=4&#34;</span><span class="p">,</span><span class="s">&#34;gravatar_id&#34;</span><span class="p">:</span><span class="s">&#34;&#34;</span><span class="p">,</span><span class="s">&#34;url&#34;</span><span class="p">:</span><span class="s">&#34;https://api.github.com/users/microsoft&#34;</span><span class="p">,</span><span class="s">&#34;html_url&#34;</span><span class="p">:</span><span class="err">&#34;</span><span class="nx">https</span><span class="p">:</span><span class="c1">//github.com/micro
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">...</span><span class="p">.</span>
+</span></span></code></pre></div><p>请注意，<code>io.Copy(os.Stdout, resp.Body)</code> 调用是指将通过对 GitHub API 的调用获取的内容打印到终端。 假设你想要写入自己的实现以缩短你在终端中看到的内容。 在查看 <a href="https://golang.org/pkg/io/#Copy" target="_blank" rel="noopener noreffer"><code>io.Copy</code> 函数的源</a> 时，你将看到：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">Copy</span><span class="p">(</span><span class="nx">dst</span> <span class="nx">Writer</span><span class="p">,</span> <span class="nx">src</span> <span class="nx">Reader</span><span class="p">)</span> <span class="p">(</span><span class="nx">written</span> <span class="kt">int64</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+</span></span></code></pre></div><p>如果你深入查看第一个参数 <code>dst Writer</code> 的详细信息，你会注意到 <code>Writer</code> 是 <a href="https://golang.org/pkg/io/#Writer" target="_blank" rel="noopener noreffer">接口</a>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Writer</span> <span class="kd">interface</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">Write</span><span class="p">(</span><span class="nx">p</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">(</span><span class="nx">n</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>你可以继续浏览 <code>io</code> 包的源代码，直到找到 <a href="https://golang.org/src/io/io.go?s=12980%3A13040#L411?azure-portal=true" target="_blank" rel="noopener noreffer"><code>Copy</code> 调用 <code>Write</code> 方法</a>的位置，但我们将暂时不进行此浏览。</p>
+<p>由于 <code>Writer</code> 是接口，并且是 <code>Copy</code> 函数需要的对象，你可以编写 <code>Write</code> 方法的自定义实现。 因此，你可以自定义打印到终端的内容。</p>
+<p>实现接口所需的第一项操作是创建自定义类型。 在这种情况下，你可以创建一个空结构，因为你只需按如下所示编写自定义 <code>Write</code> 方法即可：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">customWriter</span> <span class="kd">struct</span><span class="p">{}</span>
+</span></span></code></pre></div><p>现在，你已准备就绪，可开始编写自定义 <code>Write</code> 函数。 此时，你还需要编写一个结构，以便将 JSON 格式的 API 响应解析为 Golang 对象。 你可以使用“JSON 转 Go”站点从 JSON 有效负载创建结构。 因此，<code>Write</code> 方法可能如下所示：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">GitHubResponse</span> <span class="p">[]</span><span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">FullName</span> <span class="kt">string</span> <span class="s">`json:&#34;full_name&#34;`</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">w</span> <span class="nx">customWriter</span><span class="p">)</span> <span class="nf">Write</span><span class="p">(</span><span class="nx">p</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">(</span><span class="nx">n</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">resp</span> <span class="nx">GitHubResponse</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">json</span><span class="p">.</span><span class="nf">Unmarshal</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">resp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">r</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">resp</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">FullName</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nx">p</span><span class="p">),</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>最后，你必须修改 <code>main()</code> 函数以使用你的自定义对象，具体如下所示：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">resp</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;https://api.github.com/users/microsoft/repos?page=15&amp;per_page=5&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Error:&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">os</span><span class="p">.</span><span class="nf">Exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">writer</span> <span class="o">:=</span> <span class="nx">customWriter</span><span class="p">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">io</span><span class="p">.</span><span class="nf">Copy</span><span class="p">(</span><span class="nx">writer</span><span class="p">,</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>在运行程序时，你将会看到以下输出：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">microsoft</span><span class="o">/</span><span class="nx">aed</span><span class="o">-</span><span class="nx">blockchain</span><span class="o">-</span><span class="nx">learn</span><span class="o">-</span><span class="nx">content</span>
+</span></span><span class="line"><span class="cl"><span class="nx">microsoft</span><span class="o">/</span><span class="nx">aed</span><span class="o">-</span><span class="nx">content</span><span class="o">-</span><span class="nx">nasa</span><span class="o">-</span><span class="nx">su20</span>
+</span></span><span class="line"><span class="cl"><span class="nx">microsoft</span><span class="o">/</span><span class="nx">aed</span><span class="o">-</span><span class="nx">external</span><span class="o">-</span><span class="nx">learn</span><span class="o">-</span><span class="nx">template</span>
+</span></span><span class="line"><span class="cl"><span class="nx">microsoft</span><span class="o">/</span><span class="nx">aed</span><span class="o">-</span><span class="k">go</span><span class="o">-</span><span class="nx">learn</span><span class="o">-</span><span class="nx">content</span>
+</span></span><span class="line"><span class="cl"><span class="nx">microsoft</span><span class="o">/</span><span class="nx">aed</span><span class="o">-</span><span class="nx">learn</span><span class="o">-</span><span class="nx">template</span>
+</span></span></code></pre></div><p>由于你写入的自定义 <code>Write</code> 方法，输出效果现在更好。 以下是程序的最终版本：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;encoding/json&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;io&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;net/http&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;os&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">GitHubResponse</span> <span class="p">[]</span><span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">FullName</span> <span class="kt">string</span> <span class="s">`json:&#34;full_name&#34;`</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">customWriter</span> <span class="kd">struct</span><span class="p">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">w</span> <span class="nx">customWriter</span><span class="p">)</span> <span class="nf">Write</span><span class="p">(</span><span class="nx">p</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">(</span><span class="nx">n</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">resp</span> <span class="nx">GitHubResponse</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">json</span><span class="p">.</span><span class="nf">Unmarshal</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">resp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">r</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">resp</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">FullName</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nx">p</span><span class="p">),</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">resp</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;https://api.github.com/users/microsoft/repos?page=15&amp;per_page=5&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Error:&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">os</span><span class="p">.</span><span class="nf">Exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">writer</span> <span class="o">:=</span> <span class="nx">customWriter</span><span class="p">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">io</span><span class="p">.</span><span class="nf">Copy</span><span class="p">(</span><span class="nx">writer</span><span class="p">,</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="5-编写自定义服务器-api">5 编写自定义服务器 API</h2>
+<p>最后，我们一起来探讨接口的另一种用例，如果你要创建服务器 API，你可能会发现此用例非常实用。 编写 Web 服务器的常用方式是使用 <code>net/http</code> 程序包中的 <code>http.Handler</code> 接口，具体如下所示（无需写入此代码）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">http</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Handler</span> <span class="kd">interface</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">ServeHTTP</span><span class="p">(</span><span class="nx">w</span> <span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">Request</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">ListenAndServe</span><span class="p">(</span><span class="nx">address</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">h</span> <span class="nx">Handler</span><span class="p">)</span> <span class="kt">error</span>
+</span></span></code></pre></div><p>请注意 <code>ListenAndServe</code> 函数需要服务器地址（如 <code>http://localhost:8000</code>）以及将响应从调用调度至服务器地址的 <code>Handler</code> 的实例。</p>
+<p>接下来，创建并浏览以下程序：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;log&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;net/http&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">dollars</span> <span class="kt">float32</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">d</span> <span class="nx">dollars</span><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;$%.2f&#34;</span><span class="p">,</span> <span class="nx">d</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">database</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="nx">dollars</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">db</span> <span class="nx">database</span><span class="p">)</span> <span class="nf">ServeHTTP</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">req</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="nx">item</span><span class="p">,</span> <span class="nx">price</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">db</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintf</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;%s: %s\n&#34;</span><span class="p">,</span> <span class="nx">item</span><span class="p">,</span> <span class="nx">price</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">db</span> <span class="o">:=</span> <span class="nx">database</span><span class="p">{</span><span class="s">&#34;Go T-Shirt&#34;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="s">&#34;Go Jacket&#34;</span><span class="p">:</span> <span class="mi">55</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">(</span><span class="s">&#34;localhost:8000&#34;</span><span class="p">,</span> <span class="nx">db</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>在浏览前面的代码之前，让我们按如下所示运行程序：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="k">go</span> <span class="nx">run</span> <span class="nx">main</span><span class="p">.</span><span class="k">go</span>
+</span></span></code></pre></div><p>如果没有得到任何输出，说明情况不错。 此时，在新浏览器窗口中打开 <code>http://localhost:8000</code>，或在终端中运行以下命令：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">curl</span> <span class="nx">http</span><span class="p">:</span><span class="c1">//localhost:8000
+</span></span></span></code></pre></div><p>现在你应会看到以下输出：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">Go</span> <span class="nx">T</span><span class="o">-</span><span class="nx">Shirt</span><span class="p">:</span> <span class="err">$</span><span class="mf">25.00</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Go</span> <span class="nx">Jacket</span><span class="p">:</span> <span class="err">$</span><span class="mf">55.00</span>
+</span></span></code></pre></div><p>让我们一起慢慢回顾之前的代码，了解其用途并观察 Go 接口的功能。 首先，创建 <code>float32</code> 类型的自定义类型，然后编写 <code>String()</code> 方法的自定义实现，以便稍后使用。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">dollars</span> <span class="kt">float32</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">d</span> <span class="nx">dollars</span><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;$%.2f&#34;</span><span class="p">,</span> <span class="nx">d</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>然后，写入 <code>http.Handler</code> 可使用的 <code>ServeHTTP</code> 方法的实现。 请注意，我们重新创建了自定义类型，但这次它是映射，而不是结构。 接下来，我们通过使用 <code>database</code> 类型作为接收方来写入 <code>ServeHTTP</code> 方法。 此方法的实现使用来自接收方的数据，然后对其进行循环访问，再输出每一项。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">database</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="nx">dollars</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">db</span> <span class="nx">database</span><span class="p">)</span> <span class="nf">ServeHTTP</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">req</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="nx">item</span><span class="p">,</span> <span class="nx">price</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">db</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintf</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;%s: %s\n&#34;</span><span class="p">,</span> <span class="nx">item</span><span class="p">,</span> <span class="nx">price</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>最后，在 <code>main()</code> 函数中，我们将 <code>database</code> 类型实例化，并使用一些值对其进行初始化。 我们使用 <code>http.ListenAndServe</code> 函数启动了 HTTP 服务器，在其中定义了服务器地址，包括要使用的端口和实现 <code>ServeHTTP</code> 方法自定义版本的 <code>db</code> 对象。 在你运行程序时，Go 将使用此方法的实现，这也正是你在服务器 API 中使用和实现接口的方式。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">db</span> <span class="o">:=</span> <span class="nx">database</span><span class="p">{</span><span class="s">&#34;Go T-Shirt&#34;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="s">&#34;Go Jacket&#34;</span><span class="p">:</span> <span class="mi">55</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">(</span><span class="s">&#34;localhost:8000&#34;</span><span class="p">,</span> <span class="nx">db</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>使用 <code>http.Handle</code> 函数时，可以在服务器 API 中找到接口的其他用例。 有关详细信息，请参阅 Go 网站上<a href="https://golang.org/doc/articles/wiki" target="_blank" rel="noopener noreffer">编写 Web 应用程序</a>帖子。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/go/">Go</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2023-05-25</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/language/go/8.methods-interfaces/method/" class="prev" rel="prev" title="method"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/chaos/%E8%BE%93%E5%85%A5%E6%B3%95rime/" class="next" rel="next" title="输入法rime">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

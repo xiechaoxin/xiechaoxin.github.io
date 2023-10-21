@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>css - 标签 - xcx</title>
+        <link>https://xiechaoxin.github.io/tags/css/</link>
+        <description>css - 标签 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 21 May 2023 18:05:20 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/tags/css/" rel="self" type="application/rss+xml" /><item>
+    <title>css_start</title>
+    <link>https://xiechaoxin.github.io/posts/web/front-end/css/css_start/</link>
+    <pubDate>Sun, 21 May 2023 18:05:20 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/web/front-end/css/css_start/</guid>
+    <description><![CDATA[what is css 层叠样式表（Cascading Style Sheet，简称：CSS）是为网页添加样式的代码。本节将介绍 CSS 的基础知识，并解答类似问题：怎样将文本设]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>网络编程 - xcx</title><meta name="description" content=""><meta property="og:title" content="网络编程" />
+<meta property="og:description" content="网络编程 1 网络编程的三个要素 1.1 、IP地址或主机名 InetAddress String：192.168.24.71 每一个整数是1~255 域名：www.baidu.c" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/language/java/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-14T02:17:04+00:00" />
+<meta property="article:modified_time" content="2022-09-14T02:17:04+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="网络编程"/>
+<meta name="twitter:description" content="网络编程 1 网络编程的三个要素 1.1 、IP地址或主机名 InetAddress String：192.168.24.71 每一个整数是1~255 域名：www.baidu.c"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/language/java/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/language/java/%E5%BC%82%E5%B8%B8/" /><link rel="next" href="https://xiechaoxin.github.io/posts/language/java/%E6%95%B0%E7%BB%84/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "网络编程",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/language\/java\/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B\/"
+        },"genre": "posts","keywords": "JAVA","wordcount":  4188 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/language\/java\/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B\/","datePublished": "2022-09-14T02:17:04+00:00","dateModified": "2022-09-14T02:17:04+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">网络编程</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/java/"><i class="far fa-folder fa-fw"></i>JAVA</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-09-14">2022-09-14</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4188 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-网络编程的三个要素">1 网络编程的三个要素</a>
+      <ul>
+        <li><a href="#11-ip地址或主机名">1.1 、IP地址或主机名</a></li>
+        <li><a href="#12-端口号">1.2 、端口号</a></li>
+        <li><a href="#13-网络协议">1.3 、网络协议</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-网络编程的api">2 网络编程的API</a>
+      <ul>
+        <li><a href="#21-socket">2.1 Socket</a></li>
+        <li><a href="#22-tcp编程步骤">2.2 TCP编程步骤</a></li>
+        <li><a href="#23-udp编程步骤">2.3 UDP编程步骤</a></li>
+        <li><a href="#24-url编程">2.4 URL编程</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="网络编程">网络编程</h1>
+<h2 id="1-网络编程的三个要素">1 网络编程的三个要素</h2>
+<h3 id="11-ip地址或主机名">1.1 、IP地址或主机名</h3>
+<ul>
+<li>
+<p>InetAddress</p>
+</li>
+<li>
+<p>String：192.168.24.71</p>
+<ul>
+<li>每一个整数是1~255</li>
+</ul>
+</li>
+<li>
+<p>域名：www.baidu.com</p>
+<ul>
+<li>通过域名解析器，找对对应的ip地址</li>
+</ul>
+</li>
+</ul>
+<h3 id="12-端口号">1.2 、端口号</h3>
+<ul>
+<li>
+<p>0~65535</p>
+</li>
+<li>
+<p>建议不要使用</p>
+<ul>
+<li>
+<p>0~1023</p>
+<ul>
+<li>用于基础服务</li>
+</ul>
+</li>
+<li>
+<p>tomcat/jboss</p>
+<ul>
+<li>8080</li>
+</ul>
+</li>
+<li>
+<p>mysql</p>
+<ul>
+<li>3306</li>
+</ul>
+</li>
+<li>
+<p>oracle</p>
+<ul>
+<li>1521</li>
+</ul>
+</li>
+<li>
+<p>sql server</p>
+<ul>
+<li>1433</li>
+</ul>
+</li>
+<li>
+<p>浏览器：http</p>
+<ul>
+<li>80</li>
+</ul>
+</li>
+<li>
+<p>&hellip;.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="13-网络协议">1.3 、网络协议</h3>
+<ul>
+<li>
+<p>OSI理想参考模型</p>
+</li>
+<li>
+<p>TCP/IP的四层实现模式</p>
+</li>
+<li>
+<p>传输层</p>
+<ul>
+<li>
+<p>TCP</p>
+<ul>
+<li>面向连接的，可靠的，适用于大数据传输，速率相对低，在传输之前会先“三次握手”，在断开之前会“四次挥手”</li>
+</ul>
+</li>
+<li>
+<p>UDP</p>
+<ul>
+<li>非面向连接的，不可靠的，适用于数据比较小的，&lt;=64kb，相对速率高</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>应用层</p>
+<ul>
+<li>http/https</li>
+<li>ftp</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-网络编程的api">2 网络编程的API</h2>
+<h3 id="21-socket">2.1 Socket</h3>
+<ul>
+<li>
+<p>套接字</p>
+<ul>
+<li>表示通信的两个端点，两边各一个</li>
+</ul>
+</li>
+<li>
+<p>分类</p>
+<ul>
+<li>
+<p>流套接字</p>
+<ul>
+<li>
+<p>用于TCP的通信</p>
+<ul>
+<li>
+<p>ServerSocket</p>
+<ul>
+<li>转门用于服务器用来监听和接收客户端的连接</li>
+</ul>
+</li>
+<li>
+<p>Socket</p>
+<ul>
+<li>用于服务器和客户端的通信</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>数据报套接字</p>
+<ul>
+<li>
+<p>用于UDP的通信</p>
+<ul>
+<li>
+<p>DatagramSocket</p>
+<ul>
+<li>用于UDP的两端的通信</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="22-tcp编程步骤">2.2 TCP编程步骤</h3>
+<ul>
+<li>
+<p>服务器</p>
+<ul>
+<li>
+<p>1、先创建ServerSocket</p>
+<ul>
+<li>
+<p>ServerSocket server = new ServerSocket(端口号);</p>
+<ul>
+<li>指定端口号进行监听，客户端通过这个端口号与它进行连接和通信</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>2、接收客户端的连接</p>
+<ul>
+<li>
+<p>Socket socket = server.accept();</p>
+<ul>
+<li>每一个客户端就要有自己的一个Socket</li>
+<li>如果希望不同的客户端通信“同时”进行，需要每一个socket用一个线程进行维护</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>3、通过socket进行收或发消息</p>
+<ul>
+<li>
+<p>收消息</p>
+<ul>
+<li>
+<p>InputStream is = socket.getInputStream();</p>
+<ul>
+<li>可以在此基础上，包装缓冲流，转换流，对象流，打印流，数据流等</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>发消息</p>
+<ul>
+<li>
+<p>OutputStream out = socket.getOutputStream();</p>
+<ul>
+<li>可以在此基础上，包装缓冲流，转换流，对象流，打印流，数据流等</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>4、与客户端断开连接</p>
+<ul>
+<li>socket.close();</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>客户端</p>
+<ul>
+<li>
+<p>1、先与服务器建立连接，通过创建一个Socket，要指定服务器的IP和端口号</p>
+<ul>
+<li>Socket socket = new Socket(服务器的IP，服务器的监听端口号);</li>
+</ul>
+</li>
+<li>
+<p>2、通过socket进行收或发消息</p>
+<ul>
+<li>
+<p>收消息</p>
+<ul>
+<li>
+<p>InputStream is = socket.getInputStream();</p>
+<ul>
+<li>可以在此基础上，包装缓冲流，转换流，对象流，打印流，数据流等</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>发消息</p>
+<ul>
+<li>
+<p>OutputStream out = socket.getOutputStream();</p>
+<ul>
+<li>可以在此基础上，包装缓冲流，转换流，对象流，打印流，数据流等</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>收和发可以用不同的线程进行维护</p>
+</li>
+</ul>
+</li>
+<li>
+<p>3、与客户端断开连接</p>
+<ul>
+<li>socket.close();</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>示例一</p>
+<p>package com.atguigu.tcp1;</p>
+<p>import java.io.InputStream;</p>
+<p>import java.io.OutputStream;</p>
+<p>import java.net.ServerSocket;</p>
+<p>import java.net.Socket;</p>
+<p>import org.junit.Test;</p>
+<p>/*</p>
+<ul>
+<li>
+<p>TCP:面向连接</p>
+</li>
+<li>
+<p>通信的两端分角色：服务器端和客户端</p>
+</li>
+<li></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<p>服务器端等着被连接，客户端主动连接</p>
+</li>
+<li></li>
+<li>
+<p>服务器端：</p>
+</li>
+<li>
+<p>1、ServerSocket：用来接收客户端的连接信息</p>
+</li>
+<li>
+<p>2、Socket：用来与某个客户端进行通信</p>
+</li>
+<li></li>
+<li>
+<p>客户端：</p>
+</li>
+<li>
+<p>1、Socket：用来与服务器进行通信</p>
+</li>
+<li></li>
+</ul>
+<p>*/</p>
+<p>public class TestTCP1 {</p>
+<pre><code>@Test
+
+public void server()throws Exception{
+
+	//1、创建ServerSocket，看成：开启服务器 ，需要指定一个端口号，监听是否有客户端来连接
+
+	ServerSocket ss = new ServerSocket(9090);
+
+
+
+	while(true){
+
+		System.out.println(&quot;等待您的链接....&quot;);
+
+		//2、等待客户端的连接，接收客户端的连接(如果没有人连接，那么这句代码会阻塞)
+
+		//一旦有客户端连接成功，那么就会产生一个Socket对象，专门负责和这个客户端通信
+
+		Socket socket = ss.accept();
+
+
+
+		System.out.println(socket.getInetAddress().getHostAddress()+&quot;连接成功&quot;);
+
+
+
+		//3、可以接收消息，或发生消息
+
+		//例如：先发：“欢迎登陆”
+
+		//在接收消息
+
+
+
+		//发消息：输出流，OutputStream
+
+		OutputStream output = socket.getOutputStream();
+
+		output.write(&quot;欢迎登陆&quot;.getBytes());
+
+		socket.shutdownOutput();
+
+
+
+		//收消息
+
+		InputStream is = socket.getInputStream();
+
+
+
+		byte[] data = new byte[1024];
+
+		int len;
+
+		StringBuilder sb = new StringBuilder();
+
+		while((len= is.read(data)) !=-1){
+
+			sb.append(new String(data,0,len));
+
+		}
+
+		System.out.println(&quot;服务器收到的消息：&quot; + sb);
+
+
+
+		//4、关闭连接
+
+		socket.close();//只是与某个客户端断开
+
+	}
+
+
+
+	//5、服务器关闭
+</code></pre>
+<p>//		ss.close();</p>
+<pre><code>}
+
+
+
+@Test
+
+public void client()throws Exception{
+
+	//1、创建一个Socket，要指定服务器的IP和端口号
+
+	Socket socket = new Socket(&quot;192.168.24.71&quot;,9090);
+
+
+
+	//2、接收消息
+
+	InputStream is = socket.getInputStream();
+
+
+
+	byte[] data = new byte[1024];
+
+	int len;
+
+	StringBuilder sb = new StringBuilder();
+
+	while((len= is.read(data)) !=-1){
+
+		sb.append(new String(data,0,len));
+
+	}
+
+	System.out.println(&quot;客户端收到的消息：&quot; + sb);
+
+
+
+	//3、发送消息
+
+	String info = &quot;马上吃饭了&quot;;
+
+	OutputStream out = socket.getOutputStream();
+
+	out.write(info.getBytes());
+
+
+
+	//3、关闭连接
+
+	socket.close();
+
+}
+</code></pre>
+<p>}</p>
+<ul>
+<li>
+<p>示例二</p>
+<p>package com.atguigu.tcp2;</p>
+<p>import java.io.BufferedReader;</p>
+<p>import java.io.IOException;</p>
+<p>import java.io.InputStream;</p>
+<p>import java.io.InputStreamReader;</p>
+<p>import java.io.OutputStream;</p>
+<p>import java.net.ServerSocket;</p>
+<p>import java.net.Socket;</p>
+<p>import java.util.Scanner;</p>
+<p>import org.junit.Test;</p>
+<p>public class TestTCP2 {</p>
+<p>@Test</p>
+<p>public void server()throws Exception{</p>
+<pre><code>  //1、创建ServerSocket
+
+  ServerSocket server = new ServerSocket(9999);
+
+
+
+  while(true){
+
+  	//2、等待客户端的连接，接收客户端的连接
+
+  	Socket socket = server.accept();
+
+  	String clientIp = socket.getInetAddress().getHostAddress();
+
+
+
+  	System.out.println(clientIp+&quot;上线了&quot;);
+
+
+
+  	//每一个客户端需要一个线程单独维护它的通信，“同时”与服务器通信的效果
+
+  	new MessageHandler(socket).start();
+
+  }
+</code></pre>
+<p>}</p>
+<p>//和服务器连接上以后，从键盘输入消息，给服务器发送，一直到从键盘输入byebye，在与服务端口连接</p>
+<p>@Test</p>
+<p>public void client()throws Exception{</p>
+<pre><code>  //1、连接服务器
+
+  Socket socket = new Socket(&quot;192.168.24.71&quot;,9999);
+
+
+
+  OutputStream out = socket.getOutputStream();
+
+
+
+  //2，从键盘输入给服务器发送
+
+  Scanner input = new Scanner(System.in);
+
+  while(true){
+
+  	System.out.println(&quot;输入要发送的内容：&quot;);
+
+  	String info = input.nextLine();
+
+
+
+  	if(&quot;byebye&quot;.equals(info)){
+
+  		break;
+
+  	}
+
+
+
+  	//给服务器发送
+
+  	out.write((info+&quot;\n&quot;).getBytes());
+
+  }
+
+
+
+  //3、断开
+
+  socket.close();
+</code></pre>
+<p>}</p>
+<p>}</p>
+<p>class MessageHandler extends Thread{</p>
+<p>private Socket socket;</p>
+<p>public MessageHandler(Socket socket) {</p>
+<pre><code>  super();
+
+  this.socket = socket;
+</code></pre>
+<p>}</p>
+<p>public void run(){</p>
+<pre><code>  try {
+
+  	//3、和一个客户端多次通信，接收到消息后，在控制台打印
+
+  	InputStream input = socket.getInputStream();
+
+  	InputStreamReader isr = new InputStreamReader(input);
+
+  	BufferedReader br = new BufferedReader(isr);
+
+
+
+  	String str;
+
+  	while((str = br.readLine())!=null){
+
+  		System.out.println(socket.getInetAddress().getHostAddress() +&quot;说：&quot;+ str);
+
+  	}
+
+
+
+  	//4、断开
+
+  	socket.close();
+
+  } catch (IOException e) {
+
+  	e.printStackTrace();
+
+  }
+</code></pre>
+<p>}</p>
+<p>}</p>
+</li>
+<li>
+<p>示例三：群聊</p>
+<ul>
+<li>
+<p>服务器</p>
+<p>package com.atguigu.tcp2;</p>
+<p>import java.io.BufferedReader;</p>
+<p>import java.io.IOException;</p>
+<p>import java.io.InputStream;</p>
+<p>import java.io.InputStreamReader;</p>
+<p>import java.io.OutputStream;</p>
+<p>import java.net.ServerSocket;</p>
+<p>import java.net.Socket;</p>
+<p>import java.util.Scanner;</p>
+<p>import org.junit.Test;</p>
+<p>public class TestTCP2 {</p>
+<p>@Test</p>
+<p>public void server()throws Exception{</p>
+<pre><code>  //1、创建ServerSocket
+
+  ServerSocket server = new ServerSocket(9999);
+
+
+
+  while(true){
+
+  	//2、等待客户端的连接，接收客户端的连接
+
+  	Socket socket = server.accept();
+
+  	String clientIp = socket.getInetAddress().getHostAddress();
+
+
+
+  	System.out.println(clientIp+&quot;上线了&quot;);
+
+
+
+  	//每一个客户端需要一个线程单独维护它的通信，“同时”与服务器通信的效果
+
+  	new MessageHandler(socket).start();
+
+  }
+</code></pre>
+<p>}</p>
+<p>//和服务器连接上以后，从键盘输入消息，给服务器发送，一直到从键盘输入byebye，在与服务端口连接</p>
+<p>@Test</p>
+<p>public void client()throws Exception{</p>
+<pre><code>  //1、连接服务器
+
+  Socket socket = new Socket(&quot;192.168.24.71&quot;,9999);
+
+
+
+  OutputStream out = socket.getOutputStream();
+
+
+
+  //2，从键盘输入给服务器发送
+
+  Scanner input = new Scanner(System.in);
+
+  while(true){
+
+  	System.out.println(&quot;输入要发送的内容：&quot;);
+
+  	String info = input.nextLine();
+
+
+
+  	if(&quot;byebye&quot;.equals(info)){
+
+  		break;
+
+  	}
+
+
+
+  	//给服务器发送
+
+  	out.write((info+&quot;\n&quot;).getBytes());
+
+  }
+
+
+
+  //3、断开
+
+  socket.close();
+</code></pre>
+<p>}</p>
+<p>}</p>
+<p>class MessageHandler extends Thread{</p>
+<p>private Socket socket;</p>
+<p>public MessageHandler(Socket socket) {</p>
+<pre><code>  super();
+
+  this.socket = socket;
+</code></pre>
+<p>}</p>
+<p>public void run(){</p>
+<pre><code>  try {
+
+  	//3、和一个客户端多次通信，接收到消息后，在控制台打印
+
+  	InputStream input = socket.getInputStream();
+
+  	InputStreamReader isr = new InputStreamReader(input);
+
+  	BufferedReader br = new BufferedReader(isr);
+
+
+
+  	String str;
+
+  	while((str = br.readLine())!=null){
+
+  		System.out.println(socket.getInetAddress().getHostAddress() +&quot;说：&quot;+ str);
+
+  	}
+
+
+
+  	//4、断开
+
+  	socket.close();
+
+  } catch (IOException e) {
+
+  	e.printStackTrace();
+
+  }
+</code></pre>
+<p>}</p>
+<p>}</p>
+</li>
+<li>
+<p>客户端</p>
+<p>package com.atguigu.tcp3;</p>
+<p>import java.io.BufferedReader;</p>
+<p>import java.io.IOException;</p>
+<p>import java.io.InputStream;</p>
+<p>import java.io.InputStreamReader;</p>
+<p>import java.io.OutputStream;</p>
+<p>import java.io.PrintStream;</p>
+<p>import java.net.Socket;</p>
+<p>import java.net.SocketException;</p>
+<p>import java.util.Scanner;</p>
+<p>/*</p>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>   */
+
+  public class TestTCPClient{
+
+  	public static void main(String[] args) throws Exception{
+
+  		//1、连接服务器
+
+  		Socket socket = new Socket(&quot;192.168.24.71&quot;,9090);
+
+
+
+  		//2、创建两个线程，一个收，一个发
+
+  		SendThread send = new SendThread(socket);
+
+  		send.start();
+
+  		RecevierThread r = new RecevierThread(socket);
+
+  		r.start();
+
+
+
+  		send.join();
+
+
+
+  		r.setExit(true);
+
+
+
+  		//3、关闭
+
+  		socket.close();
+
+  	}
+
+  }
+
+  class SendThread extends Thread{
+
+  	private Socket socket;
+
+
+
+  	public SendThread(Socket socket) {
+
+  		super();
+
+  		this.socket = socket;
+
+  	}
+
+
+
+  	@Override
+
+  	public void run() {
+
+  		try {
+
+  			OutputStream output = socket.getOutputStream();
+
+  			PrintStream ps = new PrintStream(output);
+
+
+
+  			Scanner input = new Scanner(System.in);
+
+  			while(true){
+
+  				System.out.println(&quot;请输入要发送的内容：&quot;);
+
+  				String info = input.nextLine();
+
+  				if(&quot;bye&quot;.equals(info)){
+
+  					break;
+
+  				}
+
+  				//给服务器发送
+
+  				ps.println(info);
+
+  			}
+
+
+
+  		} catch (IOException e) {
+
+  			e.printStackTrace();
+
+  		}
+
+  	}
+
+  }
+
+  class RecevierThread extends Thread{
+
+  	private Socket socket;
+
+  	private boolean exit = false;
+
+
+
+  	public RecevierThread(Socket socket) {
+
+  		super();
+
+  		this.socket = socket;
+
+  	}
+
+  	@Override
+
+  	public void run() {
+
+  		try {
+
+  			InputStream is = socket.getInputStream();
+
+  			InputStreamReader isr = new InputStreamReader(is);
+
+  			BufferedReader br = new BufferedReader(isr);
+
+
+
+  			String str;
+
+  			while(exit==false){
+
+  				try {
+
+  					str = br.readLine();
+
+  				} catch (SocketException e) {
+
+  					break;
+
+  				}
+
+  				if(str==null){
+
+  					break;
+
+  				}
+
+  				System.out.println(&quot;收到的消息：&quot; + str);
+
+  			}
+
+
+
+  		} catch (IOException e) {
+
+  			e.printStackTrace();
+
+  		}
+
+  	}
+
+  	public void setExit(boolean exit) {
+
+  		this.exit = exit;
+
+  	}
+
+
+
+  }
+</code></pre>
+<h3 id="23-udp编程步骤">2.3 UDP编程步骤</h3>
+<ul>
+<li>
+<p>发送端</p>
+<ul>
+<li>
+<p>1、创建一个DatagramSocket</p>
+</li>
+<li>
+<p>2、准备发送的数据，并且打包</p>
+<ul>
+<li>
+<p>DatagramPacket</p>
+<ul>
+<li>要指定：发送的数据，长度，接收方的IP，接收方的端口号</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>3、通过DatagramSocket的send(数据报)</p>
+</li>
+<li>
+<p>4、关闭</p>
+</li>
+</ul>
+</li>
+<li>
+<p>接收端</p>
+<ul>
+<li>
+<p>1、创建一个DatagramSocket</p>
+<ul>
+<li>要指定 监听的端口号</li>
+</ul>
+</li>
+<li>
+<p>2、准备一个DatagramPacket，用来接收数据</p>
+<ul>
+<li>要指定装数据一个字节数组，以及长度</li>
+</ul>
+</li>
+<li>
+<p>3、通过DatagramSocket的receive(数据报)</p>
+</li>
+<li>
+<p>4、拆解数据</p>
+<ul>
+<li>通过DatagramPacket对象.getData()数据，DatagramPacket对象.getLength()实际接收的数据长度</li>
+</ul>
+</li>
+<li>
+<p>5、关闭</p>
+</li>
+</ul>
+</li>
+<li>
+<p>示例代码</p>
+<p>package com.atguigu.udp;</p>
+<p>import java.net.DatagramPacket;</p>
+<p>import java.net.DatagramSocket;</p>
+<p>import java.net.InetAddress;</p>
+<p>import org.junit.Test;</p>
+<p>/*</p>
+<ul>
+<li>
+<p>UDP:非面向连接的</p>
+</li>
+<li></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>有发送端和接收端两个应用程序</li>
+</ul>
+<p>*/</p>
+<p>public class TestUDP {</p>
+<pre><code>@Test
+
+public void send()throws Exception{
+
+	//1、创建Socket
+
+	DatagramSocket ds = new DatagramSocket();
+
+
+
+	//2、把数据打包成一个数据报，包
+
+	String str = &quot;双十二购物快乐&quot;;
+
+	byte[] bytes = str.getBytes();
+
+	InetAddress ip = InetAddress.getByName(&quot;192.168.24.71&quot;);
+
+	DatagramPacket dp = new DatagramPacket(bytes, bytes.length, ip,8989);
+
+
+
+	//3、通过socket发送出去
+
+	ds.send(dp);
+
+	System.out.println(&quot;发送完毕&quot;);
+
+
+
+	//4、释放资源
+
+	ds.close();
+
+}
+
+
+
+@Test
+
+public void reveive()throws Exception{
+
+	//1、创建Socket
+
+	DatagramSocket ds = new DatagramSocket(8989);//为它指定一个端口号，在端口号一直监听着
+
+
+
+	//2、先创建一个数据报等着
+
+	byte[] data = new byte[1024];
+
+	DatagramPacket dp  = new DatagramPacket(data, data.length);
+
+
+
+	//3、准备接受数据，从socket中接收数据，如果此时没有数据，这句代码会阻塞
+
+	ds.receive(dp);
+
+
+
+	//4、拆出数据
+
+	String str = new String(dp.getData(),0,dp.getLength());
+
+	System.out.println(&quot;收到的数据是：&quot; + str);
+
+
+
+	//5、关闭
+
+	ds.close();
+
+}
+</code></pre>
+<p>}</p>
+<h3 id="24-url编程">2.4 URL编程</h3>
+<ul>
+<li>
+<p>在TCP的基础上</p>
+<ul>
+<li>
+<p>服务器端</p>
+<ul>
+<li>Web服务器</li>
+</ul>
+</li>
+<li>
+<p>客户端</p>
+<ul>
+<li>
+<p>1、创建URL的对象</p>
+<ul>
+<li>
+<p>URL url = new URL(网址);</p>
+<ul>
+<li>网址：协议://主机名:端口号/文件路径名?参数名=参数值&amp;参数名=参数值&hellip;</li>
+<li>例如：http://localhost:8080/1108web/index.html</li>
+<li>例如：http://localhost:8080/1108web/login?username=xx&amp;password=xx</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>2、与服务器建立连接</p>
+<ul>
+<li>
+<p>InputStream is = url.openStream();</p>
+<ul>
+<li>
+<p>这种方式只能使用get方法与服务器进行通信</p>
+<ul>
+<li>如果要给服务器传参数只能在网址后面通过?参数名=参数值&amp;参数名=参数值&hellip;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>HttpURLConnection tc = (HttpURLConnection)url.openConnection();</p>
+<ul>
+<li>
+<p>这种方式可以使用post方法与服务器进行通信</p>
+<ul>
+<li>如果要给服务器传数据，那么需要hc.setDoOutput(true);</li>
+<li>然后用OutputStream进行发送数据</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>3、处理接收到数据</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>示例代码</p>
+<ul>
+<li>
+<p>示例一</p>
+<p>package com.atguigu.url;</p>
+<p>import java.io.BufferedReader;</p>
+<p>import java.io.InputStream;</p>
+<p>import java.io.InputStreamReader;</p>
+<p>import java.net.URL;</p>
+<p>/*</p>
+<ul>
+<li>
+<p>tomcat：是一个服务器</p>
+</li>
+<li>
+<p>浏览器：客户端</p>
+</li>
+</ul>
+<p>*/</p>
+<p>public class TestURL {</p>
+<p>public static void main(String[] args) throws Exception{</p>
+<pre><code>  //自定义客户端
+
+
+
+  URL url = new URL(&quot;http://192.168.24.71:8080/1108JavaWeb/index.html&quot;);
+
+  /*System.out.println(&quot;协议：&quot; + url.getProtocol());
+
+  System.out.println(&quot;主机名：&quot; + url.getHost());
+
+  System.out.println(&quot;端口号：&quot; + url.getPort());
+
+  System.out.println(&quot;路径名：&quot; + url.getPath());*/
+
+
+
+  InputStream input = url.openStream();
+
+  InputStreamReader isr = new InputStreamReader(input);
+
+  BufferedReader br  = new BufferedReader(isr);
+
+
+
+  String str ;
+
+  while((str=br.readLine())!=null){
+
+  	System.out.println(str);
+
+  }
+</code></pre>
+<p>}</p>
+<p>}</p>
+</li>
+<li>
+<p>示例二：get</p>
+<p>package com.atguigu.url;</p>
+<p>import java.io.BufferedReader;</p>
+<p>import java.io.InputStream;</p>
+<p>import java.io.InputStreamReader;</p>
+<p>import java.net.URL;</p>
+<p>public class TestURL2 {</p>
+<p>public static void main(String[] args) throws Exception{</p>
+<pre><code>  URL url = new URL(&quot;http://192.168.24.71:8080/myweb/login?username=admin&amp;pass=123&quot;);
+
+  InputStream input = url.openStream();
+
+  InputStreamReader isr = new InputStreamReader(input);
+
+  BufferedReader br  = new BufferedReader(isr);
+
+
+
+  String str ;
+
+  while((str=br.readLine())!=null){
+
+  	System.out.println(str);
+
+  }
+</code></pre>
+<p>}</p>
+<p>}</p>
+</li>
+<li>
+<p>示例三：post</p>
+<p>package com.atguigu.url;</p>
+<p>import java.io.BufferedReader;</p>
+<p>import java.io.InputStream;</p>
+<p>import java.io.InputStreamReader;</p>
+<p>import java.io.OutputStream;</p>
+<p>import java.io.PrintStream;</p>
+<p>import java.net.HttpURLConnection;</p>
+<p>import java.net.URL;</p>
+<p>public class TestURL3 {</p>
+<p>public static void main(String[] args) throws Exception{</p>
+<pre><code>  URL url = new URL(&quot;http://192.168.24.71:8080/myweb/login&quot;);
+
+
+
+  HttpURLConnection hc = (HttpURLConnection) url.openConnection();
+
+
+
+  hc.setDoOutput(true);
+
+  OutputStream output = hc.getOutputStream();
+
+  PrintStream ps = new PrintStream(output);
+</code></pre>
+<p>//		output.write(&ldquo;username=chai&amp;pass=123&rdquo;.getBytes());</p>
+<pre><code>  ps.println(&quot;username=chai&amp;pass=123&quot;);
+
+
+
+  InputStream input = hc.getInputStream();
+
+  InputStreamReader isr = new InputStreamReader(input);
+
+  BufferedReader br  = new BufferedReader(isr);
+
+
+
+  String str ;
+
+  while((str=br.readLine())!=null){
+
+  	System.out.println(str);
+
+  }
+</code></pre>
+<p>}</p>
+<p>}</p>
+</li>
+</ul>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/java/">JAVA</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-09-14</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/language/java/%E5%BC%82%E5%B8%B8/" class="prev" rel="prev" title="异常"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/language/java/%E6%95%B0%E7%BB%84/" class="next" rel="next" title="数组">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>mysql详细笔记11-12章 - xcx</title><meta name="description" content=""><meta property="og:title" content="mysql详细笔记11-12章" />
+<meta property="og:description" content="第11章_数据处理之增删改 11.1 插入数据 实际问题 解决方式：使用 INSERT 语句向表中插入数据。 1 方式1：VALUES的方式添加 使用这种语法一次只能向表中插" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B011-12%E7%AB%A0/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-17T17:59:12+00:00" />
+<meta property="article:modified_time" content="2022-06-17T17:59:12+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="mysql详细笔记11-12章"/>
+<meta name="twitter:description" content="第11章_数据处理之增删改 11.1 插入数据 实际问题 解决方式：使用 INSERT 语句向表中插入数据。 1 方式1：VALUES的方式添加 使用这种语法一次只能向表中插"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B011-12%E7%AB%A0/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B013-14%E7%AB%A0/" /><link rel="next" href="https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B01-2%E7%AB%A0/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "mysql详细笔记11-12章",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/database%E6%9C%AA%E5%A4%84%E7%90%86\/mysql\/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B011-12%E7%AB%A0\/"
+        },"genre": "posts","keywords": "database, mysql","wordcount":  16633 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/database%E6%9C%AA%E5%A4%84%E7%90%86\/mysql\/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B011-12%E7%AB%A0\/","datePublished": "2022-06-17T17:59:12+00:00","dateModified": "2022-06-17T17:59:12+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">mysql详细笔记11-12章</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/database/"><i class="far fa-folder fa-fw"></i>database</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-17">2022-06-17</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 16633 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 34 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#111-插入数据">11.1 插入数据</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#1-方式1values的方式添加">1 方式1：VALUES的方式添加</a>
+      <ul>
+        <li><a href="#11-方式2将查询结果插入到表中">1.1 方式2：将查询结果插入到表中</a></li>
+      </ul>
+    </li>
+    <li><a href="#112-更新数据">11.2 更新数据</a></li>
+    <li><a href="#113-删除数据">11.3 删除数据</a></li>
+    <li><a href="#114-mysql8新特性计算列">11.4 MySQL8新特性：计算列</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#121-mysql中的数据类型">12.1 MySQL中的数据类型</a></li>
+    <li><a href="#122-整数类型">12.2 整数类型</a>
+      <ul>
+        <li><a href="#12-类型介绍">1.2 类型介绍</a></li>
+        <li><a href="#13-可选属性">1.3 可选属性</a></li>
+        <li><a href="#14-适用场景">1.4 适用场景</a></li>
+        <li><a href="#15-如何选择">1.5 如何选择</a></li>
+      </ul>
+    </li>
+    <li><a href="#123-浮点类型">12.3 浮点类型</a>
+      <ul>
+        <li><a href="#16-类型介绍">1.6 类型介绍</a></li>
+        <li><a href="#17-数据精度说明">1.7 数据精度说明</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#2-精度误差说明">2 精度误差说明</a></li>
+    <li><a href="#124-定点数类型">12.4 定点数类型</a>
+      <ul>
+        <li><a href="#21-类型介绍">2.1 类型介绍</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#125-位类型bit">12.5. 位类型：BIT</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#126-日期与时间类型">12.6 日期与时间类型</a></li>
+    <li><a href="#3-year类型">3 YEAR类型</a>
+      <ul>
+        <li><a href="#31-date类型">3.1 DATE类型</a></li>
+        <li><a href="#32-time类型">3.2 TIME类型</a></li>
+        <li><a href="#33-datetime类型">3.3 DATETIME类型</a></li>
+        <li><a href="#34-timestamp类型">3.4 TIMESTAMP类型</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#127-文本字符串类型">12.7 文本字符串类型</a></li>
+    <li><a href="#4-char与varchar类型">4 CHAR与VARCHAR类型</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#5-text类型">5 TEXT类型</a></li>
+    <li><a href="#128-enum类型">12.8. ENUM类型</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#129-set类型">12.9. SET类型</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#1210-二进制字符串类型">12.10 二进制字符串类型</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#1211-json-类型">12.11. JSON 类型</a></li>
+    <li><a href="#1212-空间类型">12.12. 空间类型</a></li>
+    <li><a href="#1213-小结及选择建议">12.13 小结及选择建议</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="第11章_数据处理之增删改">第11章_数据处理之增删改</h1>
+<h2 id="111-插入数据">11.1 插入数据</h2>
+<h1 id="实际问题">实际问题</h1>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012811895.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012811895.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012811895.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012811895.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012811895.png"
+        title="在这里插入图片描述" /></p>
+<blockquote>
+<p>解决方式：使用 INSERT 语句向表中插入数据。</p>
+</blockquote>
+<h2 id="1-方式1values的方式添加">1 方式1：VALUES的方式添加</h2>
+<blockquote>
+<p>使用这种语法一次只能向表中插入<strong>一条</strong>数据。</p>
+</blockquote>
+<p><strong>情况1：为表的所有字段按默认顺序插入数据</strong></p>
+<pre><code>INSERT INTO 表名 VALUES (value1,value2,....);
+</code></pre>
+<blockquote>
+<p>值列表中需要为表的每一个字段指定值，并且值的顺序必须和数据表中字段定义时的顺序相同。</p>
+</blockquote>
+<pre><code>INSERT INTO departments VALUES (70, 'Pub', 100, 1700);
+INSERT INTO	departments VALUES (100, 'Finance', NULL, NULL);
+</code></pre>
+<p><strong>情况2：为表的指定字段插入数据</strong></p>
+<pre><code>INSERT INTO 表名(column1 [, column2, …, columnn])
+VALUES (value1 [,value2, …, valuen]);
+</code></pre>
+<blockquote>
+<ul>
+<li>为表的指定字段插入数据，就是在INSERT语句中只向部分字段中插入值，而其他字段的值为表定义时的默认值。</li>
+<li>在 INSERT 子句中随意列出列名，但是一旦列出，VALUES中要插入的value1,…valuen需要与column1,…columnn列一一对应。如果类型不同，将无法插入，并且MySQL会产生错误。</li>
+</ul>
+</blockquote>
+<pre><code>INSERT INTO departments(department_id, department_name) VALUES (80, 'IT');
+</code></pre>
+<p><strong>情况3：同时插入多条记录</strong></p>
+<blockquote>
+<p>INSERT语句可以同时向数据表中插入多条记录，插入时指定多个值列表，每个值列表之间用逗号分隔开，基本语法格式如下：</p>
+</blockquote>
+<pre><code>INSERT INTO table_name
+VALUES
+	(value1 [,value2, …, valuen]),
+	(value1 [,value2, …, valuen]),
+	……
+	(value1 [,value2, …, valuen]);
+</code></pre>
+<p>或者</p>
+<pre><code>INSERT INTO table_name(column1 [, column2, …, columnn])
+VALUES
+	(value1 [,value2, …, valuen]),
+	(value1 [,value2, …, valuen]),
+	……
+	(value1 [,value2, …, valuen]);
+
+
+mysql&gt; INSERT INTO emp(emp_id,emp_name)
+    -&gt; VALUES (1001,'shkstart'),
+    -&gt; (1002,'atguigu'),
+    -&gt; (1003,'Tom');
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+</code></pre>
+<blockquote>
+<p>使用INSERT同时插入多条记录时，MySQL会返回一些在执行单行插入时没有的额外信息，这些信息的含义如下：</p>
+<ul>
+<li>Records：表明插入的记录条数。</li>
+<li>Duplicates：表明插入时被忽略的记录，原因可能是这些记录包含了重复的主键值。</li>
+<li>Warnings：表明有问题的数据值，例如发生数据类型转换。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>一个同时插入多行记录的INSERT语句等同于多个单行插入的INSERT语句，但是多行的INSERT语句在处理过程中<code>效率更高</code>。因为MySQL执行单条INSERT语句插入多行数据比使用多条INSERT语句快，所以在插入多条记录时最好选择使用单条INSERT语句的方式插入。</p>
+</blockquote>
+<blockquote>
+<p><strong>小结：</strong></p>
+<ul>
+<li><code>VALUES</code>也可以写成<code>VALUE</code>，但是VALUES是标准写法。</li>
+<li>字符和日期型数据应包含在单引号中。</li>
+</ul>
+</blockquote>
+<h3 id="11-方式2将查询结果插入到表中">1.1 方式2：将查询结果插入到表中</h3>
+<blockquote>
+<p>INSERT还可以将SELECT语句查询的结果插入到表中，此时不需要把每一条记录的值一个一个输入，只需要使用一条INSERT语句和一条SELECT语句组成的组合语句即可快速地从一个或多个表中向一个表中插入多行。</p>
+</blockquote>
+<p>基本语法格式如下：</p>
+<pre><code>INSERT INTO 目标表名
+(tar_column1 [, tar_column2, …, tar_columnn])
+SELECT
+(src_column1 [, src_column2, …, src_columnn])
+FROM 源表名
+[WHERE condition]
+</code></pre>
+<blockquote>
+<ul>
+<li>在 INSERT 语句中加入子查询。</li>
+<li><strong>不必书写</strong> <strong>VALUES</strong> <strong>子句。</strong></li>
+<li>子查询中的值列表应与 INSERT 子句中的列名对应。</li>
+</ul>
+</blockquote>
+<pre><code>INSERT INTO emp2
+SELECT *
+FROM employees
+WHERE department_id = 90;
+
+
+INSERT INTO sales_reps(id, name, salary, commission_pct)
+SELECT employee_id, last_name, salary, commission_pct
+FROM   employees
+WHERE  job_id LIKE '%REP%';
+</code></pre>
+<h2 id="112-更新数据">11.2 更新数据</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812084.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812084.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812084.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812084.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812084.png"
+        title="在这里插入图片描述" /></p>
+<ul>
+<li>
+<p>使用 UPDATE 语句更新数据。语法如下：</p>
+<p>UPDATE table_name
+SET column1=value1, column2=value2, … , column=valuen
+[WHERE condition]</p>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>可以一次更新<strong>多条</strong>数据。</li>
+<li>如果需要回滚数据，需要保证在DML前，进行设置：<strong>SET AUTOCOMMIT = FALSE;</strong></li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<p>使用 <strong>WHERE</strong> 子句指定需要更新的数据。</p>
+<p>UPDATE employees
+SET    department_id = 70
+WHERE  employee_id = 113;</p>
+</li>
+<li>
+<p>如果省略 WHERE 子句，则表中的所有数据都将被更新。</p>
+<p>UPDATE 	copy_emp
+SET   department_id = 110;</p>
+</li>
+<li>
+<p><strong>更新中的数据完整性错误</strong></p>
+<p>UPDATE employees
+SET    department_id = 55
+WHERE  department_id = 110;</p>
+</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./105c428d3bb4404abad7ca54d991bf81.png"
+        data-srcset="./105c428d3bb4404abad7ca54d991bf81.png, ./105c428d3bb4404abad7ca54d991bf81.png 1.5x, ./105c428d3bb4404abad7ca54d991bf81.png 2x"
+        data-sizes="auto"
+        alt="./105c428d3bb4404abad7ca54d991bf81.png"
+        title="在这里插入图片描述" /></p>
+<blockquote>
+<p>说明：不存在 55 号部门</p>
+</blockquote>
+<h2 id="113-删除数据">11.3 删除数据</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012811919.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012811919.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012811919.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012811919.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012811919.png"
+        title="在这里插入图片描述" /></p>
+<ul>
+<li>
+<p>使用 DELETE 语句从表中删除数据
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./ef1ebd205d7f43cd949777ee51781b21.png"
+        data-srcset="./ef1ebd205d7f43cd949777ee51781b21.png, ./ef1ebd205d7f43cd949777ee51781b21.png 1.5x, ./ef1ebd205d7f43cd949777ee51781b21.png 2x"
+        data-sizes="auto"
+        alt="./ef1ebd205d7f43cd949777ee51781b21.png"
+        title="在这里插入图片描述" /></p>
+<p>DELETE FROM table_name [WHERE <!-- raw HTML omitted -->];</p>
+</li>
+</ul>
+<blockquote>
+<p>table_name指定要执行删除操作的表；“[WHERE ]”为可选参数，指定删除条件，如果没有WHERE子句，DELETE语句将删除表中的所有记录。</p>
+</blockquote>
+<ul>
+<li>
+<p>使用 WHERE 子句删除指定的记录。</p>
+<p>DELETE FROM departments
+WHERE  department_name = &lsquo;Finance&rsquo;;</p>
+</li>
+<li>
+<p>如果省略 WHERE 子句，则表中的全部数据将被删除</p>
+<p>DELETE FROM  copy_emp;</p>
+</li>
+<li>
+<p><strong>删除中的数据完整性错误</strong></p>
+<p>DELETE FROM departments WHERE department_id = 60;</p>
+</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./7c9a90393fa44478bc85d45ded680f68.png"
+        data-srcset="./7c9a90393fa44478bc85d45ded680f68.png, ./7c9a90393fa44478bc85d45ded680f68.png 1.5x, ./7c9a90393fa44478bc85d45ded680f68.png 2x"
+        data-sizes="auto"
+        alt="./7c9a90393fa44478bc85d45ded680f68.png"
+        title="在这里插入图片描述" /></p>
+<blockquote>
+<p>说明：You cannot delete a row that contains a primary key that is used as a foreign key in another table.</p>
+</blockquote>
+<h2 id="114-mysql8新特性计算列">11.4 MySQL8新特性：计算列</h2>
+<blockquote>
+<ul>
+<li>什么叫计算列呢？简单来说就是某一列的值是通过别的列计算得来的。例如，a列值为1、b列值为2，c列不需要手动插入，定义a+b的结果为c的值，那么c就是计算列，是通过别的列计算得来的。</li>
+<li>在MySQL 8.0中，CREATE TABLE 和 ALTER TABLE 中都支持增加计算列。下面以CREATE TABLE为例进行讲解。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>举例：定义数据表tb1，然后定义字段id、字段a、字段b和字段c，其中字段c为计算列，用于计算a+b的值。
+首先创建测试表tb1，语句如下：</p>
+</blockquote>
+<h1 id="第12章-mysql数据类型">第12章 MySQL数据类型</h1>
+<h2 id="121-mysql中的数据类型">12.1 MySQL中的数据类型</h2>
+<p>类型</p>
+<p>类型举例</p>
+<p>整数类型</p>
+<p>TINYINT、SMALLINT、MEDIUMINT、INT(或INTEGER)、BIGINT</p>
+<p>浮点类型</p>
+<p>FLOAT、DOUBLE</p>
+<p>定点数类型</p>
+<p>DECIMAL</p>
+<p>位类型</p>
+<p>BIT</p>
+<p>日期时间类型</p>
+<p>YEAR、TIME、DATE、DATETIME、TIMESTAMP</p>
+<p>文本字符串类型</p>
+<p>CHAR、VARCHAR、TINYTEXT、TEXT、MEDIUMTEXT、LONGTEXT</p>
+<p>枚举类型</p>
+<p>ENUM</p>
+<p>集合类型</p>
+<p>SET</p>
+<p>二进制字符串类型</p>
+<p>BINARY、VARBINARY、TINYBLOB、BLOB、MEDIUMBLOB、LONGBLOB</p>
+<p>JSON类型</p>
+<p>JSON对象、JSON数组</p>
+<p>空间数据类型</p>
+<p>单值类型：GEOMETRY、POINT、LINESTRING、POLYGON；
+集合类型：MULTIPOINT、MULTILINESTRING、MULTIPOLYGON、GEOMETRYCOLLECTION</p>
+<p><strong>常见数据类型的属性</strong>，如下：</p>
+<p>MySQL关键字</p>
+<p>含义</p>
+<p>NULL</p>
+<p>数据列可包含NULL值</p>
+<p>NOT NULL</p>
+<p>数据列不允许包含NULL值</p>
+<p>DEFAULT</p>
+<p>默认值</p>
+<p>PRIMARY KEY</p>
+<p>主键</p>
+<p>AUTO_INCREMENT</p>
+<p>自动递增，适用于整数类型</p>
+<p>UNSIGNED</p>
+<p>无符号</p>
+<p>CHARACTER SET name</p>
+<p>指定一个字符集</p>
+<h2 id="122-整数类型">12.2 整数类型</h2>
+<h3 id="12-类型介绍">1.2 类型介绍</h3>
+<blockquote>
+<p>整数类型一共有 5 种，包括 TINYINT、SMALLINT、MEDIUMINT、INT(INTEGER)和 BIGINT。</p>
+</blockquote>
+<p>它们的区别如下表所示：</p>
+<p><strong>整数类型</strong></p>
+<p><strong>字节</strong></p>
+<p>有符号数取值范围</p>
+<p>无符号数取值范围</p>
+<p>TINYINT</p>
+<p>1</p>
+<p>-128~127</p>
+<p>0~255</p>
+<p>SMALLINT</p>
+<p>2</p>
+<p>-32768~32767</p>
+<p>0~65535</p>
+<p>MEDIUMINT</p>
+<p>3</p>
+<p>-8388608~8388607</p>
+<p>0~16777215</p>
+<p>INT、INTEGER</p>
+<p>4</p>
+<p>-2147483648~2147483647</p>
+<p>0~4294967295</p>
+<p>BIGINT</p>
+<p>8</p>
+<p>-9223372036854775808~9223372036854775807</p>
+<p>0~18446744073709551615</p>
+<h3 id="13-可选属性">1.3 可选属性</h3>
+<p><strong>整数类型的可选属性有三个：</strong></p>
+<h4 id="131-m">1.3.1 M</h4>
+<blockquote>
+<ul>
+<li>M<code>: 表示显示宽度，M的取值范围是(0, 255)。例如，int(5)：当数据宽度小于5位的时候在数字前面需要用字符填满宽度。该项功能需要配合“</code>ZEROFILL`”使用，表示用“0”填满宽度，否则指定显示宽度无效。</li>
+<li>如果设置了显示宽度，那么插入的数据宽度超过显示宽度限制，会不会截断或插入失败？
+答案：不会对插入的数据有任何影响，还是按照类型的实际宽度进行保存，即<code>显示宽度与类型可以存储的值范围无关</code>。<strong>从MySQL 8.0.17开始，整数数据类型不推荐使用显示宽度属性。</strong></li>
+<li>整型数据类型可以在定义表结构时指定所需要的显示宽度，如果不指定，则系统为每一种类型指定默认的宽度值。</li>
+</ul>
+</blockquote>
+<pre><code>-- 举例:
+CREATE TABLE test_int1 ( x TINYINT,　y SMALLINT,　z MEDIUMINT,　m INT,　n BIGINT );
+</code></pre>
+<p>查看表结构 (MySQL5.7中显式如下，MySQL8中不再显式范围)</p>
+<pre><code>mysql&gt; desc test_int1;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+|   x   | tinyint(4)   | YES  |     | NULL    |       |
+| 　y   | smallint(6)  | YES  |     | NULL    |       |
+| 　z   | mediumint(9) | YES  |     | NULL    |       |
+| 　m   | int(11)      | YES  |     | NULL    |       |
+| 　n   | bigint(20)   | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+</code></pre>
+<blockquote>
+<p>TINYINT有符号数和无符号数的取值范围分别为-128127和0255，由于负号占了一个数字位，因此TINYINT默认的显示宽度为4。同理，其他整数类型的默认显示宽度与其有符号数的最小值的宽度相同。</p>
+</blockquote>
+<pre><code>-- 举例:
+CREATE TABLE test_int2(
+f1 INT,
+f2 INT(5),
+f3 INT(5) ZEROFILL
+)
+
+DESC test_int2;
+
+INSERT INTO test_int2(f1,f2,f3)
+VALUES(1,123,123);
+
+INSERT INTO test_int2(f1,f2)
+VALUES(123456,123456);
+
+INSERT INTO test_int2(f1,f2,f3)
+VALUES(123456,123456,123456);
+
+
+mysql&gt; SELECT * FROM test_int2;
++--------+--------+--------+
+| f1     | f2     | f3     |
++--------+--------+--------+
+|      1 |    123 |  00123 |
+| 123456 | 123456 |   NULL |
+| 123456 | 123456 | 123456 |
++--------+--------+--------+
+3 rows in set (0.00 sec)
+</code></pre>
+<h4 id="132-unsigned">1.3.2 UNSIGNED</h4>
+<blockquote>
+<ul>
+<li>UNSIGNED`: 无符号类型(非负)，所有的整数类型都有一个可选的属性UNSIGNED(无符号属性)，无符号整数类型的最小取值为0。所以，如果需要在MySQL数据库中保存非负整数值时，可以将整数类型设置为无符号类型。</li>
+<li>int类型默认显示宽度为int(11)，无符号int类型默认显示宽度为int(10)。</li>
+</ul>
+</blockquote>
+<pre><code>CREATE TABLE test_int3(
+f1 INT UNSIGNED
+);
+
+mysql&gt; desc test_int3;
++-------+------------------+------+-----+---------+-------+
+| Field | Type             | Null | Key | Default | Extra |
++-------+------------------+------+-----+---------+-------+
+| f1    | int(10) unsigned | YES  |     | NULL    |       |
++-------+------------------+------+-----+---------+-------+
+1 row in set (0.00 sec)
+</code></pre>
+<h4 id="133-zerofill">1.3.3 ZEROFILL</h4>
+<blockquote>
+<ul>
+<li><code>ZEROFILL</code>: 0填充,(如果某列是ZEROFILL，那么MySQL会自动为当前列添加UNSIGNED属性)，如果指定了ZEROFILL只是表示不够M位时，用0在左边填充，如果超过M位，只要不超过数据存储范围即可。</li>
+<li>原来，在 int(M) 中，M 的值跟 int(M) 所占多少存储空间并无任何关系。 int(3)、int(4)、int(8) 在磁盘上都是占用 4 bytes 的存储空间。也就是说，**int(M)，必须和UNSIGNED ZEROFILL一起使用才有意义。**如果整数值超过M位，就按照实际位数存储。只是无须再用字符 0 进行填充。</li>
+</ul>
+</blockquote>
+<h3 id="14-适用场景">1.4 适用场景</h3>
+<blockquote>
+<ul>
+<li>TINYINT`：一般用于枚举数据，比如系统设定取值范围很小且固定的场景。</li>
+<li><code>SMALLINT</code>：可以用于较小范围的统计数据，比如统计工厂的固定资产库存数量等。</li>
+<li><code>MEDIUMINT</code>：用于较大整数的计算，比如车站每日的客流量等。</li>
+<li><code>INT、INTEGER</code>：取值范围足够大，一般情况下不用考虑超限问题，用得最多。比如商品编号。</li>
+<li><code>BIGINT</code>：只有当你处理特别巨大的整数时才会用到。比如双十一的交易量、大型门户网站点击量、证券公司衍生产品持仓等。</li>
+</ul>
+</blockquote>
+<h3 id="15-如何选择">1.5 如何选择</h3>
+<blockquote>
+<ul>
+<li>在评估用哪种整数类型的时候，你需要考虑<code>存储空间</code>和<code>可靠性</code>的平衡问题：一方 面，用占用字节数少的整数类型可以节省存储空间；另一方面，要是为了节省存储空间， 使用的整数类型取值范围太小，一旦遇到超出取值范围的情况，就可能引起<code>系统错误</code>，影响可靠性。</li>
+<li>举个例子，商品编号采用的数据类型是 INT。原因就在于，客户门店中流通的商品种类较多，而且，每天都有旧商品下架，新商品上架，这样不断迭代，日积月累。</li>
+<li>如果使用 SMALLINT 类型，虽然占用字节数比 INT 类型的整数少，但是却不能保证数据不会超出范围 65535。相反，使用 INT，就能确保有足够大的取值范围，不用担心数据超出范围影响可靠性的问题。</li>
+<li>你要注意的是，在实际工作中，<strong>系统故障产生的成本远远超过增加几个字段存储空间所产生的成本</strong>。因此，我建议你首先确保数据不会超过取值范围，在这个前提之下，再去考虑如何节省存储空间。</li>
+</ul>
+</blockquote>
+<h2 id="123-浮点类型">12.3 浮点类型</h2>
+<h3 id="16-类型介绍">1.6 类型介绍</h3>
+<blockquote>
+<p>浮点数和定点数类型的特点是可以<code>处理小数</code>，你可以把整数看成小数的一个特例。因此，浮点数和定点数的使用场景，比整数大多了。 MySQL支持的浮点数类型，分别是 FLOAT、DOUBLE、REAL。</p>
+<ul>
+<li>FLOAT 表示单精度浮点数；</li>
+<li>DOUBLE 表示双精度浮点数；
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812155.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812155.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812155.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812155.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812155.png"
+        title="在这里插入图片描述" /></li>
+<li>REAL默认就是 DOUBLE。如果你把 SQL 模式设定为启用“<code>REAL_AS_FLOAT</code>”，那 么，MySQL 就认为 REAL 是 FLOAT。如果要启用“REAL_AS_FLOAT”，可以通过以下 SQL 语句实现：SET sql_mode = “REAL_AS_FLOAT”;</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>问题1</strong>：FLOAT 和 DOUBLE 这两种数据类型的区别是啥呢？</p>
+<ul>
+<li>FLOAT 占用字节数少，取值范围小；DOUBLE 占用字节数多，取值范围也大。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>问题2</strong>：为什么浮点数类型的无符号数取值范围，只相当于有符号数取值范围的一半，也就是只相当于有符号数取值范围大于等于零的部分呢？</p>
+<ul>
+<li>MySQL 存储浮点数的格式为：<code>符号(S)</code>、<code>尾数(M)</code>和 <code>阶码(E)</code>。因此，无论有没有符号，MySQL 的浮点数都会存储表示符号的部分。因此， 所谓的无符号数取值范围，其实就是有符号数取值范围大于等于零的部分。</li>
+</ul>
+</blockquote>
+<h3 id="17-数据精度说明">1.7 数据精度说明</h3>
+<blockquote>
+<p>对于浮点类型，在MySQL中单精度值使用<code>4</code>个字节，双精度值使用<code>8</code>个字节。</p>
+<ul>
+<li>MySQL允许使用<code>非标准语法</code>(其他数据库未必支持，因此如果涉及到数据迁移，则最好不要这么用)：<code>FLOAT(M,D)</code>或<code>DOUBLE(M,D)</code>。这里，M称为<code>精度</code>，D称为<code>标度</code>。(M,D)中 M=整数位+小数位，D=小数位。 D&lt;=M&lt;=255，0&lt;=D&lt;=30。
+例如，定义为FLOAT(5,2)的一个列可以显示为-999.99-999.99。如果超过这个范围会报错。</li>
+<li>FLOAT和DOUBLE类型在不指定(M,D)时，默认会按照实际的精度(由实际的硬件和操作系统决定)来显示。</li>
+<li>说明：浮点类型，也可以加<code>UNSIGNED</code>，但是不会改变数据范围，例如：FLOAT(3,2) UNSIGNED仍然只能表示0-9.99的范围。</li>
+<li>不管是否显式设置了精度(M,D)，这里MySQL的处理方案如下：
+<ul>
+<li>如果存储时，整数部分超出了范围，MySQL就会报错，不允许存这样的值</li>
+<li>如果存储时，小数点部分若超出范围，就分以下情况：
+<ul>
+<li>若四舍五入后，整数部分没有超出范围，则只警告，但能成功操作并四舍五入删除多余的小数位后保存。例如在FLOAT(5,2)列内插入999.009，近似结果是999.01。</li>
+<li>若四舍五入后，整数部分超出范围，则MySQL报错，并拒绝处理。如FLOAT(5,2)列内插入999.995和-999.995都会报错。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>从MySQL 8.0.17开始，FLOAT(M,D) 和DOUBLE(M,D)用法在官方文档中已经明确不推荐使用</strong>，将来可能被移除。另外，关于浮点型FLOAT和DOUBLE的UNSIGNED也不推荐使用了，将来也可能被移除。</li>
+</ul>
+</blockquote>
+<pre><code>-- 举例
+CREATE TABLE test_double1(
+f1 FLOAT,
+f2 FLOAT(5,2),
+f3 DOUBLE,
+f4 DOUBLE(5,2)
+);
+
+DESC test_double1;
+
+INSERT INTO test_double1
+VALUES(123.456,123.456,123.4567,123.45);
+</code></pre>
+<h1 id="out-of-range-value-for-column-f2-at-row-1">Out of range value for column &lsquo;f2&rsquo; at row 1</h1>
+<pre><code>INSERT INTO test_double1
+VALUES(123.456,1234.456,123.4567,123.45);
+
+SELECT * FROM test_double1;
+</code></pre>
+<h2 id="2-精度误差说明">2 精度误差说明</h2>
+<blockquote>
+<p>浮点数类型有个缺陷，就是不精准。下面我来重点解释一下为什么 MySQL 的浮点数不够精准。比如，我们设计一个表，有f1这个字段，插入值分别为0.47,0.44,0.19，我们期待的运行结果是：0.47 + 0.44 + 0.19 = 1.1。而使用sum之后查询：</p>
+</blockquote>
+<pre><code>CREATE TABLE test_double2(
+f1 DOUBLE
+);
+
+INSERT INTO test_double2
+VALUES(0.47),(0.44),(0.19);
+
+
+mysql&gt; SELECT SUM(f1)
+    -&gt; FROM test_double2;
++--------------------+
+| SUM(f1)            |
++--------------------+
+| 1.0999999999999999 |
++--------------------+
+1 row in set (0.00 sec)
+
+
+mysql&gt; SELECT SUM(f1) = 1.1,1.1 = 1.1
+    -&gt; FROM test_double2;
++---------------+-----------+
+| SUM(f1) = 1.1 | 1.1 = 1.1 |
++---------------+-----------+
+|             0 |         1 |
++---------------+-----------+
+1 row in set (0.00 sec)
+</code></pre>
+<blockquote>
+<ul>
+<li>查询结果是 1.0999999999999999。看到了吗？虽然误差很小，但确实有误差。 你也可以尝试把数据类型改成 FLOAT，然后运行求和查询，得到的是， 1.0999999940395355。显然，误差更大了。</li>
+<li>那么，为什么会存在这样的误差呢？问题还是出在 MySQL 对浮点类型数据的存储方式上。</li>
+<li>MySQL 用 4 个字节存储 FLOAT 类型数据，用 8 个字节来存储 DOUBLE 类型数据。无论哪个，都是采用二进制的方式来进行存储的。比如 9.625，用二进制来表达，就是 1001.101，或者表达成 1.001101×2^3。如果尾数不是 0 或 5(比如 9.624)，你就无法用一个二进制数来精确表达。进而，就只好在取值允许的范围内进行四舍五入。</li>
+<li>在编程中，如果用到浮点数，要特别注意误差问题，**因为浮点数是不准确的，所以我们要避免使用“=”来判断两个数是否相等。**同时，在一些对精确度要求较高的项目中，千万不要使用浮点数，不然会导致结果错误，甚至是造成不可挽回的损失。那么，MySQL 有没有精准的数据类型呢？当然有，这就是定点数类型<code>DECIMAL</code>。</li>
+</ul>
+</blockquote>
+<h2 id="124-定点数类型">12.4 定点数类型</h2>
+<h3 id="21-类型介绍">2.1 类型介绍</h3>
+<blockquote>
+<ul>
+<li>MySQL中的定点数类型只有 DECIMAL 一种类型。</li>
+</ul>
+</blockquote>
+<p>数据类型</p>
+<p>字节数</p>
+<p>含义</p>
+<p>DECIMAL(M,D),DEC,NUMERIC</p>
+<p>M+2字节</p>
+<p>有效范围由M和D决定</p>
+<blockquote>
+<p>使用 DECIMAL(M,D) 的方式表示高精度小数。其中，M被称为精度，D被称为标度。0&lt;=M&lt;=65，0&lt;=D&lt;=30，D&lt;M。例如，定义DECIMAL(5,2)的类型，表示该列取值范围是-999.99~999.99。</p>
+</blockquote>
+<blockquote>
+<ul>
+<li><strong>DECIMAL(M,D)的最大取值范围与DOUBLE类型一样</strong>，但是有效的数据范围是由M和D决定的。DECIMAL 的存储空间并不是固定的，由精度值M决定，总共占用的存储空间为M+2个字节。也就是说，在一些对精度要求不高的场景下，比起占用同样字节长度的定点数，浮点数表达的数值范围可以更大一些。</li>
+<li>定点数在MySQL内部是以<code>字符串</code>的形式进行存储，这就决定了它一定是精准的。</li>
+<li>当DECIMAL类型不指定精度和标度时，其默认为DECIMAL(10,0)。当数据的精度超出了定点数类型的精度范围时，则MySQL同样会进行四舍五入处理。</li>
+<li><strong>浮点数 vs 定点数</strong>
+<ul>
+<li>浮点数相对于定点数的优点是在长度一定的情况下，浮点类型取值范围大，但是不精准，适用于需要取值范围大，又可以容忍微小误差的科学计算场景(比如计算化学、分子建模、流体动力学等)</li>
+<li>定点数类型取值范围相对小，但是精准，没有误差，适合于对精度要求极高的场景 (比如涉及金额计算的场景)</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<pre><code>-- 举例:
+CREATE TABLE test_decimal1(
+f1 DECIMAL,
+f2 DECIMAL(5,2)
+);
+
+DESC test_decimal1;
+
+INSERT INTO test_decimal1(f1,f2)
+VALUES(123.123,123.456);
+</code></pre>
+<h1 id="out-of-range-value-for-column-f2-at-row-1-1">Out of range value for column &lsquo;f2&rsquo; at row 1</h1>
+<pre><code>INSERT INTO test_decimal1(f2)
+VALUES(1234.34);
+
+
+mysql&gt; SELECT * FROM test_decimal1;
++------+--------+
+| f1   | f2     |
++------+--------+
+|  123 | 123.46 |
++------+--------+
+1 row in set (0.00 sec)
+</code></pre>
+<p><strong>举例</strong>：我们运行下面的语句，把test_double2表中字段“f1”的数据类型修改为</p>
+<pre><code>DECIMAL(5,2)：
+ALTER TABLE test_double2
+MODIFY f1 DECIMAL(5,2);
+</code></pre>
+<p>然后，我们再一次运行求和语句：</p>
+<pre><code>mysql&gt; SELECT SUM(f1)
+    -&gt; FROM test_double2;
++---------+
+| SUM(f1) |
++---------+
+|    1.10 |
++---------+
+1 row in set (0.00 sec)
+
+
+mysql&gt; SELECT SUM(f1) = 1.1
+    -&gt; FROM test_double2;
++---------------+
+| SUM(f1) = 1.1 |
++---------------+
+|             1 |
++---------------+
+1 row in set (0.00 sec)
+</code></pre>
+<blockquote>
+<p><strong>经验</strong>： 由于 DECIMAL 数据类型的精准性，在我们的项目中，除了极少数(比如商品编号)用到整数类型外，其他的数值都用的是 DECIMAL，原因就是这个项目所处的零售行业，要求精准，一分钱也不能差。</p>
+</blockquote>
+<h2 id="125-位类型bit">12.5. 位类型：BIT</h2>
+<blockquote>
+<p>BIT类型中存储的是二进制值，类似010110。</p>
+</blockquote>
+<p>二进制字符串类型</p>
+<p>长度</p>
+<p>长度范围</p>
+<p>占用空间</p>
+<p>BIT(M)</p>
+<p>M</p>
+<p>1 &lt;= M &lt;= 64</p>
+<p>约为(M + 7)/8个字节</p>
+<blockquote>
+<p>BIT类型，如果没有指定(M)，默认是1位。这个1位，表示只能存1位的二进制值。这里(M)是表示二进制的位数，位数最小值为1，最大值为64。</p>
+</blockquote>
+<pre><code>CREATE TABLE test_bit1(
+f1 BIT,
+f2 BIT(5),
+f3 BIT(64)
+);
+
+INSERT INTO test_bit1(f1)
+VALUES(1);
+</code></pre>
+<h1 id="data-too-long-for-column-f1-at-row-1">Data too long for column &lsquo;f1&rsquo; at row 1</h1>
+<pre><code>INSERT INTO test_bit1(f1)
+VALUES(2);
+
+INSERT INTO test_bit1(f2)
+VALUES(23);
+</code></pre>
+<blockquote>
+<p>注意：在向BIT类型的字段中插入数据时，一定要确保插入的数据在BIT类型支持的范围内。</p>
+</blockquote>
+<p>使用SELECT命令查询位字段时，可以用<code>BIN()</code>或<code>HEX()</code>函数进行读取。</p>
+<pre><code>mysql&gt; SELECT * FROM test_bit1;
++------------+------------+------------+
+| f1         | f2         | f3         |
++------------+------------+------------+
+| 0x01       | NULL       | NULL       |
+| NULL       | 0x17       | NULL       |
++------------+------------+------------+
+2 rows in set (0.00 sec)
+
+
+mysql&gt; SELECT BIN(f2),HEX(f2)
+    -&gt; FROM test_bit1;
++---------+---------+
+| BIN(f2) | HEX(f2) |
++---------+---------+
+| NULL    | NULL    |
+| 10111   | 17      |
++---------+---------+
+2 rows in set (0.00 sec)
+
+
+mysql&gt; SELECT f2 + 0
+    -&gt; FROM test_bit1;
++--------+
+| f2 + 0 |
++--------+
+|   NULL |
+|     23 |
++--------+
+2 rows in set (0.00 sec)
+</code></pre>
+<blockquote>
+<p>可以看到，使用b+0查询数据时，可以直接查询出存储的十进制数据的值。</p>
+</blockquote>
+<h2 id="126-日期与时间类型">12.6 日期与时间类型</h2>
+<blockquote>
+<ul>
+<li>日期与时间是重要的信息，在我们的系统中，几乎所有的数据表都用得到。原因是客户需要知道数据的时间标签，从而进行数据查询、统计和处理。</li>
+<li>MySQL有多种表示日期和时间的数据类型，不同的版本可能有所差异，MySQL8.0版本支持的日期和时间类型主要有：YEAR类型、TIME类型、DATE类型、DATETIME类型和TIMESTAMP类型。
+<ul>
+<li><code>YEAR</code>类型通常用来表示年</li>
+<li><code>DATE</code>类型通常用来表示年、月、日</li>
+<li><code>TIME</code>类型通常用来表示时、分、秒</li>
+<li><code>DATETIME</code>类型通常用来表示年、月、日、时、分、秒</li>
+<li><code>TIMESTAMP</code>类型通常用来表示带时区的年、月、日、时、分、秒</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>类型</p>
+<p>名称</p>
+<p>字节</p>
+<p>日期格式</p>
+<p>最小值</p>
+<p>最大值</p>
+<p>YEAR</p>
+<p>年</p>
+<p>1</p>
+<p>YYYY或YY</p>
+<p>1901</p>
+<p>2155</p>
+<p>TIME</p>
+<p>时间</p>
+<p>3</p>
+<p>HH:MM:SS</p>
+<p>-838:59:59</p>
+<p>838:59:59</p>
+<p>DATE</p>
+<p>日期</p>
+<p>3</p>
+<p>YYYY-MM-DD</p>
+<p>1000-01-01</p>
+<p>9999-12-03</p>
+<p>DATETIME</p>
+<p>日期时间</p>
+<p>8</p>
+<p>YYYY-MM-DD HH:MM:SS</p>
+<p>1000-01-01 00:00:00</p>
+<p>9999-12-31 23:59:59</p>
+<p>TIMESTAMP</p>
+<p>日期时间</p>
+<p>4</p>
+<p>YYYY-MM-DD HH:MM:SS</p>
+<p>1970-01-01 00:00:00 UTC</p>
+<p>2038-01-19 03:14:07UTC</p>
+<blockquote>
+<ul>
+<li>可以看到，不同数据类型表示的时间内容不同、取值范围不同，而且占用的字节数也不一样，你要根据实际需要灵活选取。</li>
+<li>为什么时间类型 TIME 的取值范围不是 -23:59:59～23:59:59 呢？原因是 MySQL 设计的 TIME 类型，不光表示一天之内的时间，而且可以用来表示一个时间间隔，这个时间间隔可以超过 24 小时。</li>
+</ul>
+</blockquote>
+<h2 id="3-year类型">3 YEAR类型</h2>
+<blockquote>
+<p>YEAR类型用来表示年份，在所有的日期时间类型中所占用的存储空间最小，只需要<code>1个字节</code>的存储空间。
+在MySQL中，YEAR有以下几种存储格式：</p>
+<ul>
+<li>以4位字符串或数字格式表示YEAR类型，其格式为YYYY，最小值为1901，最大值为2155。</li>
+<li>以2位字符串格式表示YEAR类型，最小值为00，最大值为99。
+<ul>
+<li>当取值为01到69时，表示2001到2069；</li>
+<li>当取值为70到99时，表示1970到1999；</li>
+<li>当取值整数的0或00添加的话，那么是0000年；</li>
+<li>当取值是日期/字符串的’0’添加的话，是2000年。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>从MySQL5.5.27开始，2位格式的YEAR已经不推荐使用</strong>。YEAR默认格式就是“YYYY”，没必要写成YEAR(4)，从MySQL 8.0.19开始，不推荐使用指定显示宽度的YEAR(4)数据类型。</p>
+</blockquote>
+<pre><code>CREATE TABLE test_year(
+f1 YEAR,
+f2 YEAR(4)
+);
+
+
+mysql&gt; DESC test_year;
++-------+---------+------+-----+---------+-------+
+| Field | Type    | Null | Key | Default | Extra |
++-------+---------+------+-----+---------+-------+
+| f1    | year(4) | YES  |     | NULL    |       |
+| f2    | year(4) | YES  |     | NULL    |       |
++-------+---------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+
+INSERT INTO test_year
+VALUES('2020','2021');
+
+mysql&gt; SELECT * FROM test_year;
++------+------+
+| f1   | f2   |
++------+------+
+| 2020 | 2021 |
++------+------+
+1 rows in set (0.00 sec)
+
+
+INSERT INTO test_year
+VALUES('45','71');
+
+INSERT INTO test_year
+VALUES(0,'0');
+
+mysql&gt; SELECT * FROM test_year;
++------+------+
+| f1   | f2   |
++------+------+
+| 2020 | 2021 |
+| 2045 | 1971 |
+| 0000 | 2000 |
++------+------+
+3 rows in set (0.00 sec)
+</code></pre>
+<h3 id="31-date类型">3.1 DATE类型</h3>
+<blockquote>
+<p>DATE类型表示日期，没有时间部分，格式为<code>YYYY-MM-DD</code>，其中，YYYY表示年份，MM表示月份，DD表示日期。需要<code>3个字节</code>的存储空间。在向DATE类型的字段插入数据时，同样需要满足一定的格式条件。</p>
+<ul>
+<li>以<code>YYYY-MM-DD</code>格式或者<code>YYYYMMDD</code>格式表示的字符串日期，其最小取值为1000-01-01，最大取值为9999-12-03。YYYYMMDD格式会被转化为YYYY-MM-DD格式。</li>
+<li>以<code>YY-MM-DD</code>格式或者<code>YYMMDD</code>格式表示的字符串日期，此格式中，年份为两位数值或字符串满足YEAR类型的格式条件为：当年份取值为00到69时，会被转化为2000到2069；当年份取值为70到99时，会被转化为1970到1999。</li>
+<li>使用<code>CURRENT_DATE()</code>或者<code>NOW()</code>函数，会插入当前系统的日期。</li>
+</ul>
+</blockquote>
+<p><strong>举例</strong>：创建数据表，表中只包含一个DATE类型的字段f1。</p>
+<pre><code>CREATE TABLE test_date1(
+f1 DATE
+);
+Query OK, 0 rows affected (0.13 sec)
+
+
+-- 插入数据：
+INSERT INTO test_date1
+VALUES ('2020-10-01'), ('20201001'),(20201001);
+
+INSERT INTO test_date1
+VALUES ('00-01-01'), ('000101'), ('69-10-01'), ('691001'), ('70-01-01'), ('700101'), ('99-01-01'), ('990101');
+
+INSERT INTO test_date1
+VALUES (000301), (690301), (700301), (990301);
+
+INSERT INTO test_date1
+VALUES (CURRENT_DATE()), (NOW());
+
+SELECT *
+FROM test_date1;
+</code></pre>
+<h3 id="32-time类型">3.2 TIME类型</h3>
+<blockquote>
+<p>TIME类型用来表示时间，不包含日期部分。在MySQL中，需要<code>3个字节</code>的存储空间来存储TIME类型的数据，可以使用“HH:MM:SS”格式来表示TIME类型，其中，HH表示小时，MM表示分钟，SS表示秒。</p>
+</blockquote>
+<blockquote>
+<p>在MySQL中，向TIME类型的字段插入数据时，也可以使用几种不同的格式。</p>
+<ul>
+<li>可以使用带有冒号的字符串，比如’<code>D HH:MM:SS'</code>、‘<code>HH:MM:SS</code>’、‘<code>HH:MM</code>’、‘<code>D HH:MM</code>’、&rsquo;<code>D HH</code>’或’<code>SS</code>’格式，都能被正确地插入TIME类型的字段中。其中D表示天，其最小值为0，最大值为34。如果使用带有D格式的字符串插入TIME类型的字段时，D会被转化为小时，计算格式为D*24+HH。当使用带有冒号并且不带D的字符串表示时间时，表示当天的时间，比如12:10表示12:10:00，而不是00:12:10。</li>
+<li>可以使用不带有冒号的字符串或者数字，格式为’<code>HHMMSS</code>’或者<code>HHMMSS</code>。如果插入一个不合法的字符串或者数字，MySQL在存储数据时，会将其自动转化为00:00:00进行存储。比如1210，MySQL会将最右边的两位解析成秒，表示00:12:10，而不是12:10:00。</li>
+<li>使用<code>CURRENT_TIME()</code>或者<code>NOW()</code>，会插入当前系统的时间。</li>
+</ul>
+</blockquote>
+<p><strong>举例</strong>：创建数据表，表中包含一个TIME类型的字段f1。</p>
+<pre><code>CREATE TABLE test_time1(
+f1 TIME
+);
+Query OK, 0 rows affected (0.02 sec)
+
+
+INSERT INTO test_time1
+VALUES('2 12:30:29'), ('12:35:29'), ('12:40'), ('2 12:40'),('1 05'), ('45');
+
+INSERT INTO test_time1
+VALUES ('123520'), (124011),(1210);
+
+INSERT INTO test_time1
+VALUES (NOW()), (CURRENT_TIME());
+
+SELECT * FROM test_time1;
+</code></pre>
+<h3 id="33-datetime类型">3.3 DATETIME类型</h3>
+<blockquote>
+<p>DATETIME类型在所有的日期时间类型中占用的存储空间最大，总共需要<code>8</code>个字节的存储空间。在格式上为DATE类型和TIME类型的组合，可以表示为<code>YYYY-MM-DD HH:MM:SS</code>，其中YYYY表示年份，MM表示月份，DD表示日期，HH表示小时，MM表示分钟，SS表示秒。</p>
+</blockquote>
+<blockquote>
+<p>在向DATETIME类型的字段插入数据时，同样需要满足一定的格式条件。</p>
+<ul>
+<li>以<code>YYYY-MM-DD HH:MM:SS</code>格式或者<code>YYYYMMDDHHMMSS</code>格式的字符串插入DATETIME类型的字段时，最小值为1000-01-01 00:00:00，最大值为9999-12-03 23:59:59。
+<ul>
+<li>以YYYYMMDDHHMMSS格式的数字插入DATETIME类型的字段时，会被转化为YYYY-MM-DD HH:MM:SS格式。</li>
+</ul>
+</li>
+<li>以<code>YY-MM-DD HH:MM:SS</code>格式或者<code>YYMMDDHHMMSS</code>格式的字符串插入DATETIME类型的字段时，两位数的年份规则符合YEAR类型的规则，00到69表示2000到2069；70到99表示1970到1999。</li>
+<li>使用函数<code>CURRENT_TIMESTAMP()</code>和<code>NOW()</code>，可以向DATETIME类型的字段插入系统的当前日期和时间。</li>
+</ul>
+</blockquote>
+<p><strong>举例</strong>：创建数据表，表中包含一个DATETIME类型的字段dt。</p>
+<pre><code>CREATE TABLE test_datetime1(
+dt DATETIME
+);
+Query OK, 0 rows affected (0.02 sec)
+
+
+-- 插入数据：
+INSERT INTO test_datetime1
+VALUES ('2021-01-01 06:50:30'), ('20210101065030');
+
+INSERT INTO test_datetime1
+VALUES ('99-01-01 00:00:00'), ('990101000000'), ('20-01-01 00:00:00'), ('200101000000');
+
+INSERT INTO test_datetime1
+VALUES (20200101000000), (200101000000), (19990101000000), (990101000000);
+
+INSERT INTO test_datetime1
+VALUES (CURRENT_TIMESTAMP()), (NOW());
+</code></pre>
+<h3 id="34-timestamp类型">3.4 TIMESTAMP类型</h3>
+<blockquote>
+<ul>
+<li>TIMESTAMP类型也可以表示日期时间，其显示格式与DATETIME类型相同，都是<code>YYYY-MM-DD HH:MM:SS</code>，需要4个字节的存储空间。但是TIMESTAMP存储的时间范围比DATETIME要小很多，只能存储“1970-01-01 00:00:01 UTC”到“2038-01-19 03:14:07 UTC”之间的时间。其中，UTC表示世界统一时间，也叫作世界标准时间。
+<ul>
+<li><strong>存储数据的时候需要对当前时间所在的时区进行转换，查询数据的时候再将时间转换回当前的时区。因此，使用TIMESTAMP存储的同一个时间值，在不同的时区查询时会显示不同的时间。</strong></li>
+</ul>
+</li>
+<li>向TIMESTAMP类型的字段插入数据时，当插入的数据格式满足YY-MM-DD HH:MM:SS和YYMMDDHHMMSS时，两位数值的年份同样符合YEAR类型的规则条件，只不过表示的时间范围要小很多。</li>
+<li>如果向TIMESTAMP类型的字段插入的时间超出了TIMESTAMP类型的范围，则MySQL会抛出错误信息。</li>
+</ul>
+</blockquote>
+<p><strong>举例</strong>：创建数据表，表中包含一个TIMESTAMP类型的字段ts。</p>
+<pre><code>CREATE TABLE test_timestamp1(
+ts TIMESTAMP
+);
+
+
+-- 插入数据
+INSERT INTO test_timestamp1
+VALUES ('1999-01-01 03:04:50'), ('19990101030405'), ('99-01-01 03:04:05'), ('990101030405');
+
+INSERT INTO test_timestamp1
+VALUES ('2020@01@01@00@00@00'), ('20@01@01@00@00@00');
+
+INSERT INTO test_timestamp1
+VALUES (CURRENT_TIMESTAMP()), (NOW());
+</code></pre>
+<h1 id="incorrect-datetime-value">Incorrect datetime value</h1>
+<pre><code>INSERT INTO test_timestamp1
+VALUES ('2038-01-20 03:14:07');
+</code></pre>
+<blockquote>
+<p><strong>TIMESTAMP和DATETIME的区别：</strong></p>
+<ul>
+<li>TIMESTAMP存储空间比较小，表示的日期时间范围也比较小</li>
+<li>底层存储方式不同，TIMESTAMP底层存储的是毫秒值，距离1970-1-1 0:0:0 0毫秒的毫秒值。</li>
+<li>两个日期比较大小或日期计算时，TIMESTAMP更方便、更快。</li>
+<li>TIMESTAMP和时区有关。TIMESTAMP会根据用户的时区不同，显示不同的结果。而DATETIME则只能反映出插入时当地的时区，其他时区的人查看数据必然会有误差的。</li>
+</ul>
+</blockquote>
+<pre><code>CREATE TABLE temp_time(
+d1 DATETIME,
+d2 TIMESTAMP
+);
+
+
+INSERT INTO temp_time VALUES('2021-9-2 14:45:52','2021-9-2 14:45:52');
+
+INSERT INTO temp_time VALUES(NOW(),NOW());
+
+
+mysql&gt; SELECT * FROM temp_time;
++---------------------+---------------------+
+| d1                  | d2                  |
++---------------------+---------------------+
+| 2021-09-02 14:45:52 | 2021-09-02 14:45:52 |
+| 2021-11-03 17:38:17 | 2021-11-03 17:38:17 |
++---------------------+---------------------+
+2 rows in set (0.00 sec)
+</code></pre>
+<h1 id="修改当前的时区">修改当前的时区</h1>
+<pre><code>SET time_zone = '+9:00';
+
+
+mysql&gt; SELECT * FROM temp_time;
++---------------------+---------------------+
+| d1                  | d2                  |
++---------------------+---------------------+
+| 2021-09-02 14:45:52 | 2021-09-02 15:45:52 |
+| 2021-11-03 17:38:17 | 2021-11-03 18:38:17 |
++---------------------+---------------------+
+2 rows in set (0.00 sec)
+</code></pre>
+<p><strong>经验</strong>：</p>
+<blockquote>
+<ul>
+<li>用得最多的日期时间类型，就是 <code>DATETIME</code>。虽然 MySQL 也支持 YEAR(年)、 TIME(时间)、DATE(日期)，以及 TIMESTAMP 类型，但是在实际项目中，尽量用 DATETIME 类型。因为这个数据类型包括了完整的日期和时间信息，取值范围也最大，使用起来比较方便。毕竟，如果日期时间信息分散在好几个字段，很不容易记，而且查询的时候，SQL 语句也会更加复杂。</li>
+<li>此外，一般存注册时间、商品发布时间等，不建议使用DATETIME存储，而是使用<code>时间戳</code>，因为DATETIME虽然直观，但不便于计算。</li>
+</ul>
+</blockquote>
+<pre><code>mysql&gt; SELECT UNIX_TIMESTAMP();
++------------------+
+| UNIX_TIMESTAMP() |
++------------------+
+|       1635932762 |
++------------------+
+1 row in set (0.00 sec)
+</code></pre>
+<h2 id="127-文本字符串类型">12.7 文本字符串类型</h2>
+<blockquote>
+<ul>
+<li>在实际的项目中，我们还经常遇到一种数据，就是字符串数据。</li>
+<li>MySQL中，文本字符串总体上分为<code>CHAR</code>、<code>VARCHAR</code>、<code>TINYTEXT</code>、<code>TEXT</code>、<code>MEDIUMTEXT</code>、<code>LONGTEXT</code>、<code>ENUM</code>、<code>SET</code>等类型。</li>
+</ul>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812646.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812646.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812646.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812646.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812646.png"
+        title="在这里插入图片描述" /></p>
+<h2 id="4-char与varchar类型">4 CHAR与VARCHAR类型</h2>
+<blockquote>
+<p>CHAR和VARCHAR类型都可以存储比较短的字符串。</p>
+</blockquote>
+<p>字符串(文本)类型</p>
+<p>特点</p>
+<p>长度</p>
+<p>长度范围</p>
+<p>占用的存储空间</p>
+<p>CHAR(M)</p>
+<p>固定长度</p>
+<p>M</p>
+<p>0 &lt;= M &lt;= 255</p>
+<p>M个字节</p>
+<p>VARCHAR(M)</p>
+<p>可变长度</p>
+<p>M</p>
+<p>0 &lt;= M &lt;= 65535</p>
+<p>(实际长度 + 1) 个字节</p>
+<blockquote>
+<p><strong>CHAR类型：</strong></p>
+<ul>
+<li>CHAR(M) 类型一般需要预先定义字符串长度。如果不指定(M)，则表示长度默认是1个字符。</li>
+<li>如果保存时，数据的实际长度比CHAR类型声明的长度小，则会在<code>右侧填充</code>空格以达到指定的长度。当MySQL检索CHAR类型的数据时，CHAR类型的字段会去除尾部的空格。</li>
+<li>定义CHAR类型字段时，声明的字段长度即为CHAR类型字段所占的存储空间的字节数。</li>
+</ul>
+</blockquote>
+<pre><code>CREATE TABLE test_char1(
+c1 CHAR,
+c2 CHAR(5)
+);
+
+DESC test_char1;
+
+
+INSERT INTO test_char1
+VALUES('a','Tom');
+
+SELECT c1,CONCAT(c2,'***') FROM test_char1;
+
+
+INSERT INTO test_char1(c2)
+VALUES('a  ');
+
+SELECT CHAR_LENGTH(c2)
+FROM test_char1;
+</code></pre>
+<blockquote>
+<p><strong>VARCHAR类型：</strong></p>
+<ul>
+<li>VARCHAR(M) 定义时，<code>必须指定</code>长度M，否则报错。</li>
+<li>MySQL4.0版本以下，varchar(20)：指的是20字节，如果存放UTF8汉字时，只能存6个(每个汉字3字节) ；MySQL5.0版本以上，varchar(20)：指的是20字符。</li>
+<li>检索VARCHAR类型的字段数据时，会保留数据尾部的空格。VARCHAR类型的字段所占用的存储空间为字符串实际长度加1个字节。</li>
+</ul>
+</blockquote>
+<pre><code>CREATE TABLE test_varchar1(
+NAME VARCHAR  #错误
+);
+</code></pre>
+<h1 id="column-length-too-big-for-column-name-max--21845">Column length too big for column &lsquo;NAME&rsquo; (max = 21845);</h1>
+<pre><code>CREATE TABLE test_varchar2(
+NAME VARCHAR(65535)  #错误
+);
+
+
+CREATE TABLE test_varchar3(
+NAME VARCHAR(5)
+);
+
+INSERT INTO test_varchar3
+VALUES('尚硅谷'),('尚硅谷教育');
+</code></pre>
+<h1 id="data-too-long-for-column-name-at-row-1">Data too long for column &lsquo;NAME&rsquo; at row 1</h1>
+<pre><code>INSERT INTO test_varchar3
+VALUES('尚硅谷IT教育');
+</code></pre>
+<p><strong>哪些情况使用 CHAR 或 VARCHAR 更好</strong></p>
+<p>类型</p>
+<p>特点</p>
+<p>空间上</p>
+<p>时间上</p>
+<p>适用场景</p>
+<p>CHAR(M)</p>
+<p>固定长度</p>
+<p>浪费存储空间</p>
+<p>效率高</p>
+<p>存储不大，速度要求高</p>
+<p>VARCHAR(M)</p>
+<p>可变长度</p>
+<p>节省存储空间</p>
+<p>效率低</p>
+<p>非CHAR的情况</p>
+<blockquote>
+<ul>
+<li>情况1：存储很短的信息。比如门牌号码101，201……这样很短的信息应该用char，因为varchar还要占个byte用于存储信息长度，本来打算节约存储的，结果得不偿失。</li>
+<li>情况2：固定长度的。比如使用uuid作为主键，那用char应该更合适。因为他固定长度，varchar动态根据长度的特性就消失了，而且还要占个长度信息。</li>
+<li>情况3：十分频繁改变的column。因为varchar每次存储都要有额外的计算，得到长度等工作，如果一个非常频繁改变的，那就要有很多的精力用于计算，而这些对于char来说是不需要的。</li>
+<li>情况4：具体存储引擎中的情况：
+<ul>
+<li><code>MyISAM</code> 数据存储引擎和数据列：MyISAM数据表，最好使用固定长度(CHAR)的数据列代替可变长度(VARCHAR)的数据列。这样使得整个表静态化，从而使<code>数据检索更快</code>，用空间换时间。</li>
+<li><code>MEMORY</code> 存储引擎和数据列：MEMORY数据表目前都使用固定长度的数据行存储，因此无论使用CHAR或VARCHAR列都没有关系，两者都是作为CHAR类型处理的。</li>
+<li><code>InnoDB</code>存储引擎，建议使用VARCHAR类型。因为对于InnoDB数据表，内部的行存储格式并没有区分固定长度和可变长度列(所有数据行都使用指向数据列值的头指针)，而且<strong>主要影响性能的因素是数据行使用的存储总量</strong>，由于char平均占用的空间多于varchar，所以除了简短并且固定长度的，其他考虑varchar。这样节省空间，对磁盘I/O和数据存储总量比较好。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="5-text类型">5 TEXT类型</h2>
+<blockquote>
+<ul>
+<li>在MySQL中，TEXT用来保存文本类型的字符串，总共包含4种类型，分别为TINYTEXT、TEXT、MEDIUMTEXT 和 LONGTEXT 类型。</li>
+<li>在向TEXT类型的字段保存和查询数据时，系统自动按照实际长度存储，不需要预先定义长度。这一点和 VARCHAR类型相同。</li>
+</ul>
+</blockquote>
+<p>每种TEXT类型保存的数据长度和所占用的存储空间不同，如下：</p>
+<p>文本字符串类型</p>
+<p>特点</p>
+<p>长度</p>
+<p>长度范围</p>
+<p>占用的存储空间</p>
+<p>TINYTEXT</p>
+<p>小文本、可变长度</p>
+<p>L</p>
+<p>0 &lt;= L &lt;= 255</p>
+<p>L + 2 个字节</p>
+<p>TEXT</p>
+<p>文本、可变长度</p>
+<p>L</p>
+<p>0 &lt;= L &lt;= 65535</p>
+<p>L + 2 个字节</p>
+<p>MEDIUMTEXT</p>
+<p>中等文本、可变长度</p>
+<p>L</p>
+<p>0 &lt;= L &lt;= 16777215</p>
+<p>L + 3 个字节</p>
+<p>LONGTEXT</p>
+<p>大文本、可变长度</p>
+<p>L</p>
+<p>0 &lt;= L&lt;= 4294967295(相当于4GB)</p>
+<p>L + 4 个字节</p>
+<blockquote>
+<p><strong>由于实际存储的长度不确定，MySQL 不允许 TEXT 类型的字段做主键</strong>。遇到这种情况，你只能采用 CHAR(M)，或者 VARCHAR(M)。</p>
+</blockquote>
+<pre><code>举例：创建数据表
+CREATE TABLE test_text(
+tx TEXT
+);
+
+INSERT INTO test_text
+VALUES('atguigu   ');
+
+SELECT CHAR_LENGTH(tx)
+FROM test_text; #10
+</code></pre>
+<blockquote>
+<p>说明在保存和查询数据时，并没有删除TEXT类型的数据尾部的空格。</p>
+</blockquote>
+<p><strong>经验</strong>：</p>
+<blockquote>
+<p>TEXT文本类型，可以存比较大的文本段，搜索速度稍慢，因此如果不是特别大的内容，建议使用CHAR，VARCHAR来代替。还有TEXT类型不用加默认值，加了也没用。而且text和blob类型的数据删除后容易导致“空洞”，使得文件碎片比较多，所以频繁使用的表不建议包含TEXT类型字段，建议单独分出去，单独用一个表。</p>
+</blockquote>
+<h2 id="128-enum类型">12.8. ENUM类型</h2>
+<blockquote>
+<p>ENUM类型也叫作枚举类型，ENUM类型的取值范围需要在定义字段时进行指定。设置字段值时，ENUM类型只允许从成员中选取单个值，不能一次选取多个值。</p>
+</blockquote>
+<blockquote>
+<p>其所需要的存储空间由定义ENUM类型时指定的成员个数决定。</p>
+</blockquote>
+<p>文本字符串类型</p>
+<p>长度</p>
+<p>长度范围</p>
+<p>占用的存储空间</p>
+<p>ENUM</p>
+<p>L</p>
+<p>1 &lt;= L &lt;= 65535</p>
+<p>1或2个字节</p>
+<blockquote>
+<ul>
+<li>当ENUM类型包含1～255个成员时，需要1个字节的存储空间；</li>
+<li>当ENUM类型包含256～65535个成员时，需要2个字节的存储空间。</li>
+<li>ENUM类型的成员个数的上限为65535个。</li>
+</ul>
+</blockquote>
+<pre><code>举例：创建表如下
+CREATE TABLE test_enum(
+season ENUM('春','夏','秋','冬','unknow')
+);
+
+
+-- 添加数据
+INSERT INTO test_enum
+VALUES('春'),('秋');
+</code></pre>
+<h1 id="忽略大小写">忽略大小写</h1>
+<pre><code>INSERT INTO test_enum
+VALUES('UNKNOW');
+</code></pre>
+<h1 id="允许按照角标的方式获取指定索引位置的枚举值">允许按照角标的方式获取指定索引位置的枚举值</h1>
+<pre><code>INSERT INTO test_enum
+VALUES('1'),(3);
+</code></pre>
+<h1 id="data-truncated-for-column-season-at-row-1">Data truncated for column &lsquo;season&rsquo; at row 1</h1>
+<pre><code>INSERT INTO test_enum
+VALUES('ab');
+</code></pre>
+<h1 id="当enum类型的字段没有声明为not-null时插入null也是有效的">当ENUM类型的字段没有声明为NOT NULL时，插入NULL也是有效的</h1>
+<pre><code>INSERT INTO test_enum
+VALUES(NULL);
+</code></pre>
+<h2 id="129-set类型">12.9. SET类型</h2>
+<blockquote>
+<p>SET表示一个字符串对象，可以包含0个或多个成员，但成员个数的上限为<code>64</code>。设置字段值时，可以取取值范围内的 0 个或多个值。</p>
+</blockquote>
+<blockquote>
+<p>当SET类型包含的成员个数不同时，其所占用的存储空间也是不同的，具体如下：</p>
+</blockquote>
+<p>成员个数范围(L表示实际成员个数)</p>
+<p>占用的存储空间</p>
+<p>1 &lt;= L &lt;= 8</p>
+<p>1个字节</p>
+<p>9 &lt;= L &lt;= 16</p>
+<p>2个字节</p>
+<p>17 &lt;= L &lt;= 24</p>
+<p>3个字节</p>
+<p>25 &lt;= L &lt;= 32</p>
+<p>4个字节</p>
+<p>33 &lt;= L &lt;= 64</p>
+<p>8个字节</p>
+<blockquote>
+<p>SET类型在存储数据时成员个数越多，其占用的存储空间越大。注意：SET类型在选取成员时，可以一次选择多个成员，这一点与ENUM类型不同。</p>
+</blockquote>
+<pre><code>-- 举例：创建表
+CREATE TABLE test_set(
+s SET ('A', 'B', 'C')
+);
+
+
+-- 向表中插入数据：
+INSERT INTO test_set (s) VALUES ('A'), ('A,B');
+</code></pre>
+<h1 id="插入重复的set类型成员时mysql会自动删除重复的成员">插入重复的SET类型成员时，MySQL会自动删除重复的成员</h1>
+<pre><code>INSERT INTO test_set (s) VALUES ('A,B,C,A');
+</code></pre>
+<h1 id="向set类型的字段插入set成员中不存在的值时mysql会抛出错误">向SET类型的字段插入SET成员中不存在的值时，MySQL会抛出错误。</h1>
+<pre><code>INSERT INTO test_set (s) VALUES ('A,B,C,D');
+
+SELECT *
+FROM test_set;
+
+
+-- 举例：
+CREATE TABLE temp_mul(
+gender ENUM('男','女'),
+hobby SET('吃饭','睡觉','打豆豆','写代码')
+);
+
+
+INSERT INTO temp_mul VALUES('男','睡觉,打豆豆'); #成功
+</code></pre>
+<h1 id="data-truncated-for-column-gender-at-row-1">Data truncated for column &lsquo;gender&rsquo; at row 1</h1>
+<pre><code>INSERT INTO temp_mul VALUES('男,女','睡觉,写代码'); #失败
+</code></pre>
+<h1 id="data-truncated-for-column-gender-at-row-1-1">Data truncated for column &lsquo;gender&rsquo; at row 1</h1>
+<pre><code>INSERT INTO temp_mul VALUES('妖','睡觉,写代码');#失败
+</code></pre>
+<p>​
+INSERT INTO temp_mul VALUES(&lsquo;男&rsquo;,&lsquo;睡觉,写代码,吃饭&rsquo;); #成功</p>
+<h2 id="1210-二进制字符串类型">12.10 二进制字符串类型</h2>
+<blockquote>
+<ul>
+<li>MySQL中的二进制字符串类型主要存储一些二进制数据，比如可以存储图片、音频和视频等二进制数据。</li>
+<li>MySQL中支持的二进制字符串类型主要包括BINARY、VARBINARY、TINYBLOB、BLOB、MEDIUMBLOB 和 LONGBLOB类型。</li>
+</ul>
+</blockquote>
+<p><strong>BINARY与VARBINARY类型</strong></p>
+<blockquote>
+<ul>
+<li>BINARY和VARBINARY类似于CHAR和VARCHAR，只是它们存储的是二进制字符串。</li>
+<li>BINARY (M)为固定长度的二进制字符串，M表示最多能存储的字节数，取值范围是0~255个字符。如果未指定(M)，表示只能存储<code>1个字节</code>。例如BINARY (8)，表示最多能存储8个字节，如果字段值不足(M)个字节，将在右边填充’\0’以补齐指定长度。</li>
+<li>VARBINARY (M)为可变长度的二进制字符串，M表示最多能存储的字节数，总字节数不能超过行的字节长度限制65535，另外还要考虑额外字节开销，VARBINARY类型的数据除了存储数据本身外，还需要1或2个字节来存储数据的字节数。VARBINARY类型<code>必须指定(M)</code>，否则报错。</li>
+</ul>
+</blockquote>
+<p>二进制字符串类型</p>
+<p>特点</p>
+<p>值的长度</p>
+<p>占用空间</p>
+<p>BINARY(M)</p>
+<p>固定长度</p>
+<p>M (0 &lt;= M &lt;= 255)</p>
+<p>M个字节</p>
+<p>VARBINARY(M)</p>
+<p>可变长度</p>
+<p>M(0 &lt;= M &lt;= 65535)</p>
+<p>M+1个字节</p>
+<pre><code>-- 举例：创建表
+CREATE TABLE test_binary1(
+f1 BINARY,
+f2 BINARY(3),
+</code></pre>
+<h1 id="f3-varbinary">f3 VARBINARY,</h1>
+<pre><code>f4 VARBINARY(10)
+);
+
+
+--添加数据:
+INSERT INTO test_binary1(f1,f2)
+VALUES('a','a');
+
+INSERT INTO test_binary1(f1,f2)
+VALUES('尚','尚');#失败
+
+
+INSERT INTO test_binary1(f2,f4)
+VALUES('ab','ab');
+
+mysql&gt; SELECT LENGTH(f2),LENGTH(f4)
+    -&gt; FROM test_binary1;
++------------+------------+
+| LENGTH(f2) | LENGTH(f4) |
++------------+------------+
+|          3 |       NULL |
+|          3 |          2 |
++------------+------------+
+2 rows in set (0.00 sec)
+</code></pre>
+<p><strong>BLOB类型</strong></p>
+<blockquote>
+<ul>
+<li>BLOB是一个<code>二进制大对象</code>，可以容纳可变数量的数据。</li>
+<li>MySQL中的BLOB类型包括TINYBLOB、BLOB、MEDIUMBLOB和LONGBLOB 4种类型，它们可容纳值的最大长度不同。可以存储一个二进制的大对象，比如<code>图片</code>、<code>音频</code>和<code>视频</code>等。</li>
+<li>需要注意的是，在实际工作中，往往不会在MySQL数据库中使用BLOB类型存储大对象数据，通常会将图片、音频和视频文件存储到<code>服务器的磁盘上</code>，并将图片、音频和视频的访问路径存储到MySQL中。</li>
+</ul>
+</blockquote>
+<p>二进制字符串类型</p>
+<p>值的长度</p>
+<p>长度范围</p>
+<p>占用空间</p>
+<p>TINYBLOB</p>
+<p>L</p>
+<p>0 &lt;= L &lt;= 255</p>
+<p>L + 1 个字节</p>
+<p>BLOB</p>
+<p>L</p>
+<p>0 &lt;= L &lt;= 65535(相当于64KB)</p>
+<p>L + 2 个字节</p>
+<p>MEDIUMBLOB</p>
+<p>L</p>
+<p>0 &lt;= L &lt;= 16777215 (相当于16MB)</p>
+<p>L + 3 个字节</p>
+<p>LONGBLOB</p>
+<p>L</p>
+<p>0 &lt;= L &lt;= 4294967295(相当于4GB)</p>
+<p>L + 4 个字节</p>
+<pre><code>-- 举例CREATE TABLE test_blob1(
+id INT,
+img MEDIUMBLOB
+);
+</code></pre>
+<p><strong>TEXT和BLOB的使用注意事项</strong>：</p>
+<blockquote>
+<p>在使用text和blob字段类型时要注意以下几点，以便更好的发挥数据库的性能。</p>
+<ul>
+<li>BLOB和TEXT值也会引起自己的一些问题，特别是执行了大量的删除或更新操作的时候。删除这种值会在数据表中留下很大的&quot;<code>空洞</code>&quot;，以后填入这些&quot;空洞&quot;的记录可能长度不同。为了提高性能，建议定期使用 OPTIMIZE TABLE 功能对这类表进行<code>碎片整理</code>。</li>
+<li>如果需要对大文本字段进行模糊查询，MySQL 提供了<code>前缀索引</code>。但是仍然要在不必要的时候避免检索大型的BLOB或TEXT值。例如，SELECT * 查询就不是很好的想法，除非你能够确定作为约束条件的WHERE子句只会找到所需要的数据行。否则，你可能毫无目的地在网络上传输大量的值。</li>
+<li>把BLOB或TEXT列<code>分离到单独的表</code>中。在某些环境中，如果把这些数据列移动到第二张数据表中，可以让你把原数据表中的数据列转换为固定长度的数据行格式，那么它就是有意义的。这会<code>减少主表中的碎片</code>，使你得到固定长度数据行的性能优势。它还使你在主数据表上运行 SELECT * 查询的时候不会通过网络传输大量的BLOB或TEXT值。</li>
+</ul>
+</blockquote>
+<h2 id="1211-json-类型">12.11. JSON 类型</h2>
+<blockquote>
+<p>JSON(JavaScript Object Notation)是一种轻量级的<code>数据交换格式</code>。简洁和清晰的层次结构使得 JSON 成为理想的数据交换语言。它易于人阅读和编写，同时也易于机器解析和生成，并有效地提升网络传输效率。<strong>JSON 可以将 JavaScript 对象中表示的一组数据转换为字符串，然后就可以在网络或者程序之间轻松地传递这个字符串，并在需要的时候将它还原为各编程语言所支持的数据格式。</strong></p>
+</blockquote>
+<blockquote>
+<p>在MySQL 5.7中，就已经支持JSON数据类型。在MySQL 8.x版本中，JSON类型提供了可以进行自动验证的JSON文档和优化的存储结构，使得在MySQL中存储和读取JSON类型的数据更加方便和高效。</p>
+</blockquote>
+<pre><code>-- 创建数据表，表中包含一个JSON类型的字段 js 。
+CREATE TABLE test_json(
+js json
+
+);
+
+
+-- 向表中插入JSON数据
+INSERT INTO test_json (js)
+VALUES ('{&quot;name&quot;:&quot;songhk&quot;, &quot;age&quot;:18, &quot;address&quot;:{&quot;province&quot;:&quot;beijing&quot;, &quot;city&quot;:&quot;beijing&quot;}}');
+
+
+-- 查询t19表中的数据
+mysql&gt; SELECT *
+    -&gt; FROM test_json;
+</code></pre>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./3905045083d2412d8da8e2e0bc128c20.png"
+        data-srcset="./3905045083d2412d8da8e2e0bc128c20.png, ./3905045083d2412d8da8e2e0bc128c20.png 1.5x, ./3905045083d2412d8da8e2e0bc128c20.png 2x"
+        data-sizes="auto"
+        alt="./3905045083d2412d8da8e2e0bc128c20.png"
+        title="在这里插入图片描述" />
+当需要检索JSON类型的字段中数据的某个具体值时，可以使用“-&gt;”和“-&raquo;”符号。</p>
+<pre><code>mysql&gt; SELECT js -&gt; '$.name' AS NAME,js -&gt; '$.age' AS age ,js -&gt; '$.address.province' AS province, js -&gt; '$.address.city' AS city
+    -&gt; FROM test_json;
++----------+------+-----------+-----------+
+| NAME     | age  | province  | city      |
++----------+------+-----------+-----------+
+| &quot;songhk&quot; | 18   | &quot;beijing&quot; | &quot;beijing&quot; |
++----------+------+-----------+-----------+
+1 row in set (0.00 sec)
+</code></pre>
+<p>通过“-&gt;”和“-&raquo;”符号，从JSON字段中正确查询出了指定的JSON数据的值。</p>
+<h2 id="1212-空间类型">12.12. 空间类型</h2>
+<blockquote>
+<p>MySQL 空间类型扩展支持地理特征的生成、存储和分析。这里的地理特征表示世界上具有位置的任何东西，可以是一个实体，例如一座山；可以是空间，例如一座办公楼；也可以是一个可定义的位置，例如一个十字路口等等。MySQL中使用<code>Geometry(几何)</code>来表示所有地理特征。Geometry指一个点或点的集合，代表世界上任何具有位置的事物。</p>
+</blockquote>
+<blockquote>
+<p>MySQL的空间数据类型(Spatial Data Type)对应于OpenGIS类，包括单值类型：GEOMETRY、POINT、LINESTRING、POLYGON以及集合类型：MULTIPOINT、MULTILINESTRING、MULTIPOLYGON、GEOMETRYCOLLECTION 。</p>
+<ul>
+<li>Geometry是所有空间集合类型的基类，其他类型如POINT、LINESTRING、POLYGON都是Geometry的子类。
+<ul>
+<li>Point，顾名思义就是点，有一个坐标值。例如POINT(121.213342 31.234532)，POINT(30 10)，坐标值支持DECIMAL类型，经度(longitude)在前，维度(latitude)在后，用空格分隔。</li>
+<li>LineString，线，由一系列点连接而成。如果线从头至尾没有交叉，那就是简单的(simple)；如果起点和终点重叠，那就是封闭的(closed)。例如LINESTRING(30 10,10 30,40 40)，点与点之间用逗号分隔，一个点中的经纬度用空格分隔，与POINT格式一致。</li>
+<li>Polygon，多边形。可以是一个实心平面形，即没有内部边界，也可以有空洞，类似纽扣。最简单的就是只有一个外边界的情况，例如POLYGON((0 0,10 0,10 10, 0 10))。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>下面展示几种常见的几何图形元素：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812237.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812237.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812237.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812237.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812237.png"
+        title="在这里插入图片描述" /></p>
+<blockquote>
+<ul>
+<li>MultiPoint、MultiLineString、MultiPolygon、GeometryCollection 这4种类型都是集合类，是多个Point、LineString或Polygon组合而成。</li>
+</ul>
+</blockquote>
+<p>下面展示的是多个同类或异类几何图形元素的组合：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812544.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812544.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812544.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812544.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812544.png"
+        title="在这里插入图片描述" /></p>
+<h2 id="1213-小结及选择建议">12.13 小结及选择建议</h2>
+<blockquote>
+<ul>
+<li>在定义数据类型时，如果确定是<code>整数</code>，就用 <code>INT</code>； 如果是<code>小数</code>，一定用定点数类型 <code>DECIMAL(M,D)</code>； 如果是日期与时间，就用 <code>DATETIME</code>。</li>
+<li>这样做的好处是，首先确保你的系统不会因为数据类型定义出错。不过，凡事都是有两面的，可靠性好，并不意味着高效。比如，TEXT 虽然使用方便，但是效率不如 CHAR(M) 和 VARCHAR(M)。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>关于字符串的选择，建议参考如下阿里巴巴的《Java开发手册》规范：
+<strong>阿里巴巴《Java开发手册》之MySQL数据库：</strong></p>
+<ul>
+<li>任何字段如果为非负数，必须是 UNSIGNED</li>
+<li>【<code>强制</code>】小数类型为 DECIMAL，禁止使用 FLOAT 和 DOUBLE。
+<ul>
+<li>说明：在存储的时候，FLOAT 和 DOUBLE 都存在精度损失的问题，很可能在比较值的时候，得到不正确的结果。如果存储的数据范围超过 DECIMAL 的范围，建议将数据拆成整数和小数并分开存储。</li>
+</ul>
+</li>
+<li>【<code>强制</code>】如果存储的字符串长度几乎相等，使用 CHAR 定长字符串类型。</li>
+<li>【<code>强制</code>】VARCHAR 是可变长字符串，不预先分配存储空间，长度不要超过 5000。如果存储长度大于此值，定义字段类型为 TEXT，独立出来一张表，用主键来对应，避免影响其它字段索引效率。</li>
+</ul>
+</blockquote>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/database/">database</a>
+                </span><span><a href="/tags/mysql/">mysql</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-06-17</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B013-14%E7%AB%A0/" class="prev" rel="prev" title="mysql详细笔记13-14章"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B01-2%E7%AB%A0/" class="next" rel="next" title="mysql详细笔记1-2章">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

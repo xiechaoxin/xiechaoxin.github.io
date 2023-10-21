@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>数组 - xcx</title><meta name="description" content=""><meta property="og:title" content="数组" />
+<meta property="og:description" content="数组 1 数组的概念 1.1 数组的作用 用来保存、管理一组相同数据类型的数据 1.2 把一组具有相同数据类型的变量使用同一个名字来进行管理，并且这些元素按照一定" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/language/java/%E6%95%B0%E7%BB%84/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-14T02:17:04+00:00" />
+<meta property="article:modified_time" content="2022-09-14T02:17:04+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="数组"/>
+<meta name="twitter:description" content="数组 1 数组的概念 1.1 数组的作用 用来保存、管理一组相同数据类型的数据 1.2 把一组具有相同数据类型的变量使用同一个名字来进行管理，并且这些元素按照一定"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/language/java/%E6%95%B0%E7%BB%84/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/language/java/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" /><link rel="next" href="https://xiechaoxin.github.io/posts/language/java/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "数组",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/language\/java\/%E6%95%B0%E7%BB%84\/"
+        },"genre": "posts","keywords": "JAVA","wordcount":  4994 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/language\/java\/%E6%95%B0%E7%BB%84\/","datePublished": "2022-09-14T02:17:04+00:00","dateModified": "2022-09-14T02:17:04+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">数组</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/java/"><i class="far fa-folder fa-fw"></i>JAVA</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-09-14">2022-09-14</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4994 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 10 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-数组的概念">1 数组的概念</a>
+      <ul>
+        <li><a href="#11-数组的作用">1.1 数组的作用</a></li>
+        <li><a href="#12-把一组具有相同数据类型的变量使用同一个名字来进行管理并且这些元素按照一定的顺序进行排列这同一个名字我们称为数组名每一个元素通过编号进行区别这个编号我们称为下标或索引元素的总个数就是数组的长度">1.2 把一组具有相同数据类型的变量使用同一个名字来进行管理，并且这些元素按照一定的顺序进行排列。这同一个名字我们称为【数组名】，每一个元素通过编号进行区别，这个编号我们称为【下标】或索引。元素的总个数就是【数组的长度】。</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-数组如何声明和初始化">2 数组如何声明和初始化</a>
+      <ul>
+        <li><a href="#21-数组的声明">2.1 数组的声明</a></li>
+        <li><a href="#22-初始化">2.2 初始化</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-数组的元素">3 数组的元素</a>
+      <ul>
+        <li><a href="#31-表示形式">3.1 表示形式</a></li>
+        <li><a href="#32-赋值">3.2 赋值</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-数组的长度">4 数组的长度</a>
+      <ul>
+        <li><a href="#41-数组名length">4.1 数组名.length</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-数组的遍历">5 数组的遍历</a>
+      <ul>
+        <li><a href="#51-for循环">5.1 for循环</a></li>
+        <li><a href="#52-foreach循环">5.2 foreach循环</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-数组的算法">6 数组的算法</a>
+      <ul>
+        <li><a href="#61-1在数组中找最大值最小值">6.1 (1)在数组中找最大值/最小值</a></li>
+        <li><a href="#62-2在数组中找最大值最小值的下标">6.2 (2)在数组中找最大值、最小值的下标</a></li>
+        <li><a href="#63-3数组元素的累加和平均值">6.3 (3)数组元素的累加和，平均值</a></li>
+        <li><a href="#64-4反转">6.4 (4)反转</a></li>
+        <li><a href="#65-5复制">6.5 (5)复制</a></li>
+        <li><a href="#66-6排序">6.6 (6)排序</a></li>
+        <li><a href="#67-7数组的扩容">6.7 (7)数组的扩容</a></li>
+        <li><a href="#68-8数组的元素插入">6.8 (8)数组的元素插入</a></li>
+        <li><a href="#69-9数组的元素删除">6.9 (9)数组的元素删除</a></li>
+        <li><a href="#610-10在数组中查找某个值的下标">6.10 (10)在数组中查找某个值的下标</a></li>
+      </ul>
+    </li>
+    <li><a href="#7-二维数组">7 二维数组</a>
+      <ul>
+        <li><a href="#71-如何声明">7.1 如何声明</a></li>
+        <li><a href="#72-如何创建二维数组对象及初始化">7.2 如何创建二维数组对象及初始化</a></li>
+        <li><a href="#73-二维数组的长度即行数">7.3 二维数组的长度，即行数</a></li>
+        <li><a href="#74-二维数组的行对象">7.4 二维数组的行对象</a></li>
+        <li><a href="#75-二维数组的每一行的列数">7.5 二维数组的每一行的列数</a></li>
+        <li><a href="#76-二维数组的每一个元素">7.6 二维数组的每一个元素</a></li>
+        <li><a href="#77-二维数组的遍历">7.7 二维数组的遍历</a></li>
+      </ul>
+    </li>
+    <li><a href="#8-数组的内存图">8 数组的内存图</a>
+      <ul>
+        <li><a href="#81-一维数组">8.1 一维数组</a></li>
+        <li><a href="#82-二维数组">8.2 二维数组</a></li>
+      </ul>
+    </li>
+    <li><a href="#9-数组的工具类">9 数组的工具类</a>
+      <ul>
+        <li><a href="#91-javautilarrays">9.1 java.util.Arrays</a></li>
+        <li><a href="#92-静态方法">9.2 静态方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#10-命令行参数">10 命令行参数</a>
+      <ul>
+        <li><a href="#101-主方法的参数">10.1 主方法的参数</a></li>
+        <li><a href="#102-java命令">10.2 java命令</a></li>
+        <li><a href="#103-eclipse">10.3 eclipse</a></li>
+      </ul>
+    </li>
+    <li><a href="#11-可变参数">11 可变参数</a>
+      <ul>
+        <li><a href="#111-可变参数属于形参">11.1 可变参数属于形参</a></li>
+        <li><a href="#112-要求">11.2 要求</a></li>
+        <li><a href="#113-可变参数的重载问题">11.3 可变参数的重载问题</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="数组">数组</h1>
+<h2 id="1-数组的概念">1 数组的概念</h2>
+<h3 id="11-数组的作用">1.1 数组的作用</h3>
+<ul>
+<li>用来保存、管理一组相同数据类型的数据</li>
+</ul>
+<h3 id="12-把一组具有相同数据类型的变量使用同一个名字来进行管理并且这些元素按照一定的顺序进行排列这同一个名字我们称为数组名每一个元素通过编号进行区别这个编号我们称为下标或索引元素的总个数就是数组的长度">1.2 把一组具有相同数据类型的变量使用同一个名字来进行管理，并且这些元素按照一定的顺序进行排列。这同一个名字我们称为【数组名】，每一个元素通过编号进行区别，这个编号我们称为【下标】或索引。元素的总个数就是【数组的长度】。</h3>
+<h2 id="2-数组如何声明和初始化">2 数组如何声明和初始化</h2>
+<h3 id="21-数组的声明">2.1 数组的声明</h3>
+<ul>
+<li>
+<p>数组的类型   数组名;</p>
+</li>
+<li>
+<p>数组的元素的类型[]  数组名;</p>
+<ul>
+<li>推荐的方式</li>
+</ul>
+</li>
+<li>
+<p>数组的元素的类型  数组名[];</p>
+</li>
+</ul>
+<h3 id="22-初始化">2.2 初始化</h3>
+<ul>
+<li>
+<p>动态初始化</p>
+<ul>
+<li>
+<p>格式：</p>
+<ul>
+<li>数组名 = new  元素的类型[数组的长度];</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>静态初始化</p>
+<ul>
+<li>
+<p>格式</p>
+<ul>
+<li>
+<p>数组名 = new  元素的类型[]{元素列表};</p>
+<ul>
+<li>元素列表的每一个元素使用,分割</li>
+<li>元素列表的个数就是数组的长度</li>
+</ul>
+</li>
+<li>
+<p>简写形式</p>
+<ul>
+<li>
+<p>数组的元素的类型[]  数组名 = {元素列表};</p>
+<ul>
+<li>只有声明和静态初始化在一行，才可以这么简写</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-数组的元素">3 数组的元素</h2>
+<h3 id="31-表示形式">3.1 表示形式</h3>
+<ul>
+<li>
+<p>数组名[下标]</p>
+<ul>
+<li>
+<p>下标的范围</p>
+<ul>
+<li>
+<p>[0，数组的长度-1]</p>
+<ul>
+<li>[0,  数组名.length -1]</li>
+</ul>
+</li>
+<li>
+<p>[0，数组的长度)</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="32-赋值">3.2 赋值</h3>
+<ul>
+<li>数组名[下标] = 值;</li>
+</ul>
+<h2 id="4-数组的长度">4 数组的长度</h2>
+<h3 id="41-数组名length">4.1 数组名.length</h3>
+<h2 id="5-数组的遍历">5 数组的遍历</h2>
+<h3 id="51-for循环">5.1 for循环</h3>
+<ul>
+<li>for(int i=0; i&lt;数组名.length; i++){
+}</li>
+</ul>
+<h3 id="52-foreach循环">5.2 foreach循环</h3>
+<ul>
+<li>for(数组的元素的类型   元素的临时名 : 数组名){
+}</li>
+</ul>
+<h2 id="6-数组的算法">6 数组的算法</h2>
+<h3 id="61-1在数组中找最大值最小值">6.1 (1)在数组中找最大值/最小值</h3>
+<pre><code>//找最大值
+
+public static int max(int[] arr){
+
+	//第一步：假设第一个元素最大
+
+	int max = arr[0];
+
+
+
+	//遍历后面的元素和max比较
+
+	for (int i = 1; i &lt; arr.length; i++) {
+
+		//当有比max的值，就把max修改为它的值
+
+		if(max &lt; arr[i]){
+
+			max = arr[i];
+
+		}
+
+	}
+
+
+
+	return max;
+
+}
+</code></pre>
+<h3 id="62-2在数组中找最大值最小值的下标">6.2 (2)在数组中找最大值、最小值的下标</h3>
+<pre><code>//找最大值的下标
+
+public static int maxIndex(int[] arr){
+
+	//第一步：假设第一个元素最大
+
+	int index = 0;
+
+
+
+	//arr[index] 和 后续的元素一一比较
+
+	for (int i = 1; i &lt; arr.length; i++) {
+
+		//当有比max的值，就把max修改为它的值
+
+		if(arr[index] &lt; arr[i]){
+
+			index = i;
+
+		}
+
+	}
+
+	return index;
+
+}
+</code></pre>
+<h3 id="63-3数组元素的累加和平均值">6.3 (3)数组元素的累加和，平均值</h3>
+<p>//求数组元素的总和</p>
+<pre><code>public static long sum(int[] arr){
+
+	long sum = 0;
+
+
+
+	for (int i = 0; i &lt; arr.length; i++) {
+
+		sum += arr[i];
+
+	}
+
+
+
+	return sum;
+
+}
+
+public static double avg(int[] arr){
+
+	double sum = sum(arr);
+
+	return sum/arr.length;
+
+}
+</code></pre>
+<h3 id="64-4反转">6.4 (4)反转</h3>
+<pre><code>//反转
+
+public static void reverse(int[] arr){
+
+	//如果有5个元素，应该交换2次或3次      arr.length/2
+
+	//如果有6个元素，应该交换3次                 arr.length/2
+
+	//数组的收尾对应位置交换
+
+
+
+	//次数
+
+	for(int i=0; i&lt;arr.length/2; i++){
+
+		//首尾交换
+
+		int temp = arr[i];
+
+		arr[i] = arr[arr.length-1-i];
+
+		arr[arr.length-1-i] = temp;
+
+	}
+
+}
+
+
+
+
+
+//反转部分
+
+public static void reverse(int[] arr, int start ,int end){
+
+	//次数
+
+	//假设start = 1, end = 5     次数2次    (end + 1 - start)/2  (5+1-1)/2  2
+
+	//假设start = 1, end = 6  次数3次      (end + 2 - start)/2  (6+1-1)/2  3
+
+
+
+	for(int i=0; i&lt; (end + 1 - start)/2; i++){
+
+		//首尾交换
+
+		//arr[start],arr[start+1]...
+
+		//arr[end],arr[end-1]...
+
+		int temp = arr[start + i];
+
+		arr[start + i] = arr[end -i];
+
+		arr[end-i] = temp;
+
+	}
+
+}
+</code></pre>
+<h3 id="65-5复制">6.5 (5)复制</h3>
+<pre><code>//复制一个数组，从原数组的[0]元素开始复制，新数组的长度由使用者决定
+
+public static int[] copy(int[] src, int newLength){
+
+	//1、创建新数组的对象
+
+	int[] newArray = new int[newLength];
+
+
+
+	//2、把原数组的元素复制到新数组中
+
+	for(int i=0; i&lt;newArray.length &amp;&amp; i&lt;src.length; i++){
+
+		newArray[i] = src[i];
+
+	}
+
+
+
+	return newArray;
+
+}
+
+
+
+//复制一个数组，从原数组的[start]元素开始复制，新数组的长度由使用者决定
+
+public static int[] copy(int[] src, int start, int newLength){
+
+	//1、创建新数组
+
+	int[] newArray = new int[newLength];
+
+
+
+	//2、把原数组的元素从[start]复制到新数组的[0]...
+
+	for(int i=0; i&lt;newArray.length &amp;&amp; start+i&lt;src.length; i++){
+
+		newArray[i] = src[start+i];
+
+	}
+
+
+
+	return newArray;
+
+}
+</code></pre>
+<h3 id="66-6排序">6.6 (6)排序</h3>
+<ul>
+<li>
+<p>冒泡排序</p>
+<p>//假设数组5个元素</p>
+<p>public static void pubSort3(int[] arr){</p>
+<pre><code>  //方式二：把大的往右沉
+
+  //每一轮从左边开始比较
+
+  //比较的轮数依然是n-1轮
+
+  for(int i=1; i&lt;arr.length; i++){
+
+  	//每一轮从左边开始比较
+
+  	/*
+
+  	 * 第一轮：i=1， 比较4次，j=0,1,2,3   ,j&lt;arr.length-i  j&lt;5-1 j&lt;4
+
+  	 * 第二轮：i=2，比较3次，j=0,1,2      ,j&lt;arr.length-i  j&lt;5-2 j&lt;3
+
+  	 * ...
+
+  	 */
+
+  	for(int j=0; j&lt;arr.length-i; j++){
+
+  		//如果左边的元比右边的元素大，交换
+
+  		if(arr[j] &gt; arr[j+1]){
+
+  			int temp = arr[j];
+
+  			arr[j] = arr[j+1];
+
+  			arr[j+1] = temp;
+
+  		}
+
+  	}
+
+  }
+</code></pre>
+<p>}</p>
+<p>//假设数组5个元素</p>
+<p>public static void pubSort2(int[] arr){</p>
+<pre><code>  //排序规则：每一轮通过相邻元素的比较，把小的往左边冒(或把大的往右边沉)，每一轮都是把本轮的最小值冒出来(最大值沉下去)
+
+  //经过n-1轮完成最终的排序
+
+  //(1)方式一：把小的往左边冒，注意，每一轮都是从最右边往左边比较
+
+  //i=0,i=1,i=2,i=3  i&lt;5-1 --&gt;  i&lt;4 --&gt;  i&lt;=3
+
+  for(int i=0; i&lt;arr.length-1; i++){//一共n-1轮
+
+  	//每一轮都要从最右边往左边比较
+
+  	/*
+
+  	 * 第一轮：比较n-1次，比较4次， i=0, j=4,3,2,1 ,j&gt;i
+
+  	 * 第二轮：比较3次，i=1, j=4,3,2 ,j&gt;i
+
+  	 * ....
+
+  	 */
+
+  	for(int j=arr.length-1; j&gt;i; j--){
+
+  		//相邻的元素比较，而且如果右边的比左边的小，需要交换
+
+  		if(arr[j] &lt; arr[j-1]){
+
+  			int temp = arr[j];
+
+  			arr[j] = arr[j-1];
+
+  			arr[j-1] = temp;
+
+  		}
+
+  	}
+
+  }
+</code></pre>
+<p>}</p>
+<p>//冒泡排序：从小到大</p>
+<p>//如果数组是5个元素</p>
+<p>public static void pubSort(int[] arr){</p>
+<pre><code>  //排序规则：每一轮通过相邻元素的比较，把小的往左边冒(或把大的往右边沉)，每一轮都是把本轮的最小值冒出来(最大值沉下去)
+
+  //经过n-1轮完成最终的排序
+
+  //(1)方式一：把小的往左边冒，注意，每一轮都是从最右边往左边比较
+
+  for(int i=1; i&lt;arr.length; i++){//一共n-1轮
+
+  	//每一轮都要从最右边往左边比较
+
+  	/*
+
+  	 * 第一轮：比较n-1次，比较4次， i=1, j=4,3,2,1 ,j&gt;=i
+
+  	 * 第二轮：比较3次，i=2, j=4,3,2 ,j&gt;=i
+
+  	 * ....
+
+  	 */
+
+  	for(int j=arr.length-1; j&gt;=i; j--){
+
+  		//相邻的元素比较，而且如果右边的比左边的小，需要交换
+
+  		if(arr[j] &lt; arr[j-1]){
+
+  			int temp = arr[j];
+
+  			arr[j] = arr[j-1];
+
+  			arr[j-1] = temp;
+
+  		}
+
+  	}
+
+  }
+</code></pre>
+<p>}</p>
+</li>
+<li>
+<p>直接选择排序</p>
+<p>//直接选择排序</p>
+<p>//基本原理：将待排序的元素分为已排序(初始为空)和未排序两组，依次将未排序的元素中值最小的元素放入已排序的组中。</p>
+<p>//[3,2,1,5,4]  从小到大排序</p>
+<p>/*</p>
+<p>* 第一次：所有元素都属于未排序   把未排序的元素中的最小值找出来    arr[2] = 1 ，放入已排序组中     和第一个元素交换</p>
+<p>* 		[1,2,3,5,4]</p>
+<p>* 第二次：已排序的是[1]，未排序的是[2,3,5,4]，把未排序元素中的最小值找出  arr[1]=2，放入已排序组中</p>
+<p>* 		【1,2】，【3,5,4】</p>
+<p>* &hellip;</p>
+<p>*</p>
+<p>*/</p>
+<p>//假设5个元素</p>
+<p>public static void selectSort(int[] arr){</p>
+<pre><code>  //次数
+
+  for(int i=0; i&lt;arr.length-1; i++){
+
+  	//第一次，找最小值
+
+  	//假设每一轮的未排序元素的第一个最小
+
+  	int index = i;
+
+
+
+  	//找出本轮最小值
+
+  	/*
+
+  	 * int i=0 ,从哪些元素中找最小值  [0]~[4]   j=1,2,3,4
+
+  	 * int i=1，从哪些元素中找最小值[1]~[4]    j=2,3,4
+
+  	 * ...
+
+  	 */
+
+  	for(int j=i+1; j&lt;arr.length; j++){
+
+  		if(arr[index] &gt; arr[j]){
+
+  			index = j;
+
+  		}
+
+  	}
+
+
+
+  	//找出arr[index]值最小，下标是index
+
+  	//arr[i] 和 arr[index]交换
+
+  	if(i!=index){
+
+  		int temp = arr[i];
+
+  		arr[i] = arr[index];
+
+  		arr[index] = temp;
+
+  	}
+
+
+
+  }
+</code></pre>
+<p>}</p>
+</li>
+</ul>
+<h3 id="67-7数组的扩容">6.7 (7)数组的扩容</h3>
+<pre><code>private void kuorong(){
+
+	//先扩容
+
+	int[] newArray = new int[arr.length*2];
+
+	//通过循环把原数组中的内容复制到新数组中
+
+	for(int i=0; i&lt;arr.length; i++){
+
+		newArray[i] = arr[i];
+
+	}
+
+	//把新家的地址记录下来，下次存、取元素都从新家操作，旧家不要了
+
+	arr = newArray;
+
+}
+</code></pre>
+<h3 id="68-8数组的元素插入">6.8 (8)数组的元素插入</h3>
+<p>package com.atguigu.array;</p>
+<p>public class MyArrayList {</p>
+<pre><code>private int[] arr = new int[5];//装数据
+
+private int total;//记录实际存储的元素的个数
+
+
+
+
+
+//在index插入数据data
+
+public void insert(int index, int data){
+
+	//如果当前数组已满，需要先扩容
+
+	if(total &gt;= arr.length){
+
+		//(1)先创建一个新的更大的数组
+
+		int[] newArray = new int[arr.length*2];
+
+		//(2)把原来数组中的数据复制到新数组中
+
+		for(int i=0; i&lt;arr.length; i++){
+
+			newArray[i] = arr[i];
+
+		}
+
+		//(3)使得arr指向新数组
+
+		arr = newArray;
+
+	}
+
+
+
+	//1、先把index右边的元素右移
+
+	/*
+
+	 * 假设total=3,index=1
+
+	 * 现在有值arr[0],arr[1],arr[2]，需要移动的是arr[2],arr[1]
+
+	 * 假设total=5,index=1
+
+	 * 现在有值arr[0],arr[1],arr[2],arr[3],arr[4]，需要移动的是,arr[4],arr[3],arr[2],arr[1]
+
+	 */
+
+	for(int i = total-1; i&gt;=index; i--){
+
+		//右边的元素=左边的元素
+
+		arr[i+1] = arr[i];
+
+	}
+
+
+
+	//在index位置插入data
+
+	arr[index]= data;
+
+
+
+	//元素个数加1
+
+	total++;
+
+}
+</code></pre>
+<p>}</p>
+<h3 id="69-9数组的元素删除">6.9 (9)数组的元素删除</h3>
+<ul>
+<li>
+<p>删除指定位置的元素</p>
+<p>package com.atguigu.array;</p>
+<p>public class MyArrayList {</p>
+<p>private int[] arr = new int[5];//装数据</p>
+<p>private int total;//记录实际存储的元素的个数</p>
+<p>//删除指定位置的元素</p>
+<p>public void delete(int index){</p>
+<pre><code>  //(1)把index右边的元素左移
+
+  /*
+
+   * 假设现在total=3,index =1
+
+   * 有值的是arr[0],arr[1],arr[2]，需要移动的是arr[2]
+
+   * 假设现在total=5,index =1
+
+   * 现在有值arr[0],arr[1],arr[2],arr[3],arr[4]，需要移动的似乎arr[2],arr[3],arr[4]
+
+   */
+
+  for(int i = index+1; i&lt;total; i++){
+
+  	//左边的元素=右边的元素
+
+  	arr[i-1] = arr[i];
+
+  }
+
+
+
+  //(2)把最后一个元素的位置置为“空”(还原到默认值)
+
+  arr[total-1] = 0;
+
+
+
+  //(3)元素个数减一
+
+  total--;
+</code></pre>
+<p>}</p>
+<p>}</p>
+</li>
+<li>
+<p>删除指定的元素值</p>
+<p>package com.atguigu.array;</p>
+<p>public class MyArrayList {</p>
+<p>private int[] arr = new int[5];//装数据</p>
+<p>private int total;//记录实际存储的元素的个数</p>
+<p>//删除指定位置的元素</p>
+<p>public void delete(int index){</p>
+<pre><code>  //(1)把index右边的元素左移
+
+  /*
+
+   * 假设现在total=3,index =1
+
+   * 有值的是arr[0],arr[1],arr[2]，需要移动的是arr[2]
+
+   * 假设现在total=5,index =1
+
+   * 现在有值arr[0],arr[1],arr[2],arr[3],arr[4]，需要移动的似乎arr[2],arr[3],arr[4]
+
+   */
+
+  for(int i = index+1; i&lt;total; i++){
+
+  	//左边的元素=右边的元素
+
+  	arr[i-1] = arr[i];
+
+  }
+
+
+
+  //(2)把最后一个元素的位置置为“空”(还原到默认值)
+
+  arr[total-1] = 0;
+
+
+
+  //(3)元素个数减一
+
+  total--;
+</code></pre>
+<p>}</p>
+<p>public int findValue(int value){</p>
+<pre><code>  //挨个遍历，一共有total，遍历total个
+
+  for (int i = 0; i &lt; total; i++) {
+
+  	if(arr[i] == value){
+
+  		return i;
+
+  	}
+
+  }
+
+  return -1;
+</code></pre>
+<p>}</p>
+<p>public void deleteValue(int value){</p>
+<pre><code>  //1、先找到value在数组中的index，这里以第一次找到为准
+
+  int index = findValue(value);
+
+
+
+  //2、删除index位置的元素
+
+  if(index!=-1){
+
+  	delete(index);
+
+  }
+</code></pre>
+<p>}</p>
+<p>}</p>
+</li>
+</ul>
+<h3 id="610-10在数组中查找某个值的下标">6.10 (10)在数组中查找某个值的下标</h3>
+<p>package com.atguigu.array;</p>
+<p>public class MyArrayList {</p>
+<pre><code>private int[] arr = new int[5];//装数据
+
+private int total;//记录实际存储的元素的个数
+
+
+
+//删除指定位置的元素
+
+public void delete(int index){
+
+	//(1)把index右边的元素左移
+
+	/*
+
+	 * 假设现在total=3,index =1
+
+	 * 有值的是arr[0],arr[1],arr[2]，需要移动的是arr[2]
+
+	 * 假设现在total=5,index =1
+
+	 * 现在有值arr[0],arr[1],arr[2],arr[3],arr[4]，需要移动的似乎arr[2],arr[3],arr[4]
+
+	 */
+
+	for(int i = index+1; i&lt;total; i++){
+
+		//左边的元素=右边的元素
+
+		arr[i-1] = arr[i];
+
+	}
+
+
+
+	//(2)把最后一个元素的位置置为“空”(还原到默认值)
+
+	arr[total-1] = 0;
+
+
+
+	//(3)元素个数减一
+
+	total--;
+
+}
+
+
+
+public int findValue(int value){
+
+	//挨个遍历，一共有total，遍历total个
+
+	for (int i = 0; i &lt; total; i++) {
+
+		if(arr[i] == value){
+
+			return i;
+
+		}
+
+	}
+
+	return -1;
+
+}
+
+
+
+public void deleteValue(int value){
+
+	//1、先找到value在数组中的index，这里以第一次找到为准
+
+	int index = findValue(value);
+
+
+
+	//2、删除index位置的元素
+
+	if(index!=-1){
+
+		delete(index);
+
+	}
+
+}
+</code></pre>
+<p>}</p>
+<h2 id="7-二维数组">7 二维数组</h2>
+<h3 id="71-如何声明">7.1 如何声明</h3>
+<ul>
+<li>
+<p>数组类型  数组名;</p>
+<ul>
+<li>数组类型是xx[][]</li>
+</ul>
+</li>
+<li>
+<p>元素的类型[][]  数组名;</p>
+</li>
+</ul>
+<h3 id="72-如何创建二维数组对象及初始化">7.2 如何创建二维数组对象及初始化</h3>
+<ul>
+<li>
+<p>动态初始化</p>
+<ul>
+<li>
+<p>数组名 = new 元素的数据类型[行长度][每一行的列长度];</p>
+<ul>
+<li>每一行的列数相同</li>
+</ul>
+</li>
+<li>
+<p>数组名 = new 元素的数据类型[行长度][];</p>
+<ul>
+<li>
+<p>每一行的列数不确定</p>
+</li>
+<li>
+<p>每一行的行对象暂时是null</p>
+</li>
+<li>
+<p>创建每一行的行对象，即为行分配空间</p>
+<ul>
+<li>数组名[行下标] = new  元素的类型[该行的列数];</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>静态初始化</p>
+<ul>
+<li>
+<p>数组名 = new 元素的数据类型[][]{{x,x,x,x,&hellip;.},{x,x,x},{x,x,x,x,x,x,x},&hellip;..};</p>
+<ul>
+<li>{}中嵌套{}，里面的一个{}代表一行</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="73-二维数组的长度即行数">7.3 二维数组的长度，即行数</h3>
+<ul>
+<li>二维数组名.length</li>
+</ul>
+<h3 id="74-二维数组的行对象">7.4 二维数组的行对象</h3>
+<ul>
+<li>
+<p>二维数组名[行下标]</p>
+<ul>
+<li>行下标的范围[0,二维数组名.length-1]</li>
+</ul>
+</li>
+</ul>
+<h3 id="75-二维数组的每一行的列数">7.5 二维数组的每一行的列数</h3>
+<ul>
+<li>二维数组名[行下标].length</li>
+</ul>
+<h3 id="76-二维数组的每一个元素">7.6 二维数组的每一个元素</h3>
+<ul>
+<li>
+<p>二维数组名[行下标][列下标]</p>
+<ul>
+<li>
+<p>注意列下标</p>
+<ul>
+<li>每一行的列下标的范围可能是不一样</li>
+<li>[0, 二维数组名[行下标].length)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>二维数组名[行下标][列下标] = 值</p>
+</li>
+</ul>
+<h3 id="77-二维数组的遍历">7.7 二维数组的遍历</h3>
+<ul>
+<li>
+<p>for</p>
+<ul>
+<li>for(int i=0; i&lt;数组名.length; i++){
+for(int j=0; j&lt;数组名[i].length; j++){
+数组名[i][j]表示一个元素
+}
+}</li>
+</ul>
+</li>
+<li>
+<p>增强for</p>
+<ul>
+<li>for(行类型  hang : 二维数组名){
+for(元素类型  lie : hang){
+lie就是代表每一个元素
+}
+}</li>
+</ul>
+</li>
+</ul>
+<h2 id="8-数组的内存图">8 数组的内存图</h2>
+<h3 id="81-一维数组">8.1 一维数组</h3>
+<ul>
+<li>
+<p>元素是基本数据类型</p>
+</li>
+<li>
+<p>元素是引用数据类型，又称为对象数组</p>
+</li>
+</ul>
+<h3 id="82-二维数组">8.2 二维数组</h3>
+<ul>
+<li>
+<p>元素是基本数据类型</p>
+<ul>
+<li>
+<p>规则</p>
+</li>
+<li>
+<p>不规则</p>
+</li>
+</ul>
+</li>
+<li>
+<p>元素是引用数据类型</p>
+<ul>
+<li>
+<p>规则</p>
+</li>
+<li>
+<p>不规则</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-数组的工具类">9 数组的工具类</h2>
+<h3 id="91-javautilarrays">9.1 java.util.Arrays</h3>
+<h3 id="92-静态方法">9.2 静态方法</h3>
+<ul>
+<li>
+<p>(1)int   Arrays.binarySearch(int[] a ,int key)</p>
+<ul>
+<li>在a数组中查找key的下标</li>
+<li>(1)数组a必须是有序的，否则结果不一定正确</li>
+<li>(2)如果key在a中存在，就返回它的下标，如果不存在，返回(-(插入点)-1)</li>
+</ul>
+</li>
+<li>
+<p>(2)Arrays.fill(int[] a, int value)</p>
+<ul>
+<li>给数组a的每一个元素都赋值为value</li>
+</ul>
+</li>
+<li>
+<p>(3)Arrays.sort(int[])</p>
+<ul>
+<li>排序，从小到大</li>
+</ul>
+</li>
+<li>
+<p>(4)String  Arrays.toString(int[] a)</p>
+<ul>
+<li>把数组的元素列表用字符串返回，形式[元素1，元素2，元素3.。。]</li>
+</ul>
+</li>
+</ul>
+<h2 id="10-命令行参数">10 命令行参数</h2>
+<h3 id="101-主方法的参数">10.1 主方法的参数</h3>
+<h3 id="102-java命令">10.2 java命令</h3>
+<ul>
+<li>
+<p>java   包.类名   参数1  参数2   参数3 &hellip;.</p>
+<ul>
+<li>参数之间使用空格</li>
+</ul>
+</li>
+</ul>
+<h3 id="103-eclipse">10.3 eclipse</h3>
+<h2 id="11-可变参数">11 可变参数</h2>
+<h3 id="111-可变参数属于形参">11.1 可变参数属于形参</h3>
+<h3 id="112-要求">11.2 要求</h3>
+<ul>
+<li>一个方法只能有一个可变参数，而且只能是最后一个</li>
+<li>在声明它的方法中，当做数组处理</li>
+<li>对于调用这个方法者，可变参数的位置可以传，[0~n]个实参，也可以传对应类型数组对象</li>
+</ul>
+<h3 id="113-可变参数的重载问题">11.3 可变参数的重载问题</h3>
+<ul>
+<li>
+<p>对于编译器来说不属于重载</p>
+<ul>
+<li>
+<p>不属于重载</p>
+<ul>
+<li>public static void main(String[] args) {
+System.out.println(getSum(1));
+}</li>
+</ul>
+</li>
+</ul>
+<p>public static int getSum(int&hellip; args){
+return 0;
+}
+public static int getSum(int a,int&hellip; args){
+return 0;
+}</p>
+<pre><code>  	- 如果传一个整数时，不知道用谁好
+
+  - 	public static int getSum(int... args){
+  return 0;
+</code></pre>
+<p>}</p>
+<p>public static int getSum(int[] args){</p>
+<p>}</p>
+<pre><code>  	- 但是它俩不完全等价
+
+  		- 因为int... args既可以传数组对象，又可以传 n个元素值
+  		- int[]只能传数组对象
+</code></pre>
+<ul>
+<li>
+<p>属于重载</p>
+<ul>
+<li>public static void main(String[] args) {
+System.out.println(getSum(1));
+}</li>
+</ul>
+</li>
+</ul>
+<p>public static int getSum(int&hellip; args){
+return 0;
+}
+public static int getSum(int a){
+System.out.println(&ldquo;一个参数&rdquo;);
+return 0;
+}</p>
+<pre><code>  	- 优先于确定参数个数</code></pre>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/java/">JAVA</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-09-14</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/language/java/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="prev" rel="prev" title="网络编程"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/language/java/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" class="next" rel="next" title="面向对象高级特性">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

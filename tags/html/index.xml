@@ -1,0 +1,25 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>html - 标签 - xcx</title>
+        <link>https://xiechaoxin.github.io/tags/html/</link>
+        <description>html - 标签 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 22 May 2023 13:22:22 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/tags/html/" rel="self" type="application/rss+xml" /><item>
+    <title>link</title>
+    <link>https://xiechaoxin.github.io/posts/web/front-end/html/link/</link>
+    <pubDate>Mon, 22 May 2023 13:22:22 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/web/front-end/html/link/</guid>
+    <description><![CDATA[超链接]]></description>
+</item>
+<item>
+    <title>head_metadata</title>
+    <link>https://xiechaoxin.github.io/posts/web/front-end/html/head_metadata/</link>
+    <pubDate>Sun, 21 May 2023 23:56:29 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/web/front-end/html/head_metadata/</guid>
+    <description><![CDATA[head metadata HTML 元信息, 在页面加载完成的时候，HTML 文档中的头部是不会显示在 web 浏览器的。它包含了诸如页面的 &lt;title&gt;（标题）、指向 CSS]]></description>
+</item>
+<item>
+    <title>html_start</title>
+    <link>https://xiechaoxin.github.io/posts/web/front-end/html/html_start/</link>
+    <pubDate>Sun, 21 May 2023 22:28:29 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/web/front-end/html/html_start/</guid>
+    <description><![CDATA[HTML 基础 1 HTML 到底是什么？ HTML（HyperText Markup Language，超文本标记语言）是一种用来告知浏览器如何组织页面的标记语言。HTML 由]]></description>
+</item>
+</channel>
+</rss>

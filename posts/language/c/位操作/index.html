@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>位操作 - xcx</title><meta name="description" content=""><meta property="og:title" content="位操作" />
+<meta property="og:description" content="位操作 0011 1100 二进制左侧是高位，右侧是低位 1 二进制数、位和字节 以数字10为基底表示的数字称为十进制数。 以数字2为基底表示的数字称为二进制数。 用二" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/language/c/%E4%BD%8D%E6%93%8D%E4%BD%9C/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-12T13:09:26+00:00" />
+<meta property="article:modified_time" content="2022-09-12T13:09:26+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="位操作"/>
+<meta name="twitter:description" content="位操作 0011 1100 二进制左侧是高位，右侧是低位 1 二进制数、位和字节 以数字10为基底表示的数字称为十进制数。 以数字2为基底表示的数字称为二进制数。 用二"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/language/c/%E4%BD%8D%E6%93%8D%E4%BD%9C/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/language/c/%E7%BB%93%E6%9E%84%E5%92%8C%E5%85%B6%E4%BB%96%E6%95%B0%E6%8D%AE%E5%BD%A2%E5%BC%8F/" /><link rel="next" href="https://xiechaoxin.github.io/posts/language/c/c%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8%E5%92%8Cc%E5%BA%93/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "位操作",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/language\/c\/%E4%BD%8D%E6%93%8D%E4%BD%9C\/"
+        },"genre": "posts","keywords": "C","wordcount":  1952 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/language\/c\/%E4%BD%8D%E6%93%8D%E4%BD%9C\/","datePublished": "2022-09-12T13:09:26+00:00","dateModified": "2022-09-12T13:09:26+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">位操作</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/c/"><i class="far fa-folder fa-fw"></i>C</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-09-12">2022-09-12</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1952 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-二进制数位和字节">1 二进制数、位和字节</a>
+      <ul>
+        <li><a href="#11-二进制整数">1.1 二进制整数</a></li>
+        <li><a href="#12-其他进制数">1.2 其他进制数</a></li>
+        <li><a href="#13-c按位运算符">1.3 C按位运算符</a></li>
+        <li><a href="#14-位字段">1.4 位字段</a></li>
+        <li><a href="#15-对齐特性c11">1.5 对齐特性(C11)</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="位操作">位操作</h1>
+<blockquote>
+<p>0011 1100  二进制左侧是高位，右侧是低位</p>
+</blockquote>
+<h2 id="1-二进制数位和字节">1 二进制数、位和字节</h2>
+<p>以数字<code>10</code>为基底表示的数字称为<code>十进制数</code>。</p>
+<p>以数字<code>2</code>为基底表示的数字称为<code>二进制数</code>。</p>
+<p>用<code>二进制系统</code>可以把任意整数表示为 <code>0</code> 和 <code>1</code> 的组合。</p>
+<h3 id="11-二进制整数">1.1 二进制整数</h3>
+<p>1字节包含8位。</p>
+<p>C语言用<code>字节(byte)</code> 表示存储系统字符集所需的大小。</p>
+<p>描述<code>存储器芯片</code>和<code>数据传输率</code>中所用的字节指的是 <code>8位</code> 字节。</p>
+<h4 id="111-有符号整数">1.1.1 有符号整数</h4>
+<p>如何表示有符号整数取决于硬件，而不是C语言。</p>
+<p><code>原码表示法</code>：-127~127，缺点 +0 和 -0 容易混淆</p>
+<p><code>二进制补码</code>方法</p>
+<p><code>二进制反码</code>方法通过反码位组合中的每一位形成一个负数。</p>
+<h3 id="12-其他进制数">1.2 其他进制数</h3>
+<h4 id="121-八进制">1.2.1 八进制</h4>
+<p>八进制是指八进制记数系统。</p>
+<p>将<code>八进制数</code>转换为<code>二进制</code>形式时，<del>不能去掉中间的0</del>。</p>
+<h4 id="122-十六进制">1.2.2 十六进制</h4>
+<p>十六进制：十六进制记数系统。</p>
+<p>每个十六进制都对应一个4位的二进制数(即4个二进制数)。</p>
+<p>十六进制很适合表示字节值。</p>
+<h3 id="13-c按位运算符">1.3 C按位运算符</h3>
+<p>C提供<code>按位逻辑运算符</code> 和 <code>移位运算符</code>。</p>
+<h4 id="131-按位逻辑运算符">1.3.1 按位逻辑运算符</h4>
+<h5 id="1311-取反">1.3.1.1 取反：<code>~</code></h5>
+<p>二进制反码或按位取反：~
+一元运算符<code>~</code>把 1 变为0，把0变为1。</p>
+<h5 id="1312-按位与">1.3.1.2 按位与：<code>&amp;</code></h5>
+<p>二元运算符<code>&amp;</code>通过逐位比较两个运算对象，生成一个新值。相当于逻辑乘法</p>
+<p>重点：任何位与1组合都得本身(保持1号位不变，改变其他各位)。任何位与0组合都得0。</p>
+<blockquote>
+<p>对于每个位，只有两个运算对象中相应的位都为1时，结果才为1(从真/假方面来看，只有当两个位都为真时，结果才为真)。</p>
+</blockquote>
+<p><code>&amp;</code>运算符经常用于掩码和关闭位</p>
+<p><strong>掩码</strong>：按<code>位与</code>运算符常用于 <code>掩码(mask)</code>。一些设置为 <code>开(1)</code>或 <code>关(0)</code>的位组合。</p>
+<p><strong>关闭位(清空位)</strong>：和打开特定的位类似，使用 <code>&amp;</code> ，任何位与1组合都得本身(保持1号位不变，改变其他各位)。任何位与0组合都得0。</p>
+<p><strong>检查位的值(检查flags 最地位的值是否是 1)</strong>：mask = 0001; (flags &amp; mask) == mask，把 flags 上最后一位保留，其余位置覆盖成 0，然后再跟 mask 比较</p>
+<h5 id="1313-按位或">1.3.1.3 按位或：<code>|</code></h5>
+<p>二元运算符 <code>|</code> ，通过逐位比较两个运算对象，生成一个新值。</p>
+<p>重点：任何位与0组合，结果都为本身；任何位与1组合，结果都为1。</p>
+<blockquote>
+<p>对于每个位，如果两个运算对象中相应的位只有一个1(非两个为1)，结果为1(从真/假考虑，有一个位为真且不是为同为1，那结果为真)。</p>
+</blockquote>
+<p><code>|</code>经常用于打开位，或者说设置某个位变成 1</p>
+<p>打开位(设置位)：使用<code>按位或(|)</code> 运算符，任何位与0组合，结果都为本身；任何位与1组合，结果都为1。</p>
+<h5 id="1314-按位异或">1.3.1.4 按位异或：<code>^</code></h5>
+<p>二元运算符</p>
+<p>重点：任何位与0异或，结果都为本身；任何位与1异或，结果为相反。</p>
+<p>逐位比较两个运算对象。
+&gt; 对于每个位，如果一个运算对象中相应的位一个为1(但不是两个都为1)，结果为1(真假来看，如果两个运算对象中相应的一个位真且不是两个同为1，结果为真)。</p>
+<p>切换位：打开已关闭的位，或关闭已打开的位。可以使用<code>按位异或</code>运算符完成。使用<code>异或(^)</code> 运算符，任何位与0异或，结果都为本身；任何位与1异或，结果为相反。</p>
+<h4 id="132-移位运算符">1.3.2 移位运算符</h4>
+<ul>
+<li><strong>左移<code>&lt;&lt;</code></strong>
+将其<code>左侧运算对象</code>每一位的值<code>向左移动</code>其<code>右侧运算</code>对象<code>指定的位数</code>。</li>
+</ul>
+<p>左侧运算对象移出左末端位的值丢失，用0填充空出的位置。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="p">(</span><span class="mi">10001010</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="mi">2</span> <span class="c1">// 表达式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">(</span><span class="mo">00101000</span><span class="p">)</span> <span class="c1">// 结果值
+</span></span></span></code></pre></div><ul>
+<li><strong>右移<code>&gt;&gt;</code></strong>
+将其左侧运算对象每一位的值向右移动其右侧运算对象指定的位数。</li>
+</ul>
+<p>左侧运算对象移出，右末端的值丢。</p>
+<blockquote>
+<p>对于无符号类型，用0填充空出的位置。</p>
+<p>对于有符号类型，其结果取决于机器。空出的位置可用0填充，或者用符号位(即最左端的位)的副本填充。</p>
+</blockquote>
+<p>每个位向右移动两个位置，空出的位用0填充。</p>
+<p>移位运算符针对 2 的幂提供快速有效的乘法和除法</p>
+<p><strong>总结</strong>：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">运算符</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">number &laquo; n</td>
+<td style="text-align:left">number 乘以2的n次幂</td>
+</tr>
+<tr>
+<td style="text-align:left">number &raquo; n</td>
+<td style="text-align:left">如果number为非负，则用number除以2的次幂</td>
+</tr>
+</tbody>
+</table>
+<h3 id="14-位字段">1.4 位字段</h3>
+<p>位字段(bit field)：一个signed int 或 unsigned int 类型变量中一组相邻的位(C99和C11新增_Bool类型的位字段)</p>
+<p>通常使用位字段作为一种更紧凑的储存数据的方式</p>
+<p>通过 <code>结构声明</code>来建立。此结构声明为每个字段提供标签，并确定字段的宽度(单位是 bit)。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="nl">autfd</span> <span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="nl">bldfc</span> <span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="nl">undln</span> <span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="nl">itals</span> <span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">prnt</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="nl">L</span> <span class="p">:</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">//低位 2 位
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="nl">M</span> <span class="p">:</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="nl">H</span> <span class="p">:</span> <span class="mi">8</span><span class="p">;</span> <span class="c1">//高位 8 位
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span> <span class="n">prcode</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">prnt</span><span class="p">.</span><span class="n">itals</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">prnt</span><span class="p">.</span><span class="n">undln</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">prcode</span><span class="p">.</span><span class="n">L</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">prcode</span><span class="p">.</span><span class="n">M</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">prcode</span><span class="p">.</span><span class="n">H</span> <span class="o">=</span> <span class="mi">102</span><span class="p">;</span>
+</span></span></code></pre></div><p>prnt 相当于创建了unsigned int 32 位( bit )的最后(低位)的四个位( bit )的结构</p>
+<p>prcode 相当于创建了 unsigned int 32(bit), L低位(2bit) ,M 中位(2bit 为了形象点我乱说的),H高位(8bit)</p>
+<p>prcode ： 0000 0000 0000 0000 0000  [1111 1111]  [00]  [11]</p>
+<p>​                                                               [H              ]  [M ]  [L  ]</p>
+<blockquote>
+<p>通过普通的结构成员运算符(.)单独给字段赋值。</p>
+<p>需要确保所赋的值不能超出字段可容纳的范围</p>
+</blockquote>
+<p>内含位字段的结构允许在一个存储单元中存储多个设置。</p>
+<p>使用位字段通常使得程序的移植性较差</p>
+<h3 id="15-对齐特性c11">1.5 对齐特性(C11)</h3>
+<p>对齐：如何安排对象在内存中的位置。</p>
+<p><code>_Alignof 运算符</code> 给出一个类型的对齐要求，在关键字 <code>_Alignof</code>后面的圆括号中写上<code>类型名</code>即可。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">size_t</span> <span class="n">d_align</span> <span class="o">=</span> <span class="n">_Alignof</span><span class="p">(</span><span class="kt">float</span><span class="p">);</span>
+</span></span></code></pre></div><blockquote>
+<p>使用<code>_Alignas说明符</code> 指定一个<code>变量</code>或<code>类型的对齐值</code>。<del>不应该要求该值小于基本对齐值。</del></p>
+</blockquote>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/c/">C</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-09-12</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/language/c/%E7%BB%93%E6%9E%84%E5%92%8C%E5%85%B6%E4%BB%96%E6%95%B0%E6%8D%AE%E5%BD%A2%E5%BC%8F/" class="prev" rel="prev" title="结构和其他数据形式"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/language/c/c%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8%E5%92%8Cc%E5%BA%93/" class="next" rel="next" title="C预处理器和C库">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

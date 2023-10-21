@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>文件输入和输出 - xcx</title><meta name="description" content=""><meta property="og:title" content="文件输入和输出" />
+<meta property="og:description" content="文件输入/输出 文件用于 存储程序、文档、数据、书信、表格、照片、视频 等。 1 与文件进行通信 文件：通常是在磁盘或固态硬盘上的一段已命名的存储区。 C" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/language/c/%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-12T02:35:25+00:00" />
+<meta property="article:modified_time" content="2022-09-12T02:35:25+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="文件输入和输出"/>
+<meta name="twitter:description" content="文件输入/输出 文件用于 存储程序、文档、数据、书信、表格、照片、视频 等。 1 与文件进行通信 文件：通常是在磁盘或固态硬盘上的一段已命名的存储区。 C"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/language/c/%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/tools/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/" /><link rel="next" href="https://xiechaoxin.github.io/posts/language/c/%E5%8E%9F%E7%A0%81%E5%8F%8D%E7%A0%81%E8%A1%A5%E7%A0%81/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "文件输入和输出",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/language\/c\/%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA\/"
+        },"genre": "posts","keywords": "C","wordcount":  4993 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/language\/c\/%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA\/","datePublished": "2022-09-12T02:35:25+00:00","dateModified": "2022-09-12T02:35:25+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">文件输入和输出</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/c/"><i class="far fa-folder fa-fw"></i>C</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-09-12">2022-09-12</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4993 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 10 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-与文件进行通信">1 与文件进行通信</a>
+      <ul>
+        <li><a href="#11-标准io">1.1 标准I/O</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-标准io的原理">2 标准I/O的原理</a>
+      <ul>
+        <li><a href="#21-文件iofprintffscanffgetsfputs">2.1 文件I/O：<code>fprintf()、fscanf()、fgets()、fputs()</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#3-fgets-和-fputs函数">3 <code>fgets()</code> 和 <code>fputs()</code>函数</a>
+      <ul>
+        <li><a href="#31-随机访问">3.1 随机访问</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-二进制模式和文本模式">4 二进制模式和文本模式</a>
+      <ul>
+        <li><a href="#41-可移植性">4.1 可移植性</a></li>
+        <li><a href="#42-二进制iofread-和-fwrite">4.2 二进制I/O：<code>fread()</code> 和 <code>fwrite()</code></a></li>
+        <li><a href="#43-其他io函数">4.3 其他I/O函数</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-用二进制io进行随机访问">5 用二进制I/O进行随机访问</a></li>
+    <li><a href="#6-总结">6 总结</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="文件输入输出">文件输入/输出</h1>
+<p>文件用于 <code>存储程序、文档、数据、书信、表格、照片、视频</code> 等。</p>
+<h2 id="1-与文件进行通信">1 与文件进行通信</h2>
+<p>文件：通常是在磁盘或固态硬盘上的一段已命名的存储区。</p>
+<p>C语言提供两种文件模式：<code>文本模式</code> 和 <code>二进制模式</code>。</p>
+<p><strong>所有文件的内容都以<code>二进制形式(0或1)</code>存储</strong>。</p>
+<h3 id="11-标准io">1.1 标准I/O</h3>
+<p>C程序会自动打开3个文件：<strong><code>标准输入(standard input)</code></strong>、<strong><code>标准输出(standard ouput)</code></strong>、<strong><code>标准错误输出(standard error output)</code></strong>。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">标准文件</th>
+<th style="text-align:center">文件指针</th>
+<th style="text-align:center">通常使用的设备</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">标准输入</td>
+<td style="text-align:center">stdin</td>
+<td style="text-align:center">键盘</td>
+</tr>
+<tr>
+<td style="text-align:center">标准输出</td>
+<td style="text-align:center">stdout</td>
+<td style="text-align:center">显示器</td>
+</tr>
+<tr>
+<td style="text-align:center">标准错误</td>
+<td style="text-align:center">stderr</td>
+<td style="text-align:center">显示器</td>
+</tr>
+</tbody>
+</table>
+<p>标准I/O的好处：</p>
+<ul>
+<li>可移植</li>
+<li>有专门的函数简化了处理不同I/O的问题</li>
+<li>输入和输出都是缓冲(缓冲极大提高数据传输速率)。</li>
+</ul>
+<p>在打开文件时，程序一定要判断文件是否打开成功。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="n">fopen</span><span class="o">==</span><span class="nb">NULL</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">    <span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><blockquote>
+<p>一旦打开失败，直接会终止后续操作。</p>
+</blockquote>
+<p><code>exit() 函数</code> 关闭所有打开的文件并结束程序。</p>
+<p>在stdlib.h头文件中：</p>
+<blockquote>
+<p>标准要求 <code>0 </code>或 宏 <code>EXIT_SUCCESS</code>：表明成功结束程序。</p>
+<p>宏 <code>EXIT_FAILURE</code>：表明结束程序失败。</p>
+</blockquote>
+<h4 id="111-fopen-和-fclose-函数">1.1.1 <code>fopen()</code> 和 <code>fclose()</code> 函数</h4>
+<p>都声明在 <code>stdlib.h</code> 头文件中。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">函数</th>
+<th style="text-align:left">函数原型</th>
+<th style="text-align:left">语法格式</th>
+<th style="text-align:left">功能</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>fopen()</code></td>
+<td style="text-align:left"><code>FILE *fopen(const char *filename,const char * mode);</code></td>
+<td style="text-align:left"><code>FILE *fp = fopen(&quot;filename&quot;,mode)</code></td>
+<td style="text-align:left">打开文件</td>
+<td style="text-align:left">返回一个文件指针：FILE *fp 指向一个记录文件信息的数据结构<!-- raw HTML omitted -->例：<code>fp = fopen(&quot;hello_c.txt&quot;,&quot;r&quot;);</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>fclose()</code></td>
+<td style="text-align:left"><code>int fclose(FILE * stream);</code></td>
+<td style="text-align:left"><code>fclose(fp)</code></td>
+<td style="text-align:left">关闭文件</td>
+<td style="text-align:left">关闭成功返回0，失败返回EOF(-1)，存储空间不足或者被移除都会出现I/O错误，都会导致失败。</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>文件指针的类型是指向FILE的指针，FILE是一个定义在 <code>stdlib.h</code> 中的<code>派生类型</code>。</p>
+</blockquote>
+<p>fopen中的mode模式参考：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">模式字符串</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">“r”</td>
+<td style="text-align:center">以读模式打开文件</td>
+</tr>
+<tr>
+<td style="text-align:center">“w”</td>
+<td style="text-align:center">以写模式打开文件，把现有文件的长度截为0，如果文件不存在，则创建一个新文件</td>
+</tr>
+<tr>
+<td style="text-align:center">“a”</td>
+<td style="text-align:center">以写模式打开文件，在现有文件末尾添加内容，如果文件不存在，则创建一个新文件</td>
+</tr>
+<tr>
+<td style="text-align:center">“r+”</td>
+<td style="text-align:center">以更新模式打开文件(即可以读写文件)该文件必须存在</td>
+</tr>
+<tr>
+<td style="text-align:center">“w+”</td>
+<td style="text-align:center">以更新模式打开文件(即可以读写文件)，如果文件存在，则将其长度截为0；如果文件不存在，则创建一个新文件</td>
+</tr>
+<tr>
+<td style="text-align:center">“a+”</td>
+<td style="text-align:center">以更新模式打开文件(即，读写)，在现有文件的末尾添加内容，如果文件不存在则创建一个新文件；可以读整个文件，但是只能从末尾添加内容</td>
+</tr>
+<tr>
+<td style="text-align:center">“rb”,“wb”,“ab”,“ab+”,“a+b”,“wb+”,“w+b”</td>
+<td style="text-align:center">与“a+”模式类似，但是以二进制模式打开文件而不是以文本模式打开文件</td>
+</tr>
+<tr>
+<td style="text-align:center">“wx”,“wbx”,“w+x”，“wb+x”,“w+bx”</td>
+<td style="text-align:center">C11新特性，类似非 x 的模式，但是如果文件已存在或者以独占模式打开文件，则打开文件失败</td>
+</tr>
+</tbody>
+</table>
+<h4 id="112-getc-和-putc-函数">1.1.2 <code>getc()</code> 和 <code>putc()</code> 函数</h4>
+<p>与 <code>getchar()</code> 和 <code>putchar()</code> 函数类似。</p>
+<p>区别：</p>
+<blockquote>
+<p>需要告知 <code>getc()</code> 和 <code>putc()</code> 函数 使用哪一个文件。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">函数</th>
+<th style="text-align:left">函数原型</th>
+<th style="text-align:left">语法格式</th>
+<th style="text-align:left">功能</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>gets()</code></td>
+<td style="text-align:left"><code>int getc(FILE *stream)</code></td>
+<td style="text-align:left"><code>ch = getc(fp)</code></td>
+<td style="text-align:left">从fp指定文件中获取一个字符，读到文件结尾返回EOF</td>
+<td style="text-align:left"><code>getc(stdin) == getchar(ch);</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>putc()</code></td>
+<td style="text-align:left"><code>int putc(int char,FILE *stream)</code></td>
+<td style="text-align:left"><code>putc(ch,fp)</code></td>
+<td style="text-align:left">把ch放入fp指向文件</td>
+<td style="text-align:left"><code>puts(ch,stdout) == putchar(ch);</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="113-一个简单的文件压缩程序">1.1.3 一个简单的文件压缩程序</h4>
+<p>例子：把一个文件中选定的数据拷贝到另一个文件中。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">//reducto.c 把文件压缩成原来的1/3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp"># define _CRT_SECURE_NO_WARNINGS
+</span></span></span><span class="line"><span class="cl"><span class="cp"># include&lt;stdio.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"># include&lt;stdlib.h&gt; </span><span class="c1">//提供exi()原型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp"># include&lt;string.h&gt; </span><span class="c1">//提供strcpy()、strcat()原型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp"># define LEN 40
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">FILE</span> <span class="o">*</span> <span class="n">in</span><span class="p">,</span> <span class="o">*</span><span class="n">out</span><span class="p">;</span> <span class="c1">//声明两个指向FILE的指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">int</span> <span class="n">ch</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="n">LEN</span><span class="p">];</span> <span class="c1">//存储输出文件名
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span><span class="c1">//检查命令行参数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;Usage: %s filename</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span> <span class="c1">//表明程序失败退出
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//设置输入，设置mode为可读
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">if</span> <span class="p">((</span><span class="n">in</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#34;r&#34;</span><span class="p">))</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;I couldn&#39;t open the file </span><span class="se">\&#34;</span><span class="s">%s</span><span class="se">\&#34;\n</span><span class="s"> &#34;</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//设置输出
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">strncpy</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">LEN</span> <span class="o">-</span> <span class="mi">5</span><span class="p">);</span> <span class="c1">// 拷贝文件名
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">name</span><span class="p">[</span><span class="n">LEN</span> <span class="o">-</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">strcat</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s">&#34;.red&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">((</span><span class="n">out</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s">&#34;w&#34;</span><span class="p">))</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="c1">//设置可写方式打开file
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;Can&#39;t create output file.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">exit</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//拷贝数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">while</span> <span class="p">(</span> <span class="p">(</span><span class="n">ch</span><span class="o">=</span><span class="n">getc</span><span class="p">(</span><span class="n">in</span><span class="p">))</span><span class="o">!=</span><span class="n">EOF</span><span class="p">)</span> <span class="c1">//通过使用EOF来告知程序已经读取到文件结尾，从而结束程序。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="n">count</span><span class="o">++</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="n">putc</span><span class="p">(</span><span class="n">ch</span><span class="p">,</span> <span class="n">out</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">fclose</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">fclose</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;Error in closing files.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><blockquote>
+<p><code>fprintf()</code>和 <code>printf()</code> 类似，⚠️注意点：<code>fptrintf()</code> 第一个参数必须是一个<code>文件指针</code>。</p>
+</blockquote>
+<h2 id="2-标准io的原理">2 标准I/O的原理</h2>
+<p>步骤：</p>
+<ul>
+<li>
+<p>调用<code>fopen()</code>打开文件。</p>
+<ul>
+<li><code>fopen()</code>不仅打开一个文件，还创建了一个缓冲区(在读写模式下会创建两个缓冲区)以及一个包含文件和缓冲区数据的结构。</li>
+<li>fopen()返回一个指向该结构的指针，以便其他函数知道该如何找到该结构。</li>
+<li>结构中通常包含一个指定流中当前未知的文件位置指示器。还包括错误和文件结尾的指示器、一个指向缓冲区开始处的指针，一个文件标识符和一个计数(统计实际拷贝进缓冲区的字节数)。</li>
+</ul>
+</li>
+<li>
+<p>调用一个定义在 <code>stdio.h</code> 中的输入函数，如<code>fscanf()、getc()或fgets()</code>。</p>
+<ul>
+<li>调用函数时，文件中的数据块会被拷贝到缓冲区中，最初调用函数，除了填充缓冲区外，还要设置指针变量所指向的结构中的值。</li>
+<li>在初始化结构和缓冲区后，输入函数按要求从缓冲区中读取数据，在读取数据时，文件位置指示器被设置为指向刚读取字符的下一个字符。</li>
+<li>当输入函数发现已读完缓冲区中的所有字符时，会请求把下一个缓冲大小的数据块从文件拷贝到该缓冲区中。</li>
+<li>输出函数以类似的方式把数据写入缓冲区。当缓冲区被填满时，数据将被拷贝至文件中。</li>
+</ul>
+</li>
+</ul>
+<h3 id="21-文件iofprintffscanffgetsfputs">2.1 文件I/O：<code>fprintf()、fscanf()、fgets()、fputs()</code></h3>
+<h4 id="211-fprintf-和-fscanf-函数">2.1.1 <code>fprintf()</code> 和 <code>fscanf()</code> 函数</h4>
+<p><code>fprintf()</code> 和 <code>fscanf()</code>函数的工作方式与 <code>printf()</code> 和 <code>fscanf()</code>函数的类似。</p>
+<p>👉小区别：</p>
+<blockquote>
+<p><code>fprintf()</code> 和 <code>fscanf()</code> 函数的第一个参数<code>必须指定待处理的文件</code>。</p>
+</blockquote>
+<p>例子：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cm">/*addaword.c --fprintf() fscanf() rewind()*/</span>
+</span></span><span class="line"><span class="cl"><span class="cp"># define _CRT_SECURE_NO_WARNINGS
+</span></span></span><span class="line"><span class="cl"><span class="cp"># include&lt;stdio.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"># include&lt;stdlib.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"># include&lt;string.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"># define MAX 41
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">words</span><span class="p">[</span><span class="n">MAX</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">((</span><span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;wordy&#34;</span><span class="p">,</span> <span class="s">&#34;a+&#34;</span><span class="p">))</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="c1">//更新(读写)模式打开文件，只允许在文件末尾添加内容
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">fprintf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="s">&#34;Can&#39;t open </span><span class="se">\&#34;</span><span class="s">wordy</span><span class="se">\&#34;</span><span class="s"> file.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Enter words to add to the file; press the #&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;key at the beginning of a line to terminate.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">while</span> <span class="p">((</span><span class="n">fscanf</span><span class="p">(</span><span class="n">stdin</span><span class="p">,</span> <span class="s">&#34;%40s&#34;</span><span class="p">,</span> <span class="n">words</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">words</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="sc">&#39;#&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">		<span class="n">fprintf</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="s">&#34;%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">words</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;File contents:&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/** 关于 rewind() 函数的介绍说明
+</span></span></span><span class="line"><span class="cl"><span class="cm">     *
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * rewind()函数 在头文件 stdio.h 中
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 用于将文件指针重新指向文件的开头，同时清除和文件流相关的错误和EOF标记。
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 相当于调用 fseek()函数
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 函数原型：void rewind(FILE *stream);
+</span></span></span><span class="line"><span class="cl"><span class="cm">     *
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">	<span class="n">rewind</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span><span class="c1">//回到文件开始处。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">while</span> <span class="p">(</span><span class="n">fscanf</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="n">words</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">puts</span><span class="p">(</span><span class="n">words</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Done!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;Error closing file</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="3-fgets-和-fputs函数">3 <code>fgets()</code> 和 <code>fputs()</code>函数</h2>
+<p>略</p>
+<h3 id="31-随机访问">3.1 随机访问</h3>
+<h4 id="311-fseek-和-ftell-函数">3.1.1 <code>fseek()</code> 和 <code>ftell()</code> 函数</h4>
+<p>有了 fseek()就可以把文件看做是数组，进而用指针进行操作</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">函数名</th>
+<th style="text-align:left">函数原型</th>
+<th style="text-align:left">功能</th>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>fseek()</code></td>
+<td style="text-align:left"><code>int fseek(FILE *stream, long int offset, int whence);</code></td>
+<td style="text-align:left">重定位流上的文件指针</td>
+<td style="text-align:left">第一个参数stream为<code>文件指针</code><!-- raw HTML omitted -->第二个参数offset为<code>偏移量</code>，正数表示正向偏移，负数表示负向偏移<!-- raw HTML omitted -->第三个参数是<code>模式</code>，确定文件起始点,几种明示常量为：<code>SEEK_SET(文件开头)、 SEEK_CUR(当前位置) 或 SEEK_END(文件末尾)</code></td>
+<td style="text-align:left">如果成功，则该函数返回零，否则返回非零值。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>ftell</code></td>
+<td style="text-align:left"><code>long ftell(FILE *stream);</code></td>
+<td style="text-align:left">得到文件位置指针当前位置相对于文件首的偏移字节数。</td>
+<td style="text-align:left"><code>FILE *stream</code>返回指针的文件流</td>
+<td style="text-align:left">成功&mdash;-返回当前文件指针的位置<!-- raw HTML omitted -->出错&mdash;-返回-1L，是长整数的-1值。</td>
+</tr>
+</tbody>
+</table>
+<p>这里介绍一下起始点：</p>
+<ul>
+<li>SEEK_SET：从文件开始处开始</li>
+<li>SEEK_CUR：从当前位置开始(就是已经读到哪个位置就是哪个位置)</li>
+<li>SEEK_END：从文件末尾开始</li>
+</ul>
+<p><code>fseek</code>例子：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">fseek</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span><span class="mi">0L</span><span class="p">,</span><span class="n">SEEK_SET</span><span class="p">);</span> <span class="c1">//定位至文件开始处
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">fseek</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span><span class="mi">10L</span><span class="p">,</span><span class="n">SEEK_SET</span><span class="p">);</span> <span class="c1">//定位至文件中的第10个字节
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">fseek</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span><span class="mi">2L</span><span class="p">,</span><span class="n">SEEK_CUR</span><span class="p">);</span> <span class="c1">//从文件当前位置前移2个字节
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">fseek</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span><span class="mi">0L</span><span class="p">,</span><span class="n">SEEK_END</span><span class="p">);</span> <span class="c1">// 定位至文件结尾
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">fseek</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span><span class="o">-</span><span class="mi">10L</span><span class="p">,</span><span class="n">SEEK_END</span><span class="p">);</span> <span class="c1">// 从文件结尾处回退10个
+</span></span></span></code></pre></div><p><code>ftell</code>例子：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp"># include&lt;stdio.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">FILE</span> <span class="o">*</span><span class="n">stream</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">len</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">stream</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;file.txt&#34;</span><span class="p">,</span><span class="s">&#34;r&#34;</span><span class="p">);</span> <span class="c1">// 只读方式打开
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">if</span><span class="p">(</span><span class="n">stream</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">perror</span><span class="p">(</span><span class="s">&#34;打开文件错误&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">fseek</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">SEEK_END</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">len</span> <span class="o">=</span> <span class="n">ftell</span><span class="p">(</span><span class="n">stream</span><span class="p">);</span> <span class="c1">//返回类型为long，把file.txt文件开始处到文件结尾的字节数赋给len
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">fclose</span><span class="p">(</span><span class="n">stream</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;file.txt的总大小为 = %d 字节</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">len</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>假设文件file.txt中的内容为</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">www.github.com/solerho
+</span></span></code></pre></div><p>使用gcc运行程序后结果如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">[</span>root@centos8 examples<span class="o">]</span><span class="c1"># gcc ftell.c</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@centos8 examples<span class="o">]</span><span class="c1"># ls</span>
+</span></span><span class="line"><span class="cl">a.out  file.txt  ftell.c
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@centos8 examples<span class="o">]</span><span class="c1"># ./a.out</span>
+</span></span><span class="line"><span class="cl">file.txt的总大小为 <span class="o">=</span> <span class="m">23</span> 字节
+</span></span></code></pre></div><h2 id="4-二进制模式和文本模式">4 二进制模式和文本模式</h2>
+<p>不同之处：</p>
+<ul>
+<li>UNIX
+<ul>
+<li>UNIX只有一种文件格式，所以不需要进行特殊的转换。</li>
+<li>UNIX使用 <code>\n</code> 表示换行符。</li>
+</ul>
+<blockquote>
+<p>以<code>文本模式</code>打开时，C能识别<code>Ctrl-Z</code>作为<code>文件结尾标记的字符</code>。</p>
+<p>以<code>二进制模式</code>打开相同的文件时，<code>Ctrl-Z</code> 字符被看作是<code>文件中的一个字符</code>，而实际的文件结尾符在该字符后面。</p>
+</blockquote>
+</li>
+<li>MS-DOS
+<ul>
+<li>MS-DOS编译器都用 <code>Ctrl + Z</code> 标记文件。</li>
+<li>MS-DOS用 <code>\r\n</code> 组合表示文件换行符。</li>
+</ul>
+<blockquote>
+<p>以<code>文本模式</code>打开相同的文件，C程序把<code>\r\n</code>看成<code>\n</code>，但是，以二进制模式打开该文件时，程序能看见这两个字符。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="41-可移植性">4.1 可移植性</h3>
+<p>C模型无法做到与Unix模型一致，因为历史上C就是因为Unix而生，但是其他系统不能保证与Unix模型一致。因此，ANSI对这些函数降低了要求，下面是一些限制：</p>
+<ul>
+<li>在<code>二进制模式</code>中，实现不必支持<code>SEEK_END模式</code>。</li>
+<li>在<code>文本模式</code>中，只有以下调用能保证其相应的行为。</li>
+</ul>
+<blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">函数调用</th>
+<th style="text-align:left">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>fseek(file,0L,SEEK_SET)</code></td>
+<td style="text-align:left">定位至文件开始处</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>fseek(file,0L,SEEK_CUR)</code></td>
+<td style="text-align:left">保持当前位置不动</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>fseek(file,0L,SEEK_END)</code></td>
+<td style="text-align:left">定位至文件结尾</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>fseek(file,ftell-pos,SEEK_SET)</code></td>
+<td style="text-align:left">到距文件开始处ftell-pos的位置，ftell-pos是ftell()的返回值</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h4 id="411-fgetpos-和-fsetpos-函数">4.1.1 <code>fgetpos()</code> 和 <code>fsetpos()</code> 函数</h4>
+<ul>
+<li>fgetpos() 函数</li>
+</ul>
+<p>语法格式：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">fgetpos</span><span class="p">(</span> <span class="n">FILE</span> <span class="o">*</span><span class="n">stream</span><span class="p">,</span> <span class="n">fpos_t</span> <span class="o">*</span><span class="n">position</span> <span class="p">);</span>
+</span></span></code></pre></div><blockquote>
+<p>参数说明：</p>
+<p><strong>stream</strong> : 当前文件流的指针</p>
+<p><strong>fpos_t</strong> : 用来表示文件读写指针位置的类型，用来指明正在操作的文件中读或写的位置，文件头处为0。fpos_t在不同的平台下有不同的类型。</p>
+<p><strong>position</strong> ： 指向 fpos_t 对象的指针</p>
+<p><strong>功能</strong>：处理较大文件(字节数超过long范围)，解决 <code>fseek()</code> 和 <code>ftell()</code>函数存在的问题。</p>
+<p><strong>返回值</strong>：执行成功时返回0，否则返回非0值。
+ANSI C定义了如何使用 <code>fpos_t</code> 类型，<code>fgetpos()</code> 函数的原型如下：</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">fgetpos</span><span class="p">(</span><span class="n">FILE</span> <span class="o">*</span> <span class="k">restrict</span> <span class="n">stream</span><span class="p">,</span><span class="n">fpos_t</span> <span class="o">*</span> <span class="k">restrict</span> <span class="n">pos</span><span class="p">);</span>
+</span></span></code></pre></div><ul>
+<li><code>fsetpos()</code> 函数</li>
+</ul>
+<p>语法格式：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">fsetpos</span><span class="p">(</span><span class="n">FILE</span> <span class="o">*</span><span class="n">stream</span><span class="p">,</span><span class="k">const</span> <span class="n">fpost_t</span> <span class="o">*</span><span class="n">pos</span><span class="p">);</span>
+</span></span></code></pre></div><blockquote>
+<p>调用函数时，使用pos指向位置上的 <code>fpos_t</code> 类型值来设置文件指针指向该值指定的位置。</p>
+<p>函数成功返回0，失败则返回非0。</p>
+</blockquote>
+<h3 id="42-二进制iofread-和-fwrite">4.2 二进制I/O：<code>fread()</code> 和 <code>fwrite()</code></h3>
+<p>如果以程序所用的表示法把数据储存在文件中。则称以<code>二进制形式存储数据</code>。</p>
+<p>不存在从<code>数值形式</code>到<code>字符串</code>的转换过程。对于标准I/O，<code>fread()</code> 和 <code>fwrite()</code> 函数用于以二进制形式处理数据。</p>
+<p>所有的数据都是以 二进制形式存储。</p>
+<p>ANSI C 和许多OS都识别两种文件格式：<code>二进制</code> 和 <code>文本</code>。</p>
+<h3 id="43-其他io函数">4.3 其他I/O函数</h3>
+<blockquote>
+<p>一般都是成功返回0，不成功返回非零值：EOF(-1)</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">函数</th>
+<th style="text-align:left">函数原型</th>
+<th style="text-align:left">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>ungetc()</code></td>
+<td style="text-align:left"><code>int ungetc(int c, FILE* fp)</code></td>
+<td style="text-align:left">把c指定的字符放回输入流中，如果把一个字符放回输入流，下次调用标准输入函数时将读取该字符。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>fflush()</code></td>
+<td style="text-align:left"><code>int fflush(FILE *stream)</code></td>
+<td style="text-align:left">调用函数引起输出缓冲区中所有的未写入数据被发送到stream指定的输出文件，该过程叫作 <strong><code>刷新缓冲区</code></strong>。<!-- raw HTML omitted -->如果指针stream是空指针，所有输出缓冲区都被刷新。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>setvbuf()</code></td>
+<td style="text-align:left"><code>int setvbuf(FILE* fp, char * buf, int mode, size_t size);</code></td>
+<td style="text-align:left">创建一个提供I/O函数替换使用的缓冲区。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="431-size_t-fwrite-函数">4.3.1 <code>size_t fwrite()</code> 函数</h4>
+<p><code>fwrite()</code> 函数的原型：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">size_t</span> <span class="nf">fwrite</span><span class="p">(</span><span class="k">const</span> <span class="kt">void</span> <span class="o">*</span> <span class="k">restrict</span> <span class="n">ptr</span><span class="p">,</span><span class="n">size_t</span> <span class="n">size</span><span class="p">,</span><span class="n">size_t</span> <span class="n">nmemb</span><span class="p">,</span><span class="n">FILE</span> <span class="o">*</span> <span class="k">restrict</span> <span class="n">stream</span><span class="p">);</span>
+</span></span></code></pre></div><blockquote>
+<p><code>指针ptr</code> ：待写入数据块的地址。</p>
+<p><code>size</code>：待写入数据块的大小(以字节为单位)。</p>
+<p><code>nmemb</code> ：待写入数据块的数量。</p>
+<p><code>stream</code> ：指定待写入的文件。
+<code>fwrite()</code> 函数返回成功写入项的数量。</p>
+</blockquote>
+<h4 id="432-size_t-fread-函数">4.3.2 <code>size_t fread()</code> 函数</h4>
+<p><code>fread()</code> 函数的原型：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">size_t</span> <span class="nf">fread</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span> <span class="k">restrict</span> <span class="n">ptr</span><span class="p">,,</span><span class="n">size_t</span> <span class="n">size</span><span class="p">,</span><span class="n">size_t</span> <span class="n">nmemb</span><span class="p">,</span><span class="n">FILE</span> <span class="o">*</span> <span class="k">restrict</span> <span class="n">stream</span><span class="p">);</span>
+</span></span></code></pre></div><blockquote>
+<p>在 <code>fread()</code> 函数中，<code>ptr</code> 是待读取文件数据在内存中的地址。<code>stream</code> 指定待读取的文件。</p>
+<p>fread() 函数返回成功读取项的数量。</p>
+</blockquote>
+<h4 id="433-int-feoffile-fp-和-int-ferrorfile-fp-函数">4.3.3 <code>int feof(FILE *fp)</code> 和 <code>int ferror(FILE *fp)</code> 函数</h4>
+<p>如果标准输入函数EOF，则通常表明函数已到达文件结尾。</p>
+<blockquote>
+<p><code>feof()</code> 函数返回一个非零值，否则返回0。</p>
+<p><code>ferror()</code> 函数返回一个非零值，否则返回0。</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cm">/* append.c -- 把文件附加到另一个文件末尾 */</span>
+</span></span><span class="line"><span class="cl"><span class="cp"># include &lt;stdio.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"># include &lt;stdlib.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"># include &lt;string.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"># define BUFSIZE 4096
+</span></span></span><span class="line"><span class="cl"><span class="cp"># define SLEN 81
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">void</span> <span class="nf">append</span><span class="p">(</span><span class="n">FILE</span> <span class="o">*</span><span class="n">source</span><span class="p">,</span> <span class="n">FILE</span> <span class="o">*</span><span class="n">dest</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="o">*</span> <span class="nf">s_gets</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span> <span class="n">st</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="n">FILE</span> <span class="o">*</span><span class="n">fa</span><span class="p">,</span> <span class="o">*</span><span class="n">fs</span><span class="p">;</span>     <span class="c1">// fa 指向目标文件，fs 指向源文件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="kt">int</span> <span class="n">files</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>     <span class="c1">// 附加的文件数量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="kt">char</span> <span class="n">file_app</span><span class="p">[</span><span class="n">SLEN</span><span class="p">];</span>  <span class="c1">// 目标文件名
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="kt">char</span> <span class="n">file_src</span><span class="p">[</span><span class="n">SLEN</span><span class="p">];</span>  <span class="c1">// 源文件名
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="kt">int</span> <span class="n">ch</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Enter name of destination file:&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="n">s_gets</span><span class="p">(</span><span class="n">file_app</span><span class="p">,</span> <span class="n">SLEN</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="k">if</span> <span class="p">((</span><span class="n">fa</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="n">file_app</span><span class="p">,</span> <span class="s">&#34;a+&#34;</span><span class="p">))</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;Can&#39;t open %s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">file_app</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">     <span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="k">if</span> <span class="p">(</span><span class="n">setvbuf</span><span class="p">(</span><span class="n">fa</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">_IOFBF</span><span class="p">,</span> <span class="n">BUFSIZE</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="n">fputs</span><span class="p">(</span><span class="s">&#34;Can&#39;t create output buffer</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">stderr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">     <span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Enter name of first source file (empty line to quit):&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="k">while</span> <span class="p">(</span><span class="n">s_gets</span><span class="p">(</span><span class="n">file_src</span><span class="p">,</span> <span class="n">SLEN</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">file_src</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="sc">&#39;\0&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">file_src</span><span class="p">,</span> <span class="n">file_app</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fputs</span><span class="p">(</span><span class="s">&#34;Can&#39;t append file to itself</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">stderr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">     <span class="k">else</span> <span class="k">if</span> <span class="p">((</span><span class="n">fs</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="n">file_src</span><span class="p">,</span> <span class="s">&#34;r&#34;</span><span class="p">))</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;Can&#39;t open %s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">file_src</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">     <span class="k">else</span>
+</span></span><span class="line"><span class="cl">     <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">setvbuf</span><span class="p">(</span><span class="n">fs</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">_IOFBF</span><span class="p">,</span> <span class="n">BUFSIZE</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">fputs</span><span class="p">(</span><span class="s">&#34;Can&#39;t create input buffer</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">stderr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">          <span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">append</span><span class="p">(</span><span class="n">fs</span><span class="p">,</span> <span class="n">fa</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">ferror</span><span class="p">(</span><span class="n">fs</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">          <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;Error in reading file %s.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">               <span class="n">file_src</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">ferror</span><span class="p">(</span><span class="n">fa</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">          <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;Error in writing file %s.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">               <span class="n">file_app</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fclose</span><span class="p">(</span><span class="n">fs</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">files</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;File %s appended.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">file_src</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Next file (empty line to quit):&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">     <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Done appending. %d files appended.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">files</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="n">rewind</span><span class="p">(</span><span class="n">fa</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%s contents:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">file_app</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="k">while</span> <span class="p">((</span><span class="n">ch</span> <span class="o">=</span> <span class="n">getc</span><span class="p">(</span><span class="n">fa</span><span class="p">))</span> <span class="o">!=</span> <span class="n">EOF</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">     <span class="n">putchar</span><span class="p">(</span><span class="n">ch</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Done displaying.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="n">fclose</span><span class="p">(</span><span class="n">fa</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">append</span><span class="p">(</span><span class="n">FILE</span> <span class="o">*</span><span class="n">source</span><span class="p">,</span> <span class="n">FILE</span> <span class="o">*</span><span class="n">dest</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="n">size_t</span> <span class="n">bytes</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="k">static</span> <span class="kt">char</span> <span class="n">temp</span><span class="p">[</span><span class="n">BUFSIZE</span><span class="p">];</span>  <span class="c1">// 只分配一次
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="k">while</span> <span class="p">((</span><span class="n">bytes</span> <span class="o">=</span> <span class="n">fread</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">),</span> <span class="n">BUFSIZE</span><span class="p">,</span> <span class="n">source</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">     <span class="n">fwrite</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">),</span> <span class="n">bytes</span><span class="p">,</span> <span class="n">dest</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="o">*</span> <span class="nf">s_gets</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span> <span class="n">st</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">char</span> <span class="o">*</span> <span class="n">ret_val</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">char</span> <span class="o">*</span> <span class="n">find</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">ret_val</span> <span class="o">=</span> <span class="n">fgets</span><span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">stdin</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="k">if</span> <span class="p">(</span><span class="n">ret_val</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="n">find</span> <span class="o">=</span> <span class="n">strchr</span><span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="sc">&#39;\n&#39;</span><span class="p">);</span>   <span class="c1">// 查找换行符
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>     <span class="k">if</span> <span class="p">(</span><span class="n">find</span><span class="p">)</span>          <span class="c1">// 如果地址不是NULL，
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">*</span><span class="n">find</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>      <span class="c1">// 在此处放置一个空字符
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>     <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">getchar</span><span class="p">()</span> <span class="o">!=</span> <span class="sc">&#39;\n&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">          <span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="n">ret_val</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="5-用二进制io进行随机访问">5 用二进制I/O进行随机访问</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cm">/* randbin.c -- 用二进制I/O进行随机访问 */</span>
+</span></span><span class="line"><span class="cl"><span class="cp"># include &lt;stdio.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"># include &lt;stdlib.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"># define ARSIZE 1000
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">double</span> <span class="n">numbers</span><span class="p">[</span><span class="n">ARSIZE</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">double</span> <span class="n">value</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">file</span> <span class="o">=</span> <span class="s">&#34;numbers.dat&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">long</span> <span class="n">pos</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">FILE</span> <span class="o">*</span><span class="n">iofile</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">// 创建一组 double类型的值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ARSIZE</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">     <span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mf">100.0</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">// 尝试打开文件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="k">if</span> <span class="p">((</span><span class="n">iofile</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s">&#34;wb&#34;</span><span class="p">))</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;Could not open %s for output.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">file</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">     <span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">// 以二进制格式把数组写入文件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="n">fwrite</span><span class="p">(</span><span class="n">numbers</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">),</span> <span class="n">ARSIZE</span><span class="p">,</span> <span class="n">iofile</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="n">fclose</span><span class="p">(</span><span class="n">iofile</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="k">if</span> <span class="p">((</span><span class="n">iofile</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s">&#34;rb&#34;</span><span class="p">))</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;Could not open %s for random access.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">file</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">     <span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">// 从文件中读取选定的内容
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Enter an index in the range 0-%d.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">ARSIZE</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="k">while</span> <span class="p">(</span><span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ARSIZE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="kt">long</span><span class="p">)</span> <span class="n">i</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">);</span>  <span class="c1">// 计算偏移量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>     <span class="n">fseek</span><span class="p">(</span><span class="n">iofile</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">SEEK_SET</span><span class="p">);</span>    <span class="c1">// 定位到此处
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>     <span class="n">fread</span><span class="p">(</span><span class="o">&amp;</span><span class="n">value</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">iofile</span><span class="p">);</span> <span class="c1">//读取该位置上的数据值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>     <span class="n">printf</span><span class="p">(</span><span class="s">&#34;The value there is %f.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">     <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Next index (out of range to quit):</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">// 完成
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="n">fclose</span><span class="p">(</span><span class="n">iofile</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Bye!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="6-总结">6 总结</h2>
+<p>输入函数<code>getc()</code>、<code>fgets()</code>、<code>fscanf()</code>和<code>fread()</code> 都是从<code>文件开始处按顺序</code>读取文件。</p>
+<p><code>fseek()</code> 和 <code>ftell()</code> 函数让程序可以<code>随机访问文件中的任意位置</code>。<code>fgetpos()</code> 和 <code>fsetpos()</code> 把类似的功能扩展到更大的文件。</p>
+<p>与文本模式相比，二进制模式更容易进行随机访问。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/c/">C</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-09-12</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/tools/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/" class="prev" rel="prev" title="搭建博客网站"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/language/c/%E5%8E%9F%E7%A0%81%E5%8F%8D%E7%A0%81%E8%A1%A5%E7%A0%81/" class="next" rel="next" title="原码、反码和补码">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

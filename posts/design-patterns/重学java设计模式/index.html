@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>重学Java设计模式 - xcx</title><meta name="description" content=""><meta property="og:title" content="重学Java设计模式" />
+<meta property="og:description" content="设计模式 设计模式禁忌：手里有锤子，看啥都是钉子；不能为了使用设计模式而使用设计模式，应该根据实际业务场景使用合适的设计模式，有时候业务不适合" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/design-patterns/%E9%87%8D%E5%AD%A6java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-29T14:02:44+00:00" />
+<meta property="article:modified_time" content="2022-06-29T14:02:44+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="重学Java设计模式"/>
+<meta name="twitter:description" content="设计模式 设计模式禁忌：手里有锤子，看啥都是钉子；不能为了使用设计模式而使用设计模式，应该根据实际业务场景使用合适的设计模式，有时候业务不适合"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/design-patterns/%E9%87%8D%E5%AD%A6java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/chaos/%E5%A4%A7%E4%BD%AC%E5%88%86%E4%BA%AB/personal-experience/8-years-programmer-work-summary/" /><link rel="next" href="https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/%E5%BC%80%E5%A7%8B/1.cpp-primer%E5%BC%80%E5%A7%8B/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "重学Java设计模式",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/design-patterns\/%E9%87%8D%E5%AD%A6java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F\/"
+        },"genre": "posts","keywords": "design_patterns","wordcount":  9966 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/design-patterns\/%E9%87%8D%E5%AD%A6java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F\/","datePublished": "2022-06-29T14:02:44+00:00","dateModified": "2022-06-29T14:02:44+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">重学Java设计模式</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/design_patterns/"><i class="far fa-folder fa-fw"></i>design_patterns</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-29">2022-06-29</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 9966 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 20 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-设计模式准则">1 设计模式准则</a>
+      <ul>
+        <li><a href="#11-单一职责">1.1 单一职责</a></li>
+        <li><a href="#12-开闭原则">1.2 开闭原则</a></li>
+        <li><a href="#13-里氏替换原则">1.3 里氏替换原则</a></li>
+        <li><a href="#14-迪米特原则">1.4 迪米特原则</a></li>
+        <li><a href="#15-接口隔离原则">1.5 接口隔离原则</a></li>
+        <li><a href="#16-依赖倒置原则">1.6 依赖倒置原则</a></li>
+        <li><a href="#17-总结">1.7 总结</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-创建者模式5-节">2 创建者模式(5 节)</a>
+      <ul>
+        <li><a href="#21-工厂方法模式">2.1 工厂(方法)模式</a></li>
+        <li><a href="#22-抽象工厂">2.2 抽象工厂</a></li>
+        <li><a href="#23-建造者模式">2.3 建造者模式</a></li>
+        <li><a href="#24-原型模式">2.4 原型模式</a></li>
+        <li><a href="#25-单例模式">2.5 单例模式</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-结构型模式7-节">3 结构型模式(7 节)</a>
+      <ul>
+        <li><a href="#31-适配器模式">3.1 适配器模式</a></li>
+        <li><a href="#32-桥接模式">3.2 桥接模式</a></li>
+        <li><a href="#33-组合模式">3.3 组合模式</a></li>
+        <li><a href="#34-装饰器模式">3.4 装饰器模式</a></li>
+        <li><a href="#35-外观模式">3.5 外观模式</a></li>
+        <li><a href="#36-享元模式">3.6 享元模式</a></li>
+        <li><a href="#37-代理模式">3.7 代理模式</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-行为模式10-节">4 行为模式(10 节)</a>
+      <ul>
+        <li><a href="#41-责任链模式">4.1 责任链模式</a></li>
+        <li><a href="#42-命令模式">4.2 命令模式</a></li>
+        <li><a href="#43-迭代器模式">4.3 迭代器模式</a></li>
+        <li><a href="#44-中介者模式">4.4 中介者模式</a></li>
+        <li><a href="#45-备忘录模式">4.5 备忘录模式</a></li>
+        <li><a href="#46-观察者模式">4.6 观察者模式</a></li>
+        <li><a href="#47-状态模式">4.7 状态模式</a></li>
+        <li><a href="#48-策略模式">4.8 策略模式</a></li>
+        <li><a href="#49-模板模式">4.9 模板模式</a></li>
+        <li><a href="#410-访问者模式">4.10 访问者模式</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="设计模式">设计模式</h1>
+<blockquote>
+<p>设计模式禁忌：手里有锤子，看啥都是钉子；不能为了使用设计模式而使用设计模式，应该根据实际业务场景使用合适的设计模式，有时候业务不适合使用某个设计模式，宁可代码写规整就好，也不要硬套某个模式</p>
+</blockquote>
+<h2 id="1-设计模式准则">1 设计模式准则</h2>
+<h3 id="11-单一职责">1.1 单一职责</h3>
+<p>每个类的功能应该是完成单一职责，不应该把多个不相关功能点放到同一个类中
+<strong>反例</strong>
+一个类中的方法用 if else 隔离复杂功能</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">serveGrade</span><span class="o">(</span><span class="n">String</span> <span class="n">userType</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="s">&#34;VIP用户&#34;</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">userType</span><span class="o">)){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;VIP用户，视频1080P蓝光&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="s">&#34;普通用户&#34;</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">userType</span><span class="o">)){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;普通用户，视频720P超清&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="s">&#34;访客用户&#34;</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">userType</span><span class="o">)){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;访客用户，视频480P高清&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p><strong>使用接口隔离</strong></p>
+<ol>
+<li>定义接口</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">IVideoUserService</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">definition</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">advertisement</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><ol start="2">
+<li>继承接口，根据实际职责去实现接口方法</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">GuestVideoUserService</span> <span class="kd">implements</span> <span class="n">IVideoUserService</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">definition</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;访客用户，视频480P高清&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">advertisement</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;访客用户，视频有广告&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">OrdinaryVideoUserService</span> <span class="kd">implements</span> <span class="n">IVideoUserService</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">definition</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;普通用户，视频720P超清&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">advertisement</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;普通用户，视频有广告&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./image-20220629141347959.png"
+        data-srcset="./image-20220629141347959.png, ./image-20220629141347959.png 1.5x, ./image-20220629141347959.png 2x"
+        data-sizes="auto"
+        alt="./image-20220629141347959.png"
+        title="image-20220629141347959" /></p>
+<h3 id="12-开闭原则">1.2 开闭原则</h3>
+<p>扩展开放，修改关闭，开用原则规定“软件中的对象(类，模块，函数等等)应该对子扩展是开放的，但是对于修改是封的”</p>
+<h4 id="121-例子面积计算">1.2.1 例子：面积计算</h4>
+<p>接口</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ICalculationArea</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 计算面积，长方形
+</span></span></span><span class="line"><span class="cl"><span class="cm">     *
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param x 长
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param y 宽
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @return 面积
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">double</span> <span class="nf">rectangle</span><span class="o">(</span><span class="kt">double</span> <span class="n">x</span><span class="o">,</span> <span class="kt">double</span> <span class="n">y</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 计算面积，三角形
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param x 边长x
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param y 边长y
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param z 边长z
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @return  面积
+</span></span></span><span class="line"><span class="cl"><span class="cm">     *
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 海伦公式：S=√[p(p-a)(p-b)(p-c)] 其中：p=(a+b+c)/2
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">double</span> <span class="nf">triangle</span><span class="o">(</span><span class="kt">double</span> <span class="n">x</span><span class="o">,</span> <span class="kt">double</span> <span class="n">y</span><span class="o">,</span> <span class="kt">double</span> <span class="n">z</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 计算面积，圆形
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param r 半径
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @return 面积
+</span></span></span><span class="line"><span class="cl"><span class="cm">     *
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 圆面积公式：S=πr²
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">double</span> <span class="nf">circular</span><span class="o">(</span><span class="kt">double</span> <span class="n">r</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>实现接口，实现需求</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CalculationArea</span> <span class="kd">implements</span> <span class="n">ICalculationArea</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="kd">static</span> <span class="kt">double</span> <span class="err">π</span> <span class="o">=</span> <span class="mf">3.14D</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">rectangle</span><span class="o">(</span><span class="kt">double</span> <span class="n">x</span><span class="o">,</span> <span class="kt">double</span> <span class="n">y</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">triangle</span><span class="o">(</span><span class="kt">double</span> <span class="n">x</span><span class="o">,</span> <span class="kt">double</span> <span class="n">y</span><span class="o">,</span> <span class="kt">double</span> <span class="n">z</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">double</span> <span class="n">p</span> <span class="o">=</span> <span class="o">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">+</span> <span class="n">z</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="n">p</span> <span class="o">*</span> <span class="o">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">x</span><span class="o">)</span> <span class="o">*</span> <span class="o">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">y</span><span class="o">)</span> <span class="o">*</span> <span class="o">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">z</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">circular</span><span class="o">(</span><span class="kt">double</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="err">π</span> <span class="o">*</span> <span class="n">r</span> <span class="o">*</span> <span class="n">r</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>继承实现类，重写方法，扩展需求</p>
+<p>扩展需求：我的 pai 需要精度更高</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CalculationAreaExt</span> <span class="kd">extends</span> <span class="n">CalculationArea</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="kd">static</span> <span class="kt">double</span> <span class="err">π</span> <span class="o">=</span> <span class="mf">3.141592653D</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">circular</span><span class="o">(</span><span class="kt">double</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="err">π</span> <span class="o">*</span> <span class="n">r</span> <span class="o">*</span> <span class="n">r</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h3 id="13-里氏替换原则">1.3 里氏替换原则</h3>
+<p>如果 S 是 T 的子类型，对于 S 类型的任意对象，如果将他们看作是 T 类型的对象，则对象的行为也理应与期望的行为一致。</p>
+<p>子类型(subtype)必须能够替换掉他们的基类型(base type)</p>
+<h4 id="131-案例银行卡">1.3.1 案例：银行卡</h4>
+<p>信用卡、储蓄卡、地铁卡、饭卡</p>
+<p>储蓄卡和信用卡 都是银行卡，都有银行卡的特性，银行卡的标准</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./image-20220629144453623.png"
+        data-srcset="./image-20220629144453623.png, ./image-20220629144453623.png 1.5x, ./image-20220629144453623.png 2x"
+        data-sizes="auto"
+        alt="./image-20220629144453623.png"
+        title="image-20220629144453623" /></p>
+<ol>
+<li>银行卡</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">BankCard</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="n">LoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">BankCard</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">cardNo</span><span class="o">;</span>   <span class="c1">// 卡号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="n">String</span> <span class="n">cardDate</span><span class="o">;</span> <span class="c1">// 开卡时间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">BankCard</span><span class="o">(</span><span class="n">String</span> <span class="n">cardNo</span><span class="o">,</span> <span class="n">String</span> <span class="n">cardDate</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">cardNo</span> <span class="o">=</span> <span class="n">cardNo</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">cardDate</span> <span class="o">=</span> <span class="n">cardDate</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">abstract</span> <span class="kt">boolean</span> <span class="nf">rule</span><span class="o">(</span><span class="n">BigDecimal</span> <span class="n">amount</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 正向入账，+ 钱
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="n">String</span> <span class="nf">positive</span><span class="o">(</span><span class="n">String</span> <span class="n">orderId</span><span class="o">,</span> <span class="n">BigDecimal</span> <span class="n">amount</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 入款成功，存款、还款
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;卡号{} 入款成功，单号：{} 金额：{}&#34;</span><span class="o">,</span> <span class="n">cardNo</span><span class="o">,</span> <span class="n">orderId</span><span class="o">,</span> <span class="n">amount</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;0000&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 逆向入账，- 钱
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="n">String</span> <span class="nf">negative</span><span class="o">(</span><span class="n">String</span> <span class="n">orderId</span><span class="o">,</span> <span class="n">BigDecimal</span> <span class="n">amount</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 入款成功，存款、还款
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;卡号{} 出款成功，单号：{} 金额：{}&#34;</span><span class="o">,</span> <span class="n">cardNo</span><span class="o">,</span> <span class="n">orderId</span><span class="o">,</span> <span class="n">amount</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;0000&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 交易流水查询
+</span></span></span><span class="line"><span class="cl"><span class="cm">     *
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @return 交易流水
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">tradeFlow</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;交易流水查询成功&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">tradeList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">tradeList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;100001,100.00&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">tradeList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;100001,80.00&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">tradeList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;100001,76.50&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">tradeList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;100001,126.00&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">tradeList</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getCardNo</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">cardNo</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getCardDate</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">cardDate</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><ol start="2">
+<li>模拟储蓄卡功能</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CashCard</span> <span class="kd">extends</span> <span class="n">BankCard</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="n">LoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">CashCard</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">CashCard</span><span class="o">(</span><span class="n">String</span> <span class="n">cardNo</span><span class="o">,</span> <span class="n">String</span> <span class="n">cardDate</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">(</span><span class="n">cardNo</span><span class="o">,</span> <span class="n">cardDate</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">boolean</span> <span class="nf">rule</span><span class="o">(</span><span class="n">BigDecimal</span> <span class="n">amount</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 提现
+</span></span></span><span class="line"><span class="cl"><span class="cm">     *
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param orderId 单号
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param amount  金额
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @return 状态码 0000成功、0001失败、0002重复
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">withdrawal</span><span class="o">(</span><span class="n">String</span> <span class="n">orderId</span><span class="o">,</span> <span class="n">BigDecimal</span> <span class="n">amount</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 模拟支付成功
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;提现成功，单号：{} 金额：{}&#34;</span><span class="o">,</span> <span class="n">orderId</span><span class="o">,</span> <span class="n">amount</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">negative</span><span class="o">(</span><span class="n">orderId</span><span class="o">,</span> <span class="n">amount</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 储蓄
+</span></span></span><span class="line"><span class="cl"><span class="cm">     *
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param orderId 单号
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param amount  金额
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">recharge</span><span class="o">(</span><span class="n">String</span> <span class="n">orderId</span><span class="o">,</span> <span class="n">BigDecimal</span> <span class="n">amount</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 模拟充值成功
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;储蓄成功，单号：{} 金额：{}&#34;</span><span class="o">,</span> <span class="n">orderId</span><span class="o">,</span> <span class="n">amount</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">positive</span><span class="o">(</span><span class="n">orderId</span><span class="o">,</span> <span class="n">amount</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 风险校验
+</span></span></span><span class="line"><span class="cl"><span class="cm">     *
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param cardNo  卡号
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param orderId 单号
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param amount  金额
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @return 状态
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">checkRisk</span><span class="o">(</span><span class="n">String</span> <span class="n">cardNo</span><span class="o">,</span> <span class="n">String</span> <span class="n">orderId</span><span class="o">,</span> <span class="n">BigDecimal</span> <span class="n">amount</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 模拟风控校验
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;风控校验，卡号：{} 单号：{} 金额：{}&#34;</span><span class="o">,</span> <span class="n">cardNo</span><span class="o">,</span> <span class="n">orderId</span><span class="o">,</span> <span class="n">amount</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><ol start="2">
+<li>模拟信用卡功能</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CreditCard</span> <span class="kd">extends</span> <span class="n">CashCard</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="n">LoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">CreditCard</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">CreditCard</span><span class="o">(</span><span class="n">String</span> <span class="n">cardNo</span><span class="o">,</span> <span class="n">String</span> <span class="n">cardDate</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">(</span><span class="n">cardNo</span><span class="o">,</span> <span class="n">cardDate</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">boolean</span> <span class="nf">rule2</span><span class="o">(</span><span class="n">BigDecimal</span> <span class="n">amount</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">amount</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="k">new</span> <span class="n">BigDecimal</span><span class="o">(</span><span class="mi">1000</span><span class="o">))</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 提现，信用卡贷款
+</span></span></span><span class="line"><span class="cl"><span class="cm">     *
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param orderId 单号
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param amount  金额
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @return 状态码
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">loan</span><span class="o">(</span><span class="n">String</span> <span class="n">orderId</span><span class="o">,</span> <span class="n">BigDecimal</span> <span class="n">amount</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">boolean</span> <span class="n">rule</span> <span class="o">=</span> <span class="n">rule2</span><span class="o">(</span><span class="n">amount</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(!</span><span class="n">rule</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;生成贷款单失败，金额超限。单号：{} 金额：{}&#34;</span><span class="o">,</span> <span class="n">orderId</span><span class="o">,</span> <span class="n">amount</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="s">&#34;0001&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 模拟生成贷款单
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;生成贷款单，单号：{} 金额：{}&#34;</span><span class="o">,</span> <span class="n">orderId</span><span class="o">,</span> <span class="n">amount</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 模拟支付成功
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;贷款成功，单号：{} 金额：{}&#34;</span><span class="o">,</span> <span class="n">orderId</span><span class="o">,</span> <span class="n">amount</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">negative</span><span class="o">(</span><span class="n">orderId</span><span class="o">,</span> <span class="n">amount</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 还款，信用卡还款
+</span></span></span><span class="line"><span class="cl"><span class="cm">     *
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param orderId 单号
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param amount  金额
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @return 状态码
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">repayment</span><span class="o">(</span><span class="n">String</span> <span class="n">orderId</span><span class="o">,</span> <span class="n">BigDecimal</span> <span class="n">amount</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 模拟生成还款单
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;生成还款单，单号：{} 金额：{}&#34;</span><span class="o">,</span> <span class="n">orderId</span><span class="o">,</span> <span class="n">amount</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 模拟还款成功
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;还款成功，单号：{} 金额：{}&#34;</span><span class="o">,</span> <span class="n">orderId</span><span class="o">,</span> <span class="n">amount</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">positive</span><span class="o">(</span><span class="n">orderId</span><span class="o">,</span> <span class="n">amount</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h3 id="14-迪米特原则">1.4 迪米特原则</h3>
+<p>最少知道、减少依赖；<strong>talk only to your immediate friends</strong></p>
+<h4 id="141-学校管理的案例-241">1.4.1 学校管理的案例 2.4.1</h4>
+<p>让校长关注老师，老师关注学生</p>
+<p>校长不直接关注学生</p>
+<ol>
+<li>老师</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Teacher</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>                <span class="c1">// 老师名称
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="n">String</span> <span class="n">clazz</span><span class="o">;</span>               <span class="c1">// 班级
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="kd">static</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;</span> <span class="n">studentList</span><span class="o">;</span>  <span class="c1">// 学生
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">Teacher</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">Teacher</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">String</span> <span class="n">clazz</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">clazz</span> <span class="o">=</span> <span class="n">clazz</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">static</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">studentList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">studentList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Student</span><span class="o">(</span><span class="s">&#34;花花&#34;</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">589</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">studentList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Student</span><span class="o">(</span><span class="s">&#34;豆豆&#34;</span><span class="o">,</span> <span class="mi">54</span><span class="o">,</span> <span class="mi">356</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">studentList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Student</span><span class="o">(</span><span class="s">&#34;秋雅&#34;</span><span class="o">,</span> <span class="mi">23</span><span class="o">,</span> <span class="mi">439</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">studentList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Student</span><span class="o">(</span><span class="s">&#34;皮皮&#34;</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">665</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">studentList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Student</span><span class="o">(</span><span class="s">&#34;蛋蛋&#34;</span><span class="o">,</span> <span class="mi">19</span><span class="o">,</span> <span class="mi">502</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 总分
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">clazzTotalScore</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">double</span> <span class="n">totalScore</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="n">Student</span> <span class="n">stu</span> <span class="o">:</span> <span class="n">studentList</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">totalScore</span> <span class="o">+=</span> <span class="n">stu</span><span class="o">.</span><span class="na">getGrade</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">totalScore</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 平均分
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">clazzAverageScore</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">double</span> <span class="n">totalScore</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="n">Student</span> <span class="n">stu</span> <span class="o">:</span> <span class="n">studentList</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">totalScore</span> <span class="o">+=</span> <span class="n">stu</span><span class="o">.</span><span class="na">getGrade</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">totalScore</span> <span class="o">/</span> <span class="n">studentList</span><span class="o">.</span><span class="na">size</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 班级人数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">clazzStudentCount</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">studentList</span><span class="o">.</span><span class="na">size</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;</span> <span class="nf">getStudentList</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">studentList</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getClazz</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">clazz</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><ol start="2">
+<li>学生</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Student</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>    <span class="c1">// 学生姓名
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="kt">int</span> <span class="n">rank</span><span class="o">;</span>       <span class="c1">// 考试排名(总排名)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="kt">double</span> <span class="n">grade</span><span class="o">;</span>   <span class="c1">// 考试分数(总分)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">Student</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">Student</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">rank</span><span class="o">,</span> <span class="kt">double</span> <span class="n">grade</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">rank</span> <span class="o">=</span> <span class="n">rank</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">grade</span> <span class="o">=</span> <span class="n">grade</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getRank</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">rank</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setRank</span><span class="o">(</span><span class="kt">int</span> <span class="n">rank</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">rank</span> <span class="o">=</span> <span class="n">rank</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getGrade</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">grade</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setGrade</span><span class="o">(</span><span class="kt">double</span> <span class="n">grade</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">grade</span> <span class="o">=</span> <span class="n">grade</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><ol start="3">
+<li>校长</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Principal</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Teacher</span> <span class="n">teacher</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Teacher</span><span class="o">(</span><span class="s">&#34;丽华&#34;</span><span class="o">,</span> <span class="s">&#34;3年1班&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 查询班级信息，总分数、学生人数、平均值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="nf">queryClazzInfo</span><span class="o">(</span><span class="n">String</span> <span class="n">clazzId</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 获取班级信息；学生总人数、总分、平均分
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">int</span> <span class="n">stuCount</span> <span class="o">=</span> <span class="n">teacher</span><span class="o">.</span><span class="na">clazzStudentCount</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">double</span> <span class="n">totalScore</span> <span class="o">=</span> <span class="n">teacher</span><span class="o">.</span><span class="na">clazzTotalScore</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">double</span> <span class="n">averageScore</span> <span class="o">=</span> <span class="n">teacher</span><span class="o">.</span><span class="na">clazzAverageScore</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 组装对象，实际业务开发会有对应的类
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">mapObj</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mapObj</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;班级&#34;</span><span class="o">,</span> <span class="n">teacher</span><span class="o">.</span><span class="na">getClazz</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mapObj</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;老师&#34;</span><span class="o">,</span> <span class="n">teacher</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mapObj</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;学生人数&#34;</span><span class="o">,</span> <span class="n">stuCount</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mapObj</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;班级总分数&#34;</span><span class="o">,</span> <span class="n">totalScore</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mapObj</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;班级平均分&#34;</span><span class="o">,</span> <span class="n">averageScore</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">mapObj</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h3 id="15-接口隔离原则">1.5 接口隔离原则</h3>
+<p>更小的接口、更具体的接口</p>
+<p>分治，抽象成更小的功能点</p>
+<h4 id="151-案例王者荣耀技能">1.5.1 案例：王者荣耀技能</h4>
+<p>王者英雄，英雄技能接口，不使用设计模式</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ISkill</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 射箭
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">doArchery</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 隐袭
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">doInvisible</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 沉默
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">doSilent</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 眩晕
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">doVertigo</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p><strong>优化</strong>：分解接口</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ISkillArchery</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 射箭
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">doArchery</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ISkillInvisible</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 隐袭
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">doInvisible</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ISkillSilent</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 沉默
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">doSilent</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ISkillVertigo</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 眩晕
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">doVertigo</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p><strong>实现接口</strong></p>
+<p>王者英雄，后裔</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HeroHouYi</span> <span class="kd">implements</span> <span class="n">ISkillArchery</span><span class="o">,</span> <span class="n">ISkillInvisible</span><span class="o">,</span> <span class="n">ISkillSilent</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doArchery</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;后裔的灼日之矢&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doInvisible</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;后裔的隐身技能&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doSilent</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;后裔的沉默技能&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h3 id="16-依赖倒置原则">1.6 依赖倒置原则</h3>
+<p>下级依赖上级，细节依赖抽象；依赖接口、降低耦合</p>
+<p>程序要依赖于抽象接口，不要依赖于具体实现。</p>
+<h4 id="161-案例用户抽奖">1.6.1 案例：用户抽奖</h4>
+<p>随机抽奖、权重抽奖</p>
+<ul>
+<li>抽奖用户</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BetUser</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">userName</span><span class="o">;</span>  <span class="c1">// 用户姓名
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="kt">int</span> <span class="n">userWeight</span><span class="o">;</span>   <span class="c1">// 用户权重
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">BetUser</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">BetUser</span><span class="o">(</span><span class="n">String</span> <span class="n">userName</span><span class="o">,</span> <span class="kt">int</span> <span class="n">userWeight</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">userName</span> <span class="o">=</span> <span class="n">userName</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">userWeight</span> <span class="o">=</span> <span class="n">userWeight</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getUserName</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">userName</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setUserName</span><span class="o">(</span><span class="n">String</span> <span class="n">userName</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">userName</span> <span class="o">=</span> <span class="n">userName</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getUserWeight</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">userWeight</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setUserWeight</span><span class="o">(</span><span class="kt">int</span> <span class="n">userWeight</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">userWeight</span> <span class="o">=</span> <span class="n">userWeight</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><ul>
+<li>抽奖接口</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">IDraw</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">BetUser</span><span class="o">&gt;</span> <span class="nf">prize</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">BetUser</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">,</span> <span class="kt">int</span> <span class="n">count</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><ul>
+<li>随机抽奖实现类</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DrawRandom</span> <span class="kd">implements</span> <span class="n">IDraw</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">BetUser</span><span class="o">&gt;</span> <span class="nf">prize</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">BetUser</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">,</span> <span class="kt">int</span> <span class="n">count</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 集合数量很小直接返回
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">list</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&lt;=</span> <span class="n">count</span><span class="o">)</span> <span class="k">return</span> <span class="n">list</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 乱序集合
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Collections</span><span class="o">.</span><span class="na">shuffle</span><span class="o">(</span><span class="n">list</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 取出指定数量的中奖用户
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">List</span><span class="o">&lt;</span><span class="n">BetUser</span><span class="o">&gt;</span> <span class="n">prizeList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;(</span><span class="n">count</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">count</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">prizeList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">prizeList</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><ul>
+<li>权重抽奖实现类</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DrawWeightRank</span> <span class="kd">implements</span> <span class="n">IDraw</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">BetUser</span><span class="o">&gt;</span> <span class="nf">prize</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">BetUser</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">,</span> <span class="kt">int</span> <span class="n">count</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 按照权重排序
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">list</span><span class="o">.</span><span class="na">sort</span><span class="o">((</span><span class="n">o1</span><span class="o">,</span> <span class="n">o2</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">e</span> <span class="o">=</span> <span class="n">o2</span><span class="o">.</span><span class="na">getUserWeight</span><span class="o">()</span> <span class="o">-</span> <span class="n">o1</span><span class="o">.</span><span class="na">getUserWeight</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="mi">0</span> <span class="o">==</span> <span class="n">e</span><span class="o">)</span> <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">e</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">});</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 取出指定数量的中奖用户
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">List</span><span class="o">&lt;</span><span class="n">BetUser</span><span class="o">&gt;</span> <span class="n">prizeList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;(</span><span class="n">count</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">count</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">prizeList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">prizeList</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><ul>
+<li>抽奖控制</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DrawControl</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">IDraw</span> <span class="n">draw</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">BetUser</span><span class="o">&gt;</span> <span class="nf">doDraw</span><span class="o">(</span><span class="n">IDraw</span> <span class="n">draw</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">BetUser</span><span class="o">&gt;</span> <span class="n">betUserList</span><span class="o">,</span> <span class="kt">int</span> <span class="n">count</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">draw</span><span class="o">.</span><span class="na">prize</span><span class="o">(</span><span class="n">betUserList</span><span class="o">,</span> <span class="n">count</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h3 id="17-总结">1.7 总结</h3>
+<p>以上就是 6 个设计模式准则，重申一遍，准则很重要，不遵守以上准则，可能写代码很爽，但是改代码就你懂得~</p>
+<p>接下来就是设计模式的落地，这个阶段会发现，案例特别简单，但是实际使用设计模式的时候，结合业务分析，就会显得特别复杂；因此，设计模式的应用或者落地，离不开开发经验和大量的实践试错等。</p>
+<p>tips：</p>
+<p>很多时候我们觉得不需要设计模式，可能需求简单不需要？项目周期短，设计模式浪费时间？不知道用哪个？</p>
+<p>经验告诉我，如果代码需要长期维护，那么初期开始使用设计模式对于后续改代码的帮助是很大的，特别是需求变更，补丁修复等，都不至于变成*山代码~</p>
+<p>有时间的话，最好留下“图纸”</p>
+<h2 id="2-创建者模式5-节">2 创建者模式(5 节)</h2>
+<h3 id="21-工厂方法模式">2.1 工厂(方法)模式</h3>
+<p>工厂方法模式，经常和策略模式等结合使用</p>
+<h4 id="211-一般开发步骤">2.1.1 一般开发步骤</h4>
+<ol>
+<li>定义属性</li>
+<li>定义方法</li>
+<li>调用展示</li>
+</ol>
+<ul>
+<li>简单工厂
+<ul>
+<li>提供方法的工厂</li>
+</ul>
+</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./image-20220629163512394.png"
+        data-srcset="./image-20220629163512394.png, ./image-20220629163512394.png 1.5x, ./image-20220629163512394.png 2x"
+        data-sizes="auto"
+        alt="./image-20220629163512394.png"
+        title="image-20220629163512394" /></p>
+<p>工厂模式又称工厂方法模式，是一种创建型设计模式，其在父类中提供一个创建对象的方法，允许子类决定实例化对象的模型。</p>
+<ul>
+<li>工厂方法模式
+<ul>
+<li>提供工厂的方法</li>
+</ul>
+</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./image-20220629163615242.png"
+        data-srcset="./image-20220629163615242.png, ./image-20220629163615242.png 1.5x, ./image-20220629163615242.png 2x"
+        data-sizes="auto"
+        alt="./image-20220629163615242.png"
+        title="image-20220629163615242" /></p>
+<ul>
+<li>抽象工厂模式
+<ul>
+<li>提供组合工厂的方法</li>
+</ul>
+</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./image-20220629163726118.png"
+        data-srcset="./image-20220629163726118.png, ./image-20220629163726118.png 1.5x, ./image-20220629163726118.png 2x"
+        data-sizes="auto"
+        alt="./image-20220629163726118.png"
+        title="image-20220629163726118" /></p>
+<h4 id="212-案例简单工厂">2.1.2 案例(简单工厂)</h4>
+<p>多种类型商品不同 接⼝，统⼀发奖服务搭建场景</p>
+<ul>
+<li>发放商品接口</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ICommodity</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">sendCommodity</span><span class="o">(</span><span class="n">String</span> <span class="n">uId</span><span class="o">,</span> <span class="n">String</span> <span class="n">commodityId</span><span class="o">,</span> <span class="n">String</span> <span class="n">bizId</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">extMap</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><ul>
+<li>商品类型一：爱奇艺兑换卡，实现类</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CardCommodityService</span> <span class="kd">implements</span> <span class="n">ICommodity</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="n">LoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">CardCommodityService</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 模拟注入
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="n">IQiYiCardService</span> <span class="n">iQiYiCardService</span> <span class="o">=</span> <span class="k">new</span> <span class="n">IQiYiCardService</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendCommodity</span><span class="o">(</span><span class="n">String</span> <span class="n">uId</span><span class="o">,</span> <span class="n">String</span> <span class="n">commodityId</span><span class="o">,</span> <span class="n">String</span> <span class="n">bizId</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">extMap</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">mobile</span> <span class="o">=</span> <span class="n">queryUserMobile</span><span class="o">(</span><span class="n">uId</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">iQiYiCardService</span><span class="o">.</span><span class="na">grantToken</span><span class="o">(</span><span class="n">mobile</span><span class="o">,</span> <span class="n">bizId</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;请求参数[爱奇艺兑换卡] =&gt; uId：{} commodityId：{} bizId：{} extMap：{}&#34;</span><span class="o">,</span> <span class="n">uId</span><span class="o">,</span> <span class="n">commodityId</span><span class="o">,</span> <span class="n">bizId</span><span class="o">,</span> <span class="n">JSON</span><span class="o">.</span><span class="na">toJSON</span><span class="o">(</span><span class="n">extMap</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;测试结果[爱奇艺兑换卡]：success&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="nf">queryUserMobile</span><span class="o">(</span><span class="n">String</span> <span class="n">uId</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;15200101232&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><ul>
+<li>商品类型二：优惠券，实现类</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CouponCommodityService</span> <span class="kd">implements</span> <span class="n">ICommodity</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="n">LoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">CouponCommodityService</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">CouponService</span> <span class="n">couponService</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CouponService</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendCommodity</span><span class="o">(</span><span class="n">String</span> <span class="n">uId</span><span class="o">,</span> <span class="n">String</span> <span class="n">commodityId</span><span class="o">,</span> <span class="n">String</span> <span class="n">bizId</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">extMap</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">CouponResult</span> <span class="n">couponResult</span> <span class="o">=</span> <span class="n">couponService</span><span class="o">.</span><span class="na">sendCoupon</span><span class="o">(</span><span class="n">uId</span><span class="o">,</span> <span class="n">commodityId</span><span class="o">,</span> <span class="n">bizId</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;请求参数[优惠券] =&gt; uId：{} commodityId：{} bizId：{} extMap：{}&#34;</span><span class="o">,</span> <span class="n">uId</span><span class="o">,</span> <span class="n">commodityId</span><span class="o">,</span> <span class="n">bizId</span><span class="o">,</span> <span class="n">JSON</span><span class="o">.</span><span class="na">toJSON</span><span class="o">(</span><span class="n">extMap</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;测试结果[优惠券]：{}&#34;</span><span class="o">,</span> <span class="n">JSON</span><span class="o">.</span><span class="na">toJSON</span><span class="o">(</span><span class="n">couponResult</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(!</span><span class="s">&#34;0000&#34;</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">couponResult</span><span class="o">.</span><span class="na">getCode</span><span class="o">()))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="o">(</span><span class="n">couponResult</span><span class="o">.</span><span class="na">getInfo</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><ul>
+<li>商品类型三：实物商品，实现类</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">GoodsCommodityService</span> <span class="kd">implements</span> <span class="n">ICommodity</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="n">LoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">GoodsCommodityService</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">GoodsService</span> <span class="n">goodsService</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GoodsService</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendCommodity</span><span class="o">(</span><span class="n">String</span> <span class="n">uId</span><span class="o">,</span> <span class="n">String</span> <span class="n">commodityId</span><span class="o">,</span> <span class="n">String</span> <span class="n">bizId</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">extMap</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">DeliverReq</span> <span class="n">deliverReq</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DeliverReq</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">deliverReq</span><span class="o">.</span><span class="na">setUserName</span><span class="o">(</span><span class="n">queryUserName</span><span class="o">(</span><span class="n">uId</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">deliverReq</span><span class="o">.</span><span class="na">setUserPhone</span><span class="o">(</span><span class="n">queryUserPhoneNumber</span><span class="o">(</span><span class="n">uId</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">deliverReq</span><span class="o">.</span><span class="na">setSku</span><span class="o">(</span><span class="n">commodityId</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">deliverReq</span><span class="o">.</span><span class="na">setOrderId</span><span class="o">(</span><span class="n">bizId</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">deliverReq</span><span class="o">.</span><span class="na">setConsigneeUserName</span><span class="o">(</span><span class="n">extMap</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;consigneeUserName&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">deliverReq</span><span class="o">.</span><span class="na">setConsigneeUserPhone</span><span class="o">(</span><span class="n">extMap</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;consigneeUserPhone&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">deliverReq</span><span class="o">.</span><span class="na">setConsigneeUserAddress</span><span class="o">(</span><span class="n">extMap</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;consigneeUserAddress&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">Boolean</span> <span class="n">isSuccess</span> <span class="o">=</span> <span class="n">goodsService</span><span class="o">.</span><span class="na">deliverGoods</span><span class="o">(</span><span class="n">deliverReq</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;请求参数[实物商品] =&gt; uId：{} commodityId：{} bizId：{} extMap：{}&#34;</span><span class="o">,</span> <span class="n">uId</span><span class="o">,</span> <span class="n">commodityId</span><span class="o">,</span> <span class="n">bizId</span><span class="o">,</span> <span class="n">JSON</span><span class="o">.</span><span class="na">toJSON</span><span class="o">(</span><span class="n">extMap</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;测试结果[实物商品]：{}&#34;</span><span class="o">,</span> <span class="n">isSuccess</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(!</span><span class="n">isSuccess</span><span class="o">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="o">(</span><span class="s">&#34;实物商品发放失败&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="nf">queryUserName</span><span class="o">(</span><span class="n">String</span> <span class="n">uId</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;花花&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="nf">queryUserPhoneNumber</span><span class="o">(</span><span class="n">String</span> <span class="n">uId</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;15200101232&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><ul>
+<li>工厂类</li>
+</ul>
+<p>根据不同的配置，可以生成不同的实例，发放不同的商品，经常使用在 spring 项目中，根据不同配置，调用不同的实现类的方法</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">StoreFactory</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 奖品类型方式实例化
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param commodityType 奖品类型
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @return              实例化对象
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">ICommodity</span> <span class="nf">getCommodityService</span><span class="o">(</span><span class="n">Integer</span> <span class="n">commodityType</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="kc">null</span> <span class="o">==</span> <span class="n">commodityType</span><span class="o">)</span> <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="mi">1</span> <span class="o">==</span> <span class="n">commodityType</span><span class="o">)</span> <span class="k">return</span> <span class="k">new</span> <span class="n">CouponCommodityService</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="mi">2</span> <span class="o">==</span> <span class="n">commodityType</span><span class="o">)</span> <span class="k">return</span> <span class="k">new</span> <span class="n">GoodsCommodityService</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="mi">3</span> <span class="o">==</span> <span class="n">commodityType</span><span class="o">)</span> <span class="k">return</span> <span class="k">new</span> <span class="n">CardCommodityService</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="o">(</span><span class="s">&#34;不存在的奖品服务类型&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 奖品类信息方式实例化
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param clazz 奖品类
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @return      实例化对象
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">ICommodity</span> <span class="nf">getCommodityService</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">ICommodity</span><span class="o">&gt;</span> <span class="n">clazz</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IllegalAccessException</span><span class="o">,</span> <span class="n">InstantiationException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="kc">null</span> <span class="o">==</span> <span class="n">clazz</span><span class="o">)</span> <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">clazz</span><span class="o">.</span><span class="na">newInstance</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h3 id="22-抽象工厂">2.2 抽象工厂</h3>
+<p>相比工厂，多了一层车间适配器，作用是生产对应的工厂</p>
+<h4 id="221-案例">2.2.1 案例</h4>
+<p>集群扩展搭建</p>
+<h3 id="23-建造者模式">2.3 建造者模式</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./image-20220629211618102.png"
+        data-srcset="./image-20220629211618102.png, ./image-20220629211618102.png 1.5x, ./image-20220629211618102.png 2x"
+        data-sizes="auto"
+        alt="./image-20220629211618102.png"
+        title="image-20220629211618102" /></p>
+<p>建造者模式所完成的内容就是通过将多个简单对象通过⼀步步的组装构建出⼀个复杂对象的过程。</p>
+<h4 id="231-案例">2.3.1 案例</h4>
+<p>装修材料组合成特定装修风格</p>
+<p>代码参考：6.0-2</p>
+<h3 id="24-原型模式">2.4 原型模式</h3>
+<p>用于创建重复的对象，但是又能保证性能</p>
+<h4 id="241-案例">2.4.1 案例</h4>
+<p>在线考试，题目和答案混排</p>
+<p>代码参考 7.0-2</p>
+<h3 id="25-单例模式">2.5 单例模式</h3>
+<p>创建一个对象，大家共用</p>
+<p><strong>创建原则</strong></p>
+<ol>
+<li>私有构造(阻止类被通过常规方法实例化)</li>
+<li>以静态方法或者枚举返回实例。(保证实例的唯一性)</li>
+<li>确保实例只有一个，尤其是多线程环境。(保证在创建实例时
+的线程安全)</li>
+<li>确保反序列化时不会重新构建对条。(在有序列化反序列化的
+场景下防止单例被莫名破坏，造成未考虑到的后果)</li>
+</ol>
+<p><strong>主要处理手段</strong></p>
+<ol>
+<li>主动处理
+<ul>
+<li>synchronize</li>
+<li>volatile</li>
+<li>cas</li>
+</ul>
+</li>
+<li>jvm 机制
+<ul>
+<li>由静态初始化器(在静态字段上或 static{}块中的初始化器)初始化数据时</li>
+<li>访问 firial 字段时</li>
+<li>在创建线程之前创建对象时</li>
+<li>线程可以看见它将要处理的对象时</li>
+</ul>
+</li>
+</ol>
+<p>单例模式分类</p>
+<p>饿汉模式、懒汉模式(线程安全)、双重锁懒汉模式(线程不安全)、静态内部类模式、枚举模式</p>
+<h2 id="3-结构型模式7-节">3 结构型模式(7 节)</h2>
+<h3 id="31-适配器模式">3.1 适配器模式</h3>
+<p>汽车的变速箱</p>
+<p>适配器可以理解是两个不兼容的接口之间的桥梁</p>
+<h4 id="311-案例">3.1.1 案例</h4>
+<p>mq 消息和接口适配</p>
+<p>参考 9.0-2</p>
+<p>相当于，我提供一个接口，把一个接口返回的数据，<strong>转换</strong>成另一个接口可以接受的数据</p>
+<h3 id="32-桥接模式">3.2 桥接模式</h3>
+<p>植物嫁接，秃头植发</p>
+<p>支付渠道(微信，支付宝)&laquo;&mdash;&mdash; 桥接 &mdash;&mdash;&raquo;支付模式(人脸识别，指纹识别，密码识别)</p>
+<h4 id="321-案例支付">3.2.1 案例：支付</h4>
+<p>代码参考 10.0-2</p>
+<h3 id="33-组合模式">3.3 组合模式</h3>
+<p>组合模式(Composite Pattern)，又叫部分整体模式，是用于把一组相似的对象当作一个单一的对象。</p>
+<p>组合模式依据树形结构来组合对象，用来表示部分以及整体层次。这种类型的设计模式属于结构型模式，它创建了对象组的树形结构。</p>
+<p>二叉决策树</p>
+<h4 id="331-案例根据性别年龄进行营销">3.3.1 案例：根据性别年龄进行营销</h4>
+<p>代码参考 11.0-2</p>
+<h3 id="34-装饰器模式">3.4 装饰器模式</h3>
+<p>装饰器模式(Decorator Pattern)允许向一个现有的对象添加新的功能，同时又不改变其结构。它是作为现有的类的一个包装。</p>
+<p>QQ 秀，包装</p>
+<p>抽象类实现接口，扩展类继承抽象类，</p>
+<h4 id="341-案例扩展-sso-登录">3.4.1 案例：扩展 SSO 登录</h4>
+<p>代码参考 12.0-2</p>
+<p>抽象类实现原有接口，扩展类继承抽象类，再扩展原有功能(添加新的特性，比如说 sso 校验通过后，再校验某个字段)</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./image-20220630013903069.png"
+        data-srcset="./image-20220630013903069.png, ./image-20220630013903069.png 1.5x, ./image-20220630013903069.png 2x"
+        data-sizes="auto"
+        alt="./image-20220630013903069.png"
+        title="image-20220630013903069" /></p>
+<h3 id="35-外观模式">3.5 外观模式</h3>
+<p>外观(Facade)模式又叫作门面模式，是一种通过为多个复杂的子系统提供一个一致的接口，而使这些子系统更加容易被访问的模式。该模式对外有一个统一接口，外部应用程序不用关心内部子系统的具体细节，这样会大大降低应用程序的复杂度，提高了程序的可维护性。</p>
+<p>服务治理，封装子系统，切面编程，提供统一白名单</p>
+<h4 id="351-案例统一白名单">3.5.1 案例：统一白名单</h4>
+<p>代码参考 13.0-2</p>
+<p>一般是配置注解，使用切面，进行门面验证等</p>
+<h3 id="36-享元模式">3.6 享元模式</h3>
+<p>享元模式(Flyweight Pattern)主要用于减少创建对象的数量，以减少内存占用和提高性能。这种类型的设计模式属于结构型模式，它提供了减少对象数量从而改善应用所需的对象结构的方式。</p>
+<p>享元模式的主要优点是：相同对象只要保存一份，这降低了系统中对象的数量，从而降低了系统中细粒度对象给内存带来的压力。</p>
+<p>其主要缺点是：</p>
+<ol>
+<li>为了使对象可以共享，需要将一些不能共享的状态外部化，这将增加程序的复杂性。</li>
+<li>读取享元模式的外部状态会使得运行时间稍微变长。</li>
+</ol>
+<h4 id="361-案例从缓存中取数据">3.6.1 案例：从缓存中取数据</h4>
+<p>代码参考 14.0-2</p>
+<h3 id="37-代理模式">3.7 代理模式</h3>
+<p>代理模式的定义：由于某些原因需要给某对象提供一个代理以控制对该对象的访问。这时，访问对象不适合或者不能直接引用目标对象，代理对象作为访问对象和目标对象之间的中介。</p>
+<p>代理模式的主要优点有：</p>
+<ul>
+<li>代理模式在客户端与目标对象之间起到一个中介作用和保护目标对象的作用；</li>
+<li>代理对象可以扩展目标对象的功能；</li>
+<li>代理模式能将客户端与目标对象分离，在一定程度上降低了系统的耦合度，增加了程序的可扩展性</li>
+</ul>
+<p>其主要缺点是：</p>
+<ul>
+<li>代理模式会造成系统设计中类的数量增加</li>
+<li>在客户端和目标对象之间增加一个代理对象，会造成请求处理速度变慢；</li>
+<li>增加了系统的复杂度；</li>
+</ul>
+<blockquote>
+<p>那么如何解决以上提到的缺点呢？答案是可以使用动态代理方式</p>
+</blockquote>
+<h4 id="371-案例模拟-mybatis-定义-dao-接口使用代理方式操作数据库">3.7.1 案例：模拟 mybatis 定义 DAO 接口，使用代理方式操作数据库</h4>
+<p>代码参考 15.0-0</p>
+<h2 id="4-行为模式10-节">4 行为模式(10 节)</h2>
+<h3 id="41-责任链模式">4.1 责任链模式</h3>
+<p>责任链(Chain of Responsibility)模式的定义：为了避免请求发送者与多个请求处理者耦合在一起，于是将所有请求的处理者通过前一对象记住其下一个对象的引用而连成一条链；当有请求发生时，可将请求沿着这条链传递，直到有对象处理它为止。</p>
+<h4 id="411-案例流程多级负责人审批场景">4.1.1 案例：流程多级负责人审批场景</h4>
+<p>责任链抽象类</p>
+<p>代码参考 16.0-2</p>
+<h3 id="42-命令模式">4.2 命令模式</h3>
+<p>命令(Command)模式的定义如下：将一个请求封装为一个对象，使发出请求的责任和执行请求的责任分割开。这样两者之间通过<strong>命令对象</strong>进行沟通，这样方便将命令对象进行储存、传递、调用、增加与管理。</p>
+<h4 id="421-案例模拟高档餐厅八大菜系小二点单厨师烹饪场景">4.2.1 案例：模拟高档餐厅八大菜系，小二点单厨师烹饪场景</h4>
+<p>代码参考 17.0-2</p>
+<h3 id="43-迭代器模式">4.3 迭代器模式</h3>
+<p>迭代器(Iterator)模式的定义：提供一个对象来顺序访问聚合对象中的一系列数据，而<strong>不暴露聚合对象的内部表示</strong>。迭代器模式是一种对象行为型模式，其主要优点如下。</p>
+<ol>
+<li>访问一个聚合对象的内容而无须暴露它的内部表示。</li>
+<li>遍历任务交由迭代器完成，这简化了聚合类。</li>
+<li>它支持以不同方式遍历一个聚合，甚至可以自定义迭代器的子类以支持新的遍历。</li>
+<li>增加新的聚合类和迭代器类都很方便，无须修改原有代码。</li>
+<li>封装性良好，为遍历不同的聚合结构提供一个统一的接口。</li>
+</ol>
+<p>其主要缺点是：增加了类的个数，这在一定程度上增加了系统的复杂性。</p>
+<p>在日常开发中，我们几乎不会自己写迭代器。除非需要定制一个自己实现的数据结构对应的迭代器，否则，开源框架提供的 API 完全够用。</p>
+<p>lambda</p>
+<h4 id="431-案例深度迭代遍历人员信息输出场景">4.3.1 案例：深度迭代遍历人员信息输出场景</h4>
+<p>代码参考 18.0-0</p>
+<h3 id="44-中介者模式">4.4 中介者模式</h3>
+<p>中介者(Mediator)模式的定义：定义一个中介对象来封装一系列对象之间的交互，使原有对象之间的耦合松散，且可以独立地改变它们之间的交互。中介者模式又叫调停模式，它是迪米特法则的典型应用。</p>
+<p>中介者模式是一种对象行为型模式，其主要优点如下。</p>
+<ol>
+<li>类之间各司其职，符合迪米特法则。</li>
+<li>降低了对象之间的耦合性，使得对象易于独立地被复用。</li>
+<li>将对象间的一对多关联转变为一对一的关联，提高系统的灵活性，使得系统易于维护和扩展。</li>
+</ol>
+<p>其主要缺点是：中介者模式将原本多个对象直接的相互依赖变成了中介者和多个同事类的依赖关系。当同事类越多时，中介者就会越臃肿，变得复杂且难以维护。</p>
+<p>交警，中介</p>
+<h4 id="441-案例按照-mybatis-原理手写-orm-框架给-jdbc-方式操作数据库增加中介者场景">4.4.1 案例：按照 Mybatis 原理手写 ORM 框架，给 JDBC 方式操作数据库增加中介者场景</h4>
+<p>代码参考 19.0-2</p>
+<h3 id="45-备忘录模式">4.5 备忘录模式</h3>
+<p>备忘录(Memento)模式的定义：在<strong>不破坏封装性的前提下</strong>，捕获一个对象的内部状态，并在该对象之外保存这个状态，以便以后当需要时能将该对象恢复到原先保存的状态。该模式又叫<strong>快照模式</strong>。</p>
+<p>备忘录模式是一种对象行为型模式，其主要优点如下。</p>
+<ul>
+<li>提供了一种可以恢复状态的机制。当用户需要时能够比较方便地将数据恢复到某个历史的状态。</li>
+<li>实现了内部状态的封装。除了创建它的发起人之外，其他对象都不能够访问这些状态信息。</li>
+<li>简化了发起人类。发起人不需要管理和保存其内部状态的各个备份，所有状态信息都保存在备忘录中，并由管理者进行管理，这符合单一职责原则。</li>
+</ul>
+<p>其主要缺点是：资源消耗大。如果要保存的内部状态信息过多或者特别频繁，将会占用比较大的内存资源。</p>
+<h4 id="451-案例模拟互联网系统上线过程中配置文件回滚场景">4.5.1 案例：模拟互联网系统上线过程中，配置文件回滚场景</h4>
+<p>代码参考 20.0-0</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./image-20220630030233913.png"
+        data-srcset="./image-20220630030233913.png, ./image-20220630030233913.png 1.5x, ./image-20220630030233913.png 2x"
+        data-sizes="auto"
+        alt="./image-20220630030233913.png"
+        title="image-20220630030233913" /></p>
+<h3 id="46-观察者模式">4.6 观察者模式</h3>
+<p>观察者(Observer)模式的定义：指多个对象间存在<strong>一对多的依赖关系</strong>，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新。这种模式有时又称作<strong>发布-订阅模式</strong>、<strong>模型-视图模式</strong>，它是对象行为型模式。</p>
+<p>观察者模式是一种对象行为型模式，其主要优点如下。</p>
+<ol>
+<li>降低了目标与观察者之间的耦合关系，两者之间是抽象耦合关系。符合依赖倒置原则。</li>
+<li>目标与观察者之间建立了一套触发机制。</li>
+</ol>
+<p>它的主要缺点如下。</p>
+<ol>
+<li>目标与观察者之间的依赖关系并没有完全解除，而且有可能出现循环引用。</li>
+<li>当观察者对象很多时，通知的发布会花费很多时间，影响程序的效率。</li>
+</ol>
+<p>关键词：监听，观察，一对多</p>
+<h4 id="461-案例模拟类似小客车指标摇号过程监听消息通知用户中签场景">4.6.1 案例：模拟类似小客车指标摇号过程，监听消息通知用户中签场景</h4>
+<p>代码参考 21.0-2</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./image-20220630032751807.png"
+        data-srcset="./image-20220630032751807.png, ./image-20220630032751807.png 1.5x, ./image-20220630032751807.png 2x"
+        data-sizes="auto"
+        alt="./image-20220630032751807.png"
+        title="image-20220630032751807" /></p>
+<h3 id="47-状态模式">4.7 状态模式</h3>
+<p>状态(State)模式的定义：对有状态的对象，把复杂的“判断逻辑”提取到不同的状态对象中，允许状态对象在其内部状态发生改变时改变其行为。</p>
+<p>状态模式是一种对象行为型模式，其主要优点如下。</p>
+<ol>
+<li>结构清晰，状态模式将与特定状态相关的行为局部化到一个状态中，并且将不同状态的行为分割开来，满足“单一职责原则”。</li>
+<li>将状态转换显示化，减少对象间的相互依赖。将不同的状态引入独立的对象中会使得状态转换变得更加明确，且减少对象间的相互依赖。</li>
+<li>状态类职责明确，有利于程序的扩展。通过定义新的子类很容易地增加新的状态和转换。</li>
+</ol>
+<p>状态模式的主要缺点如下。</p>
+<ol>
+<li>状态模式的使用必然会增加系统的类与对象的个数。</li>
+<li>状态模式的结构与实现都较为复杂，如果使用不当会导致程序结构和代码的混乱。</li>
+<li>状态模式对开闭原则的支持并不太好，对于可以切换状态的状态模式，增加新的状态类需要修改那些负责状态转换的源码，否则无法切换到新增状态，而且修改某个状态类的行为也需要修改对应类的源码。</li>
+</ol>
+<p>关键词：状态，内部状态，</p>
+<h4 id="471-案例营销活动审核状态流转">4.7.1 案例：营销活动审核状态流转</h4>
+<p>代码参考 22.0-2</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./image-20220630033321317.png"
+        data-srcset="./image-20220630033321317.png, ./image-20220630033321317.png 1.5x, ./image-20220630033321317.png 2x"
+        data-sizes="auto"
+        alt="./image-20220630033321317.png"
+        title="image-20220630033321317" /></p>
+<h3 id="48-策略模式">4.8 策略模式</h3>
+<p>策略(Strategy)模式的定义：该模式定义了一系列算法，并将每个算法封装起来，使它们可以相互替换，且算法的变化不会影响使用算法的客户。策略模式属于对象行为模式，它通过对算法进行封装，把使用算法的责任和算法的实现分割开来，并委派给不同的对象对这些算法进行管理。</p>
+<p>策略模式的主要优点如下。</p>
+<ol>
+<li>多重条件语句不易维护，而使用策略模式可以避免使用多重条件语句，如 if&hellip;else 语句、switch&hellip;case 语句。</li>
+<li>策略模式提供了一系列的可供重用的算法族，恰当使用继承可以把算法族的公共代码转移到父类里面，从而避免重复的代码。</li>
+<li>策略模式可以提供相同行为的不同实现，客户可以根据不同时间或空间要求选择不同的。</li>
+<li>策略模式提供了对开闭原则的完美支持，可以在不修改原代码的情况下，灵活增加新算法。</li>
+<li>策略模式把算法的使用放到环境类中，而算法的实现移到具体策略类中，实现了二者的分离。</li>
+</ol>
+<p>其主要缺点如下。</p>
+<ol>
+<li>客户端必须理解所有策略算法的区别，以便适时选择恰当的算法类。</li>
+<li>策略模式造成很多的策略类，增加维护难度。</li>
+</ol>
+<p>关键词：算法封装，功能组</p>
+<h4 id="481-案例模拟多种营销类型优惠券折扣金额计算策略场景">4.8.1 案例：模拟多种营销类型优惠券，折扣金额计算策略场景</h4>
+<p>代码参考 23.0-2</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./image-20220630033722148.png"
+        data-srcset="./image-20220630033722148.png, ./image-20220630033722148.png 1.5x, ./image-20220630033722148.png 2x"
+        data-sizes="auto"
+        alt="./image-20220630033722148.png"
+        title="image-20220630033722148" /></p>
+<h3 id="49-模板模式">4.9 模板模式</h3>
+<p>模板方法(Template Method)模式的定义如下：定义一个操作中的算法骨架，而将算法的一些步骤延迟到子类中，使得子类可以不改变该算法结构的情况下重定义该算法的某些特定步骤。它是一种类行为型模式。</p>
+<p>该模式的主要优点如下。</p>
+<ol>
+<li>它封装了不变部分，扩展可变部分。它把认为是不变部分的算法封装到父类中实现，而把可变部分算法由子类继承实现，便于子类继续扩展。</li>
+<li>它在父类中提取了公共的部分代码，便于代码复用。</li>
+<li>部分方法是由子类实现的，因此子类可以通过扩展方式增加相应的功能，符合开闭原则。</li>
+</ol>
+<p>该模式的主要缺点如下。</p>
+<ol>
+<li>对每个不同的实现都需要定义一个子类，这会导致类的个数增加，系统更加庞大，设计也更加抽象，间接地增加了系统实现的复杂度。</li>
+<li>父类中的抽象方法由子类实现，子类执行的结果会影响父类的结果，这导致一种反向的控制结构，它提高了代码阅读的难度。</li>
+<li>由于继承关系自身的缺点，如果父类添加新的抽象方法，则所有子类都要改一遍。</li>
+</ol>
+<p>关键词：定义模板(抽象方法)，根据实际业务实现继承类</p>
+<h4 id="491-案例模拟爬虫各类电商商品生成营销推广海报场景">4.9.1 案例：模拟爬虫各类电商商品，生成营销推广海报场景</h4>
+<p>代码参考 24.0-0</p>
+<h3 id="410-访问者模式">4.10 访问者模式</h3>
+<p>访问者(Visitor)模式的定义：将作用于某种数据结构中的各元素的操作分离出来封装成独立的类，使其在不改变数据结构的前提下可以添加作用于这些元素的新的操作，为数据结构中的每个元素<strong>提供多种访问方式</strong>。它将<strong>对数据的操作与数据结构进行分离</strong>，是行为类模式中最复杂的一种模式。</p>
+<p>访问者(Visitor)模式是一种对象行为型模式，其主要优点如下。</p>
+<ol>
+<li>扩展性好。能够在不修改对象结构中的元素的情况下，为对象结构中的元素添加新的功能。</li>
+<li>复用性好。可以通过访问者来定义整个对象结构通用的功能，从而提高系统的复用程度。</li>
+<li>灵活性好。访问者模式将数据结构与作用于结构上的操作解耦，使得操作集合可相对自由地演化而不影响系统的数据结构。</li>
+<li>符合单一职责原则。访问者模式把相关的行为封装在一起，构成一个访问者，使每一个访问者的功能都比较单一。</li>
+</ol>
+<p>访问者(Visitor)模式的主要缺点如下。</p>
+<ol>
+<li>增加新的元素类很困难。在访问者模式中，每增加一个新的元素类，都要在每一个具体访问者类中增加相应的具体操作，这违背了“开闭原则”。</li>
+<li>破坏封装。访问者模式中具体元素对访问者公布细节，这破坏了对象的封装性。</li>
+<li>违反了依赖倒置原则。访问者模式依赖了具体类，而没有依赖抽象类。</li>
+</ol>
+<p>关键词：封装属性访问方式，提供访问者多种访问属性的方式，扩展性好</p>
+<h4 id="4101-案例模拟家长与校长对学生和老师的不同视角信息的访问场景">4.10.1 案例：模拟家长与校长，对学生和老师的不同视角信息的访问场景</h4>
+<p>代码参考 25.0-0</p>
+<p>完结撒花~</p>
+<p>记得主要是实践中体会设计模式的精髓，切记不能硬套某个设计模式，往往会产生反作用</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/design_patterns/">design_patterns</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-06-29</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/chaos/%E5%A4%A7%E4%BD%AC%E5%88%86%E4%BA%AB/personal-experience/8-years-programmer-work-summary/" class="prev" rel="prev" title="8-years-programmer-work-summary"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/language/cpp/cpp-primer/%E5%BC%80%E5%A7%8B/1.cpp-primer%E5%BC%80%E5%A7%8B/" class="next" rel="next" title="1.CPP Primer 开始">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

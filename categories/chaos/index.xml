@@ -1,0 +1,55 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>chaos - 分类 - xcx</title>
+        <link>https://xiechaoxin.github.io/categories/chaos/</link>
+        <description>chaos - 分类 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 23 Sep 2023 17:45:57 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/categories/chaos/" rel="self" type="application/rss+xml" /><item>
+    <title>Unicode</title>
+    <link>https://xiechaoxin.github.io/posts/chaos/unicode/</link>
+    <pubDate>Sat, 23 Sep 2023 17:45:57 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/chaos/unicode/</guid>
+    <description><![CDATA[Unicode 是一个标准，旨在为世界上的所有书写系统中的每个字符提供一个唯一的编号。它解决了多种编码方案混淆和冲突的问题，使得不同语言和脚本之间的文本处]]></description>
+</item>
+<item>
+    <title>异常使用建议</title>
+    <link>https://xiechaoxin.github.io/posts/chaos/%E5%BC%82%E5%B8%B8%E4%BD%BF%E7%94%A8%E5%BB%BA%E8%AE%AE/</link>
+    <pubDate>Fri, 22 Sep 2023 18:23:03 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/chaos/%E5%BC%82%E5%B8%B8%E4%BD%BF%E7%94%A8%E5%BB%BA%E8%AE%AE/</guid>
+    <description><![CDATA[在大型项目中，正确地使用异常是确保代码健壮性和可维护性的关键。以下是一些建议和最佳实践，用于在大型项目中有效地使用异常, 以 python 举例： 明确异常的]]></description>
+</item>
+<item>
+    <title>PyCharm开启或关闭科学模式</title>
+    <link>https://xiechaoxin.github.io/posts/chaos/pycharm%E5%BC%80%E5%90%AF%E6%88%96%E5%85%B3%E9%97%AD%E7%A7%91%E5%AD%A6%E6%A8%A1%E5%BC%8F/</link>
+    <pubDate>Fri, 26 May 2023 09:10:46 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/chaos/pycharm%E5%BC%80%E5%90%AF%E6%88%96%E5%85%B3%E9%97%AD%E7%A7%91%E5%AD%A6%E6%A8%A1%E5%BC%8F/</guid>
+    <description><![CDATA[PyCharm 开启或关闭科学模式 (11 条消息) PyCharm 开启或关闭科学模式_yleavesw 的博客-CSDN 博客_pycharm 科学模式]]></description>
+</item>
+<item>
+    <title>uri和url区别</title>
+    <link>https://xiechaoxin.github.io/posts/chaos/uri%E5%92%8Curl%E5%8C%BA%E5%88%AB/</link>
+    <pubDate>Fri, 26 May 2023 09:10:46 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/chaos/uri%E5%92%8Curl%E5%8C%BA%E5%88%AB/</guid>
+    <description><![CDATA[HTTP 协议中 URI 和 URL 有什么区别？ URI 在于 I(Identifier)是统一资源标示符，可以唯一标识一个资源。URL 在于 Locater，一般来说(URL]]></description>
+</item>
+<item>
+    <title>浮点数计算精度问题</title>
+    <link>https://xiechaoxin.github.io/posts/chaos/%E6%B5%AE%E7%82%B9%E6%95%B0%E8%AE%A1%E7%AE%97%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/</link>
+    <pubDate>Fri, 26 May 2023 09:10:46 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/chaos/%E6%B5%AE%E7%82%B9%E6%95%B0%E8%AE%A1%E7%AE%97%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/</guid>
+    <description><![CDATA[int n; sqrt(n+1e-6); 1e-6 表示 1 乘以 10 的负 6 次方。 1e-6(也就是 0.000001)叫做 epslon，用来抵消浮点运算中因为误差造成的相等无法判断的情况。它通]]></description>
+</item>
+<item>
+    <title>程序员都应该熟悉“特殊符号”的拼写</title>
+    <link>https://xiechaoxin.github.io/posts/chaos/%E7%A8%8B%E5%BA%8F%E5%91%98%E9%83%BD%E5%BA%94%E8%AF%A5%E7%86%9F%E6%82%89%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7%E7%9A%84%E6%8B%BC%E5%86%99/</link>
+    <pubDate>Fri, 16 Dec 2022 21:38:36 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/chaos/%E7%A8%8B%E5%BA%8F%E5%91%98%E9%83%BD%E5%BA%94%E8%AF%A5%E7%86%9F%E6%82%89%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7%E7%9A%84%E6%8B%BC%E5%86%99/</guid>
+    <description><![CDATA[符号 拼写 ?/! question/exclamation . dot &amp; and, ampersand # sharp, hash, hashtag ` backtick $ dollar % percent sign [] open/close bracket, brackets - hyphen _ underscore () open/close parenthesis, parentheses {} open/close brace, braces / \ forward slash/backslash, slash ; : semicolon, colon , comma &quot;&quot; quotation mark * asterisk ^ caret ~ tilde &lt;&gt; angle bracket, less, greater]]></description>
+</item>
+<item>
+    <title>parameter 和argument区别</title>
+    <link>https://xiechaoxin.github.io/posts/chaos/parameter-%E5%92%8Cargument%E5%8C%BA%E5%88%AB/</link>
+    <pubDate>Fri, 09 Dec 2022 12:14:35 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/chaos/parameter-%E5%92%8Cargument%E5%8C%BA%E5%88%AB/</guid>
+    <description><![CDATA[Argument 和 Parameter 两个词在很多文献中均翻译为参数，这是一个历史遗留问题。 但实际上 Argument 专用于 Actual Argument(实际参数，实参)，Parameter 专用于 Formal]]></description>
+</item>
+<item>
+    <title>CRLF、CR、LF</title>
+    <link>https://xiechaoxin.github.io/posts/chaos/crlfcrlf/</link>
+    <pubDate>Wed, 14 Sep 2022 00:33:15 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/chaos/crlfcrlf/</guid>
+    <description><![CDATA[CR：Carriage Return，对应 ASCII 中转义字符\r，表示回车 LF：Linefeed，对应 ASCII 中转义字符\n，表示换行 CRLF：Carri]]></description>
+</item>
+</channel>
+</rss>

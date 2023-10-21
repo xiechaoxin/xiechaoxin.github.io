@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>理论&amp;算法 - 标签 - xcx</title>
+        <link>https://xiechaoxin.github.io/tags/%E7%90%86%E8%AE%BA%E7%AE%97%E6%B3%95/</link>
+        <description>理论&amp;算法 - 标签 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/tags/%E7%90%86%E8%AE%BA%E7%AE%97%E6%B3%95/" rel="self" type="application/rss+xml" /><item>
+    <title>cap&amp;base理论</title>
+    <link>https://xiechaoxin.github.io/posts/pro/distributed-system/%E7%90%86%E8%AE%BA%E7%AE%97%E6%B3%95/capbase%E7%90%86%E8%AE%BA/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/pro/distributed-system/%E7%90%86%E8%AE%BA%E7%AE%97%E6%B3%95/capbase%E7%90%86%E8%AE%BA/</guid>
+    <description><![CDATA[CAP &amp; BASE理论 经历过技术面试的小伙伴想必对这个两个概念已经再熟悉不过了！ Guide哥当年参加面试的时候，不夸张地说，只要问到分布式相关的内]]></description>
+</item>
+<item>
+    <title>paxos&amp;raft算法</title>
+    <link>https://xiechaoxin.github.io/posts/pro/distributed-system/%E7%90%86%E8%AE%BA%E7%AE%97%E6%B3%95/paxosraft%E7%AE%97%E6%B3%95/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/pro/distributed-system/%E7%90%86%E8%AE%BA%E7%AE%97%E6%B3%95/paxosraft%E7%AE%97%E6%B3%95/</guid>
+    <description><![CDATA[Paxos 算法和 Raft 算法 Paxos 算法诞生于 1990 年，这是一种解决分布式系统一致性的经典算法 。但是，由于 Paxos 算法非常难以理解和实现，不断有人尝试简化这一算法。到了2]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>滑动窗口 - xcx</title><meta name="description" content=""><meta property="og:title" content="滑动窗口" />
+<meta property="og:description" content="滑动窗口 滑动窗口是一种常用的算法技巧，用于解决字符串或数组相关的问题。其核心思想是通过调整窗口的起始位置和结束位置来寻找符合特定条件的子串或" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/algorithms/%E6%8A%80%E5%B7%A7/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-22T22:37:48+00:00" />
+<meta property="article:modified_time" content="2022-09-22T22:37:48+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="滑动窗口"/>
+<meta name="twitter:description" content="滑动窗口 滑动窗口是一种常用的算法技巧，用于解决字符串或数组相关的问题。其核心思想是通过调整窗口的起始位置和结束位置来寻找符合特定条件的子串或"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/algorithms/%E6%8A%80%E5%B7%A7/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/algorithms/%E6%8A%80%E5%B7%A7/%E9%A2%84%E5%A4%84%E7%90%86/%E9%A2%84%E5%A4%84%E7%90%86/" /><link rel="next" href="https://xiechaoxin.github.io/posts/algorithms/%E6%8A%80%E5%B7%A7/tree/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "滑动窗口",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/algorithms\/%E6%8A%80%E5%B7%A7\/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3\/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3\/"
+        },"genre": "posts","keywords": "algorithms","wordcount":  1882 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/algorithms\/%E6%8A%80%E5%B7%A7\/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3\/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3\/","datePublished": "2022-09-22T22:37:48+00:00","dateModified": "2022-09-22T22:37:48+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">滑动窗口</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/algorithms/"><i class="far fa-folder fa-fw"></i>algorithms</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-09-22">2022-09-22</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1882 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-问题描述">1 问题描述</a></li>
+    <li><a href="#2-算法思路">2 算法思路</a></li>
+    <li><a href="#3-示例代码">3 示例代码</a></li>
+    <li><a href="#4-复杂度分析">4 复杂度分析</a></li>
+    <li><a href="#5-注意的地方">5 注意的地方</a></li>
+    <li><a href="#6-滑动窗口和双指针">6 滑动窗口和双指针</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="滑动窗口">滑动窗口</h1>
+<p>滑动窗口是一种常用的算法技巧，用于解决字符串或数组相关的问题。其核心思想是通过调整窗口的起始位置和结束位置来寻找符合特定条件的子串或子数组。</p>
+<h2 id="1-问题描述">1 问题描述</h2>
+<p>LeetCode 链接：<a href="https://leetcode-cn.com/problems/minimum-window-substring/description/" target="_blank" rel="noopener noreffer">最小覆盖子串</a></p>
+<p>给定一个字符串 S 和一个字符串 T，请在字符串 S 中找出包含 T 所有字符的最小子串。</p>
+<h2 id="2-算法思路">2 算法思路</h2>
+<p>滑动窗口算法的基本思路如下：</p>
+<ol>
+<li>初始化窗口的起始位置和结束位置为 0。</li>
+<li>移动结束位置，扩展窗口，直到窗口包含了 T 中的所有字符。</li>
+<li>记录当前窗口的长度和起始位置作为当前最小子串。</li>
+<li>移动起始位置，缩小窗口，直到窗口不再包含 T 中的所有字符。</li>
+<li>重复步骤 2、3、4，直到结束位置达到字符串的末尾。</li>
+<li>返回最小子串的起始位置和长度。</li>
+</ol>
+<h2 id="3-示例代码">3 示例代码</h2>
+<p>下面是一种可能的实现方式（使用 Python 语言）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">minWindow</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 初始化字符频率字典</span>
+</span></span><span class="line"><span class="cl">    <span class="n">freq</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">freq</span><span class="p">[</span><span class="n">char</span><span class="p">]</span> <span class="o">=</span> <span class="n">freq</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">char</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 初始化滑动窗口和结果变量</span>
+</span></span><span class="line"><span class="cl">    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">min_len</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">start_idx</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 开始滑动窗口</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">right</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="ow">in</span> <span class="n">freq</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">freq</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">right</span><span class="p">]]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">count</span> <span class="o">-=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="n">freq</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">right</span><span class="p">]]</span> <span class="o">-=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">right</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="n">count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">right</span> <span class="o">-</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">min_len</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">min_len</span> <span class="o">=</span> <span class="n">right</span> <span class="o">-</span> <span class="n">left</span>
+</span></span><span class="line"><span class="cl">                <span class="n">start_idx</span> <span class="o">=</span> <span class="n">left</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="ow">in</span> <span class="n">freq</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">freq</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">left</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="n">freq</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">left</span><span class="p">]]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">left</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">min_len</span> <span class="o">==</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">s</span><span class="p">[</span><span class="n">start_idx</span><span class="p">:</span><span class="n">start_idx</span><span class="o">+</span><span class="n">min_len</span><span class="p">]</span>
+</span></span></code></pre></div><h2 id="4-复杂度分析">4 复杂度分析</h2>
+<p>滑动窗口算法的时间复杂度为 O(n)，其中 n 是字符串 S 的长度。在最坏情况下，我们需要遍历整个字符串 S。</p>
+<p>空间复杂度为 O(m)，其中 m 是字符串 T 中不同字符的个数。我们需要使用一个字典来记录字符串 T 中每个字符的频率。</p>
+<p>请注意，以上只是一种滑动窗口算法的实现方式，具体的实现可能会有所不同。此外，滑动窗口算法还可以应用于其他类似的问题，你可以根据具体的需求进行相应的调整和修改。</p>
+<h2 id="5-注意的地方">5 注意的地方</h2>
+<ol>
+<li>
+<p>窗口的起始位置和结束位置的初始化：通常情况下，窗口的起始位置和结束位置都初始化为 0。但在某些情况下，你可能需要根据具体的问题来决定初始位置。</p>
+</li>
+<li>
+<p>窗口的扩展和缩小：在滑动窗口算法中，窗口的扩展是通过移动结束位置来实现的，而窗口的缩小则是通过移动起始位置来实现的。确保在每次移动窗口时，都更新窗口的起始位置和结束位置。</p>
+</li>
+<li>
+<p>窗口的终止条件：滑动窗口算法通常需要一个终止条件，以确定何时结束滑动窗口的过程。例如，可以使用结束位置达到字符串末尾作为终止条件，或者在某些特定条件下停止滑动窗口。</p>
+</li>
+<li>
+<p>窗口内部状态的更新：在滑动窗口算法中，窗口内部的状态需要及时更新，以便正确地判断是否满足特定条件。例如，需要维护字符频率字典或其他计数器，在窗口扩展和缩小时进行相应的更新操作。</p>
+</li>
+<li>
+<p>最小子串的记录和更新：通常情况下，滑动窗口算法需要记录最小子串的起始位置和长度，并及时更新这些信息。在滑动窗口的过程中，根据特定条件来更新最小子串的信息。</p>
+</li>
+<li>
+<p>边界情况的处理：在实现滑动窗口算法时，要考虑边界情况，如空字符串、空窗口、无解等。针对这些情况，需要进行相应的处理，确保算法的正确性和鲁棒性。</p>
+</li>
+</ol>
+<p>记住，滑动窗口算法是一种灵活且强大的技巧，可以解决许多字符串和数组相关的问题。根据具体的问题，你可能需要对算法进行适当的调整和修改，以满足特定的需求。</p>
+<h2 id="6-滑动窗口和双指针">6 滑动窗口和双指针</h2>
+<p>滑动窗口和双指针在某些情况下可以相互结合使用，以解决一些特定类型的问题。以下是一个示例，展示了滑动窗口和双指针的关联。</p>
+<p>问题描述：
+给定一个非负整数数组 nums 和一个目标值 target，找出数组中和为 target 的连续子数组（子序列的长度至少为 1），并返回其起始位置和结束位置。</p>
+<p>示例：
+输入：nums = [2, 3, 5, 6, 8, 9], target = 14
+输出：[1, 3]
+解释：数组中 [3, 5, 6] 的和为 14，起始位置为 1，结束位置为 3。</p>
+<p>解决方案：
+这个问题可以使用滑动窗口和双指针的结合方法来解决。</p>
+<ol>
+<li>初始化双指针 left 和 right，分别指向连续子数组的起始位置和结束位置，初始值都为 0。</li>
+<li>初始化滑动窗口的和 sum 为 0。</li>
+<li>不断移动右指针 right，将对应位置的元素加到 sum 中，直到 sum 大于等于 target。</li>
+<li>如果 sum 等于 target，找到了一个满足条件的连续子数组，返回 [left, right]。</li>
+<li>如果 sum 大于 target，移动左指针 left，将对应位置的元素从 sum 中减去，直到 sum 小于 target。</li>
+<li>重复步骤 3、4、5，直到 right 达到数组的末尾。</li>
+</ol>
+<p>下面是使用双指针和滑动窗口解决该问题的示例代码（使用 Python 语言）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">findSubarray</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">window_sum</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">right</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">window_sum</span> <span class="o">+=</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="n">window_sum</span> <span class="o">&gt;</span> <span class="n">target</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">window_sum</span> <span class="o">-=</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="n">left</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">window_sum</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="p">[</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">right</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># 未找到满足条件的子数组</span>
+</span></span></code></pre></div><p>在上述示例中，双指针 left 和 right 分别作为滑动窗口的起始位置和结束位置，不断移动并更新滑动窗口的和 sum。通过移动 left 和 right，我们可以实现滑动窗口的扩展和缩小，同时使用 sum 来判断是否满足条件。这种结合使用双指针和滑动窗口的方法可以高效地解决该问题。</p>
+<p>需要注意的是，上述示例是一种特定情况下滑动窗口和双指针的结合应用。实际上，滑动窗口和双指针可以根据不同问题的要求进行不同的组合和调整，以达到最优的解决方案。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/algorithms/">algorithms</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-09-22</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/algorithms/%E6%8A%80%E5%B7%A7/%E9%A2%84%E5%A4%84%E7%90%86/%E9%A2%84%E5%A4%84%E7%90%86/" class="prev" rel="prev" title="数据预处理"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/algorithms/%E6%8A%80%E5%B7%A7/tree/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86/" class="next" rel="next" title="二叉树遍历">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Lambda表达式与StreamAPI - xcx</title><meta name="description" content=""><meta property="og:title" content="Lambda表达式与StreamAPI" />
+<meta property="og:description" content="Lambda 表达式与 StreamAPI 1 JDK1.8 2 这两个的目的都是想要使得 Java 能够实现函数式编程 3 Lambada 表达式主要针对接口，函数式接口进行的优化，简化代码 4 StreamAPI 主要是针对集合的处理" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/language/java/lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%8Estreamapi/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-14T02:17:04+00:00" />
+<meta property="article:modified_time" content="2022-09-14T02:17:04+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Lambda表达式与StreamAPI"/>
+<meta name="twitter:description" content="Lambda 表达式与 StreamAPI 1 JDK1.8 2 这两个的目的都是想要使得 Java 能够实现函数式编程 3 Lambada 表达式主要针对接口，函数式接口进行的优化，简化代码 4 StreamAPI 主要是针对集合的处理"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/language/java/lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%8Estreamapi/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/language/java/optional%E7%B1%BB/" /><link rel="next" href="https://xiechaoxin.github.io/posts/language/java/java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Lambda表达式与StreamAPI",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/language\/java\/lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%8Estreamapi\/"
+        },"genre": "posts","keywords": "JAVA","wordcount":  2941 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/language\/java\/lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%8Estreamapi\/","datePublished": "2022-09-14T02:17:04+00:00","dateModified": "2022-09-14T02:17:04+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">Lambda表达式与StreamAPI</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/java/"><i class="far fa-folder fa-fw"></i>JAVA</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-09-14">2022-09-14</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2941 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-jdk18">1 JDK1.8</a></li>
+    <li><a href="#2-这两个的目的都是想要使得-java-能够实现函数式编程">2 这两个的目的都是想要使得 Java 能够实现函数式编程</a></li>
+    <li><a href="#3-lambada-表达式主要针对接口函数式接口进行的优化简化代码">3 Lambada 表达式主要针对接口，函数式接口进行的优化，简化代码</a></li>
+    <li><a href="#4-streamapi-主要是针对集合的处理操作进行的优化简化代码">4 StreamAPI 主要是针对集合的处理操作进行的优化，简化代码</a></li>
+    <li><a href="#5-lambda-表达式">5 Lambda 表达式</a>
+      <ul>
+        <li><a href="#51-是一个匿名的函数为了把方法体的实现代码当做数据一样进行传递">5.1 是一个匿名的函数，为了把方法体的实现代码当做数据一样进行传递</a></li>
+        <li><a href="#52-jdk18-之前用匿名内部类完成">5.2 JDK1.8 之前，用匿名内部类完成</a></li>
+        <li><a href="#53-使用-lambda-表达式">5.3 使用 Lambda 表达式</a></li>
+        <li><a href="#54-语法">5.4 语法</a></li>
+        <li><a href="#55-四种形式">5.5 四种形式</a></li>
+        <li><a href="#56-使用的形式">5.6 使用的形式</a></li>
+        <li><a href="#57-函数式接口">5.7 函数式接口</a></li>
+        <li><a href="#58-再简化版">5.8 再简化版</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-streamapi">6 StreamAPI</a>
+      <ul>
+        <li><a href="#61-作用">6.1 作用</a></li>
+        <li><a href="#62-特点">6.2 特点</a></li>
+        <li><a href="#63-步骤">6.3 步骤</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="lambda-表达式与-streamapi">Lambda 表达式与 StreamAPI</h1>
+<h2 id="1-jdk18">1 JDK1.8</h2>
+<h2 id="2-这两个的目的都是想要使得-java-能够实现函数式编程">2 这两个的目的都是想要使得 Java 能够实现函数式编程</h2>
+<h2 id="3-lambada-表达式主要针对接口函数式接口进行的优化简化代码">3 Lambada 表达式主要针对接口，函数式接口进行的优化，简化代码</h2>
+<h2 id="4-streamapi-主要是针对集合的处理操作进行的优化简化代码">4 StreamAPI 主要是针对集合的处理操作进行的优化，简化代码</h2>
+<h2 id="5-lambda-表达式">5 Lambda 表达式</h2>
+<h3 id="51-是一个匿名的函数为了把方法体的实现代码当做数据一样进行传递">5.1 是一个匿名的函数，为了把方法体的实现代码当做数据一样进行传递</h3>
+<h3 id="52-jdk18-之前用匿名内部类完成">5.2 JDK1.8 之前，用匿名内部类完成</h3>
+<ul>
+<li>
+<p>Runnable r = new Runnable(){
+public void run(){
+&hellip;&hellip;
+}
+}</p>
+<pre><code>- 目的就是传递run()方法的实现代码
+</code></pre>
+</li>
+<li>
+<p>new Thread(new Runnable(){
+public void run(){
+&hellip;&hellip;
+}
+}).start();</p>
+</li>
+</ul>
+<h3 id="53-使用-lambda-表达式">5.3 使用 Lambda 表达式</h3>
+<ul>
+<li>Runnable r = () -&gt; {&hellip;.};</li>
+<li>new Thread(() -&gt; {&hellip;.}).start();</li>
+</ul>
+<h3 id="54-语法">5.4 语法</h3>
+<ul>
+<li>格式： (形参列表) -&gt; {Lambda 体}</li>
+</ul>
+<h3 id="55-四种形式">5.5 四种形式</h3>
+<ul>
+<li>
+<p>(1)无参无返回值</p>
+<ul>
+<li>
+<p>格式</p>
+<ul>
+<li>() -&gt; {Lambda 体}</li>
+</ul>
+</li>
+<li>
+<p>说明：</p>
+<ul>
+<li>(1)无参，()</li>
+<li>(2)如果 Lambda 体是多句语句，那么{}是不可以省略</li>
+<li>(3)如果 Lambda 体是 1 句语句，那么{}如果不省略，那么语句后面要加; ，即{;}</li>
+<li>(4)如果 Lambda 体是 1 句语句，那么{;}可以省略</li>
+</ul>
+</li>
+<li>
+<p>代表</p>
+<ul>
+<li>Runnable r = () -&gt; {System.out.println(&ldquo;hello&rdquo;);};</li>
+<li>Runnable r = () -&gt; System.out.println(&ldquo;hello&rdquo;);</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(2)有参无返回值</p>
+<ul>
+<li>
+<p>格式</p>
+<ul>
+<li>(形参列表) -&gt; {Lambda 体}</li>
+</ul>
+</li>
+<li>
+<p>说明：</p>
+<ul>
+<li>(1)如果 Lambda 体是多句语句，那么{}是不可以省略</li>
+<li>(2)如果 Lambda 体是 1 句语句，那么{}如果不省略，那么语句后面要加; ，即{;}</li>
+<li>(3)如果 Lambda 体是 1 句语句，那么{;}可以省略</li>
+<li>(4)如果参数列表的参数类型是可以确定的，那么类型可以省略，如果形参个数是多个，那么()不可以省略</li>
+<li>(5)如果参数列表的个数只有 1 个，类型可以确定，()可以省略,形参名不可以省略，但是形参名可以和接口的抽象方法的形参名不一样</li>
+</ul>
+</li>
+<li>
+<p>代表</p>
+<ul>
+<li>
+<p>消费型</p>
+</li>
+<li>
+<p>Consumer<!-- raw HTML omitted --> void accept(T t)</p>
+</li>
+<li>
+<p>java.lang.Iterable<!-- raw HTML omitted --></p>
+<ul>
+<li>forEach(Consumer<!-- raw HTML omitted -->)</li>
+<li>集合对象.forEach(t -&gt; System.out.println(t));</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(3)无参有返回值</p>
+<ul>
+<li>
+<p>格式</p>
+<ul>
+<li>
+<p>() -&gt; {Lambda 体}</p>
+<ul>
+<li>Lambda 体中，肯定有 return 语句</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>说明：</p>
+<ul>
+<li>(1)无参，()不可以省略</li>
+<li>(2)如果 Lambda 体是多句语句，那么{}是不可以省略，，每一个语句后面要;，并且必须有 return 返回值;的语句</li>
+<li>(3)如果 Lambda 体是 1 句语句，那么{}如果不省略，那么一定是{return 返回值;}的语句</li>
+<li>(4)如果 Lambda 体是 1 句语句，那么{;}可以省略，而且 return 要省略</li>
+</ul>
+</li>
+<li>
+<p>代表</p>
+<ul>
+<li>
+<p>供给型</p>
+</li>
+<li>
+<p>Supplier<!-- raw HTML omitted --> T get()</p>
+</li>
+<li>
+<p>java.util.Optional<!-- raw HTML omitted --> orElseGet(Supplier)</p>
+<ul>
+<li>Optional<!-- raw HTML omitted --> opt = Optional.ofNullable(address);</li>
+<li>String address = opt.orElseGet(() -&gt; new String(&ldquo;北京&rdquo;));</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(4)有参有返回值</p>
+<pre><code>- 格式
+
+	- (形参列表) -&gt; {Lambda体}
+
+- 说明：
+
+	-  (1)如果Lambda体是多句语句，那么{}是不可以省略，并且必须有return 返回值;的语句
+	-  (2)如果Lambda体是1句语句，那么{}如果不省略，那么一定是{return 返回值;}的语句
+	-  (3)如果Lambda体是1句语句，那么{;}可以省略，而且return也可以省略
+	-  (4)参数列表，如果类型可以确定，那么类型可以省略,()不可以省略
+	-  (5)参数列表，如果类型可以确定，并且参数个数只有一个，那么类型和()都可以省略
+
+- 代表
+
+	- java.util.Comparator&lt;T&gt;： int compare(T t1, T t2)
+
+		- Comparator&lt;Student&gt; com = (t1,t2) -&gt; t1.getId() - t2.getId();
+
+	- Predicate&lt;T&gt;  : boolean  test(T t)
+
+		- Predicate&lt;Employee&gt;  p = t -&gt; t.getSalary() &gt; 10000;
+
+	- Function&lt;T,R&gt; :  R apply(T t)
+
+		- 如果Employee对象的薪资低于10000，涨薪10%，并且返回新工作
+		- Function&lt;Employee, Double&gt;  f = e -&gt; {
+	if(e.getSalary()&lt;10000){
+		e.setSalary(e.getSalary()*1.1;
+	}
+	return e.getSalary();
+</code></pre>
+<p>}</p>
+</li>
+</ul>
+<h3 id="56-使用的形式">5.6 使用的形式</h3>
+<ul>
+<li>
+<p>1、给函数式接口的变量赋值：多态引用</p>
+<ul>
+<li>Comparator<!-- raw HTML omitted --> com = (t1,t2) -&gt; t1.getId() - t2.getId();</li>
+</ul>
+</li>
+<li>
+<p>2、给函数式接口的形参赋值：多态参数</p>
+<ul>
+<li>new TreeSet( (t1,t2) -&gt; t1.getId() - t2.getId());</li>
+</ul>
+</li>
+</ul>
+<h3 id="57-函数式接口">5.7 函数式接口</h3>
+<ul>
+<li>
+<p>函数式接口也是接口，是个特殊的接口，SAM 型接口</p>
+<ul>
+<li>
+<p>SAM：Single Abstract Method</p>
+<ul>
+<li>使用注解声明@FunctionInterface</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>在这个类接口中只有一个抽象方法，但是可以有静态方法和默认方法以及 Object 中的方法</p>
+</li>
+<li>
+<p>只有函数式接口的变量或形参才能用 Lambda 表达式赋值</p>
+</li>
+<li>
+<p>四个核心的函数式</p>
+<ul>
+<li>
+<p>1、消费型</p>
+<ul>
+<li>
+<p>Consumer<!-- raw HTML omitted --> void accept(T t)</p>
+</li>
+<li>
+<p>还有延伸版</p>
+<ul>
+<li>BiConsumer&lt;T,U&gt;: void accept(T t,U u)</li>
+<li>。。。。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>2、供给型</p>
+<ul>
+<li>Supplier<!-- raw HTML omitted --> T get()</li>
+<li>DoubleSupplier Double get()</li>
+<li>&hellip;.</li>
+</ul>
+</li>
+<li>
+<p>3、功能型</p>
+<ul>
+<li>
+<p>Function&lt;T,R&gt; R apply(T t)</p>
+</li>
+<li>
+<p>延伸版</p>
+<ul>
+<li>BiFunction&lt;T,U,R&gt; R apply(T t,U u)</li>
+<li>BinaryOperator<!-- raw HTML omitted --> T apply(T t2, T t2)</li>
+<li>&hellip;.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>4、断定型</p>
+<ul>
+<li>
+<p>Predicate<!-- raw HTML omitted --> : boolean test(T t)</p>
+</li>
+<li>
+<p>延伸版</p>
+<ul>
+<li>BiPredicate&lt;T,U&gt; boolean test(T t ,U u)</li>
+<li>&hellip;.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="58-再简化版">5.8 再简化版</h3>
+<ul>
+<li>
+<p>方法引用</p>
+<ul>
+<li>
+<p>条件</p>
+<ul>
+<li>(1)Lambda 体通过调用一个现成的方法来完成</li>
+<li>(2)Lambda 的形参列表刚好是用于这个方法的实参</li>
+</ul>
+</li>
+<li>
+<p>形式有三种</p>
+<ul>
+<li>
+<p>(1)实例对象::实例方法名</p>
+<ul>
+<li>集合对象.forEach(t -&gt; System.out.println(t));</li>
+<li>集合对象.forEach(System.out::println)</li>
+</ul>
+</li>
+<li>
+<p>(2)类名::静态方法名</p>
+<ul>
+<li>
+<p>Supplier<!-- raw HTML omitted --> s = () -&gt; Math.random();</p>
+<ul>
+<li>Supplier<!-- raw HTML omitted --> s = Math::random;</li>
+</ul>
+</li>
+<li>
+<p>BiFunction&lt;Integer,Integer,Integer&gt; b = (a,b) -&gt; Math.max(a,b);</p>
+<ul>
+<li>BiFunction&lt;Integer,Integer,Integer&gt; b = Math::max;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(3)类名::实例方法名</p>
+<ul>
+<li>
+<p>Comparator<!-- raw HTML omitted --> c = (t1,t2) -&gt; t1.compareTo(t2);</p>
+<ul>
+<li>Lambda 表达式的形参的第一个作为调用方法的对象，第二个，作为这个实例方法的实参</li>
+<li>Comparator<!-- raw HTML omitted --> c = String::compareTo;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>构造器引用</p>
+<ul>
+<li>
+<p>条件</p>
+<ul>
+<li>(1)Lambda 体通过调用一个构造器完成，返回这个新建的对象</li>
+<li>(2)Lambda 的形参列表刚好是用于这个构造器的实参</li>
+</ul>
+</li>
+<li>
+<p>示例</p>
+<ul>
+<li>Fuction&lt;String ,Employee&gt; f = name -&gt; new Employee(name);</li>
+<li>Fuction&lt;String ,Employee&gt; f = Employee::new;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>数组构造引用</p>
+<ul>
+<li>
+<p>条件</p>
+<ul>
+<li>(1)Lambda 体通过创建一个数组对象完成，返回这个新建的数组对象</li>
+<li>(2)Lambda 的形参列表刚好是用于这个数组对象的创建的长度</li>
+</ul>
+</li>
+<li>
+<p>示例</p>
+<ul>
+<li>Fuction&lt;Integer ,Employee[]&gt; f = len -&gt; new Employee[len];</li>
+<li>Fuction&lt;Integer ,Employee[]&gt; f = Employee[]::new;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-streamapi">6 StreamAPI</h2>
+<h3 id="61-作用">6.1 作用</h3>
+<ul>
+<li>Stream API ( java.util.stream) 把真正的函数式编程风格引入到 Java 中。这是目前为止对 Java 类库最好的补充，因为 Stream API 可以极大提高 Java 程序员的生产力，让程序员写出高效率、干净、简洁的代码。
+Stream 是 Java8 中处理集合的关键抽象概念，它可以指定你希望对集合进行的操作，可以执行非常复杂的查找、过滤和映射数据等操作。 使用 Stream API 对集合数据进行操作，就类似于使用 SQL 执行的数据库查询。也可以使用 Stream API 来并行执行操作。简言之，Stream API 提供了一种高效且易于使用的处理数据的方式。</li>
+</ul>
+<h3 id="62-特点">6.2 特点</h3>
+<ul>
+<li>1、Stream 不负责存储数据</li>
+<li>2、Stream 的操作不影响数据源，每次操作返回一个新的 Stream</li>
+<li>3、Stream 的中间操作是一个“懒惰求值”，一直要到终结操作，才会一口气完成</li>
+</ul>
+<h3 id="63-步骤">6.3 步骤</h3>
+<ul>
+<li>
+<p>1、创建 Stream</p>
+<pre><code>- 四种方式
+
+	- 1、Collection集合对象.stream()
+
+		- ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();
+</code></pre>
+<p>。。。
+//创建 stream
+Stream<!-- raw HTML omitted --> stream = list.stream();</p>
+<pre><code>	- 2、Arrays.stream(数组对象)
+
+		- String[] arr = {&quot;hello&quot;,&quot;world&quot;,&quot;java&quot;,&quot;lambda&quot;,&quot;stream&quot;};
+</code></pre>
+<p>Stream<!-- raw HTML omitted --> stream = Arrays.stream(arr);</p>
+<pre><code>	- 3、Stream.of(T...)
+
+		- Stream&lt;String&gt; stream = Stream.of(&quot;hello&quot;,&quot;world&quot;,&quot;java&quot;,&quot;lambda&quot;,&quot;stream&quot;);
+
+	- 4、无限流
+
+		- Stream.iterator(..)
+
+			- 示例
+
+			  	@Test
+
+			  	public void test4(){
+
+			  		//Interface UnaryOperator&lt;T&gt;是特殊的Function&lt;T,T&gt;： T apply(T t)
+
+			  		Stream&lt;Integer&gt; stream = Stream.iterate(1, x -&gt; x+2);
+
+
+
+			  		//中间操作
+
+			  		stream = stream.limit(10);//取前面的10个
+
+
+
+			  		stream.forEach(System.out::println);
+
+			  	}
+
+		- Stream.generate(xx)
+
+			- 示例
+
+			  	@Test
+
+			  	public void test5(){
+
+			  		//Supplier&lt;T&gt; ：T  apply()
+
+			  //		Stream&lt;Double&gt; generate = Stream.generate(() -&gt; Math.random());
+
+			  		Stream&lt;Double&gt; stream = Stream.generate(Math::random);
+
+
+
+			  //		stream = stream.limit(5);
+
+			  //		stream.forEach(System.out::println);
+
+
+
+			  		stream.limit(5).forEach(System.out::println);
+
+			  	}
+</code></pre>
+</li>
+<li>
+<p>2、中间操作</p>
+<pre><code>- (1筛选与切片
+
+	- (1)筛选与切片
+</code></pre>
+<p>A：过滤：filter
+B：去重：distinct
+C：取前面的几个：limit
+D：跳过前面几个：skip</p>
+</li>
+</ul>
+<ul>
+<li>
+<p>要取中间几个：skip + limit</p>
+<ul>
+<li>
+<p>(2)映射</p>
+<ul>
+<li>A：map(Function)：对 Stream 中的每一个元素执行某个操作，返回值组成一个新的 Stream</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>B：返回值是特殊类型</p>
+<ul>
+<li>
+<p>mapToInt()</p>
+</li>
+<li>
+<p>mapToLong()</p>
+</li>
+<li>
+<p>mapToDouble()
+C：flatMap(Function)：对 stream 的每一个元素执行某个操作，返回值是一个 stream，这些个 stream 再合成一个大的 stream</p>
+<ul>
+<li>
+<p>(3)排序</p>
+<ul>
+<li>A：sorted()：自然排序</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>B：sorted(Comparator)：定制排序</p>
+<ul>
+<li>
+<p>3、终结操作</p>
+<pre><code>- (1)遍历
+
+	- forEach(Consumer)
+
+- (2)匹配与查找
+
+	- A：allMatch(Predicate p)：每一个元素是否都满足某个条件
+</code></pre>
+<p>B：anyMatch(Predicate p)：是否有一个元素满足条件
+C：noneMatch(Predicate p)：是否所有元素都不满足</p>
+</li>
+</ul>
+<ul>
+<li>
+<p>D：findFirst():返回第一个
+E：findAny()：如果是并行流，返回的结果是任意一个，如果是一个稳定的流，返回的结果是和 findFirst()一样</p>
+</li>
+<li>
+<p>F：count()：统计
+G：max(Comparator)
+H:min(Comparator)</p>
+<pre><code>- (3)规约
+
+	- A:Optional&lt;T&gt; reduce(BinaryOperator&lt;T&gt; accumulator)
+</code></pre>
+<p>BinaryOperator<!-- raw HTML omitted -->是一个 BiFunction&lt;T,T,T&gt;接口： T apply(T t1, T t2)
+B:T reduce(T identity,BinaryOperator<!-- raw HTML omitted --> accumulator)</p>
+<pre><code>- (4)收集
+
+	- &lt;R,A&gt; R collect(Collector&lt;? super T,A,R&gt; collector)
+
+		- Collector 接口中方法的实现决定了如何对流执行收集的操作
+</code></pre>
+<p>Collectors 实用类提供了很多静态方法，可以方便地创建常见收集器实例，例如、List，Set,Map</p>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/java/">JAVA</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-09-14</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/language/java/optional%E7%B1%BB/" class="prev" rel="prev" title="Optional类"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/language/java/java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" class="next" rel="next" title="Java基础语法">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

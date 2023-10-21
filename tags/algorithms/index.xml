@@ -1,0 +1,61 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>algorithms - 标签 - xcx</title>
+        <link>https://xiechaoxin.github.io/tags/algorithms/</link>
+        <description>algorithms - 标签 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 15 Jul 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/tags/algorithms/" rel="self" type="application/rss+xml" /><item>
+    <title>打表法</title>
+    <link>https://xiechaoxin.github.io/posts/algorithms/%E6%8A%80%E5%B7%A7/enum/%E6%89%93%E8%A1%A8%E6%B3%95/</link>
+    <pubDate>Sat, 15 Jul 2023 00:00:00 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/algorithms/%E6%8A%80%E5%B7%A7/enum/%E6%89%93%E8%A1%A8%E6%B3%95/</guid>
+    <description><![CDATA[输入输出简单, 使用计数器观察输入和输出之间的规律, 直接写出 生成结果 的规律对应的代码 /* 小虎去附近的商店买苹果，奸诈的商贩使用了捆绑交易，只提供]]></description>
+</item>
+<item>
+    <title>巧妙利用随机函数</title>
+    <link>https://xiechaoxin.github.io/posts/algorithms/%E6%8A%80%E5%B7%A7/random/%E9%9A%8F%E6%9C%BA%E5%87%BD%E6%95%B0/</link>
+    <pubDate>Sat, 15 Jul 2023 00:00:00 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/algorithms/%E6%8A%80%E5%B7%A7/random/%E9%9A%8F%E6%9C%BA%E5%87%BD%E6%95%B0/</guid>
+    <description><![CDATA[/* 给定一个函数f，可以1~5的数字等概率返回一个。请加工出1~7的数字等概率 返回一个的函数g。 给定一个函数f，可以a~b的数字等概率返回一个]]></description>
+</item>
+<item>
+    <title>KMP</title>
+    <link>https://xiechaoxin.github.io/posts/algorithms/string/kmp/</link>
+    <pubDate>Fri, 26 May 2023 09:10:46 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/algorithms/string/kmp/</guid>
+    <description><![CDATA[字符串匹配 KMP 算法 现在有两个字符串： str1 = &ldquo;abcdabbc&rdquo; str2 = &ldquo;cda&rdquo; 现在请你设计一个 C 语言程序，判断第一个字符串中是否包含了第二个字符串，比如上面的例子中，很明显]]></description>
+</item>
+<item>
+    <title>递归</title>
+    <link>https://xiechaoxin.github.io/posts/algorithms/%E9%80%92%E5%BD%92/</link>
+    <pubDate>Sat, 10 Dec 2022 13:29:50 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/algorithms/%E9%80%92%E5%BD%92/</guid>
+    <description><![CDATA[递归 关键词: 逆向思维 栈 树 递归树 递归一般分四步 递归函数定义 明确函数使命 明确原问题与子问题 兼顾原问题和子问题 基础情况处理 数据规模较小时候,直接返]]></description>
+</item>
+<item>
+    <title>二叉树遍历</title>
+    <link>https://xiechaoxin.github.io/posts/algorithms/%E6%8A%80%E5%B7%A7/tree/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86/</link>
+    <pubDate>Fri, 23 Sep 2022 04:12:59 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/algorithms/%E6%8A%80%E5%B7%A7/tree/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86/</guid>
+    <description><![CDATA[二叉树遍历 1 中序遍历 使用栈 vector&lt;int&gt; inorderTraversal(TreeNode *root) { // using stack vector&lt;int&gt; nodes; stack&lt;TreeNode *&gt; todoStack; while (root || !todoStack.empty()) { while (root) { todoStack.push(root); root = root-&gt;left; } root = todoStack.top(); todoStack.pop(); nodes.push_back(root-&gt;val); root = root-&gt;right; } return nodes; } 递归 void inorder(TreeNode *root, vector&lt;int&gt; &amp;nodes) { if (!root) { return; } inorder(root-&gt;left, nodes); nodes.push_back(root-&gt;val); inorder(root-&gt;right, nodes); } vector&lt;int&gt;]]></description>
+</item>
+<item>
+    <title>滑动窗口</title>
+    <link>https://xiechaoxin.github.io/posts/algorithms/%E6%8A%80%E5%B7%A7/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/</link>
+    <pubDate>Thu, 22 Sep 2022 22:37:48 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/algorithms/%E6%8A%80%E5%B7%A7/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/</guid>
+    <description><![CDATA[滑动窗口 滑动窗口是一种常用的算法技巧，用于解决字符串或数组相关的问题。其核心思想是通过调整窗口的起始位置和结束位置来寻找符合特定条件的子串或]]></description>
+</item>
+<item>
+    <title>数据预处理</title>
+    <link>https://xiechaoxin.github.io/posts/algorithms/%E6%8A%80%E5%B7%A7/%E9%A2%84%E5%A4%84%E7%90%86/%E9%A2%84%E5%A4%84%E7%90%86/</link>
+    <pubDate>Thu, 22 Sep 2022 22:37:48 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/algorithms/%E6%8A%80%E5%B7%A7/%E9%A2%84%E5%A4%84%E7%90%86/%E9%A2%84%E5%A4%84%E7%90%86/</guid>
+    <description><![CDATA[预处理数组技巧示例 对于频繁需要查询的数据，可以先申请一个辅助的数据结构存储，下次需要使用数据时，直接从辅助数组中取，而不需要再进行遍历。 这种]]></description>
+</item>
+<item>
+    <title>几道常见的字符串算法题</title>
+    <link>https://xiechaoxin.github.io/posts/algorithms/string/%E5%87%A0%E9%81%93%E5%B8%B8%E8%A7%81%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AE%97%E6%B3%95%E9%A2%98/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/algorithms/string/%E5%87%A0%E9%81%93%E5%B8%B8%E8%A7%81%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AE%97%E6%B3%95%E9%A2%98/</guid>
+    <description><![CDATA[几道常见的字符串算法题 原文地址:https://www.weiweiblog.cn/13string/ 1 KMP 算法 谈到字符串问题，不得不提的就是]]></description>
+</item>
+<item>
+    <title>bloom-filter</title>
+    <link>https://xiechaoxin.github.io/posts/algorithms/data-struct/bloom-filter/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:12 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/algorithms/data-struct/bloom-filter/</guid>
+    <description><![CDATA[布隆过滤器 海量数据处理以及缓存穿透这两个场景让我认识了 布隆过滤器 ，我查阅了一些资料来了解它，但是很多现成资料并不满足我的需求，所以就决定自己]]></description>
+</item>
+</channel>
+</rss>

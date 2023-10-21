@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>blog - 分类 - xcx</title>
+        <link>https://xiechaoxin.github.io/categories/blog/</link>
+        <description>blog - 分类 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 30 May 2023 20:26:52 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/categories/blog/" rel="self" type="application/rss+xml" /><item>
+    <title>js_good_blog</title>
+    <link>https://xiechaoxin.github.io/posts/web/front-end/js/js_good_blog/</link>
+    <pubDate>Tue, 30 May 2023 20:26:52 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/web/front-end/js/js_good_blog/</guid>
+    <description><![CDATA[js excellent docs 1 js mdn web docs 2 vue 2.1 vue3 ]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>tags - 标签 - xcx</title>
+        <link>https://xiechaoxin.github.io/tags/tags/</link>
+        <description>tags - 标签 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 23 Sep 2023 01:26:26 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/tags/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>scope_namespace</title>
+    <link>https://xiechaoxin.github.io/posts/language/python/scope_namespace/</link>
+    <pubDate>Sat, 23 Sep 2023 01:26:26 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/python/scope_namespace/</guid>
+    <description><![CDATA[Python中的作用域和命名空间是两个密切相关的概念。我们首先从命名空间开始，然后讨论作用域。 1. 命名空间 (Namespace): 命名空间是一个从名字到对象的映射。]]></description>
+</item>
+<item>
+    <title>程序员都应该熟悉“特殊符号”的拼写</title>
+    <link>https://xiechaoxin.github.io/posts/chaos/%E7%A8%8B%E5%BA%8F%E5%91%98%E9%83%BD%E5%BA%94%E8%AF%A5%E7%86%9F%E6%82%89%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7%E7%9A%84%E6%8B%BC%E5%86%99/</link>
+    <pubDate>Fri, 16 Dec 2022 21:38:36 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/chaos/%E7%A8%8B%E5%BA%8F%E5%91%98%E9%83%BD%E5%BA%94%E8%AF%A5%E7%86%9F%E6%82%89%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7%E7%9A%84%E6%8B%BC%E5%86%99/</guid>
+    <description><![CDATA[符号 拼写 ?/! question/exclamation . dot &amp; and, ampersand # sharp, hash, hashtag ` backtick $ dollar % percent sign [] open/close bracket, brackets - hyphen _ underscore () open/close parenthesis, parentheses {} open/close brace, braces / \ forward slash/backslash, slash ; : semicolon, colon , comma &quot;&quot; quotation mark * asterisk ^ caret ~ tilde &lt;&gt; angle bracket, less, greater]]></description>
+</item>
+</channel>
+</rss>

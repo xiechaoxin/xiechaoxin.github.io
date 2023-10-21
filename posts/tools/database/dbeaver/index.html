@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>DBeaver - xcx</title><meta name="description" content=""><meta property="og:title" content="DBeaver" />
+<meta property="og:description" content="DBeaver:开源数据库管理工具。 《再见，Navicat！同事安利的这个IDEA的兄弟，真香！》 这篇文章发了之后很多人抱怨Datagrip" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/tools/database/dbeaver/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-17T17:59:12+00:00" />
+<meta property="article:modified_time" content="2022-06-17T17:59:12+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="DBeaver"/>
+<meta name="twitter:description" content="DBeaver:开源数据库管理工具。 《再见，Navicat！同事安利的这个IDEA的兄弟，真香！》 这篇文章发了之后很多人抱怨Datagrip"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/tools/database/dbeaver/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/network/https%E4%B8%AD%E7%9A%84tls/" /><link rel="next" href="https://xiechaoxin.github.io/posts/tools/database/datagrip/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "DBeaver",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/tools\/database\/dbeaver\/"
+        },"genre": "posts","keywords": "tools, database","wordcount":  1016 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/tools\/database\/dbeaver\/","datePublished": "2022-06-17T17:59:12+00:00","dateModified": "2022-06-17T17:59:12+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">DBeaver</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/tools/"><i class="far fa-folder fa-fw"></i>tools</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-17">2022-06-17</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1016 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-dbeaver-概览">1 DBeaver 概览</a></li>
+    <li><a href="#2-使用">2 使用</a>
+      <ul>
+        <li><a href="#21-下载安装">2.1 下载安装</a></li>
+        <li><a href="#22-连接数据库">2.2 连接数据库</a></li>
+        <li><a href="#23-新建数据库">2.3 新建数据库</a></li>
+        <li><a href="#24-数据库表相关操作">2.4 数据库表相关操作</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-总结">3 总结</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="dbeaver开源数据库管理工具">DBeaver:开源数据库管理工具。</h1>
+<p><a href="https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&amp;mid=2247489523&amp;idx=1&amp;sn=4e96972842bdcea2e05cb267d17c5e8e&amp;chksm=cea25838f9d5d12e45a9939370eccf2bff7177038e70437ea0e01d64030118852ee66ae72284&amp;token=2000865596&amp;lang=zh_CN#rd" target="_blank" rel="noopener noreffer">《再见，Navicat！同事安利的这个IDEA的兄弟，真香！》</a>    这篇文章发了之后很多人抱怨Datagrip 的占用内存太大，很多人推荐了  DBeaver 这款开源免费的数据库管理工具。于是，我昨夜简单体验了一下 DBeaver ，然后写了这篇文章。</p>
+<h2 id="1-dbeaver-概览">1 DBeaver 概览</h2>
+<p>DBeaver 是一个基于 Java 开发 ，并且支持几乎所有的数据库产品的开源数据库管理工具。</p>
+<p>DBeaver 社区版不光支持关系型数据库比如MySQL、PostgreSQL、MariaDB、SQLite、Oracle、Db2、SQL Server，还比如 SQLite、H2这些内嵌数据库。还支持常见的全文搜索引擎比如 Elasticsearch 和 Solr、大数据相关的工具比如Hive和 Spark。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./%e6%9c%aa%e5%91%bd%e5%90%8d%e6%8b%bc%e5%9b%be.jpg"
+        data-srcset="./%e6%9c%aa%e5%91%bd%e5%90%8d%e6%8b%bc%e5%9b%be.jpg, ./%e6%9c%aa%e5%91%bd%e5%90%8d%e6%8b%bc%e5%9b%be.jpg 1.5x, ./%e6%9c%aa%e5%91%bd%e5%90%8d%e6%8b%bc%e5%9b%be.jpg 2x"
+        data-sizes="auto"
+        alt="./未命名拼图.jpg"
+        title="DBeaver 支持的数据库概览" /></p>
+<p>甚至说，DBeaver 的商业版本还支持各种 NoSQL  数据库。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./image-20200803074546854.png"
+        data-srcset="./image-20200803074546854.png, ./image-20200803074546854.png 1.5x, ./image-20200803074546854.png 2x"
+        data-sizes="auto"
+        alt="./image-20200803074546854.png"
+        title="DBeaver 的商业版本还支持各种 NoSQL  数据库" /></p>
+<h2 id="2-使用">2 使用</h2>
+<p><strong>DBeaver 虽然小巧，但是功能还是十分强大的。基本的表设计、SQL执行、ER图、数据导入导出等等常用功能都不在话下。</strong></p>
+<p><strong>我下面只简单演示一下基本的数据库的创建以及表的创建。</strong></p>
+<h3 id="21-下载安装">2.1 下载安装</h3>
+<p>官方网提供的下载地址：https://dbeaver.io/download/ ，你可以根据自己的操作系统选择合适的版本进行下载安装。</p>
+<p>比较简单，这里就不演示了。</p>
+<h3 id="22-连接数据库">2.2 连接数据库</h3>
+<p><strong>1.选择自己想要的连接的数据库，然后点击下一步即可(第一次连接可能需要下载相关驱动)。</strong></p>
+<p>我这里以MySQL为例。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./image-20200803082419586.png"
+        data-srcset="./image-20200803082419586.png, ./image-20200803082419586.png 1.5x, ./image-20200803082419586.png 2x"
+        data-sizes="auto"
+        alt="./image-20200803082419586.png"
+        title="image-20200803082419586" /></p>
+<p><strong>2.输入数据库的地址、用户名和密码等信息，然后点击完成即可连接</strong></p>
+<p>点击完成之前，你可以先通过左下方的测试连接来看一下数据库是否可以被成功连接上。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./image-20200803082107033.png"
+        data-srcset="./image-20200803082107033.png, ./image-20200803082107033.png 1.5x, ./image-20200803082107033.png 2x"
+        data-sizes="auto"
+        alt="./image-20200803082107033.png"
+        title="./image-20200803082107033.png" /></p>
+<h3 id="23-新建数据库">2.3 新建数据库</h3>
+<p>右键-&gt; 新建数据库(MySQL 用户记得使用 utf8mb4而不是 utf8)</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./image-20200812200954000.png"
+        data-srcset="./image-20200812200954000.png, ./image-20200812200954000.png 1.5x, ./image-20200812200954000.png 2x"
+        data-sizes="auto"
+        alt="./image-20200812200954000.png"
+        title="./image-20200812200954000.png" /></p>
+<h3 id="24-数据库表相关操作">2.4 数据库表相关操作</h3>
+<h4 id="241-新建表">2.4.1 新建表</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./image-20200812201130467.png"
+        data-srcset="./image-20200812201130467.png, ./image-20200812201130467.png 1.5x, ./image-20200812201130467.png 2x"
+        data-sizes="auto"
+        alt="./image-20200812201130467.png"
+        title="./image-20200812201130467.png" /></p>
+<h4 id="242-新建列">2.4.2 新建列</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./image-20200812203427352.png"
+        data-srcset="./image-20200812203427352.png, ./image-20200812203427352.png 1.5x, ./image-20200812203427352.png 2x"
+        data-sizes="auto"
+        alt="./image-20200812203427352.png"
+        title="./image-20200812203427352.png" /></p>
+<h4 id="243-创建约束主键唯一键">2.4.3 创建约束(主键、唯一键)</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./image-20200812202618448.png"
+        data-srcset="./image-20200812202618448.png, ./image-20200812202618448.png 1.5x, ./image-20200812202618448.png 2x"
+        data-sizes="auto"
+        alt="./image-20200812202618448.png"
+        title="./image-20200812202618448.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./image-20200812204054048.png"
+        data-srcset="./image-20200812204054048.png, ./image-20200812204054048.png 1.5x, ./image-20200812204054048.png 2x"
+        data-sizes="auto"
+        alt="./image-20200812204054048.png"
+        title="./image-20200812204054048.png" /></p>
+<h4 id="244-插入数据">2.4.4 插入数据</h4>
+<p>我们通过 SQL 编辑器插入数据：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./image-20200812205208540.png"
+        data-srcset="./image-20200812205208540.png, ./image-20200812205208540.png 1.5x, ./image-20200812205208540.png 2x"
+        data-sizes="auto"
+        alt="./image-20200812205208540.png"
+        title="./image-20200812205208540.png" /></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">INSERT</span> <span class="n">into</span> <span class="nf">user</span><span class="o">(</span><span class="n">id</span><span class="o">,</span><span class="n">name</span><span class="o">,</span><span class="n">phone</span><span class="o">,</span><span class="n">password</span><span class="o">)</span> <span class="n">values</span> <span class="o">(</span><span class="err">&#39;</span><span class="n">A00001</span><span class="sc">&#39;,&#39;</span><span class="n">guide</span><span class="err">哥</span><span class="sc">&#39;,&#39;</span><span class="mi">181631312315</span><span class="sc">&#39;,&#39;</span><span class="mi">123456</span><span class="err">&#39;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">INSERT</span> <span class="n">into</span> <span class="nf">user</span><span class="o">(</span><span class="n">id</span><span class="o">,</span><span class="n">name</span><span class="o">,</span><span class="n">phone</span><span class="o">,</span><span class="n">password</span><span class="o">)</span> <span class="n">values</span> <span class="o">(</span><span class="err">&#39;</span><span class="n">A00002</span><span class="sc">&#39;,&#39;</span><span class="n">guide</span><span class="err">哥</span><span class="mi">2</span><span class="sc">&#39;,&#39;</span><span class="mi">181631312313</span><span class="sc">&#39;,&#39;</span><span class="mi">123456</span><span class="err">&#39;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">INSERT</span> <span class="n">into</span> <span class="nf">user</span><span class="o">(</span><span class="n">id</span><span class="o">,</span><span class="n">name</span><span class="o">,</span><span class="n">phone</span><span class="o">,</span><span class="n">password</span><span class="o">)</span> <span class="n">values</span> <span class="o">(</span><span class="err">&#39;</span><span class="n">A00003</span><span class="sc">&#39;,&#39;</span><span class="n">guide</span><span class="err">哥</span><span class="mi">3</span><span class="sc">&#39;,&#39;</span><span class="mi">181631312312</span><span class="sc">&#39;,&#39;</span><span class="mi">123456</span><span class="err">&#39;</span><span class="o">);</span>
+</span></span></code></pre></div><h2 id="3-总结">3 总结</h2>
+<p>总的来说，简单体验之后感觉还是很不错的，占用内存也确实比 DataGrip 确实要小很多。</p>
+<p>各位小伙伴可以自行体验一下。毕竟免费并且开源，还是很香的！</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/tools/">tools</a>
+                </span><span><a href="/tags/database/">database</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-06-17</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/network/https%E4%B8%AD%E7%9A%84tls/" class="prev" rel="prev" title="HTTPS中的TLS"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/tools/database/datagrip/" class="next" rel="next" title="DataGrip">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

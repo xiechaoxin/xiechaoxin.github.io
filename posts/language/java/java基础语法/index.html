@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Java基础语法 - xcx</title><meta name="description" content=""><meta property="og:title" content="Java基础语法" />
+<meta property="og:description" content="Java 基础语法 1 、标识符 1.1 凡是在程序中需要自己命名的地方都是标识符，例如：变量名、包名、类名等 1.2 标识符的命名规则 1、Java 的标识符只能使用 26 英" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/language/java/java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-14T02:17:04+00:00" />
+<meta property="article:modified_time" content="2022-09-14T02:17:04+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java基础语法"/>
+<meta name="twitter:description" content="Java 基础语法 1 、标识符 1.1 凡是在程序中需要自己命名的地方都是标识符，例如：变量名、包名、类名等 1.2 标识符的命名规则 1、Java 的标识符只能使用 26 英"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/language/java/java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/language/java/lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%8Estreamapi/" /><link rel="next" href="https://xiechaoxin.github.io/posts/language/java/java%E5%9F%BA%E7%A1%80/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Java基础语法",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/language\/java\/java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95\/"
+        },"genre": "posts","keywords": "JAVA","wordcount":  1912 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/language\/java\/java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95\/","datePublished": "2022-09-14T02:17:04+00:00","dateModified": "2022-09-14T02:17:04+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">Java基础语法</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/java/"><i class="far fa-folder fa-fw"></i>JAVA</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-09-14">2022-09-14</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1912 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-标识符">1 、标识符</a>
+      <ul>
+        <li><a href="#11-凡是在程序中需要自己命名的地方都是标识符例如变量名包名类名等">1.1 凡是在程序中需要自己命名的地方都是标识符，例如：变量名、包名、类名等</a></li>
+        <li><a href="#12-标识符的命名规则">1.2 标识符的命名规则</a></li>
+        <li><a href="#13-标识符的命名规范">1.3 标识符的命名规范</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-变量">2 、变量</a>
+      <ul>
+        <li><a href="#21-变量是代表内存的一块存储区域">2.1 变量是代表内存的一块存储区域</a></li>
+        <li><a href="#22-变量三要素">2.2 变量三要素</a></li>
+        <li><a href="#23-使用要求">2.3 使用要求</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-数据类型">3 、数据类型</a>
+      <ul>
+        <li><a href="#31-基本数据类型">3.1 基本数据类型</a></li>
+        <li><a href="#32-引用数据类型">3.2 引用数据类型</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-运算符">4 、运算符</a>
+      <ul>
+        <li><a href="#41-算术运算符">4.1 算术运算符</a></li>
+        <li><a href="#42-赋值运算符">4.2 赋值运算符</a></li>
+        <li><a href="#43-比较运算符">4.3 比较运算符</a></li>
+        <li><a href="#44-逻辑运算符">4.4 逻辑运算符</a></li>
+        <li><a href="#45-条件运算符">4.5 条件运算符</a></li>
+        <li><a href="#46-位运算符">4.6 位运算符</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="java-基础语法">Java 基础语法</h1>
+<h2 id="1-标识符">1 、标识符</h2>
+<h3 id="11-凡是在程序中需要自己命名的地方都是标识符例如变量名包名类名等">1.1 凡是在程序中需要自己命名的地方都是标识符，例如：变量名、包名、类名等</h3>
+<h3 id="12-标识符的命名规则">1.2 标识符的命名规则</h3>
+<ul>
+<li>
+<p>1、Java 的标识符只能使用 26 英文字母大小写，0-9 的数字，下划线(_)和美元符号($)</p>
+</li>
+<li>
+<p>2、标识符中不能包含空格</p>
+</li>
+<li>
+<p>3、数字不能开头</p>
+</li>
+<li>
+<p>4、不能使用关键字和保留字和特殊值</p>
+<ul>
+<li>
+<p>50 个</p>
+<ul>
+<li>
+<p>class</p>
+</li>
+<li>
+<p>基本数据类型</p>
+<ul>
+<li>byte,short,int,long,float,double,char,boolean</li>
+</ul>
+</li>
+<li>
+<p>public</p>
+</li>
+<li>
+<p>static</p>
+</li>
+<li>
+<p>void</p>
+</li>
+</ul>
+</li>
+<li>
+<p>3 个</p>
+<ul>
+<li>true</li>
+<li>false</li>
+<li>null</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>5、Java 严格区分大小写</p>
+</li>
+<li>
+<p>6、Java 标识符没有长度限制，但是不宜太长</p>
+</li>
+</ul>
+<h3 id="13-标识符的命名规范">1.3 标识符的命名规范</h3>
+<ul>
+<li>
+<p>总原则</p>
+<ul>
+<li>见名知意，有意义</li>
+</ul>
+</li>
+<li>
+<p>1、类名，接口名</p>
+<ul>
+<li>
+<p>所有单词的首字母大写</p>
+<ul>
+<li>XxxYyyZzz</li>
+<li>例如：String，System，HelloWorld</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>2、变量名</p>
+<ul>
+<li>
+<p>第一个单词首字母小写，其余单词首字母大写</p>
+<ul>
+<li>xxxYyyZzz</li>
+<li>例如：age，maxValue</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>3、包名</p>
+<ul>
+<li>
+<p>所有字母都小写，单词之间使用.分割</p>
+<ul>
+<li>xxx.yyy.zzz</li>
+<li>例如：java.lang</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>4、常量名</p>
+<ul>
+<li>
+<p>所有字母都大写，单词之间使用下划线_</p>
+<ul>
+<li>XXX_YYY_ZZZ</li>
+<li>例如：MAX_VALUE</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-变量">2 、变量</h2>
+<h3 id="21-变量是代表内存的一块存储区域">2.1 变量是代表内存的一块存储区域</h3>
+<h3 id="22-变量三要素">2.2 变量三要素</h3>
+<ul>
+<li>
+<p>变量名</p>
+<ul>
+<li>给这块存储区域命名，就不用内存地址访问</li>
+</ul>
+</li>
+<li>
+<p>变量值</p>
+<ul>
+<li>这块内存中存的数据</li>
+</ul>
+</li>
+<li>
+<p>数据类型</p>
+<ul>
+<li>决定这块内存的大小</li>
+</ul>
+</li>
+</ul>
+<h3 id="23-使用要求">2.3 使用要求</h3>
+<ul>
+<li>
+<p>1、先声明后使用</p>
+<ul>
+<li>
+<p>声明格式</p>
+<ul>
+<li>数据类型 变量名;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>2、在使用之前必须赋值</p>
+<ul>
+<li>
+<p>赋值格式</p>
+<ul>
+<li>
+<p>变量名 = 值;</p>
+<ul>
+<li>这个值可以是常量值，表达式</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>3、变量的作用域</p>
+<ul>
+<li>从声明处开始，到它所属的}结束</li>
+<li>同一个作用域不能同名</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-数据类型">3 、数据类型</h2>
+<h3 id="31-基本数据类型">3.1 基本数据类型</h3>
+<ul>
+<li>
+<p>整型</p>
+<ul>
+<li>
+<p>byte</p>
+<ul>
+<li>占 1 个字节</li>
+<li>存储范围是 -128~127</li>
+</ul>
+</li>
+<li>
+<p>short</p>
+<ul>
+<li>占 2 个字节</li>
+</ul>
+</li>
+<li>
+<p>int</p>
+<ul>
+<li>占 4 个字节</li>
+<li>默认类型</li>
+</ul>
+</li>
+<li>
+<p>long</p>
+<ul>
+<li>占 8 个字节</li>
+<li>需要在数字后面加 L 或小写 l</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>浮点型</p>
+<ul>
+<li>
+<p>float</p>
+<ul>
+<li>占 4 个字节</li>
+<li>需要在数字后面加 F 或 f</li>
+</ul>
+</li>
+<li>
+<p>double</p>
+<ul>
+<li>占 8 个字节</li>
+<li>默认类型</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>字符型</p>
+<ul>
+<li>
+<p>char</p>
+<ul>
+<li>
+<p>占 2 个字节</p>
+</li>
+<li>
+<p>存储的是字符的 Unicode 编码值</p>
+</li>
+<li>
+<p>三种方式</p>
+<ul>
+<li>
+<p>&lsquo;一个字符&rsquo;</p>
+</li>
+<li>
+<p>&lsquo;转义字符&rsquo;</p>
+<ul>
+<li>
+<p>退格</p>
+<ul>
+<li>\b</li>
+</ul>
+</li>
+<li>
+<p>回车</p>
+<ul>
+<li>\r</li>
+</ul>
+</li>
+<li>
+<p>换行</p>
+<ul>
+<li>\n</li>
+</ul>
+</li>
+<li>
+<p>\</p>
+</li>
+<li>
+<p>'</p>
+</li>
+<li>
+<p>&quot;</p>
+</li>
+<li>
+<p>Tab 键</p>
+<ul>
+<li>\t</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>&lsquo;\u 字符的 Unicode 编码值的十六进制形式&rsquo;</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>布尔型</p>
+<ul>
+<li>
+<p>boolean</p>
+<ul>
+<li>只能赋值为 true 或 false</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>基本数据类型的转换</p>
+<ul>
+<li>
+<p>1、自动类型转换</p>
+<ul>
+<li>
+<p>byte,short,char &ndash;&gt;int -&gt;long &ndash;&gt;float &ndash;&gt;double</p>
+<ul>
+<li>
+<p>(1)byte,short,char 只要算术运算都要升级为 int 或以上</p>
+<ul>
+<li>例如：byte + byte 升级为 int</li>
+<li>例如：byte + double 升级为 double</li>
+<li>例如：byte + short 升级 int</li>
+</ul>
+</li>
+<li>
+<p>(2)boolean 不参与</p>
+</li>
+<li>
+<p>(3)和字符串拼接的结果都是 String 字符串</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>2、强制类型转换</p>
+<ul>
+<li>
+<p>double&ndash;&gt;float&ndash;&gt;long&ndash;&gt;int&ndash;&gt;byte,short,char</p>
+<ul>
+<li>
+<p>(1)例如： char c = (char)97;</p>
+<ul>
+<li>相当于把&rsquo;a&rsquo;字符赋值给 c</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>需要强制类型转换符(类型)</p>
+</li>
+<li>
+<p>有可能溢出或损失精度，需谨慎</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="32-引用数据类型">3.2 引用数据类型</h3>
+<ul>
+<li>
+<p>类</p>
+<ul>
+<li>例如：String，System</li>
+</ul>
+</li>
+<li>
+<p>接口</p>
+</li>
+<li>
+<p>数组</p>
+</li>
+</ul>
+<h2 id="4-运算符">4 、运算符</h2>
+<h3 id="41-算术运算符">4.1 算术运算符</h3>
+<ul>
+<li>
+<p>正号</p>
+</li>
+<li>
+<p>负号</p>
+</li>
+<li>
+<p>加法</p>
+</li>
+<li>
+<p>减法</p>
+</li>
+<li>
+<p>乘法</p>
+</li>
+<li>
+<p>除法</p>
+<pre><code>-   注意：
+
+    -   当整数与整数相除，结果只保留整数部分
+    -   当整数与整数相除，被除数/除数 ，除数不能为 0，报异常
+    -   当浮点数相除，如果除数为 0，结果是无穷大，非数字
+</code></pre>
+</li>
+<li>
+<p>取模，求余数</p>
+<ul>
+<li>
+<p>%</p>
+<ul>
+<li>
+<p>特殊</p>
+<ul>
+<li>会忽略模数的负号</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>自增</p>
+<ul>
+<li>
+<p>++</p>
+<ul>
+<li>
+<p>对于自增变量来说，一定会自增 1</p>
+</li>
+<li>
+<p>但是对于表达式的结果，看++在前或在后</p>
+<ul>
+<li>
+<p>i++</p>
+<ul>
+<li>
+<p>这个表达式的结果是与 i 自增前的结果一样</p>
+<ul>
+<li>
+<p>例如：int i = 0; int j = i++;</p>
+<ul>
+<li>j=0,i=1</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>++i</p>
+<ul>
+<li>
+<p>这个表达式的结果是与 i 自增后的结果一样</p>
+<ul>
+<li>
+<p>例如：int i=0;int j = ++i;</p>
+<ul>
+<li>j=1,i=1</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>自减</p>
+<ul>
+<li>同自增</li>
+</ul>
+</li>
+</ul>
+<h3 id="42-赋值运算符">4.2 赋值运算符</h3>
+<ul>
+<li>
+<p>基本赋值运算符</p>
+<ul>
+<li>
+<p>=</p>
+<ul>
+<li>把右边的结果赋值给左边的变量</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>扩展赋值运算符</p>
+<ul>
+<li>
+<p>+=, -=,&hellip;..</p>
+<ul>
+<li>
+<p>隐含强制类型转换</p>
+<ul>
+<li>
+<p>例如： short s = 1; s += 1;</p>
+<ul>
+<li>等价于 s = (short)(s+1);</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="43-比较运算符">4.3 比较运算符</h3>
+<ul>
+<li>
+<p>大于</p>
+<ul>
+<li>
+<blockquote>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>小于</p>
+<ul>
+<li>&lt;</li>
+</ul>
+</li>
+<li>
+<p>大于等于</p>
+<ul>
+<li>
+<blockquote>
+<p>=</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>小于等于</p>
+<ul>
+<li>&lt;=</li>
+</ul>
+</li>
+<li>
+<p>等于</p>
+<ul>
+<li>==</li>
+</ul>
+</li>
+<li>
+<p>不等于</p>
+<ul>
+<li>!=</li>
+</ul>
+</li>
+<li>
+<p>结果一定是 boolean 值，所以比较表达式常常用于条件表达式</p>
+</li>
+</ul>
+<h3 id="44-逻辑运算符">4.4 逻辑运算符</h3>
+<ul>
+<li>
+<p>逻辑与</p>
+<ul>
+<li>
+<p>&amp;</p>
+<ul>
+<li>
+<p>只有左右两边的值都为 true，结果才为 true</p>
+<ul>
+<li>true &amp; true = true</li>
+<li>true &amp; false = false</li>
+<li>false &amp; true = false</li>
+<li>false &amp; false = false</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>逻辑或</p>
+<ul>
+<li>
+<p>|</p>
+<ul>
+<li>
+<p>只要左右两边的值有一个为 true，结果就为 true</p>
+<ul>
+<li>true | true = true</li>
+<li>true | false = true</li>
+<li>false | true = true</li>
+<li>false | false = false</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>逻辑异或</p>
+<ul>
+<li>
+<p>^</p>
+<ul>
+<li>
+<p>只有左右两边一个为 true,另一个为 false，结果才为 true</p>
+<ul>
+<li>true ^ true = false</li>
+<li>true ^ false = true</li>
+<li>false ^ true = true</li>
+<li>false ^ false = false</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>逻辑非</p>
+<ul>
+<li>
+<p>!</p>
+<ul>
+<li>!true 即为 false</li>
+<li>!false 即为 true</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>短路与</p>
+<ul>
+<li>
+<p>&amp;&amp;</p>
+<ul>
+<li>
+<p>结果与&amp;一样</p>
+<ul>
+<li>
+<p>只有左右两边的值都为 true，结果才为 true</p>
+<ul>
+<li>true &amp; true = true</li>
+<li>true &amp; false = false</li>
+<li>false &amp; true = false</li>
+<li>false &amp; false = false</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>不同的是</p>
+<ul>
+<li>如果左边的表达式为 false，右边的表达式就不计算了，出现短路现象</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>短路或</p>
+<ul>
+<li>
+<p>||</p>
+<ul>
+<li>
+<p>结果与|一样</p>
+<ul>
+<li>
+<p>只要左右两边的值有一个为 true，结果就为 true</p>
+<ul>
+<li>true | true = true</li>
+<li>true | false = true</li>
+<li>false | true = true</li>
+<li>false | false = false</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>不同的是</p>
+<ul>
+<li>如果左边的表达式为 true，右边的表达式就不计算了，出现短路现象</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="45-条件运算符">4.5 条件运算符</h3>
+<ul>
+<li>
+<p>格式</p>
+<ul>
+<li>条件表达式 ? 表达式 1 ： 表达式 2</li>
+<li>整个表达式的结果看条件表达式，如果条件表达式为 true，那么就取表达式 1 的结果，否则取表达式 2 的结果</li>
+</ul>
+</li>
+</ul>
+<h3 id="46-位运算符">4.6 位运算符</h3>
+<ul>
+<li>
+<p>左移</p>
+<ul>
+<li>
+<p>&laquo;</p>
+<ul>
+<li>
+<p>相当于乘以 2 的几次</p>
+<ul>
+<li>
+<p>例如：1 &laquo; 3</p>
+<ul>
+<li>相当于 1 * 2 的 3 次方</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>右边补 0</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>右移</p>
+<ul>
+<li>
+<blockquote>
+<blockquote>
+</blockquote>
+</blockquote>
+<ul>
+<li>
+<p>相当于除以 2 的几次</p>
+<ul>
+<li>
+<p>例如：16 &raquo; 3</p>
+<ul>
+<li>相当于 16 / 2 的 3 次方</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>左边补什么，看最高位，最高位是 1，就补 1，是 0 就补 0</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>无符号右移</p>
+<ul>
+<li>
+<blockquote>
+<blockquote>
+<blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<ul>
+<li>不管最高位是什么，左边都补 0</li>
+<li>结果一定是正数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>按位与</p>
+<ul>
+<li>
+<p>&amp;</p>
+<ul>
+<li>
+<p>运算规则，对应位</p>
+<ul>
+<li>1 &amp; 1 = 1</li>
+<li>1&amp;0 = 0</li>
+<li>0&amp;1 = 0</li>
+<li>0&amp;0=0</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>按位或</p>
+<ul>
+<li>
+<p>|</p>
+<ul>
+<li>
+<p>运算规则，对应位</p>
+<ul>
+<li>1 | 1 = 1</li>
+<li>1|0 = 1</li>
+<li>0|1 = 1</li>
+<li>0|0=0</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>按位异或</p>
+<ul>
+<li>
+<p>^</p>
+<ul>
+<li>
+<p>运算规则，对应位</p>
+<ul>
+<li>1^ 1 = 0</li>
+<li>1^0 = 1</li>
+<li>0^1 = 1</li>
+<li>0^|0=0</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>按位取反</p>
+<ul>
+<li>
+<p>~</p>
+<ul>
+<li>运算规则，对应位，原来是 1，变成 0，原来是 0，变成 1</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>所有都是直接用二进制计算(补码)</p>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/java/">JAVA</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-09-14</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/language/java/lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%8Estreamapi/" class="prev" rel="prev" title="Lambda表达式与StreamAPI"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/language/java/java%E5%9F%BA%E7%A1%80/" class="next" rel="next" title="Java基础">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

@@ -1,0 +1,55 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>web - 分类 - xcx</title>
+        <link>https://xiechaoxin.github.io/categories/web/</link>
+        <description>web - 分类 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 26 May 2023 09:10:46 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/categories/web/" rel="self" type="application/rss+xml" /><item>
+    <title>readme</title>
+    <link>https://xiechaoxin.github.io/posts/web/readme/</link>
+    <pubDate>Fri, 26 May 2023 09:10:46 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/web/readme/</guid>
+    <description><![CDATA[参考 mdn web docs]]></description>
+</item>
+<item>
+    <title>mdn_web_docs</title>
+    <link>https://xiechaoxin.github.io/posts/web/front-end/js/mdn_web_docs/</link>
+    <pubDate>Tue, 23 May 2023 14:10:07 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/web/front-end/js/mdn_web_docs/</guid>
+    <description><![CDATA[mdn web docs ]]></description>
+</item>
+<item>
+    <title>link</title>
+    <link>https://xiechaoxin.github.io/posts/web/front-end/html/link/</link>
+    <pubDate>Mon, 22 May 2023 13:22:22 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/web/front-end/html/link/</guid>
+    <description><![CDATA[超链接]]></description>
+</item>
+<item>
+    <title>head_metadata</title>
+    <link>https://xiechaoxin.github.io/posts/web/front-end/html/head_metadata/</link>
+    <pubDate>Sun, 21 May 2023 23:56:29 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/web/front-end/html/head_metadata/</guid>
+    <description><![CDATA[head metadata HTML 元信息, 在页面加载完成的时候，HTML 文档中的头部是不会显示在 web 浏览器的。它包含了诸如页面的 &lt;title&gt;（标题）、指向 CSS]]></description>
+</item>
+<item>
+    <title>HTTP响应代码</title>
+    <link>https://xiechaoxin.github.io/posts/web/front-end/extend/http%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB/</link>
+    <pubDate>Sun, 21 May 2023 23:22:44 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/web/front-end/extend/http%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB/</guid>
+    <description><![CDATA[HTTP：响应代码 HTTP — 一种应用级协议]]></description>
+</item>
+<item>
+    <title>html_start</title>
+    <link>https://xiechaoxin.github.io/posts/web/front-end/html/html_start/</link>
+    <pubDate>Sun, 21 May 2023 22:28:29 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/web/front-end/html/html_start/</guid>
+    <description><![CDATA[HTML 基础 1 HTML 到底是什么？ HTML（HyperText Markup Language，超文本标记语言）是一种用来告知浏览器如何组织页面的标记语言。HTML 由]]></description>
+</item>
+<item>
+    <title>js_start</title>
+    <link>https://xiechaoxin.github.io/posts/web/front-end/js/js_start/</link>
+    <pubDate>Sun, 21 May 2023 21:46:21 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/web/front-end/js/js_start/</guid>
+    <description><![CDATA[js 基础 1 变量（Variable） 变量 是存储值的容器。要声明一个变量，先输入关键字 let 或 var，然后输入合适的名称： let my_variable; 注意变量可以有不同的 数据]]></description>
+</item>
+<item>
+    <title>css_start</title>
+    <link>https://xiechaoxin.github.io/posts/web/front-end/css/css_start/</link>
+    <pubDate>Sun, 21 May 2023 18:05:20 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/web/front-end/css/css_start/</guid>
+    <description><![CDATA[what is css 层叠样式表（Cascading Style Sheet，简称：CSS）是为网页添加样式的代码。本节将介绍 CSS 的基础知识，并解答类似问题：怎样将文本设]]></description>
+</item>
+</channel>
+</rss>

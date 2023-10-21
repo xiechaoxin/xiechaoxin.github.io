@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>linux - 标签 - xcx</title>
+        <link>https://xiechaoxin.github.io/tags/linux/</link>
+        <description>linux - 标签 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 17 Jun 2022 17:59:12 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/tags/linux/" rel="self" type="application/rss+xml" /><item>
+    <title>linux命令</title>
+    <link>https://xiechaoxin.github.io/posts/os/linux/linux%E5%91%BD%E4%BB%A4/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:12 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/os/linux/linux%E5%91%BD%E4%BB%A4/</guid>
+    <description><![CDATA[文件处理命令 1 权限管理命令 2 文件搜索命令 3 帮助命令 3.1 man ​ 查看命令的帮助:这个命令是干啥用的，/选项 ​ 查看配置文件的格式： ​ ps：1命令的帮助]]></description>
+</item>
+<item>
+    <title>shell-intro(Shell 编程入门)</title>
+    <link>https://xiechaoxin.github.io/posts/os/shell-intro/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:12 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/os/shell-intro/</guid>
+    <description><![CDATA[Shell 编程入门 1 走进 Shell 编程的大门 1.1 为什么要学Shell？ 学一个东西，我们大部分情况都是往实用性方向着想。从工作角度来讲，学习 Shell 是为了提高我们自己]]></description>
+</item>
+</channel>
+</rss>

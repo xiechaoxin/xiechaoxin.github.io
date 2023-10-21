@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>KMP - xcx</title><meta name="description" content=""><meta property="og:title" content="KMP" />
+<meta property="og:description" content="字符串匹配 KMP 算法 现在有两个字符串： str1 = &ldquo;abcdabbc&rdquo; str2 = &ldquo;cda&rdquo; 现在请你设计一个 C 语言程序，判断第一个字符串中是否包含了第二个字符串，比如上面的例子中，很明显" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/algorithms/string/kmp/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-05-26T09:10:46+00:00" />
+<meta property="article:modified_time" content="2023-05-26T09:10:46+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="KMP"/>
+<meta name="twitter:description" content="字符串匹配 KMP 算法 现在有两个字符串： str1 = &ldquo;abcdabbc&rdquo; str2 = &ldquo;cda&rdquo; 现在请你设计一个 C 语言程序，判断第一个字符串中是否包含了第二个字符串，比如上面的例子中，很明显"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/algorithms/string/kmp/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/chaos/pycharm%E5%BC%80%E5%90%AF%E6%88%96%E5%85%B3%E9%97%AD%E7%A7%91%E5%AD%A6%E6%A8%A1%E5%BC%8F/" /><link rel="next" href="https://xiechaoxin.github.io/posts/tools/git/gitattributes%E4%BB%8B%E7%BB%8D/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "KMP",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/algorithms\/string\/kmp\/"
+        },"genre": "posts","keywords": "algorithms","wordcount":  1121 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/algorithms\/string\/kmp\/","datePublished": "2023-05-26T09:10:46+00:00","dateModified": "2023-05-26T09:10:46+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">KMP</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/algorithms/"><i class="far fa-folder fa-fw"></i>algorithms</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-05-26">2023-05-26</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1121 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+                </div><div class="content" id="content"><h1 id="字符串匹配-kmp-算法">字符串匹配 KMP 算法</h1>
+<p>现在有两个字符串：</p>
+<blockquote>
+<p>str1 = &ldquo;abcdabbc&rdquo;</p>
+<p>str2 = &ldquo;cda&rdquo;</p>
+</blockquote>
+<p>现在请你设计一个 C 语言程序，判断第一个字符串中是否包含了第二个字符串，比如上面的例子中，很明显第一个字符串包含了第二个字符串。</p>
+<ul>
+<li>暴力解法</li>
+<li>KMP 算法</li>
+</ul>
+<p>我们着重来看一下 KMP 算法，实际上我们发现，暴力解法虽然很好理解，但是可能会做一些毫无意义的比较：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./RgP7i1dYsxNGTnb.png"
+        data-srcset="./RgP7i1dYsxNGTnb.png, ./RgP7i1dYsxNGTnb.png 1.5x, ./RgP7i1dYsxNGTnb.png 2x"
+        data-sizes="auto"
+        alt="./RgP7i1dYsxNGTnb.png"
+        title="image-20220624105606429" /></p>
+<p>当发生不匹配时，又会重新开始比较下一个：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./NZ8sEG9Q2bCAMlv.png"
+        data-srcset="./NZ8sEG9Q2bCAMlv.png, ./NZ8sEG9Q2bCAMlv.png 1.5x, ./NZ8sEG9Q2bCAMlv.png 2x"
+        data-sizes="auto"
+        alt="./NZ8sEG9Q2bCAMlv.png"
+        title="image-20220624105650078" /></p>
+<p>但是我们不难发现，因为不匹配的位置发生在第三个字符，而前面是<code>a,b</code>两个字符都匹配，显然完全没有必要再继续挨着去比较<code>a</code>和<code>b</code>了，因为很明显不可能匹配。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./tB9KHhYXZN6g2bz.png"
+        data-srcset="./tB9KHhYXZN6g2bz.png, ./tB9KHhYXZN6g2bz.png 1.5x, ./tB9KHhYXZN6g2bz.png 2x"
+        data-sizes="auto"
+        alt="./tB9KHhYXZN6g2bz.png"
+        title="image-20220624142802170" /></p>
+<p>实际上我们可以直接跳过<code>b</code>，因为我们一眼就能看出肯定不匹配，所以直接跳过从后面继续判断，能节省不少的时间。我相信如果让你通过自己的人脑去进行匹配，也是按照这样的方式去比较的吧？</p>
+<p>不过关键点就在于怎么在程序中得知该不该跳过呢，又该跳过多少个字符不判断呢？所以我们在拿到子串的时候，就需要根据子串来计算一个叫做<code>next</code>的数组，与子串的长度相同，它存储了<strong>当不匹配发生在对应的位置上时，应该在哪一个位置开始继续比较。</strong></p>
+<p>这里说一下怎么去求(计算机领域大佬总结出来的算法)：</p>
+<blockquote>
+<p>从第一位开始依次推导。</p>
+<p>next 数组的第一位一定是 0。</p>
+<p>从第二位开始(用<code>i</code>表示)，将第<code>i-1</code>个字符(也就是前一个)与其对应的<code>next[i - 1] - 1</code>位上的字符进行比较。</p>
+<p>如果相等，那么<code>next[i]</code>位置的值就是<code>next[i - 1] + 1</code></p>
+<p>如果不相等，则继续向前计算一次<code>next[next[i-1] - 1] - 1</code>位置上的字符和第<code>i-1</code>个字符是否相同，直到找到相等的为止，并且这个位置对应的值加上<code>1</code>就是<code>next[i]</code>的值了，要是都已经到头了都没遇到相等的，那么<code>next[i]</code>直接等于<code>1</code>。</p>
+</blockquote>
+<p>比如：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./cvFlTtLy2QhDbo6.png"
+        data-srcset="./cvFlTtLy2QhDbo6.png, ./cvFlTtLy2QhDbo6.png 1.5x, ./cvFlTtLy2QhDbo6.png 2x"
+        data-sizes="auto"
+        alt="./cvFlTtLy2QhDbo6.png"
+        title="image-20220624113812730" /></p>
+<p>首先一二位明确是 0 和 1，这里我们从第三位开始计算，根据我们前面的规则：</p>
+<ol>
+<li>首先判断<code>str[next[1] - 1] == str[1]</code>，显然不相等。</li>
+<li>此时无法继续向前走了，<code>next[2]</code>直接等于<code>1</code>即可。</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./iEmjYkhTdz8CqfV.png"
+        data-srcset="./iEmjYkhTdz8CqfV.png, ./iEmjYkhTdz8CqfV.png 1.5x, ./iEmjYkhTdz8CqfV.png 2x"
+        data-sizes="auto"
+        alt="./iEmjYkhTdz8CqfV.png"
+        title="image-20220624114135711" /></p>
+<p>我们接着来看第四位：</p>
+<ol>
+<li>首先判断<code>str[next[2] - 1] == str[2]</code>，发现相等。</li>
+<li>此时<code>next[2]</code>直接等于<code>next[2 - 1] + 1</code>即可。</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./ZDPF5BMtqpiAO9f.png"
+        data-srcset="./ZDPF5BMtqpiAO9f.png, ./ZDPF5BMtqpiAO9f.png 1.5x, ./ZDPF5BMtqpiAO9f.png 2x"
+        data-sizes="auto"
+        alt="./ZDPF5BMtqpiAO9f.png"
+        title="image-20220624114743673" /></p>
+<p>最后一位也是一样的判断方式：</p>
+<ol>
+<li>首先判断<code>str[next[3] - 1] == str[3]</code>，发现相等。</li>
+<li>此时<code>next[3]</code>直接等于<code>next[3 - 1] + 1</code>即可。</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./u21aR6hZVT3P7OA.png"
+        data-srcset="./u21aR6hZVT3P7OA.png, ./u21aR6hZVT3P7OA.png 1.5x, ./u21aR6hZVT3P7OA.png 2x"
+        data-sizes="auto"
+        alt="./u21aR6hZVT3P7OA.png"
+        title="image-20220624115015885" /></p>
+<p>至此，next 数组求解完毕，之后比较只需要多考虑一下 next 数组即可：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./8jLzZVOmgQHUcwW.png"
+        data-srcset="./8jLzZVOmgQHUcwW.png, ./8jLzZVOmgQHUcwW.png 1.5x, ./8jLzZVOmgQHUcwW.png 2x"
+        data-sizes="auto"
+        alt="./8jLzZVOmgQHUcwW.png"
+        title="image-20220624115417358" /></p>
+<p>当不匹配发生在第三位时，此时<code>next[2] = 1</code>， 所以我们将第一个元素移动到 c 的位置重新开始比较：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./gAY6DCnV2FOKSlo.png"
+        data-srcset="./gAY6DCnV2FOKSlo.png, ./gAY6DCnV2FOKSlo.png 1.5x, ./gAY6DCnV2FOKSlo.png 2x"
+        data-sizes="auto"
+        alt="./gAY6DCnV2FOKSlo.png"
+        title="image-20220624142642394" /></p>
+<p>发现不匹配，直接继续向后比较，重复上述操作，像这样这样跳着去比较就大大节省了时间。</p>
+<p>OK，理论差不多结束了，上代码。</p>
+<p>有关 C 语言的基础部分内容，我们就讲解到这里，从下一章开始，难度将会有一定的提升，所以请各位小伙伴务必将本章知识点梳理清楚，牢记心中。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/algorithms/">algorithms</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2023-05-26</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/chaos/pycharm%E5%BC%80%E5%90%AF%E6%88%96%E5%85%B3%E9%97%AD%E7%A7%91%E5%AD%A6%E6%A8%A1%E5%BC%8F/" class="prev" rel="prev" title="PyCharm开启或关闭科学模式"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/tools/git/gitattributes%E4%BB%8B%E7%BB%8D/" class="next" rel="next" title="gitattributes介绍">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

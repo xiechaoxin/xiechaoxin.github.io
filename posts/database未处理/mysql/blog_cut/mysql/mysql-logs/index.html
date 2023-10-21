@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>MySQL三大日志(binlog、redo log和undo log)详解 - xcx</title><meta name="description" content=""><meta property="og:title" content="MySQL三大日志(binlog、redo log和undo log)详解" />
+<meta property="og:description" content="本文来自公号程序猿阿星投稿，JavaGuide 对其做了补充完善。 前言 MySQL 日志 主要包括错误日志、查询日志、慢查询日志、事务日志、二进制日志几大类" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/blog_cut/mysql/mysql-logs/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-17T17:59:12+00:00" />
+<meta property="article:modified_time" content="2022-06-17T17:59:12+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MySQL三大日志(binlog、redo log和undo log)详解"/>
+<meta name="twitter:description" content="本文来自公号程序猿阿星投稿，JavaGuide 对其做了补充完善。 前言 MySQL 日志 主要包括错误日志、查询日志、慢查询日志、事务日志、二进制日志几大类"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/blog_cut/mysql/mysql-logs/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/mysql%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%981-8/" /><link rel="next" href="https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/mysql%E7%AC%94%E8%AE%B0/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "MySQL三大日志(binlog、redo log和undo log)详解",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/database%E6%9C%AA%E5%A4%84%E7%90%86\/mysql\/blog_cut\/mysql\/mysql-logs\/"
+        },"genre": "posts","keywords": "database, mysql, blog_cut, mysql","wordcount":  4606 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/database%E6%9C%AA%E5%A4%84%E7%90%86\/mysql\/blog_cut\/mysql\/mysql-logs\/","datePublished": "2022-06-17T17:59:12+00:00","dateModified": "2022-06-17T17:59:12+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">MySQL三大日志(binlog、redo log和undo log)详解</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/database/"><i class="far fa-folder fa-fw"></i>database</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-17">2022-06-17</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4606 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 10 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-redo-log">1 redo log</a>
+      <ul>
+        <li><a href="#11-刷盘时机">1.1 刷盘时机</a></li>
+        <li><a href="#12-日志文件组">1.2 日志文件组</a></li>
+        <li><a href="#13-redo-log-小结">1.3 redo log 小结</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-binlog">2 binlog</a>
+      <ul>
+        <li><a href="#21-记录格式">2.1 记录格式</a></li>
+        <li><a href="#22-写入机制">2.2 写入机制</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-两阶段提交">3 两阶段提交</a></li>
+    <li><a href="#4-undo-log">4 undo log</a></li>
+    <li><a href="#5-总结">5 总结</a></li>
+    <li><a href="#6-站在巨人的肩膀上">6 站在巨人的肩膀上</a></li>
+    <li><a href="#7-mysql-好文推荐">7 MySQL 好文推荐</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><blockquote>
+<p>本文来自公号程序猿阿星投稿，JavaGuide 对其做了补充完善。</p>
+</blockquote>
+<h1 id="前言">前言</h1>
+<p><code>MySQL</code> 日志 主要包括错误日志、查询日志、慢查询日志、事务日志、二进制日志几大类。其中，比较重要的还要属二进制日志 <code>binlog</code>(归档日志)和事务日志 <code>redo log</code>(重做日志)和 <code>undo log</code>(回滚日志)。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./01.png"
+        data-srcset="./01.png, ./01.png 1.5x, ./01.png 2x"
+        data-sizes="auto"
+        alt="./01.png"
+        title="./01.png" /></p>
+<p>今天就来聊聊 <code>redo log</code>(重做日志)、<code>binlog</code>(归档日志)、两阶段提交、<code>undo log</code> (回滚日志)。</p>
+<h2 id="1-redo-log">1 redo log</h2>
+<p><code>redo log</code>(重做日志)是<code>InnoDB</code>存储引擎独有的，它让<code>MySQL</code>拥有了崩溃恢复能力。</p>
+<p>比如 <code>MySQL</code> 实例挂了或宕机了，重启时，<code>InnoDB</code>存储引擎会使用<code>redo log</code>恢复数据，保证数据的持久性与完整性。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./02.png"
+        data-srcset="./02.png, ./02.png 1.5x, ./02.png 2x"
+        data-sizes="auto"
+        alt="./02.png"
+        title="./02.png" /></p>
+<p><code>MySQL</code> 中数据是以页为单位，你查询一条记录，会从硬盘把一页的数据加载出来，加载出来的数据叫数据页，会放入到 <code>Buffer Pool</code> 中。</p>
+<p>后续的查询都是先从 <code>Buffer Pool</code> 中找，没有命中再去硬盘加载，减少硬盘 <code>IO</code> 开销，提升性能。</p>
+<p>更新表数据的时候，也是如此，发现 <code>Buffer Pool</code> 里存在要更新的数据，就直接在 <code>Buffer Pool</code> 里更新。</p>
+<p>然后会把“在某个数据页上做了什么修改”记录到重做日志缓存(<code>redo log buffer</code>)里，接着刷盘到 <code>redo log</code> 文件里。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./03.png"
+        data-srcset="./03.png, ./03.png 1.5x, ./03.png 2x"
+        data-sizes="auto"
+        alt="./03.png"
+        title="./03.png" /></p>
+<blockquote>
+<p>图片笔误提示：第 4 步 “清空 redo log buffe 刷盘到 redo 日志中”这句话中的 buffe 应该是 buffer。</p>
+</blockquote>
+<p>理想情况，事务一提交就会进行刷盘操作，但实际上，刷盘的时机是根据策略来进行的。</p>
+<blockquote>
+<p>小贴士：每条 redo 记录由“表空间号+数据页号+偏移量+修改数据长度+具体修改的数据”组成</p>
+</blockquote>
+<h3 id="11-刷盘时机">1.1 刷盘时机</h3>
+<p><code>InnoDB</code> 存储引擎为 <code>redo log</code> 的刷盘策略提供了 <code>innodb_flush_log_at_trx_commit</code> 参数，它支持三种策略：</p>
+<ul>
+<li><strong>0</strong> ：设置为 0 的时候，表示每次事务提交时不进行刷盘操作</li>
+<li><strong>1</strong> ：设置为 1 的时候，表示每次事务提交时都将进行刷盘操作(默认值)</li>
+<li><strong>2</strong> ：设置为 2 的时候，表示每次事务提交时都只把 redo log buffer 内容写入 page cache</li>
+</ul>
+<p><code>innodb_flush_log_at_trx_commit</code> 参数默认为 1 ，也就是说当事务提交时会调用 <code>fsync</code> 对 redo log 进行刷盘</p>
+<p>另外，<code>InnoDB</code> 存储引擎有一个后台线程，每隔<code>1</code> 秒，就会把 <code>redo log buffer</code> 中的内容写到文件系统缓存(<code>page cache</code>)，然后调用 <code>fsync</code> 刷盘。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./04.png"
+        data-srcset="./04.png, ./04.png 1.5x, ./04.png 2x"
+        data-sizes="auto"
+        alt="./04.png"
+        title="./04.png" /></p>
+<p>也就是说，一个没有提交事务的 <code>redo log</code> 记录，也可能会刷盘。</p>
+<p><strong>为什么呢？</strong></p>
+<p>因为在事务执行过程 <code>redo log</code> 记录是会写入<code>redo log buffer</code> 中，这些 <code>redo log</code> 记录会被后台线程刷盘。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./05.png"
+        data-srcset="./05.png, ./05.png 1.5x, ./05.png 2x"
+        data-sizes="auto"
+        alt="./05.png"
+        title="./05.png" /></p>
+<p>除了后台线程每秒<code>1</code>次的轮询操作，还有一种情况，当 <code>redo log buffer</code> 占用的空间即将达到 <code>innodb_log_buffer_size</code> 一半的时候，后台线程会主动刷盘。</p>
+<p>下面是不同刷盘策略的流程图。</p>
+<h4 id="111-innodb_flush_log_at_trx_commit0">1.1.1 innodb_flush_log_at_trx_commit=0</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./06.png"
+        data-srcset="./06.png, ./06.png 1.5x, ./06.png 2x"
+        data-sizes="auto"
+        alt="./06.png"
+        title="./06.png" /></p>
+<p>为<code>0</code>时，如果<code>MySQL</code>挂了或宕机可能会有<code>1</code>秒数据的丢失。</p>
+<h4 id="112-innodb_flush_log_at_trx_commit1">1.1.2 innodb_flush_log_at_trx_commit=1</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./07.png"
+        data-srcset="./07.png, ./07.png 1.5x, ./07.png 2x"
+        data-sizes="auto"
+        alt="./07.png"
+        title="./07.png" /></p>
+<p>为<code>1</code>时， 只要事务提交成功，<code>redo log</code>记录就一定在硬盘里，不会有任何数据丢失。</p>
+<p>如果事务执行期间<code>MySQL</code>挂了或宕机，这部分日志丢了，但是事务并没有提交，所以日志丢了也不会有损失。</p>
+<h4 id="113-innodb_flush_log_at_trx_commit2">1.1.3 innodb_flush_log_at_trx_commit=2</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./09.png"
+        data-srcset="./09.png, ./09.png 1.5x, ./09.png 2x"
+        data-sizes="auto"
+        alt="./09.png"
+        title="./09.png" /></p>
+<p>为<code>2</code>时， 只要事务提交成功，<code>redo log buffer</code>中的内容只写入文件系统缓存(<code>page cache</code>)。</p>
+<p>如果仅仅只是<code>MySQL</code>挂了不会有任何数据丢失，但是宕机可能会有<code>1</code>秒数据的丢失。</p>
+<h3 id="12-日志文件组">1.2 日志文件组</h3>
+<p>硬盘上存储的 <code>redo log</code> 日志文件不只一个，而是以一个<strong>日志文件组</strong>的形式出现的，每个的<code>redo</code>日志文件大小都是一样的。</p>
+<p>比如可以配置为一组<code>4</code>个文件，每个文件的大小是 <code>1GB</code>，整个 <code>redo log</code> 日志文件组可以记录<code>4G</code>的内容。</p>
+<p>它采用的是环形数组形式，从头开始写，写到末尾又回到头循环写，如下图所示。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./10.png"
+        data-srcset="./10.png, ./10.png 1.5x, ./10.png 2x"
+        data-sizes="auto"
+        alt="./10.png"
+        title="./10.png" /></p>
+<p>在个<strong>日志文件组</strong>中还有两个重要的属性，分别是 <code>write pos、checkpoint</code></p>
+<ul>
+<li><strong>write pos</strong> 是当前记录的位置，一边写一边后移</li>
+<li><strong>checkpoint</strong> 是当前要擦除的位置，也是往后推移</li>
+</ul>
+<p>每次刷盘 <code>redo log</code> 记录到<strong>日志文件组</strong>中，<code>write pos</code> 位置就会后移更新。</p>
+<p>每次 <code>MySQL</code> 加载<strong>日志文件组</strong>恢复数据时，会清空加载过的 <code>redo log</code> 记录，并把 <code>checkpoint</code> 后移更新。</p>
+<p><code>write pos</code> 和 <code>checkpoint</code> 之间的还空着的部分可以用来写入新的 <code>redo log</code> 记录。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./11.png"
+        data-srcset="./11.png, ./11.png 1.5x, ./11.png 2x"
+        data-sizes="auto"
+        alt="./11.png"
+        title="./11.png" /></p>
+<p>如果 <code>write pos</code> 追上 <code>checkpoint</code> ，表示<strong>日志文件组</strong>满了，这时候不能再写入新的 <code>redo log</code> 记录，<code>MySQL</code> 得停下来，清空一些记录，把 <code>checkpoint</code> 推进一下。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./12.png"
+        data-srcset="./12.png, ./12.png 1.5x, ./12.png 2x"
+        data-sizes="auto"
+        alt="./12.png"
+        title="./12.png" /></p>
+<h3 id="13-redo-log-小结">1.3 redo log 小结</h3>
+<p>相信大家都知道 <code>redo log</code> 的作用和它的刷盘时机、存储形式。</p>
+<p>现在我们来思考一个问题： <strong>只要每次把修改后的数据页直接刷盘不就好了，还有 <code>redo log</code> 什么事？</strong></p>
+<p>它们不都是刷盘么？差别在哪里？</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="mi">1</span> <span class="n">Byte</span> <span class="o">=</span> <span class="mi">8</span><span class="n">bit</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1</span> <span class="n">KB</span> <span class="o">=</span> <span class="mi">1024</span> <span class="n">Byte</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1</span> <span class="n">MB</span> <span class="o">=</span> <span class="mi">1024</span> <span class="n">KB</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1</span> <span class="n">GB</span> <span class="o">=</span> <span class="mi">1024</span> <span class="n">MB</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1</span> <span class="n">TB</span> <span class="o">=</span> <span class="mi">1024</span> <span class="n">GB</span>
+</span></span></code></pre></div><p>实际上，数据页大小是<code>16KB</code>，刷盘比较耗时，可能就修改了数据页里的几 <code>Byte</code> 数据，有必要把完整的数据页刷盘吗？</p>
+<p>而且数据页刷盘是随机写，因为一个数据页对应的位置可能在硬盘文件的随机位置，所以性能是很差。</p>
+<p>如果是写 <code>redo log</code>，一行记录可能就占几十 <code>Byte</code>，只包含表空间号、数据页号、磁盘文件偏移
+量、更新值，再加上是顺序写，所以刷盘速度很快。</p>
+<p>所以用 <code>redo log</code> 形式记录修改内容，性能会远远超过刷数据页的方式，这也让数据库的并发能力更强。</p>
+<blockquote>
+<p>其实内存的数据页在一定时机也会刷盘，我们把这称为页合并，讲 <code>Buffer Pool</code>的时候会对这块细说</p>
+</blockquote>
+<h2 id="2-binlog">2 binlog</h2>
+<p><code>redo log</code> 它是物理日志，记录内容是“在某个数据页上做了什么修改”，属于 <code>InnoDB</code> 存储引擎。</p>
+<p>而 <code>binlog</code> 是逻辑日志，记录内容是语句的原始逻辑，类似于“给 ID=2 这一行的 c 字段加 1”，属于<code>MySQL Server</code> 层。</p>
+<p>不管用什么存储引擎，只要发生了表数据更新，都会产生 <code>binlog</code> 日志。</p>
+<p>那 <code>binlog</code> 到底是用来干嘛的？</p>
+<p>可以说<code>MySQL</code>数据库的<strong>数据备份、主备、主主、主从</strong>都离不开<code>binlog</code>，需要依靠<code>binlog</code>来同步数据，保证数据一致性。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./01-20220527142439286.png"
+        data-srcset="./01-20220527142439286.png, ./01-20220527142439286.png 1.5x, ./01-20220527142439286.png 2x"
+        data-sizes="auto"
+        alt="./01-20220527142439286.png"
+        title="./01-20220527142439286.png" /></p>
+<p><code>binlog</code>会记录所有涉及更新数据的逻辑操作，并且是顺序写。</p>
+<h3 id="21-记录格式">2.1 记录格式</h3>
+<p><code>binlog</code> 日志有三种格式，可以通过<code>binlog_format</code>参数指定。</p>
+<ul>
+<li><strong>statement</strong></li>
+<li><strong>row</strong></li>
+<li><strong>mixed</strong></li>
+</ul>
+<p>指定<code>statement</code>，记录的内容是<code>SQL</code>语句原文，比如执行一条<code>update T set update_time=now() where id=1</code>，记录的内容如下。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./02-20220527142439393.png"
+        data-srcset="./02-20220527142439393.png, ./02-20220527142439393.png 1.5x, ./02-20220527142439393.png 2x"
+        data-sizes="auto"
+        alt="./02-20220527142439393.png"
+        title="./02-20220527142439393.png" /></p>
+<p>同步数据时，会执行记录的<code>SQL</code>语句，但是有个问题，<code>update_time=now()</code>这里会获取当前系统时间，直接执行会导致与原库的数据不一致。</p>
+<p>为了解决这种问题，我们需要指定为<code>row</code>，记录的内容不再是简单的<code>SQL</code>语句了，还包含操作的具体数据，记录内容如下。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./03-20220527142439513.png"
+        data-srcset="./03-20220527142439513.png, ./03-20220527142439513.png 1.5x, ./03-20220527142439513.png 2x"
+        data-sizes="auto"
+        alt="./03-20220527142439513.png"
+        title="./03-20220527142439513.png" /></p>
+<p><code>row</code>格式记录的内容看不到详细信息，要通过<code>mysqlbinlog</code>工具解析出来。</p>
+<p><code>update_time=now()</code>变成了具体的时间<code>update_time=1627112756247</code>，条件后面的@1、@2、@3 都是该行数据第 1 个~3 个字段的原始值(<strong>假设这张表只有 3 个字段</strong>)。</p>
+<p>这样就能保证同步数据的一致性，通常情况下都是指定为<code>row</code>，这样可以为数据库的恢复与同步带来更好的可靠性。</p>
+<p>但是这种格式，需要更大的容量来记录，比较占用空间，恢复与同步时会更消耗<code>IO</code>资源，影响执行速度。</p>
+<p>所以就有了一种折中的方案，指定为<code>mixed</code>，记录的内容是前两者的混合。</p>
+<p><code>MySQL</code>会判断这条<code>SQL</code>语句是否可能引起数据不一致，如果是，就用<code>row</code>格式，否则就用<code>statement</code>格式。</p>
+<h3 id="22-写入机制">2.2 写入机制</h3>
+<p><code>binlog</code>的写入时机也非常简单，事务执行过程中，先把日志写到<code>binlog cache</code>，事务提交的时候，再把<code>binlog cache</code>写到<code>binlog</code>文件中。</p>
+<p>因为一个事务的<code>binlog</code>不能被拆开，无论这个事务多大，也要确保一次性写入，所以系统会给每个线程分配一个块内存作为<code>binlog cache</code>。</p>
+<p>我们可以通过<code>binlog_cache_size</code>参数控制单个线程 binlog cache 大小，如果存储内容超过了这个参数，就要暂存到磁盘(<code>Swap</code>)。</p>
+<p><code>binlog</code>日志刷盘流程如下</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./04-20220527142441206.png"
+        data-srcset="./04-20220527142441206.png, ./04-20220527142441206.png 1.5x, ./04-20220527142441206.png 2x"
+        data-sizes="auto"
+        alt="./04-20220527142441206.png"
+        title="./04-20220527142441206.png" /></p>
+<ul>
+<li><strong>上图的 write，是指把日志写入到文件系统的 page cache，并没有把数据持久化到磁盘，所以速度比较快</strong></li>
+<li><strong>上图的 fsync，才是将数据持久化到磁盘的操作</strong></li>
+</ul>
+<p><code>write</code>和<code>fsync</code>的时机，可以由参数<code>sync_binlog</code>控制，默认是<code>0</code>。</p>
+<p>为<code>0</code>的时候，表示每次提交事务都只<code>write</code>，由系统自行判断什么时候执行<code>fsync</code>。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./05-20220527142440959.png"
+        data-srcset="./05-20220527142440959.png, ./05-20220527142440959.png 1.5x, ./05-20220527142440959.png 2x"
+        data-sizes="auto"
+        alt="./05-20220527142440959.png"
+        title="./05-20220527142440959.png" /></p>
+<p>虽然性能得到提升，但是机器宕机，<code>page cache</code>里面的 binglog 会丢失。</p>
+<p>为了安全起见，可以设置为<code>1</code>，表示每次提交事务都会执行<code>fsync</code>，就如同<strong>binlog 日志刷盘流程</strong>一样。</p>
+<p>最后还有一种折中方式，可以设置为<code>N(N&gt;1)</code>，表示每次提交事务都<code>write</code>，但累积<code>N</code>个事务后才<code>fsync</code>。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./06-20220527142440980.png"
+        data-srcset="./06-20220527142440980.png, ./06-20220527142440980.png 1.5x, ./06-20220527142440980.png 2x"
+        data-sizes="auto"
+        alt="./06-20220527142440980.png"
+        title="./06-20220527142440980.png" /></p>
+<p>在出现<code>IO</code>瓶颈的场景里，将<code>sync_binlog</code>设置成一个比较大的值，可以提升性能。</p>
+<p>同样的，如果机器宕机，会丢失最近<code>N</code>个事务的<code>binlog</code>日志。</p>
+<h2 id="3-两阶段提交">3 两阶段提交</h2>
+<p><code>redo log</code>(重做日志)让<code>InnoDB</code>存储引擎拥有了崩溃恢复能力。</p>
+<p><code>binlog</code>(归档日志)保证了<code>MySQL</code>集群架构的数据一致性。</p>
+<p>虽然它们都属于持久化的保证，但是侧重点不同。</p>
+<p>在执行更新语句过程，会记录<code>redo log</code>与<code>binlog</code>两块日志，以基本的事务为单位，<code>redo log</code>在事务执行过程中可以不断写入，而<code>binlog</code>只有在提交事务时才写入，所以<code>redo log</code>与<code>binlog</code>的写入时机不一样。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./01-20220527142441569.png"
+        data-srcset="./01-20220527142441569.png, ./01-20220527142441569.png 1.5x, ./01-20220527142441569.png 2x"
+        data-sizes="auto"
+        alt="./01-20220527142441569.png"
+        title="./01-20220527142441569.png" /></p>
+<p>回到正题，<code>redo log</code>与<code>binlog</code>两份日志之间的逻辑不一致，会出现什么问题？</p>
+<p>我们以<code>update</code>语句为例，假设<code>id=2</code>的记录，字段<code>c</code>值是<code>0</code>，把字段<code>c</code>值更新成<code>1</code>，<code>SQL</code>语句为<code>update T set c=1 where id=2</code>。</p>
+<p>假设执行过程中写完<code>redo log</code>日志后，<code>binlog</code>日志写期间发生了异常，会出现什么情况呢？</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./02-20220527142448369.png"
+        data-srcset="./02-20220527142448369.png, ./02-20220527142448369.png 1.5x, ./02-20220527142448369.png 2x"
+        data-sizes="auto"
+        alt="./02-20220527142448369.png"
+        title="./02-20220527142448369.png" /></p>
+<p>由于<code>binlog</code>没写完就异常，这时候<code>binlog</code>里面没有对应的修改记录。因此，之后用<code>binlog</code>日志恢复数据时，就会少这一次更新，恢复出来的这一行<code>c</code>值是<code>0</code>，而原库因为<code>redo log</code>日志恢复，这一行<code>c</code>值是<code>1</code>，最终数据不一致。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./03-20220527142449133.png"
+        data-srcset="./03-20220527142449133.png, ./03-20220527142449133.png 1.5x, ./03-20220527142449133.png 2x"
+        data-sizes="auto"
+        alt="./03-20220527142449133.png"
+        title="./03-20220527142449133.png" /></p>
+<p>为了解决两份日志之间的逻辑一致问题，<code>InnoDB</code>存储引擎使用<strong>两阶段提交</strong>方案。</p>
+<p>原理很简单，将<code>redo log</code>的写入拆成了两个步骤<code>prepare</code>和<code>commit</code>，这就是<strong>两阶段提交</strong>。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./04-20220527142448916.png"
+        data-srcset="./04-20220527142448916.png, ./04-20220527142448916.png 1.5x, ./04-20220527142448916.png 2x"
+        data-sizes="auto"
+        alt="./04-20220527142448916.png"
+        title="./04-20220527142448916.png" /></p>
+<p>使用<strong>两阶段提交</strong>后，写入<code>binlog</code>时发生异常也不会有影响，因为<code>MySQL</code>根据<code>redo log</code>日志恢复数据时，发现<code>redo log</code>还处于<code>prepare</code>阶段，并且没有对应<code>binlog</code>日志，就会回滚该事务。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./05-20220527142457333.png"
+        data-srcset="./05-20220527142457333.png, ./05-20220527142457333.png 1.5x, ./05-20220527142457333.png 2x"
+        data-sizes="auto"
+        alt="./05-20220527142457333.png"
+        title="./05-20220527142457333.png" /></p>
+<p>再看一个场景，<code>redo log</code>设置<code>commit</code>阶段发生异常，那会不会回滚事务呢？</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./06-20220527142457161.png"
+        data-srcset="./06-20220527142457161.png, ./06-20220527142457161.png 1.5x, ./06-20220527142457161.png 2x"
+        data-sizes="auto"
+        alt="./06-20220527142457161.png"
+        title="./06-20220527142457161.png" /></p>
+<p>并不会回滚事务，它会执行上图框住的逻辑，虽然<code>redo log</code>是处于<code>prepare</code>阶段，但是能通过事务<code>id</code>找到对应的<code>binlog</code>日志，所以<code>MySQL</code>认为是完整的，就会提交事务恢复数据。</p>
+<h2 id="4-undo-log">4 undo log</h2>
+<blockquote>
+<p>这部分内容为 JavaGuide 的补充：</p>
+</blockquote>
+<p>我们知道如果想要保证事务的原子性，就需要在异常发生时，对已经执行的操作进行<strong>回滚</strong>，在 MySQL 中，恢复机制是通过 <strong>回滚日志(undo log)</strong> 实现的，所有事务进行的修改都会先记录到这个回滚日志中，然后再执行相关的操作。如果执行过程中遇到异常的话，我们直接利用 <strong>回滚日志</strong> 中的信息将数据回滚到修改之前的样子即可！并且，回滚日志会先于数据持久化到磁盘上。这样就保证了即使遇到数据库突然宕机等情况，当用户再次启动数据库的时候，数据库还能够通过查询回滚日志来回滚将之前未完成的事务。</p>
+<p>另外，<code>MVCC</code> 的实现依赖于：<strong>隐藏字段、Read View、undo log</strong>。在内部实现中，<code>InnoDB</code> 通过数据行的 <code>DB_TRX_ID</code> 和 <code>Read View</code> 来判断数据的可见性，如不可见，则通过数据行的 <code>DB_ROLL_PTR</code> 找到 <code>undo log</code> 中的历史版本。每个事务读到的数据版本可能是不一样的，在同一个事务中，用户只能看到该事务创建 <code>Read View</code> 之前已经提交的修改和该事务本身做的修改</p>
+<h2 id="5-总结">5 总结</h2>
+<blockquote>
+<p>这部分内容为 JavaGuide 的补充：</p>
+</blockquote>
+<p>MySQL InnoDB 引擎使用 <strong>redo log(重做日志)</strong> 保证事务的<strong>持久性</strong>，使用 <strong>undo log(回滚日志)</strong> 来保证事务的<strong>原子性</strong>。</p>
+<p><code>MySQL</code>数据库的<strong>数据备份、主备、主主、主从</strong>都离不开<code>binlog</code>，需要依靠<code>binlog</code>来同步数据，保证数据一致性。</p>
+<h2 id="6-站在巨人的肩膀上">6 站在巨人的肩膀上</h2>
+<ul>
+<li>《MySQL 实战 45 讲》</li>
+<li>《从零开始带你成为 MySQL 实战优化高手》</li>
+<li>《MySQL 是怎样运行的：从根儿上理解 MySQL》</li>
+<li>《MySQL 技术 Innodb 存储引擎》</li>
+</ul>
+<h2 id="7-mysql-好文推荐">7 MySQL 好文推荐</h2>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s/R-1km7r0z3oWfwYQV8iiqA" target="_blank" rel="noopener noreffer">CURD 这么多年，你有了解过 MySQL 的架构设计吗？</a></li>
+<li><a href="https://mp.weixin.qq.com/s/7Kab4IQsNcU_bZdbv_MuOg" target="_blank" rel="noopener noreffer">浅谈 MySQL InnoDB 的内存组件</a></li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/database/">database</a>
+                </span><span><a href="/tags/mysql/">mysql</a>
+                </span><span><a href="/tags/blog_cut/">blog_cut</a>
+                </span><span><a href="/tags/mysql/">mysql</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-06-17</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/mysql%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%981-8/" class="prev" rel="prev" title="MySQL索引优化及性能调优1-8"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/mysql%E7%AC%94%E8%AE%B0/" class="next" rel="next" title="mysql笔记">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

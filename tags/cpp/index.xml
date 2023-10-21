@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>CPP - 标签 - xcx</title>
+        <link>https://xiechaoxin.github.io/tags/cpp/</link>
+        <description>CPP - 标签 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 02 Jan 2023 04:40:24 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/tags/cpp/" rel="self" type="application/rss+xml" /><item>
+    <title>how to read c declarations</title>
+    <link>https://xiechaoxin.github.io/posts/language/c/how_to_read_c_declarations/</link>
+    <pubDate>Mon, 02 Jan 2023 04:40:24 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/c/how_to_read_c_declarations/</guid>
+    <description><![CDATA[How To Read C Declarations 第一步，找到变量名，如果没有变量名，找到最里面的结构 第二步，向右看，读出你看到的东西，但是不要跳过括号 第三步，再向左看，读出你看到]]></description>
+</item>
+<item>
+    <title>windows和linux/ 32位和64位下的变量长度</title>
+    <link>https://xiechaoxin.github.io/posts/chaos/%E4%B8%8D%E5%90%8C%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E5%8F%98%E9%87%8F%E9%95%BF%E5%BA%A6/</link>
+    <pubDate>Fri, 16 Sep 2022 02:32:00 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/chaos/%E4%B8%8D%E5%90%8C%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E5%8F%98%E9%87%8F%E9%95%BF%E5%BA%A6/</guid>
+    <description><![CDATA[int、long、short 等在 windows 和 linux/ 32 位和 64 位下的长度(long long 才能保证 64 位) type win32 win64 linux32 linux64 char 1 1 1 1 short 2 2 2 2 int 4 4 4 4 long 4 4 4 8 long long 8 8]]></description>
+</item>
+</channel>
+</rss>

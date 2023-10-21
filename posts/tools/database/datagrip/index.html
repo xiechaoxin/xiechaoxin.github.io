@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>DataGrip - xcx</title><meta name="description" content=""><meta property="og:title" content="DataGrip" />
+<meta property="og:description" content="Atzuge | https://www.cnblogs.com/zuge/p/7397255.html DataGrip 是由 JetBrains 公司(就是那个出品 Intellij IDEA 的公司,JetBrains出品，必属精品)推出的数据库管理软件。如果你不爱折腾的话，这家公司出品的很多 IDE" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/tools/database/datagrip/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-17T17:59:12+00:00" />
+<meta property="article:modified_time" content="2022-06-17T17:59:12+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="DataGrip"/>
+<meta name="twitter:description" content="Atzuge | https://www.cnblogs.com/zuge/p/7397255.html DataGrip 是由 JetBrains 公司(就是那个出品 Intellij IDEA 的公司,JetBrains出品，必属精品)推出的数据库管理软件。如果你不爱折腾的话，这家公司出品的很多 IDE"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/tools/database/datagrip/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/tools/database/dbeaver/" /><link rel="next" href="https://xiechaoxin.github.io/posts/tools/database/chiner/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "DataGrip",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/tools\/database\/datagrip\/"
+        },"genre": "posts","keywords": "tools, database","wordcount":  3684 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/tools\/database\/datagrip\/","datePublished": "2022-06-17T17:59:12+00:00","dateModified": "2022-06-17T17:59:12+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">DataGrip</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/tools/"><i class="far fa-folder fa-fw"></i>tools</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-17">2022-06-17</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3684 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-配置-data-source">1 配置 Data Source</a></li>
+    <li><a href="#2-常用设置">2 常用设置</a></li>
+    <li><a href="#3-数据库常用操作">3 数据库常用操作</a>
+      <ul>
+        <li><a href="#31-sql-语句编写">3.1 sql 语句编写</a></li>
+        <li><a href="#32-修改数据">3.2 修改数据</a></li>
+        <li><a href="#33-新建表">3.3 新建表</a></li>
+        <li><a href="#34-数据库导出">3.4 数据库导出</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-小技巧">4 小技巧</a>
+      <ul>
+        <li><a href="#41-导航全局搜索">4.1 导航+全局搜索</a></li>
+        <li><a href="#42-数据转换">4.2 数据转换</a></li>
+        <li><a href="#43-格式化">4.3 格式化</a></li>
+        <li><a href="#44-列编辑">4.4 列编辑</a></li>
+        <li><a href="#45-历史记录">4.5 历史记录</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><blockquote>
+<p>Atzuge | <a href="https://www.cnblogs.com/zuge/p/7397255.html" target="_blank" rel="noopener noreffer">https://www.cnblogs.com/zuge/p/7397255.html</a></p>
+</blockquote>
+<p>DataGrip 是由 JetBrains 公司(就是那个出品 Intellij IDEA 的公司,JetBrains出品，必属精品)推出的数据库管理软件。如果你不爱折腾的话，这家公司出品的很多 IDE 都是你的最佳选择，比如你进行 Python 开发的可以选择 JetBrains 全家桶中的 PyCharm 。</p>
+<p><strong>DataGrip 支持几乎所有主流的关系数据库产品，如 DB2、Derby、H2、MySQL、Oracle、PostgreSQL、SQL Server、Sqllite 及 Sybase 等，并且提供了简单易用的界面，开发者上手几乎不会遇到任何困难。</strong></p>
+<p>我相信，当你第一眼看到 DataGrip 以后，会有一种惊艳的感觉，就好比你第一眼看到一个姑娘，就是那么一瞥，你对自己说，就是她了！废话不多说，来看看 DataGrip 的常用功能。</p>
+<h1 id="下载">下载</h1>
+<p>DataGrip 下载链接如下 <a href="https://www.jetbrains.com/datagrip/download" target="_blank" rel="noopener noreffer">https://www.jetbrains.com/datagrip/download</a>。安装过程也很简单，双击安装，下一步，中间会让你选择主题，本人选择的是经典的 Darcula，安装完成后，启动，界面如下</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./1a20c170-1d14-3f98-a418-4b951c6548c4.png"
+        data-srcset="./1a20c170-1d14-3f98-a418-4b951c6548c4.png, ./1a20c170-1d14-3f98-a418-4b951c6548c4.png 1.5x, ./1a20c170-1d14-3f98-a418-4b951c6548c4.png 2x"
+        data-sizes="auto"
+        alt="./1a20c170-1d14-3f98-a418-4b951c6548c4.png"
+        title="./1a20c170-1d14-3f98-a418-4b951c6548c4.png" /></p>
+<h2 id="1-配置-data-source">1 配置 Data Source</h2>
+<p>相信使用过 IDEA 的同学看到这个界面都会感到很亲切。<code>File-&gt;DataSource</code> ：配置数据源。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./d6311108-d7a2-3ece-9cd7-613dd27688cf.png"
+        data-srcset="./d6311108-d7a2-3ece-9cd7-613dd27688cf.png, ./d6311108-d7a2-3ece-9cd7-613dd27688cf.png 1.5x, ./d6311108-d7a2-3ece-9cd7-613dd27688cf.png 2x"
+        data-sizes="auto"
+        alt="./d6311108-d7a2-3ece-9cd7-613dd27688cf.png"
+        title="./d6311108-d7a2-3ece-9cd7-613dd27688cf.png" />
+DataGrip 支持主流的数据库。你也可以在 Database 视图中展开绿色的+号，添加数据库连接</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./3298f379-102f-3dc7-ad30-20cfb5d6126d.jpg"
+        data-srcset="./3298f379-102f-3dc7-ad30-20cfb5d6126d.jpg, ./3298f379-102f-3dc7-ad30-20cfb5d6126d.jpg 1.5x, ./3298f379-102f-3dc7-ad30-20cfb5d6126d.jpg 2x"
+        data-sizes="auto"
+        alt="./3298f379-102f-3dc7-ad30-20cfb5d6126d.jpg"
+        title="./3298f379-102f-3dc7-ad30-20cfb5d6126d.jpg" />
+选择需要连接的数据库类型</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./93e106e6-8e06-3eb5-b507-fe6ee88a2ac8.png"
+        data-srcset="./93e106e6-8e06-3eb5-b507-fe6ee88a2ac8.png, ./93e106e6-8e06-3eb5-b507-fe6ee88a2ac8.png 1.5x, ./93e106e6-8e06-3eb5-b507-fe6ee88a2ac8.png 2x"
+        data-sizes="auto"
+        alt="./93e106e6-8e06-3eb5-b507-fe6ee88a2ac8.png"
+        title="./93e106e6-8e06-3eb5-b507-fe6ee88a2ac8.png" /></p>
+<p>在面板中，左上部分列出了已经建立的数据库连接，点击各项，右侧会展示当前连接的配置信息，General 面板中，可以配置数据库连接的信息，如主机、用户名、密码等，不同数据库配置信息不完全相同，填入数据库 URL，注意，URL 后有个选项，可以选择直接填入 url，那么就不需要单独填主机名、端口等信息了。</p>
+<p>Driver 部分显示数据库驱动信息，如果还没有下载过驱动，底部会有个警告，提示缺少驱动</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./9879937b-3abf-300d-8b00-23a848f5db04.png"
+        data-srcset="./9879937b-3abf-300d-8b00-23a848f5db04.png, ./9879937b-3abf-300d-8b00-23a848f5db04.png 1.5x, ./9879937b-3abf-300d-8b00-23a848f5db04.png 2x"
+        data-sizes="auto"
+        alt="./9879937b-3abf-300d-8b00-23a848f5db04.png"
+        title="./9879937b-3abf-300d-8b00-23a848f5db04.png" />
+点击 Driver 后的数据库类型，会跳转到驱动下载页面，点击 download，下载完会显示驱动包</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./76cdb03e-b8a0-33dd-8dc3-3f2b5c5f5e57.png"
+        data-srcset="./76cdb03e-b8a0-33dd-8dc3-3f2b5c5f5e57.png, ./76cdb03e-b8a0-33dd-8dc3-3f2b5c5f5e57.png 1.5x, ./76cdb03e-b8a0-33dd-8dc3-3f2b5c5f5e57.png 2x"
+        data-sizes="auto"
+        alt="./76cdb03e-b8a0-33dd-8dc3-3f2b5c5f5e57.png"
+        title="./76cdb03e-b8a0-33dd-8dc3-3f2b5c5f5e57.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./1496c2e6-e180-3fd4-bf4a-cab8a601ce59.png"
+        data-srcset="./1496c2e6-e180-3fd4-bf4a-cab8a601ce59.png, ./1496c2e6-e180-3fd4-bf4a-cab8a601ce59.png 1.5x, ./1496c2e6-e180-3fd4-bf4a-cab8a601ce59.png 2x"
+        data-sizes="auto"
+        alt="./1496c2e6-e180-3fd4-bf4a-cab8a601ce59.png"
+        title="./1496c2e6-e180-3fd4-bf4a-cab8a601ce59.png" />
+如果下载的驱动有问题，可以手动添加本地驱动包，在试用过程中，创建 Oracle 连接时，下载的驱动包就有问题，提示缺少 class，点击右侧绿色的+号，选择本地下载好的 jar 包，通过右侧上下箭头，将导入的 jar 包移到最上位置就 OK 了</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./1684afeb-e45e-328a-aeab-44ced763b1f9.png"
+        data-srcset="./1684afeb-e45e-328a-aeab-44ced763b1f9.png, ./1684afeb-e45e-328a-aeab-44ced763b1f9.png 1.5x, ./1684afeb-e45e-328a-aeab-44ced763b1f9.png 2x"
+        data-sizes="auto"
+        alt="./1684afeb-e45e-328a-aeab-44ced763b1f9.png"
+        title="./1684afeb-e45e-328a-aeab-44ced763b1f9.png" /></p>
+<p>点击 Test Connection，查看配置是否正确，接下来就可以使用了。</p>
+<h2 id="2-常用设置">2 常用设置</h2>
+<p>打开 DataGrip，选择 <code>File-&gt;Settings</code>，当前面板显示了常用设置项</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./e074472a-ee46-317d-a18b-63e6c251f919.png"
+        data-srcset="./e074472a-ee46-317d-a18b-63e6c251f919.png, ./e074472a-ee46-317d-a18b-63e6c251f919.png 1.5x, ./e074472a-ee46-317d-a18b-63e6c251f919.png 2x"
+        data-sizes="auto"
+        alt="./e074472a-ee46-317d-a18b-63e6c251f919.png"
+        title="./e074472a-ee46-317d-a18b-63e6c251f919.png" />
+基本上默认设置就足够了，要更改设置也很简单，左侧菜单已经分类好了，第一项是数据库相关的配置，第二项是配置外观的，在这里可以修改主题，key map 修改快捷键，editor 配置编辑器相关设置，在这里可以修改编辑器字体，展开 edit 项: <code>Editor-&gt;Color &amp; Fonts-&gt;Font</code></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./080b78d6-c01b-346b-adb7-840b792372f8.png"
+        data-srcset="./080b78d6-c01b-346b-adb7-840b792372f8.png, ./080b78d6-c01b-346b-adb7-840b792372f8.png 1.5x, ./080b78d6-c01b-346b-adb7-840b792372f8.png 2x"
+        data-sizes="auto"
+        alt="./080b78d6-c01b-346b-adb7-840b792372f8.png"
+        title="./080b78d6-c01b-346b-adb7-840b792372f8.png" />
+需要将当前主题保存一下，点击 save as，起个名，选择重命名后的主题就能修改了，这里我选择习惯的 Conurier New 字体，大小为 14 号，点击右下角的 apply，点击 OK</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./c0d34593-f845-3e44-ba9b-7ba9fcdd8183.png"
+        data-srcset="./c0d34593-f845-3e44-ba9b-7ba9fcdd8183.png, ./c0d34593-f845-3e44-ba9b-7ba9fcdd8183.png 1.5x, ./c0d34593-f845-3e44-ba9b-7ba9fcdd8183.png 2x"
+        data-sizes="auto"
+        alt="./c0d34593-f845-3e44-ba9b-7ba9fcdd8183.png"
+        title="点击查看原始大小图片" /></p>
+<p>其他的没啥好设置的了。</p>
+<h2 id="3-数据库常用操作">3 数据库常用操作</h2>
+<p>接下来，我们来使用 DataGrip 完成数据库的常用操作，包括查询数据、修改数据，创建数据库、表等。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./6b0ffcc8-5829-326c-815b-80a476e19c2c.png"
+        data-srcset="./6b0ffcc8-5829-326c-815b-80a476e19c2c.png, ./6b0ffcc8-5829-326c-815b-80a476e19c2c.png 1.5x, ./6b0ffcc8-5829-326c-815b-80a476e19c2c.png 2x"
+        data-sizes="auto"
+        alt="./6b0ffcc8-5829-326c-815b-80a476e19c2c.png"
+        title="点击查看原始大小图片" />
+左上区域显示了当前数据库连接，展开后会显示数据库表等信息，如果展开后没有任何信息，需要选中数据库连接，点击上面的旋转图标同步一下，下方有个 More Schema 选项，点击可以切换不同的 schema。</p>
+<h3 id="31-sql-语句编写">3.1 sql 语句编写</h3>
+<p>右键选中的数据库连接，选择 open console，就可以在右侧的控制台中书写 sql 语句了。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./f2fc1c17-288a-3991-887b-716f59f8dab5.png"
+        data-srcset="./f2fc1c17-288a-3991-887b-716f59f8dab5.png, ./f2fc1c17-288a-3991-887b-716f59f8dab5.png 1.5x, ./f2fc1c17-288a-3991-887b-716f59f8dab5.png 2x"
+        data-sizes="auto"
+        alt="./f2fc1c17-288a-3991-887b-716f59f8dab5.png"
+        title="img" /></p>
+<p><strong>DataGrip 的智能提示非常爽，无论是标准的 sql 关键字，还是表名、字段名，甚至数据库特定的字段，都能提示，不得不感叹这智能提示太强大了，Intellij IDEA 的智能提示也是秒杀 eclipse。</strong></p>
+<p>写完 sql 语句后，可以选中，电子左上侧绿色箭头执行</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./bebf5996-5c3e-37a8-8065-33243f8a5265.png"
+        data-srcset="./bebf5996-5c3e-37a8-8065-33243f8a5265.png, ./bebf5996-5c3e-37a8-8065-33243f8a5265.png 1.5x, ./bebf5996-5c3e-37a8-8065-33243f8a5265.png 2x"
+        data-sizes="auto"
+        alt="./bebf5996-5c3e-37a8-8065-33243f8a5265.png"
+        title="./bebf5996-5c3e-37a8-8065-33243f8a5265.png" />
+也可以使用快捷键 <code>Ctrl+Enter</code>，选中情况下，会直接执行该 sql，未选中情况下，如果控制台中有多条 sql，会提示你要执行哪条 sql。</p>
+<p>之前习惯了 dbvisualizer 中的操作，dbvisualizer 中光标停留在当前 sql 上(sql 以分号结尾)，按下<code>Ctrl+.</code>快捷键会自动执行当前 sql，其实 DataGrip 也能设置，在 <code>setting-&gt;Database-General</code>中</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./b4c05671-600a-3305-af48-3112ef44bf17.png"
+        data-srcset="./b4c05671-600a-3305-af48-3112ef44bf17.png, ./b4c05671-600a-3305-af48-3112ef44bf17.png 1.5x, ./b4c05671-600a-3305-af48-3112ef44bf17.png 2x"
+        data-sizes="auto"
+        alt="./b4c05671-600a-3305-af48-3112ef44bf17.png"
+        title="./b4c05671-600a-3305-af48-3112ef44bf17.png" />
+语句执行时默认是提示，改成 smallest statement 后，光标停留在当前语句时，按下 Ctrl+Enter 就会直接执行当前语句。</p>
+<p>语句的执行结果在底部显示</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./e6fc6a18-da4d-32b6-8c8e-670248b372b5.png"
+        data-srcset="./e6fc6a18-da4d-32b6-8c8e-670248b372b5.png, ./e6fc6a18-da4d-32b6-8c8e-670248b372b5.png 1.5x, ./e6fc6a18-da4d-32b6-8c8e-670248b372b5.png 2x"
+        data-sizes="auto"
+        alt="./e6fc6a18-da4d-32b6-8c8e-670248b372b5.png"
+        title="./e6fc6a18-da4d-32b6-8c8e-670248b372b5.png" />
+如果某列的宽度太窄，可以鼠标点击该列的任意一个，使用快捷键<code>Ctrl+Shift+左右箭头</code>可以调整宽度，如果要调整所有列的宽度，可以点击左上角红框部分，选择所有行，使用快捷键<code>Ctrl+Shift+左右箭头调整</code></p>
+<h3 id="32-修改数据">3.2 修改数据</h3>
+<p>添加行、删除行也很方便，上部的+、-按钮能直接添加行或删除选中的行，编辑列同样也很方便，双击要修改的列，输入修改后的值，鼠标在其他部分点击就完成修改了</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./0bc1c527-2d48-369b-bcf5-acada66255b9.png"
+        data-srcset="./0bc1c527-2d48-369b-bcf5-acada66255b9.png, ./0bc1c527-2d48-369b-bcf5-acada66255b9.png 1.5x, ./0bc1c527-2d48-369b-bcf5-acada66255b9.png 2x"
+        data-sizes="auto"
+        alt="./0bc1c527-2d48-369b-bcf5-acada66255b9.png"
+        title="./0bc1c527-2d48-369b-bcf5-acada66255b9.png" />
+有的时候我们要把某个字段置为 null，不是空字符串&quot;&quot;，DataGrip 也提供了渐变的操作，直接在列上右键，选择 set null</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./6fc97e37-fb7f-3c01-a146-c9fba9e7cfa3.png"
+        data-srcset="./6fc97e37-fb7f-3c01-a146-c9fba9e7cfa3.png, ./6fc97e37-fb7f-3c01-a146-c9fba9e7cfa3.png 1.5x, ./6fc97e37-fb7f-3c01-a146-c9fba9e7cfa3.png 2x"
+        data-sizes="auto"
+        alt="./6fc97e37-fb7f-3c01-a146-c9fba9e7cfa3.png"
+        title="./6fc97e37-fb7f-3c01-a146-c9fba9e7cfa3.png" />
+对于需要多窗口查看结果的，即希望查询结果在新的 tab 中展示，可以点击 pin tab 按钮，那新查询将不会再当前 tab 中展示，而是新打开一个 tab</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./3eb0023a-740b-3f80-8014-464d885d7dbc.png"
+        data-srcset="./3eb0023a-740b-3f80-8014-464d885d7dbc.png, ./3eb0023a-740b-3f80-8014-464d885d7dbc.png 1.5x, ./3eb0023a-740b-3f80-8014-464d885d7dbc.png 2x"
+        data-sizes="auto"
+        alt="./3eb0023a-740b-3f80-8014-464d885d7dbc.png"
+        title="./3eb0023a-740b-3f80-8014-464d885d7dbc.png" /></p>
+<p>旁边的 output 控制台显示了执行 sql 的日志信息，能看到 sql 执行的时间等信息</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./83fa531c-91b4-3a02-b02f-296195f51058.png"
+        data-srcset="./83fa531c-91b4-3a02-b02f-296195f51058.png, ./83fa531c-91b4-3a02-b02f-296195f51058.png 1.5x, ./83fa531c-91b4-3a02-b02f-296195f51058.png 2x"
+        data-sizes="auto"
+        alt="./83fa531c-91b4-3a02-b02f-296195f51058.png"
+        title="./83fa531c-91b4-3a02-b02f-296195f51058.png" />
+我就问这么吊的工具，还有谁！！！</p>
+<h3 id="33-新建表">3.3 新建表</h3>
+<p>要新建表也是相当简单、智能，选中数据库连接，点击绿色+号下选择 table</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./25102ef8-ac5b-303b-9c06-ee4308ffac9e.png"
+        data-srcset="./25102ef8-ac5b-303b-9c06-ee4308ffac9e.png, ./25102ef8-ac5b-303b-9c06-ee4308ffac9e.png 1.5x, ./25102ef8-ac5b-303b-9c06-ee4308ffac9e.png 2x"
+        data-sizes="auto"
+        alt="./25102ef8-ac5b-303b-9c06-ee4308ffac9e.png"
+        title="./25102ef8-ac5b-303b-9c06-ee4308ffac9e.png" />
+在新打开的窗口中，可以填写表信息</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./f00179e9-0fe9-351d-9455-66537440f5cc.png"
+        data-srcset="./f00179e9-0fe9-351d-9455-66537440f5cc.png, ./f00179e9-0fe9-351d-9455-66537440f5cc.png 1.5x, ./f00179e9-0fe9-351d-9455-66537440f5cc.png 2x"
+        data-sizes="auto"
+        alt="./f00179e9-0fe9-351d-9455-66537440f5cc.png"
+        title="./f00179e9-0fe9-351d-9455-66537440f5cc.png" />
+我就问你看到这个窗口兴奋不兴奋！！！</p>
+<p>顶部可以填写表名、表注释，中间可以点击右侧绿色+号添加列，列类型 type 也是能自动补全，default 右侧的消息框图标点击后能对列添加注释，旁边的几个 tab 可以设置索引及外键</p>
+<p>所有这些操作的 DDL 都会直接在底部显示</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./32c24402-023f-3cad-a2dd-c8a42ace32d1.png"
+        data-srcset="./32c24402-023f-3cad-a2dd-c8a42ace32d1.png, ./32c24402-023f-3cad-a2dd-c8a42ace32d1.png 1.5x, ./32c24402-023f-3cad-a2dd-c8a42ace32d1.png 2x"
+        data-sizes="auto"
+        alt="./32c24402-023f-3cad-a2dd-c8a42ace32d1.png"
+        title="./32c24402-023f-3cad-a2dd-c8a42ace32d1.png" />
+我就问你怕不怕</p>
+<p>表建完后，可以点击下图中的 table 图标，打开表查看视图</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./9894cfcf-48b6-382d-ab2e-57e6be6a2a5f.png"
+        data-srcset="./9894cfcf-48b6-382d-ab2e-57e6be6a2a5f.png, ./9894cfcf-48b6-382d-ab2e-57e6be6a2a5f.png 1.5x, ./9894cfcf-48b6-382d-ab2e-57e6be6a2a5f.png 2x"
+        data-sizes="auto"
+        alt="./9894cfcf-48b6-382d-ab2e-57e6be6a2a5f.png"
+        title="./9894cfcf-48b6-382d-ab2e-57e6be6a2a5f.png" />
+可以查看表的数据，也能查看 DDL 语句</p>
+<h3 id="34-数据库导出">3.4 数据库导出</h3>
+<p>这些基本功能的设计、体验，已经惊艳到我了，接下来就是数据的导出。</p>
+<p>DataGrip 的导出功能也是相当强大</p>
+<p>选择需要导出数据的表，右键，Dump Data To File</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./6520ee08-7ef1-3463-be63-9e8c96861df5.png"
+        data-srcset="./6520ee08-7ef1-3463-be63-9e8c96861df5.png, ./6520ee08-7ef1-3463-be63-9e8c96861df5.png 1.5x, ./6520ee08-7ef1-3463-be63-9e8c96861df5.png 2x"
+        data-sizes="auto"
+        alt="./6520ee08-7ef1-3463-be63-9e8c96861df5.png"
+        title="./6520ee08-7ef1-3463-be63-9e8c96861df5.png" />
+即可以导出 insert、update 形式的 sql 语句，也能导出为 html、csv、json 格式的数据</p>
+<p>也可以在查询结果视图中导出</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./354a6ef4-9ea4-3a32-bc1e-53e02c7f0231.png"
+        data-srcset="./354a6ef4-9ea4-3a32-bc1e-53e02c7f0231.png, ./354a6ef4-9ea4-3a32-bc1e-53e02c7f0231.png 1.5x, ./354a6ef4-9ea4-3a32-bc1e-53e02c7f0231.png 2x"
+        data-sizes="auto"
+        alt="./354a6ef4-9ea4-3a32-bc1e-53e02c7f0231.png"
+        title="./354a6ef4-9ea4-3a32-bc1e-53e02c7f0231.png" />
+点击右上角下载图标，在弹出窗口中可以选择不同的导出方式，如 sql insert、sql update、csv 格式等</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./3a9da4d9-0b91-3dc6-b3c1-176b8eaea63b.png"
+        data-srcset="./3a9da4d9-0b91-3dc6-b3c1-176b8eaea63b.png, ./3a9da4d9-0b91-3dc6-b3c1-176b8eaea63b.png 1.5x, ./3a9da4d9-0b91-3dc6-b3c1-176b8eaea63b.png 2x"
+        data-sizes="auto"
+        alt="./3a9da4d9-0b91-3dc6-b3c1-176b8eaea63b.png"
+        title="./3a9da4d9-0b91-3dc6-b3c1-176b8eaea63b.png" /></p>
+<p>如果是导出到 csv 格式，还能控制导出的格式</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./2893f834-9098-322f-8253-5741ab6893cb.png"
+        data-srcset="./2893f834-9098-322f-8253-5741ab6893cb.png, ./2893f834-9098-322f-8253-5741ab6893cb.png 1.5x, ./2893f834-9098-322f-8253-5741ab6893cb.png 2x"
+        data-sizes="auto"
+        alt="./2893f834-9098-322f-8253-5741ab6893cb.png"
+        title="./2893f834-9098-322f-8253-5741ab6893cb.png" /></p>
+<p>导出后用 excel 打开是这种结果</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./5b5956d0-6cad-3c06-83f4-1a715fa94654.png"
+        data-srcset="./5b5956d0-6cad-3c06-83f4-1a715fa94654.png, ./5b5956d0-6cad-3c06-83f4-1a715fa94654.png 1.5x, ./5b5956d0-6cad-3c06-83f4-1a715fa94654.png 2x"
+        data-sizes="auto"
+        alt="./5b5956d0-6cad-3c06-83f4-1a715fa94654.png"
+        title="./5b5956d0-6cad-3c06-83f4-1a715fa94654.png" />
+除了能导出数据外，还能导入数据</p>
+<p>选择表，右键-&gt;Import from File，选择要导入的文件</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./6926c5c8-be4d-3ebc-b8cb-9737e6838ed3.png"
+        data-srcset="./6926c5c8-be4d-3ebc-b8cb-9737e6838ed3.png, ./6926c5c8-be4d-3ebc-b8cb-9737e6838ed3.png 1.5x, ./6926c5c8-be4d-3ebc-b8cb-9737e6838ed3.png 2x"
+        data-sizes="auto"
+        alt="./6926c5c8-be4d-3ebc-b8cb-9737e6838ed3.png"
+        title="./6926c5c8-be4d-3ebc-b8cb-9737e6838ed3.png" />
+注意，导出的时候如果勾选了左侧的两个 header 选项，导入的时候如果有 header，也要勾选，不然会提示列个数不匹配</p>
+<h2 id="4-小技巧">4 小技巧</h2>
+<h3 id="41-导航全局搜索">4.1 导航+全局搜索</h3>
+<h4 id="411-关键字导航">4.1.1 关键字导航</h4>
+<p>当在 datagrip 的文本编辑区域编写 sql 时，按住键盘 Ctrl 键不放，同时鼠标移动到 sql 关键字上，比如表名、字段名称、或者是函数名上，鼠标会变成手型，关键字会变蓝，并加了下划线，点击，会自动定位到左侧对象树，并选中点击的对象</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./c29da366-7d43-3aa0-9bce-042285f8771e.png"
+        data-srcset="./c29da366-7d43-3aa0-9bce-042285f8771e.png, ./c29da366-7d43-3aa0-9bce-042285f8771e.png 1.5x, ./c29da366-7d43-3aa0-9bce-042285f8771e.png 2x"
+        data-sizes="auto"
+        alt="./c29da366-7d43-3aa0-9bce-042285f8771e.png"
+        title="./c29da366-7d43-3aa0-9bce-042285f8771e.png" /></p>
+<h4 id="412-快速导航到指定的表视图函数等">4.1.2 快速导航到指定的表、视图、函数等</h4>
+<p>在 datagrip 中，使用 Ctrl+N 快捷键，弹出一个搜索框，输入需要导航的名称，回车即可</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./d9ca4280-67a1-3d26-b2aa-796b70cf3e95.png"
+        data-srcset="./d9ca4280-67a1-3d26-b2aa-796b70cf3e95.png, ./d9ca4280-67a1-3d26-b2aa-796b70cf3e95.png 1.5x, ./d9ca4280-67a1-3d26-b2aa-796b70cf3e95.png 2x"
+        data-sizes="auto"
+        alt="./d9ca4280-67a1-3d26-b2aa-796b70cf3e95.png"
+        title="./d9ca4280-67a1-3d26-b2aa-796b70cf3e95.png" /></p>
+<h4 id="413-全局搜索">4.1.3 全局搜索</h4>
+<p>连续两次按下 shift 键，或者鼠标点击右上角的搜索图标，弹出搜索框，搜索任何你想搜索的东西</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./d6bfaa7f-0713-3938-8efc-6c86f354c05e.png"
+        data-srcset="./d6bfaa7f-0713-3938-8efc-6c86f354c05e.png, ./d6bfaa7f-0713-3938-8efc-6c86f354c05e.png 1.5x, ./d6bfaa7f-0713-3938-8efc-6c86f354c05e.png 2x"
+        data-sizes="auto"
+        alt="./d6bfaa7f-0713-3938-8efc-6c86f354c05e.png"
+        title="./d6bfaa7f-0713-3938-8efc-6c86f354c05e.png" /></p>
+<h4 id="414-结果集搜索">4.1.4 结果集搜索</h4>
+<p>在查询结果集视图区域点击鼠标，按下 Ctrl+F 快捷键，弹出搜索框，输入搜索内容，支持正则表达式、过滤结果</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./7c84cc4f-2337-3767-9a06-4db2747fde40.png"
+        data-srcset="./7c84cc4f-2337-3767-9a06-4db2747fde40.png, ./7c84cc4f-2337-3767-9a06-4db2747fde40.png 1.5x, ./7c84cc4f-2337-3767-9a06-4db2747fde40.png 2x"
+        data-sizes="auto"
+        alt="./7c84cc4f-2337-3767-9a06-4db2747fde40.png"
+        title="./7c84cc4f-2337-3767-9a06-4db2747fde40.png" /></p>
+<h4 id="415-导航到关联数据">4.1.5 导航到关联数据</h4>
+<p>表之间会有外检关联，查询的时候，能直接定位到关联数据，或者被关联数据，例如 user1 表有个外检字段 classroom 指向 classroom 表的主键 id，在查询 classroom 表数据的时候，可以在 id 字段上右键，go to，referencing data</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./a9dc35f0-12a9-3bfe-aa68-c5396d628253.png"
+        data-srcset="./a9dc35f0-12a9-3bfe-aa68-c5396d628253.png, ./a9dc35f0-12a9-3bfe-aa68-c5396d628253.png 1.5x, ./a9dc35f0-12a9-3bfe-aa68-c5396d628253.png 2x"
+        data-sizes="auto"
+        alt="./a9dc35f0-12a9-3bfe-aa68-c5396d628253.png"
+        title="./a9dc35f0-12a9-3bfe-aa68-c5396d628253.png" />
+选择要显示第一条数据还是显示所有数据</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./421da02c-cd94-33cc-9fbc-cd854991090c.png"
+        data-srcset="./421da02c-cd94-33cc-9fbc-cd854991090c.png, ./421da02c-cd94-33cc-9fbc-cd854991090c.png 1.5x, ./421da02c-cd94-33cc-9fbc-cd854991090c.png 2x"
+        data-sizes="auto"
+        alt="./421da02c-cd94-33cc-9fbc-cd854991090c.png"
+        title="./421da02c-cd94-33cc-9fbc-cd854991090c.png" />
+会自动打开关联表的数据</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./fcde71af-c071-38d2-affd-d08dab7483d5.png"
+        data-srcset="./fcde71af-c071-38d2-affd-d08dab7483d5.png, ./fcde71af-c071-38d2-affd-d08dab7483d5.png 1.5x, ./fcde71af-c071-38d2-affd-d08dab7483d5.png 2x"
+        data-sizes="auto"
+        alt="./fcde71af-c071-38d2-affd-d08dab7483d5.png"
+        title="./fcde71af-c071-38d2-affd-d08dab7483d5.png" />
+相反，查询字表的数据时，也能自动定位到父表</p>
+<h3 id="42-数据转换">4.2 数据转换</h3>
+<h4 id="421-结果集数据过滤">4.2.1 结果集数据过滤</h4>
+<p>对于使用 table edit(对象树中选中表，右键-&gt;table editor)打开的结果集，可以使用条件继续过滤结果集，如下图所示，可以在结果集左上角输入款中输入 where 条件过滤</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./bbbb92b4-0e49-33cf-8448-cf59e1992986.png"
+        data-srcset="./bbbb92b4-0e49-33cf-8448-cf59e1992986.png, ./bbbb92b4-0e49-33cf-8448-cf59e1992986.png 1.5x, ./bbbb92b4-0e49-33cf-8448-cf59e1992986.png 2x"
+        data-sizes="auto"
+        alt="./bbbb92b4-0e49-33cf-8448-cf59e1992986.png"
+        title="./bbbb92b4-0e49-33cf-8448-cf59e1992986.png" />
+也可以对着需要过滤数据的列右键，filter by 过滤</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./84a2bcc7-8722-311e-8b30-0a75618281a6.png"
+        data-srcset="./84a2bcc7-8722-311e-8b30-0a75618281a6.png, ./84a2bcc7-8722-311e-8b30-0a75618281a6.png 1.5x, ./84a2bcc7-8722-311e-8b30-0a75618281a6.png 2x"
+        data-sizes="auto"
+        alt="./84a2bcc7-8722-311e-8b30-0a75618281a6.png"
+        title="./84a2bcc7-8722-311e-8b30-0a75618281a6.png" /></p>
+<h4 id="422-行转列">4.2.2 行转列</h4>
+<p>对于字段比较多的表，查看数据要左右推动，可以切换成列显示，在结果集视图区域使用 Ctrl+Q 快捷键</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./4a242dd4-c1e4-3b6f-9204-1468e767906a.png"
+        data-srcset="./4a242dd4-c1e4-3b6f-9204-1468e767906a.png, ./4a242dd4-c1e4-3b6f-9204-1468e767906a.png 1.5x, ./4a242dd4-c1e4-3b6f-9204-1468e767906a.png 2x"
+        data-sizes="auto"
+        alt="./4a242dd4-c1e4-3b6f-9204-1468e767906a.png"
+        title="./4a242dd4-c1e4-3b6f-9204-1468e767906a.png" /></p>
+<h4 id="423-变量重命名">4.2.3 变量重命名</h4>
+<p>鼠标点击需要重命名的变量，按下 Shift+F6 快捷键，弹出重命名对话框，输入新的名称</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./2587d544-9641-3635-a987-2755bac6a760.png"
+        data-srcset="./2587d544-9641-3635-a987-2755bac6a760.png, ./2587d544-9641-3635-a987-2755bac6a760.png 1.5x, ./2587d544-9641-3635-a987-2755bac6a760.png 2x"
+        data-sizes="auto"
+        alt="./2587d544-9641-3635-a987-2755bac6a760.png"
+        title="./2587d544-9641-3635-a987-2755bac6a760.png" /></p>
+<h4 id="424-自动检测无法解析的对象">4.2.4 自动检测无法解析的对象</h4>
+<p>如果表名、字段名不存在，datagrip 会自动提示，此时对着有问题的表名或字段名，按下 Alt+Enter，会自动提示是否创建表或添加字段</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./bb21ae31-209d-3f44-9604-fbf78209e926.png"
+        data-srcset="./bb21ae31-209d-3f44-9604-fbf78209e926.png, ./bb21ae31-209d-3f44-9604-fbf78209e926.png 1.5x, ./bb21ae31-209d-3f44-9604-fbf78209e926.png 2x"
+        data-sizes="auto"
+        alt="./bb21ae31-209d-3f44-9604-fbf78209e926.png"
+        title="./bb21ae31-209d-3f44-9604-fbf78209e926.png" /></p>
+<h4 id="425-权限定字段名">4.2.5 权限定字段名</h4>
+<p>对于查询使用表别名的，而字段中没有使用别名前缀的，datagrip 能自动添加前缀，鼠标停留在需要添加别名前缀的字段上，使用 Alt+Enter 快捷键</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./38babb30-fcef-3db6-9b06-efb040f3ee12.png"
+        data-srcset="./38babb30-fcef-3db6-9b06-efb040f3ee12.png, ./38babb30-fcef-3db6-9b06-efb040f3ee12.png 1.5x, ./38babb30-fcef-3db6-9b06-efb040f3ee12.png 2x"
+        data-sizes="auto"
+        alt="./38babb30-fcef-3db6-9b06-efb040f3ee12.png"
+        title="./38babb30-fcef-3db6-9b06-efb040f3ee12.png" /></p>
+<h3 id="43-格式化">4.3 格式化</h3>
+<h4 id="431-通配符自动展开">4.3.1 *通配符自动展开</h4>
+<p>查询的时候我们会使用 select <em>查询所有列，这是不好的习惯，datagrip 能快速展开列，光标定位到</em>后面，按下 Alt+Enter 快捷键</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./a1b9a749-c223-3197-a073-2f4fc15f30f9.png"
+        data-srcset="./a1b9a749-c223-3197-a073-2f4fc15f30f9.png, ./a1b9a749-c223-3197-a073-2f4fc15f30f9.png 1.5x, ./a1b9a749-c223-3197-a073-2f4fc15f30f9.png 2x"
+        data-sizes="auto"
+        alt="./a1b9a749-c223-3197-a073-2f4fc15f30f9.png"
+        title="./a1b9a749-c223-3197-a073-2f4fc15f30f9.png" /></p>
+<h4 id="432-大写自动转换">4.3.2 大写自动转换</h4>
+<p>sql 使用大写形式是个好的习惯，如果使用了小写，可以将光标停留在需要转换的字段或表名上，使用 Ctrl+shift+U 快捷键自动转换</p>
+<h4 id="433-sql-格式化">4.3.3 sql 格式化</h4>
+<p>选中需要格式化的 sql 代码，使用 Ctrl+Alt+L 快捷键</p>
+<p>datagrip 提供了一个功能强大的编辑器，实现了 notpad++的列编辑模式</p>
+<h3 id="44-列编辑">4.4 列编辑</h3>
+<h4 id="441-多光标模式">4.4.1 多光标模式</h4>
+<p>在编辑 sql 的时候，可能需要同时输入或同时删除一些字符，按下 alt+shift，同时鼠标在不同的位置点击，会出现多个光标</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./cf942465-18ba-3d0a-92c0-2fef52635990.png"
+        data-srcset="./cf942465-18ba-3d0a-92c0-2fef52635990.png, ./cf942465-18ba-3d0a-92c0-2fef52635990.png 1.5x, ./cf942465-18ba-3d0a-92c0-2fef52635990.png 2x"
+        data-sizes="auto"
+        alt="./cf942465-18ba-3d0a-92c0-2fef52635990.png"
+        title="./cf942465-18ba-3d0a-92c0-2fef52635990.png" /></p>
+<h4 id="442-代码注释">4.4.2 代码注释</h4>
+<p>选中要注释的代码，按下 Ctrl+/或 Ctrl+shift+/快捷键，能注释代码，或取消注释</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./daa4c7e7-548a-3b46-a787-e335d001aa1a.png"
+        data-srcset="./daa4c7e7-548a-3b46-a787-e335d001aa1a.png, ./daa4c7e7-548a-3b46-a787-e335d001aa1a.png 1.5x, ./daa4c7e7-548a-3b46-a787-e335d001aa1a.png 2x"
+        data-sizes="auto"
+        alt="./daa4c7e7-548a-3b46-a787-e335d001aa1a.png"
+        title="./daa4c7e7-548a-3b46-a787-e335d001aa1a.png" /></p>
+<h4 id="443-列编辑">4.4.3 列编辑</h4>
+<p>按住键盘 Alt 键，同时按下鼠标左键拖动，能选择多列，拷贝黏贴等操作</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./4fd42813-8602-3520-8d63-446c22e942de.png"
+        data-srcset="./4fd42813-8602-3520-8d63-446c22e942de.png, ./4fd42813-8602-3520-8d63-446c22e942de.png 1.5x, ./4fd42813-8602-3520-8d63-446c22e942de.png 2x"
+        data-sizes="auto"
+        alt="./4fd42813-8602-3520-8d63-446c22e942de.png"
+        title="./4fd42813-8602-3520-8d63-446c22e942de.png" /></p>
+<h3 id="45-历史记录">4.5 历史记录</h3>
+<h4 id="451-代码历史">4.5.1 代码历史</h4>
+<p>在文本编辑器中，邮件，local history，show history，可以查看使用过的 sql 历史</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./cc243a75-f7ef-366b-b184-f5635855d9f6.png"
+        data-srcset="./cc243a75-f7ef-366b-b184-f5635855d9f6.png, ./cc243a75-f7ef-366b-b184-f5635855d9f6.png 1.5x, ./cc243a75-f7ef-366b-b184-f5635855d9f6.png 2x"
+        data-sizes="auto"
+        alt="./cc243a75-f7ef-366b-b184-f5635855d9f6.png"
+        title="./cc243a75-f7ef-366b-b184-f5635855d9f6.png" /></p>
+<h4 id="452-命令历史">4.5.2 命令历史</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./cf962c1c-0dfe-3241-b137-fef4eac9f1f0.png"
+        data-srcset="./cf962c1c-0dfe-3241-b137-fef4eac9f1f0.png, ./cf962c1c-0dfe-3241-b137-fef4eac9f1f0.png 1.5x, ./cf962c1c-0dfe-3241-b137-fef4eac9f1f0.png 2x"
+        data-sizes="auto"
+        alt="./cf962c1c-0dfe-3241-b137-fef4eac9f1f0.png"
+        title="./cf962c1c-0dfe-3241-b137-fef4eac9f1f0.png" /></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/tools/">tools</a>
+                </span><span><a href="/tags/database/">database</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-06-17</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/tools/database/dbeaver/" class="prev" rel="prev" title="DBeaver"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/tools/database/chiner/" class="next" rel="next" title="chiner">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

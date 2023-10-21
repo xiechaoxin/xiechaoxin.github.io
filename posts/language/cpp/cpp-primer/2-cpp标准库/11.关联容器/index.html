@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>11. 关联容器 - xcx</title><meta name="description" content=""><meta property="og:title" content="11. 关联容器" />
+<meta property="og:description" content="关联容器 关联容器和顺序容器的不同：关联容器中的元素时按照关键字来保存和访问的。 关联容器支持通过关键字来高效地查找和读取元素，基本的关联容器类" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/2-cpp%E6%A0%87%E5%87%86%E5%BA%93/11.%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-10T05:22:29+00:00" />
+<meta property="article:modified_time" content="2022-07-10T05:22:29+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="11. 关联容器"/>
+<meta name="twitter:description" content="关联容器 关联容器和顺序容器的不同：关联容器中的元素时按照关键字来保存和访问的。 关联容器支持通过关键字来高效地查找和读取元素，基本的关联容器类"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/2-cpp%E6%A0%87%E5%87%86%E5%BA%93/11.%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/2-cpp%E6%A0%87%E5%87%86%E5%BA%93/10.%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95/" /><link rel="next" href="https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/2-cpp%E6%A0%87%E5%87%86%E5%BA%93/12.%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "11. 关联容器",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/language\/cpp\/cpp-primer\/2-cpp%E6%A0%87%E5%87%86%E5%BA%93\/11.%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8\/"
+        },"genre": "posts","keywords": "C\u002b\u002b primer, 2-CPP标准库","wordcount":  2254 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/language\/cpp\/cpp-primer\/2-cpp%E6%A0%87%E5%87%86%E5%BA%93\/11.%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8\/","datePublished": "2022-07-10T05:22:29+00:00","dateModified": "2022-07-10T05:22:29+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">11. 关联容器</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/cpp/"><i class="far fa-folder fa-fw"></i>CPP</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-07-10">2022-07-10</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2254 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-关联容器概述">1 关联容器概述</a>
+      <ul>
+        <li><a href="#11-定义关联容器">1.1 定义关联容器</a></li>
+        <li><a href="#12-关键字类型的要求">1.2 关键字类型的要求</a></li>
+        <li><a href="#13-pair">1.3 pair</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-关联容器操作">2 关联容器操作</a>
+      <ul>
+        <li><a href="#21-关联容器迭代器">2.1 关联容器迭代器</a></li>
+        <li><a href="#22-添加元素">2.2 添加元素</a></li>
+        <li><a href="#23-删除元素">2.3 删除元素</a></li>
+        <li><a href="#24-下标操作">2.4 下标操作</a></li>
+        <li><a href="#25-查找元素">2.5 查找元素</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-无序容器">3 无序容器</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="关联容器">关联容器</h1>
+<ul>
+<li>关联容器和顺序容器的不同：关联容器中的元素时按照<strong>关键字</strong>来保存和访问的。</li>
+<li>关联容器支持通过关键字来高效地查找和读取元素，基本的关联容器类型是 <code>map</code>和 <code>set</code>。</li>
+</ul>
+<p><strong>关联容器类型</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>容器类型</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>按顺序存储</td>
+<td></td>
+</tr>
+<tr>
+<td><code>map</code></td>
+<td>关键数组：保存<code>关键字-值</code>对</td>
+</tr>
+<tr>
+<td><code>set</code></td>
+<td>关键字即值，即只保存关键字的容器</td>
+</tr>
+<tr>
+<td><code>multimap</code></td>
+<td>支持同一个键多次出现的<code>map</code></td>
+</tr>
+<tr>
+<td><code>multiset</code></td>
+<td>支持同一个键多次出现的<code>set</code></td>
+</tr>
+<tr>
+<td>无序集合</td>
+<td></td>
+</tr>
+<tr>
+<td><code>unordered_map</code></td>
+<td>用哈希函数组织的<code>map</code></td>
+</tr>
+<tr>
+<td><code>unordered_set</code></td>
+<td>用哈希函数组织的<code>set</code></td>
+</tr>
+<tr>
+<td><code>unordered_multimap</code></td>
+<td>哈希组织的<code>map</code>，关键字可以重复出现</td>
+</tr>
+<tr>
+<td><code>unordered_multiset</code></td>
+<td>哈希组织的<code>set</code>，关键字可以重复出现</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-关联容器概述">1 关联容器概述</h2>
+<h3 id="11-定义关联容器">1.1 定义关联容器</h3>
+<ul>
+<li>需要指定元素类型。</li>
+<li>列表初始化：
+<ul>
+<li><code>map</code>：<code>map&lt;string, int&gt; word_count = {{&quot;a&quot;, 1}, {&quot;b&quot;, 2}};</code></li>
+<li><code>set</code>：<code>set&lt;string&gt; exclude = {&quot;the&quot;, &quot;a&quot;};</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="12-关键字类型的要求">1.2 关键字类型的要求</h3>
+<ul>
+<li>对于有序容器，关键字类型必须定义元素比较的方法。默认是<code>&lt;</code>。</li>
+<li>如果想传递一个比较的函数，可以这样定义：<code>multiset&lt;Sales_data, decltype(compareIsbn)*&gt; bookstore(compareIsbn);</code></li>
+<li>比较的函数, 必须严格弱序, 可以把严格弱序看作小于等于</li>
+</ul>
+<h3 id="13-pair">1.3 pair</h3>
+<ul>
+<li>在<code>utility</code>头文件中定义。</li>
+<li>一个<code>pair</code>保存两个数据成员，两个类型不要求一样。</li>
+</ul>
+<p><strong>pair 的操作</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pair&lt;T1, T2&gt; p;</code></td>
+<td><code>p</code>是一个<code>pair</code>，两个类型分别是<code>T1</code>和<code>T2</code>的成员都进行了值初始化。</td>
+</tr>
+<tr>
+<td><code>pair&lt;T1, T2&gt; p(v1, v2);</code></td>
+<td><code>first</code>和<code>second</code>分别用<code>v1</code>和<code>v2</code>进行初始化。</td>
+</tr>
+<tr>
+<td><code>pair&lt;T1, T2&gt;p = {v1, v2};</code></td>
+<td>等价于`p(v1, v2)</td>
+</tr>
+<tr>
+<td><code>make_pair(v1, v2);</code></td>
+<td><code>pair</code>的类型从<code>v1</code>和<code>v2</code>的类型推断出来。</td>
+</tr>
+<tr>
+<td><code>p.first</code></td>
+<td>返回<code>p</code>的名为<code>first</code>的数据成员。</td>
+</tr>
+<tr>
+<td><code>p.second</code></td>
+<td>返回<code>p</code>的名为<code>second</code>的数据成员。</td>
+</tr>
+<tr>
+<td><code>p1 relop p2</code></td>
+<td>运算关系符按字典序定义。</td>
+</tr>
+<tr>
+<td><code>p1 == p2</code></td>
+<td>必须两对元素两两相等</td>
+</tr>
+<tr>
+<td><code>p1 != p2</code></td>
+<td>同上</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-关联容器操作">2 关联容器操作</h2>
+<p><strong>关联容器额外的类型别名</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>类型别名</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>key_type</code></td>
+<td>此容器类型的关键字类型</td>
+</tr>
+<tr>
+<td><code>mapped_type</code></td>
+<td>每个关键字关联的类型，只适用于<code>map</code></td>
+</tr>
+<tr>
+<td><code>value_type</code></td>
+<td>对于<code>map</code>，是<code>pair&lt;const key_type, mapped_type&gt;</code>; 对于<code>set</code>，和<code>key_type</code>相同。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="21-关联容器迭代器">2.1 关联容器迭代器</h3>
+<ul>
+<li>解引用一个关联容器迭代器时，会得到一个类型为容器的<code>value_type</code>的值的引用。</li>
+<li><code>set</code>的迭代器是<code>const</code>的。</li>
+<li>遍历关联容器：使用<code>begin</code>和<code>end</code>，遍历<code>map</code>、<code>multimap</code>、<code>set</code>、<code>multiset</code>时，迭代器按<strong>关键字升序</strong>遍历元素。</li>
+</ul>
+<h3 id="22-添加元素">2.2 添加元素</h3>
+<p><strong>关联容器<code>insert</code>操作</strong>：</p>
+<table>
+<thead>
+<tr>
+<th><code>insert</code>操作</th>
+<th>关联容器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>c.insert(v)</code> <code>c.emplace(args)</code></td>
+<td><code>v</code>是<code>value_type</code>类型的对象；<code>args</code>用来构造一个元素。 对于<code>map</code>和<code>set</code>，只有元素的关键字不存在<code>c</code>中才插入或构造元素。函数返回一个<code>pair</code>，包含一个迭代器，指向具有指定关键字的元素，以及一个指示插入是否成功的<code>bool</code>值。对于<code>multimap</code>和<code>multiset</code>则会插入范围中的每个元素。</td>
+</tr>
+<tr>
+<td><code>c.insert(b, e)</code> <code>c.insert(il)</code></td>
+<td><code>b</code>和<code>e</code>是迭代器，表示一个<code>c::value_type</code> 类型值的范围；<code>il</code>是这种值的花括号列表。函数返回<code>void</code>。对于 <code>map</code>和<code>set</code>，只插入关键字不在<code>c</code>中的元素。</td>
+</tr>
+<tr>
+<td><code>c.insert(p, v)</code> <code>c.emplace(p, args)</code></td>
+<td>类似<code>insert(v)</code>，但将迭代器<code>p</code>作为一个提示，指出从哪里开始搜索新元素应该存储的位置。返回一个迭代器，指向具有给定关键字的元素。</td>
+</tr>
+</tbody>
+</table>
+<p>向<code>map</code>添加元素：</p>
+<ul>
+<li><code>word_count.insert({word, 1});</code></li>
+<li><code>word_count.insert(make_pair(word, 1));</code></li>
+<li><code>word_count.insert(pair&lt;string, size_t&gt;(word, 1));</code></li>
+<li><code>word_count.insert(map&lt;string, size_t&gt;::value_type (word, 1));</code></li>
+</ul>
+<h3 id="23-删除元素">2.3 删除元素</h3>
+<p><strong>从关联容器中删除元素</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>c.erase(k)</code></td>
+<td>从<code>c</code>中删除每个关键字为<code>k</code>的元素。返回一个<code>size_type</code>值，指出删除的元素的数量。</td>
+</tr>
+<tr>
+<td><code>c.erase(p)</code></td>
+<td>从<code>c</code>中删除迭代器<code>p</code>指定的元素。<code>p</code>必须指向<code>c</code>中一个真实元素，不能等于<code>c.end()</code>。返回一个指向<code>p</code>之后元素的迭代器，若<code>p</code>指向<code>c</code>中的尾元素，则返回<code>c.end()</code></td>
+</tr>
+<tr>
+<td><code>c.erase(b, e)</code></td>
+<td>删除迭代器对<code>b</code>和<code>e</code>所表示范围中的元素。返回<code>e</code>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="24-下标操作">2.4 下标操作</h3>
+<p><strong><code>map</code>和<code>unordered_map</code>的下标操作</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>c[k]</code></td>
+<td>返回关键字为<code>k</code>的元素；如果<code>k</code>不在<code>c</code>中，添加一个关键字为<code>k</code>的元素，对其值初始化。</td>
+</tr>
+<tr>
+<td><code>c.at(k)</code></td>
+<td>访问关键字为<code>k</code>的元素，带参数检查；若<code>k</code>不存在在<code>c</code>中，抛出一个<code>out_of_range</code>异常。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="25-查找元素">2.5 查找元素</h3>
+<p><strong>在一个关联容器中查找元素</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>c.find(k)</code></td>
+<td>返回一个迭代器，指向第一个关键字为<code>k</code>的元素，若<code>k</code>不在容器中，则返回尾后迭代器</td>
+</tr>
+<tr>
+<td><code>c.count(k)</code></td>
+<td>返回关键字等于<code>k</code>的元素的数量。对于不允许重复关键字的容器，返回值永远是 0 或 1。</td>
+</tr>
+<tr>
+<td><code>c.lower_bound(k)</code></td>
+<td>返回一个迭代器，指向第一个关键字<strong>不小于</strong><code>k</code>的元素。</td>
+</tr>
+<tr>
+<td><code>c.upper_bound(k)</code></td>
+<td>返回一个迭代器，指向第一个关键字<strong>大于</strong><code>k</code>的元素。</td>
+</tr>
+<tr>
+<td><code>c.equal_range(k)</code></td>
+<td>返回一个迭代器<code>pair</code>，表示关键字等于<code>k</code>的元素的范围。若<code>k</code>不存在，<code>pair</code>的两个成员均等于<code>c.end()</code>。</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>lower_bound</code>和<code>upper_bound</code>不适用于无序容器。</li>
+<li>下标和<code>at</code>操作只适用于非<code>const</code>的<code>map</code>和<code>unordered_map</code>。</li>
+</ul>
+<h2 id="3-无序容器">3 无序容器</h2>
+<ul>
+<li>有序容器使用比较运算符来组织元素；无序容器使用哈希函数和关键字类型的<code>==</code>运算符。</li>
+<li>理论上哈希技术可以获得更好的性能。</li>
+<li>无序容器在存储上组织为一组桶(bucket)，每个桶保存零个或多个元素。无序容器使用一个哈希函数将元素映射到桶。</li>
+</ul>
+<p><strong>无序容器管理操作</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>桶接口</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><code>c.bucket_count()</code></td>
+<td>正在使用的桶的数目</td>
+</tr>
+<tr>
+<td><code>c.max_bucket_count()</code></td>
+<td>容器能容纳的最多的桶的数目</td>
+</tr>
+<tr>
+<td><code>c.bucket_size(n)</code></td>
+<td>第<code>n</code>个桶中有多少个元素</td>
+</tr>
+<tr>
+<td><code>c.bucket(k)</code></td>
+<td>关键字为<code>k</code>的元素在哪个桶中</td>
+</tr>
+<tr>
+<td><strong>桶迭代</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><code>local_iterator</code></td>
+<td>可以用来访问桶中元素的迭代器类型</td>
+</tr>
+<tr>
+<td><code>const_local_iterator</code></td>
+<td>桶迭代器的<code>const</code>版本</td>
+</tr>
+<tr>
+<td><code>c.begin(n)</code>，<code>c.end(n)</code></td>
+<td>桶<code>n</code>的首元素迭代器</td>
+</tr>
+<tr>
+<td><code>c.cbegin(n)</code>，<code>c.cend(n)</code></td>
+<td>与前两个函数类似，但返回<code>const_local_iterator</code>。</td>
+</tr>
+<tr>
+<td><strong>哈希策略</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><code>c.load_factor()</code></td>
+<td>每个桶的平均元素数量，返回<code>float</code>值。</td>
+</tr>
+<tr>
+<td><code>c.max_load_factor()</code></td>
+<td><code>c</code>试图维护的平均比桶大小，返回<code>float</code>值。<code>c</code>会在需要时添加新的桶，以使得<code>load_factor&lt;=max_load_factor</code></td>
+</tr>
+<tr>
+<td><code>c.rehash(n)</code></td>
+<td>重组存储，使得<code>bucket_count&gt;=n</code>，且<code>bucket_count&gt;size/max_load_factor</code></td>
+</tr>
+<tr>
+<td><code>c.reverse(n)</code></td>
+<td>重组存储，使得<code>c</code>可以保存<code>n</code>个元素且不必<code>rehash</code>。</td>
+</tr>
+</tbody>
+</table>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/c&#43;&#43;-primer/">C&#43;&#43; primer</a>
+                </span><span><a href="/tags/2-cpp%E6%A0%87%E5%87%86%E5%BA%93/">2-CPP标准库</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-07-10</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/language/cpp/cpp-primer/2-cpp%E6%A0%87%E5%87%86%E5%BA%93/10.%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95/" class="prev" rel="prev" title="10. 泛型算法"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/language/cpp/cpp-primer/2-cpp%E6%A0%87%E5%87%86%E5%BA%93/12.%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98/" class="next" rel="next" title="12.动态内存">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

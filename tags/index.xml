@@ -1,0 +1,67 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Tags - 标签 - xcx</title>
+        <link>https://xiechaoxin.github.io/tags/</link>
+        <description>Tags - 标签 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 01 Oct 2023 23:20:17 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>chaos</title>
+    <link>https://xiechaoxin.github.io/tags/chaos/</link>
+    <pubDate>Sun, 01 Oct 2023 23:20:17 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/tags/chaos/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>tags</title>
+    <link>https://xiechaoxin.github.io/tags/tags/</link>
+    <pubDate>Sat, 23 Sep 2023 01:26:26 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/tags/tags/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>C</title>
+    <link>https://xiechaoxin.github.io/tags/c/</link>
+    <pubDate>Tue, 05 Sep 2023 20:23:45 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/tags/c/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>规范</title>
+    <link>https://xiechaoxin.github.io/tags/%E8%A7%84%E8%8C%83/</link>
+    <pubDate>Mon, 28 Aug 2023 22:05:01 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/tags/%E8%A7%84%E8%8C%83/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>algorithms</title>
+    <link>https://xiechaoxin.github.io/tags/algorithms/</link>
+    <pubDate>Sat, 15 Jul 2023 00:00:00 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/tags/algorithms/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>design_patterns</title>
+    <link>https://xiechaoxin.github.io/tags/design_patterns/</link>
+    <pubDate>Sat, 15 Jul 2023 00:00:00 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/tags/design_patterns/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>common</title>
+    <link>https://xiechaoxin.github.io/tags/common/</link>
+    <pubDate>Fri, 14 Jul 2023 22:02:09 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/tags/common/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>regex</title>
+    <link>https://xiechaoxin.github.io/tags/regex/</link>
+    <pubDate>Fri, 14 Jul 2023 22:02:09 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/tags/regex/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>git</title>
+    <link>https://xiechaoxin.github.io/tags/git/</link>
+    <pubDate>Thu, 01 Jun 2023 23:01:21 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/tags/git/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>js</title>
+    <link>https://xiechaoxin.github.io/tags/js/</link>
+    <pubDate>Tue, 30 May 2023 20:26:52 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/tags/js/</guid>
+    <description><![CDATA[]]></description>
+</item>
+</channel>
+</rss>

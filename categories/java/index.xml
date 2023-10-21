@@ -1,0 +1,67 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>JAVA - 分类 - xcx</title>
+        <link>https://xiechaoxin.github.io/categories/java/</link>
+        <description>JAVA - 分类 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 14 Sep 2022 02:17:04 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/categories/java/" rel="self" type="application/rss+xml" /><item>
+    <title>IO流</title>
+    <link>https://xiechaoxin.github.io/posts/language/java/io%E6%B5%81/</link>
+    <pubDate>Wed, 14 Sep 2022 02:17:04 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/java/io%E6%B5%81/</guid>
+    <description><![CDATA[IO流 1 IO 1.1 I input 输入 1.2 O output 输出 2 IO流的分类 2.1 、按照IO流的数据流动方向分 输入流 输出流 2.2 、按照IO流的数据处理的最小单位分 字节流 字符流 2.3 、根]]></description>
+</item>
+<item>
+    <title>JavaSE  API</title>
+    <link>https://xiechaoxin.github.io/posts/language/java/javase-api/</link>
+    <pubDate>Wed, 14 Sep 2022 02:17:04 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/java/javase-api/</guid>
+    <description><![CDATA[JavaSE API 1 java.lang.Object 1.1 它是所有类型的根父类 1.2 一个类如果没有显式声明它的父类，这个类的直接父类就是Object 1.3 理解 (1)Object类的所有方法，在所有]]></description>
+</item>
+<item>
+    <title>Java基础</title>
+    <link>https://xiechaoxin.github.io/posts/language/java/java%E5%9F%BA%E7%A1%80/</link>
+    <pubDate>Wed, 14 Sep 2022 02:17:04 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/java/java%E5%9F%BA%E7%A1%80/</guid>
+    <description><![CDATA[Java 基础 1 Java 历史 1、诞生于 SUN(Stanford University Network) 2、Java 之父：詹姆斯.高斯林 3、2009 年 SUN 被 Oracle 甲骨文公司收购 4、于 1996 年发布 JDK1.0 正式版 比较有有代表性的几个版]]></description>
+</item>
+<item>
+    <title>Java基础语法</title>
+    <link>https://xiechaoxin.github.io/posts/language/java/java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</link>
+    <pubDate>Wed, 14 Sep 2022 02:17:04 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/java/java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</guid>
+    <description><![CDATA[Java 基础语法 1 、标识符 1.1 凡是在程序中需要自己命名的地方都是标识符，例如：变量名、包名、类名等 1.2 标识符的命名规则 1、Java 的标识符只能使用 26 英]]></description>
+</item>
+<item>
+    <title>Lambda表达式与StreamAPI</title>
+    <link>https://xiechaoxin.github.io/posts/language/java/lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%8Estreamapi/</link>
+    <pubDate>Wed, 14 Sep 2022 02:17:04 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/java/lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%8Estreamapi/</guid>
+    <description><![CDATA[Lambda 表达式与 StreamAPI 1 JDK1.8 2 这两个的目的都是想要使得 Java 能够实现函数式编程 3 Lambada 表达式主要针对接口，函数式接口进行的优化，简化代码 4 StreamAPI 主要是针对集合的处理]]></description>
+</item>
+<item>
+    <title>Optional类</title>
+    <link>https://xiechaoxin.github.io/posts/language/java/optional%E7%B1%BB/</link>
+    <pubDate>Wed, 14 Sep 2022 02:17:04 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/java/optional%E7%B1%BB/</guid>
+    <description><![CDATA[Optional类 1 java.util.Optional 1.1 尽量避免空指针 1.2 、创建Optional对象 (1)创建一个空Optional Optional.empty() (2)创建一个包装了对象的Optiona]]></description>
+</item>
+<item>
+    <title>多线程</title>
+    <link>https://xiechaoxin.github.io/posts/language/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
+    <pubDate>Wed, 14 Sep 2022 02:17:04 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</guid>
+    <description><![CDATA[多线程 1 概念 1.1 程序 为了完成某个任务或功能，选择某个编程语言而编写的一组代码指令的集合 1.2 进程 程序的一次运行，是操作系统管理和调度的最小单位，每]]></description>
+</item>
+<item>
+    <title>反射机制</title>
+    <link>https://xiechaoxin.github.io/posts/language/java/%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/</link>
+    <pubDate>Wed, 14 Sep 2022 02:17:04 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/java/%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/</guid>
+    <description><![CDATA[反射机制 1 为什么要用反射？ 1.1 因为Java是静态的强类型语言，在编译阶段就需要确定类型 Java为了实现“动态性“特征，引入了反射机制 变量可以使]]></description>
+</item>
+<item>
+    <title>泛型</title>
+    <link>https://xiechaoxin.github.io/posts/language/java/%E6%B3%9B%E5%9E%8B/</link>
+    <pubDate>Wed, 14 Sep 2022 02:17:04 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/java/%E6%B3%9B%E5%9E%8B/</guid>
+    <description><![CDATA[泛型 1 概念 1.1 类型参数，参数化的类型 1.2 比喻：标签 2 形式 2.1 、泛型类、泛型接口 语法格式 [修饰符] class/interface 类名/接口名&lt;类型参数列表&gt;{ } 多个]]></description>
+</item>
+<item>
+    <title>方法</title>
+    <link>https://xiechaoxin.github.io/posts/language/java/%E6%96%B9%E6%B3%95/</link>
+    <pubDate>Wed, 14 Sep 2022 02:17:04 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/java/%E6%96%B9%E6%B3%95/</guid>
+    <description><![CDATA[方法 1 方法(Method)：又称为函数(Function)，代表一个独立功能，目的为了代码重用 2 声明的格式 2.1 【修饰符列表】 返回值类型 方法名(]]></description>
+</item>
+</channel>
+</rss>

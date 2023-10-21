@@ -1,0 +1,55 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>chaos - 标签 - xcx</title>
+        <link>https://xiechaoxin.github.io/tags/chaos/</link>
+        <description>chaos - 标签 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 01 Oct 2023 23:20:17 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/tags/chaos/" rel="self" type="application/rss+xml" /><item>
+    <title>二进制-十六进制对照附录</title>
+    <link>https://xiechaoxin.github.io/posts/chaos/bin-hex/</link>
+    <pubDate>Sun, 01 Oct 2023 23:20:17 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/chaos/bin-hex/</guid>
+    <description><![CDATA[0 to 7-------------------------------------------------- 0b0000 0x0 0b0001 0x1 0b0010 0x2 0b0011 0x3 0b0100 0x4 0b0101 0x5 0b0110 0x6 0b0111 0x7 2^3 // 000 // 001 // 010 // 011 // 100 // 101 // 110 // 111 8 to f -------------------------------------------------- 0b1000 0x8 0b1001 0x9 0b1010 0xa 0b1011 0xb 0b1100 0xc 0b1101 0xd 0b1110 0xe 0b1111 0xf]]></description>
+</item>
+<item>
+    <title>Unicode</title>
+    <link>https://xiechaoxin.github.io/posts/chaos/unicode/</link>
+    <pubDate>Sat, 23 Sep 2023 17:45:57 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/chaos/unicode/</guid>
+    <description><![CDATA[Unicode 是一个标准，旨在为世界上的所有书写系统中的每个字符提供一个唯一的编号。它解决了多种编码方案混淆和冲突的问题，使得不同语言和脚本之间的文本处]]></description>
+</item>
+<item>
+    <title>异常使用建议</title>
+    <link>https://xiechaoxin.github.io/posts/chaos/%E5%BC%82%E5%B8%B8%E4%BD%BF%E7%94%A8%E5%BB%BA%E8%AE%AE/</link>
+    <pubDate>Fri, 22 Sep 2023 18:23:03 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/chaos/%E5%BC%82%E5%B8%B8%E4%BD%BF%E7%94%A8%E5%BB%BA%E8%AE%AE/</guid>
+    <description><![CDATA[在大型项目中，正确地使用异常是确保代码健壮性和可维护性的关键。以下是一些建议和最佳实践，用于在大型项目中有效地使用异常, 以 python 举例： 明确异常的]]></description>
+</item>
+<item>
+    <title>矩阵运算下标变化</title>
+    <link>https://xiechaoxin.github.io/posts/chaos/%E7%9F%A9%E9%98%B5%E8%BF%90%E7%AE%97%E4%B8%8B%E6%A0%87%E5%8F%98%E5%8C%96/</link>
+    <pubDate>Mon, 31 Jul 2023 21:02:36 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/chaos/%E7%9F%A9%E9%98%B5%E8%BF%90%E7%AE%97%E4%B8%8B%E6%A0%87%E5%8F%98%E5%8C%96/</guid>
+    <description><![CDATA[矩阵运算下标变化 重点: 把下标当做偏移量 提升对数组和矩阵下标变化的敏感度是一个常见的学习难点，特别是在涉及多维数组或矩阵时。下面是一些建议，帮]]></description>
+</item>
+<item>
+    <title>PyCharm开启或关闭科学模式</title>
+    <link>https://xiechaoxin.github.io/posts/chaos/pycharm%E5%BC%80%E5%90%AF%E6%88%96%E5%85%B3%E9%97%AD%E7%A7%91%E5%AD%A6%E6%A8%A1%E5%BC%8F/</link>
+    <pubDate>Fri, 26 May 2023 09:10:46 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/chaos/pycharm%E5%BC%80%E5%90%AF%E6%88%96%E5%85%B3%E9%97%AD%E7%A7%91%E5%AD%A6%E6%A8%A1%E5%BC%8F/</guid>
+    <description><![CDATA[PyCharm 开启或关闭科学模式 (11 条消息) PyCharm 开启或关闭科学模式_yleavesw 的博客-CSDN 博客_pycharm 科学模式]]></description>
+</item>
+<item>
+    <title>uri和url区别</title>
+    <link>https://xiechaoxin.github.io/posts/chaos/uri%E5%92%8Curl%E5%8C%BA%E5%88%AB/</link>
+    <pubDate>Fri, 26 May 2023 09:10:46 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/chaos/uri%E5%92%8Curl%E5%8C%BA%E5%88%AB/</guid>
+    <description><![CDATA[HTTP 协议中 URI 和 URL 有什么区别？ URI 在于 I(Identifier)是统一资源标示符，可以唯一标识一个资源。URL 在于 Locater，一般来说(URL]]></description>
+</item>
+<item>
+    <title>parameter 和argument区别</title>
+    <link>https://xiechaoxin.github.io/posts/chaos/parameter-%E5%92%8Cargument%E5%8C%BA%E5%88%AB/</link>
+    <pubDate>Fri, 09 Dec 2022 12:14:35 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/chaos/parameter-%E5%92%8Cargument%E5%8C%BA%E5%88%AB/</guid>
+    <description><![CDATA[Argument 和 Parameter 两个词在很多文献中均翻译为参数，这是一个历史遗留问题。 但实际上 Argument 专用于 Actual Argument(实际参数，实参)，Parameter 专用于 Formal]]></description>
+</item>
+<item>
+    <title>CRLF、CR、LF</title>
+    <link>https://xiechaoxin.github.io/posts/chaos/crlfcrlf/</link>
+    <pubDate>Wed, 14 Sep 2022 00:33:15 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/chaos/crlfcrlf/</guid>
+    <description><![CDATA[CR：Carriage Return，对应 ASCII 中转义字符\r，表示回车 LF：Linefeed，对应 ASCII 中转义字符\n，表示换行 CRLF：Carri]]></description>
+</item>
+</channel>
+</rss>

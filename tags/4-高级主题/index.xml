@@ -1,0 +1,25 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>4-高级主题 - 标签 - xcx</title>
+        <link>https://xiechaoxin.github.io/tags/4-%E9%AB%98%E7%BA%A7%E4%B8%BB%E9%A2%98/</link>
+        <description>4-高级主题 - 标签 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 10 Jul 2022 05:28:35 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/tags/4-%E9%AB%98%E7%BA%A7%E4%B8%BB%E9%A2%98/" rel="self" type="application/rss+xml" /><item>
+    <title>19.特殊工具与技术</title>
+    <link>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/4-%E9%AB%98%E7%BA%A7%E4%B8%BB%E9%A2%98/19.%E7%89%B9%E6%AE%8A%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%8A%80%E6%9C%AF/</link>
+    <pubDate>Sun, 10 Jul 2022 05:28:35 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/4-%E9%AB%98%E7%BA%A7%E4%B8%BB%E9%A2%98/19.%E7%89%B9%E6%AE%8A%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%8A%80%E6%9C%AF/</guid>
+    <description><![CDATA[特殊工具与技术 1 控制内存分配 1.1 重载 new 和 delete new表达式的工作机理： string *sp = new string(&#34;a value&#34;); //分配并初始化一个string对象 string *arr = new string[10]; // 分配10个默认初]]></description>
+</item>
+<item>
+    <title>18.用于大型程序的工具</title>
+    <link>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/4-%E9%AB%98%E7%BA%A7%E4%B8%BB%E9%A2%98/18.%E7%94%A8%E4%BA%8E%E5%A4%A7%E5%9E%8B%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%B7%A5%E5%85%B7/</link>
+    <pubDate>Sun, 10 Jul 2022 05:27:22 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/4-%E9%AB%98%E7%BA%A7%E4%B8%BB%E9%A2%98/18.%E7%94%A8%E4%BA%8E%E5%A4%A7%E5%9E%8B%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%B7%A5%E5%85%B7/</guid>
+    <description><![CDATA[用于大型程序的工具 大规模应用程序的特殊要求包括： 在独立开发的子系统之间协同处理错误的能力。 使用各种库进行协同开发的能力。 对比较复杂的应用概念]]></description>
+</item>
+<item>
+    <title>17.标准库特殊设施</title>
+    <link>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/4-%E9%AB%98%E7%BA%A7%E4%B8%BB%E9%A2%98/17.%E6%A0%87%E5%87%86%E5%BA%93%E7%89%B9%E6%AE%8A%E8%AE%BE%E6%96%BD/</link>
+    <pubDate>Sun, 10 Jul 2022 05:25:23 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/4-%E9%AB%98%E7%BA%A7%E4%B8%BB%E9%A2%98/17.%E6%A0%87%E5%87%86%E5%BA%93%E7%89%B9%E6%AE%8A%E8%AE%BE%E6%96%BD/</guid>
+    <description><![CDATA[标准库特殊设施 1 tuple 类型 tuple是类似pair的模板，每个成员类型都可以不同，但tuple可以有任意数量的成员。 但每个确定的tuple类型的]]></description>
+</item>
+</channel>
+</rss>

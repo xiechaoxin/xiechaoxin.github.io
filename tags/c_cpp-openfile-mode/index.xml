@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>c_cpp-openfile-mode - 标签 - xcx</title>
+        <link>https://xiechaoxin.github.io/tags/c_cpp-openfile-mode/</link>
+        <description>c_cpp-openfile-mode - 标签 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 26 May 2023 09:10:46 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/tags/c_cpp-openfile-mode/" rel="self" type="application/rss+xml" /><item>
+    <title>c-cpp-filemode</title>
+    <link>https://xiechaoxin.github.io/posts/language/cpp/chaos/c_cpp-openfile-mode/c-cpp-filemode/</link>
+    <pubDate>Fri, 26 May 2023 09:10:46 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/cpp/chaos/c_cpp-openfile-mode/c-cpp-filemode/</guid>
+    <description><![CDATA[ mode openmode &amp; ~ate Action if file already exists Action if file does not exist &ldquo;r&rdquo; in Read from start Failure to open &ldquo;w&rdquo; out, out|trunc Destroy contents Create new &ldquo;a&rdquo; app, out|app Append to file Create new &ldquo;r+&rdquo; out|in Read from start Error &ldquo;w+&rdquo; out|in|trunc Destroy contents Create new &ldquo;a+&rdquo; out|in|app, in | app Write to end Create new &ldquo;wx&rdquo; out|noreplace, out|noreplace|trunc Failure to open Create new &ldquo;w+x&rdquo; out|in|noreplace|trunc Failure to open Create new &ldquo;rb&rdquo; binary|in Read from start Failure to open &ldquo;wb&rdquo; binary|out, binary | out | trunc Destroy contents Create new &ldquo;ab&rdquo; binary|app, binary | out | app Write to end Create new &ldquo;r+b&rdquo; binary|out|in Read from start Error &ldquo;w+b&rdquo; binary|out|in|trunc Destroy contents Create new &ldquo;a+b&rdquo; binary|out|in|app, binary|in|app Write to end Create new &ldquo;wbx&rdquo; binary|out|noreplace, binary|out|noreplace|trunc Failure to open Create new &ldquo;w+bx&rdquo; binary|out|in|noreplace|trunc Failure to open Create new ]]></description>
+</item>
+</channel>
+</rss>

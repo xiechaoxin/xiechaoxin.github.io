@@ -1,0 +1,2242 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>mysql详细笔记13-14章 - xcx</title><meta name="description" content=""><meta property="og:title" content="mysql详细笔记13-14章" />
+<meta property="og:description" content="第13章 约束 13.1 约束(constraint)概述 为什么需要约束 数据完整性(Data Integrity)是指数据的精确性(Accuracy)和可" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B013-14%E7%AB%A0/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-17T17:59:12+00:00" />
+<meta property="article:modified_time" content="2022-06-17T17:59:12+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="mysql详细笔记13-14章"/>
+<meta name="twitter:description" content="第13章 约束 13.1 约束(constraint)概述 为什么需要约束 数据完整性(Data Integrity)是指数据的精确性(Accuracy)和可"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B013-14%E7%AB%A0/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B015-16%E7%AB%A0/" /><link rel="next" href="https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B011-12%E7%AB%A0/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "mysql详细笔记13-14章",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/database%E6%9C%AA%E5%A4%84%E7%90%86\/mysql\/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B013-14%E7%AB%A0\/"
+        },"genre": "posts","keywords": "database, mysql","wordcount":  17246 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/database%E6%9C%AA%E5%A4%84%E7%90%86\/mysql\/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B013-14%E7%AB%A0\/","datePublished": "2022-06-17T17:59:12+00:00","dateModified": "2022-06-17T17:59:12+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">mysql详细笔记13-14章</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/database/"><i class="far fa-folder fa-fw"></i>database</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-17">2022-06-17</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 17246 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 35 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#131-约束constraint概述">13.1 约束(constraint)概述</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#1-什么是约束">1 什么是约束</a>
+      <ul>
+        <li><a href="#11-约束的分类">1.1 约束的分类</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#132-非空约束">13.2 非空约束</a></li>
+    <li><a href="#2-作用">2 作用</a>
+      <ul>
+        <li><a href="#21-关键字">2.1 关键字</a></li>
+        <li><a href="#22-特点">2.2 特点</a></li>
+        <li><a href="#23-添加非空约束">2.3 添加非空约束</a></li>
+        <li><a href="#24-删除非空约束">2.4 删除非空约束</a></li>
+      </ul>
+    </li>
+    <li><a href="#133-唯一性约束">13.3 唯一性约束</a>
+      <ul>
+        <li><a href="#25-作用">2.5 作用</a></li>
+        <li><a href="#26-关键字">2.6 关键字</a></li>
+        <li><a href="#27-特点">2.7 特点</a></li>
+        <li><a href="#28-添加唯一约束">2.8 添加唯一约束</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#3-关于复合唯一约束">3 关于复合唯一约束</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#4-删除唯一约束">4 删除唯一约束</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#134-primary-key-约束">13.4 PRIMARY KEY 约束</a></li>
+    <li><a href="#5-作用">5 作用</a>
+      <ul>
+        <li><a href="#51-关键字">5.1 关键字</a></li>
+        <li><a href="#52-特点">5.2 特点</a></li>
+        <li><a href="#53-添加主键约束">5.3 添加主键约束</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#6-关于复合主键">6 关于复合主键</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#7-删除主键约束">7 删除主键约束</a></li>
+    <li><a href="#135-自增列auto_increment">13.5 自增列：AUTO_INCREMENT</a>
+      <ul>
+        <li><a href="#71-作用">7.1 作用</a></li>
+        <li><a href="#72-关键字">7.2 关键字</a></li>
+        <li><a href="#73-特点和要求">7.3 特点和要求</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#8-如何指定自增约束">8 如何指定自增约束</a>
+      <ul>
+        <li><a href="#81-如何删除自增约束">8.1 如何删除自增约束</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#9-mysql-80新特性">9 MySQL 8.0新特性</a></li>
+    <li><a href="#136-foreign-key-约束">13.6 FOREIGN KEY 约束</a>
+      <ul>
+        <li><a href="#91-作用">9.1 作用</a></li>
+        <li><a href="#92-关键字">9.2 关键字</a></li>
+        <li><a href="#93-主表和从表父表和子表">9.3 主表和从表/父表和子表</a></li>
+        <li><a href="#94-特点">9.4 特点</a></li>
+        <li><a href="#95-添加外键约束">9.5 添加外键约束</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#10-演示问题">10 演示问题</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#11-约束等级">11 约束等级</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#12-删除外键约束">12 删除外键约束</a>
+      <ul>
+        <li><a href="#121-开发场景">12.1 开发场景</a></li>
+        <li><a href="#122-阿里开发规范">12.2 阿里开发规范</a></li>
+      </ul>
+    </li>
+    <li><a href="#137-check-约束">13.7 CHECK 约束</a>
+      <ul>
+        <li><a href="#123-作用">12.3 作用</a></li>
+        <li><a href="#124-关键字">12.4 关键字</a></li>
+        <li><a href="#125-mysql-57-不支持">12.5 MySQL 5.7 不支持</a></li>
+      </ul>
+    </li>
+    <li><a href="#138-default约束">13.8 DEFAULT约束</a>
+      <ul>
+        <li><a href="#126-作用">12.6 作用</a></li>
+        <li><a href="#127-关键字">12.7 关键字</a></li>
+        <li><a href="#128-如何给字段加默认值">12.8 如何给字段加默认值</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#13-如何删除默认值约束">13 如何删除默认值约束</a></li>
+    <li><a href="#139-面试">13.9 面试</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#141-常见的数据库对象">14.1 常见的数据库对象</a></li>
+    <li><a href="#142-视图概述">14.2 视图概述</a>
+      <ul>
+        <li><a href="#131-为什么使用视图">13.1 为什么使用视图</a></li>
+        <li><a href="#132-视图的理解">13.2 视图的理解</a></li>
+      </ul>
+    </li>
+    <li><a href="#143-创建视图">14.3 创建视图</a>
+      <ul>
+        <li><a href="#133-创建单表视图">13.3 创建单表视图</a></li>
+        <li><a href="#134-创建多表联合视图">13.4 创建多表联合视图</a></li>
+        <li><a href="#135-基于视图创建视图">13.5 基于视图创建视图</a></li>
+      </ul>
+    </li>
+    <li><a href="#144-查看视图">14.4 查看视图</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#145-更新视图的数据">14.5 更新视图的数据</a></li>
+    <li><a href="#14-一般情况">14 一般情况</a>
+      <ul>
+        <li><a href="#141-不可更新的视图">14.1 不可更新的视图</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#146-修改删除视图">14.6. 修改、删除视图</a></li>
+    <li><a href="#15-修改视图">15 修改视图</a>
+      <ul>
+        <li><a href="#151-删除视图">15.1 删除视图</a></li>
+      </ul>
+    </li>
+    <li><a href="#147-总结">14.7. 总结</a>
+      <ul>
+        <li><a href="#152-视图优点">15.2 视图优点</a></li>
+        <li><a href="#153-视图不足">15.3 视图不足</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="第13章-约束">第13章 约束</h1>
+<h2 id="131-约束constraint概述">13.1 约束(constraint)概述</h2>
+<h1 id="为什么需要约束">为什么需要约束</h1>
+<blockquote>
+<p>数据完整性(Data Integrity)是指数据的精确性(Accuracy)和可靠性(Reliability)。它是防止数据库中存在不符合语义规定的数据和防止因错误信息的输入输出造成无效操作或错误信息而提出的。</p>
+</blockquote>
+<blockquote>
+<p>为了保证数据的完整性，SQL规范以约束的方式对<strong>表数据进行额外的条件限制</strong>。从以下四个方面考虑：</p>
+<ul>
+<li><code>实体完整性(Entity Integrity)</code>：例如，同一个表中，不能存在两条完全相同无法区分的记录</li>
+<li><code>域完整性(Domain Integrity)</code>：例如：年龄范围0-120，性别范围“男/女”</li>
+<li>引用完整性(Referential Integrity)`：例如：员工所在部门，在部门表中要能找到这个部门</li>
+<li><code>用户自定义完整性(User-defined Integrity)</code>：例如：用户名唯一、密码不能为空等，本部门经理的工资不得高于本部门职工的平均工资的5倍。</li>
+</ul>
+</blockquote>
+<h2 id="1-什么是约束">1 什么是约束</h2>
+<blockquote>
+<ul>
+<li>约束是表级的强制规定。</li>
+<li>可以在<strong>创建表时规定约束(通过 CREATE TABLE 语句)</strong>，或者在<strong>表创建之后通过 ALTER TABLE 语句规定约束</strong>。</li>
+</ul>
+</blockquote>
+<h3 id="11-约束的分类">1.1 约束的分类</h3>
+<blockquote>
+<ul>
+<li><strong>根据约束数据列的限制</strong>，约束可分为：
+<ul>
+<li><strong>单列约束</strong>：每个约束只约束一列</li>
+<li><strong>多列约束</strong>：每个约束可约束多列数据</li>
+</ul>
+</li>
+<li><strong>根据约束的作用范围</strong>，约束可分为：
+<ul>
+<li><strong>列级约束</strong>：只能作用在一个列上，跟在列的定义后面</li>
+<li><strong>表级约束</strong>：可以作用在多个列上，不与列一起，而是单独定义</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>位置</p>
+<p>支持的约束类型</p>
+<p>是否可以起约束名</p>
+<p>列级约束</p>
+<p>列的后面</p>
+<p>语法都支持，但外键没有效果</p>
+<p>不可以</p>
+<p>表级约束</p>
+<p>所有列的下面</p>
+<p>默认和非空不支持，其他支持</p>
+<p>可以(主键没有效果)</p>
+<blockquote>
+<p><strong>根据约束起的作用</strong>，约束可分为：</p>
+<ul>
+<li><strong>NOT NULL</strong> <strong>非空约束，规定某个字段不能为空</strong></li>
+<li><strong>UNIQUE</strong> <strong>唯一约束</strong>，<strong>规定某个字段在整个表中是唯一的</strong></li>
+<li><strong>PRIMARY KEY 主键(非空且唯一)约束</strong></li>
+<li><strong>FOREIGN KEY</strong> <strong>外键约束</strong></li>
+<li><strong>CHECK</strong> <strong>检查约束</strong></li>
+<li><strong>DEFAULT</strong> <strong>默认值约束</strong></li>
+</ul>
+</blockquote>
+<blockquote>
+<p>注意： MySQL不支持check约束，但可以使用check约束，而没有任何效果</p>
+</blockquote>
+<pre><code>-- 查看某个表已有的约束
+</code></pre>
+<h1 id="information_schema数据库名系统库">information_schema数据库名(系统库)</h1>
+<h1 id="table_constraints表名称专门存储各个表的约束">table_constraints表名称(专门存储各个表的约束)</h1>
+<pre><code>SELECT * FROM information_schema.table_constraints
+WHERE table_name = '表名称';
+</code></pre>
+<h2 id="132-非空约束">13.2 非空约束</h2>
+<h2 id="2-作用">2 作用</h2>
+<p>限定某个字段/某列的值不允许为空
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812318.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812318.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812318.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812318.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812318.png"
+        title="在这里插入图片描述" /></p>
+<h3 id="21-关键字">2.1 关键字</h3>
+<blockquote>
+<p><code>NOT NULL</code></p>
+</blockquote>
+<h3 id="22-特点">2.2 特点</h3>
+<blockquote>
+<ul>
+<li>默认，所有的类型的值都可以是NULL，包括INT、FLOAT等数据类型</li>
+<li>非空约束只能出现在表对象的列上，只能某个列单独限定非空，不能组合非空</li>
+<li>一个表可以有很多列都分别限定了非空</li>
+<li>空字符串’ &lsquo;不等于NULL，0也不等于NULL</li>
+</ul>
+</blockquote>
+<h3 id="23-添加非空约束">2.3 添加非空约束</h3>
+<pre><code>-- 建表时
+CREATE TABLE 表名称(
+	字段名  数据类型,
+    字段名  数据类型 NOT NULL,
+    字段名  数据类型 NOT NULL
+);
+
+
+-- 举例
+CREATE TABLE emp(
+id INT(10) NOT NULL,
+NAME VARCHAR(20) NOT NULL,
+sex CHAR NULL
+);
+
+
+CREATE TABLE student(
+	sid int,
+    sname varchar(20) not null,
+    tel char(11) ,
+    cardid char(18) not null
+);
+
+
+insert into student values(1,'张三','13710011002','110222198912032545'); #成功
+
+insert into student values(2,'李四','13710011002',null);#身份证号为空
+ERROR 1048 (23000): Column 'cardid' cannot be null
+
+insert into student values(2,'李四',null,'110222198912032546');#成功，tel允许为空
+
+insert into student values(3,null,null,'110222198912032547');#失败
+ERROR 1048 (23000): Column 'sname' cannot be null
+
+
+--建表后
+alter table 表名称 modify 字段名 数据类型 not null;
+
+
+-- 举例:
+ALTER TABLE emp MODIFY sex VARCHAR(30) NOT NULL;
+
+
+alter table student modify sname varchar(20) not null;
+</code></pre>
+<h3 id="24-删除非空约束">2.4 删除非空约束</h3>
+<pre><code>alter table 表名称 modify 字段名 数据类型 NULL;#去掉not null，相当于修改某个非注解字段，该字段允许为空
+或者:
+alter table 表名称 modify 字段名 数据类型;#去掉not null，相当于修改某个非注解字段，该字段允许为空
+
+
+-- 举例:
+ALTER TABLE emp
+MODIFY sex VARCHAR(30) NULL;
+
+
+ALTER TABLE emp
+MODIFY NAME VARCHAR(15) DEFAULT 'abc' NULL;
+</code></pre>
+<h2 id="133-唯一性约束">13.3 唯一性约束</h2>
+<h3 id="25-作用">2.5 作用</h3>
+<blockquote>
+<p>用来限制某个字段/某列的值不能重复</p>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812419.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812419.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812419.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812419.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812419.png"
+        title="&amp;gt;" /></p>
+<h3 id="26-关键字">2.6 关键字</h3>
+<blockquote>
+<p><code>UNIQUE</code></p>
+</blockquote>
+<h3 id="27-特点">2.7 特点</h3>
+<blockquote>
+<ul>
+<li>同一个表可以有多个唯一约束。</li>
+<li>唯一约束可以是某一个列的值唯一，也可以多个列组合的值唯一。</li>
+<li>唯一性约束允许列值为空。</li>
+<li>在创建唯一约束的时候，如果不给唯一约束命名，就默认和列名相同。</li>
+<li><strong>MySQL会给唯一约束的列上默认创建一个唯一索引。</strong></li>
+</ul>
+</blockquote>
+<h3 id="28-添加唯一约束">2.8 添加唯一约束</h3>
+<pre><code>-- 建表时:
+create table 表名称(
+	字段名  数据类型,
+    字段名  数据类型  unique,
+    字段名  数据类型  unique key,
+    字段名  数据类型
+);
+create table 表名称(
+	字段名  数据类型,
+    字段名  数据类型,
+    字段名  数据类型,
+    [constraint 约束名] unique key(字段名)
+);
+
+
+-- 举例
+create table student(
+	sid int,
+    sname varchar(20),
+    tel char(11) unique,
+    cardid char(18) unique key
+);
+
+CREATE TABLE t_course(
+	cid INT UNIQUE,
+	cname VARCHAR(100) UNIQUE,
+	description VARCHAR(200)
+);
+
+CREATE TABLE USER(
+ id INT NOT NULL,
+ NAME VARCHAR(25),
+ PASSWORD VARCHAR(16),
+ -- 使用表级约束语法
+ CONSTRAINT uk_name_pwd UNIQUE(NAME,PASSWORD)
+);
+</code></pre>
+<blockquote>
+<p>表示用户名和密码组合不能重复</p>
+</blockquote>
+<pre><code>insert into student values(1,'张三','13710011002','101223199012015623');
+insert into student values(2,'李四','13710011003','101223199012015624');
+
+
+mysql&gt; select * from student;
++-----+-------+-------------+--------------------+
+| sid | sname | tel         | cardid             |
++-----+-------+-------------+--------------------+
+|   1 | 张三  | 13710011002 | 101223199012015623 |
+|   2 | 李四  | 13710011003 | 101223199012015624 |
++-----+-------+-------------+--------------------+
+2 rows in set (0.00 sec)
+
+
+insert into student values(3,'王五','13710011004','101223199012015624'); #身份证号重复
+ERROR 1062 (23000): Duplicate entry '101223199012015624' for key 'cardid'
+
+insert into student values(3,'王五','13710011003','101223199012015625');
+ERROR 1062 (23000): Duplicate entry '13710011003' for key 'tel'
+
+
+-- 建表后指定唯一键约束
+</code></pre>
+<h1 id="字段列表中如果是一个字段表示该列的值唯一如果是两个或更多个字段那么复合唯一即多个字段的组合是唯一的">字段列表中如果是一个字段，表示该列的值唯一。如果是两个或更多个字段，那么复合唯一，即多个字段的组合是唯一的</h1>
+<h1 id="方式1">方式1：</h1>
+<pre><code>alter table 表名称 add unique key(字段列表);
+</code></pre>
+<h1 id="方式2">方式2：</h1>
+<pre><code>alter table 表名称 modify 字段名 字段类型 unique;
+
+
+-- 举例：
+ALTER TABLE USER ADD UNIQUE(NAME,PASSWORD);
+
+ALTER TABLE USER ADD CONSTRAINT uk_name_pwd UNIQUE(NAME,PASSWORD);
+
+ALTER TABLE USER MODIFY NAME VARCHAR(20) UNIQUE;
+
+
+-- 举例
+create table student(
+	sid int primary key,
+    sname varchar(20),
+    tel char(11) ,
+    cardid char(18)
+);
+
+
+alter table student add unique key(tel);
+alter table student add unique key(cardid);
+</code></pre>
+<h2 id="3-关于复合唯一约束">3 关于复合唯一约束</h2>
+<pre><code>create table 表名称(
+	字段名  数据类型,
+    字段名  数据类型,
+    字段名  数据类型,
+    unique key(字段列表) #字段列表中写的是多个字段名，多个字段名用逗号分隔，表示那么是复合唯一，即多个字段的组合是唯一的
+);
+</code></pre>
+<h1 id="学生表">学生表</h1>
+<pre><code>create table student(
+	sid int,	#学号
+    sname varchar(20),			#姓名
+    tel char(11) unique key,  #电话
+    cardid char(18) unique key #身份证号
+);
+</code></pre>
+<h1 id="课程表">课程表</h1>
+<pre><code>create table course(
+	cid int,  #课程编号
+    cname varchar(20)     #课程名称
+);
+</code></pre>
+<h1 id="选课表">选课表</h1>
+<pre><code>create table student_course(
+    id int,
+	sid int,
+    cid int,
+    score int,
+    unique key(sid,cid)  #复合唯一
+);
+
+
+insert into student values(1,'张三','13710011002','101223199012015623');#成功
+insert into student values(2,'李四','13710011003','101223199012015624');#成功
+insert into course values(1001,'Java'),(1002,'MySQL');#成功
+
+
+mysql&gt; select * from student;
++-----+-------+-------------+--------------------+
+| sid | sname | tel         | cardid             |
++-----+-------+-------------+--------------------+
+|   1 | 张三  | 13710011002 | 101223199012015623 |
+|   2 | 李四  | 13710011003 | 101223199012015624 |
++-----+-------+-------------+--------------------+
+2 rows in set (0.00 sec)
+
+mysql&gt; select * from course;
++------+-------+
+| cid  | cname |
++------+-------+
+| 1001 | Java  |
+| 1002 | MySQL |
++------+-------+
+2 rows in set (0.00 sec)
+
+
+insert into student_course values
+(1, 1, 1001, 89),
+(2, 1, 1002, 90),
+(3, 2, 1001, 88),
+(4, 2, 1002, 56);#成功
+
+
+mysql&gt; select * from student_course;
++----+------+------+-------+
+| id | sid  | cid  | score |
++----+------+------+-------+
+|  1 |    1 | 1001 |    89 |
+|  2 |    1 | 1002 |    90 |
+|  3 |    2 | 1001 |    88 |
+|  4 |    2 | 1002 |    56 |
++----+------+------+-------+
+4 rows in set (0.00 sec)
+
+
+insert into student_course values (5, 1, 1001, 88);#失败
+</code></pre>
+<h1 id="error-1062-23000-duplicate-entry-1-1001-for-key-sid---违反sid-cid的复合唯一">ERROR 1062 (23000): Duplicate entry &lsquo;1-1001&rsquo; for key &lsquo;sid&rsquo;   违反sid-cid的复合唯一</h1>
+<h2 id="4-删除唯一约束">4 删除唯一约束</h2>
+<blockquote>
+<ul>
+<li>添加唯一性约束的列上也会自动创建唯一索引。</li>
+<li>删除唯一约束只能通过删除唯一索引的方式删除。</li>
+<li>删除时需要指定唯一索引名，唯一索引名就和唯一约束名一样。</li>
+<li>如果创建唯一约束时未指定名称，如果是单列，就默认和列名相同；如果是组合列，那么默认和()中排在第一个的列名相同。也可以自定义唯一性约束名。</li>
+</ul>
+</blockquote>
+<h1 id="查看都有哪些约束">查看都有哪些约束</h1>
+<pre><code>SELECT * FROM information_schema.table_constraints WHERE table_name = '表名';
+
+
+ALTER TABLE USER DROP INDEX uk_name_pwd;
+</code></pre>
+<blockquote>
+<p>注意：可以通过 <code>show index from 表名称;</code> 查看表的索引</p>
+</blockquote>
+<h2 id="134-primary-key-约束">13.4 PRIMARY KEY 约束</h2>
+<h2 id="5-作用">5 作用</h2>
+<blockquote>
+<p>用来唯一标识表中的一行记录。</p>
+</blockquote>
+<h3 id="51-关键字">5.1 关键字</h3>
+<blockquote>
+<p><code>primary key</code></p>
+</blockquote>
+<h3 id="52-特点">5.2 特点</h3>
+<blockquote>
+<p>主键约束相当于<strong>唯一约束+非空约束的组合</strong>，主键约束列不允许重复，也不允许出现空值。</p>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812469.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812469.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812469.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812469.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812469.png"
+        title="在这里插入图片描述" /></p>
+<blockquote>
+<ul>
+<li>一个表最多只能有一个主键约束，建立主键约束可以在列级别创建，也可以在表级别上创建。</li>
+<li>主键约束对应着表中的一列或者多列(复合主键)</li>
+<li>如果是多列组合的复合主键约束，那么这些列都不允许为空值，并且组合的值不允许重复。</li>
+<li><strong>MySQL的主键名总是PRIMARY</strong>，就算自己命名了主键约束名也没用。</li>
+<li>当创建主键约束时，系统默认会在所在的列或列组合上建立对应的<strong>主键索引</strong>(能够根据主键查询的，就根据主键查询，效率更高)。如果删除主键约束了，主键约束对应的索引就自动删除了。</li>
+<li>需要注意的一点是，不要修改主键字段的值。因为主键是数据记录的唯一标识，如果修改了主键的值，就有可能会破坏数据的完整性。</li>
+</ul>
+</blockquote>
+<h3 id="53-添加主键约束">5.3 添加主键约束</h3>
+<pre><code>-- 建表时指定主键约束
+create table 表名称(
+	字段名  数据类型  primary key, #列级模式
+    字段名  数据类型,
+    字段名  数据类型
+);
+create table 表名称(
+	字段名  数据类型,
+    字段名  数据类型,
+    字段名  数据类型,
+    [constraint 约束名] primary key(字段名) #表级模式
+);
+
+
+-- 举例：
+create table temp(
+	id int primary key,
+    name varchar(20)
+);
+
+
+mysql&gt; desc temp;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(11)     | NO   | PRI | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+
+insert into temp values(1,'张三');#成功
+insert into temp values(2,'李四');#成功
+
+
+mysql&gt; select * from temp;
++----+------+
+| id | name |
++----+------+
+|  1 | 张三 |
+|  2 | 李四 |
++----+------+
+2 rows in set (0.00 sec)
+
+
+insert into temp values(1,'张三');#失败
+ERROR 1062 (23000): Duplicate(重复) entry(键入，输入) '1' for key 'PRIMARY'
+
+insert into temp values(1,'王五');#失败
+ERROR 1062 (23000): Duplicate entry '1' for key 'PRIMARY'
+
+insert into temp values(3,'张三');#成功
+
+
+mysql&gt; select * from temp;
++----+------+
+| id | name |
++----+------+
+|  1 | 张三 |
+|  2 | 李四 |
+|  3 | 张三 |
++----+------+
+3 rows in set (0.00 sec)
+
+
+insert into temp values(4,null);#成功
+
+insert into temp values(null,'李琦');#失败
+ERROR 1048 (23000): Column 'id' cannot be null
+
+
+mysql&gt; select * from temp;
++----+------+
+| id | name |
++----+------+
+|  1 | 张三 |
+|  2 | 李四 |
+|  3 | 张三 |
+|  4 | NULL |
++----+------+
+4 rows in set (0.00 sec)
+</code></pre>
+<h1 id="演示一个表建立两个主键约束">演示一个表建立两个主键约束</h1>
+<pre><code>create table temp(
+	id int primary key,
+    name varchar(20) primary key
+);
+ERROR 1068 (42000): Multiple(多重的) primary key defined(定义)
+</code></pre>
+<ul>
+<li>
+<p>列级约束</p>
+<p>CREATE TABLE emp4(
+id INT PRIMARY KEY AUTO_INCREMENT ,
+NAME VARCHAR(20)
+);</p>
+</li>
+<li>
+<p>表级约束</p>
+<p>CREATE TABLE emp5(
+id INT NOT NULL AUTO_INCREMENT,
+NAME VARCHAR(20),
+pwd VARCHAR(15),
+CONSTRAINT emp5_id_pk PRIMARY KEY(id)
+);</p>
+<p>&ndash; 建表后增加主键约束
+ALTER TABLE 表名称 ADD PRIMARY KEY(字段列表); #字段列表可以是一个字段，也可以是多个字段，如果是多个字段的话，是复合主键</p>
+<p>ALTER TABLE student ADD PRIMARY KEY (sid);</p>
+<p>ALTER TABLE emp5 ADD PRIMARY KEY(NAME,pwd);</p>
+</li>
+</ul>
+<h2 id="6-关于复合主键">6 关于复合主键</h2>
+<pre><code>create table 表名称(
+	字段名  数据类型,
+    字段名  数据类型,
+    字段名  数据类型,
+    primary key(字段名1,字段名2)  #表示字段1和字段2的组合是唯一的，也可以有更多个字段
+);
+</code></pre>
+<h1 id="学生表-1">学生表</h1>
+<pre><code>create table student(
+	sid int primary key,  #学号
+    sname varchar(20)     #学生姓名
+);
+</code></pre>
+<h1 id="课程表-1">课程表</h1>
+<pre><code>create table course(
+	cid int primary key,  #课程编号
+    cname varchar(20)     #课程名称
+);
+</code></pre>
+<h1 id="选课表-1">选课表</h1>
+<pre><code>create table student_course(
+	sid int,
+    cid int,
+    score int,
+    primary key(sid,cid)  #复合主键
+);
+
+
+insert into student values(1,'张三'),(2,'李四');
+insert into course values(1001,'Java'),(1002,'MySQL');
+
+
+mysql&gt; select * from student;
++-----+-------+
+| sid | sname |
++-----+-------+
+|   1 | 张三  |
+|   2 | 李四  |
++-----+-------+
+2 rows in set (0.00 sec)
+
+mysql&gt; select * from course;
++------+-------+
+| cid  | cname |
++------+-------+
+| 1001 | Java  |
+| 1002 | MySQL |
++------+-------+
+2 rows in set (0.00 sec)
+
+
+insert into student_course values(1, 1001, 89),(1,1002,90),(2,1001,88),(2,1002,56);
+
+
+mysql&gt; select * from student_course;
++-----+------+-------+
+| sid | cid  | score |
++-----+------+-------+
+|   1 | 1001 |    89 |
+|   1 | 1002 |    90 |
+|   2 | 1001 |    88 |
+|   2 | 1002 |    56 |
++-----+------+-------+
+4 rows in set (0.00 sec)
+
+
+insert into student_course values(1, 1001, 100);
+ERROR 1062 (23000): Duplicate entry '1-1001' for key 'PRIMARY'
+
+
+mysql&gt; desc student_course;
++-------+---------+------+-----+---------+-------+
+| Field | Type    | Null | Key | Default | Extra |
++-------+---------+------+-----+---------+-------+
+| sid   | int(11) | NO   | PRI | NULL    |       |
+| cid   | int(11) | NO   | PRI | NULL    |       |
+| score | int(11) | YES  |     | NULL    |       |
++-------+---------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+
+-- 举例
+CREATE TABLE emp6(
+id INT NOT NULL,
+NAME VARCHAR(20),
+pwd VARCHAR(15),
+CONSTRAINT emp7_pk PRIMARY KEY(NAME,pwd)
+);
+</code></pre>
+<h2 id="7-删除主键约束">7 删除主键约束</h2>
+<pre><code>alter table 表名称 drop primary key;
+
+
+ALTER TABLE emp5 DROP PRIMARY KEY;
+</code></pre>
+<blockquote>
+<p>说明：删除主键约束，不需要指定主键名，因为一个表只有一个主键，删除主键约束后，非空还存在。</p>
+</blockquote>
+<h2 id="135-自增列auto_increment">13.5 自增列：AUTO_INCREMENT</h2>
+<h3 id="71-作用">7.1 作用</h3>
+<blockquote>
+<p>某个字段的值自增</p>
+</blockquote>
+<h3 id="72-关键字">7.2 关键字</h3>
+<blockquote>
+<p><code>auto_increment</code></p>
+</blockquote>
+<h3 id="73-特点和要求">7.3 特点和要求</h3>
+<blockquote>
+<ul>
+<li>一个表最多只能有一个自增长列</li>
+<li>当需要产生唯一标识符或顺序值时，可设置自增长</li>
+<li>自增长列约束的列必须是键列(主键列，唯一键列)</li>
+<li>自增约束的列的数据类型必须是整数类型</li>
+<li>如果自增列指定了 0 和 null，会在当前最大值的基础上自增；如果自增列手动指定了具体值，直接赋值为具体值。</li>
+</ul>
+</blockquote>
+<p>错误演示：</p>
+<pre><code>create table employee(
+	eid int auto_increment,
+    ename varchar(20)
+);
+</code></pre>
+<h1 id="error-1075-42000-incorrect-table-definition-there-can-be-only-one-auto-column-and-it-must-be-defined-as-a-key">ERROR 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key</h1>
+<pre><code>create table employee(
+	eid int primary key,
+    ename varchar(20) unique key auto_increment
+);
+</code></pre>
+<h1 id="error-1063-42000-incorrect-column-specifier-for-column-ename--因为ename不是整数类型">ERROR 1063 (42000): Incorrect column specifier for column &rsquo;ename&rsquo;  因为ename不是整数类型</h1>
+<h2 id="8-如何指定自增约束">8 如何指定自增约束</h2>
+<pre><code>-- 建表时
+create table 表名称(
+	字段名  数据类型  primary key auto_increment,
+    字段名  数据类型  unique key not null,
+    字段名  数据类型  unique key,
+    字段名  数据类型  not null default 默认值,
+);
+create table 表名称(
+	字段名  数据类型 default 默认值 ,
+    字段名  数据类型 unique key auto_increment,
+    字段名  数据类型 not null default 默认值,,
+    primary key(字段名)
+);
+
+
+create table employee(
+	eid int primary key auto_increment,
+    ename varchar(20)
+);
+
+
+mysql&gt; desc employee;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| eid   | int(11)     | NO   | PRI | NULL    | auto_increment |
+| ename | varchar(20) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+
+-- 建表后
+alter table 表名称 modify 字段名 数据类型 auto_increment;
+
+
+create table employee(
+	eid int primary key ,
+    ename varchar(20)
+);
+
+
+alter table employee modify eid int auto_increment;
+
+
+mysql&gt; desc employee;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| eid   | int(11)     | NO   | PRI | NULL    | auto_increment |
+| ename | varchar(20) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+</code></pre>
+<h3 id="81-如何删除自增约束">8.1 如何删除自增约束</h3>
+<h1 id="alter-table-表名称-modify-字段名-数据类型-auto_increment给这个字段增加自增约束">alter table 表名称 modify 字段名 数据类型 auto_increment;给这个字段增加自增约束</h1>
+<pre><code>alter table 表名称 modify 字段名 数据类型; #去掉auto_increment相当于删除
+
+
+alter table employee modify eid int;
+
+
+mysql&gt; desc employee;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| eid   | int(11)     | NO   | PRI | NULL    |       |
+| ename | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+</code></pre>
+<h2 id="9-mysql-80新特性">9 MySQL 8.0新特性</h2>
+<p><strong>自增变量的持久化</strong></p>
+<blockquote>
+<p>在MySQL 8.0之前，自增主键AUTO_INCREMENT的值如果大于max(primary key)+1，在MySQL重启后，会重置AUTO_INCREMENT=max(primary key)+1，这种现象在某些情况下会导致业务主键冲突或者其他难以发现的问题。</p>
+</blockquote>
+<blockquote>
+<p>下面通过案例来对比不同的版本中自增变量是否持久化。
+在MySQL 5.7版本中，测试步骤如下：
+创建的数据表中包含自增主键的id字段，语句如下：</p>
+</blockquote>
+<pre><code>CREATE TABLE test1(
+id INT PRIMARY KEY AUTO_INCREMENT
+);
+</code></pre>
+<p>插入4个空值，执行如下：</p>
+<pre><code>INSERT INTO test1
+VALUES(0),(0),(0),(0);
+</code></pre>
+<p>查询数据表test1中的数据，结果如下：</p>
+<pre><code>mysql&gt; SELECT * FROM test1;
++----+
+| id |
++----+
+|  1 |
+|  2 |
+|  3 |
+|  4 |
++----+
+4 rows in set (0.00 sec)
+</code></pre>
+<p>删除id为4的记录，语句如下：</p>
+<pre><code>DELETE FROM test1 WHERE id = 4;
+</code></pre>
+<p>再次插入一个空值，语句如下：</p>
+<pre><code>INSERT INTO test1 VALUES(0);
+</code></pre>
+<p>查询此时数据表test1中的数据，结果如下：</p>
+<pre><code>mysql&gt; SELECT * FROM test1;
++----+
+| id |
++----+
+|  1 |
+|  2 |
+|  3 |
+|  5 |
++----+
+4 rows in set (0.00 sec)
+</code></pre>
+<p>从结果可以看出，虽然删除了id为4的记录，但是再次插入空值时，并没有重用被删除的4，而是分配了5。删除id为5的记录，结果如下：</p>
+<pre><code>DELETE FROM test1 where id=5;
+</code></pre>
+<p><strong>重启数据库</strong>，重新插入一个空值。</p>
+<pre><code>INSERT INTO test1 values(0);
+</code></pre>
+<p>再次查询数据表test1中的数据，结果如下：</p>
+<pre><code>mysql&gt; SELECT * FROM test1;
++----+
+| id |
++----+
+|  1 |
+|  2 |
+|  3 |
+|  4 |
++----+
+4 rows in set (0.00 sec)
+</code></pre>
+<blockquote>
+<ul>
+<li>从结果可以看出，新插入的0值分配的是4，按照重启前的操作逻辑，此处应该分配6。出现上述结果的主要原因是自增主键没有持久化。</li>
+<li>在MySQL 5.7系统中，对于自增主键的分配规则，是由InnoDB数据字典内部一个<code>计数器</code>来决定的，而该计数器只在<code>内存中维护</code>，并不会持久化到磁盘中。当数据库重启时，该计数器会被初始化。</li>
+</ul>
+</blockquote>
+<p>在MySQL 8.0版本中，上述测试步骤最后一步的结果如下：</p>
+<pre><code>mysql&gt; SELECT * FROM test1;
++----+
+| id |
++----+
+|  1 |
+|  2 |
+|  3 |
+|  6 |
++----+
+4 rows in set (0.00 sec)
+</code></pre>
+<p>从结果可以看出，自增变量已经持久化了。</p>
+<blockquote>
+<p>MySQL 8.0将自增主键的计数器持久化到<code>重做日志</code>中。每次计数器发生改变，都会将其写入重做日志中。如果数据库重启，InnoDB会根据重做日志中的信息来初始化计数器的内存值。</p>
+</blockquote>
+<h2 id="136-foreign-key-约束">13.6 FOREIGN KEY 约束</h2>
+<h3 id="91-作用">9.1 作用</h3>
+<blockquote>
+<p>限定某个表的某个字段的引用完整性。</p>
+</blockquote>
+<p>比如：员工表的员工所在部门的选择，必须在部门表能找到对应的部分。
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812344.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812344.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812344.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812344.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812344.png"
+        title="在这里插入图片描述" /></p>
+<h3 id="92-关键字">9.2 关键字</h3>
+<blockquote>
+<p><code>FOREIGN KEY</code></p>
+</blockquote>
+<h3 id="93-主表和从表父表和子表">9.3 主表和从表/父表和子表</h3>
+<blockquote>
+<ul>
+<li>主表(父表)：被引用的表，被参考的表</li>
+<li>从表(子表)：引用别人的表，参考别人的表</li>
+<li>例如：员工表的员工所在部门这个字段的值要参考部门表：部门表是主表，员工表是从表。</li>
+<li>例如：学生表、课程表、选课表：选课表的学生和课程要分别参考学生表和课程表，学生表和课程表是主表，选课表是从表。</li>
+</ul>
+</blockquote>
+<h3 id="94-特点">9.4 特点</h3>
+<blockquote>
+<ul>
+<li>从表的外键列，必须引用/参考主表的主键或唯一约束的列
+为什么？因为被依赖/被参考的值必须是唯一的</li>
+<li>在创建外键约束时，如果不给外键约束命名，<strong>默认名不是列名，而是自动产生一个外键名</strong>(例如 student_ibfk_1;)，也可以指定外键约束名。</li>
+<li>创建(CREATE)表时就指定外键约束的话，先创建主表，再创建从表</li>
+<li>删表时，先删从表(或先删除外键约束)，再删除主表</li>
+<li>当主表的记录被从表参照时，主表的记录将不允许删除，如果要删除数据，需要先删除从表中依赖该记录的数据，然后才可以删除主表的数据</li>
+<li>在“从表”中指定外键约束，并且一个表可以建立多个外键约束</li>
+<li>从表的外键列与主表被参照的列名字可以不相同，但是数据类型必须一样，逻辑意义一致。如果类型不一样，创建子表时，就会出现错误“ERROR 1005 (HY000): Can’t create table’database.tablename’(errno: 150)”。
+例如：都是表示部门编号，都是int类型。</li>
+<li><strong>当创建外键约束时，系统默认会在所在的列上建立对应的普通索引</strong>。但是索引名是外键的约束名。(根据外键查询效率很高)</li>
+<li>删除外键约束后，必须<code>手动</code>删除对应的索引</li>
+</ul>
+</blockquote>
+<h3 id="95-添加外键约束">9.5 添加外键约束</h3>
+<p><strong>建表时</strong>：</p>
+<pre><code>create table 主表名称(
+	字段1  数据类型  primary key,
+    字段2  数据类型
+);
+
+create table 从表名称(
+	字段1  数据类型  primary key,
+    字段2  数据类型,
+    [CONSTRAINT &lt;外键约束名称&gt;] FOREIGN KEY(从表的某个字段) references 主表名(被参考字段)
+);
+</code></pre>
+<h1 id="从表的某个字段的数据类型必须与主表名被参考字段的数据类型一致逻辑意义也一样">(从表的某个字段)的数据类型必须与主表名(被参考字段)的数据类型一致，逻辑意义也一样</h1>
+<h1 id="从表的某个字段的字段名可以与主表名被参考字段的字段名一样也可以不一样">(从表的某个字段)的字段名可以与主表名(被参考字段)的字段名一样，也可以不一样</h1>
+<pre><code>-- FOREIGN KEY: 在表级指定子表中的列
+-- REFERENCES: 标示在父表中的列
+
+
+create table dept( #主表
+	did int primary key,		#部门编号
+    dname varchar(50)			#部门名称
+);
+
+create table emp(#从表
+	eid int primary key,  #员工编号
+    ename varchar(5),     #员工姓名
+    deptid int,				#员工所在的部门
+    foreign key (deptid) references dept(did)   #在从表中指定外键约束
+</code></pre>
+<h1 id="emp表的deptid和和dept表的did的数据类型一致意义都是表示部门的编号">emp表的deptid和和dept表的did的数据类型一致，意义都是表示部门的编号</h1>
+<pre><code>);
+
+说明：
+(1)主表dept必须先创建成功，然后才能创建emp表，指定外键成功。
+(2)删除表时，先删除从表emp，再删除主表dept
+</code></pre>
+<p><strong>建表后</strong>：</p>
+<blockquote>
+<p>一般情况下，表与表的关联都是提前设计好了的，因此，会在创建表的时候就把外键约束定义好。不过，如果需要修改表的设计(比如添加新的字段，增加新的关联关系)，但没有预先定义外键约束，那么，就要用修改表的方式来补充定义。</p>
+</blockquote>
+<pre><code>-- 格式
+ALTER TABLE 从表名 ADD [CONSTRAINT 约束名] FOREIGN KEY (从表的字段) REFERENCES 主表名(被引用字段) [on update xx][on delete xx];
+
+
+-- 举例
+ALTER TABLE emp1
+ADD [CONSTRAINT emp_dept_id_fk] FOREIGN KEY(dept_id) REFERENCES dept(dept_id);
+
+
+-- 举例
+create table dept(
+	did int primary key,		#部门编号
+    dname varchar(50)			#部门名称
+);
+
+create table emp(
+	eid int primary key,  #员工编号
+    ename varchar(5),     #员工姓名
+    deptid int				#员工所在的部门
+);
+</code></pre>
+<h1 id="这两个表创建时没有指定外键的话那么创建顺序是随意">这两个表创建时，没有指定外键的话，那么创建顺序是随意</h1>
+<pre><code>alter table emp add foreign key (deptid) references dept(did);
+</code></pre>
+<h2 id="10-演示问题">10 演示问题</h2>
+<p><strong>(1)失败：不是键列</strong></p>
+<pre><code>create table dept(
+	did int ,		#部门编号
+    dname varchar(50)			#部门名称
+);
+
+create table emp(
+	eid int primary key,  #员工编号
+    ename varchar(5),     #员工姓名
+    deptid int,				#员工所在的部门
+    foreign key (deptid) references dept(did)
+);
+</code></pre>
+<h1 id="error-1215-hy000-cannot-add-foreign-key-constraint--原因是dept的did不是键列">ERROR 1215 (HY000): Cannot add foreign key constraint  原因是dept的did不是键列</h1>
+<p><strong>(2)失败：数据类型不一致</strong></p>
+<pre><code>create table dept(
+	did int primary key,		#部门编号
+    dname varchar(50)			#部门名称
+);
+
+create table emp(
+	eid int primary key,  #员工编号
+    ename varchar(5),     #员工姓名
+    deptid char,				#员工所在的部门
+    foreign key (deptid) references dept(did)
+);
+</code></pre>
+<h1 id="error-1215-hy000-cannot-add-foreign-key-constraint--原因是从表的deptid字段和主表的did字段的数据类型不一致并且要它俩的逻辑意义一致">ERROR 1215 (HY000): Cannot add foreign key constraint  原因是从表的deptid字段和主表的did字段的数据类型不一致，并且要它俩的逻辑意义一致</h1>
+<p><strong>(3)成功，两个表字段名一样</strong></p>
+<pre><code>create table dept(
+	did int primary key,		#部门编号
+    dname varchar(50)			#部门名称
+);
+
+create table emp(
+	eid int primary key,  #员工编号
+    ename varchar(5),     #员工姓名
+    did int,				#员工所在的部门
+    foreign key (did) references dept(did)
+</code></pre>
+<h1 id="emp表的deptid和和dept表的did的数据类型一致意义都是表示部门的编号-1">emp表的deptid和和dept表的did的数据类型一致，意义都是表示部门的编号</h1>
+<h1 id="是否重名没问题因为两个did在不同的表中">是否重名没问题，因为两个did在不同的表中</h1>
+<pre><code>);
+</code></pre>
+<p><strong>(4)添加、删除、修改问题</strong></p>
+<pre><code>create table dept(
+	did int primary key,		#部门编号
+    dname varchar(50)			#部门名称
+);
+
+create table emp(
+	eid int primary key,  #员工编号
+    ename varchar(5),     #员工姓名
+    deptid int,				#员工所在的部门
+    foreign key (deptid) references dept(did)
+</code></pre>
+<h1 id="emp表的deptid和和dept表的did的数据类型一致意义都是表示部门的编号-2">emp表的deptid和和dept表的did的数据类型一致，意义都是表示部门的编号</h1>
+<pre><code>);
+
+
+insert into dept values(1001,'教学部');
+insert into dept values(1003, '财务部');
+
+insert into emp values(1,'张三',1001); #添加从表记录成功，在添加这条记录时，要求部门表有1001部门
+
+insert into emp values(2,'李四',1005);#添加从表记录失败
+ERROR 1452 (23000): Cannot add(添加) or update(修改) a child row: a foreign key constraint fails (`atguigudb`.`emp`, CONSTRAINT `emp_ibfk_1` FOREIGN KEY (`deptid`) REFERENCES `dept` (`did`)) 从表emp添加记录失败，因为主表dept没有1005部门
+
+
+mysql&gt; select * from dept;
++------+--------+
+| did  | dname  |
++------+--------+
+| 1001 | 教学部  |
+| 1003 | 财务部  |
++------+--------+
+2 rows in set (0.00 sec)
+
+mysql&gt; select * from emp;
++-----+-------+--------+
+| eid | ename | deptid |
++-----+-------+--------+
+|   1 | 张三   |   1001 |
++-----+-------+--------+
+1 row in set (0.00 sec)
+
+
+update emp set deptid = 1002 where eid = 1;#修改从表失败
+ERROR 1452 (23000): Cannot add(添加) or update(修改) a child row(子表的记录): a foreign key constraint fails(外键约束失败) (`atguigudb`.`emp`, CONSTRAINT `emp_ibfk_1` FOREIGN KEY (`deptid`) REFERENCES `dept` (`did`))  #部门表did字段现在没有1002的值，所以员工表中不能修改员工所在部门deptid为1002
+
+update dept set did = 1002 where did = 1001;#修改主表失败
+ERROR 1451 (23000): Cannot delete(删除) or update(修改) a parent row(父表的记录): a foreign key constraint fails (`atguigudb`.`emp`, CONSTRAINT `emp_ibfk_1` FOREIGN KEY (`deptid`) REFERENCES `dept` (`did`)) #部门表did的1001字段已经被emp引用了，所以部门表的1001字段就不能修改了。
+
+update dept set did = 1002 where did = 1003;#修改主表成功  因为部门表的1003部门没有被emp表引用，所以可以修改
+
+
+delete from dept where did=1001; #删除主表失败
+ERROR 1451 (23000): Cannot delete(删除) or update(修改) a parent row(父表记录): a foreign key constraint fails (`atguigudb`.`emp`, CONSTRAINT `emp_ibfk_1` FOREIGN KEY (`deptid`) REFERENCES `dept` (`did`))  #因为部门表did的1001字段已经被emp引用了，所以部门表的1001字段对应的记录就不能被删除
+</code></pre>
+<blockquote>
+<p>总结：约束关系是针对双方的</p>
+<ul>
+<li>添加了外键约束后，主表的修改和删除数据受约束</li>
+<li>添加了外键约束后，从表的添加和修改数据受约束</li>
+<li>在从表上建立外键，要求主表必须存在</li>
+<li>删除主表时，要求从表从表先删除，或将从表中外键引用该主表的关系先删除</li>
+</ul>
+</blockquote>
+<h2 id="11-约束等级">11 约束等级</h2>
+<blockquote>
+<ul>
+<li><code>Cascade方式</code>：在父表上update/delete记录时，同步update/delete掉子表的匹配记录</li>
+<li><code>Set null方式</code>：在父表上update/delete记录时，将子表上匹配记录的列设为null，但是要注意子表的外键列不能为not null</li>
+<li><code>No action方式</code>：如果子表中有匹配的记录，则不允许对父表对应候选键进行update/delete操作</li>
+<li><code>Restrict方式</code>：同no action， 都是立即检查外键约束</li>
+<li><code>Set default方式</code>(在可视化工具SQLyog中可能显示空白)：父表有变更时，子表将外键列设置成一个默认的值，但Innodb不能识别</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>如果没有指定等级，就相当于Restrict方式。
+对于外键约束，最好是采用: <code>ON UPDATE CASCADE ON DELETE RESTRICT</code> 的方式。</p>
+</blockquote>
+<p><strong>(1)演示1：on update cascade on delete set null</strong></p>
+<pre><code>create table dept(
+	did int primary key,		#部门编号
+    dname varchar(50)			#部门名称
+);
+
+create table emp(
+	eid int primary key,  #员工编号
+    ename varchar(5),     #员工姓名
+    deptid int,				#员工所在的部门
+    foreign key (deptid) references dept(did)  on update cascade on delete set null
+</code></pre>
+<h1 id="把修改操作设置为级联修改等级把删除操作设置为set-null等级">把修改操作设置为级联修改等级，把删除操作设置为set null等级</h1>
+<pre><code>);
+
+
+insert into dept values(1001,'教学部');
+insert into dept values(1002, '财务部');
+insert into dept values(1003, '咨询部');
+
+insert into emp values(1,'张三',1001); #在添加这条记录时，要求部门表有1001部门
+insert into emp values(2,'李四',1001);
+insert into emp values(3,'王五',1002);
+
+
+mysql&gt; select * from dept;
+
+mysql&gt; select * from emp;
+</code></pre>
+<h1 id="修改主表成功从表也跟着修改修改了主表被引用的字段1002为1004从表的引用字段就跟着修改为1004了">修改主表成功，从表也跟着修改，修改了主表被引用的字段1002为1004，从表的引用字段就跟着修改为1004了</h1>
+<pre><code>mysql&gt; update dept set did = 1004 where did = 1002;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql&gt; select * from dept;
++------+--------+
+| did  | dname  |
++------+--------+
+| 1001 | 教学部 |
+| 1003 | 咨询部 |
+| 1004 | 财务部 | #原来是1002，修改为1004
++------+--------+
+3 rows in set (0.00 sec)
+
+mysql&gt; select * from emp;
++-----+-------+--------+
+| eid | ename | deptid |
++-----+-------+--------+
+|   1 | 张三  |   1001 |
+|   2 | 李四  |   1001 |
+|   3 | 王五  |   1004 | #原来是1002，跟着修改为1004
++-----+-------+--------+
+3 rows in set (0.00 sec)
+</code></pre>
+<h1 id="删除主表的记录成功从表对应的字段的值被修改为null">删除主表的记录成功，从表对应的字段的值被修改为null</h1>
+<pre><code>mysql&gt; delete from dept where did = 1001;
+Query OK, 1 row affected (0.01 sec)
+
+mysql&gt; select * from dept;
++------+--------+
+| did  | dname  | #记录1001部门被删除了
++------+--------+
+| 1003 | 咨询部  |
+| 1004 | 财务部  |
++------+--------+
+2 rows in set (0.00 sec)
+
+mysql&gt; select * from emp;
++-----+-------+--------+
+| eid | ename | deptid |
++-----+-------+--------+
+|   1 | 张三  |   NULL | #原来引用1001部门的员工，deptid字段变为null
+|   2 | 李四  |   NULL |
+|   3 | 王五  |   1004 |
++-----+-------+--------+
+3 rows in set (0.00 sec)
+</code></pre>
+<p><strong>(2)演示2：on update set null on delete cascade</strong></p>
+<pre><code>create table dept(
+	did int primary key,		#部门编号
+    dname varchar(50)			#部门名称
+);
+
+create table emp(
+	eid int primary key,  #员工编号
+    ename varchar(5),     #员工姓名
+    deptid int,				#员工所在的部门
+    foreign key (deptid) references dept(did)  on update set null on delete cascade
+</code></pre>
+<h1 id="把修改操作设置为set-null等级把删除操作设置为级联删除等级">把修改操作设置为set null等级，把删除操作设置为级联删除等级</h1>
+<pre><code>);
+
+
+insert into dept values(1001,'教学部');
+insert into dept values(1002, '财务部');
+insert into dept values(1003, '咨询部');
+
+insert into emp values(1,'张三',1001); #在添加这条记录时，要求部门表有1001部门
+insert into emp values(2,'李四',1001);
+insert into emp values(3,'王五',1002);
+
+
+mysql&gt; select * from dept;
++------+--------+
+| did  | dname  |
++------+--------+
+| 1001 | 教学部 |
+| 1002 | 财务部 |
+| 1003 | 咨询部 |
++------+--------+
+3 rows in set (0.00 sec)
+
+mysql&gt; select * from emp;
++-----+-------+--------+
+| eid | ename | deptid |
++-----+-------+--------+
+|   1 | 张三  |   1001 |
+|   2 | 李四  |   1001 |
+|   3 | 王五  |   1002 |
++-----+-------+--------+
+3 rows in set (0.00 sec)
+</code></pre>
+<h1 id="修改主表从表对应的字段设置为null">修改主表，从表对应的字段设置为null</h1>
+<pre><code>mysql&gt; update dept set did = 1004 where did = 1002;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql&gt; select * from dept;
++------+--------+
+| did  | dname  |
++------+--------+
+| 1001 | 教学部 |
+| 1003 | 咨询部 |
+| 1004 | 财务部 | #原来did是1002
++------+--------+
+3 rows in set (0.00 sec)
+
+mysql&gt; select * from emp;
++-----+-------+--------+
+| eid | ename | deptid |
++-----+-------+--------+
+|   1 | 张三  |   1001 |
+|   2 | 李四  |   1001 |
+|   3 | 王五  |   NULL | #原来deptid是1002，因为部门表1002被修改了，1002没有对应的了，就设置为null
++-----+-------+--------+
+3 rows in set (0.00 sec)
+</code></pre>
+<h1 id="删除主表的记录成功主表的1001行被删除了从表相应的记录也被删除了">删除主表的记录成功，主表的1001行被删除了，从表相应的记录也被删除了</h1>
+<pre><code>mysql&gt; delete from dept where did=1001;
+Query OK, 1 row affected (0.00 sec)
+
+mysql&gt; select * from dept;
++------+--------+
+| did  | dname  | #部门表中1001部门被删除
++------+--------+
+| 1003 | 咨询部 |
+| 1004 | 财务部 |
++------+--------+
+2 rows in set (0.00 sec)
+
+mysql&gt; select * from emp;
++-----+-------+--------+
+| eid | ename | deptid |#原来1001部门的员工也被删除了
++-----+-------+--------+
+|   3 | 王五  |   NULL |
++-----+-------+--------+
+1 row in set (0.00 sec)
+</code></pre>
+<p><strong>(3)演示：on update cascade on delete cascade</strong></p>
+<pre><code>create table dept(
+	did int primary key,		#部门编号
+    dname varchar(50)			#部门名称
+);
+
+create table emp(
+	eid int primary key,  #员工编号
+    ename varchar(5),     #员工姓名
+    deptid int,				#员工所在的部门
+    foreign key (deptid) references dept(did)  on update cascade on delete cascade
+</code></pre>
+<h1 id="把修改操作设置为级联修改等级把删除操作也设置为级联删除等级">把修改操作设置为级联修改等级，把删除操作也设置为级联删除等级</h1>
+<pre><code>);
+
+
+insert into dept values(1001,'教学部');
+insert into dept values(1002, '财务部');
+insert into dept values(1003, '咨询部');
+
+insert into emp values(1,'张三',1001); #在添加这条记录时，要求部门表有1001部门
+insert into emp values(2,'李四',1001);
+insert into emp values(3,'王五',1002);
+
+
+mysql&gt; select * from dept;
++------+--------+
+| did  | dname  |
++------+--------+
+| 1001 | 教学部 |
+| 1002 | 财务部 |
+| 1003 | 咨询部 |
++------+--------+
+3 rows in set (0.00 sec)
+
+mysql&gt; select * from emp;
++-----+-------+--------+
+| eid | ename | deptid |
++-----+-------+--------+
+|   1 | 张三  |   1001 |
+|   2 | 李四  |   1001 |
+|   3 | 王五  |   1002 |
++-----+-------+--------+
+3 rows in set (0.00 sec)
+</code></pre>
+<h1 id="修改主表从表对应的字段自动修改">修改主表，从表对应的字段自动修改</h1>
+<pre><code>mysql&gt; update dept set did = 1004 where did = 1002;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql&gt; select * from dept;
++------+--------+
+| did  | dname  |
++------+--------+
+| 1001 | 教学部 |
+| 1003 | 咨询部 |
+| 1004 | 财务部 | #部门1002修改为1004
++------+--------+
+3 rows in set (0.00 sec)
+
+mysql&gt; select * from emp;
++-----+-------+--------+
+| eid | ename | deptid |
++-----+-------+--------+
+|   1 | 张三  |   1001 |
+|   2 | 李四  |   1001 |
+|   3 | 王五  |   1004 | #级联修改
++-----+-------+--------+
+3 rows in set (0.00 sec)
+</code></pre>
+<h1 id="删除主表的记录成功主表的1001行被删除了从表相应的记录也被删除了-1">删除主表的记录成功，主表的1001行被删除了，从表相应的记录也被删除了</h1>
+<pre><code>mysql&gt; delete from dept where did=1001;
+Query OK, 1 row affected (0.00 sec)
+
+mysql&gt; select * from dept;
++------+--------+
+| did  | dname  | #1001部门被删除了
++------+--------+
+| 1003 | 咨询部 |
+| 1004 | 财务部 |
++------+--------+
+2 rows in set (0.00 sec)
+
+mysql&gt; select * from emp;
++-----+-------+--------+
+| eid | ename | deptid |  #1001部门的员工也被删除了
++-----+-------+--------+
+|   3 | 王五  |   1004 |
++-----+-------+--------+
+1 row in set (0.00 sec)
+</code></pre>
+<h2 id="12-删除外键约束">12 删除外键约束</h2>
+<p>流程如下：</p>
+<pre><code>(1)第一步先查看约束名和删除外键约束
+SELECT * FROM information_schema.table_constraints WHERE table_name = '表名称';#查看某个表的约束名
+
+ALTER TABLE 从表名 DROP FOREIGN KEY 外键约束名;
+
+(2)第二步查看索引名和删除索引。(注意，只能手动删除)
+SHOW INDEX FROM 表名称; #查看某个表的索引名
+
+ALTER TABLE 从表名 DROP INDEX 索引名;
+
+
+-- 举例
+mysql&gt; SELECT * FROM information_schema.table_constraints WHERE table_name = 'emp';
+
+mysql&gt; alter table emp drop foreign key emp_ibfk_1;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+
+mysql&gt; show index from emp;
+
+mysql&gt; alter table emp drop index deptid;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql&gt;  show index from emp;
+</code></pre>
+<h3 id="121-开发场景">12.1 开发场景</h3>
+<blockquote>
+<p><strong>问题1：如果两个表之间有关系(一对一、一对多)，比如：员工表和部门表(一对多)，它们之间是否一定要建外键约束？</strong>
+答：不是的</p>
+</blockquote>
+<blockquote>
+<p><strong>问题2：建和不建外键约束有什么区别？</strong>
+答：建外键约束，你的操作(创建表、删除表、添加、修改、删除)会受到限制，从语法层面受到限制。例如：在员工表中不可能添加一个员工信息，它的部门的值在部门表中找不到。</p>
+</blockquote>
+<blockquote>
+<p>不建外键约束，你的操作(创建表、删除表、添加、修改、删除)不受限制，要保证数据的<code>引用完整性</code>，只能依<code>靠程序员的自觉</code>，或者是<code>在Java程序中进行限定</code>。例如：在员工表中，可以添加一个员工的信息，它的部门指定为一个完全不存在的部门。</p>
+</blockquote>
+<blockquote>
+<p><strong>问题3：那么建和不建外键约束和查询有没有关系？</strong>
+答：没有</p>
+</blockquote>
+<blockquote>
+<p>在 MySQL 里，外键约束是有成本的，需要消耗系统资源。对于大并发的 SQL 操作，有可能会不适合。比如大型网站的中央数据库，可能会<code>因为外键约束的系统开销而变得非常慢</code>。所以， MySQL 允许你不使用系统自带的外键约束，在<code>应用层面</code>完成检查数据一致性的逻辑。也就是说，即使你不用外键约束，也要想办法通过应用层面的附加逻辑，来实现外键约束的功能，确保数据的一致性。</p>
+</blockquote>
+<h3 id="122-阿里开发规范">12.2 阿里开发规范</h3>
+<blockquote>
+<p>【<code>强制</code>】不得使用外键与级联，一切外键概念必须在应用层解决。
+说明：(概念解释)学生表中的 student_id 是主键，那么成绩表中的 student_id 则为外键。如果更新学生表中的 student_id，同时触发成绩表中的 student_id 更新，即为级联更新。外键与级联更新适用于<code>单机低并发</code>，不适合<code>分布式</code>、<code>高并发集群</code>；级联更新是强阻塞，存在数据库<code>更新风暴</code>的风险；外键影响数据库的<code>插入速度</code>。</p>
+</blockquote>
+<h2 id="137-check-约束">13.7 CHECK 约束</h2>
+<h3 id="123-作用">12.3 作用</h3>
+<blockquote>
+<p>检查某个字段的值是否符号xx要求，一般指的是值的范围</p>
+</blockquote>
+<h3 id="124-关键字">12.4 关键字</h3>
+<blockquote>
+<p><code>CHECK</code></p>
+</blockquote>
+<h3 id="125-mysql-57-不支持">12.5 MySQL 5.7 不支持</h3>
+<blockquote>
+<p>MySQL5.7 可以使用check约束，但check约束对数据验证没有任何作用。添加数据时，没有任何错误或警告
+但是<strong>MySQL 8.0中可以使用check约束了</strong>。</p>
+</blockquote>
+<pre><code>create table employee(
+	eid int primary key,
+    ename varchar(5),
+    gender char check ('男' or '女')
+);
+
+
+insert into employee values(1,'张三','妖');
+
+
+mysql&gt; select * from employee;
++-----+-------+--------+
+| eid | ename | gender |
++-----+-------+--------+
+|   1 | 张三   | 妖     |
++-----+-------+--------+
+1 row in set (0.00 sec)
+
+
+CREATE TABLE temp(
+id INT AUTO_INCREMENT,
+NAME VARCHAR(20),
+age INT CHECK(age &gt; 20),
+PRIMARY KEY(id)
+);
+
+
+age tinyint check(age &gt;20) 或 sex char(2) check(sex in(‘男’,’女’))
+
+
+CHECK(height&gt;=0 AND height&lt;3)
+</code></pre>
+<h2 id="138-default约束">13.8 DEFAULT约束</h2>
+<h3 id="126-作用">12.6 作用</h3>
+<blockquote>
+<p>给某个字段/某列指定默认值，一旦设置默认值，在插入数据时，如果此字段没有显式赋值，则赋值为默认值。</p>
+</blockquote>
+<h3 id="127-关键字">12.7 关键字</h3>
+<blockquote>
+<p><code>DEFAULT</code></p>
+</blockquote>
+<h3 id="128-如何给字段加默认值">12.8 如何给字段加默认值</h3>
+<pre><code>-- 建表时:
+create table 表名称(
+	字段名  数据类型  primary key,
+    字段名  数据类型  unique key not null,
+    字段名  数据类型  unique key,
+    字段名  数据类型  not null default 默认值,
+);
+create table 表名称(
+	字段名  数据类型 default 默认值 ,
+    字段名  数据类型 not null default 默认值,
+    字段名  数据类型 not null default 默认值,
+    primary key(字段名),
+    unique key(字段名)
+);
+
+说明：默认值约束一般不在唯一键和主键列上加
+
+
+create table employee(
+	eid int primary key,
+    ename varchar(20) not null,
+    gender char default '男',
+    tel char(11) not null default '' #默认是空字符串
+);
+
+
+mysql&gt; desc employee;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| eid    | int(11)     | NO   | PRI | NULL    |       |
+| ename  | varchar(20) | NO   |     | NULL    |       |
+| gender | char(1)     | YES  |     | 男      |       |
+| tel    | char(11)    | NO   |     |         |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+
+insert into employee values(1,'汪飞','男','13700102535'); #成功
+
+
+mysql&gt; select * from employee;
++-----+-------+--------+-------------+
+| eid | ename | gender | tel         |
++-----+-------+--------+-------------+
+|   1 | 汪飞  | 男     | 13700102535 |
++-----+-------+--------+-------------+
+1 row in set (0.00 sec)
+
+
+insert into employee(eid,ename) values(2,'天琪'); #成功
+
+
+mysql&gt; select * from employee;
++-----+-------+--------+-------------+
+| eid | ename | gender | tel         |
++-----+-------+--------+-------------+
+|   1 | 汪飞  | 男     | 13700102535 |
+|   2 | 天琪  | 男     |             |
++-----+-------+--------+-------------+
+2 rows in set (0.00 sec)
+
+
+insert into employee(eid,ename) values(3,'二虎');
+</code></pre>
+<h1 id="error-1062-23000-duplicate-entry--for-key-tel">ERROR 1062 (23000): Duplicate entry &rsquo;&rsquo; for key &rsquo;tel&rsquo;</h1>
+<h1 id="如果tel有唯一性约束的话会报错如果tel没有唯一性约束可以添加成功">如果tel有唯一性约束的话会报错，如果tel没有唯一性约束，可以添加成功</h1>
+<pre><code>CREATE TABLE myemp(
+id INT AUTO_INCREMENT PRIMARY KEY,
+NAME VARCHAR(15),
+salary DOUBLE(10,2) DEFAULT 2000
+);
+
+
+-- 建表后
+
+
+alter table 表名称 modify 字段名 数据类型 default 默认值;
+</code></pre>
+<h1 id="如果这个字段原来有非空约束你还保留非空约束那么在加默认值约束时还得保留非空约束否则非空约束就被删除了">如果这个字段原来有非空约束，你还保留非空约束，那么在加默认值约束时，还得保留非空约束，否则非空约束就被删除了</h1>
+<h1 id="同理在给某个字段加非空约束也一样如果这个字段原来有默认值约束你想保留也要在modify语句中保留默认值约束否则就删除了">同理，在给某个字段加非空约束也一样，如果这个字段原来有默认值约束，你想保留，也要在modify语句中保留默认值约束，否则就删除了</h1>
+<pre><code>alter table 表名称 modify 字段名 数据类型 default 默认值 not null;
+
+
+create table employee(
+	eid int primary key,
+    ename varchar(20),
+    gender char,
+    tel char(11) not null
+);
+
+
+mysql&gt; desc employee;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| eid    | int(11)     | NO   | PRI | NULL    |       |
+| ename  | varchar(20) | YES  |     | NULL    |       |
+| gender | char(1)     | YES  |     | NULL    |       |
+| tel    | char(11)    | NO   |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+
+alter table employee modify gender char default '男';  #给gender字段增加默认值约束
+alter table employee modify tel char(11) default ''; #给tel字段增加默认值约束
+
+
+mysql&gt; desc employee;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| eid    | int(11)     | NO   | PRI | NULL    |       |
+| ename  | varchar(20) | YES  |     | NULL    |       |
+| gender | char(1)     | YES  |     | 男      |       |
+| tel    | char(11)    | YES  |     |         |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+
+alter table employee modify tel char(11) default ''  not null;#给tel字段增加默认值约束，并保留非空约束
+
+
+mysql&gt; desc employee;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| eid    | int(11)     | NO   | PRI | NULL    |       |
+| ename  | varchar(20) | YES  |     | NULL    |       |
+| gender | char(1)     | YES  |     | 男      |       |
+| tel    | char(11)    | NO   |     |         |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+</code></pre>
+<h2 id="13-如何删除默认值约束">13 如何删除默认值约束</h2>
+<pre><code>alter table 表名称 modify 字段名 数据类型 ;#删除默认值约束，也不保留非空约束
+
+alter table 表名称 modify 字段名 数据类型  not null; #删除默认值约束，保留非空约束
+
+
+alter table employee modify gender char; #删除gender字段默认值约束，如果有非空约束，也一并删除
+alter table employee modify tel char(11)  not null;#删除tel字段默认值约束，保留非空约束
+
+
+mysql&gt; desc employee;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| eid    | int(11)     | NO   | PRI | NULL    |       |
+| ename  | varchar(20) | YES  |     | NULL    |       |
+| gender | char(1)     | YES  |     | NULL    |       |
+| tel    | char(11)    | NO   |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+</code></pre>
+<h2 id="139-面试">13.9 面试</h2>
+<blockquote>
+<p><strong>面试1、为什么建表时，加 not null default ‘’ 或 default 0</strong>
+答：不想让表中出现null值。</p>
+</blockquote>
+<blockquote>
+<p><strong>面试2、为什么不想要 null 的值</strong>
+答:(1)不好比较。null是一种特殊值，比较时只能用专门的is null 和 is not null来比较。碰到运算符，通常返回null。
+(2)效率不高。影响提高索引效果。因此，我们往往在建表时 not null default ‘’ 或 default 0</p>
+</blockquote>
+<blockquote>
+<p><strong>面试3、带AUTO_INCREMENT约束的字段值是从1开始的吗？</strong>
+在MySQL中，默认AUTO_INCREMENT的初始值是1，每新增一条记录，字段值自动加1。设置自增属性(AUTO_INCREMENT)的时候，还可以指定第一条插入记录的自增字段的值，这样新插入的记录的自增字段值从初始值开始递增，如在表中插入第一条记录，同时指定id值为5，则以后插入的记录的id值就会从6开始往上增加。添加主键约束时，往往需要设置字段自动增加属性。</p>
+</blockquote>
+<blockquote>
+<p><strong>面试4、并不是每个表都可以任意选择存储引擎？</strong>
+外键约束(FOREIGN KEY)不能跨引擎使用。
+MySQL支持多种存储引擎，每一个表都可以指定一个不同的存储引擎，需要注意的是：外键约束是用来保证数据的参照完整性的，如果表之间需要关联外键，却指定了不同的存储引擎，那么这些表之间是不能创建外键约束的。所以说，存储引擎的选择也不完全是随意的。</p>
+</blockquote>
+<h1 id="第14章-视图">第14章 视图</h1>
+<h2 id="141-常见的数据库对象">14.1 常见的数据库对象</h2>
+<p>对象</p>
+<p>描述</p>
+<p>表(TABLE)</p>
+<p>表是存储数据的逻辑单元，以行和列的形式存在，列就是字段，行就是记录</p>
+<p>数据字典</p>
+<p>就是系统表，存放数据库相关信息的表。系统表的数据通常由数据库系统维护，程序员通常不应该修改，只可查看</p>
+<p>约束(CONSTRAINT)</p>
+<p>执行数据校验的规则，用于保证数据完整性的规则</p>
+<p>视图(VIEW)</p>
+<p>一个或者多个数据表里的数据的逻辑显示，视图并不存储数据</p>
+<p>索引(INDEX)</p>
+<p>用于提高查询性能，相当于书的目录</p>
+<p>存储过程(PROCEDURE)</p>
+<p>用于完成一次完整的业务处理，没有返回值，但可通过传出参数将多个值传给调用环境</p>
+<p>存储函数(FUNCTION)</p>
+<p>用于完成一次特定的计算，具有一个返回值</p>
+<p>触发器(TRIGGER)</p>
+<p>相当于一个事件监听器，当数据库发生特定事件后，触发器被触发，完成相应的处理</p>
+<h2 id="142-视图概述">14.2 视图概述</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812514.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812514.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812514.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812514.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812514.png"
+        title="在这里插入图片描述" /></p>
+<h3 id="131-为什么使用视图">13.1 为什么使用视图</h3>
+<blockquote>
+<ul>
+<li>视图一方面可以帮我们使用表的一部分而不是所有的表，另一方面也可以针对不同的用户制定不同的查询视图。比如，针对一个公司的销售人员，我们只想给他看部分数据，而某些特殊的数据，比如采购的价格，则不会提供给他。再比如，人员薪酬是个敏感的字段，那么只给某个级别以上的人员开放，其他人的查询视图中则不提供这个字段。</li>
+<li>刚才讲的只是视图的一个使用场景，实际上视图还有很多作用。最后，我们总结视图的优点。</li>
+</ul>
+</blockquote>
+<h3 id="132-视图的理解">13.2 视图的理解</h3>
+<blockquote>
+<ul>
+<li>视图是一种<code>虚拟表</code>，本身是<code>不具有数据</code>的，占用很少的内存空间，它是 SQL 中的一个重要概念。</li>
+<li><strong>视图建立在已有表的基础上</strong>, 视图赖以建立的这些表称为<strong>基表</strong>。</li>
+</ul>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812553.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812553.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812553.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812553.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012812553.png"
+        title="在这里插入图片描述" /></p>
+<blockquote>
+<ul>
+<li>视图的创建和删除只影响视图本身，不影响对应的基表。但是当对视图中的数据进行增加、删除和修改操作时，数据表中的数据会相应地发生变化，反之亦然。</li>
+<li>向视图提供数据内容的语句为 SELECT 语句, 可以将视图理解为<strong>存储起来的</strong> <strong>SELECT</strong> <strong>语句</strong>
+<ul>
+<li>在数据库中，视图不会保存数据，数据真正保存在数据表中。当对视图中的数据进行增加、删除和修改操作时，数据表中的数据会相应地发生变化；反之亦然。</li>
+</ul>
+</li>
+<li>视图，是向用户提供基表数据的另一种表现形式。通常情况下，小型项目的数据库可以不使用视图，但是在大型项目中，以及数据表比较复杂的情况下，视图的价值就凸显出来了，它可以帮助我们把经常查询的结果集放到虚拟表中，提升使用效率。理解和使用起来都非常方便。</li>
+</ul>
+</blockquote>
+<h2 id="143-创建视图">14.3 创建视图</h2>
+<ul>
+<li>
+<p><strong>在</strong> <strong>CREATE VIEW</strong> <strong>语句中嵌入子查询</strong></p>
+<p>CREATE [OR REPLACE]
+[ALGORITHM = {UNDEFINED | MERGE | TEMPTABLE}]
+VIEW 视图名称 [(字段列表)]
+AS 查询语句
+[WITH [CASCADED|LOCAL] CHECK OPTION]</p>
+</li>
+<li>
+<p>精简版</p>
+<p>CREATE VIEW 视图名称
+AS 查询语句</p>
+</li>
+</ul>
+<h3 id="133-创建单表视图">13.3 创建单表视图</h3>
+<pre><code>-- 举例
+CREATE VIEW empvu80
+AS
+SELECT  employee_id, last_name, salary
+FROM    employees
+WHERE   department_id = 80;
+
+
+SELECT * FROM salvu80;
+</code></pre>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012813295.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012813295.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012813295.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012813295.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220523012813295.png"
+        title="在这里插入图片描述" /></p>
+<pre><code>-- 举例
+CREATE VIEW emp_year_salary (ename,year_salary)
+AS
+SELECT ename,salary*12*(1+IFNULL(commission_pct,0))
+FROM t_employee;
+
+
+CREATE VIEW salvu50
+AS
+SELECT  employee_id ID_NUMBER, last_name NAME,salary*12 ANN_SALARY
+FROM    employees
+WHERE   department_id = 50;
+</code></pre>
+<blockquote>
+<ul>
+<li>说明1：实际上就是我们在 SQL 查询语句的基础上封装了视图 VIEW，这样就会基于 SQL 语句的结果集形成一张虚拟表。</li>
+<li>说明2：在创建视图时，没有在视图名后面指定字段列表，则视图中字段列表默认和SELECT语句中的字段列表一致。如果SELECT语句中给字段取了别名，那么视图中的字段名和别名相同。</li>
+</ul>
+</blockquote>
+<h3 id="134-创建多表联合视图">13.4 创建多表联合视图</h3>
+<pre><code>-- 举例
+CREATE VIEW empview
+AS
+SELECT employee_id emp_id,last_name NAME,department_name
+FROM employees e,departments d
+WHERE e.department_id = d.department_id;
+
+
+CREATE VIEW emp_dept
+AS
+SELECT ename,dname
+FROM t_employee LEFT JOIN t_department
+ON t_employee.did = t_department.did;
+
+
+CREATE VIEW	dept_sum_vu
+(name, minsal, maxsal, avgsal)
+AS
+SELECT d.department_name, MIN(e.salary), MAX(e.salary),AVG(e.salary)
+FROM employees e, departments d
+WHERE e.department_id = d.department_id
+GROUP BY  d.department_name;
+</code></pre>
+<ul>
+<li><strong>利用视图对数据进行格式化</strong></li>
+</ul>
+<blockquote>
+<p>我们经常需要输出某个格式的内容，比如我们想输出员工姓名和对应的部门名，对应格式为 emp_name(department_name)，就可以使用视图来完成数据格式化的操作：</p>
+</blockquote>
+<pre><code>CREATE VIEW emp_depart
+AS
+SELECT CONCAT(last_name,'(',department_name,')') AS emp_dept
+FROM employees e JOIN departments d
+WHERE e.department_id = d.department_id
+</code></pre>
+<h3 id="135-基于视图创建视图">13.5 基于视图创建视图</h3>
+<blockquote>
+<p>当我们创建好一张视图之后，还可以在它的基础上继续创建视图。
+举例：联合“emp_dept”视图和“emp_year_salary”视图查询员工姓名、部门名称、年薪信息创建 “emp_dept_ysalary”视图。</p>
+</blockquote>
+<pre><code>CREATE VIEW emp_dept_ysalary
+AS
+SELECT emp_dept.ename,dname,year_salary
+FROM emp_dept INNER JOIN emp_year_salary
+ON emp_dept.ename = emp_year_salary.ename;
+</code></pre>
+<h2 id="144-查看视图">14.4 查看视图</h2>
+<ul>
+<li>
+<p>语法1：查看数据库的表对象、视图对象</p>
+<p>SHOW TABLES;</p>
+</li>
+<li>
+<p>语法2：查看视图的结构</p>
+<p>DESC / DESCRIBE 视图名称;</p>
+</li>
+<li>
+<p>语法3：查看视图的属性信息</p>
+</li>
+</ul>
+<h1 id="查看视图信息显示数据表的存储引擎版本数据行数和数据大小等">查看视图信息(显示数据表的存储引擎、版本、数据行数和数据大小等)</h1>
+<pre><code>SHOW TABLE STATUS LIKE '视图名称'\G
+</code></pre>
+<blockquote>
+<p>执行结果显示，注释Comment为VIEW，说明该表为视图，其他的信息为NULL，说明这是一个虚表。</p>
+</blockquote>
+<ul>
+<li>
+<p>语法4：查看视图的详细定义信息</p>
+<p>SHOW CREATE VIEW 视图名称;</p>
+</li>
+</ul>
+<h2 id="145-更新视图的数据">14.5 更新视图的数据</h2>
+<h2 id="14-一般情况">14 一般情况</h2>
+<blockquote>
+<p>MySQL支持使用INSERT、UPDATE和DELETE语句对视图中的数据进行插入、更新和删除操作。当视图中的数据发生变化时，数据表中的数据也会发生变化，反之亦然。</p>
+</blockquote>
+<ul>
+<li>
+<p>举例：UPDATE操作</p>
+<p>mysql&gt; SELECT ename,tel FROM emp_tel WHERE ename = &lsquo;孙洪亮&rsquo;;
++&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;-+
+| ename   | tel         |
++&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;-+
+| 孙洪亮 	| 13789098765 |
++&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;-+
+1 row in set (0.01 sec)</p>
+<p>mysql&gt; UPDATE emp_tel SET tel = &lsquo;13789091234&rsquo; WHERE ename = &lsquo;孙洪亮&rsquo;;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0</p>
+<p>mysql&gt; SELECT ename,tel FROM emp_tel WHERE ename = &lsquo;孙洪亮&rsquo;;
++&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;-+
+| ename	  | tel         |
++&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;-+
+| 	孙洪亮 | 13789091234 |
++&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;-+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; SELECT ename,tel FROM t_employee WHERE ename = &lsquo;孙洪亮&rsquo;;
++&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;-+
+| ename   | tel         |
++&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;-+
+| 孙洪亮 	| 13789091234 |
++&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;-+
+1 row in set (0.00 sec)</p>
+</li>
+<li>
+<p>举例：DELETE操作</p>
+<p>mysql&gt; SELECT ename,tel FROM emp_tel WHERE ename = &lsquo;孙洪亮&rsquo;;
++&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;-+
+| ename  	| tel           |
++&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;-+
+| 孙洪亮 	| 13789091234 |
++&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;-+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; DELETE FROM emp_tel  WHERE ename = &lsquo;孙洪亮&rsquo;;
+Query OK, 1 row affected (0.01 sec)</p>
+<p>mysql&gt; SELECT ename,tel FROM emp_tel WHERE ename = &lsquo;孙洪亮&rsquo;;
+Empty set (0.00 sec)</p>
+<p>mysql&gt; SELECT ename,tel FROM t_employee WHERE ename = &lsquo;孙洪亮&rsquo;;
+Empty set (0.00 sec)</p>
+</li>
+</ul>
+<h3 id="141-不可更新的视图">14.1 不可更新的视图</h3>
+<blockquote>
+<p>要使视图可更新，视图中的行和底层基本表中的行之间必须存在<code>一对一</code>的关系。另外当视图定义出现如下情况时，视图不支持更新操作：</p>
+<ul>
+<li>在定义视图的时候指定了“ALGORITHM = TEMPTABLE”，视图将不支持INSERT和DELETE操作；</li>
+<li>视图中不包含基表中所有被定义为非空又未指定默认值的列，视图将不支持INSERT操作；</li>
+<li>在定义视图的SELECT语句中使用了<code>JOIN联合查询</code>，视图将不支持INSERT和DELETE操作；</li>
+<li>在定义视图的SELECT语句后的字段列表中使用了<code>数学表达式</code>或<code>子查询</code>，视图将不支持INSERT，也不支持UPDATE使用了数学表达式、子查询的字段值；</li>
+<li>在定义视图的SELECT语句后的字段列表中使用<code>DISTINCT</code>、<code>聚合函数</code>、<code>GROUP BY</code>、<code>HAVING</code>、<code>UNION</code>等，视图将不支持INSERT、UPDATE、DELETE；</li>
+<li>在定义视图的SELECT语句中包含了子查询，而子查询中引用了FROM后面的表，视图将不支持INSERT、UPDATE、DELETE；</li>
+<li>视图定义基于一个<code>不可更新视图</code>；</li>
+<li>常量视图。</li>
+</ul>
+</blockquote>
+<pre><code>-- 举例
+mysql&gt; CREATE OR REPLACE VIEW emp_dept
+    -&gt; (ename,salary,birthday,tel,email,hiredate,dname)
+    -&gt; AS SELECT ename,salary,birthday,tel,email,hiredate,dname
+    -&gt; FROM t_employee INNER JOIN t_department
+    -&gt; ON t_employee.did = t_department.did ;
+Query OK, 0 rows affected (0.01 sec)
+
+
+mysql&gt; INSERT INTO emp_dept(ename,salary,birthday,tel,email,hiredate,dname)
+    -&gt; VALUES('张三',15000,'1995-01-08','18201587896',
+    -&gt; 'zs@atguigu.com','2022-02-14','新部门');
+</code></pre>
+<h1 id="error-1393-hy000-can-not-modify-more-than-one-base-table-through-a-join-view-atguigu_chapter9emp_dept">ERROR 1393 (HY000): Can not modify more than one base table through a join view &lsquo;atguigu_chapter9.emp_dept&rsquo;</h1>
+<blockquote>
+<p>从上面的SQL执行结果可以看出，在定义视图的SELECT语句中使用了JOIN联合查询，视图将不支持更新操作。</p>
+</blockquote>
+<blockquote>
+<p>虽然可以更新视图数据，但总的来说，视图作为<code>虚拟表</code>，主要用于<code>方便查询</code>，不建议更新视图的数据。<strong>对视图数据的更改，都是通过对实际数据表里数据的操作来完成的。</strong></p>
+</blockquote>
+<h2 id="146-修改删除视图">14.6. 修改、删除视图</h2>
+<h2 id="15-修改视图">15 修改视图</h2>
+<ul>
+<li>
+<p>方式1：使用CREATE <strong>OR REPLACE</strong> VIEW 子句<strong>修改视图</strong></p>
+<p>CREATE OR REPLACE VIEW empvu80
+(id_number, name, sal, department_id)
+AS
+SELECT  employee_id, first_name || &rsquo; &rsquo; || last_name, salary, department_id
+FROM employees
+WHERE department_id = 80;</p>
+</li>
+</ul>
+<blockquote>
+<p>说明：CREATE VIEW 子句中各列的别名应和子查询中各列相对应。</p>
+</blockquote>
+<ul>
+<li>
+<p>方式2：ALTER VIEW</p>
+<p>&ndash; 修改视图的语法是：
+ALTER VIEW 视图名称
+AS
+查询语句</p>
+</li>
+</ul>
+<h3 id="151-删除视图">15.1 删除视图</h3>
+<blockquote>
+<ul>
+<li>删除视图只是删除视图的定义，并不会删除基表的数据。</li>
+<li>删除视图的语法是：</li>
+</ul>
+</blockquote>
+<pre><code>DROP VIEW IF EXISTS 视图名称;
+
+
+DROP VIEW IF EXISTS 视图名称1,视图名称2,视图名称3,...;
+
+
+-- 举例:
+DROP VIEW empvu80;
+</code></pre>
+<blockquote>
+<ul>
+<li>说明：基于视图a、b创建了新的视图c，如果将视图a或者视图b删除，会导致视图c的查询失败。这样的视图c需要手动删除或修改，否则影响使用。</li>
+</ul>
+</blockquote>
+<h2 id="147-总结">14.7. 总结</h2>
+<h3 id="152-视图优点">15.2 视图优点</h3>
+<ul>
+<li><strong>1. 操作简单</strong></li>
+</ul>
+<blockquote>
+<p>将经常使用的查询操作定义为视图，可以使开发人员不需要关心视图对应的数据表的结构、表与表之间的关联关系，也不需要关心数据表之间的业务逻辑和查询条件，而只需要简单地操作视图即可，极大简化了开发人员对数据库的操作。</p>
+</blockquote>
+<ul>
+<li><strong>2. 减少数据冗余</strong></li>
+</ul>
+<blockquote>
+<p>视图跟实际数据表不一样，它存储的是查询语句。所以，在使用的时候，我们要通过定义视图的查询语句来获取结果集。而视图本身不存储数据，不占用数据存储的资源，减少了数据冗余。</p>
+</blockquote>
+<ul>
+<li><strong>3. 数据安全</strong></li>
+</ul>
+<blockquote>
+<p>MySQL将用户对数据的<code>访问限制</code>在某些数据的结果集上，而这些数据的结果集可以使用视图来实现。用户不必直接查询或操作数据表。这也可以理解为视图具有<code>隔离性</code>。视图相当于在用户和实际的数据表之间加了一层虚拟表。</p>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_19,color_FFFFFF,t_70,g_se,x_16-20220523012812621.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_19%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812621.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_19%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812621.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_19%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220523012812621.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_19,color_FFFFFF,t_70,g_se,x_16-20220523012812621.png"
+        title="在这里插入图片描述" /></p>
+<blockquote>
+<p>同时，MySQL可以根据权限将用户对数据的访问限制在某些视图上，<strong>用户不需要查询数据表，可以直接通过视图获取数据表中的信息</strong>。这在一定程度上保障了数据表中数据的安全性。</p>
+</blockquote>
+<ul>
+<li><strong>4. 适应灵活多变的需求</strong></li>
+</ul>
+<blockquote>
+<p>当业务系统的需求发生变化后，如果需要改动数据表的结构，则工作量相对较大，可以使用视图来减少改动的工作量。这种方式在实际工作中使用得比较多。</p>
+</blockquote>
+<ul>
+<li><strong>5. 能够分解复杂的查询逻辑</strong></li>
+</ul>
+<blockquote>
+<p>数据库中如果存在复杂的查询逻辑，则可以将问题进行分解，创建多个视图获取数据，再将创建的多个视图结合起来，完成复杂的查询逻辑。</p>
+</blockquote>
+<h3 id="153-视图不足">15.3 视图不足</h3>
+<blockquote>
+<ul>
+<li>如果我们在实际数据表的基础上创建了视图，那么，<strong>如果实际数据表的结构变更了，我们就需要及时对相关的视图进行相应的维护</strong>。特别是嵌套的视图(就是在视图的基础上创建视图)，维护会变得比较复杂，<code>可读性不好</code>，容易变成系统的潜在隐患。因为创建视图的 SQL 查询可能会对字段重命名，也可能包含复杂的逻辑，这些都会增加维护的成本。</li>
+<li>实际项目中，如果视图过多，会导致数据库维护成本的问题。</li>
+<li>所以，在创建视图的时候，你要结合实际项目需求，综合考虑视图的优点和不足，这样才能正确使用视图，使系统整体达到最优。</li>
+</ul>
+</blockquote>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/database/">database</a>
+                </span><span><a href="/tags/mysql/">mysql</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-06-17</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B015-16%E7%AB%A0/" class="prev" rel="prev" title="mysql详细笔记15-16章"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B011-12%E7%AB%A0/" class="next" rel="next" title="mysql详细笔记11-12章">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

@@ -1,0 +1,25 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>docker - 标签 - xcx</title>
+        <link>https://xiechaoxin.github.io/tags/docker/</link>
+        <description>docker - 标签 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 26 May 2023 09:10:46 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/tags/docker/" rel="self" type="application/rss+xml" /><item>
+    <title>Docker容器技术</title>
+    <link>https://xiechaoxin.github.io/posts/os/docker/docker%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF/</link>
+    <pubDate>Fri, 26 May 2023 09:10:46 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/os/docker/docker%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF/</guid>
+    <description><![CDATA[Docker容器技术 Docker是一门平台级别的技术，涉及的范围很广，所以，在开始之前，请确保你完成：Java SpringBoot 篇(推荐完成SpringCl]]></description>
+</item>
+<item>
+    <title>docker-intro</title>
+    <link>https://xiechaoxin.github.io/posts/os/docker/docker-intro/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/os/docker/docker-intro/</guid>
+    <description><![CDATA[Docker 基本概念解读 本文只是对 Docker 的概念做了较为详细的介绍，并不涉及一些像 Docker 环境的安装以及 Docker 的一些常见操作和命令。 1 一 认识容器 Docker 是世界领先的软件容器]]></description>
+</item>
+<item>
+    <title>docker从入门到实战</title>
+    <link>https://xiechaoxin.github.io/posts/os/docker/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/os/docker/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/</guid>
+    <description><![CDATA[Docker从入门到上手干事 1 Docker介绍 1.1 什么是 Docker？ 说实话关于 Docker 是什么并不太好说，下面我通过四点向你说明 Docker 到底是个什么东西。]]></description>
+</item>
+</channel>
+</rss>

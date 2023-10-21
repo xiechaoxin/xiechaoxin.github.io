@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>MySQL索引优化及性能调优9-14 - xcx</title><meta name="description" content=""><meta property="og:title" content="MySQL索引优化及性能调优9-14" />
+<meta property="og:description" content="MySQL索引优化及性能调优9-14 慢查询日志 是什么 MySQL的慢查询日志是MySQL提供的一种日志记录，它用来记录在MySQL中响应时间超" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/mysql%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-17T17:59:12+00:00" />
+<meta property="article:modified_time" content="2022-06-17T17:59:12+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MySQL索引优化及性能调优9-14"/>
+<meta name="twitter:description" content="MySQL索引优化及性能调优9-14 慢查询日志 是什么 MySQL的慢查询日志是MySQL提供的一种日志记录，它用来记录在MySQL中响应时间超"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/mysql%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B01-2%E7%AB%A0/" /><link rel="next" href="https://xiechaoxin.github.io/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/mysql%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%981-8/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "MySQL索引优化及性能调优9-14",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/database%E6%9C%AA%E5%A4%84%E7%90%86\/mysql\/mysql%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14\/"
+        },"genre": "posts","keywords": "database, mysql","wordcount":  6538 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/database%E6%9C%AA%E5%A4%84%E7%90%86\/mysql\/mysql%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%989-14\/","datePublished": "2022-06-17T17:59:12+00:00","dateModified": "2022-06-17T17:59:12+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">MySQL索引优化及性能调优9-14</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">出版于  <a href="/categories/database/"><i class="far fa-folder fa-fw"></i>database</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-17">2022-06-17</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6538 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 14 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-概述">1 概述</a></li>
+    <li><a href="#2-三锁">2 三锁</a></li>
+    <li><a href="#3-表锁偏读">3 表锁(偏读)</a></li>
+    <li><a href="#4-行锁偏写">4 行锁(偏写)</a></li>
+    <li><a href="#5-页锁">5 页锁</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="mysql索引优化及性能调优9-14">MySQL索引优化及性能调优9-14</h1>
+<h1 id="慢查询日志">慢查询日志</h1>
+<blockquote>
+<p><strong>是什么</strong></p>
+<ul>
+<li>MySQL的慢查询日志是MySQL提供的一种日志记录，<code>它用来记录在MySQL中响应时间超过阈值的语句，具体指运行时间超过long_query_time值的SQL</code>，则会被记录到慢查询日志中。</li>
+<li>long_query_time的默认值是10，意思是运行10秒以上的语句。</li>
+<li>由它来查看哪些SQL超出了我们的最大忍耐时间值，比如一条sql执行超过5秒钟，我们就算慢SQL，希望能收集超过5秒的sql，结合之前的explain进行全面分析。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>怎么玩</strong></p>
+<ul>
+<li>说明
+<ul>
+<li>默认情况下，MySQL数据库没有开启慢查询日志，需要我们手动来设置这个参数。</li>
+<li>当然，如果不是调优需要的话，一般不建议启动该参数，因为开启慢查询日志会或多或少带来一定的性能影响。慢查询日志支持将日志记录写入文件。</li>
+</ul>
+</li>
+<li>查看是否开启及如何开启
+<ul>
+<li>默认：SHOW VARIABLES LIKE ‘%slow_query_log%’;</li>
+<li>默认情况下slow_query_log的值为off,表示慢查询日志是禁用的,可以通过设置slow_query_log的值来开启.</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SHOW</span><span class="w"> </span><span class="n">VARIABLES</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%slow_query_log%&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./45de96d96b53413fa898dabfe6792d74.png"
+        data-srcset="./45de96d96b53413fa898dabfe6792d74.png, ./45de96d96b53413fa898dabfe6792d74.png 1.5x, ./45de96d96b53413fa898dabfe6792d74.png 2x"
+        data-sizes="auto"
+        alt="./45de96d96b53413fa898dabfe6792d74.png"
+        title="在这里插入图片描述" /></p>
+<pre tabindex="0"><code>SET GLOBAL slow_query_log = 1
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./a142cc3d0b54419fbb7ab6889dc0f890.png"
+        data-srcset="./a142cc3d0b54419fbb7ab6889dc0f890.png, ./a142cc3d0b54419fbb7ab6889dc0f890.png 1.5x, ./a142cc3d0b54419fbb7ab6889dc0f890.png 2x"
+        data-sizes="auto"
+        alt="./a142cc3d0b54419fbb7ab6889dc0f890.png"
+        title="在这里插入图片描述" /></p>
+<blockquote>
+<p>开启：set global slow_query_log=1;</p>
+<ul>
+<li>使用set global slow_query_log=1开始了慢查询日志<code>只对当前数据库生效</code>，如果Mysql重启后则会失效。</li>
+<li>如果要永久生效，就必须修改配置文件my.cnf(其它系统变量也是如此)</li>
+</ul>
+</blockquote>
+<pre tabindex="0"><code># 修改my.cnf文件，[mysqlId]下增加或修改参数
+# slow_query_log 和 slow_query_log_file后，然后重启Mysql服务器，也即将如下两行配置进my.cnf文件：
+slow_query_log = 1
+slow_query_log_file = /var/lib/mysql/atguigu-slow.log
+# 关于慢查询的参数slow_query_log_file，它指定慢查询日志文件的存放路径，系统默认会给一个缺省的文件host_name-slow.log(如果没有指定参数slow_quert_log_file的话)
+</code></pre><blockquote>
+<p>那么开启了慢查询日志后，什么样的SQL才会记录到慢查询日志里面呢</p>
+<ul>
+<li>这个是由参数long_query_time控制，默认清下long_query_time的值为10秒，命令：show variables like ‘long_query_time%’,可以使用命令修改，也可以在my.cnf参数里面修改。</li>
+<li>假如运行时间正好等于long_query_time的情况，并不会被记录下来。也就是说,在Mysql源码里是<code>判断大于long_query_time,而非大于等于</code>.</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>Case</p>
+<ul>
+<li>查看当前多少秒算慢：SHOW VARIABLES LIKE ‘long_query_time%’;</li>
+<li>设置慢的阈值时间：set global long_query_time=3;
+为什么设置后看不出变化(设置3之后，查询依然显示10)：
+<ul>
+<li>需要重新连接或新开一个会话才能看到修改值。</li>
+<li>SHOW VARIABLES LIEK ‘long_query_time%’;</li>
+<li>show global variables like ‘long_query_time’;</li>
+</ul>
+</li>
+<li>记录慢SQL并后续分析
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180135677.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180135677.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180135677.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180135677.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180135677.png"
+        title="在这里插入图片描述" /></li>
+<li>查询当前系统中有多少条慢查询记录：
+show global status like ‘%Slow_queries%’;</li>
+</ul>
+</blockquote>
+<p>配置版</p>
+<pre tabindex="0"><code>[mysqlId]下配置:
+slow_query_log = 1;
+slow_query_log_file = /var/lib/mysql/atguigu-slow.log
+long_query_time = 3;
+log_output = FILE
+</code></pre><blockquote>
+<p>日志分析工具mysqldumpslow</p>
+<ul>
+<li>在生产环境中，如果要手工分析日志，查找、分析SQL，显然是个体力活，MySQL提供了日志分析工具mysqldumpslow。</li>
+<li>查看mysqldumpslow的帮助信息</li>
+</ul>
+</blockquote>
+<pre tabindex="0"><code>mysqldumpslow --help
+s：是表示按照何种方式排序
+c：访问次数
+I：锁定时间
+r：返回记录
+t：查询时间
+al：平均锁定时间
+ar：平均返回记录数
+at：平均查询时间
+t：即为返回前面多少条的数据
+g：后边搭配一个正则匹配模式，大小写不敏感
+</code></pre><p>工作常用参考:</p>
+<pre tabindex="0"><code># 得到返回记录集最多的10个sql
+mysqldumpslow -s r -t 10 /var/lib/mysql/atguigu-slow.log
+# 得到访问次数最多的10个sql
+mysqldumpslow -s c -t 10 /var/lib/mysql/atguigu-slow.log
+# 得到按照时间排序的前10条里面含有左连接的查询语句
+mysqldumpslow -s t -t 10 -g &#34;left join&#34; /var/lib/mysql/atguigu-slow.log
+# 另外建议在使用这些命名时结合|和more使用，否则有可能出现爆屏的情况
+mysqldumpslow -s r -t 10 /var/lib/mysql/atguigu-slow.log |more
+</code></pre><h1 id="批量数据脚本">批量数据脚本</h1>
+<p>往表里插入1000w数据</p>
+<pre tabindex="0"><code># 建库
+CREATE DATABASE bigData;
+USE bigData;
+</code></pre><pre tabindex="0"><code># 建表dept
+CREATE TABLE dept(
+	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	deptno MEDIUMINT UNSIGNED NOT NULL DEFAULT 0,
+	dname VARCHAR(20) NOT NULL DEFAULT &#39;&#39;,
+	loc VARCHAR(13) NOT NULL DEFAULT &#39;&#39;
+)ENGINE=INNODB DEFAULT CHARSET=gbk;
+</code></pre><pre tabindex="0"><code># 建表emp
+CREATE TABLE emp(
+	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	empno MEDIUMINT UNSIGNED NOT NULL DEFAULT 0, /*编号*/
+	ename VARCHAR(20) NOT NULL DEFAULT &#39;&#39;,/*名字*/
+	job VARCHAR(9) NOT NULL DEFAULT &#39;&#39;,/*工作*/
+	mgr MEDIUMINT UNSIGNED NOT NULL DEFAULT 0,/*上级编码*/
+	hiredate DATE NOT NULL,/*入职时间*/
+	sal DECIMAL(7,2) NOT NULL,/*薪水*/
+	comm DECIMAL(7,2) NOT NULL,/*红利*/
+	deptno MEDIUMINT UNSIGNED NOT NULL DEFAULT 0 /*部门编号*/
+)ENGINE=INNODB DEFAULT CHARSET=gbk;
+</code></pre><ul>
+<li>设置参数log_bin_trust_function_creators</li>
+</ul>
+<pre tabindex="0"><code>创建函数，假如报错：This function has none of DETERMINISTIC...
+# 由于开启过慢查询日志，因为我们开启了bin-log，我们就必须为我们的function指定一个参数。
+show variables liek &#39;log_bin_trust_function_creators&#39;;
+set global log_bin_trust_function_creators = 1;
+# 这样添加了参数以后，如果Mysql重启，上述参数又会消失，永久方法：
+window下my.ini【mysqlId】加上log_bin_trust_function_creators = 1;
+linux下/etc/my.cnf下my.cnf【mysqlId】加上log_bin_trust_function_creators = 1;
+</code></pre><pre tabindex="0"><code>SHOW VARIABLES LIKE &#39;log_bin_trust_function_creators&#39;;
+SET GLOBAL log_bin_trust_function_creators=1;
+</code></pre><ul>
+<li>创建函数，保证每条数据都不同</li>
+<li>随机产生字符串</li>
+</ul>
+<pre tabindex="0"><code>DELIMITER $$
+CREATE FUNCTION rand_string(n INT)
+RETURNS VARCHAR(255)
+BEGIN
+  DECLARE chars_str VARCHAR(100) DEFAULT &#39;abcdefghijklmnopqrstuvwxyzABCDEFJHIJKLMNOPQRSTUVWXYZ&#39;;
+  DECLARE return_str VARCHAR(255) DEFAULT &#39;&#39;;
+  DECLARE i INT DEFAULT 0;
+  WHILE i&lt;n DO
+    SET return_str=CONCAT(return_str,SUBSTRING(chars_str,FLOOR(1+RAND()*52),1));
+    SET i=i+1;
+    END WHILE;
+    RETURN return_Str;
+END$$
+</code></pre><ul>
+<li>随机产生部门编号</li>
+</ul>
+<pre tabindex="0"><code>DELIMITER$$
+CREATE FUNCTION rand_num()
+RETURNS INT(5)
+BEGIN
+  DECLARE i INT DEFAULT 0;
+  SET i = FLOOR(100+RAND()*10);
+  RETURN i;
+END$$
+</code></pre><ul>
+<li>假如要删除</li>
+</ul>
+<pre tabindex="0"><code>drop function rand_num;
+</code></pre><ul>
+<li>创建存储过程</li>
+</ul>
+<pre tabindex="0"><code>DELIMITER$$
+CREATE PROCEDURE insert_emp(IN START INT(10),IN max_num INT(10))
+BEGIN
+  DECLARE i INT DEFAULT 0;
+# set autocommit=0 把autocommit设置成0
+  SET autocommit = 0;
+  REPEAT
+  SET i = i+1;
+  INSERT INTO emp(empno,ename,job,mgr,hiredate,sal,comm,deptno)
+  VALUES((START+i),rand_string(6),&#39;salesman&#39;,0001,CURDATE(),2000,400,rand_num());
+  UNTIL i = max_num
+  END REPEAT;
+  COMMIT;
+END$$
+</code></pre><pre tabindex="0"><code># 执行存储过程,往dept表添加随机数据
+DELIMITER$$
+CREATE PROCEDURE insert_dept(IN START INT(10),IN max_num INT(10))
+BEGIN
+  DECLARE i INT DEFAULT 0;
+  SET autocommit = 0;
+  REPEAT
+  SET i = i+1;
+  INSERT INTO dept(deptno,dname,loc) VALUES((START+i),rand_string(10),rand_string(8));
+  UNTIL i = max_num
+  END REPEAT;
+  COMMIT;
+END$$
+</code></pre><ul>
+<li>调用存储过程</li>
+<li>dept</li>
+</ul>
+<pre tabindex="0"><code>DELIMITER;
+CALL insert_dept(100,10);
+</code></pre><ul>
+<li>emp</li>
+</ul>
+<pre tabindex="0"><code> DELIMITER;
+CALL insert_emp(100001,500000);
+</code></pre><h1 id="show-profile">Show Profile</h1>
+<blockquote>
+<p><strong>是什么</strong>：是Mysql提供的可以用来分析当前会话中语句执行的资源消耗情况，可以用于SQL的调优的测量
+默认情况下，参数处于关闭状态，并保存最近15次的运行结果。</p>
+</blockquote>
+<p>分析步骤</p>
+<ul>
+<li>是否支持，看看当前的mysql版本是否支持</li>
+</ul>
+<pre tabindex="0"><code>SHOW VARIABLES LIKE &#39;profiling&#39;;
+或者
+SHOW VARIABLES LIKE &#39;profiling%&#39;;
+默认时关闭的，使用前需要开启
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./1e76699c4e614d7a8aa3b0573c1d2e7a.png"
+        data-srcset="./1e76699c4e614d7a8aa3b0573c1d2e7a.png, ./1e76699c4e614d7a8aa3b0573c1d2e7a.png 1.5x, ./1e76699c4e614d7a8aa3b0573c1d2e7a.png 2x"
+        data-sizes="auto"
+        alt="./1e76699c4e614d7a8aa3b0573c1d2e7a.png"
+        title="在这里插入图片描述" /></p>
+<ul>
+<li>开启功能，默认是关闭，使用前需要开启</li>
+</ul>
+<pre tabindex="0"><code>set profiling = on;
+</code></pre><ul>
+<li>运行SQL</li>
+</ul>
+<pre tabindex="0"><code>select * from emp group by id%10 limit 150000;
+select * from emp group by id%20 order by 5;
+</code></pre><ul>
+<li>查看结果</li>
+</ul>
+<pre tabindex="0"><code>show profiles;
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180139297.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180139297.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180139297.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180139297.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180139297.png"
+        title="在这里插入图片描述" /></p>
+<ul>
+<li>诊断SQL</li>
+</ul>
+<pre tabindex="0"><code>show profile cpu, block io for query #上一步前面的问题SQL数字号码;
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180135471.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180135471.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180135471.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180135471.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180135471.png"
+        title="在这里插入图片描述" /></p>
+<ul>
+<li>参数备注</li>
+</ul>
+<blockquote>
+<p>type：</p>
+<ul>
+<li>ALL 显示所有的开销信息</li>
+<li>BLOCK IO 显示块IO相关开销</li>
+<li>CONTEXT SWITCHES 上下文切换相关开销</li>
+<li>CPU 显示CPU相关开销信息</li>
+<li>IPC 显示发送和接受相关开销信息</li>
+<li>MEMORY 显示内存相关开销信息</li>
+<li>PAGE FAULTS 显示页面错误相关开销信息</li>
+<li>SOURCE 显示和Source_function,Source_file,Source_line相关的开销信息</li>
+<li>SWAPS 显示交换次数相关开销的信息</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>日常开发需要注意的结论</p>
+<ul>
+<li>converting HEAP to MyISAM：查询结果太大，内存都不够用了往磁盘上搬了</li>
+<li>Creating tmp table：创建临时表
+<ul>
+<li>拷贝数据到临时表</li>
+<li>用完再删除</li>
+</ul>
+</li>
+<li>Copying to tmp table on disk：把内存中临时表复制到磁盘，危险！！</li>
+<li>locked</li>
+</ul>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_12,color_FFFFFF,t_70,g_se,x_16.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_12%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_12%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_12%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_12,color_FFFFFF,t_70,g_se,x_16.png"
+        title="在这里插入图片描述" /></p>
+<h1 id="全局查询日志">全局查询日志</h1>
+<ul>
+<li>配置启用</li>
+</ul>
+<pre tabindex="0"><code>在Mysql的my.cnf中，设置如下：
+# 开启
+general_log=1
+# 记录日志文件的路径
+general_log_file=/path/logfile
+# 输出格式
+log_output=FILE
+</code></pre><ul>
+<li>编码启用</li>
+</ul>
+<pre tabindex="0"><code>set global general_log=1;
+set global log_output=&#39;TABLE&#39;;
+# 此后，你所编写的sql语句，将会记录到Mysql库里的general_log表，可以用下面的命令查看
+select * from mysql.general_log;
+</code></pre><p><code>永远不要在生产环境开启这个功能！</code></p>
+<h1 id="mysql锁机制">Mysql锁机制</h1>
+<h2 id="1-概述">1 概述</h2>
+<blockquote>
+<p><strong>定义</strong>：</p>
+<ul>
+<li>锁是计算机协调多个进程并发访问某一资源的机制。</li>
+<li>在数据库中，除了传统的计算资源(如CPU,RAM,I/O等)的争用意外，数据也是一种供许多用户共享的资源。如何保证数据并发访问的一致性，有效性是所有数据库必须解决的一个问题，锁冲突也是影响数据库并发访问性能的一个重要因素。从这绝对来说。锁对数据库而言显得尤其重要，也更加复杂。</li>
+</ul>
+</blockquote>
+<ul>
+<li>生活购物
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180141474.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180141474.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180141474.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180141474.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180141474.png"
+        title="在这里插入图片描述" /></li>
+</ul>
+<blockquote>
+<p>锁的分类：</p>
+<ul>
+<li>从对数据操作的类型(读/写)分：
+<ul>
+<li>读锁(共享锁)：针对同一份数据，多个读操作可以同时进行而不会互相影响。</li>
+<li>写锁(排它锁)：当前写操作没有完成前，它会阻断其他写锁和读锁。</li>
+</ul>
+</li>
+<li>从对数据操作的粒度分：
+<ul>
+<li>表锁</li>
+<li>行锁</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="2-三锁">2 三锁</h2>
+<blockquote>
+<p>开销、加锁速度、死锁、粒度、并发性能
+只能就具体应用的特点来说那种锁更合适</p>
+</blockquote>
+<h2 id="3-表锁偏读">3 表锁(偏读)</h2>
+<blockquote>
+<p>特点：偏向<code>MyISAM存储引擎</code>，开销小，加锁快；无死锁；锁定粒度大，发生锁冲突的概率最高，并发度最低。</p>
+</blockquote>
+<ul>
+<li>案例分析</li>
+</ul>
+<pre tabindex="0"><code>CREATE TABLE mylock(
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	NAME VARCHAR(20)
+)ENGINE MYISAM;
+INSERT INTO mylock(NAME) VALUES(&#39;a&#39;);
+INSERT INTO mylock(NAME) VALUES(&#39;b&#39;);
+INSERT INTO mylock(NAME) VALUES(&#39;c&#39;);
+INSERT INTO mylock(NAME) VALUES(&#39;d&#39;);
+INSERT INTO mylock(NAME) VALUES(&#39;e&#39;);
+
+SELECT * FROM mylock;
+</code></pre><pre tabindex="0"><code># 手动增加表锁
+lock table 表名字 read(write), 表名字2 read(write), 其他;
+# 查看表上加过的锁
+show open tables;
+# 释放表锁
+unlock tables;
+</code></pre><p><strong>加读锁(我们为mylock表加read锁(读阻塞写例子))</strong>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180137678.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180137678.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180137678.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180137678.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180137678.png"
+        title="在这里插入图片描述" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180136323.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180136323.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180136323.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180136323.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180136323.png"
+        title="在这里插入图片描述" />
+<strong>加写锁(我们为mylock表加write锁(MyISAM存储引擎的写阻塞读例子))</strong>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180139085.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180139085.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180139085.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180139085.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180139085.png"
+        title="在这里插入图片描述" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180136275.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180136275.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180136275.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180136275.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180136275.png"
+        title="在这里插入图片描述" /></p>
+<ul>
+<li>案例结论
+<strong>简而言之，就是读锁会阻塞写，但是不会阻塞读。而写锁则会把读和写都阻塞。</strong>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180137273.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180137273.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180137273.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180137273.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180137273.png"
+        title="在这里插入图片描述" /></li>
+</ul>
+<blockquote>
+<p>表锁分析</p>
+<ul>
+<li>看看哪些表被加锁了：show open tables;</li>
+<li>如何分析表锁定：可以通过检查table_locks_waited和table_locks_immediate状态变量来分析系统上的表锁定。
+<ul>
+<li>show status like ‘table%’;</li>
+<li>这里有两个状态变量记录MySQL内部表级锁定的情况，两个变量的说明如下：
+<ul>
+<li>Table_locks_immediate：产生表级锁定的次数，表示可以立即获取锁的查询次数，每立即获取锁值加1；</li>
+<li>Table_locks_waited：出现表级锁定争用而发生等待的次数(不能立即获取锁的次数，每等待一次锁值加1)，此值高则说明存在着较严重的表级锁争用情况。</li>
+</ul>
+</li>
+<li><strong>此外，MyISAM的读写锁调度是写优先，这也是MyISAM不适合做写为主表的引擎。因为写锁后，其他线程不能做任何操作，大量的更新会使查询很难得到锁，从而造成永远阻塞</strong>。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="4-行锁偏写">4 行锁(偏写)</h2>
+<blockquote>
+<p>特点</p>
+<ul>
+<li>偏向Innodb存储引擎，开销大，加锁慢；会出现死锁；锁定粒度小，发生锁冲突的概率最低，并发度也最高。</li>
+<li>Innodb与MyISAM的最大不同有两点：
+<ul>
+<li>一是支持事务(TRANSACTION)</li>
+<li>而是采用了行级锁</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>由于行锁支持事务，复习老知识
+事务(Transaction)及其ACID属性：事务是由一组SQL语句组成的逻辑处理单元，事务具有以下4个属性，通常简称为事务的ACID属性。</p>
+<ul>
+<li><code>原子性(Atomicity)</code>：事务是一个原子操作单元，其对数据的修改，要么全都执行，要么全都不执行。</li>
+<li><code>一致性(Consistent)</code>：在事务开始和完成时，数据都必须保持一致状态。这意味着所有相关的数据规则都必须应用于事务的修改，以保持数据的完整性，事务结束时，所有的内部数据结构(如B树索引或双向链表)也都必须是正确的。</li>
+<li><code>隔离性(Isolation)</code>：数据库系统提供一定的隔离机制，保证事务在不受外部并发操作影响的“独立”环境执行。这意味着事务处理过程中的中间状态对外部是不可见的，反之亦然。</li>
+<li><code>持久性(Durable)</code>：事务完成之后，它对于数据的修改是永久性的，即使出现系统故障也能够保持。</li>
+</ul>
+</blockquote>
+<p><strong>并发事务处理带来的问题</strong></p>
+<ul>
+<li><strong>更新丢失(Lost Update)</strong>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180137316.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180137316.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180137316.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180137316.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180137316.png"
+        title="在这里插入图片描述" /></li>
+<li><strong>脏读(Dirty Reads)</strong>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180139874.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180139874.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180139874.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180139874.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180139874.png"
+        title="在这里插入图片描述" /></li>
+<li><strong>不可重复读(Non-Repeatable Reads)</strong>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./f3423324f27045fbbfa108cab9631488.png"
+        data-srcset="./f3423324f27045fbbfa108cab9631488.png, ./f3423324f27045fbbfa108cab9631488.png 1.5x, ./f3423324f27045fbbfa108cab9631488.png 2x"
+        data-sizes="auto"
+        alt="./f3423324f27045fbbfa108cab9631488.png"
+        title="在这里插入图片描述" /></li>
+<li><strong>幻读(Phantom Reads)</strong>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180138307.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180138307.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180138307.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180138307.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180138307.png"
+        title="在这里插入图片描述" />
+<strong>事务隔离级别</strong>：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180139466.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180139466.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180139466.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180139466.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180139466.png"
+        title="在这里插入图片描述" /></li>
+<li>案例分析</li>
+</ul>
+<pre tabindex="0"><code># 建表SQL
+CREATE TABLE test_innodb_lock(
+	a INT(11),
+	b VARCHAR(16)
+)ENGINE=INNODB;
+
+INSERT INTO test_innodb_lock VALUES(1,&#39;b2&#39;);
+INSERT INTO test_innodb_lock VALUES(3,&#39;3&#39;);
+INSERT INTO test_innodb_lock VALUES(4,&#39;4000&#39;);
+INSERT INTO test_innodb_lock VALUES(5,&#39;5000&#39;);
+INSERT INTO test_innodb_lock VALUES(6,&#39;6000&#39;);
+INSERT INTO test_innodb_lock VALUES(7,&#39;7000&#39;);
+INSERT INTO test_innodb_lock VALUES(8,&#39;8000&#39;);
+INSERT INTO test_innodb_lock VALUES(9,&#39;9000&#39;);
+INSERT INTO test_innodb_lock VALUES(1,&#39;b1&#39;);
+
+CREATE INDEX test_innodb_a_ind ON test_innodb_lock(a);
+CREATE INDEX test_innodb_b_ind ON test_innodb_lock(b);
+</code></pre><ul>
+<li>行锁定基本演示
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180143726.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180143726.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180143726.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180143726.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180143726.png"
+        title="在这里插入图片描述" /></li>
+</ul>
+<blockquote>
+<ul>
+<li>无索引行锁升级为表锁
+<ul>
+<li>如果在更新数据的时候出现了强制类型转换导致索引失效，使得行锁变表锁，即在操作不同行的时候，会出现阻塞的现象。</li>
+</ul>
+</li>
+<li>间隙锁危害
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180144307.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180144307.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180144307.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180144307.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180144307.png"
+        title="在这里插入图片描述" /></li>
+<li>什么是间隙锁：当我们用范围条件而不是相等条件索引数据，并请求共享或排他锁时，InnoDB会给符合条件的已有数据记录的索引项加锁；对于键值在条件范围内但并不存在的记录，叫做“间隙(GAP)”。InnoDB也会对这个“间隙”加锁，这种锁机制就是所谓的间隙锁(Next-Key锁)。</li>
+<li>危害：
+<ul>
+<li>因为Query执行过程中通过范围查找的话，会锁定整个范围内所有的索引键值，即使这个键值并不存在。</li>
+<li>间隙锁有一个比较致命的弱点，就是当锁定一个范围键值之后，即使某些不存在的键值也会被无辜的锁定，而造成在锁定的时候无法插入锁定键值范围内的任何数据。在某些场景下这可能会对性能造成很大的危害。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>试题：常考如何锁定一行</p>
+<pre tabindex="0"><code>select * from 表 where 某一行的条件 for update;
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180139709.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180139709.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180139709.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180139709.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180139709.png"
+        title="在这里插入图片描述" /></p>
+<blockquote>
+<p>案例结论</p>
+<ul>
+<li>InnoDB存储引擎由于实现了行级锁定，虽然在锁定机制的实现方面所带来的性能损耗可能比表级锁定会更高一些，但是在整体并发处理能力方面要远远优于MyISAM的表级锁定的。当系统并发量较高的时候，InnoDB的整体性能和MyISAM相比就会有比较明显的优势了。</li>
+<li>但是，InnoDB的行级锁定同样也有其脆弱的一面，当我们使用不当的时候，可能会让InnoDB的整体性能表现不仅不能比MyISAM高，甚至可能会更差。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>行锁分析</p>
+<ul>
+<li>如何分析行锁定
+<ul>
+<li>通过检查InnoDB_row_lock状态变量来分析系统上的行锁的争夺情况
+show status like ‘innodb_row_lock%’;
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_17,color_FFFFFF,t_70,g_se,x_16-20220524180139673.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_17%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180139673.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_17%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180139673.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_17%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180139673.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_17,color_FFFFFF,t_70,g_se,x_16-20220524180139673.png"
+        title="在这里插入图片描述" /></li>
+<li>对各个状态量的说明如下：
+<ul>
+<li>Innodb_row_lock_current_waits：当前正在等待锁定的数量；</li>
+<li>innodb_row_lock_time：从系统启动到现在锁定总时间长度；</li>
+<li>innodb_row_lock_time_avg：每次等待所花平均时间；</li>
+<li>innodb_row_lock_time_max：从系统启动到现在等待最长的一次所花的时间；</li>
+<li>innodb_row_lock_waits：系统启动后到现在总共等待的次数。</li>
+</ul>
+</li>
+<li>对于这5个变量，比较重要的是
+<ul>
+<li>innodb_row_lock_time_avg(等待平均时长)</li>
+<li>innodb_row_lock_waits(等待总次数)</li>
+<li>innodb_row_lock_time(等待总时长)</li>
+<li>这三项</li>
+<li>尤其是当等待次数很高，而且每次等待时长也不小的时候，我们就需要分析系统中为什么会有如此多的等待，然后根据分析结果着手制定优化计划。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>优化建议</p>
+<ul>
+<li>尽可能让所有数据检索都通过索引来完成，避免无索引行锁升级为表锁。</li>
+<li>合理设计索引，尽量缩小锁的范围。</li>
+<li>尽可能减少索引条件，避免间隙锁。</li>
+<li>尽量控制事务大小，减少锁定资源量和时间长度。</li>
+<li>尽可能低级别事务隔离。</li>
+</ul>
+</blockquote>
+<h2 id="5-页锁">5 页锁</h2>
+<blockquote>
+<ul>
+<li>开销和加锁时间介于表锁和行锁之间。</li>
+<li>会出现死锁。</li>
+<li>锁定粒度介于表锁和行锁之间。</li>
+<li>并发度一般</li>
+</ul>
+</blockquote>
+<h1 id="主从复制">主从复制</h1>
+<blockquote>
+<p>复制的基本原理</p>
+<ul>
+<li>slave会从master读取binlog来进行数据同步</li>
+<li>三步骤+原理图</li>
+</ul>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180145869.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180145869.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180145869.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180145869.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180145869.png"
+        title="在这里插入图片描述" /></p>
+<blockquote>
+<p><strong>复制的基本原则</strong></p>
+<ul>
+<li>每个slave只有一个master</li>
+<li>每个slave只能有一个唯一的服务器ID</li>
+<li>每个master可以有多个slave</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>复制的最大问题</strong></p>
+<ul>
+<li>延时</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>一主一从常见配置</strong></p>
+<ul>
+<li>mysql版本一致且后台以服务运行</li>
+<li>主从都配置在[mysqld]结点下，都是小写</li>
+<li>主机修改my.ini配置文件
+<ul>
+<li>【必须】主服务器唯一ID
+server-id=1</li>
+<li>【必须】启用二进制日志
+log-bin=自己本地的路径/mysqlbin
+log-bin=D:/devSoft/MySQLServer5.5/data/mysqlbin</li>
+<li>【可选】启用错误日志
+log-err=自己本地的路径/mysqlerr
+log-err=D:/devSoft/MySQLServer5.5/data/mysqlerr</li>
+<li>【可选】根目录
+basedir=自己本地路径
+basedir=“D:/devSoft/MySQLServer5.5/”</li>
+<li>【可选】临时目录
+temdir=自己本地路径
+temdir=“D:/devSoft/MySQLServer5.5/”
+-【可选】数据目录
+datadir=自己本地路径/Data/
+datadir=“D:/devSoft/MySQLServer5.5/Data/”</li>
+<li>read-only=0
+主机，读写都可以</li>
+<li>【可选】设置不要复制的数据库
+binlog-ignore-db=mysql</li>
+<li>【可选】设置需要复制的数据库
+binlog-do-db=需要复制的主数据库名字</li>
+</ul>
+</li>
+<li>从机修改my.cnf配置文件
+<ul>
+<li>【必须】从服务器唯一ID
+server-id=2</li>
+<li>【可选】启用二进制日志</li>
+</ul>
+</li>
+<li>因修改过配置文件，请主机+从机都重启后台mysql服务</li>
+<li>主机从机都关闭防火墙
+<ul>
+<li>windows手动关闭</li>
+<li>关闭虚拟机linux防火墙：service iptables stop</li>
+</ul>
+</li>
+<li>在Windows主机上建立账户并授权slave
+<ul>
+<li><code>GRANT REPLICATION SLAVE ON *.* TO 'zhangsan' @ '192.168.14.167【从机数据库IP】' IDENTIFIED BY '123456';</code></li>
+<li>flush privileges;</li>
+<li>查询master的状态
+<ul>
+<li>show master status
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180140904.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180140904.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180140904.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180140904.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180140904.png"
+        title="在这里插入图片描述" /></li>
+<li>记录下File和Position的值</li>
+</ul>
+</li>
+<li>执行完此步骤后不要再操作主服务器MYSQL，防止主服务器状态值变化</li>
+</ul>
+</li>
+<li>在Linux从机上配置需要复制的主机
+<ul>
+<li><code>CHANGE MASTER TO MASTER_HOST='主机IP', MASTER_USER='zhangsan', MASTER_PASSWORD='123456', MASTER_LOG_FILE='file名字', MASTER_LOG_POS=position数字;</code>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180144867.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180144867.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180144867.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180144867.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180144867.png"
+        title="在这里插入图片描述" />
+eg
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./d975f4466cb14dca8f625ceb061d7ed9.png"
+        data-srcset="./d975f4466cb14dca8f625ceb061d7ed9.png, ./d975f4466cb14dca8f625ceb061d7ed9.png 1.5x, ./d975f4466cb14dca8f625ceb061d7ed9.png 2x"
+        data-sizes="auto"
+        alt="./d975f4466cb14dca8f625ceb061d7ed9.png"
+        title="在这里插入图片描述" /></li>
+<li>启动从服务器复制功能
+<ul>
+<li>start slave;</li>
+</ul>
+</li>
+<li>show slave status\G【\G是为了以键值的形式显示，好看一些】
+<ul>
+<li>下面两个参数都是Yes，则说明主从配置成功！</li>
+<li>Slave_IO_Running：Yes</li>
+<li>Slave_SQL_Running：Yes
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180144142.png"
+        data-srcset="./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180144142.png, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180144142.png 1.5x, ./watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBA6Zmz6aiw6aOb%2csize_20%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16-20220524180144142.png 2x"
+        data-sizes="auto"
+        alt="./watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zmz6aiw6aOb,size_20,color_FFFFFF,t_70,g_se,x_16-20220524180144142.png"
+        title="在这里插入图片描述" /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>主机新建库、新建表、insert记录，从机复制</li>
+<li>如何停止从服务复制功能
+<ul>
+<li>stop slave;</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/database/">database</a>
+                </span><span><a href="/tags/mysql/">mysql</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2022-06-17</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/mysql%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B01-2%E7%AB%A0/" class="prev" rel="prev" title="mysql详细笔记1-2章"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/database%E6%9C%AA%E5%A4%84%E7%90%86/mysql/mysql%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%981-8/" class="next" rel="next" title="MySQL索引优化及性能调优1-8">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

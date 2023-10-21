@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title> - xcx</title><meta name="description" content=""><meta property="og:title" content="" />
+<meta property="og:description" content="UML 图 UML（Unified Modeling Language）是一种用于软件系统建模的标准化图形语言。它提供了丰富的图形符号和概念来描述软件系统的结构、行为" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiechaoxin.github.io/posts/tools/uml/uml/" /><meta property="article:section" content="posts" />
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="UML 图 UML（Unified Modeling Language）是一种用于软件系统建模的标准化图形语言。它提供了丰富的图形符号和概念来描述软件系统的结构、行为"/>
+<meta name="application-name" content="xcx">
+<meta name="apple-mobile-web-app-title" content="xcx"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiechaoxin.github.io/posts/tools/uml/uml/" /><link rel="prev" href="https://xiechaoxin.github.io/posts/web/front-end/js/http-%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87%E7%9A%84%E7%BB%84%E6%88%90/" /><link rel="next" href="https://xiechaoxin.github.io/posts/tools/git/git%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiechaoxin.github.io\/posts\/tools\/uml\/uml\/"
+        },"genre": "posts","wordcount":  1693 ,
+        "url": "https:\/\/xiechaoxin.github.io\/posts\/tools\/uml\/uml\/","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xcx">xcx</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xcx">xcx</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="在客户端搜索可能比较慢~" id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><div class="menu-item"><a href="#" onclick="return false;" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX"></h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1693 字</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#常见的-uml-图类型">常见的 UML 图类型</a></li>
+    <li><a href="#uml-图的基本元素">UML 图的基本元素</a></li>
+    <li><a href="#绘制-uml-图的实践">绘制 UML 图的实践</a></li>
+    <li><a href="#箭头">箭头</a></li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="uml-图">UML 图</h1>
+<p>UML（Unified Modeling Language）是一种用于软件系统建模的标准化图形语言。它提供了丰富的图形符号和概念来描述软件系统的结构、行为和交互。</p>
+<h2 id="常见的-uml-图类型">常见的 UML 图类型</h2>
+<ol>
+<li>用例图：描述系统功能和角色之间的关系，显示系统的外部视图。</li>
+<li>类图：表示系统的静态结构，包括类、接口、关系和属性等。</li>
+<li>对象图：展示类图中特定时间点的对象实例及其之间的关系。</li>
+<li>时序图：描述对象之间消息的交互顺序，用于显示对象之间的动态行为。</li>
+<li>协作图：展示对象之间的交互关系和消息流程，重点在于合作和协同。</li>
+<li>状态图：描述对象在不同状态下的行为和转换条件。</li>
+<li>活动图：显示系统或对象的活动流程和流程控制。</li>
+<li>构件图：描述系统的物理组件和它们之间的关系。</li>
+<li>部署图：显示软件系统的物理架构，包括硬件和软件组件。</li>
+</ol>
+<h2 id="uml-图的基本元素">UML 图的基本元素</h2>
+<ol>
+<li>类（Class）：表示对象的属性和行为。</li>
+<li>接口（Interface）：定义类的行为规范。</li>
+<li>对象（Object）：类的实例。</li>
+<li>关联关系（Association）：类之间的连接，表示它们之间的关系。</li>
+<li>继承关系（Inheritance）：表示类之间的继承关系。</li>
+<li>依赖关系（Dependency）：一个类的实现依赖于另一个类。</li>
+<li>聚合关系（Aggregation）：表示整体与部分之间的关系，部分可以独立存在。</li>
+<li>组合关系（Composition）：表示整体与部分之间的关系，部分不能独立存在。</li>
+<li>实现关系（Realization）：类实现接口的关系。</li>
+<li>消息（Message）：对象之间的通信。</li>
+</ol>
+<h2 id="绘制-uml-图的实践">绘制 UML 图的实践</h2>
+<ol>
+<li>使用绘图工具：使用专门的 UML 绘图工具（如 Visual Paradigm、Lucidchart、PlantUML 等）可以方便地绘制和编辑 UML 图。</li>
+<li>组织图形元素：将相关的类、接口和关系组织在一起，使用适当的符号和箭头来表示它们之间的关系。</li>
+<li>添加注释和说明：在需要解释和说明的地方，可以使用注释或文字说明来提供更多的上下文和解释。</li>
+<li>标注和约束：使用标注和约束来表示额外的信息，如操作、属性、约束条件等。</li>
+<li>保持图的简洁性：避免在图中包含过多的细节，保持图的简洁和可读性。</li>
+<li>标准符号和约定：遵循 UML 的标准符号和约定，以便其他人可以轻松理解和阅读你的图。</li>
+</ol>
+<h2 id="箭头">箭头</h2>
+<p>在 UML 图中，箭头是用于表示不同关系和连接的方向和含义的重要元素。选择正确的箭头可以提供清晰的图形表示和传达意图。以下是一些常见的箭头类型和它们的使用场景：</p>
+<ol>
+<li>关联关系（Association）：通常使用普通箭头（无填充）来表示。箭头指向被关联的类，表示类之间的双向关系。如果关联关系是单向的，则只需在箭头的一端进行标记。</li>
+<li>继承关系（Inheritance）：使用空心的箭头来表示。箭头指向父类或超类，表示子类继承自父类。可以使用带有开放箭头的虚线来表示虚拟继承（在 C++中）。</li>
+<li>实现关系（Realization）：使用带有开放箭头的虚线来表示。箭头指向接口，表示类实现了该接口。</li>
+<li>依赖关系（Dependency）：通常使用普通箭头（无填充）来表示。箭头指向被依赖的类，表示一个类依赖于另一个类。可以在箭头上添加依赖的类型，如使用&quot;&laquo;&ldquo;表示使用关系或&rdquo;&laquo;&ldquo;表示实现关系。</li>
+<li>聚合关系（Aggregation）：使用空心的菱形来表示。箭头指向整体，表示整体与部分之间的关系。聚合关系表示部分可以独立存在。</li>
+<li>组合关系（Composition）：使用实心的菱形来表示。箭头指向整体，表示整体与部分之间的关系。组合关系表示部分不能独立存在，与整体有更强的关联。</li>
+<li>通信关系（Communication）：使用普通箭头（无填充）来表示。箭头表示消息的发送和接收方向。</li>
+</ol>
+<p>除了箭头类型外，箭头的方向和位置也是重要的。箭头指向表示目标或接收方，从箭头的起点指向源或发送方。</p>
+<p>在选择箭头时，需要根据 UML 图的类型和特定关系的语义来选择适当的箭头类型。了解 UML 的标准和约定，以及与团队或文档中的约定保持一致，可以确保图形的一致性和易读性。</p>
+<h2 id="总结">总结</h2>
+<p>UML 图是一种强大的工具，用于描述和分析软件系统的各个方面。通过学习和应用 UML 图，你可以更好地理解和传达系统的结构、行为和交互。选择适当的图形类型和使用正确的符号和元素是绘制 UML 图的关键。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 0001-01-01</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/web/front-end/js/http-%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87%E7%9A%84%E7%BB%84%E6%88%90/" class="prev" rel="prev" title=""><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/posts/tools/git/git%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/" class="next" rel="next" title="">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.112.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

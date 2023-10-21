@@ -1,0 +1,67 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>common - 分类 - xcx</title>
+        <link>https://xiechaoxin.github.io/categories/common/</link>
+        <description>common - 分类 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 14 Jul 2023 22:02:09 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/categories/common/" rel="self" type="application/rss+xml" /><item>
+    <title>正则表达式查询文档</title>
+    <link>https://xiechaoxin.github.io/posts/common/regex/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%9F%A5%E8%AF%A2%E6%96%87%E6%A1%A3/</link>
+    <pubDate>Fri, 14 Jul 2023 22:02:09 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/common/regex/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%9F%A5%E8%AF%A2%E6%96%87%E6%A1%A3/</guid>
+    <description><![CDATA[基础正则表达式速查表 字符 表达式 描述 [abc] 字符集。匹配集合中所含的任一字符。 [^abc] 否定字符集。匹配任何不在集合中的字符。 [a-z] 字符范围。匹配指定范围内的任]]></description>
+</item>
+<item>
+    <title>gitignore 语法</title>
+    <link>https://xiechaoxin.github.io/posts/tools/git/gitignore-%E8%AF%AD%E6%B3%95/</link>
+    <pubDate>Thu, 01 Jun 2023 23:01:21 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/tools/git/gitignore-%E8%AF%AD%E6%B3%95/</guid>
+    <description><![CDATA[gitignore 1 gitignore 语法 # 一.基础语法 # gitignore配置文件的一些通用技巧 [参考:https://git-scm.com/docs/gitignor]]></description>
+</item>
+<item>
+    <title>Java学习路线</title>
+    <link>https://xiechaoxin.github.io/posts/common/route-map/java%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</link>
+    <pubDate>Thu, 29 Sep 2022 16:59:06 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/common/route-map/java%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</guid>
+    <description><![CDATA[Java 学习路线 1 大纲 2022 2 路线特点 2.1 最新，完整一条龙的大厂 Java 学习路线，从入门到入土 2.2 同时适用于想全面学习 / 快速求职的同学，可以根据符号来定制自己的]]></description>
+</item>
+<item>
+    <title>Python 学习路线</title>
+    <link>https://xiechaoxin.github.io/posts/common/route-map/python%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</link>
+    <pubDate>Thu, 29 Sep 2022 16:59:06 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/common/route-map/python%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</guid>
+    <description><![CDATA[Python 学习路线 2022 1 学习路线 学会基础，足够应付工作了。 1.1 基础 Python 安装 开发工具 PyCharm Sublime VS Code 变量 定义变量 关键字 命名规则 基本数据类型 类型转换 运算符和表达式 流程]]></description>
+</item>
+<item>
+    <title>8-years-programmer-work-summary</title>
+    <link>https://xiechaoxin.github.io/posts/chaos/%E5%A4%A7%E4%BD%AC%E5%88%86%E4%BA%AB/personal-experience/8-years-programmer-work-summary/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/chaos/%E5%A4%A7%E4%BD%AC%E5%88%86%E4%BA%AB/personal-experience/8-years-programmer-work-summary/</guid>
+    <description><![CDATA[title: 一个中科大差生的 8 年程序员工作总结 category: 技术文章精选集 tag: 个人经历 《一个中科大差生的 8 年程序员工作总结》 这篇文章是我上上个星期发现的一篇好文，我]]></description>
+</item>
+<item>
+    <title>get-into-work-mode-quickly-when-you-join-a-company</title>
+    <link>https://xiechaoxin.github.io/posts/chaos/%E5%A4%A7%E4%BD%AC%E5%88%86%E4%BA%AB/work/get-into-work-mode-quickly-when-you-join-a-company/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/chaos/%E5%A4%A7%E4%BD%AC%E5%88%86%E4%BA%AB/work/get-into-work-mode-quickly-when-you-join-a-company/</guid>
+    <description><![CDATA[title: 新入职一家公司如何快速进入工作状态 category: 技术文章精选集 tag: 工作 强烈建议每一位即将入职/在职的小伙伴看看这篇文章，看完之后可以帮助你少踩很多坑。整]]></description>
+</item>
+<item>
+    <title>ProGit笔记</title>
+    <link>https://xiechaoxin.github.io/posts/tools/git/progit%E7%AC%94%E8%AE%B0/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/tools/git/progit%E7%AC%94%E8%AE%B0/</guid>
+    <description><![CDATA[ProGit 笔记 1 版本控制 1.1 什么是版本控制 版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。 除了项目源代码，你可以对任何类]]></description>
+</item>
+<item>
+    <title>RESTfulAPI</title>
+    <link>https://xiechaoxin.github.io/posts/common/%E8%A7%84%E8%8C%83/restfulapi/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/common/%E8%A7%84%E8%8C%83/restfulapi/</guid>
+    <description><![CDATA[RestFul API 简明教程 这篇文章简单聊聊后端程序员必备的 RESTful API 相关的知识。 开始正式介绍 RESTful API 之前，我们需要首先搞清 ：API 到底是什么？ 1 何为 API？ API(Application Programming Interface) 翻]]></description>
+</item>
+<item>
+    <title>screen-candidates-for-packaging</title>
+    <link>https://xiechaoxin.github.io/posts/chaos/%E5%A4%A7%E4%BD%AC%E5%88%86%E4%BA%AB/interview/screen-candidates-for-packaging/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/chaos/%E5%A4%A7%E4%BD%AC%E5%88%86%E4%BA%AB/interview/screen-candidates-for-packaging/</guid>
+    <description><![CDATA[title: 包装严重的IT行业，作为面试官，我是如何甄别应聘者的包装程度 category: 技术文章精选集 tag: 面试 经常听到培训班待过的朋友给我说他们的老师是怎么教他们“包]]></description>
+</item>
+<item>
+    <title>seven-tips-for-becoming-an-advanced-programmer</title>
+    <link>https://xiechaoxin.github.io/posts/chaos/%E5%A4%A7%E4%BD%AC%E5%88%86%E4%BA%AB/advanced-programmer/seven-tips-for-becoming-an-advanced-programmer/</link>
+    <pubDate>Fri, 17 Jun 2022 17:59:13 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/chaos/%E5%A4%A7%E4%BD%AC%E5%88%86%E4%BA%AB/advanced-programmer/seven-tips-for-becoming-an-advanced-programmer/</guid>
+    <description><![CDATA[title: 给想成长为高级别开发同学的七条建议 category: 技术文章精选集 tag: 练级攻略 普通程序员要想成长为高级程序员甚至是专家等更高级别，应该注意在哪些方面注意加强]]></description>
+</item>
+</channel>
+</rss>

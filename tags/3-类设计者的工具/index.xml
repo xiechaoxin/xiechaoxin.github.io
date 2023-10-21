@@ -1,0 +1,31 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>3-类设计者的工具 - 标签 - xcx</title>
+        <link>https://xiechaoxin.github.io/tags/3-%E7%B1%BB%E8%AE%BE%E8%AE%A1%E8%80%85%E7%9A%84%E5%B7%A5%E5%85%B7/</link>
+        <description>3-类设计者的工具 - 标签 - xcx</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 10 Jul 2022 05:34:29 &#43;0000</lastBuildDate><atom:link href="https://xiechaoxin.github.io/tags/3-%E7%B1%BB%E8%AE%BE%E8%AE%A1%E8%80%85%E7%9A%84%E5%B7%A5%E5%85%B7/" rel="self" type="application/rss+xml" /><item>
+    <title>13.拷贝控制</title>
+    <link>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/3-%E7%B1%BB%E8%AE%BE%E8%AE%A1%E8%80%85%E7%9A%84%E5%B7%A5%E5%85%B7/13.%E6%8B%B7%E8%B4%9D%E6%8E%A7%E5%88%B6/</link>
+    <pubDate>Sun, 10 Jul 2022 05:34:29 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/3-%E7%B1%BB%E8%AE%BE%E8%AE%A1%E8%80%85%E7%9A%84%E5%B7%A5%E5%85%B7/13.%E6%8B%B7%E8%B4%9D%E6%8E%A7%E5%88%B6/</guid>
+    <description><![CDATA[拷贝控制 拷贝控制操作(copy control): 拷贝构造函数(copy constructor) 拷贝赋值运算符(copy-assignment operator) 移动构造函数(move constructor) 移动赋值函数]]></description>
+</item>
+<item>
+    <title>14.重载运算与类型转换</title>
+    <link>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/3-%E7%B1%BB%E8%AE%BE%E8%AE%A1%E8%80%85%E7%9A%84%E5%B7%A5%E5%85%B7/14.%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E4%B8%8E%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</link>
+    <pubDate>Sun, 10 Jul 2022 05:32:37 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/3-%E7%B1%BB%E8%AE%BE%E8%AE%A1%E8%80%85%E7%9A%84%E5%B7%A5%E5%85%B7/14.%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E4%B8%8E%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</guid>
+    <description><![CDATA[重载运算与类型转换 1 基本概念 重载运算符是具有特殊名字的函数：由关键字operator和其后要定义的运算符号共同组成。 当一个重载的运算符是成员]]></description>
+</item>
+<item>
+    <title>15.面向对象程序设计</title>
+    <link>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/3-%E7%B1%BB%E8%AE%BE%E8%AE%A1%E8%80%85%E7%9A%84%E5%B7%A5%E5%85%B7/15.%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</link>
+    <pubDate>Sun, 10 Jul 2022 05:31:15 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/3-%E7%B1%BB%E8%AE%BE%E8%AE%A1%E8%80%85%E7%9A%84%E5%B7%A5%E5%85%B7/15.%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</guid>
+    <description><![CDATA[面向对象程序设计 1 OOP：概述 面向对象程序设计(object-oriented programming)的核心思想是数据抽象、继承和动态绑定。]]></description>
+</item>
+<item>
+    <title>16.模板和泛型编程</title>
+    <link>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/3-%E7%B1%BB%E8%AE%BE%E8%AE%A1%E8%80%85%E7%9A%84%E5%B7%A5%E5%85%B7/16.%E6%A8%A1%E6%9D%BF%E5%92%8C%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B/</link>
+    <pubDate>Sun, 10 Jul 2022 05:30:30 &#43;0000</pubDate><guid>https://xiechaoxin.github.io/posts/language/cpp/cpp-primer/3-%E7%B1%BB%E8%AE%BE%E8%AE%A1%E8%80%85%E7%9A%84%E5%B7%A5%E5%85%B7/16.%E6%A8%A1%E6%9D%BF%E5%92%8C%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B/</guid>
+    <description><![CDATA[第十六章 模板和泛型编程 面向对象编程和泛型编程都能处理在编写程序时不知道类型的情况。 OOP 能处理类型在程序运行之前都未知的情况； 泛型编程中，在编译]]></description>
+</item>
+</channel>
+</rss>
